@@ -14,13 +14,9 @@
  * limitations under the License.
  */
 
-package generators
+package pages
 
-import org.scalacheck.Arbitrary
-import pages._
+case object AbleToDoPage extends QuestionPage[Boolean] {
 
-trait PageGenerators {
-
-  implicit lazy val arbitraryAbleToDoPage: Arbitrary[AbleToDoPage.type] =
-    Arbitrary(AbleToDoPage)
+  override def toString: String = "ableToDo"
 }

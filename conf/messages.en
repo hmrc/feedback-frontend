@@ -42,3 +42,8 @@ site.textarea.char_limit = (Limit is {0} characters)
 
 unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
+
+ableToDo.title = ableToDo
+ableToDo.heading = ableToDo
+ableToDo.checkYourAnswersLabel = ableToDo
+ableToDo.error.required = Select yes if ableToDo

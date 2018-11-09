@@ -22,4 +22,8 @@ import pages._
 import viewmodels.{AnswerRow, RepeaterAnswerRow, RepeaterAnswerSection}
 
 class CheckYourAnswersHelper(userAnswers: UserAnswers) {
+
+  def ableToDo: Option[AnswerRow] = userAnswers.get(AbleToDoPage) map {
+    x => AnswerRow("ableToDo.checkYourAnswersLabel", if(x) "site.yes" else "site.no", true, routes.AbleToDoController.onPageLoad(CheckMode).url)
+  }
 }
