@@ -20,18 +20,18 @@ import play.api.data.{Form, FormError}
 
 class OptionFieldBehaviours extends FieldBehaviours {
 
-  def optionsField[T](form: Form[_],
-                      fieldName: String,
-                      validValues: Set[T],
-                      invalidError: FormError): Unit = {
-
+  def optionsField[A, T](form: Form[A],
+                         fieldName: String,
+                         validValues: Set[T],
+                         invalidError: FormError,
+                         fieldValue: A => Option[T]): Unit = {
 
     "bind all valid values" in {
 
       for(value <- validValues) {
 
-        val result = form.bind(Map(fieldName -> value.toString)).apply(fieldName)
-        result.value.value shouldEqual value.toString
+        val result = form.bind(Map(fieldName -> value.toString))
+        fieldValue(result.value.value) shouldEqual Some(value)
       }
     }
 

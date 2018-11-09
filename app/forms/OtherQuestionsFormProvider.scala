@@ -24,11 +24,15 @@ import play.api.data.Forms._
 
 class OtherQuestionsFormProvider @Inject() extends Mappings {
 
+  private val maxFieldSize = 1000
+
   def apply(): Form[OtherQuestions] =
-    Form(
-      "ableToDo" -> optional(boolean("ableToDo.error.required")),
-      "howEasyScore" -> optional(enumerable[HowEasyQuestion]("howEasyScore.error.required")),
-      "whyGiveScore" -> optional(maxLength(1000, "whyGiveScore.error.maxLength")),
-      "satisfactionScore" -> optional(enumerable[HowDoYouFeelQuestion]("satisfactionScore.error.required"))
-    )
+    Form(mapping(
+      "ableToDo" -> optional(boolean()),
+      "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+      "whyGiveScore" ->
+        optional(text("whyGiveScore.error.required")
+          .verifying(maxLength(maxFieldSize, "whyGiveScore.error.maxLength"))),
+      "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+    )(OtherQuestions.apply)(OtherQuestions.unapply))
 }

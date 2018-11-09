@@ -12,7 +12,5 @@ GET        /check-your-answers                          controllers.CheckYourAns
 
 GET        /unauthorised                                controllers.UnauthorisedController.onPageLoad
 
-GET        /ableToDo                        controllers.AbleToDoController.onPageLoad(mode: Mode = NormalMode)
-POST       /ableToDo                        controllers.AbleToDoController.onSubmit(mode: Mode = NormalMode)
-GET        /changeAbleToDo                  controllers.AbleToDoController.onPageLoad(mode: Mode = CheckMode)
-POST       /changeAbleToDo                  controllers.AbleToDoController.onSubmit(mode: Mode = CheckMode)
+GET        /other                                       controllers.OtherQuestionsController.onPageLoad
+POST       /other                                       controllers.OtherQuestionsController.onSubmit

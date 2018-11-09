@@ -18,27 +18,27 @@ package views
 
 import play.api.data.Form
 import controllers.routes
-import forms.AbleToDoFormProvider
+import forms.OtherQuestionsFormProvider
 import views.behaviours.YesNoViewBehaviours
-import models.NormalMode
-import views.html.ableToDo
+import models.OtherQuestions
+import views.html.otherQuestions
 
-class AbleToDoViewSpec extends YesNoViewBehaviours {
+class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions] {
 
-  val messageKeyPrefix = "ableToDo"
+  val messageKeyPrefix = "otherQuestions"
 
-  val form = new AbleToDoFormProvider()()
+  val form = new OtherQuestionsFormProvider()()
 
-  def createView = () => ableToDo(frontendAppConfig, form, NormalMode)(fakeRequest, messages)
+  def createView = () => otherQuestions(frontendAppConfig, form)(fakeRequest, messages)
 
-  def createViewUsingForm = (form: Form[_]) => ableToDo(frontendAppConfig, form, NormalMode)(fakeRequest, messages)
+  def createViewUsingForm = (form: Form[_]) => otherQuestions(frontendAppConfig, form)(fakeRequest, messages)
 
-  "AbleToDo view" must {
+  "OtherQuestions view" must {
 
     behave like normalPage(createView, messageKeyPrefix)
 
     behave like pageWithBackLink(createView)
 
-    behave like yesNoPage(createViewUsingForm, messageKeyPrefix, routes.AbleToDoController.onSubmit(NormalMode).url)
+    behave like yesNoPage(createViewUsingForm, "ableToDo", messageKeyPrefix, routes.OtherQuestionsController.onSubmit().url)
   }
 }

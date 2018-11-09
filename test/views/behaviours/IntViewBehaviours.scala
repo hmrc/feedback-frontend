@@ -19,11 +19,13 @@ package views.behaviours
 import play.api.data.{Form, FormError}
 import play.twirl.api.HtmlFormat
 
-trait IntViewBehaviours extends QuestionViewBehaviours[Int] {
+trait IntViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
   val number = 123
 
-  def intPage(createView: (Form[Int]) => HtmlFormat.Appendable,
+  def intPage(createView: Form[A] => HtmlFormat.Appendable,
+              fillForm: (Form[A], Int) => Form[A],
+              fieldName: String,
               messageKeyPrefix: String,
               expectedFormAction: String) = {
 
@@ -32,18 +34,18 @@ trait IntViewBehaviours extends QuestionViewBehaviours[Int] {
 
         "contain a label for the value" in {
           val doc = asDocument(createView(form))
-          assertContainsLabel(doc, "value", messages(s"$messageKeyPrefix.title"))
+          assertContainsLabel(doc, fieldName, messages(s"$messageKeyPrefix.title"))
         }
 
         "contain an input for the value" in {
           val doc = asDocument(createView(form))
-          assertRenderedById(doc, "value")
+          assertRenderedById(doc, fieldName)
         }
       }
 
       "rendered with a valid form" must {
         "include the form's value in the value input" in {
-          val doc = asDocument(createView(form.fill(number)))
+          val doc = asDocument(createView(fillForm(form, number)))
           doc.getElementById("value").attr("value") mustBe number.toString
         }
       }

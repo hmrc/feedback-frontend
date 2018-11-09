@@ -19,11 +19,13 @@ package views.behaviours
 import play.api.data.Form
 import play.twirl.api.HtmlFormat
 
-trait StringViewBehaviours extends QuestionViewBehaviours[String] {
+trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
   val answer = "answer"
 
-  def stringPage(createView: (Form[String]) => HtmlFormat.Appendable,
+  def stringPage(createView: Form[A] => HtmlFormat.Appendable,
+                 fillForm: (Form[A], String) => Form[A],
+                 fieldName: String,
                  messageKeyPrefix: String,
                  expectedFormAction: String,
                  expectedHintKey: Option[String] = None) = {
@@ -34,19 +36,19 @@ trait StringViewBehaviours extends QuestionViewBehaviours[String] {
         "contain a label for the value" in {
           val doc = asDocument(createView(form))
           val expectedHintText = expectedHintKey map(k => messages(k))
-          assertContainsLabel(doc, "value", messages(s"$messageKeyPrefix.heading"), expectedHintText)
+          assertContainsLabel(doc, fieldName, messages(s"$messageKeyPrefix.heading"), expectedHintText)
         }
 
         "contain an input for the value" in {
           val doc = asDocument(createView(form))
-          assertRenderedById(doc, "value")
+          assertRenderedById(doc, fieldName)
         }
       }
 
       "rendered with a valid form" must {
         "include the form's value in the value input" in {
-          val doc = asDocument(createView(form.fill(answer)))
-          doc.getElementById("value").attr("value") mustBe answer
+          val doc = asDocument(createView(fillForm(form, answer)))
+          doc.getElementById(fieldName).attr("value") mustBe answer
         }
       }
 

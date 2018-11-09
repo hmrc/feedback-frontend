@@ -17,58 +17,43 @@
 package controllers
 
 import javax.inject.Inject
-
 import play.api.data.Form
 import play.api.i18n.{I18nSupport, MessagesApi}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import connectors.DataCacheConnector
 import controllers.actions._
 import config.FrontendAppConfig
-import forms.AbleToDoFormProvider
-import models.Mode
-import pages.AbleToDoPage
+import forms.OtherQuestionsFormProvider
+import models.OtherQuestions
 import navigation.Navigator
-import views.html.ableToDo
+import views.html.otherQuestions
 
 import scala.concurrent.Future
 
-class AbleToDoController @Inject()(appConfig: FrontendAppConfig,
+class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                          override val messagesApi: MessagesApi,
                                          dataCacheConnector: DataCacheConnector,
                                          navigator: Navigator,
                                          identify: IdentifierAction,
                                          getData: DataRetrievalAction,
                                          requireData: DataRequiredAction,
-                                         formProvider: AbleToDoFormProvider
+                                         formProvider: OtherQuestionsFormProvider
                                          ) extends FrontendController with I18nSupport {
 
-  val form: Form[Boolean] = formProvider()
+  val form: Form[OtherQuestions] = formProvider()
 
-  def onPageLoad(mode: Mode) = (identify andThen getData andThen requireData) {
+  def onPageLoad() = (identify andThen getData andThen requireData) {
     implicit request =>
-
-      val preparedForm = request.userAnswers.get(AbleToDoPage) match {
-        case None => form
-        case Some(value) => form.fill(value)
-      }
-
-      Ok(ableToDo(appConfig, preparedForm, mode))
+      Ok(otherQuestions(appConfig, form))
   }
 
-  def onSubmit(mode: Mode) = (identify andThen getData andThen requireData).async {
+  def onSubmit() = (identify andThen getData andThen requireData).async {
     implicit request =>
 
       form.bindFromRequest().fold(
         (formWithErrors: Form[_]) =>
-          Future.successful(BadRequest(ableToDo(appConfig, formWithErrors, mode))),
-        (value) => {
-          val updatedAnswers = request.userAnswers.set(AbleToDoPage, value)
-
-          dataCacheConnector.save(updatedAnswers.cacheMap).map(
-            _ =>
-              Redirect(navigator.nextPage(AbleToDoPage, mode)(updatedAnswers))
-          )
-        }
+          Future.successful(BadRequest(otherQuestions(appConfig, formWithErrors))),
+        (value) => ???
       )
   }
 }

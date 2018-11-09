@@ -20,18 +20,21 @@ import play.api.data.{Form, FormError}
 
 trait BooleanFieldBehaviours extends FieldBehaviours {
 
-  def booleanField(form: Form[_],
-                   fieldName: String,
-                   invalidError: FormError): Unit = {
+  def booleanField[A](
+                    form: Form[A],
+                    fieldName: String,
+                    invalidError: FormError,
+                    fieldValue: A => Option[Boolean]
+                   ): Unit = {
 
     "bind true" in {
       val result = form.bind(Map(fieldName -> "true"))
-      result.value.value shouldBe true
+      fieldValue(result.value.value) shouldBe Some(true)
     }
 
     "bind false" in {
       val result = form.bind(Map(fieldName -> "false"))
-      result.value.value shouldBe false
+      fieldValue(result.value.value) shouldBe Some(false)
     }
 
     "not bind non-booleans" in {

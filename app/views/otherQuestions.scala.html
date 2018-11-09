@@ -20,24 +20,24 @@
 @import models.Mode
 @import views.ViewUtils._
 
-@(appConfig: FrontendAppConfig, form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+@(appConfig: FrontendAppConfig, form: Form[_])(implicit request: Request[_], messages: Messages)
 
 @main_template(
-    title = s"${errorPrefix(form)} ${messages("ableToDo.title")}",
+    title = s"${errorPrefix(form)} ${messages("otherQuestions.title")}",
     appConfig = appConfig,
     bodyClasses = None) {
 
-    @helpers.form(action = AbleToDoController.onSubmit(mode), 'autoComplete -> "off") {
+    @helpers.form(action = OtherQuestionsController.onSubmit(), 'autoComplete -> "off") {
 
         @components.back_link()
 
         @components.error_summary(form.errors)
 
-        @components.heading("ableToDo.heading")
+        @components.heading("otherQuestions.heading")
 
         @components.input_yes_no(
-            field = form("value"),
-            label = messages("ableToDo.heading"),
+            field = form("ableToDo"),
+            label = messages("otherQuestions.heading"),
             labelClass = Some("visually-hidden")
         )
 

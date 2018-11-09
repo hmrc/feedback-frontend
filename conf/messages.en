@@ -20,6 +20,7 @@ error.non_numeric = Give a value using only numbers
 error.number = Please enter a valid number
 error.required = Please enter a value
 error.summary.title = There is a problem
+error.invalid = Please give a valid value
 
 index.title = feedback-frontend
 index.heading = feedback-frontend
