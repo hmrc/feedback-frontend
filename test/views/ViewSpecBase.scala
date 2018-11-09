@@ -28,13 +28,22 @@ trait ViewSpecBase extends SpecBase {
   def assertEqualsMessage(doc: Document, cssSelector: String, expectedMessageKey: String) =
     assertEqualsValue(doc, cssSelector, messages(expectedMessageKey))
 
-  def assertEqualsValue(doc : Document, cssSelector : String, expectedValue: String) = {
+  def assertEqualsValue(doc : Document, cssSelector: String, expectedValue: String) = {
     val elements = doc.select(cssSelector)
 
     if(elements.isEmpty) throw new IllegalArgumentException(s"CSS Selector $cssSelector wasn't rendered.")
 
     //<p> HTML elements are rendered out with a carriage return on some pages, so discount for comparison
     assert(elements.first().html().replace("\n", "") == expectedValue)
+  }
+
+  def assertContainsValue(doc : Document, cssSelector: String, expectedValue: String) = {
+    val elements = doc.select(cssSelector)
+
+    if(elements.isEmpty) throw new IllegalArgumentException(s"CSS Selector $cssSelector wasn't rendered.")
+
+    //<p> HTML elements are rendered out with a carriage return on some pages, so discount for comparison
+    assert(elements.first().html().replace("\n", "").contains(expectedValue))
   }
 
   def assertPageTitleEqualsMessage(doc: Document, expectedMessageKey: String, args: Any*) = {

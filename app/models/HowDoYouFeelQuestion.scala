@@ -32,10 +32,10 @@ object HowDoYouFeelQuestion {
   val values: Set[HowDoYouFeelQuestion] =
     Set(VerySatisfied, Satisfied, Moderate, Dissatisfied, VeryDissatisfied)
 
-  val options: Set[RadioOption] = values.map {
+  val options: Seq[RadioOption] = values.map {
     value =>
       RadioOption("howDoYouFeelQuestion", value.toString)
-  }
+  }.toSeq
 
   implicit val enumerable: Enumerable[HowDoYouFeelQuestion] =
     Enumerable(values.toSeq.map(v => v.toString -> v): _*)

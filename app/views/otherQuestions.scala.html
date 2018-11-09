@@ -17,7 +17,7 @@
 @import config.FrontendAppConfig
 @import uk.gov.hmrc.play.views.html._
 @import controllers.routes._
-@import models.Mode
+@import models.{HowDoYouFeelQuestion, HowEasyQuestion}
 @import views.ViewUtils._
 
 @(appConfig: FrontendAppConfig, form: Form[_])(implicit request: Request[_], messages: Messages)
@@ -37,8 +37,24 @@
 
         @components.input_yes_no(
             field = form("ableToDo"),
-            label = messages("otherQuestions.heading"),
-            labelClass = Some("visually-hidden")
+            label = messages("otherQuestions.ableToDo.heading")
+        )
+
+        @components.input_radio(
+            field = form("howEasyScore"),
+            legend = messages("otherQuestions.howEasyScore.heading"),
+            inputs = HowEasyQuestion.options
+        )
+
+        @components.input_text(
+            field = form("whyGiveScore"),
+            label = messages("otherQuestions.whyGiveScore.heading")
+        )
+
+        @components.input_radio(
+            field = form("howDoYouFeelScore"),
+            legend = messages("otherQuestions.howDoYouFeelScore.heading"),
+            inputs = HowDoYouFeelQuestion.options
         )
 
         @components.submit_button()

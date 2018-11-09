@@ -16,7 +16,7 @@
 
 package views.behaviours
 
-import play.api.data.Form
+import play.api.data.{Form, FormError}
 import play.twirl.api.HtmlFormat
 
 trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
@@ -24,7 +24,6 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
   val answer = "answer"
 
   def stringPage(createView: Form[A] => HtmlFormat.Appendable,
-                 fillForm: (Form[A], String) => Form[A],
                  fieldName: String,
                  messageKeyPrefix: String,
                  expectedFormAction: String,
@@ -47,7 +46,8 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
       "rendered with a valid form" must {
         "include the form's value in the value input" in {
-          val doc = asDocument(createView(fillForm(form, answer)))
+          val boundForm = form.bind(Map(fieldName -> answer))
+          val doc = asDocument(createView(boundForm))
           doc.getElementById(fieldName).attr("value") mustBe answer
         }
       }
@@ -60,14 +60,14 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
         }
 
         "show an error in the value field's label" in {
-          val doc = asDocument(createView(form.withError(error)))
+          val doc = asDocument(createView(form.withError(FormError(fieldName, errorMessage))))
           val errorSpan = doc.getElementsByClass("error-message").first
           errorSpan.text mustBe messages(errorMessage)
         }
 
         "show an error prefix in the browser title" in {
           val doc = asDocument(createView(form.withError(error)))
-          assertEqualsValue(doc, "title", s"""${messages("error.browser.title.prefix")} ${messages(s"$messageKeyPrefix.title")}""")
+          assertContainsValue(doc, "title", messages("error.browser.title.prefix"))
         }
       }
     }

@@ -19,11 +19,13 @@ package views
 import play.api.data.Form
 import controllers.routes
 import forms.OtherQuestionsFormProvider
-import views.behaviours.YesNoViewBehaviours
-import models.OtherQuestions
+import views.behaviours.{StringViewBehaviours, YesNoViewBehaviours}
+import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions}
+import viewmodels.RadioOption
 import views.html.otherQuestions
 
-class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions] {
+class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
+  with StringViewBehaviours[OtherQuestions] {
 
   val messageKeyPrefix = "otherQuestions"
 
@@ -39,6 +41,35 @@ class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions] {
 
     behave like pageWithBackLink(createView)
 
-    behave like yesNoPage(createViewUsingForm, "ableToDo", messageKeyPrefix, routes.OtherQuestionsController.onSubmit().url)
+    behave like yesNoPage(createViewUsingForm, "ableToDo", "otherQuestions.ableToDo", routes.OtherQuestionsController.onSubmit().url)
+
+    behave like radioOptionsPage("howEasyScore", HowEasyQuestion.options)
+
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "otherQuestions.whyGiveScore", routes.OtherQuestionsController.onSubmit().url)
+
+    behave like radioOptionsPage("howDoYouFeelScore", HowDoYouFeelQuestion.options)
+  }
+
+  def radioOptionsPage[A](fieldName: String, options: Seq[RadioOption]) = {
+    s"contain radio buttons for the $fieldName" in {
+      val doc = asDocument(createViewUsingForm(form))
+      for (option <- options) {
+        assertContainsRadioButton(doc, option.id, fieldName, option.value, false)
+      }
+    }
+
+
+    for(option <- options) {
+      s"rendered with a $fieldName of '${option.value}'" must {
+        s"have the '${option.value}' radio button selected" in {
+          val doc = asDocument(createViewUsingForm(form.bind(Map(fieldName -> s"${option.value}"))))
+          assertContainsRadioButton(doc, option.id, fieldName, option.value, true)
+
+          for(unselectedOption <- options.filterNot(o => o == option)) {
+            assertContainsRadioButton(doc, unselectedOption.id, fieldName, unselectedOption.value, false)
+          }
+        }
+      }
+    }
   }
 }
