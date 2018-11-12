@@ -30,10 +30,12 @@ class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
   val messageKeyPrefix = "otherQuestions"
 
   val form = new OtherQuestionsFormProvider()()
+  val action = controllers.routes.IndexController.onPageLoad()
 
-  def createView = () => otherQuestions(frontendAppConfig, form)(fakeRequest, messages)
+  def createView = () => otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm = (form: Form[_]) => otherQuestions(frontendAppConfig, form)(fakeRequest, messages)
+  def createViewUsingForm =
+    (form: Form[_]) => otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "OtherQuestions view" must {
 
@@ -41,11 +43,11 @@ class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
 
     behave like pageWithBackLink(createView)
 
-    behave like yesNoPage(createViewUsingForm, "ableToDo", "otherQuestions.ableToDo", routes.OtherQuestionsController.onSubmit().url)
+    behave like yesNoPage(createViewUsingForm, "ableToDo", "otherQuestions.ableToDo", action.url)
 
     behave like radioOptionsPage("howEasyScore", HowEasyQuestion.options)
 
-    behave like stringPage(createViewUsingForm, "whyGiveScore", "otherQuestions.whyGiveScore", routes.OtherQuestionsController.onSubmit().url)
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "otherQuestions.whyGiveScore", action.url)
 
     behave like radioOptionsPage("howDoYouFeelScore", HowDoYouFeelQuestion.options)
   }

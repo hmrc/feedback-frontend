@@ -21,6 +21,6 @@ import pages._
 
 trait PageGenerators {
 
-  implicit lazy val arbitraryAbleToDoPage: Arbitrary[AbleToDoPage.type] =
-    Arbitrary(AbleToDoPage)
+  implicit lazy val arbitraryOtherQuestionsPage: Arbitrary[OtherQuestionsPage.type] =
+    Arbitrary(OtherQuestionsPage)
 }

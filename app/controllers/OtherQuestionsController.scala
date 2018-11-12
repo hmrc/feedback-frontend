@@ -24,8 +24,10 @@ import connectors.DataCacheConnector
 import controllers.actions._
 import config.FrontendAppConfig
 import forms.OtherQuestionsFormProvider
-import models.OtherQuestions
+import models.{NormalMode, OtherQuestions, UserAnswers}
 import navigation.Navigator
+import pages.OtherQuestionsPage
+import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.otherQuestions
 
 import scala.concurrent.Future
@@ -37,23 +39,40 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                          identify: IdentifierAction,
                                          getData: DataRetrievalAction,
                                          requireData: DataRequiredAction,
-                                         formProvider: OtherQuestionsFormProvider
+                                         formProvider: OtherQuestionsFormProvider,
+                                         auditConnector: AuditConnector
                                          ) extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
+  lazy val successPage = navigator.nextPage(OtherQuestionsPage, NormalMode)(UserAnswers.empty)
+  def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
 
-  def onPageLoad() = (identify andThen getData andThen requireData) {
+  def onPageLoad(origin: String) = identify {
     implicit request =>
-      Ok(otherQuestions(appConfig, form))
+      Ok(otherQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit() = (identify andThen getData andThen requireData).async {
+  def onSubmit(origin: String) = identify {
     implicit request =>
 
       form.bindFromRequest().fold(
-        (formWithErrors: Form[_]) =>
-          Future.successful(BadRequest(otherQuestions(appConfig, formWithErrors))),
-        (value) => ???
+        formWithErrors =>
+          BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
+        value => {
+
+          val auditMap =
+            Map(
+              "origin"            -> origin,
+              "ableToDo"          -> value.ableToDo.map(_.toString).getOrElse("-"),
+              "howEasyScore"      -> value.howEasyScore.map(_.toString).getOrElse("-"),
+              "whyGiveScore"      -> value.whyGiveScore.getOrElse("-"),
+              "howDoYouFeelScore" -> value.howDoYouFeelScore.map(_.toString).getOrElse("-")
+            )
+
+          auditConnector.sendExplicitAudit("feedback", auditMap)
+
+          Redirect(successPage)
+        }
       )
   }
 }

@@ -40,6 +40,8 @@ case class UserAnswers(cacheMap: CacheMap) extends Enumerable.Implicits {
 
 object UserAnswers {
 
+  val empty: UserAnswers = UserAnswers("")
+
   def apply(cacheId: String): UserAnswers =
     UserAnswers(new CacheMap(cacheId, Map()))
 }

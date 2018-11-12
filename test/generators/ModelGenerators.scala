@@ -17,8 +17,27 @@
 package generators
 
 import models._
-import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.{Arbitrary, Gen}
+import Arbitrary._
+import Gen._
 
 trait ModelGenerators {
+
+  implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)
+
+  lazy val otherQuestionsGen: Gen[OtherQuestions] =
+    for {
+      ableToDo <- option(arbitrary[Boolean])
+      howEasy  <- option(howEasyQuestionGen)
+      whyScore <- option(arbitrary[String])
+      howFeel  <- option(howDoYouFeelQuestionGen)
+    } yield {
+      OtherQuestions(ableToDo, howEasy, whyScore, howFeel)
+    }
+
+  lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
+    oneOf(HowEasyQuestion.values.toSeq)
+
+  lazy val howDoYouFeelQuestionGen: Gen[HowDoYouFeelQuestion] =
+    oneOf(HowDoYouFeelQuestion.values.toSeq)
 }

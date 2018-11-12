@@ -17,80 +17,98 @@
 package controllers
 
 import play.api.data.Form
-import play.api.libs.json.JsBoolean
-import uk.gov.hmrc.http.cache.client.CacheMap
 import navigation.FakeNavigator
 import connectors.FakeDataCacheConnector
 import controllers.actions._
 import play.api.test.Helpers._
-import forms. OtherQuestionsFormProvider
-import pages.AbleToDoPage
+import forms.OtherQuestionsFormProvider
+import generators.ModelGenerators
+import models.OtherQuestions
+import org.scalacheck.Arbitrary._
+import org.scalatest.mockito.MockitoSugar
+import org.scalatest.prop.PropertyChecks
 import play.api.mvc.Call
+import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.otherQuestions
 
-class OtherQuestionsControllerSpec extends ControllerSpecBase {
+import org.mockito.Matchers._
+import org.mockito.Matchers.{eq => eqTo}
+import org.mockito.Mockito._
+
+class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
   val formProvider = new OtherQuestionsFormProvider()
   val form = formProvider()
+  lazy val mockAuditConnector = mock[AuditConnector]
+  def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new OtherQuestionsController(frontendAppConfig, messagesApi, FakeDataCacheConnector, new FakeNavigator(onwardRoute), FakeIdentifierAction,
-      dataRetrievalAction, new DataRequiredActionImpl, formProvider)
+    new OtherQuestionsController(
+      frontendAppConfig,
+      messagesApi,
+      FakeDataCacheConnector,
+      new FakeNavigator(onwardRoute),
+      FakeIdentifierAction,
+      dataRetrievalAction,
+      new DataRequiredActionImpl,
+      formProvider,
+      mockAuditConnector)
 
-  def viewAsString(form: Form[_] = form) = otherQuestions(frontendAppConfig, form)(fakeRequest, messages).toString
+  def viewAsString(form: Form[_] = form, action: Call) = otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "AbleToDo Controller" must {
 
     "return OK and the correct view for a GET" in {
-      val result = controller().onPageLoad()(fakeRequest)
+      forAll(arbitrary[String]) { origin =>
+        val result = controller().onPageLoad(origin)(fakeRequest)
 
-      status(result) mustBe OK
-      contentAsString(result) mustBe viewAsString()
-    }
-
-    "populate the view correctly on a GET when the question has previously been answered" in {
-      val validData = Map(AbleToDoPage.toString -> JsBoolean(true))
-      val getRelevantData = new FakeDataRetrievalAction(Some(CacheMap(cacheMapId, validData)))
-
-      val result = controller(getRelevantData).onPageLoad()(fakeRequest)
-
-      contentAsString(result) mustBe viewAsString(form)
+        status(result) mustBe OK
+        contentAsString(result) mustBe viewAsString(action = submitCall(origin))
+      }
     }
 
     "redirect to the next page when valid data is submitted" in {
-      val postRequest = fakeRequest.withFormUrlEncodedBody(("value", "true"))
+      forAll(arbitrary[String]) { origin =>
+        val result = controller().onSubmit(origin)(fakeRequest)
 
-      val result = controller().onSubmit()(postRequest)
+        status(result) mustBe SEE_OTHER
+        redirectLocation(result) mustBe Some(onwardRoute.url)
+      }
+    }
 
-      status(result) mustBe SEE_OTHER
-      redirectLocation(result) mustBe Some(onwardRoute.url)
+    "audit response on success" in {
+      forAll(arbitrary[String], arbitrary[OtherQuestions]) {
+        (origin, answers) =>
+          reset(mockAuditConnector)
+
+          val values = Map(
+            "ableToDo"          -> answers.ableToDo.map(_.toString),
+            "howEasyScore"      -> answers.howEasyScore.map(_.toString),
+            "whyGiveScore"      -> answers.whyGiveScore,
+            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
+
+          val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+          controller().onSubmit(origin)(request)
+
+          val expectedValues = values.mapValues(_.getOrElse("-")) + ("origin" -> origin)
+
+          verify(mockAuditConnector, times(1))
+            .sendExplicitAudit(eqTo("feedback"), eqTo(expectedValues))(any(), any())
+      }
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      val postRequest = fakeRequest.withFormUrlEncodedBody(("value", "invalid value"))
-      val boundForm = form.bind(Map("value" -> "invalid value"))
+      forAll(arbitrary[String]) { origin =>
+        val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
+        val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 
-      val result = controller().onSubmit()(postRequest)
+        val result = controller().onSubmit(origin)(postRequest)
 
-      status(result) mustBe BAD_REQUEST
-      contentAsString(result) mustBe viewAsString(boundForm)
-    }
-
-    "redirect to Session Expired for a GET if no existing data is found" in {
-      val result = controller(dontGetAnyData).onPageLoad()(fakeRequest)
-
-      status(result) mustBe SEE_OTHER
-      redirectLocation(result) mustBe Some(routes.SessionExpiredController.onPageLoad().url)
-    }
-
-    "redirect to Session Expired for a POST if no existing data is found" in {
-      val postRequest = fakeRequest.withFormUrlEncodedBody(("value", "true"))
-      val result = controller(dontGetAnyData).onSubmit()(postRequest)
-
-      status(result) mustBe SEE_OTHER
-      redirectLocation(result) mustBe Some(routes.SessionExpiredController.onPageLoad().url)
+        status(result) mustBe BAD_REQUEST
+        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall(origin))
+      }
     }
   }
 }

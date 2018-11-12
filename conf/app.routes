@@ -12,5 +12,5 @@ GET        /check-your-answers                          controllers.CheckYourAns
 
 GET        /unauthorised                                controllers.UnauthorisedController.onPageLoad
 
-GET        /other                                       controllers.OtherQuestionsController.onPageLoad
-POST       /other                                       controllers.OtherQuestionsController.onSubmit
+GET        /:origin/other                               controllers.OtherQuestionsController.onPageLoad(origin: String)
+POST       /:origin/other                               controllers.OtherQuestionsController.onSubmit(origin: String)

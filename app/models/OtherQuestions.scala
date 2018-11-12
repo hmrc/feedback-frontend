@@ -16,9 +16,16 @@
 
 package models
 
+import play.api.libs.json.{Format, Json}
+
 case class OtherQuestions(
-                         ableToDo:          Option[Boolean],
-                         howEasyScore:      Option[HowEasyQuestion],
-                         whyGiveScore:      Option[String],
-                         howDoYouFeelScore: Option[HowDoYouFeelQuestion]
+                           ableToDo:          Option[Boolean],
+                           howEasyScore:      Option[HowEasyQuestion],
+                           whyGiveScore:      Option[String],
+                           howDoYouFeelScore: Option[HowDoYouFeelQuestion]
                          )
+
+object OtherQuestions {
+
+  implicit val formats: Format[OtherQuestions] = Json.format[OtherQuestions]
+}

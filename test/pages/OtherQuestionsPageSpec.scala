@@ -16,7 +16,17 @@
 
 package pages
 
-case object AbleToDoPage extends QuestionPage[Boolean] {
+import models.OtherQuestions
+import pages.behaviours.PageBehaviours
 
-  override def toString: String = "ableToDo"
+class OtherQuestionsPageSpec extends PageBehaviours {
+
+  "OtherQuestionsPage" must {
+
+    beRetrievable[OtherQuestions](OtherQuestionsPage)
+
+    beSettable[OtherQuestions](OtherQuestionsPage)
+
+    beRemovable[OtherQuestions](OtherQuestionsPage)
+  }
 }
