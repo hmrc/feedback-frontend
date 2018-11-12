@@ -14,12 +14,21 @@
  * limitations under the License.
  */
 
-package navigation
+package controllers
 
-import play.api.mvc.Call
-import pages._
-import models.{Mode, NormalMode, UserAnswers}
+import javax.inject.Inject
+import play.api.i18n.{I18nSupport, MessagesApi}
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import config.FrontendAppConfig
+import play.api.mvc.Action
+import views.html.thankYou
 
-class FakeNavigator(desiredRoute: Call, mode: Mode = NormalMode) extends Navigator {
-  override def nextPage[A, B](page: A)(b: B)(implicit ev: NextPage[A, B]): Call = desiredRoute
+class ThankYouController @Inject()(appConfig: FrontendAppConfig,
+                                   override val messagesApi: MessagesApi
+                                   ) extends FrontendController with I18nSupport {
+
+  def onPageLoad = Action {
+    implicit request =>
+      Ok(thankYou(appConfig))
+  }
 }

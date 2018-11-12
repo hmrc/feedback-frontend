@@ -48,3 +48,6 @@ ableToDo.title = ableToDo
 ableToDo.heading = ableToDo
 ableToDo.checkYourAnswersLabel = ableToDo
 ableToDo.error.required = Select yes if ableToDo
+
+thankYou.title = Thank you for your feedback
+thankYou.heading = Thank you for your feedback

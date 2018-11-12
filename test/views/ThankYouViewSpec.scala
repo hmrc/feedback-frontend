@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-package navigation
+package views
 
-import play.api.mvc.Call
-import pages._
-import models.{Mode, NormalMode, UserAnswers}
+import views.behaviours.ViewBehaviours
+import views.html.thankYou
 
-class FakeNavigator(desiredRoute: Call, mode: Mode = NormalMode) extends Navigator {
-  override def nextPage[A, B](page: A)(b: B)(implicit ev: NextPage[A, B]): Call = desiredRoute
+class ThankYouViewSpec extends ViewBehaviours {
+
+  val messageKeyPrefix = "thankYou"
+
+  def createView = () => thankYou(frontendAppConfig)(fakeRequest, messages)
+
+  "ThankYou view" must {
+    behave like normalPage(createView, messageKeyPrefix)
+
+    behave like pageWithBackLink(createView)
+  }
 }

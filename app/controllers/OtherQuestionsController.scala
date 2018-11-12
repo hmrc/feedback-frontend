@@ -24,35 +24,30 @@ import connectors.DataCacheConnector
 import controllers.actions._
 import config.FrontendAppConfig
 import forms.OtherQuestionsFormProvider
-import models.{NormalMode, OtherQuestions, UserAnswers}
+import models.{OtherQuestions, UserAnswers}
 import navigation.Navigator
 import pages.OtherQuestionsPage
+import play.api.mvc.Action
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.otherQuestions
 
-import scala.concurrent.Future
-
 class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                          override val messagesApi: MessagesApi,
-                                         dataCacheConnector: DataCacheConnector,
                                          navigator: Navigator,
-                                         identify: IdentifierAction,
-                                         getData: DataRetrievalAction,
-                                         requireData: DataRequiredAction,
                                          formProvider: OtherQuestionsFormProvider,
                                          auditConnector: AuditConnector
                                          ) extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(OtherQuestionsPage, NormalMode)(UserAnswers.empty)
+  lazy val successPage = navigator.nextPage(OtherQuestionsPage)(UserAnswers.empty)
   def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: String) = identify {
+  def onPageLoad(origin: String) = Action {
     implicit request =>
       Ok(otherQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: String) = identify {
+  def onSubmit(origin: String) = Action {
     implicit request =>
 
       form.bindFromRequest().fold(

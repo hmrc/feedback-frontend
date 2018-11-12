@@ -14,3 +14,4 @@ GET        /unauthorised                                controllers.Unauthorised
 
 GET        /:origin/other                               controllers.OtherQuestionsController.onPageLoad(origin: String)
 POST       /:origin/other                               controllers.OtherQuestionsController.onSubmit(origin: String)
+GET        /thankYou                       controllers.ThankYouController.onPageLoad()

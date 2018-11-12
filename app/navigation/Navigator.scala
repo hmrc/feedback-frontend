@@ -23,21 +23,22 @@ import controllers.routes
 import pages._
 import models._
 
+trait NextPage[A, B] {
+
+  def nextPage(page: A): B => Call
+}
+
+object NextPage {
+
+  implicit val otherQuestionsNextPage: NextPage[OtherQuestionsPage.type, UserAnswers] =
+    new NextPage[OtherQuestionsPage.type, UserAnswers] {
+      override def nextPage(page: OtherQuestionsPage.type): UserAnswers => Call = _ =>
+        controllers.routes.ThankYouController.onPageLoad()
+    }
+}
+
 @Singleton
 class Navigator @Inject()() {
 
-  private val routeMap: Map[Page, UserAnswers => Call] = Map(
-
-  )
-
-  private val checkRouteMap: Map[Page, UserAnswers => Call] = Map(
-
-  )
-
-  def nextPage(page: Page, mode: Mode): UserAnswers => Call = mode match {
-    case NormalMode =>
-      routeMap.getOrElse(page, _ => routes.IndexController.onPageLoad())
-    case CheckMode =>
-      checkRouteMap.getOrElse(page, _ => routes.CheckYourAnswersController.onPageLoad())
-  }
+  def nextPage[A, B](page: A)(b: B)(implicit np: NextPage[A, B]): Call = np.nextPage(page)(b)
 }

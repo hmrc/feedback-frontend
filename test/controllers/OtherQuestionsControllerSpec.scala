@@ -48,17 +48,14 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
     new OtherQuestionsController(
       frontendAppConfig,
       messagesApi,
-      FakeDataCacheConnector,
       new FakeNavigator(onwardRoute),
-      FakeIdentifierAction,
-      dataRetrievalAction,
-      new DataRequiredActionImpl,
       formProvider,
       mockAuditConnector)
 
-  def viewAsString(form: Form[_] = form, action: Call) = otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
+  def viewAsString(form: Form[_] = form, action: Call) =
+    otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
-  "AbleToDo Controller" must {
+  "OtherQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
       forAll(arbitrary[String]) { origin =>
@@ -83,19 +80,21 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
         (origin, answers) =>
           reset(mockAuditConnector)
 
-          val values = Map(
-            "ableToDo"          -> answers.ableToDo.map(_.toString),
-            "howEasyScore"      -> answers.howEasyScore.map(_.toString),
-            "whyGiveScore"      -> answers.whyGiveScore,
-            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
+          whenever(answers.whyGiveScore.exists(_ != "")) {
+            val values = Map(
+              "ableToDo" -> answers.ableToDo.map(_.toString),
+              "howEasyScore" -> answers.howEasyScore.map(_.toString),
+              "whyGiveScore" -> answers.whyGiveScore,
+              "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
 
-          val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request)
+            val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+            controller().onSubmit(origin)(request)
 
-          val expectedValues = values.mapValues(_.getOrElse("-")) + ("origin" -> origin)
+            val expectedValues = values.mapValues(_.getOrElse("-")) + ("origin" -> origin)
 
-          verify(mockAuditConnector, times(1))
-            .sendExplicitAudit(eqTo("feedback"), eqTo(expectedValues))(any(), any())
+            verify(mockAuditConnector, times(1))
+              .sendExplicitAudit(eqTo("feedback"), eqTo(expectedValues))(any(), any())
+          }
       }
     }
 
