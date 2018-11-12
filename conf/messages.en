@@ -44,10 +44,24 @@ site.textarea.char_limit = (Limit is {0} characters)
 unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
 
-ableToDo.title = ableToDo
-ableToDo.heading = ableToDo
-ableToDo.checkYourAnswersLabel = ableToDo
-ableToDo.error.required = Select yes if ableToDo
+otherQuestions.title = Give feedback
+otherQuestions.heading = Give feedback
+otherQuestions.ableToDo.heading = Were you able to do what you needed to do today?
+otherQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
+otherQuestions.whyGiveScore.heading = Why did you give this score?
+otherQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+
+howDoYouFeelQuestion.verySatisfied = Very satisfied
+howDoYouFeelQuestion.satisfied = Satisfied
+howDoYouFeelQuestion.moderate = Neither satisfied nor dissatisfied
+howDoYouFeelQuestion.dissatisfied = Dissatisfied
+howDoYouFeelQuestion.veryDissatisfied = Very dissatisfied
+
+howEasyQuestion.veryEasy = Very easy
+howEasyQuestion.easy = Easy
+howEasyQuestion.moderate = Neither easy nor hard
+howEasyQuestion.difficult = Difficult
+howEasyQuestion.veryDifficult = Very Difficult
 
 thankYou.title = Thank you for your feedback
 thankYou.heading = Thank you for your feedback
