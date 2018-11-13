@@ -18,41 +18,52 @@ package views.behaviours
 
 import play.api.data.{Form, FormError}
 import play.twirl.api.HtmlFormat
+import viewmodels.RadioOption
 
-trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
+trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
-  val answer = "answer"
+  def optionsPage(createView: Form[A] => HtmlFormat.Appendable,
+                  fieldName: String,
+                  options: Seq[RadioOption],
+                  messageKeyPrefix: String) = {
 
-  def stringPage(createView: Form[A] => HtmlFormat.Appendable,
-                 fieldName: String,
-                 messageKeyPrefix: String,
-                 expectedHintKey: Option[String] = None) = {
-
-    "behave like a page with a string value field" when {
+    s"behave like a page with a $fieldName radio options question" when {
       "rendered" must {
-
-        "contain a label for the value" in {
+        "contain a legend for the question" in {
           val doc = asDocument(createView(form))
-          val expectedHintText = expectedHintKey map(k => messages(k))
-          assertContainsLabel(doc, fieldName, messages(s"$messageKeyPrefix.heading"), expectedHintText)
+          val legends = doc.select(s"#$fieldName legend")
+          legends.size mustBe 1
+          legends.first.text mustBe messages(s"$messageKeyPrefix.heading")
         }
 
         "contain an input for the value" in {
           val doc = asDocument(createView(form))
-          assertRenderedById(doc, fieldName)
+          for (option <- options) {
+            assertContainsRadioButton(doc, option.id, fieldName, option.value, false)
+          }
+        }
+
+        "not render an error summary" in {
+          val doc = asDocument(createView(form))
+          assertNotRenderedById(doc, "error-summary_header")
         }
       }
 
-      "rendered with a valid form" must {
-        "include the form's value in the value input" in {
-          val boundForm = form.bind(Map(fieldName -> answer))
-          val doc = asDocument(createView(boundForm))
-          doc.getElementById(fieldName).attr("value") mustBe answer
+
+      for(option <- options) {
+        s"rendered with a $fieldName of '${option.value}'" must {
+          s"have the '${option.value}' radio button selected" in {
+            val doc = asDocument(createView(form.bind(Map(fieldName -> s"${option.value}"))))
+            assertContainsRadioButton(doc, option.id, fieldName, option.value, true)
+
+            for(unselectedOption <- options.filterNot(o => o == option)) {
+              assertContainsRadioButton(doc, unselectedOption.id, fieldName, unselectedOption.value, false)
+            }
+          }
         }
       }
 
       "rendered with an error" must {
-
         "show an error summary" in {
           val doc = asDocument(createView(form.withError(error)))
           assertRenderedById(doc, "error-summary-heading")
@@ -60,6 +71,7 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
         "show an error in the value field's label" in {
           val doc = asDocument(createView(form.withError(FormError(fieldName, errorMessage))))
+
           val errorSpan = doc.getElementsByClass("error-message").first
           errorSpan.text mustBe messages(errorMessage)
         }

@@ -16,43 +16,49 @@
 
 @import config.FrontendAppConfig
 @import uk.gov.hmrc.play.views.html._
-@import models.{HowDoYouFeelQuestion, HowEasyQuestion}
+@import models.{BTAServiceQuestion,     HowDoYouFeelQuestion, HowEasyQuestion}
 @import views.ViewUtils._
 
-@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
+
+@(appConfig: FrontendAppConfig, form: Form[_])(implicit request: Request[_], messages: Messages)
 
 @main_template(
     title = s"${errorPrefix(form)} ${messages("otherQuestions.title")}",
     appConfig = appConfig,
     bodyClasses = None) {
 
-    @helpers.form(action = action, 'autoComplete -> "off") {
-
+    @helpers.form(action = controllers.routes.BTAQuestionsController.onPageLoad(), 'autoComplete -> "off") {
         @components.back_link()
 
         @components.error_summary(form.errors)
 
-        @components.heading("otherQuestions.heading")
+        @components.heading("btaQuestions.heading")
+
+        @components.input_radio(
+            field = form("service"),
+            legend = messages("btaQuestions.btaService.heading"),
+            inputs = BTAServiceQuestion.options
+        )
 
         @components.input_yes_no(
             field = form("ableToDo"),
-            label = messages("otherQuestions.ableToDo.heading")
+            label = messages("btaQuestions.ableToDo.heading")
         )
 
         @components.input_radio(
             field = form("howEasyScore"),
-            legend = messages("otherQuestions.howEasyScore.heading"),
+            legend = messages("btaQuestions.howEasyScore.heading"),
             inputs = HowEasyQuestion.options
         )
 
         @components.input_text(
             field = form("whyGiveScore"),
-            label = messages("otherQuestions.whyGiveScore.heading")
+            label = messages("btaQuestions.whyGiveScore.heading")
         )
 
         @components.input_radio(
             field = form("howDoYouFeelScore"),
-            legend = messages("otherQuestions.howDoYouFeelScore.heading"),
+            legend = messages("btaQuestions.howDoYouFeelScore.heading"),
             inputs = HowDoYouFeelQuestion.options
         )
 

@@ -18,7 +18,7 @@ package forms
 
 import javax.inject.Inject
 import forms.mappings.Mappings
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions}
+import models._
 import play.api.data.Form
 import play.api.data.Forms._
 
@@ -35,4 +35,20 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
           .verifying(maxLength(maxFieldSize, "whyGiveScore.error.maxLength"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(OtherQuestions.apply)(OtherQuestions.unapply))
+}
+
+class BTAQuestionsFormProvider @Inject() extends Mappings {
+
+  private val maxFieldSize = 1000
+
+  def apply(): Form[BTAQuestions] =
+    Form(mapping(
+      "service" -> optional(enumerable[BTAServiceQuestion]()),
+      "ableToDo" -> optional(boolean()),
+      "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+      "whyGiveScore" ->
+        optional(text("whyGiveScore.error.required")
+          .verifying(maxLength(maxFieldSize, "whyGiveScore.error.maxLength"))),
+      "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+    )(BTAQuestions.apply)(BTAQuestions.unapply))
 }

@@ -16,52 +16,55 @@
 
 package views
 
+import forms.BTAQuestionsFormProvider
+import models.{BTAQuestions, BTAServiceQuestion, HowDoYouFeelQuestion, HowEasyQuestion}
 import play.api.data.Form
-import forms.OtherQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions}
-import views.html.otherQuestions
+import views.html.btaQuestions
 
-class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
-  with StringViewBehaviours[OtherQuestions]
-  with OptionsViewBehaviours[OtherQuestions] {
+class BTAQuestionsViewSpec extends YesNoViewBehaviours[BTAQuestions]
+  with OptionsViewBehaviours[BTAQuestions]
+  with StringViewBehaviours[BTAQuestions] {
 
-  val messageKeyPrefix = "otherQuestions"
+  val messageKeyPrefix = "btaQuestions"
+  val form = new BTAQuestionsFormProvider()()
 
-  val form = new OtherQuestionsFormProvider()()
-  val action = controllers.routes.IndexController.onPageLoad()
-
-  def createView = () => otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView = () => btaQuestions(frontendAppConfig, form)(fakeRequest, messages)
 
   def createViewUsingForm =
-    (form: Form[_]) => otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+    (form: Form[_]) => btaQuestions(frontendAppConfig, form)(fakeRequest, messages)
 
-  "OtherQuestions view" must {
-
+  "BTAQuestions view" must {
     behave like normalPage(createView, messageKeyPrefix)
 
     behave like pageWithBackLink(createView)
 
+    behave like optionsPage(
+      createViewUsingForm,
+      "service",
+      BTAServiceQuestion.options,
+      "btaQuestions.btaService")
+
     behave like yesNoPage(
       createViewUsingForm,
       "ableToDo",
-      "otherQuestions.ableToDo")
+      "btaQuestions.ableToDo")
 
     behave like optionsPage(
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options,
-      "otherQuestions.howEasyScore")
+      "btaQuestions.howEasyScore")
 
     behave like stringPage(
       createViewUsingForm,
       "whyGiveScore",
-      "otherQuestions.whyGiveScore")
+      "btaQuestions.whyGiveScore")
 
     behave like optionsPage(
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options,
-      "otherQuestions.howDoYouFeelScore")
+      "btaQuestions.howDoYouFeelScore")
   }
 }

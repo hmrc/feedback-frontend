@@ -51,6 +51,14 @@ otherQuestions.howEasyScore.heading = How easy was it for you to do what you nee
 otherQuestions.whyGiveScore.heading = Why did you give this score?
 otherQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
 
+btaServiceQuestion.selfAssessment = Self assessment
+btaServiceQuestion.pAYE = PAYE for employers
+btaServiceQuestion.vAT = VAT
+btaServiceQuestion.corporationTax = Corporation tax
+btaServiceQuestion.cIS = Construction industry scheme (CIS)
+btaServiceQuestion.eCSales = EC sales
+btaServiceQuestion.other = Other
+
 howDoYouFeelQuestion.verySatisfied = Very satisfied
 howDoYouFeelQuestion.satisfied = Satisfied
 howDoYouFeelQuestion.moderate = Neither satisfied nor dissatisfied
@@ -65,3 +73,11 @@ howEasyQuestion.veryDifficult = Very Difficult
 
 thankYou.title = Thank you for your feedback
 thankYou.heading = Thank you for your feedback
+
+btaQuestions.title = Give feedback
+btaQuestions.heading = Give feedback
+btaQuestions.btaService.heading = What was the main service you used today?
+btaQuestions.ableToDo.heading = Were you able to do what you needed to do today?
+btaQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
+btaQuestions.whyGiveScore.heading = Why did you give this score?
+btaQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?

@@ -29,3 +29,16 @@ object OtherQuestions {
 
   implicit val formats: Format[OtherQuestions] = Json.format[OtherQuestions]
 }
+
+case class BTAQuestions(
+                         service:           Option[BTAServiceQuestion],
+                         ableToDo:          Option[Boolean],
+                         howEasyScore:      Option[HowEasyQuestion],
+                         whyGiveScore:      Option[String],
+                         howDoYouFeelScore: Option[HowDoYouFeelQuestion]
+                       )
+
+object BTAQuestions {
+
+  implicit val formats: Format[BTAQuestions] = Json.format[BTAQuestions]
+}
