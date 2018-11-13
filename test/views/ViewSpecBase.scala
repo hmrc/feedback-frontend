@@ -20,6 +20,8 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import play.twirl.api.Html
 import base.SpecBase
+import scala.collection.JavaConverters._
+
 
 trait ViewSpecBase extends SpecBase {
 
@@ -52,7 +54,13 @@ trait ViewSpecBase extends SpecBase {
     headers.first.text.replaceAll("\u00a0", " ") mustBe messages(expectedMessageKey, args:_*).replaceAll("&nbsp;", " ")
   }
 
-  def assertContainsText(doc:Document, text: String) = assert(doc.toString.contains(text), "\n\ntext " + text + " was not rendered on the page.\n")
+  def assertContainsText(doc:Document, text: String) = assert(doc.text().contains(text), "\n\ntext " + text + " was not rendered on the page.\n")
+
+  def assertContainsLink(doc:Document, text: String, href: String) = {
+    val anchors = doc.getElementsByTag("a").asScala
+    val exists = anchors.exists(a => a.text() == text && a.attr("href") == href)
+    assert(exists, s"\n\nanchor with text $text and href $href was not rendered on the page.\n")
+  }
 
   def assertContainsMessages(doc: Document, expectedMessageKeys: String*) = {
     for (key <- expectedMessageKeys) assertContainsText(doc, messages(key))

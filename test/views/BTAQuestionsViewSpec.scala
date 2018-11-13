@@ -36,9 +36,7 @@ class BTAQuestionsViewSpec extends YesNoViewBehaviours[BTAQuestions]
     (form: Form[_]) => btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "BTAQuestions view" must {
-    behave like normalPage(createView, messageKeyPrefix)
-
-    behave like pageWithBackLink(createView)
+    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
 
     behave like optionsPage(
       createViewUsingForm,
@@ -67,5 +65,17 @@ class BTAQuestionsViewSpec extends YesNoViewBehaviours[BTAQuestions]
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options,
       "btaQuestions.howDoYouFeelScore")
+
+    "contain second introductory paragraph" in {
+      val expectedMessage = messages("btaQuestions.intro2", messages("btaQuestions.introLinkText"))
+      val doc = asDocument(createView())
+      assertContainsText(doc, expectedMessage)
+    }
+
+    "contain privacy anchor tag" in {
+      val expectedLink = messages("btaQuestions.introLinkText")
+      val doc = asDocument(createView())
+      assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPoliocyUrl)
+    }
   }
 }

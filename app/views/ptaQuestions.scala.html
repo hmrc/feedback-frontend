@@ -21,6 +21,10 @@
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
+@privacyPolicyLink = {
+    <a href="@appConfig.privacyPoliocyUrl" target="_blank">@messages("ptaQuestions.introLinkText")</a>
+}
+
 @main_template(
     title = s"${errorPrefix(form)} ${messages("ptaQuestions.title")}",
     appConfig = appConfig,
@@ -28,31 +32,45 @@
 
     @helpers.form(action = action, 'autoComplete -> "off") {
 
-        @components.back_link()
-
         @components.error_summary(form.errors)
 
         @components.heading("ptaQuestions.heading")
 
+        <p>@messages("ptaQuestions.intro1")</p>
+
+        <p>@Html(messages("ptaQuestions.intro2", privacyPolicyLink))</p>
+
+        <p>@messages("ptaQuestions.intro3")</p>
+
+        @components.input_textarea(
+            field = form("neededToDo"),
+            label = messages("ptaQuestions.ptaService.heading"),
+            labelClass = Some("heading-large body-text")
+        )
+
         @components.input_yes_no(
             field = form("ableToDo"),
-            label = messages("ptaQuestions.ableToDo.heading")
+            label = messages("ptaQuestions.ableToDo.heading"),
+            labelClass = Some("heading-large body-text")
         )
 
         @components.input_radio(
             field = form("howEasyScore"),
             legend = messages("ptaQuestions.howEasyScore.heading"),
+            legendClass = Some("heading-large body-text"),
             inputs = HowEasyQuestion.options
         )
 
-        @components.input_text(
+        @components.input_textarea(
             field = form("whyGiveScore"),
-            label = messages("ptaQuestions.whyGiveScore.heading")
+            label = messages("ptaQuestions.whyGiveScore.heading"),
+            labelClass = Some("heading-large body-text")
         )
 
         @components.input_radio(
             field = form("howDoYouFeelScore"),
             legend = messages("ptaQuestions.howDoYouFeelScore.heading"),
+            legendClass = Some("heading-large body-text"),
             inputs = HowDoYouFeelQuestion.options
         )
 

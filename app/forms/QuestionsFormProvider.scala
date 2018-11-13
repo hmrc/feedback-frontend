@@ -59,6 +59,9 @@ class PTAQuestionsFormProvider @Inject() extends Mappings {
 
   def apply(): Form[PTAQuestions] =
     Form(mapping(
+      "neededToDo" ->
+        optional(text("neededToDo.error.required")
+          .verifying(maxLength(maxFieldSize, "neededToDo.error.maxLength"))),
       "ableToDo" -> optional(boolean()),
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->

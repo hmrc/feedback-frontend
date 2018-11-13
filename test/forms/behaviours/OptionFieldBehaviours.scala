@@ -22,7 +22,7 @@ class OptionFieldBehaviours extends FieldBehaviours {
 
   def optionsField[A, T](form: Form[A],
                          fieldName: String,
-                         validValues: Set[T],
+                         validValues: Seq[T],
                          invalidError: FormError,
                          fieldValue: A => Option[T]): Unit = {
 
@@ -37,7 +37,7 @@ class OptionFieldBehaviours extends FieldBehaviours {
 
     "not bind invalid values" in {
 
-      val generator = stringsExceptSpecificValues(validValues.map(_.toString))
+      val generator = stringsExceptSpecificValues(validValues.map(_.toString).toSet)
 
       forAll(generator -> "invalidValue") {
         value =>

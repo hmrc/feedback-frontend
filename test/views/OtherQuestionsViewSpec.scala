@@ -38,9 +38,7 @@ class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
 
   "OtherQuestions view" must {
 
-    behave like normalPage(createView, messageKeyPrefix)
-
-    behave like pageWithBackLink(createView)
+    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
 
     behave like yesNoPage(
       createViewUsingForm,
@@ -63,5 +61,17 @@ class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options,
       "otherQuestions.howDoYouFeelScore")
+
+    "contain second introductory paragraph" in {
+      val expectedMessage = messages("otherQuestions.intro2", messages("otherQuestions.introLinkText"))
+      val doc = asDocument(createView())
+      assertContainsText(doc, expectedMessage)
+    }
+
+    "contain privacy anchor tag" in {
+      val expectedLink = messages("otherQuestions.introLinkText")
+      val doc = asDocument(createView())
+      assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPoliocyUrl)
+    }
   }
 }

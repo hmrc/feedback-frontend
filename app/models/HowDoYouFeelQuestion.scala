@@ -29,16 +29,16 @@ object HowDoYouFeelQuestion {
   case object Dissatisfied     extends WithName("Dissatisfied") with HowDoYouFeelQuestion
   case object VeryDissatisfied extends WithName("VeryDissatisfied") with HowDoYouFeelQuestion
 
-  val values: Set[HowDoYouFeelQuestion] =
-    Set(VerySatisfied, Satisfied, Moderate, Dissatisfied, VeryDissatisfied)
+  val values: Seq[HowDoYouFeelQuestion] =
+    List(VerySatisfied, Satisfied, Moderate, Dissatisfied, VeryDissatisfied)
 
   val options: Seq[RadioOption] = values.map {
     value =>
       RadioOption("howDoYouFeelQuestion", value.toString)
-  }.toSeq
+  }
 
   implicit val enumerable: Enumerable[HowDoYouFeelQuestion] =
-    Enumerable(values.toSeq.map(v => v.toString -> v): _*)
+    Enumerable(values.map(v => v.toString -> v): _*)
 
   implicit object HowDoYouFeelQuestionWrites extends Writes[HowDoYouFeelQuestion] {
     def writes(howDoYouFeelQuestion: HowDoYouFeelQuestion) = Json.toJson(howDoYouFeelQuestion.toString)

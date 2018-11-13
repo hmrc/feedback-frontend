@@ -77,22 +77,20 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
         (origin, answers) =>
           reset(mockAuditConnector)
 
-          whenever(answers.whyGiveScore.exists(_ != "")) {
-            val values = Map(
-              "service"  -> answers.service.map(_.toString),
-              "ableToDo" -> answers.ableToDo.map(_.toString),
-              "howEasyScore" -> answers.howEasyScore.map(_.toString),
-              "whyGiveScore" -> answers.whyGiveScore,
-              "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
+          val values = Map(
+            "service"  -> answers.service.map(_.toString),
+            "ableToDo" -> answers.ableToDo.map(_.toString),
+            "howEasyScore" -> answers.howEasyScore.map(_.toString),
+            "whyGiveScore" -> answers.whyGiveScore,
+            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
 
-            val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-            controller().onSubmit(origin)(request)
+          val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+          controller().onSubmit(origin)(request)
 
-            val expectedValues = values.mapValues(_.getOrElse("-")) + ("origin" -> origin)
+          val expectedValues = values.mapValues(_.getOrElse("-")) + ("origin" -> origin)
 
-            verify(mockAuditConnector, times(1))
-              .sendExplicitAudit(eqTo("feedback"), eqTo(expectedValues))(any(), any())
-          }
+          verify(mockAuditConnector, times(1))
+            .sendExplicitAudit(eqTo("feedback"), eqTo(expectedValues))(any(), any())
       }
     }
 

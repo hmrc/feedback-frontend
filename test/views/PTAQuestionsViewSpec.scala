@@ -20,7 +20,7 @@ import play.api.data.Form
 import forms.PTAQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import models.{HowDoYouFeelQuestion, HowEasyQuestion, PTAQuestions}
-import views.html.pTAQuestions
+import views.html.ptaQuestions
 
 class PTAQuestionsViewSpec extends YesNoViewBehaviours[PTAQuestions]
   with StringViewBehaviours[PTAQuestions]
@@ -31,21 +31,17 @@ class PTAQuestionsViewSpec extends YesNoViewBehaviours[PTAQuestions]
   val form = new PTAQuestionsFormProvider()()
   val action = controllers.routes.IndexController.onPageLoad()
 
-  def createView = () => pTAQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView = () => ptaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =
-    (form: Form[_]) => pTAQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+    (form: Form[_]) => ptaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "PTAQuestions view" must {
+    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
 
-    behave like normalPage(createView, messageKeyPrefix)
-
-    behave like pageWithBackLink(createView)
-
-    behave like optionsPage(
+    behave like stringPage(
       createViewUsingForm,
-      "service",
-      PTAServiceQuestion.options,
+      "neededToDo",
       "ptaQuestions.ptaService")
 
     behave like yesNoPage(
@@ -69,5 +65,17 @@ class PTAQuestionsViewSpec extends YesNoViewBehaviours[PTAQuestions]
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options,
       "ptaQuestions.howDoYouFeelScore")
+
+    "contain second introductory paragraph" in {
+      val expectedMessage = messages("ptaQuestions.intro2", messages("ptaQuestions.introLinkText"))
+      val doc = asDocument(createView())
+      assertContainsText(doc, expectedMessage)
+    }
+
+    "contain privacy anchor tag" in {
+      val expectedLink = messages("ptaQuestions.introLinkText")
+      val doc = asDocument(createView())
+      assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPoliocyUrl)
+    }
   }
 }

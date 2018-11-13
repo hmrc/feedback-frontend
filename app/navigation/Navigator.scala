@@ -35,6 +35,12 @@ object NextPage {
       override def nextPage(page: OtherQuestionsPage.type): UserAnswers => Call = _ =>
         controllers.routes.ThankYouController.onPageLoad()
     }
+
+  implicit val ptaQuestionsNextPage: NextPage[PTAQuestionsPage.type, UserAnswers] =
+    new NextPage[PTAQuestionsPage.type, UserAnswers] {
+      override def nextPage(page: PTAQuestionsPage.type): UserAnswers => Call = _ =>
+        controllers.routes.ThankYouController.onPageLoad()
+    }
 }
 
 @Singleton

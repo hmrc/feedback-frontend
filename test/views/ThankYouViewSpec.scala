@@ -27,7 +27,5 @@ class ThankYouViewSpec extends ViewBehaviours {
 
   "ThankYou view" must {
     behave like normalPage(createView, messageKeyPrefix)
-
-    behave like pageWithBackLink(createView)
   }
 }

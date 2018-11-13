@@ -31,16 +31,16 @@ object BTAServiceQuestion {
   case object ECSales        extends WithName("ECSales") with BTAServiceQuestion
   case object Other          extends WithName("Other") with BTAServiceQuestion
 
-  val values: Set[BTAServiceQuestion] =
-    Set(SelfAssessment, PAYE, VAT, CorporationTax, CIS, ECSales, Other)
+  val values: Seq[BTAServiceQuestion] =
+    List(SelfAssessment, PAYE, VAT, CorporationTax, CIS, ECSales, Other)
 
   val options: Seq[RadioOption] = values.map {
     value =>
       RadioOption("btaServiceQuestion", value.toString)
-  }.toSeq
+  }
 
   implicit val enumerable: Enumerable[BTAServiceQuestion] =
-    Enumerable(values.toSeq.map(v => v.toString -> v): _*)
+    Enumerable(values.map(v => v.toString -> v): _*)
 
   implicit object BTAServiceQuestionWrites extends Writes[BTAServiceQuestion] {
     def writes(btaServiceQuestion: BTAServiceQuestion) = Json.toJson(btaServiceQuestion.toString)

@@ -21,6 +21,10 @@
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
+@privacyPolicyLink = {
+    <a href="@appConfig.privacyPoliocyUrl" target="_blank">@messages("otherQuestions.introLinkText")</a>
+}
+
 @main_template(
     title = s"${errorPrefix(form)} ${messages("otherQuestions.title")}",
     appConfig = appConfig,
@@ -28,31 +32,39 @@
 
     @helpers.form(action = action, 'autoComplete -> "off") {
 
-        @components.back_link()
-
         @components.error_summary(form.errors)
 
         @components.heading("otherQuestions.heading")
 
+        <p>@messages("otherQuestions.intro1")</p>
+
+        <p>@Html(messages("otherQuestions.intro2", privacyPolicyLink))</p>
+
+        <p>@messages("otherQuestions.intro3")</p>
+
         @components.input_yes_no(
             field = form("ableToDo"),
-            label = messages("otherQuestions.ableToDo.heading")
+            label = messages("otherQuestions.ableToDo.heading"),
+            labelClass = Some("heading-large body-text")
         )
 
         @components.input_radio(
             field = form("howEasyScore"),
             legend = messages("otherQuestions.howEasyScore.heading"),
+            legendClass = Some("heading-large body-text"),
             inputs = HowEasyQuestion.options
         )
 
-        @components.input_text(
+        @components.input_textarea(
             field = form("whyGiveScore"),
-            label = messages("otherQuestions.whyGiveScore.heading")
+            label = messages("otherQuestions.whyGiveScore.heading"),
+            labelClass = Some("heading-large body-text")
         )
 
         @components.input_radio(
             field = form("howDoYouFeelScore"),
             legend = messages("otherQuestions.howDoYouFeelScore.heading"),
+            legendClass = Some("heading-large body-text"),
             inputs = HowDoYouFeelQuestion.options
         )
 

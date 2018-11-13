@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-package models
+package pages
 
-class PTAServiceQuestion {
+import models.PTAQuestions
 
+case object PTAQuestionsPage extends QuestionPage[PTAQuestions] {
+
+  override def toString: String = "ptaQuestions"
 }

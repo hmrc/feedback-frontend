@@ -1,4 +1,4 @@
-@*
+/*
  * Copyright 2018 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +12,21 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
 
-@import config.FrontendAppConfig
+package pages
 
-@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+import models.PTAQuestions
+import pages.behaviours.PageBehaviours
 
-@main_template(
-    title = messages("thankYou.title"),
-    appConfig = appConfig,
-    bodyClasses = None) {
+class PTAQuestionsPageSpec extends PageBehaviours {
 
-    @components.heading("thankYou.heading")
+  "PTAQuestionsPage" must {
+
+    beRetrievable[PTAQuestions](PTAQuestionsPage)
+
+    beSettable[PTAQuestions](PTAQuestionsPage)
+
+    beRemovable[PTAQuestions](PTAQuestionsPage)
+  }
 }

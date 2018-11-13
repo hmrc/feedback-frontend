@@ -24,10 +24,10 @@ import config.FrontendAppConfig
 import forms.PTAQuestionsFormProvider
 import models.{PTAQuestions, UserAnswers}
 import navigation.Navigator
-import pages.OtherQuestionsPage
+import pages.PTAQuestionsPage
 import play.api.mvc.Action
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
-import views.html.pTAQuestions
+import views.html.ptaQuestions
 
 class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                          override val messagesApi: MessagesApi,
@@ -37,13 +37,12 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                         ) extends FrontendController with I18nSupport {
 
   val form: Form[PTAQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(OtherQuestionsPage)(UserAnswers.empty)
+  lazy val successPage = navigator.nextPage(PTAQuestionsPage)(UserAnswers.empty)
   def submitCall(origin: String) = routes.PTAQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: String) = Action {
     implicit request =>
-      Ok(pTAQuestions(appConfig, form, submitCall(origin)))
-      Ok(pTAQuestions(appConfig, form, submitCall(origin)))
+      Ok(ptaQuestions(appConfig, form, submitCall(origin)))
   }
 
   def onSubmit(origin: String) = Action {
@@ -51,12 +50,13 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
 
       form.bindFromRequest().fold(
         formWithErrors =>
-          BadRequest(pTAQuestions(appConfig, formWithErrors, submitCall(origin))),
+          BadRequest(ptaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
 
           val auditMap =
             Map(
               "origin"            -> origin,
+              "neededToDo"        -> value.neededToDo.getOrElse("-"),
               "ableToDo"          -> value.ableToDo.map(_.toString).getOrElse("-"),
               "howEasyScore"      -> value.howEasyScore.map(_.toString).getOrElse("-"),
               "whyGiveScore"      -> value.whyGiveScore.getOrElse("-"),

@@ -33,7 +33,7 @@ trait ModelGenerators {
     for {
       ableToDo <- option(arbitrary[Boolean])
       howEasy  <- option(howEasyQuestionGen)
-      whyScore <- option(arbitrary[String])
+      whyScore <- option(arbitrary[String].suchThat(_.nonEmpty))
       howFeel  <- option(howDoYouFeelQuestionGen)
     } yield {
       OtherQuestions(ableToDo, howEasy, whyScore, howFeel)
@@ -44,7 +44,7 @@ trait ModelGenerators {
       service  <- option(btaServiceQuestionGen)
       ableToDo <- option(arbitrary[Boolean])
       howEasy  <- option(howEasyQuestionGen)
-      whyScore <- option(arbitrary[String])
+      whyScore <- option(arbitrary[String].suchThat(_.nonEmpty))
       howFeel  <- option(howDoYouFeelQuestionGen)
     } yield {
       BTAQuestions(service, ableToDo, howEasy, whyScore, howFeel)
@@ -52,12 +52,13 @@ trait ModelGenerators {
 
   lazy val ptaQuestionsGen: Gen[PTAQuestions] =
     for {
-      ableToDo <- option(arbitrary[Boolean])
-      howEasy  <- option(howEasyQuestionGen)
-      whyScore <- option(arbitrary[String])
-      howFeel  <- option(howDoYouFeelQuestionGen)
+      neededToDo <- option(arbitrary[String].suchThat(_.nonEmpty))
+      ableToDo   <- option(arbitrary[Boolean])
+      howEasy    <- option(howEasyQuestionGen)
+      whyScore   <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howFeel    <- option(howDoYouFeelQuestionGen)
     } yield {
-      PTAQuestions(ableToDo, howEasy, whyScore, howFeel)
+      PTAQuestions(neededToDo, ableToDo, howEasy, whyScore, howFeel)
     }
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =

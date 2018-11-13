@@ -28,7 +28,7 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
                  messageKeyPrefix: String,
                  expectedHintKey: Option[String] = None) = {
 
-    "behave like a page with a string value field" when {
+    s"behave like a page with a string value field of '$fieldName'" when {
       "rendered" must {
 
         "contain a label for the value" in {
