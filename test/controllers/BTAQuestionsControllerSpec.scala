@@ -18,27 +18,94 @@ package controllers
 
 import controllers.actions._
 import forms.BTAQuestionsFormProvider
+import generators.ModelGenerators
+import models.{BTAQuestions, OtherQuestions}
+import navigation.FakeNavigator
+import org.mockito.Matchers.{any, eq => eqTo}
+import org.mockito.Mockito.{reset, times, verify}
+import org.scalacheck.Arbitrary.arbitrary
+import org.scalatest.mockito.MockitoSugar
+import org.scalatest.prop.PropertyChecks
 import play.api.data.Form
+import play.api.mvc.Call
 import play.api.test.Helpers._
+import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.btaQuestions
 
-class BTAQuestionsControllerSpec extends ControllerSpecBase {
+class BTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
+
+  def onwardRoute = Call("GET", "/foo")
 
   val formProvider = new BTAQuestionsFormProvider()
   val form = formProvider()
+  lazy val mockAuditConnector = mock[AuditConnector]
+  def submitCall(origin: String) = routes.BTAQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new BTAQuestionsController(frontendAppConfig, messagesApi, formProvider)
+    new BTAQuestionsController(
+      frontendAppConfig,
+      messagesApi,
+      new FakeNavigator(onwardRoute),
+      formProvider,
+      mockAuditConnector)
 
-  def viewAsString(form: Form[_] = form) = btaQuestions(frontendAppConfig, form)(fakeRequest, messages).toString
+  def viewAsString(form: Form[_] = form, action: Call) =
+    btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "BTAQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      val result = controller().onPageLoad(fakeRequest)
+      forAll(arbitrary[String]) { origin =>
+        val result = controller().onPageLoad(origin)(fakeRequest)
 
-      status(result) mustBe OK
-      contentAsString(result) mustBe viewAsString()
+        status(result) mustBe OK
+        contentAsString(result) mustBe viewAsString(action = submitCall(origin))
+      }
+    }
+
+    "redirect to the next page when valid data is submitted" in {
+      forAll(arbitrary[String]) { origin =>
+        val result = controller().onSubmit(origin)(fakeRequest)
+
+        status(result) mustBe SEE_OTHER
+        redirectLocation(result) mustBe Some(onwardRoute.url)
+      }
+    }
+
+    "audit response on success" in {
+      forAll(arbitrary[String], arbitrary[BTAQuestions]) {
+        (origin, answers) =>
+          reset(mockAuditConnector)
+
+          whenever(answers.whyGiveScore.exists(_ != "")) {
+            val values = Map(
+              "service"  -> answers.service.map(_.toString),
+              "ableToDo" -> answers.ableToDo.map(_.toString),
+              "howEasyScore" -> answers.howEasyScore.map(_.toString),
+              "whyGiveScore" -> answers.whyGiveScore,
+              "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
+
+            val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+            controller().onSubmit(origin)(request)
+
+            val expectedValues = values.mapValues(_.getOrElse("-")) + ("origin" -> origin)
+
+            verify(mockAuditConnector, times(1))
+              .sendExplicitAudit(eqTo("feedback"), eqTo(expectedValues))(any(), any())
+          }
+      }
+    }
+
+    "return a Bad Request and errors when invalid data is submitted" in {
+      forAll(arbitrary[String]) { origin =>
+        val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
+        val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
+
+        val result = controller().onSubmit(origin)(postRequest)
+
+        status(result) mustBe BAD_REQUEST
+        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall(origin))
+      }
     }
   }
 }

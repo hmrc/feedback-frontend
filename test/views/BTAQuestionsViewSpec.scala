@@ -28,11 +28,12 @@ class BTAQuestionsViewSpec extends YesNoViewBehaviours[BTAQuestions]
 
   val messageKeyPrefix = "btaQuestions"
   val form = new BTAQuestionsFormProvider()()
+  val action = controllers.routes.IndexController.onPageLoad()
 
-  def createView = () => btaQuestions(frontendAppConfig, form)(fakeRequest, messages)
+  def createView = () => btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =
-    (form: Form[_]) => btaQuestions(frontendAppConfig, form)(fakeRequest, messages)
+    (form: Form[_]) => btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "BTAQuestions view" must {
     behave like normalPage(createView, messageKeyPrefix)
