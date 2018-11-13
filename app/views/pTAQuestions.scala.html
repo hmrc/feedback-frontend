@@ -16,49 +16,43 @@
 
 @import config.FrontendAppConfig
 @import uk.gov.hmrc.play.views.html._
-@import models.{BTAServiceQuestion, HowDoYouFeelQuestion, HowEasyQuestion}
+@import models.{HowDoYouFeelQuestion, HowEasyQuestion}
 @import views.ViewUtils._
-
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
 @main_template(
-    title = s"${errorPrefix(form)} ${messages("otherQuestions.title")}",
+    title = s"${errorPrefix(form)} ${messages("ptaQuestions.title")}",
     appConfig = appConfig,
     bodyClasses = None) {
 
     @helpers.form(action = action, 'autoComplete -> "off") {
+
         @components.back_link()
 
         @components.error_summary(form.errors)
 
-        @components.heading("btaQuestions.heading")
-
-        @components.input_radio(
-            field = form("service"),
-            legend = messages("btaQuestions.btaService.heading"),
-            inputs = BTAServiceQuestion.options
-        )
+        @components.heading("ptaQuestions.heading")
 
         @components.input_yes_no(
             field = form("ableToDo"),
-            label = messages("btaQuestions.ableToDo.heading")
+            label = messages("ptaQuestions.ableToDo.heading")
         )
 
         @components.input_radio(
             field = form("howEasyScore"),
-            legend = messages("btaQuestions.howEasyScore.heading"),
+            legend = messages("ptaQuestions.howEasyScore.heading"),
             inputs = HowEasyQuestion.options
         )
 
         @components.input_text(
             field = form("whyGiveScore"),
-            label = messages("btaQuestions.whyGiveScore.heading")
+            label = messages("ptaQuestions.whyGiveScore.heading")
         )
 
         @components.input_radio(
             field = form("howDoYouFeelScore"),
-            legend = messages("btaQuestions.howDoYouFeelScore.heading"),
+            legend = messages("ptaQuestions.howDoYouFeelScore.heading"),
             inputs = HowDoYouFeelQuestion.options
         )
 

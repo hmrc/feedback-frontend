@@ -18,3 +18,6 @@ GET        /thank-you                                   controllers.ThankYouCont
 
 GET        /:origin/bta                                 controllers.BTAQuestionsController.onPageLoad(origin: String)
 POST       /:origin/bta                                 controllers.BTAQuestionsController.onSubmit(origin: String)
+
+GET        /:origin/pta                                 controllers.PTAQuestionsController.onPageLoad(origin: String)
+POST       /:origin/pta                                 controllers.PTAQuestionsController.onSubmit(origin: String)

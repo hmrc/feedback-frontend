@@ -51,25 +51,25 @@ otherQuestions.howEasyScore.heading = How easy was it for you to do what you nee
 otherQuestions.whyGiveScore.heading = Why did you give this score?
 otherQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
 
-btaServiceQuestion.selfAssessment = Self assessment
-btaServiceQuestion.pAYE = PAYE for employers
-btaServiceQuestion.vAT = VAT
-btaServiceQuestion.corporationTax = Corporation tax
-btaServiceQuestion.cIS = Construction industry scheme (CIS)
-btaServiceQuestion.eCSales = EC sales
-btaServiceQuestion.other = Other
+btaServiceQuestion.SelfAssessment = Self assessment
+btaServiceQuestion.PAYE = PAYE for employers
+btaServiceQuestion.VAT = VAT
+btaServiceQuestion.CorporationTax = Corporation tax
+btaServiceQuestion.CIS = Construction industry scheme (CIS)
+btaServiceQuestion.ECSales = EC sales
+btaServiceQuestion.Other = Other
 
-howDoYouFeelQuestion.verySatisfied = Very satisfied
-howDoYouFeelQuestion.satisfied = Satisfied
-howDoYouFeelQuestion.moderate = Neither satisfied nor dissatisfied
-howDoYouFeelQuestion.dissatisfied = Dissatisfied
-howDoYouFeelQuestion.veryDissatisfied = Very dissatisfied
+howDoYouFeelQuestion.VerySatisfied = Very satisfied
+howDoYouFeelQuestion.Satisfied = Satisfied
+howDoYouFeelQuestion.Moderate = Neither satisfied nor dissatisfied
+howDoYouFeelQuestion.Dissatisfied = Dissatisfied
+howDoYouFeelQuestion.VeryDissatisfied = Very dissatisfied
 
-howEasyQuestion.veryEasy = Very easy
-howEasyQuestion.easy = Easy
-howEasyQuestion.moderate = Neither easy nor hard
-howEasyQuestion.difficult = Difficult
-howEasyQuestion.veryDifficult = Very Difficult
+howEasyQuestion.VeryEasy = Very easy
+howEasyQuestion.Easy = Easy
+howEasyQuestion.Moderate = Neither easy nor hard
+howEasyQuestion.Difficult = Difficult
+howEasyQuestion.VeryDifficult = Very Difficult
 
 thankYou.title = Thank you for your feedback
 thankYou.heading = Thank you for your feedback
@@ -81,3 +81,11 @@ btaQuestions.ableToDo.heading = Were you able to do what you needed to do today?
 btaQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
 btaQuestions.whyGiveScore.heading = Why did you give this score?
 btaQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+
+ptaQuestions.title = Give feedback
+ptaQuestions.heading = Give feedback
+ptaQuestions.ptaService.heading = What was the main thing you needed to do today? For example, change your address
+ptaQuestions.ableToDo.heading = Were you able to do what you needed to do today?
+ptaQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
+ptaQuestions.whyGiveScore.heading = Why did you give this score?
+ptaQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?

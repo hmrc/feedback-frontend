@@ -52,3 +52,19 @@ class BTAQuestionsFormProvider @Inject() extends Mappings {
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(BTAQuestions.apply)(BTAQuestions.unapply))
 }
+
+class PTAQuestionsFormProvider @Inject() extends Mappings {
+
+  private val maxFieldSize = 1000
+
+  def apply(): Form[PTAQuestions] =
+    Form(mapping(
+      "ableToDo" -> optional(boolean()),
+      "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+      "whyGiveScore" ->
+        optional(text("whyGiveScore.error.required")
+          .verifying(maxLength(maxFieldSize, "whyGiveScore.error.maxLength"))),
+      "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+    )(PTAQuestions.apply)(PTAQuestions.unapply))
+}
+
