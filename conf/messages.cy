@@ -44,6 +44,8 @@ site.service_name =
 #unauthorised.title = You can’t access this service with this account
 #unauthorised.heading = You can’t access this service with this account
 
+#generic.max-characters = You can enter up to {0} characters
+
 otherQuestions.title =
 otherQuestions.heading = Adborth
 otherQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
@@ -54,14 +56,6 @@ otherQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd an
 otherQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 otherQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 otherQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
-
-btaServiceQuestion.SelfAssessment = Hunanasesiad
-btaServiceQuestion.PAYE = TWE ar gyfer cyflogwyr
-btaServiceQuestion.VAT = TAW
-btaServiceQuestion.CorporationTax = Treth Gorfforaeth
-btaServiceQuestion.CIS = Cynllun y Diwydiant Adeiladu (CIS)
-btaServiceQuestion.ECSales = Gwerthiannau yn y GE
-btaServiceQuestion.Other = Arall. Rhowch fanylion:
 
 howDoYouFeelQuestion.VerySatisfied = Bodlon iawn
 howDoYouFeelQuestion.Satisfied = Bodlon
@@ -78,19 +72,6 @@ howEasyQuestion.VeryDifficult = Anodd iawn
 thankYou.title = Diolch am eich adborth
 thankYou.heading = Diolch am eich adborth
 thankYou.intro = Byddwn yn defnyddio’ch adborth i wella ein gwasanaethau.
-
-btaQuestions.title =
-btaQuestions.heading = Adborth
-btaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
-btaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
-btaQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
-btaQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM
-btaQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM
-btaQuestions.btaService.heading = Beth oedd y prif wasanaeth a ddefnyddioch heddiw?
-btaQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
-btaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
-btaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
-btaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
 ptaQuestions.title =
 ptaQuestions.heading = Adborth

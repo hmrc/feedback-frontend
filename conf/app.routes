@@ -15,9 +15,6 @@ GET        /unauthorised                                controllers.Unauthorised
 GET        /:origin/other                               controllers.OtherQuestionsController.onPageLoad(origin: String)
 POST       /:origin/other                               controllers.OtherQuestionsController.onSubmit(origin: String)
 
-GET        /:origin/bta                                 controllers.BTAQuestionsController.onPageLoad(origin: String)
-POST       /:origin/bta                                 controllers.BTAQuestionsController.onSubmit(origin: String)
-
 GET        /:origin/pta                                 controllers.PTAQuestionsController.onPageLoad(origin: String)
 POST       /:origin/pta                                 controllers.PTAQuestionsController.onSubmit(origin: String)
 
