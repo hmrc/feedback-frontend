@@ -28,9 +28,9 @@ class NavigatorSpec extends SpecBase with MockitoSugar {
   val navigator = new Navigator
 
   "Navigator" when {
-    "OtherQuestionsPage" should {
+    "GenericQuestionsPage" should {
       "return ThankYou page" in {
-        navigator.nextPage(OtherQuestionsPage)(UserAnswers.empty) mustBe routes.ThankYouController.onPageLoad()
+        navigator.nextPage(GenericQuestionsPage)(()) mustBe routes.ThankYouController.onPageLoad()
       }
     }
   }

@@ -23,7 +23,7 @@ import config.FrontendAppConfig
 import forms.BTAQuestionsFormProvider
 import models.UserAnswers
 import navigation.Navigator
-import pages.OtherQuestionsPage
+import pages.GenericQuestionsPage
 import play.api.mvc.Action
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.btaQuestions
@@ -37,7 +37,7 @@ class BTAQuestionsController @Inject()(
                                       ) extends FrontendController with I18nSupport {
 
   val form = formProvider()
-  lazy val successPage = navigator.nextPage(OtherQuestionsPage)(UserAnswers.empty)
+  lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
   def submitCall(origin: String) = routes.BTAQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: String)= Action {

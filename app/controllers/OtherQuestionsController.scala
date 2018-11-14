@@ -24,7 +24,7 @@ import config.FrontendAppConfig
 import forms.OtherQuestionsFormProvider
 import models.{OtherQuestions, UserAnswers}
 import navigation.Navigator
-import pages.OtherQuestionsPage
+import pages.GenericQuestionsPage
 import play.api.mvc.Action
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.otherQuestions
@@ -37,7 +37,7 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                          ) extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(OtherQuestionsPage)(UserAnswers.empty)
+  lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
   def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: String) = Action {

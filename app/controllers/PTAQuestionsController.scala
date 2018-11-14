@@ -24,7 +24,7 @@ import config.FrontendAppConfig
 import forms.PTAQuestionsFormProvider
 import models.{PTAQuestions, UserAnswers}
 import navigation.Navigator
-import pages.PTAQuestionsPage
+import pages.GenericQuestionsPage
 import play.api.mvc.Action
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.ptaQuestions
@@ -37,7 +37,7 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                         ) extends FrontendController with I18nSupport {
 
   val form: Form[PTAQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(PTAQuestionsPage)(UserAnswers.empty)
+  lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
   def submitCall(origin: String) = routes.PTAQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: String) = Action {

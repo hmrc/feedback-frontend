@@ -16,9 +16,7 @@
 
 package pages
 
-import models.OtherQuestions
+case object GenericQuestionsPage extends Page {
 
-case object OtherQuestionsPage extends QuestionPage[OtherQuestions] {
-
-  override def toString: String = "otherQuestions"
+  override def toString: String = "genericQuestions"
 }
