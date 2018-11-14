@@ -44,9 +44,9 @@ site.service_name =
 #unauthorised.title = You can’t access this service with this account
 #unauthorised.heading = You can’t access this service with this account
 
-#generic.max-characters = You can enter up to {0} characters
+generic.max-characters =
 
-otherQuestions.title =
+otherQuestions.title = Rhoi adborth - GOV.UK
 otherQuestions.heading = Adborth
 otherQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 otherQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
@@ -73,7 +73,7 @@ thankYou.title = Diolch am eich adborth
 thankYou.heading = Diolch am eich adborth
 thankYou.intro = Byddwn yn defnyddio’ch adborth i wella ein gwasanaethau.
 
-ptaQuestions.title =
+ptaQuestions.title = Rhoi adborth - GOV.UK
 ptaQuestions.heading = Adborth
 ptaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 ptaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
