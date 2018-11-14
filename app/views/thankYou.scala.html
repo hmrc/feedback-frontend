@@ -33,22 +33,19 @@
             @Html(messages("thankYou.userResearch.intro1",
                 components.anchor(
                     href = appConfig.govUkUrl,
-                    messageKey = "thankYou.userResearch.urLinkText",
-                    target = Some("_blank"))))
+                    messageKey = "thankYou.userResearch.urLinkText")))
         </h2>
 
         <p>
             @Html(messages("thankYou.userResearch.intro2",
                 components.anchor(
                     href = appConfig.govUkUrl,
-                    messageKey = "thankYou.userResearch.urLinkText",
-                    target = Some("_blank"))))
+                    messageKey = "thankYou.userResearch.urLinkText")))
         </p>
 
         @components.anchor(
             href = urLinkUrl,
-            messageKey = "thankYou.userResearch.UrLink",
-            target = Some("_blank")
+            messageKey = "thankYou.userResearch.UrLink"
         )
     }
 }
