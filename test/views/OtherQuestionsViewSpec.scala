@@ -71,7 +71,7 @@ class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
     "contain privacy anchor tag" in {
       val expectedLink = messages("otherQuestions.introLinkText")
       val doc = asDocument(createView())
-      assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPoliocyUrl)
+      assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
     }
   }
 }

@@ -75,7 +75,7 @@ class PTAQuestionsViewSpec extends YesNoViewBehaviours[PTAQuestions]
     "contain privacy anchor tag" in {
       val expectedLink = messages("ptaQuestions.introLinkText")
       val doc = asDocument(createView())
-      assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPoliocyUrl)
+      assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
     }
   }
 }
