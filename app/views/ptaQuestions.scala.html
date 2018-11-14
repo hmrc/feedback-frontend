@@ -45,7 +45,8 @@
         @components.input_textarea(
             field = form("neededToDo"),
             label = messages("ptaQuestions.ptaService.heading"),
-            labelClass = Some("heading-large body-text")
+            labelClass = Some("heading-large body-text"),
+            maximum = Some(200)
         )
 
         @components.input_yes_no(
@@ -64,7 +65,8 @@
         @components.input_textarea(
             field = form("whyGiveScore"),
             label = messages("ptaQuestions.whyGiveScore.heading"),
-            labelClass = Some("heading-large body-text")
+            labelClass = Some("heading-large body-text"),
+            maximum = Some(1000)
         )
 
         @components.input_radio(

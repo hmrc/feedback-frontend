@@ -38,14 +38,14 @@ site.back = Yn ôl
 site.no = Na
 site.yes = Iawn
 site.continue = Parhau
-site.service_name = Rhoi adborth
+site.service_name =
 #site.textarea.char_limit = (Limit is {0} characters)
 
 #unauthorised.title = You can’t access this service with this account
 #unauthorised.heading = You can’t access this service with this account
 
-otherQuestions.title = Rhoi adborth
-otherQuestions.heading = Rhoi adborth
+otherQuestions.title =
+otherQuestions.heading = Adborth
 otherQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 otherQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 otherQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
@@ -79,8 +79,8 @@ thankYou.title = Diolch am eich adborth
 thankYou.heading = Diolch am eich adborth
 thankYou.intro = Byddwn yn defnyddio’ch adborth i wella ein gwasanaethau.
 
-btaQuestions.title = Rhoi adborth
-btaQuestions.heading = Rhoi adborth
+btaQuestions.title =
+btaQuestions.heading = Adborth
 btaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 btaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 btaQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
@@ -92,8 +92,8 @@ btaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd 
 btaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 btaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
-ptaQuestions.title = Rhoi adborth
-ptaQuestions.heading = Rhoi adborth
+ptaQuestions.title =
+ptaQuestions.heading = Adborth
 ptaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 ptaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 ptaQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.

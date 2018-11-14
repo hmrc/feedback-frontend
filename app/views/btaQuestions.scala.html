@@ -43,12 +43,14 @@
 
         <p>@messages("btaQuestions.intro3")</p>
 
-        @components.input_radio(
+        @components.input_radio_content(
             field = form("service"),
             legend = messages("btaQuestions.btaService.heading"),
             legendClass = Some("heading-large body-text"),
             inputs = BTAServiceQuestion.options
-        )
+        ) {
+          <p>Test</p>
+        }
 
         @components.input_yes_no(
             field = form("ableToDo"),
@@ -66,7 +68,8 @@
         @components.input_textarea(
             field = form("whyGiveScore"),
             label = messages("btaQuestions.whyGiveScore.heading"),
-            labelClass = Some("heading-large body-text")
+            labelClass = Some("heading-large body-text"),
+            maximum = Some(1000)
         )
 
         @components.input_radio(

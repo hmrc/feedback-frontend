@@ -58,7 +58,8 @@
         @components.input_textarea(
             field = form("whyGiveScore"),
             label = messages("otherQuestions.whyGiveScore.heading"),
-            labelClass = Some("heading-large body-text")
+            labelClass = Some("heading-large body-text"),
+            maximum = Some(1000)
         )
 
         @components.input_radio(
