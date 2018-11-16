@@ -26,7 +26,7 @@
 
 <div class="form-group @if(field.hasErrors){form-group-error}">
     <label class="form-label" for="@{field.id}">
-        <span class="bold @labelClass">@label</span>
+        <span class="@labelClass">@label</span>
         @hint.map { hint =>
             <span class="form-hint">@hint</span>
         }
@@ -34,20 +34,16 @@
             <span class="error-message" id="error-message-@{field.id}-input">@messages(error.message, error.args: _*)</span>
         }
     </label>
-    <div class="form-control-wrapper char-counter" data-char-counter>
-        <textarea
+    <textarea
         class="form-control form-control--full-width @inputClass"
         id="@{field.id}"
         name="@{field.id}"
         value="@{field.value}"
-        aria-describedby="error-message-@{field.id}-input"
+        @if(field.hasErrors) { aria-describedby="error-message-@{field.id}-input" }
         rows="5"
-        @maximum.map { maximum =>
-            maxlength="@{maximum}"}
-        ></textarea>
-        @maximum.map { maximum =>
-            <p>@messages("generic.max-characters", maximum)</p>
-        }
-    </div>
+    ></textarea>
+    @maximum.map { maximum =>
+        <p class="form-field--hint">@messages("generic.max-characters", maximum)</p>
+    }
 </div>
 

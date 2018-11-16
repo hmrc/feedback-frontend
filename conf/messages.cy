@@ -57,17 +57,17 @@ otherQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oed
 otherQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 otherQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
-howDoYouFeelQuestion.VerySatisfied = Bodlon iawn
-howDoYouFeelQuestion.Satisfied = Bodlon
-howDoYouFeelQuestion.Moderate = Ddim yn fodlon nac yn anfodlon
-howDoYouFeelQuestion.Dissatisfied = Anfodlon
-howDoYouFeelQuestion.VeryDissatisfied = Anfodlon iawn
+howDoYouFeelQuestion.VerySatisfied = 5. Bodlon iawn
+howDoYouFeelQuestion.Satisfied = 4. Bodlon
+howDoYouFeelQuestion.Moderate = 3. Ddim yn fodlon nac yn anfodlon
+howDoYouFeelQuestion.Dissatisfied = 2. Anfodlon
+howDoYouFeelQuestion.VeryDissatisfied = 1. Anfodlon iawn
 
-howEasyQuestion.VeryEasy = Hawdd iawn
-howEasyQuestion.Easy = Hawdd
-howEasyQuestion.Moderate = Ddim yn hawdd nac yn anodd
-howEasyQuestion.Difficult = Anodd
-howEasyQuestion.VeryDifficult = Anodd iawn
+howEasyQuestion.VeryEasy = 5. Hawdd iawn
+howEasyQuestion.Easy = 4. Hawdd
+howEasyQuestion.Moderate = 3. Ddim yn hawdd nac yn anodd
+howEasyQuestion.Difficult = 2. Anodd
+howEasyQuestion.VeryDifficult = 1. Anodd iawn
 
 thankYou.title = Diolch am eich adborth
 thankYou.heading = Diolch am eich adborth
@@ -84,7 +84,7 @@ ptaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. 
 ptaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 ptaQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
 ptaQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM
-ptaQuestions.ptaService.heading = Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw? Er enghraifft, newid eich cyfeiriad
+ptaQuestions.neededToDo.heading = Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw? Er enghraifft, newid eich cyfeiriad
 ptaQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
 ptaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 ptaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
