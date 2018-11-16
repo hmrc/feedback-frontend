@@ -20,7 +20,8 @@
         secondaryLabel: Option[String] = None,
         inputClass: Option[String] = None,
         labelClass: Option[String] = None,
-        hint: Option[String] = None
+        hint: Option[String] = None,
+        maximum: Option[Int] = None
 )(implicit messages: Messages)
 
 <div class="form-group @if(field.hasErrors){form-group-error}">
@@ -41,7 +42,12 @@
         value="@{field.value}"
         aria-describedby="error-message-@{field.id}-input"
         rows="5"
+        @maximum.map { maximum =>
+            maxlength="@{maximum}"}
         ></textarea>
+        @maximum.map { maximum =>
+            <p>@messages("generic.max-characters", maximum)</p>
+        }
     </div>
 </div>
 

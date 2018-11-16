@@ -18,14 +18,16 @@ package views.behaviours
 
 import play.api.data.{Form, FormError}
 import play.twirl.api.HtmlFormat
+import viewmodels.RadioOption
 
-trait YesNoViewBehaviours[A] extends QuestionViewBehaviours[A] {
+trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
-  def yesNoPage(createView: (Form[A]) => HtmlFormat.Appendable,
-                fieldName: String,
-                messageKeyPrefix: String) = {
+  def optionsPage(createView: Form[A] => HtmlFormat.Appendable,
+                  fieldName: String,
+                  options: Seq[RadioOption],
+                  messageKeyPrefix: String) = {
 
-    "behave like a page with a Yes/No question" when {
+    s"behave like a page with a $fieldName radio options question" when {
       "rendered" must {
         "contain a legend for the question" in {
           val doc = asDocument(createView(form))
@@ -36,14 +38,9 @@ trait YesNoViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
         "contain an input for the value" in {
           val doc = asDocument(createView(form))
-          assertRenderedById(doc, s"$fieldName-yes")
-          assertRenderedById(doc, s"$fieldName-no")
-        }
-
-        "have no values checked when rendered with no form" in {
-          val doc = asDocument(createView(form))
-          assert(!doc.getElementById(s"$fieldName-yes").hasAttr("checked"))
-          assert(!doc.getElementById(s"$fieldName-no").hasAttr("checked"))
+          for (option <- options) {
+            assertContainsRadioButton(doc, option.id, fieldName, option.value, false)
+          }
         }
 
         "not render an error summary" in {
@@ -52,12 +49,18 @@ trait YesNoViewBehaviours[A] extends QuestionViewBehaviours[A] {
         }
       }
 
-      "rendered with a value of true" must {
-        behave like answeredYesNoPage(true)
-      }
 
-      "rendered with a value of false" must {
-        behave like answeredYesNoPage(false)
+      for(option <- options) {
+        s"rendered with a $fieldName of '${option.value}'" must {
+          s"have the '${option.value}' radio button selected" in {
+            val doc = asDocument(createView(form.bind(Map(fieldName -> s"${option.value}"))))
+            assertContainsRadioButton(doc, option.id, fieldName, option.value, true)
+
+            for(unselectedOption <- options.filterNot(o => o == option)) {
+              assertContainsRadioButton(doc, unselectedOption.id, fieldName, unselectedOption.value, false)
+            }
+          }
+        }
       }
 
       "rendered with an error" must {
@@ -77,22 +80,6 @@ trait YesNoViewBehaviours[A] extends QuestionViewBehaviours[A] {
           val doc = asDocument(createView(form.withError(error)))
           assertContainsValue(doc, "title", messages("error.browser.title.prefix"))
         }
-      }
-    }
-
-    def answeredYesNoPage(answer: Boolean) = {
-
-      val boundForm = form.bind(Map(fieldName -> answer.toString))
-
-      "have only the correct value checked" in {
-        val doc = asDocument(createView(boundForm))
-        assert(doc.getElementById(s"$fieldName-yes").hasAttr("checked") == answer)
-        assert(doc.getElementById(s"$fieldName-no").hasAttr("checked") != answer)
-      }
-
-      "not render an error summary" in {
-        val doc = asDocument(createView(boundForm))
-        assertNotRenderedById(doc, "error-summary_header")
       }
     }
   }

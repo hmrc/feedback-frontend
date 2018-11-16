@@ -14,24 +14,26 @@
  * limitations under the License.
  */
 
-package navigation
+package controllers
 
-import base.SpecBase
-import org.mockito.Mockito._
-import org.scalatest.mockito.MockitoSugar
-import controllers.routes
-import pages._
-import models._
+import controllers.actions._
+import play.api.test.Helpers._
+import views.html.thankYou
 
-class NavigatorSpec extends SpecBase with MockitoSugar {
+class ThankYouControllerSpec extends ControllerSpecBase {
 
-  val navigator = new Navigator
+  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
+    new ThankYouController(frontendAppConfig, messagesApi)
 
-  "Navigator" when {
-    "GenericQuestionsPage" should {
-      "return ThankYou page" in {
-        navigator.nextPage(GenericQuestionsPage)(()) mustBe routes.ThankYouController.onPageLoad()
-      }
+  def viewAsString() = thankYou(frontendAppConfig)(fakeRequest, messages).toString
+
+  "ThankYou Controller" must {
+
+    "return OK and the correct view for a GET" in {
+      val result = controller().onPageLoad(fakeRequest)
+
+      status(result) mustBe OK
+      contentAsString(result) mustBe viewAsString()
     }
   }
 }

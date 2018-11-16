@@ -5,12 +5,19 @@ import uk.gov.hmrc.versioning.SbtGitVersioning.autoImport.majorVersion
 
 lazy val appName: String = "feedback-frontend"
 
+val migrate : TaskKey[Unit] = taskKey[Unit]("Execute migrate script")
+
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtDistributablesPlugin, SbtArtifactory)
   .settings(DefaultBuildSettings.scalaSettings: _*)
   .settings(DefaultBuildSettings.defaultSettings(): _*)
   .settings(SbtDistributablesPlugin.publishingSettings: _*)
   .settings(majorVersion := 0)
+  .settings(
+    migrate := {
+      "./migrate.sh" !
+    }
+  )
   .settings(
     name := appName,
     RoutesKeys.routesImport += "models._",

@@ -34,6 +34,7 @@ class FrontendAppConfig @Inject() (override val runModeConfiguration: Configurat
 
   lazy val analyticsToken = loadConfig(s"google-analytics.token")
   lazy val analyticsHost = loadConfig(s"google-analytics.host")
+  lazy val gtmContainerId = loadConfig(s"google-tag-manager.containerId")
   lazy val reportAProblemPartialUrl = s"$contactHost/contact/problem_reports_ajax?service=$contactFormServiceIdentifier"
   lazy val reportAProblemNonJSUrl = s"$contactHost/contact/problem_reports_nonjs?service=$contactFormServiceIdentifier"
   lazy val betaFeedbackUrl = s"$contactHost/contact/beta-feedback"
@@ -43,9 +44,17 @@ class FrontendAppConfig @Inject() (override val runModeConfiguration: Configurat
   lazy val loginUrl = loadConfig("urls.login")
   lazy val loginContinueUrl = loadConfig("urls.loginContinue")
 
+  lazy val privacyPolicyUrl = "https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you"
+  lazy val urLinkUrl = runModeConfiguration.getString("microservice.services.features.ur-link-url")
+
+  lazy val govUkUrl = loadConfig(s"urls.govUk")
+
   lazy val languageTranslationEnabled = runModeConfiguration.getBoolean("microservice.services.features.welsh-translation").getOrElse(true)
   def languageMap: Map[String, Lang] = Map(
     "english" -> Lang("en"),
     "cymraeg" -> Lang("cy"))
   def routeToSwitchLanguage = (lang: String) => routes.LanguageSwitchController.switchToLanguage(lang)
+
+  lazy val isGtmEnabled = runModeConfiguration.getBoolean("google-tag-manager.enabled").getOrElse(true)
+
 }

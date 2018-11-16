@@ -14,21 +14,9 @@
  * limitations under the License.
  */
 
-package generators
+package pages
 
-import models._
-import org.scalacheck.Arbitrary
-import org.scalacheck.Arbitrary.arbitrary
-import pages._
-import play.api.libs.json.{JsValue, Json}
+case object GenericQuestionsPage extends Page {
 
-trait UserAnswersEntryGenerators extends PageGenerators with ModelGenerators {
-
-  implicit lazy val arbitraryAbleToDoUserAnswersEntry: Arbitrary[(GenericQuestionsPage.type, JsValue)] =
-    Arbitrary {
-      for {
-        page  <- arbitrary[GenericQuestionsPage.type]
-        value <- arbitrary[Boolean].map(Json.toJson(_))
-      } yield (page, value)
-    }
+  override def toString: String = "genericQuestions"
 }

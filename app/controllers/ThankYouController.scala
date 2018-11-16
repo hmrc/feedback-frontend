@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package generators
+package controllers
 
-import models._
-import org.scalacheck.Arbitrary
-import org.scalacheck.Arbitrary.arbitrary
-import pages._
-import play.api.libs.json.{JsValue, Json}
+import javax.inject.Inject
+import play.api.i18n.{I18nSupport, MessagesApi}
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import config.FrontendAppConfig
+import play.api.mvc.Action
+import views.html.thankYou
 
-trait UserAnswersEntryGenerators extends PageGenerators with ModelGenerators {
+class ThankYouController @Inject()(appConfig: FrontendAppConfig,
+                                   override val messagesApi: MessagesApi
+                                   ) extends FrontendController with I18nSupport {
 
-  implicit lazy val arbitraryAbleToDoUserAnswersEntry: Arbitrary[(GenericQuestionsPage.type, JsValue)] =
-    Arbitrary {
-      for {
-        page  <- arbitrary[GenericQuestionsPage.type]
-        value <- arbitrary[Boolean].map(Json.toJson(_))
-      } yield (page, value)
-    }
+  def onPageLoad = Action {
+    implicit request =>
+      Ok(thankYou(appConfig))
+  }
 }

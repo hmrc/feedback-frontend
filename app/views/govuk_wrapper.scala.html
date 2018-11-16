@@ -30,6 +30,11 @@
 @import uk.gov.hmrc.play.views.html.{helpers => uiHelpers}
 
 @head = {
+
+    @if(appConfig.isGtmEnabled) {
+      @snippets.google_tag_manager(appConfig)
+    }
+
     @uiLayouts.head(
       linkElem = None,
       headScripts = None)
@@ -47,7 +52,11 @@
       navLinks = Some(headerNavLinks))
 }
 
-@afterHeader = {}
+@afterHeader = {
+    @if(appConfig.isGtmEnabled) {
+      @snippets.google_tag_manager_noscript(appConfig)
+    }
+}
 
 @bodyEnd = {
     @uiLayouts.footer(

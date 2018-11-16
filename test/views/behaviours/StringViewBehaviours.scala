@@ -16,37 +16,38 @@
 
 package views.behaviours
 
-import play.api.data.Form
+import play.api.data.{Form, FormError}
 import play.twirl.api.HtmlFormat
 
-trait StringViewBehaviours extends QuestionViewBehaviours[String] {
+trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
   val answer = "answer"
 
-  def stringPage(createView: (Form[String]) => HtmlFormat.Appendable,
+  def stringPage(createView: Form[A] => HtmlFormat.Appendable,
+                 fieldName: String,
                  messageKeyPrefix: String,
-                 expectedFormAction: String,
                  expectedHintKey: Option[String] = None) = {
 
-    "behave like a page with a string value field" when {
+    s"behave like a page with a string value field of '$fieldName'" when {
       "rendered" must {
 
         "contain a label for the value" in {
           val doc = asDocument(createView(form))
           val expectedHintText = expectedHintKey map(k => messages(k))
-          assertContainsLabel(doc, "value", messages(s"$messageKeyPrefix.heading"), expectedHintText)
+          assertContainsLabel(doc, fieldName, messages(s"$messageKeyPrefix.heading"), expectedHintText)
         }
 
         "contain an input for the value" in {
           val doc = asDocument(createView(form))
-          assertRenderedById(doc, "value")
+          assertRenderedById(doc, fieldName)
         }
       }
 
       "rendered with a valid form" must {
         "include the form's value in the value input" in {
-          val doc = asDocument(createView(form.fill(answer)))
-          doc.getElementById("value").attr("value") mustBe answer
+          val boundForm = form.bind(Map(fieldName -> answer))
+          val doc = asDocument(createView(boundForm))
+          doc.getElementById(fieldName).attr("value") mustBe answer
         }
       }
 
@@ -58,14 +59,14 @@ trait StringViewBehaviours extends QuestionViewBehaviours[String] {
         }
 
         "show an error in the value field's label" in {
-          val doc = asDocument(createView(form.withError(error)))
+          val doc = asDocument(createView(form.withError(FormError(fieldName, errorMessage))))
           val errorSpan = doc.getElementsByClass("error-message").first
           errorSpan.text mustBe messages(errorMessage)
         }
 
         "show an error prefix in the browser title" in {
           val doc = asDocument(createView(form.withError(error)))
-          assertEqualsValue(doc, "title", s"""${messages("error.browser.title.prefix")} ${messages(s"$messageKeyPrefix.title")}""")
+          assertContainsValue(doc, "title", messages("error.browser.title.prefix"))
         }
       }
     }
