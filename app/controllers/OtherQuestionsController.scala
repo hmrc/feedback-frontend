@@ -29,12 +29,14 @@ import play.api.mvc.Action
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.otherQuestions
 
+import scala.concurrent.ExecutionContext
+
 class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                          override val messagesApi: MessagesApi,
                                          navigator: Navigator,
                                          formProvider: OtherQuestionsFormProvider,
                                          auditConnector: AuditConnector
-                                         ) extends FrontendController with I18nSupport {
+                                         )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
   lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
