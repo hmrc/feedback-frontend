@@ -28,6 +28,7 @@ import pages.GenericQuestionsPage
 import play.api.mvc.Action
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.ptaQuestions
+import utils.FeedbackFrontendHelper
 
 import scala.concurrent.ExecutionContext
 
@@ -41,6 +42,8 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
   val form: Form[PTAQuestions] = formProvider()
   lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
   def submitCall(origin: String) = routes.PTAQuestionsController.onSubmit(origin)
+
+  val feedbackFrontendHelper = FeedbackFrontendHelper
 
   def onPageLoad(origin: String) = Action {
     implicit request =>
@@ -59,7 +62,7 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
             Map(
               "origin"            -> origin,
               "neededToDo"        -> value.neededToDo.getOrElse("-"),
-              "ableToDo"          -> value.ableToDo.map(_.toString).getOrElse("-"),
+              "ableToDo"          -> value.ableToDo.map(feedbackFrontendHelper.boolToInt(_).toString).getOrElse("-"),
               "howEasyScore"      -> value.howEasyScore.map(_.value.toString).getOrElse("-"),
               "whyGiveScore"      -> value.whyGiveScore.getOrElse("-"),
               "howDoYouFeelScore" -> value.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
