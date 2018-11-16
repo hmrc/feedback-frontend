@@ -57,9 +57,9 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
             Map(
               "origin"            -> origin,
               "ableToDo"          -> value.ableToDo.map(_.toString).getOrElse("-"),
-              "howEasyScore"      -> value.howEasyScore.map(_.toString).getOrElse("-"),
+              "howEasyScore"      -> value.howEasyScore.map(_.value.toString).getOrElse("-"),
               "whyGiveScore"      -> value.whyGiveScore.getOrElse("-"),
-              "howDoYouFeelScore" -> value.howDoYouFeelScore.map(_.toString).getOrElse("-")
+              "howDoYouFeelScore" -> value.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
             )
 
           auditConnector.sendExplicitAudit("feedback", auditMap)

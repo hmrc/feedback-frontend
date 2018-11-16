@@ -30,7 +30,6 @@ import org.scalatest.prop.PropertyChecks
 import play.api.mvc.Call
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.ptaQuestions
-
 import org.mockito.Matchers._
 import org.mockito.Matchers.{eq => eqTo}
 import org.mockito.Mockito._
@@ -90,7 +89,11 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
           controller().onSubmit(origin)(request)
 
-          val expectedValues = values.mapValues(_.getOrElse("-")) + ("origin" -> origin)
+          val expectedValues =
+            values.mapValues(_.getOrElse("-")) + (
+              "origin" -> origin,
+              "howEasyScore" -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
+              "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
 
           verify(mockAuditConnector, times(1))
             .sendExplicitAudit(eqTo("feedback"), eqTo(expectedValues))(any(), any())

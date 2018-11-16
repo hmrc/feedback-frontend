@@ -89,7 +89,11 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
           controller().onSubmit(origin)(request)
 
-          val expectedValues = values.mapValues(_.getOrElse("-")) + ("origin" -> origin)
+          val expectedValues =
+            values.mapValues(_.getOrElse("-")) + (
+              "origin" -> origin,
+              "howEasyScore" -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
+              "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
 
           verify(mockAuditConnector, times(1))
             .sendExplicitAudit(eqTo("feedback"), eqTo(expectedValues))(any(), any())
