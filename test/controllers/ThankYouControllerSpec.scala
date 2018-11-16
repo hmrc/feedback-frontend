@@ -37,7 +37,3 @@ class ThankYouControllerSpec extends ControllerSpecBase {
     }
   }
 }
-
-
-
-

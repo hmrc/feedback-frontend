@@ -33,7 +33,7 @@
 
     @if(appConfig.isGtmEnabled) {
       @snippets.google_tag_manager(appConfig)
-    } else {}
+    }
 
     @uiLayouts.head(
       linkElem = None,
@@ -55,7 +55,7 @@
 @afterHeader = {
     @if(appConfig.isGtmEnabled) {
       @snippets.google_tag_manager_noscript(appConfig)
-    } else {}
+    }
 }
 
 @bodyEnd = {
