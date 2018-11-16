@@ -1,50 +1,50 @@
-#checkYourAnswers.title = Check Your Answers
-#checkYourAnswers.heading = Check Your Answers
-#checkYourAnswers.guidance = Guidance for check your answers
+checkYourAnswers.title = Check Your Answers
+checkYourAnswers.heading = Check Your Answers
+checkYourAnswers.guidance = Guidance for check your answers
 
-#date.day = Day
-#date.month = Month
-#date.year = Year
+date.day = Day
+date.month = Month
+date.year = Year
 
-#error.browser.title.prefix = Error:
-#error.boolean = Please give an answer
-#error.invalid_date = Give a correct date
-#error.date.day_blank = Enter a day
-#error.date.day_invalid = Give a correct day using numbers 1 to 31
-#error.date.month_blank = Enter a month
-#error.date.month_invalid = Give a correct month using numbers 1 to 12
-#error.date.year_blank = Enter a year
-#error.date.year_invalid = Give a correct year
-#error.integer = Give an answer in whole numbers
-#error.non_numeric = Give a value using only numbers
-#error.number = Please enter a valid number
-#error.required = Please enter a value
-#error.summary.title = There is a problem
-#error.invalid = Please give a valid value
+error.browser.title.prefix = Error:
+error.boolean = Please give an answer
+error.invalid_date = Give a correct date
+error.date.day_blank = Enter a day
+error.date.day_invalid = Give a correct day using numbers 1 to 31
+error.date.month_blank = Enter a month
+error.date.month_invalid = Give a correct month using numbers 1 to 12
+error.date.year_blank = Enter a year
+error.date.year_invalid = Give a correct year
+error.integer = Give an answer in whole numbers
+error.non_numeric = Give a value using only numbers
+error.number = Please enter a valid number
+error.required = Please enter a value
+error.summary.title = There is a problem
+error.invalid = Please give a valid value
 
-#index.title = feedback-frontend
-#index.heading = feedback-frontend
-#index.guidance = Welcome to your new frontend. Please see the README file for a guide to getting started.
+index.title = feedback-frontend
+index.heading = feedback-frontend
+index.guidance = Welcome to your new frontend. Please see the README file for a guide to getting started.
 
-#session_expired.title = For your security, this service has been reset
-#session_expired.heading = For your security, this service has been reset
-#session_expired.guidance = The details you have given have been deleted because you did not continue the service for 15 minutes.
+session_expired.title = For your security, this service has been reset
+session_expired.heading = For your security, this service has been reset
+session_expired.guidance = The details you have given have been deleted because you did not continue the service for 15 minutes.
 
 site.back = Yn ôl
-#site.delete = Remove
-#site.edit = Change
-#site.hidden-delete = Delete {0}
-#site.hidden-edit = Change {0}
+site.delete = Remove
+site.edit = Change
+site.hidden-delete = Delete {0}
+site.hidden-edit = Change {0}
 site.no = Na
 site.yes = Iawn
 site.continue = Parhau
 site.service_name =
-#site.textarea.char_limit = (Limit is {0} characters)
+site.textarea.char_limit = (Limit is {0} characters)
 
-#unauthorised.title = You can’t access this service with this account
-#unauthorised.heading = You can’t access this service with this account
+unauthorised.title = You can’t access this service with this account
+unauthorised.heading = You can’t access this service with this account
 
-generic.max-characters =
+generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
 
 otherQuestions.title = Rhoi adborth - GOV.UK
 otherQuestions.heading = Adborth
@@ -59,13 +59,13 @@ otherQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am 
 
 howDoYouFeelQuestion.VerySatisfied = Bodlon iawn
 howDoYouFeelQuestion.Satisfied = Bodlon
-#howDoYouFeelQuestion.Moderate = Neither satisfied or dissatisfied
+howDoYouFeelQuestion.Moderate = Ddim yn fodlon nac yn anfodlon
 howDoYouFeelQuestion.Dissatisfied = Anfodlon
 howDoYouFeelQuestion.VeryDissatisfied = Anfodlon iawn
 
 howEasyQuestion.VeryEasy = Hawdd iawn
 howEasyQuestion.Easy = Hawdd
-#howEasyQuestion.Moderate = Neither easy nor hard
+howEasyQuestion.Moderate = Ddim yn hawdd nac yn anodd
 howEasyQuestion.Difficult = Anodd
 howEasyQuestion.VeryDifficult = Anodd iawn
 
