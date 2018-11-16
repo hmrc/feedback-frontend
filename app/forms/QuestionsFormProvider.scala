@@ -24,7 +24,7 @@ import play.api.data.Forms._
 
 class OtherQuestionsFormProvider @Inject() extends Mappings {
 
-  private val maxFieldSize = 1000
+  private val maxFieldSizeWhyGiveScore = 1000
 
   def apply(): Form[OtherQuestions] =
     Form(mapping(
@@ -32,25 +32,26 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->
         optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSize, "whyGiveScore.error.maxLength"))),
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxLength"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(OtherQuestions.apply)(OtherQuestions.unapply))
 }
 
 class PTAQuestionsFormProvider @Inject() extends Mappings {
 
-  private val maxFieldSize = 1000
+  private val maxFieldSizeAbleToDo = 200
+  private val maxFieldSizeWhyGiveScore = 1000
 
   def apply(): Form[PTAQuestions] =
     Form(mapping(
       "neededToDo" ->
         optional(text("neededToDo.error.required")
-          .verifying(maxLength(maxFieldSize, "neededToDo.error.maxLength"))),
+          .verifying(maxLength(maxFieldSizeAbleToDo, "neededToDo.error.maxLength"))),
       "ableToDo" -> optional(boolean()),
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->
         optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSize, "whyGiveScore.error.maxLength"))),
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxLength"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(PTAQuestions.apply)(PTAQuestions.unapply))
 }

@@ -28,7 +28,7 @@ class PTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFie
 
     val fieldName = "neededToDo"
     val invalidError = "neededToDo.error.maxLength"
-    val maxLength = 1000
+    val maxLength = 200
 
     behave like fieldWithMaxLength(
       form,
