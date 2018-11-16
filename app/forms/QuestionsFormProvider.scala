@@ -32,7 +32,7 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->
         optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxLength"))),
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "generic.max-characters"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(OtherQuestions.apply)(OtherQuestions.unapply))
 }
@@ -46,12 +46,12 @@ class PTAQuestionsFormProvider @Inject() extends Mappings {
     Form(mapping(
       "neededToDo" ->
         optional(text("neededToDo.error.required")
-          .verifying(maxLength(maxFieldSizeAbleToDo, "neededToDo.error.maxLength"))),
+          .verifying(maxLength(maxFieldSizeAbleToDo, "generic.max-characters"))),
       "ableToDo" -> optional(boolean()),
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->
         optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxLength"))),
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "generic.max-characters"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(PTAQuestions.apply)(PTAQuestions.unapply))
 }

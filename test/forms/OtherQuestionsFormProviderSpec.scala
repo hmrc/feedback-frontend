@@ -54,7 +54,7 @@ class OtherQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanF
   ".whyGiveScore" must {
 
     val fieldName = "whyGiveScore"
-    val invalidError = "whyGiveScore.error.maxLength"
+    val invalidError = "generic.max-characters"
     val maxLength = 1000
 
     behave like fieldWithMaxLength(
