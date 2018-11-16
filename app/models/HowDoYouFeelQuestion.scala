@@ -19,15 +19,27 @@ package models
 import play.api.libs.json._
 import viewmodels.RadioOption
 
-sealed trait HowDoYouFeelQuestion
+sealed trait HowDoYouFeelQuestion {
+  val value: Int
+}
 
 object HowDoYouFeelQuestion {
 
-  case object VerySatisfied    extends WithName("VerySatisfied") with HowDoYouFeelQuestion
-  case object Satisfied        extends WithName("Satisfied") with HowDoYouFeelQuestion
-  case object Moderate         extends WithName("Moderate") with HowDoYouFeelQuestion
-  case object Dissatisfied     extends WithName("Dissatisfied") with HowDoYouFeelQuestion
-  case object VeryDissatisfied extends WithName("VeryDissatisfied") with HowDoYouFeelQuestion
+  case object VerySatisfied    extends WithName("VerySatisfied") with HowDoYouFeelQuestion {
+    val value = 5
+  }
+  case object Satisfied        extends WithName("Satisfied") with HowDoYouFeelQuestion {
+    val value = 4
+  }
+  case object Moderate         extends WithName("Moderate") with HowDoYouFeelQuestion {
+    val value = 3
+  }
+  case object Dissatisfied     extends WithName("Dissatisfied") with HowDoYouFeelQuestion {
+    val value = 2
+  }
+  case object VeryDissatisfied extends WithName("VeryDissatisfied") with HowDoYouFeelQuestion {
+    val value = 1
+  }
 
   val values: Seq[HowDoYouFeelQuestion] =
     List(VerySatisfied, Satisfied, Moderate, Dissatisfied, VeryDissatisfied)
