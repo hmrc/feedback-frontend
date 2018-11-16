@@ -50,9 +50,7 @@ class FrontendAppConfig @Inject() (override val runModeConfiguration: Configurat
   lazy val govUkUrl = loadConfig(s"urls.govUk")
 
   lazy val languageTranslationEnabled = runModeConfiguration.getBoolean("microservice.services.features.welsh-translation").getOrElse(true)
-  def languageMap: Map[String, Lang] = Map(
-    "english" -> Lang("en"),
-    "cymraeg" -> Lang("cy"))
+  def languageMap: Map[String, Lang] = Map("english" -> Lang("en"), "cymraeg" -> Lang("cy"))
   def routeToSwitchLanguage = (lang: String) => routes.LanguageSwitchController.switchToLanguage(lang)
 
   lazy val isGtmEnabled = runModeConfiguration.getBoolean("google-tag-manager.enabled").getOrElse(true)
