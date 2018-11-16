@@ -34,6 +34,7 @@ import views.html.otherQuestions
 import org.mockito.Matchers._
 import org.mockito.Matchers.{eq => eqTo}
 import org.mockito.Mockito._
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 
