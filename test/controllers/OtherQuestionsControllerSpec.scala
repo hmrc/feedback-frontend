@@ -33,7 +33,7 @@ import views.html.otherQuestions
 import org.mockito.Matchers._
 import org.mockito.Matchers.{eq => eqTo}
 import org.mockito.Mockito._
-import utils.FeedbackFrontendHelper
+import utils.FeedbackFrontendHelper._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -44,8 +44,6 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
   val formProvider = new OtherQuestionsFormProvider()
   val form = formProvider()
   lazy val mockAuditConnector = mock[AuditConnector]
-
-  val feedbackFrontendHelper = FeedbackFrontendHelper
 
   def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
 
@@ -97,7 +95,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
           val expectedValues =
             values.mapValues(_.getOrElse("-")) + (
               "origin" -> origin,
-              "ableToDo" -> answers.ableToDo.map(feedbackFrontendHelper.boolToInt(_).toString).getOrElse("-"),
+              "ableToDo" -> answers.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
               "howEasyScore" -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
               "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
 

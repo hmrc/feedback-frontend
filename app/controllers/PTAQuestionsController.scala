@@ -52,8 +52,15 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
     implicit request =>
 
       form.bindFromRequest().fold(
-        formWithErrors =>
-          BadRequest(ptaQuestions(appConfig, formWithErrors, submitCall(origin))),
+        formWithErrors => {
+          println("************************************************")
+          println("************************************************")
+          println(formWithErrors.value)
+          println("************************************************")
+          println("************************************************")
+          BadRequest(ptaQuestions(appConfig, formWithErrors, submitCall(origin)))
+
+        },
         value => {
 
           val auditMap =

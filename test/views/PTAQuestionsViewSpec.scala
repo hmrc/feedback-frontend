@@ -42,7 +42,8 @@ class PTAQuestionsViewSpec extends YesNoViewBehaviours[PTAQuestions]
     behave like stringPage(
       createViewUsingForm,
       "neededToDo",
-      "ptaQuestions.neededToDo")
+      "ptaQuestions.neededToDo",
+      Some("ptaQuestions.neededToDo.heading.hintText"))
 
     behave like yesNoPage(
       createViewUsingForm,
