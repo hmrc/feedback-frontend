@@ -34,7 +34,7 @@ import org.mockito.Matchers._
 import org.mockito.Matchers.{eq => eqTo}
 import org.mockito.Mockito._
 import scala.concurrent.ExecutionContext.Implicits.global
-import utils.FeedbackFrontendHelper
+import utils.FeedbackFrontendHelper._
 
 class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 
@@ -44,8 +44,6 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
   val form = formProvider()
   lazy val mockAuditConnector = mock[AuditConnector]
   def submitCall(origin: String) = routes.PTAQuestionsController.onSubmit(origin)
-
-  val feedbackFrontendHelper = FeedbackFrontendHelper
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new PTAQuestionsController(
@@ -83,8 +81,6 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
         (origin, answers) =>
           reset(mockAuditConnector)
 
-          def bool2int(b:Boolean) = if (b) 1 else 0
-
           val values = Map(
             "neededToDo" -> answers.neededToDo,
             "ableToDo" -> answers.ableToDo.map(_.toString),
@@ -98,7 +94,7 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
           val expectedValues =
             values.mapValues(_.getOrElse("-")) + (
               "origin" -> origin,
-              "ableToDo" -> answers.ableToDo.map(feedbackFrontendHelper.boolToInt(_).toString).getOrElse("-"),
+              "ableToDo" -> answers.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
               "howEasyScore" -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
               "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
 
