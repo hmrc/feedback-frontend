@@ -59,6 +59,7 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
           val auditMap =
             Map(
               "origin"            -> origin,
+              "feedbackId"        -> request.session.get("feedbackId").getOrElse("-"),
               "neededToDo"        -> value.neededToDo.getOrElse("-"),
               "ableToDo"          -> value.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
               "howEasyScore"      -> value.howEasyScore.map(_.value.toString).getOrElse("-"),
