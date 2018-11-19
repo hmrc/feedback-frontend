@@ -47,7 +47,8 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
         "include the form's value in the value input" in {
           val boundForm = form.bind(Map(fieldName -> answer))
           val doc = asDocument(createView(boundForm))
-          doc.getElementById(fieldName).attr("value") mustBe answer
+
+          doc.getElementById(fieldName).`val`() mustBe answer
         }
       }
 
