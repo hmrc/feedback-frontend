@@ -77,8 +77,8 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
     }
 
     "audit response on success" in {
-      forAll(arbitrary[String], arbitrary[PTAQuestions]) {
-        (origin, answers) =>
+      forAll(arbitrary[String], arbitrary[String], arbitrary[PTAQuestions]) {
+        (origin, feedbackId, answers) =>
           reset(mockAuditConnector)
 
           val values = Map(
@@ -89,11 +89,12 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
             "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request)
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
 
           val expectedValues =
             values.mapValues(_.getOrElse("-")) + (
               "origin" -> origin,
+              "feedbackId" -> feedbackId,
               "ableToDo" -> answers.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
               "howEasyScore" -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
               "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
