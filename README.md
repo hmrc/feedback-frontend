@@ -7,7 +7,7 @@ Currently there are 2 surveys, a survey for personal tax accounts and a generic 
 
 The endpoints are:
 
-#####production/qa/staging
+##### Production/qa/staging
 
 Generic
 ```
@@ -19,7 +19,7 @@ Personal tax accounts
 /feedback/SERVICE_NAME/personal
 ```
 
-#####local development
+##### Local development
 Generic
 ```
 http://localhost:9514/feedback/SERVICE_NAME
@@ -31,13 +31,13 @@ http://localhost:9514/feedback/SERVICE_NAME/personal
 
 Replace `SERVICE_NAME` with the identifier for your service, 
 
-####Service manager
+#### Service manager
 
 To run via service manager: `sm --start FEEDBACK_FRONTEND`
 
 You will need to ensure that you do not have `FEEDBACK_SURVEY_FRONTEND` running as they use the same port number.
 
-####Usage
+#### Usage
 
 When redirecting the user to the feedback service you should ensure that the user has been logged out as the feedback service does not do this.
 
