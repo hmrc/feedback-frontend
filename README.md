@@ -19,7 +19,6 @@ Personal tax accounts
 /feedback/SERVICE_NAME/personal
 ```
 
-
 #####local development
 Generic
 ```
@@ -47,7 +46,6 @@ Log out user and redirect
 Redirect("http://localhost:9514/feedback/SERVICE_NAME").withNewSession
 ```
 
-
 If you need additional information audited you may pass through an optional `feedbackId` variable as a session value, you should ensure that this is unique as this will be audited alongside the user responses so they can be collated in Splunk.
 Example:
 ```
@@ -59,7 +57,6 @@ auditConnector.sendExplicitAudit("service-name", auditData)
 
 Redirect("http://localhost:9514/feedback/SERVICE_NAME").withSession(("feedbackId", uuid))
 ```
-
 
 ### License
 
