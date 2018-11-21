@@ -22,7 +22,7 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
 import forms.PTAQuestionsFormProvider
-import models.{PTAQuestions, UserAnswers}
+import models.PTAQuestions
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.mvc.Action
