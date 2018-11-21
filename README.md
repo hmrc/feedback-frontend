@@ -37,6 +37,8 @@ To run via service manager: `sm --start FEEDBACK_FRONTEND`
 
 You will need to ensure that you do not have `FEEDBACK_SURVEY_FRONTEND` running as they use the same port number.
 
+You will need to update your service manager config for your service and replace `FEEDBACK_SURVEY_FRONTEND` with `FEEDBACK_FRONTEND`
+
 #### Usage
 
 When redirecting the user to the feedback service you should ensure that the user has been logged out as the feedback service does not do this.
