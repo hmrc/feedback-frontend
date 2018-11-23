@@ -13,6 +13,9 @@ GET        /unauthorised                                controllers.Unauthorised
 GET        /:origin/personal                            controllers.PTAQuestionsController.onPageLoad(origin: String)
 POST       /:origin/personal                            controllers.PTAQuestionsController.onSubmit(origin: String)
 
+GET        /:origin/business                            controllers.BTAQuestionsController.onPageLoad(origin: String)
+POST       /:origin/business                            controllers.BTAQuestionsController.onSubmit(origin: String)
+
 GET        /thank-you                                   controllers.ThankYouController.onPageLoad()
 
 # These routes must come last as they will match any /feedback/xxx route

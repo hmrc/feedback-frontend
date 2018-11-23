@@ -43,3 +43,15 @@ object PTAQuestions {
   implicit val formats: Format[PTAQuestions] = Json.format[PTAQuestions]
 }
 
+case class BTAQuestions(
+                         mainService:       Option[MainServiceQuestion],
+                         ableToDo:          Option[Boolean],
+                         howEasyScore:      Option[HowEasyQuestion],
+                         whyGiveScore:      Option[String],
+                         howDoYouFeelScore: Option[HowDoYouFeelQuestion]
+                       )
+
+object BTAQuestions {
+
+  implicit val formats: Format[BTAQuestions] = Json.format[BTAQuestions]
+}
