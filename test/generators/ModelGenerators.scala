@@ -52,13 +52,14 @@ trait ModelGenerators {
 
   lazy val btaQuestionsGen: Gen[BTAQuestions] =
     for {
-      mainService <- option(mainServiceQuestionGen)
-      ableToDo    <- option(arbitrary[Boolean])
-      howEasy     <- option(howEasyQuestionGen)
-      whyScore    <- option(arbitrary[String].suchThat(_.nonEmpty))
-      howFeel     <- option(howDoYouFeelQuestionGen)
+      mainService      <- option(mainServiceQuestionGen)
+      mainServiceOther <- option(arbitrary[String].suchThat(_.nonEmpty))
+      ableToDo         <- option(arbitrary[Boolean])
+      howEasy          <- option(howEasyQuestionGen)
+      whyScore         <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howFeel          <- option(howDoYouFeelQuestionGen)
     } yield {
-      BTAQuestions(mainService, ableToDo, howEasy, whyScore, howFeel)
+      BTAQuestions(mainService, mainServiceOther, ableToDo, howEasy, whyScore, howFeel)
     }
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =

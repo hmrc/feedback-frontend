@@ -45,6 +45,7 @@ object PTAQuestions {
 
 case class BTAQuestions(
                          mainService:       Option[MainServiceQuestion],
+                         mainServiceOther:  Option[String],
                          ableToDo:          Option[Boolean],
                          howEasyScore:      Option[HowEasyQuestion],
                          whyGiveScore:      Option[String],

@@ -49,6 +49,13 @@
             inputs = MainServiceQuestion.options
         )
 
+        @components.input_text(
+            field = form("mainServiceOther"),
+            maximum = Some(100),
+            label = messages("btaQuestions.mainService.heading"),
+            labelClass = Some("visually-hidden")
+        )
+
         @components.input_yes_no(
             field = form("ableToDo"),
             label = messages("btaQuestions.ableToDo.heading"),

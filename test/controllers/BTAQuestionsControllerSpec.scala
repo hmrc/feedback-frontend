@@ -85,6 +85,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
 
           val values = Map(
             "mainService" -> answers.mainService.map(_.toString),
+            "mainServiceOther" -> answers.mainServiceOther.map(_.toString),
             "ableToDo" -> answers.ableToDo.map(_.toString),
             "howEasyScore" -> answers.howEasyScore.map(_.toString),
             "whyGiveScore" -> answers.whyGiveScore,
