@@ -29,7 +29,7 @@ class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
   val messageKeyPrefix = "otherQuestions"
 
   val form = new OtherQuestionsFormProvider()()
-  val action = controllers.routes.IndexController.onPageLoad()
+  val action = controllers.routes.SessionExpiredController.onPageLoad()
 
   def createView = () => otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 

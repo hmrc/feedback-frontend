@@ -29,7 +29,7 @@ class PTAQuestionsViewSpec extends YesNoViewBehaviours[PTAQuestions]
   val messageKeyPrefix = "ptaQuestions"
 
   val form = new PTAQuestionsFormProvider()()
-  val action = controllers.routes.IndexController.onPageLoad()
+  val action = controllers.routes.SessionExpiredController.onPageLoad()
 
   def createView = () => ptaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
