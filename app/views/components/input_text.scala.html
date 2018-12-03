@@ -41,6 +41,7 @@
         name="@{field.name}"
         value="@{field.value}"
         @if(field.hasErrors){aria-describedby="error-message-@{field.id}-input"}
+        maxlength="10000"
         />
         @maximum.map { maximum =>
           <p class="form-field--hint">@messages("generic.max-characters", maximum)</p>

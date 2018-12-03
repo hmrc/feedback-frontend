@@ -30,7 +30,7 @@
     appConfig = appConfig,
     bodyClasses = None) {
 
-    @helpers.form(action = action, 'autoComplete -> "off") {
+    @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") ->"true") {
 
         @components.error_summary(form.errors)
 
@@ -42,18 +42,17 @@
 
         <p>@messages("btaQuestions.intro3")</p>
 
-        @components.input_radio(
+        @components.input_radio_conditional(
             field = form("mainService"),
             legend = messages("btaQuestions.mainService.heading"),
             legendClass = Some("heading-medium"),
-            inputs = MainServiceQuestion.options
-        )
-
-        @components.input_text(
-            field = form("mainServiceOther"),
-            maximum = Some(100),
-            label = messages("btaQuestions.mainService.heading"),
-            labelClass = Some("visually-hidden")
+            inputs = MainServiceQuestion.options,
+            attr = mainServiceDynamicFields,
+            conditional = "mainServiceOther",
+            conditionalLabel = "btaQuestions.mainService.heading",
+            conditionalLength = 100,
+            conditionalClass = "mainServiceOtherInput",
+            form = form
         )
 
         @components.input_yes_no(
