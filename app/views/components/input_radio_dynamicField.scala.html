@@ -33,7 +33,7 @@
   <fieldset id="@{field.id}">
 
     <legend>
-      <span class="bold-small @if(legendClass.nonEmpty){@{legendClass.get}}">@legend</span>
+      <span class="bold-small @legendClass">@legend</span>
       @if(hint.nonEmpty){
         <span class="form-hint">@{hint.get}</span>
       }

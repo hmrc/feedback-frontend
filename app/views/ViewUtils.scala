@@ -27,7 +27,7 @@ object ViewUtils {
 
   val mainServiceDynamicFields: String => String = id => {
     val dynamicFields =
-      if(id.equals("mainServiceQuestion.Other")) {
+      if(id == "mainServiceQuestion.Other") {
         "data-dynamic-fields-show=mainServiceOtherInput"
       } else {
         "data-dynamic-fields-hide=mainServiceOtherInput"
