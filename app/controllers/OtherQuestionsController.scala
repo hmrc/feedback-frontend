@@ -16,19 +16,18 @@
 
 package controllers
 
-import javax.inject.Inject
-import play.api.data.Form
-import play.api.i18n.{I18nSupport, MessagesApi}
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
 import forms.OtherQuestionsFormProvider
-import models.{OtherQuestions, UserAnswers}
+import javax.inject.Inject
+import models.OtherQuestions
 import navigation.Navigator
 import pages.GenericQuestionsPage
+import play.api.data.Form
+import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.Action
-import uk.gov.hmrc.play.audit.http.connector.AuditConnector
+import services.AuditService
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.otherQuestions
-import utils.FeedbackFrontendHelper._
 
 import scala.concurrent.ExecutionContext
 
@@ -36,7 +35,7 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                          override val messagesApi: MessagesApi,
                                          navigator: Navigator,
                                          formProvider: OtherQuestionsFormProvider,
-                                         auditConnector: AuditConnector
+                                         auditService: AuditService
                                          )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
@@ -55,19 +54,7 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
         formWithErrors =>
           BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
-
-          val auditMap =
-            Map(
-              "origin"            -> origin,
-              "feedbackId"        -> request.session.get("feedbackId").getOrElse("-"),
-              "ableToDo"          -> value.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-              "howEasyScore"      -> value.howEasyScore.map(_.value.toString).getOrElse("-"),
-              "whyGiveScore"      -> value.whyGiveScore.getOrElse("-"),
-              "howDoYouFeelScore" -> value.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
-            )
-
-          auditConnector.sendExplicitAudit("feedback", auditMap)
-
+          auditService.otherAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
           Redirect(successPage)
         }
       )

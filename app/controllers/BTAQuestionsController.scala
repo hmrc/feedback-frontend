@@ -26,9 +26,8 @@ import models.BTAQuestions
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.mvc.Action
-import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import views.html.btaQuestions
-import utils.FeedbackFrontendHelper._
+import services.AuditService
 
 import scala.concurrent.ExecutionContext
 
@@ -36,7 +35,7 @@ class BTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                        override val messagesApi: MessagesApi,
                                        navigator: Navigator,
                                        formProvider: BTAQuestionsFormProvider,
-                                       auditConnector: AuditConnector
+                                       auditService: AuditService
                                         )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()
@@ -55,21 +54,7 @@ class BTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
         formWithErrors =>
           BadRequest(btaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
-
-          val auditMap =
-            Map(
-              "origin"            -> origin,
-              "feedbackId"        -> request.session.get("feedbackId").getOrElse("-"),
-              "mainService"       -> value.mainService.map(_.toString).getOrElse("-"),
-              "mainServiceOther"  -> value.mainServiceOther.getOrElse("-"),
-              "ableToDo"          -> value.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-              "howEasyScore"      -> value.howEasyScore.map(_.value.toString).getOrElse("-"),
-              "whyGiveScore"      -> value.whyGiveScore.getOrElse("-"),
-              "howDoYouFeelScore" -> value.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
-            )
-
-          auditConnector.sendExplicitAudit("feedback", auditMap)
-
+          auditService.btaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
           Redirect(successPage)
         }
       )
