@@ -38,6 +38,20 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFie
     )
   }
 
+  ".mainServiceOther" must {
+
+    val fieldName = "mainServiceOther"
+    val invalidError = "generic.max-characters"
+    val maxLength = 100
+
+    behave like fieldWithMaxLength(
+      form,
+      fieldName,
+      maxLength,
+      FormError(fieldName, invalidError, List(maxLength))
+    )
+  }
+
   ".ableToDo" must {
 
     val fieldName = "ableToDo"

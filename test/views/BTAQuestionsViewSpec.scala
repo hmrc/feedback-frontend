@@ -45,6 +45,11 @@ class BTAQuestionsViewSpec extends YesNoViewBehaviours[BTAQuestions]
       MainServiceQuestion.options,
       "btaQuestions.mainService")
 
+    behave like stringPage(
+      createViewUsingForm,
+      "mainServiceOther",
+      "btaQuestions.mainService")
+
     behave like yesNoPage(
       createViewUsingForm,
       "ableToDo",
