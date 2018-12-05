@@ -17,7 +17,7 @@
 package services
 
 import javax.inject.Inject
-import models.{BTAQuestions, OtherQuestions, PTAQuestions}
+import models._
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import utils.FeedbackFrontendHelper.boolToInt
@@ -27,53 +27,74 @@ import scala.concurrent.ExecutionContext
 
 class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: ExecutionContext) {
 
-  private implicit val hc = HeaderCarrier()
+  private val auditType = "feedback"
+  private val emptyMap: Map[String, String] = Map.empty
 
-  def ptaAudit(origin:String, feedbackId: String, questions: PTAQuestions): Unit = {
 
-      val auditMap =
-        Map(
-          "origin"            -> origin,
-          "feedbackId"        -> feedbackId,
-          "neededToDo"        -> questions.neededToDo.getOrElse("-"),
-          "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
-        )
+  type MapCont = Map[String, String] => Map[String, String]
 
-    auditConnector.sendExplicitAudit("feedback", auditMap)
+  def withOrigin(origin: String): MapCont =
+    _ + ("origin" -> origin)
+  def withFeedbackId(feedbackId: String): MapCont =
+    _ + ("feedbackId" -> feedbackId)
+  def withNeededToDo(neededToDo: Option[String]): MapCont =
+    _ + ("neededToDo" -> neededToDo.getOrElse("-"))
+  def withAbleToDo(ableToDo: Option[Boolean]): MapCont =
+    _ + ("ableToDo" -> ableToDo.map(boolToInt(_).toString).getOrElse("-"))
+  def withHowEasyScore(howEasy: Option[HowEasyQuestion]): MapCont =
+    _ + ("howEasyScore" -> howEasy.map(_.value.toString).getOrElse("-"))
+  def withWhyGiveScore(whyScore: Option[String]): MapCont =
+    _ + ("whyGiveScore" -> whyScore.getOrElse("-"))
+  def withHowFeelScore(howFeel: Option[HowDoYouFeelQuestion]): MapCont =
+    _ + ("howDoYouFeelScore" -> howFeel.map(_.value.toString).getOrElse("-"))
+  def withMainService(mainService: Option[MainServiceQuestion]): MapCont =
+    _ + ("mainService" -> mainService.map(_.toString).getOrElse("-"))
+  def withMainServiceOther(mainServiceOther: Option[String]): MapCont =
+    _ + ("mainServiceOther" -> mainServiceOther.getOrElse("-"))
+
+
+  def ptaAudit(origin:String, feedbackId: String, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+      withFeedbackId(feedbackId) andThen
+      withNeededToDo(questions.neededToDo) andThen
+      withAbleToDo(questions.ableToDo) andThen
+      withHowEasyScore(questions.howEasyScore) andThen
+      withWhyGiveScore(questions.whyGiveScore) andThen
+      withHowFeelScore(questions.howDoYouFeelScore)
+    )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def btaAudit(origin:String, feedbackId: String, questions: BTAQuestions): Unit = {
+  def btaAudit(origin:String, feedbackId: String, questions: BTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
-    val auditMap =
-      Map(
-        "origin"            -> origin,
-        "feedbackId"        -> feedbackId,
-        "mainService"       -> questions.mainService.map(_.toString).getOrElse("-"),
-        "mainServiceOther"  -> questions.mainServiceOther.getOrElse("-"),
-        "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-        "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-        "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-        "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
-      )
+    val auditMap = (
+      withOrigin(origin) andThen
+      withFeedbackId(feedbackId) andThen
+      withMainService(questions.mainService) andThen
+      withMainServiceOther(questions.mainServiceOther) andThen
+      withAbleToDo(questions.ableToDo) andThen
+      withHowEasyScore(questions.howEasyScore) andThen
+      withWhyGiveScore(questions.whyGiveScore) andThen
+      withHowFeelScore(questions.howDoYouFeelScore)
+    )(emptyMap)
 
-    auditConnector.sendExplicitAudit("feedback", auditMap)
+    auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def otherAudit(origin:String, feedbackId: String, questions: OtherQuestions): Unit = {
+  def otherAudit(origin:String, feedbackId: String, questions: OtherQuestions)(implicit hc: HeaderCarrier): Unit = {
 
-    val auditMap =
-      Map(
-        "origin"            -> origin,
-        "feedbackId"        -> feedbackId,
-        "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-        "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-        "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-        "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
-      )
+    val auditMap = (
+      withOrigin(origin) andThen
+      withFeedbackId(feedbackId) andThen
+      withAbleToDo(questions.ableToDo) andThen
+      withHowEasyScore(questions.howEasyScore) andThen
+      withWhyGiveScore(questions.whyGiveScore) andThen
+      withHowFeelScore(questions.howDoYouFeelScore)
+    )(emptyMap)
 
-    auditConnector.sendExplicitAudit("feedback", auditMap)
+    auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 }

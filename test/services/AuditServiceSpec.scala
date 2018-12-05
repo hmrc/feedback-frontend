@@ -45,6 +45,7 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
 
       forAll(arbitrary[String], arbitrary[String], arbitrary[PTAQuestions]) {
         (origin, feedbackId, questions) =>
+          reset(auditConnector)
 
           auditService.ptaAudit(origin, feedbackId, questions)
 
@@ -56,7 +57,8 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
             "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
             "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
 
-          verify(auditConnector, times(1)).sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+          verify(auditConnector, times(1))
+            .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
       }
     }
   }
@@ -67,6 +69,7 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
 
       forAll(arbitrary[String], arbitrary[String], arbitrary[BTAQuestions]) {
         (origin, feedbackId, questions) =>
+          reset(auditConnector)
 
           auditService.btaAudit(origin, feedbackId, questions)
 
@@ -79,7 +82,8 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
             "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
             "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
 
-          verify(auditConnector, times(1)).sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+          verify(auditConnector, times(1))
+            .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
       }
     }
   }
@@ -88,6 +92,7 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
 
     forAll(arbitrary[String], arbitrary[String], arbitrary[OtherQuestions]) {
       (origin, feedbackId, questions) =>
+        reset(auditConnector)
 
         auditService.otherAudit(origin, feedbackId, questions)
 
@@ -98,7 +103,8 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
           "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
           "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
 
-        verify(auditConnector, times(1)).sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+        verify(auditConnector, times(1))
+          .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
     }
   }
 }

@@ -92,7 +92,7 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
 
           verify(mockAuditService, times(1))
-            .ptaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))
+            .ptaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 

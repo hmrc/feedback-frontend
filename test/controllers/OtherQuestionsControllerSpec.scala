@@ -90,7 +90,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
 
           verify(mockAuditService, times(1))
-            .otherAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))
+            .otherAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 
