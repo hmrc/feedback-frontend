@@ -25,9 +25,11 @@ import utils.FeedbackFrontendHelper.boolToInt
 import scala.concurrent.ExecutionContext
 
 
-class AuditService @Inject()(auditConnector: AuditConnector) {
+class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: ExecutionContext) {
 
-  def ptaAudit(origin:String, feedbackId: String, questions: PTAQuestions)(implicit hc: HeaderCarrier, ec: ExecutionContext): Unit = {
+  private implicit val hc = HeaderCarrier()
+
+  def ptaAudit(origin:String, feedbackId: String, questions: PTAQuestions): Unit = {
 
       val auditMap =
         Map(
@@ -43,7 +45,7 @@ class AuditService @Inject()(auditConnector: AuditConnector) {
     auditConnector.sendExplicitAudit("feedback", auditMap)
   }
 
-  def btaAudit(origin:String, feedbackId: String, questions: BTAQuestions)(implicit hc: HeaderCarrier, ec: ExecutionContext): Unit = {
+  def btaAudit(origin:String, feedbackId: String, questions: BTAQuestions): Unit = {
 
     val auditMap =
       Map(
@@ -60,7 +62,7 @@ class AuditService @Inject()(auditConnector: AuditConnector) {
     auditConnector.sendExplicitAudit("feedback", auditMap)
   }
 
-  def otherAudit(origin:String, feedbackId: String, questions: OtherQuestions)(implicit hc: HeaderCarrier, ec: ExecutionContext): Unit = {
+  def otherAudit(origin:String, feedbackId: String, questions: OtherQuestions): Unit = {
 
     val auditMap =
       Map(

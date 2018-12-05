@@ -36,7 +36,7 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                          navigator: Navigator,
                                          formProvider: OtherQuestionsFormProvider,
                                          auditService: AuditService
-                                         )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
+                                        )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
   lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())

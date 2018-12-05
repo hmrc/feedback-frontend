@@ -29,13 +29,15 @@ import uk.gov.hmrc.play.test.UnitSpec
 import org.scalacheck.Arbitrary._
 import utils.FeedbackFrontendHelper.boolToInt
 
-class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter with PropertyChecks with ModelGenerators {
+import scala.concurrent.ExecutionContext
 
-  val auditConnector = mock[AuditConnector]
-  val auditService = new AuditService(auditConnector)
+class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter with PropertyChecks with ModelGenerators {
 
   implicit val hc = HeaderCarrier()
   implicit val ec = scala.concurrent.ExecutionContext.Implicits.global
+
+  val auditConnector = mock[AuditConnector]
+  val auditService = new AuditService(auditConnector)(ec)
 
   "AuditService.ptaAudit" should {
 

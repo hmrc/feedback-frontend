@@ -23,7 +23,6 @@
   trackGa: Boolean = false,
   inputs: Seq[RadioOption],
   attr: String => String = identity,
-  dynamicFieldId: String,
   dynamicField: Field,
   dynamicFieldLabel: String,
   dynamicFieldLength: Int)(implicit messages: Messages)
@@ -64,7 +63,7 @@
 
 </div>
 
-<div class="form-group panel panel-border-narrow js-hidden data-@{dynamicFieldId}Input">
+<div class="form-group panel panel-border-narrow js-hidden data-@{dynamicField.id}Input">
   @components.input_text(
     field = dynamicField,
     maximum = Some(dynamicFieldLength),

@@ -92,7 +92,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
 
           verify(mockAuditService, times(1))
-            .btaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any(), any())
+            .btaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))
       }
     }
 

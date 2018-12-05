@@ -36,7 +36,7 @@ class BTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                        navigator: Navigator,
                                        formProvider: BTAQuestionsFormProvider,
                                        auditService: AuditService
-                                        )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
+                                      )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()
   lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
