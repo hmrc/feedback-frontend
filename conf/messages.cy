@@ -69,6 +69,14 @@ howEasyQuestion.Moderate = 3. Ddim yn hawdd nac yn anodd
 howEasyQuestion.Difficult = 2. Anodd
 howEasyQuestion.VeryDifficult = 1. Anodd iawn
 
+mainServiceQuestion.SelfAssesment = Hunanasesiad
+mainServiceQuestion.PAYE = TWE ar gyfer cyflogwyr
+mainServiceQuestion.VAT = TAW
+mainServiceQuestion.CorporationTax = Treth Gorfforaeth
+mainServiceQuestion.CIS = Cynllun y Diwydiant Adeiladu (CIS)
+mainServiceQuestion.ECSales = Gwerthiannau yn y GE
+mainServiceQuestion.Other = Arall, Rhowch fanylion
+
 thankYou.title = Diolch am eich adborth
 thankYou.heading = Diolch am eich adborth
 thankYou.intro = Byddwn yn defnyddio’ch adborth i wella ein gwasanaethau.
@@ -89,3 +97,27 @@ ptaQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd ange
 ptaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 ptaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 ptaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
+
+btaQuestions.title = Rhoi adborth - GOV.UK
+btaQuestions.heading = Adborth
+btaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+btaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+btaQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
+btaQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM
+btaQuestions.neededToDo.heading = Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw? Er enghraifft, newid eich cyfeiriad
+btaQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
+btaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
+btaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+btaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
+
+btaQuestions.title = Rhoi adborth - GOV.UK
+btaQuestions.heading = Adborth
+btaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+btaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+btaQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
+btaQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM
+btaQuestions.mainService.heading = Beth oedd y prif wasanaeth a ddefnyddioch heddiw?
+btaQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
+btaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
+btaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+btaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?

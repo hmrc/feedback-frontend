@@ -16,35 +16,35 @@
 
 package controllers
 
-import config.FrontendAppConfig
-import forms.OtherQuestionsFormProvider
 import javax.inject.Inject
-import models.OtherQuestions
-import navigation.Navigator
-import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.Action
-import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
-import views.html.otherQuestions
+import config.FrontendAppConfig
+import forms.BTAQuestionsFormProvider
+import models.BTAQuestions
+import navigation.Navigator
+import pages.GenericQuestionsPage
+import play.api.mvc.Action
+import views.html.btaQuestions
+import services.AuditService
 
 import scala.concurrent.ExecutionContext
 
-class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
-                                         override val messagesApi: MessagesApi,
-                                         navigator: Navigator,
-                                         formProvider: OtherQuestionsFormProvider,
-                                         auditService: AuditService
-                                        )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
+class BTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
+                                       override val messagesApi: MessagesApi,
+                                       navigator: Navigator,
+                                       formProvider: BTAQuestionsFormProvider,
+                                       auditService: AuditService
+                                      )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
-  val form: Form[OtherQuestions] = formProvider()
+  val form: Form[BTAQuestions] = formProvider()
   lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
-  def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
+  def submitCall(origin: String) = routes.BTAQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: String) = Action {
     implicit request =>
-      Ok(otherQuestions(appConfig, form, submitCall(origin)))
+      Ok(btaQuestions(appConfig, form, submitCall(origin)))
   }
 
   def onSubmit(origin: String) = Action {
@@ -52,9 +52,9 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
 
       form.bindFromRequest().fold(
         formWithErrors =>
-          BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
+          BadRequest(btaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.otherAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
+          auditService.btaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
           Redirect(successPage)
         }
       )

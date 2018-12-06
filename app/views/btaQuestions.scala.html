@@ -1,0 +1,85 @@
+@*
+ * Copyright 2018 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import config.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html._
+@import models.{MainServiceQuestion, HowDoYouFeelQuestion, HowEasyQuestion}
+@import views.ViewUtils._
+
+@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
+
+@privacyPolicyLink = {
+    <a href="@appConfig.privacyPolicyUrl" target="_blank">@messages("btaQuestions.introLinkText")</a>
+}
+
+@main_template(
+    title = s"${errorPrefix(form)} ${messages("btaQuestions.title")}",
+    appConfig = appConfig,
+    bodyClasses = None) {
+
+    @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") ->"true") {
+
+        @components.error_summary(form.errors)
+
+        @components.heading("btaQuestions.heading")
+
+        <p>@messages("btaQuestions.intro1")</p>
+
+        <p>@Html(messages("btaQuestions.intro2", privacyPolicyLink))</p>
+
+        <p>@messages("btaQuestions.intro3")</p>
+
+        @components.input_radio_dynamicField(
+            field = form("mainService"),
+            legend = messages("btaQuestions.mainService.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = MainServiceQuestion.options,
+            attr = mainServiceDynamicFields,
+            dynamicField = form("mainServiceOther"),
+            dynamicFieldLabel = "btaQuestions.mainService.heading",
+            dynamicFieldLength = 100
+        )
+
+        @components.input_yes_no(
+            field = form("ableToDo"),
+            label = messages("btaQuestions.ableToDo.heading"),
+            labelClass = Some("heading-medium")
+        )
+
+        @components.input_radio(
+            field = form("howEasyScore"),
+            legend = messages("btaQuestions.howEasyScore.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = HowEasyQuestion.options
+        )
+
+        @components.input_textarea(
+            field = form("whyGiveScore"),
+            label = messages("btaQuestions.whyGiveScore.heading"),
+            labelClass = Some("heading-medium"),
+            maximum = Some(1000)
+        )
+
+        @components.input_radio(
+            field = form("howDoYouFeelScore"),
+            legend = messages("btaQuestions.howDoYouFeelScore.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = HowDoYouFeelQuestion.options
+        )
+
+        @components.submit_button()
+    }
+}

@@ -17,9 +17,9 @@
 package controllers
 
 import controllers.actions._
-import forms.PTAQuestionsFormProvider
+import forms.BTAQuestionsFormProvider
 import generators.ModelGenerators
-import models.PTAQuestions
+import models.BTAQuestions
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -30,23 +30,22 @@ import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.ptaQuestions
+import views.html.btaQuestions
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
+class BTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new PTAQuestionsFormProvider()
+  val formProvider = new BTAQuestionsFormProvider()
   val form = formProvider()
-
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: String) = routes.PTAQuestionsController.onSubmit(origin)
+  def submitCall(origin: String) = routes.BTAQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new PTAQuestionsController(
+    new BTAQuestionsController(
       frontendAppConfig,
       messagesApi,
       new FakeNavigator(onwardRoute),
@@ -54,9 +53,9 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
       mockAuditService)
 
   def viewAsString(form: Form[_] = form, action: Call) =
-    ptaQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
+    btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
-  "PTAQuestions Controller" must {
+  "BTAQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
       forAll(arbitrary[String]) { origin =>
@@ -77,12 +76,13 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
     }
 
     "audit response on success" in {
-      forAll(arbitrary[String], arbitrary[String], arbitrary[PTAQuestions]) {
+      forAll(arbitrary[String], arbitrary[String], arbitrary[BTAQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
           val values = Map(
-            "neededToDo" -> answers.neededToDo,
+            "mainService" -> answers.mainService.map(_.toString),
+            "mainServiceOther" -> answers.mainServiceOther.map(_.toString),
             "ableToDo" -> answers.ableToDo.map(_.toString),
             "howEasyScore" -> answers.howEasyScore.map(_.toString),
             "whyGiveScore" -> answers.whyGiveScore,
@@ -92,7 +92,7 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
 
           verify(mockAuditService, times(1))
-            .ptaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+            .btaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 

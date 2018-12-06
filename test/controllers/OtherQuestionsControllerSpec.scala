@@ -16,24 +16,21 @@
 
 package controllers
 
-import play.api.data.Form
-import navigation.FakeNavigator
-import connectors.FakeDataCacheConnector
 import controllers.actions._
-import play.api.test.Helpers._
 import forms.OtherQuestionsFormProvider
 import generators.ModelGenerators
 import models.OtherQuestions
+import navigation.FakeNavigator
+import org.mockito.Matchers.{eq => eqTo, _}
+import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.prop.PropertyChecks
+import play.api.data.Form
 import play.api.mvc.Call
-import uk.gov.hmrc.play.audit.http.connector.AuditConnector
+import play.api.test.Helpers._
+import services.AuditService
 import views.html.otherQuestions
-import org.mockito.Matchers._
-import org.mockito.Matchers.{eq => eqTo}
-import org.mockito.Mockito._
-import utils.FeedbackFrontendHelper._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -43,7 +40,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
 
   val formProvider = new OtherQuestionsFormProvider()
   val form = formProvider()
-  lazy val mockAuditConnector = mock[AuditConnector]
+  lazy val mockAuditService = mock[AuditService]
 
   def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
 
@@ -53,7 +50,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
       messagesApi,
       new FakeNavigator(onwardRoute),
       formProvider,
-      mockAuditConnector)
+      mockAuditService)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
@@ -81,7 +78,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
     "audit response on success" in {
       forAll(arbitrary[String], arbitrary[String], arbitrary[OtherQuestions]) {
         (origin, feedbackId, answers) =>
-          reset(mockAuditConnector)
+          reset(mockAuditService)
 
           val values = Map(
             "ableToDo" -> answers.ableToDo.map(_.toString),
@@ -92,16 +89,8 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
 
-          val expectedValues =
-            values.mapValues(_.getOrElse("-")) + (
-              "origin" -> origin,
-              "feedbackId" -> feedbackId,
-              "ableToDo" -> answers.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-              "howEasyScore" -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
-              "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
-
-          verify(mockAuditConnector, times(1))
-            .sendExplicitAudit(eqTo("feedback"), eqTo(expectedValues))(any(), any())
+          verify(mockAuditService, times(1))
+            .otherAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 

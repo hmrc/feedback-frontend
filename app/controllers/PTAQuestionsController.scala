@@ -26,9 +26,8 @@ import models.PTAQuestions
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.mvc.Action
-import uk.gov.hmrc.play.audit.http.connector.AuditConnector
+import services.AuditService
 import views.html.ptaQuestions
-import utils.FeedbackFrontendHelper._
 
 import scala.concurrent.ExecutionContext
 
@@ -36,8 +35,8 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                          override val messagesApi: MessagesApi,
                                          navigator: Navigator,
                                          formProvider: PTAQuestionsFormProvider,
-                                         auditConnector: AuditConnector
-                                        )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
+                                         auditService: AuditService
+                                      )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[PTAQuestions] = formProvider()
   lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
@@ -55,20 +54,7 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
         formWithErrors =>
           BadRequest(ptaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
-
-          val auditMap =
-            Map(
-              "origin"            -> origin,
-              "feedbackId"        -> request.session.get("feedbackId").getOrElse("-"),
-              "neededToDo"        -> value.neededToDo.getOrElse("-"),
-              "ableToDo"          -> value.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-              "howEasyScore"      -> value.howEasyScore.map(_.value.toString).getOrElse("-"),
-              "whyGiveScore"      -> value.whyGiveScore.getOrElse("-"),
-              "howDoYouFeelScore" -> value.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
-            )
-
-          auditConnector.sendExplicitAudit("feedback", auditMap)
-
+          auditService.ptaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
           Redirect(successPage)
         }
       )

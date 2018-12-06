@@ -24,4 +24,15 @@ object ViewUtils {
   def errorPrefix(form: Form[_])(implicit messages: Messages): String = {
     if (form.hasErrors || form.hasGlobalErrors) messages("error.browser.title.prefix") else ""
   }
+
+  val mainServiceDynamicFields: String => String = id => {
+    val dynamicFields =
+      if(id == "mainServiceQuestion.Other") {
+        "data-dynamic-fields-show=mainServiceOtherInput"
+      } else {
+        "data-dynamic-fields-hide=mainServiceOtherInput"
+      }
+
+    "data-dynamic-field-toggle " + dynamicFields
+  }
 }
