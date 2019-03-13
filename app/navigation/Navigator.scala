@@ -35,6 +35,12 @@ object NextPage {
       override def nextPage(page: GenericQuestionsPage.type): Unit => Call = _ =>
         controllers.routes.ThankYouController.onPageLoad()
     }
+
+  implicit val pensionQuestionsNextPage: NextPage[PensionQuestionsPage.type, Unit] =
+    new NextPage[PensionQuestionsPage.type, Unit] {
+      override def nextPage(page: PensionQuestionsPage.type): Unit => Call = _ =>
+        controllers.routes.ThankYouController.onPageLoadPension()
+    }
 }
 
 @Singleton

@@ -97,4 +97,18 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
+
+  def pensionAudit(origin:String, feedbackId: String, questions: PensionQuestions)(implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+        withFeedbackId(feedbackId) andThen
+        withAbleToDo(questions.ableToDo) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore)
+      )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
 }

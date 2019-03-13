@@ -121,3 +121,37 @@ btaQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd ange
 btaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 btaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 btaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
+
+pensionQuestions.title = Rhoi adborth - GOV.UK
+pensionQuestions.heading = Adborth
+pensionQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+pensionQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+pensionQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
+pensionQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM
+pensionQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
+pensionQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
+pensionQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+pensionQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
+
+pensionQuestions.likelyToDo.heading = Dewiswch un weithred rydych yn fwyaf tebygol o’i gwneud ar ôl gwirio’ch Pensiwn y Wladwriaeth
+
+likelyToDoQuestion.OtherPensions = Bwrw golwg dros eich pensiynau eraill – er enghraifft, pensiynau preifat, pensiynau’r gweithle
+likelyToDoQuestion.CheckFinances = Gwirio’ch materion ariannol, megis cynilion, buddsoddiadau
+likelyToDoQuestion.ClarifyInformation = Cael eglurder ynghylch yr wybodaeth a gawsoch yn Gwirio’ch Pensiwn y Wladwriaeth
+likelyToDoQuestion.GetProfessionalAdvice = Cael cyngor proffesiynol neu arweiniad rhad ac am ddim
+likelyToDoQuestion.DoNothing = Gwneud dim byd, rydych yn fodlon ar yr wybodaeth a gawsoch heddiw
+
+thankYou.pension.title = Diolch yn fawr
+thankYou.pension.heading = Diolch yn fawr
+thankYou.pension.intro = Rydym wedi derbyn eich adborth.
+thankYou.pension.signIn = I ddefnyddio’r gwasanaeth eto bydd angen i chi <a href="{0}">fewngofnodi</a>.
+thankYou.pension.subHeading = Cynllunio ar gyfer ymddeoliad
+thankYou.pension.subContent = Mae bwrw golwg ar eich Pensiwn y Wladwriaeth yn ddechrau da, ond dylech hefyd ystyried faint o arian y bydd ei angen arnoch i fyw arno wrth gynilo ar gyfer eich dyfodol.
+thankYou.pension.retirementLink = <a href="{0}">Bod â mwy ar ôl ymddeol</a>
+
+thankYou.pension.sideBar.header = Beth allwch chi ei wneud nesaf
+thankYou.pension.sideBar.linkOne = <a href="{0}">Pension Wise - deall eich opsiynau pensiwn</a>
+thankYou.pension.sideBar.linkTwo = <a href="{0}">Cynllunio eich incwm ymddeoliad</a>
+thankYou.pension.sideBar.linkThree = <a href="{0}">Gohirio eich Pensiwn y Wladwriaeth</a>
+thankYou.pension.sideBar.linkFour = <a href="{0}">Cysylltu â’r Gwasanaeth Pensiwn</a>
+thankYou.pension.sideBar.linkFive = <a href="{0}">Mwy am Bensiynau’r Wladwriaeth</a>

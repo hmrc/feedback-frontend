@@ -19,40 +19,50 @@ package models
 import play.api.libs.json.{Format, Json}
 
 case class OtherQuestions(
-                           ableToDo:          Option[Boolean],
-                           howEasyScore:      Option[HowEasyQuestion],
-                           whyGiveScore:      Option[String],
-                           howDoYouFeelScore: Option[HowDoYouFeelQuestion]
-                         )
+  ableToDo:          Option[Boolean],
+  howEasyScore:      Option[HowEasyQuestion],
+  whyGiveScore:      Option[String],
+  howDoYouFeelScore: Option[HowDoYouFeelQuestion]
+)
 
 object OtherQuestions {
-
   implicit val formats: Format[OtherQuestions] = Json.format[OtherQuestions]
 }
 
 case class PTAQuestions(
-                           neededToDo:        Option[String],
-                           ableToDo:          Option[Boolean],
-                           howEasyScore:      Option[HowEasyQuestion],
-                           whyGiveScore:      Option[String],
-                           howDoYouFeelScore: Option[HowDoYouFeelQuestion]
-                         )
+  neededToDo:        Option[String],
+  ableToDo:          Option[Boolean],
+  howEasyScore:      Option[HowEasyQuestion],
+  whyGiveScore:      Option[String],
+  howDoYouFeelScore: Option[HowDoYouFeelQuestion]
+)
 
 object PTAQuestions {
-
   implicit val formats: Format[PTAQuestions] = Json.format[PTAQuestions]
 }
 
 case class BTAQuestions(
-                         mainService:       Option[MainServiceQuestion],
-                         mainServiceOther:  Option[String],
-                         ableToDo:          Option[Boolean],
-                         howEasyScore:      Option[HowEasyQuestion],
-                         whyGiveScore:      Option[String],
-                         howDoYouFeelScore: Option[HowDoYouFeelQuestion]
-                       )
+  mainService:       Option[MainServiceQuestion],
+  mainServiceOther:  Option[String],
+  ableToDo:          Option[Boolean],
+  howEasyScore:      Option[HowEasyQuestion],
+  whyGiveScore:      Option[String],
+  howDoYouFeelScore: Option[HowDoYouFeelQuestion]
+)
 
 object BTAQuestions {
-
   implicit val formats: Format[BTAQuestions] = Json.format[BTAQuestions]
 }
+
+case class PensionQuestions(
+  ableToDo:          Option[Boolean],
+  howEasyScore:      Option[HowEasyQuestion],
+  whyGiveScore:      Option[String],
+  howDoYouFeelScore: Option[HowDoYouFeelQuestion],
+  likelyToDo:        Option[LikelyToDoQuestion]
+)
+
+object PensionQuestions {
+  implicit val formats: Format[PensionQuestions] = Json.format[PensionQuestions]
+}
+

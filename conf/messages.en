@@ -110,3 +110,36 @@ btaQuestions.ableToDo.heading = Were you able to do what you needed to do today?
 btaQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
 btaQuestions.whyGiveScore.heading = Why did you give this score?
 btaQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+
+pensionQuestions.title = Give feedback - GOV.UK
+pensionQuestions.heading = Feedback
+pensionQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+pensionQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+pensionQuestions.intro3 = The survey takes about 1 minute to complete. There are 5 questions and they are all optional.
+pensionQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
+pensionQuestions.ableToDo.heading = Were you able to do what you needed to do today?
+pensionQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
+pensionQuestions.whyGiveScore.heading = Why did you give this score?
+pensionQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+pensionQuestions.likelyToDo.heading = What are you most likely to do after checking your State Pension?
+
+likelyToDoQuestion.OtherPensions = Take a look at your other pensions, such as private pensions or workplace pensions
+likelyToDoQuestion.CheckFinances = Check your finances, such as savings and investments
+likelyToDoQuestion.ClarifyInformation = Clarify information you have found in Check your State Pension
+likelyToDoQuestion.GetProfessionalAdvice = Get some professional advice or free guidance
+likelyToDoQuestion.DoNothing = Do nothing. You are satisfied with the information you found today
+
+thankYou.pension.title = Thank you
+thankYou.pension.heading = Thank you
+thankYou.pension.intro = We’ve received your feedback.
+thankYou.pension.signIn = To use the service again you’ll need to <a href="{0}">sign in</a>.
+thankYou.pension.subHeading = Planning for retirement
+thankYou.pension.subContent = Checking your State Pension is a good start, but you should also think about how much you will need to live on when you are saving for your future.
+thankYou.pension.retirementLink = <a href="{0}">Having more in retirement</a>
+
+thankYou.pension.sideBar.header = What you can do next
+thankYou.pension.sideBar.linkOne = <a href="{0}">Pension Wise - understanding your pension options</a>
+thankYou.pension.sideBar.linkTwo = <a href="{0}">Planning your retirement income</a>
+thankYou.pension.sideBar.linkThree = <a href="{0}">Defer your State Pension</a>
+thankYou.pension.sideBar.linkFour = <a href="{0}">Contact the Pension Service</a>
+thankYou.pension.sideBar.linkFive = <a href="{0}">More on State Pensions</a>

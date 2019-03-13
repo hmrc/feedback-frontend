@@ -21,7 +21,7 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
 import play.api.mvc.Action
-import views.html.thankYou
+import views.html.{thankYou, thankYouPension}
 
 class ThankYouController @Inject()(appConfig: FrontendAppConfig,
                                    override val messagesApi: MessagesApi
@@ -30,5 +30,10 @@ class ThankYouController @Inject()(appConfig: FrontendAppConfig,
   def onPageLoad = Action {
     implicit request =>
       Ok(thankYou(appConfig))
+  }
+
+  def onPageLoadPension = Action {
+    implicit request =>
+      Ok(thankYouPension(appConfig))
   }
 }
