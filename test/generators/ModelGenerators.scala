@@ -29,6 +29,8 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryBTAQuestions: Arbitrary[BTAQuestions] = Arbitrary(btaQuestionsGen)
 
+  implicit lazy val arbitraryPensionQuestions: Arbitrary[PensionQuestions] = Arbitrary(pensionQuestionsGen)
+
   lazy val otherQuestionsGen: Gen[OtherQuestions] =
     for {
       ableToDo <- option(arbitrary[Boolean])
@@ -62,6 +64,17 @@ trait ModelGenerators {
       BTAQuestions(mainService, mainServiceOther, ableToDo, howEasy, whyScore, howFeel)
     }
 
+  lazy val pensionQuestionsGen: Gen[PensionQuestions] =
+    for {
+      ableToDo   <- option(arbitrary[Boolean])
+      howEasy    <- option(howEasyQuestionGen)
+      whyScore   <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howFeel    <- option(howDoYouFeelQuestionGen)
+      likelyToDo <- option(likelyToDoQuestionGen)
+    } yield {
+      PensionQuestions(ableToDo, howEasy, whyScore, howFeel, likelyToDo)
+    }
+
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
     oneOf(HowEasyQuestion.values.toSeq)
 
@@ -70,4 +83,7 @@ trait ModelGenerators {
 
   lazy val mainServiceQuestionGen: Gen[MainServiceQuestion] =
     oneOf(MainServiceQuestion.values.toSeq)
+
+  lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
+    oneOf(LikelyToDoQuestion.values.toSeq)
 }

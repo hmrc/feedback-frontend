@@ -18,22 +18,28 @@
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
+@signInLink = {
+  @appConfig.pensionSignInUrl.map { pensionSignInUrl =>
+    <a href="@appConfig.pensionSignInUrl">@messages("thankYou.pension.signInLink")</a>
+  }
+}
+
 @main_template(
   title = messages("thankYou.pension.title"),
   appConfig = appConfig,
   bodyClasses = Some("full-width")
 ) {
 
-    @components.heading("thankYou.pension.heading")
-
   <div class="grid-row">
 
     <div class="column-two-thirds">
 
+      @components.heading("thankYou.pension.heading")
+
       <p>@messages("thankYou.pension.intro")</p>
 
       @appConfig.pensionSignInUrl.map { pensionSignInUrl =>
-        <p>@Html(messages("thankYou.pension.signIn", pensionSignInUrl))</p>
+        <p>@Html(messages("thankYou.pension.signIn", signInLink))</p>
       }
 
       <h2>@messages("thankYou.pension.subHeading")</h2>
@@ -41,7 +47,7 @@
       <p>@messages("thankYou.pension.subContent")</p>
 
       @appConfig.pensionRetirementUrl.map { pensionRetirementUrl =>
-        <p>@Html(messages("thankYou.pension.retirementLink", pensionRetirementUrl))</p>
+        <p><a href="@pensionRetirementUrl">@messages("thankYou.pension.retirementLink", pensionRetirementUrl)</a></p>
       }
 
       @appConfig.urLinkUrl.map { urLinkUrl =>
@@ -74,19 +80,34 @@
 
       <ul class="sidebar__list">
         @appConfig.pensionSideBarOneUrl.map { pensionSideBarOneUrl =>
-          <li class="sidebar__list-item">@Html(messages("thankYou.pension.sideBar.linkOne", pensionSideBarOneUrl))</li>
+          <li class="sidebar__list-item">
+            <a href="@pensionSideBarOneUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarOneUrlGA.map {pensionSideBarOneUrlGA =>
+              data-journey-click="@pensionSideBarOneUrlGA"}>@messages("thankYou.pension.sideBar.linkOne")</a>
+          </li>
         }
         @appConfig.pensionSideBarTwoUrl.map { pensionSideBarTwoUrl =>
-          <li class="sidebar__list-item">@Html(messages("thankYou.pension.sideBar.linkTwo", pensionSideBarTwoUrl))</li>
+          <li class="sidebar__list-item">
+            <a href="@pensionSideBarTwoUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarTwoUrlGA.map {pensionSideBarTwoUrlGA =>
+              data-journey-click="@pensionSideBarTwoUrlGA"}>@messages("thankYou.pension.sideBar.linkTwo", pensionSideBarTwoUrl)</a>
+          </li>
         }
         @appConfig.pensionSideBarThreeUrl.map { pensionSideBarThreeUrl =>
-          <li class="sidebar__list-item">@Html(messages("thankYou.pension.sideBar.linkThree", pensionSideBarThreeUrl))</li>
+          <li class="sidebar__list-item">
+            <a href="@pensionSideBarThreeUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarThreeUrlGA.map {pensionSideBarThreeUrlGA =>
+              data-journey-click="@pensionSideBarThreeUrlGA"}>@messages("thankYou.pension.sideBar.linkThree", pensionSideBarThreeUrl)</a>
+          </li>
         }
         @appConfig.pensionSideBarFourUrl.map { pensionSideBarFourUrl =>
-          <li class="sidebar__list-item">@Html(messages("thankYou.pension.sideBar.linkFour", pensionSideBarFourUrl))</li>
+          <li class="sidebar__list-item">
+            <a href="@pensionSideBarFourUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarFourUrlGA.map {pensionSideBarFourUrlGA =>
+              data-journey-click="@pensionSideBarFourUrlGA"}>@messages("thankYou.pension.sideBar.linkFour", pensionSideBarFourUrl)</a>
+          </li>
         }
         @appConfig.pensionSideBarFiveUrl.map { pensionSideBarFiveUrl =>
-          <li class="sidebar__list-item">@Html(messages("thankYou.pension.sideBar.linkFive", pensionSideBarFiveUrl))</li>
+          <li class="sidebar__list-item">
+            <a href="@pensionSideBarFiveUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarFiveUrlGA.map {pensionSideBarFiveUrlGA =>
+              data-journey-click="@pensionSideBarFiveUrlGA"}>@messages("thankYou.pension.sideBar.linkFive", pensionSideBarFiveUrl)</a>
+          </li>
         }
       </ul>
 
