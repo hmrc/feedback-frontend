@@ -47,6 +47,19 @@ class FrontendAppConfig @Inject() (override val runModeConfiguration: Configurat
   lazy val privacyPolicyUrl = "https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you"
   lazy val urLinkUrl = runModeConfiguration.getString("microservice.services.features.ur-link-url")
 
+  lazy val pensionSignInUrl = runModeConfiguration.getString("urls.pension.sign-in")
+  lazy val pensionRetirementUrl = runModeConfiguration.getString("urls.pension.retirement")
+  lazy val pensionSideBarOneUrl = runModeConfiguration.getString("urls.pension.sidebar.link-one")
+  lazy val pensionSideBarOneUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-one-ga")
+  lazy val pensionSideBarTwoUrl = runModeConfiguration.getString("urls.pension.sidebar.link-two")
+  lazy val pensionSideBarTwoUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-two-ga")
+  lazy val pensionSideBarThreeUrl = runModeConfiguration.getString("urls.pension.sidebar.link-three")
+  lazy val pensionSideBarThreeUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-three-ga")
+  lazy val pensionSideBarFourUrl = runModeConfiguration.getString("urls.pension.sidebar.link-four")
+  lazy val pensionSideBarFourUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-four-ga")
+  lazy val pensionSideBarFiveUrl = runModeConfiguration.getString("urls.pension.sidebar.link-five")
+  lazy val pensionSideBarFiveUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-five-ga")
+
   lazy val govUkUrl = loadConfig(s"urls.govUk")
 
   lazy val languageTranslationEnabled = runModeConfiguration.getBoolean("microservice.services.features.welsh-translation").getOrElse(true)

@@ -51,6 +51,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("mainService" -> mainService.map(_.toString).getOrElse("-"))
   def withMainServiceOther(mainServiceOther: Option[String]): MapCont =
     _ + ("mainServiceOther" -> mainServiceOther.getOrElse("-"))
+  def withLikelyToDo(likelyToDo: Option[LikelyToDoQuestion]): MapCont =
+    _ + ("likelyToDo" -> likelyToDo.map(_.toString).getOrElse("-"))
 
 
   def ptaAudit(origin:String, feedbackId: String, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
@@ -93,6 +95,21 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
       withHowEasyScore(questions.howEasyScore) andThen
       withWhyGiveScore(questions.whyGiveScore) andThen
       withHowFeelScore(questions.howDoYouFeelScore)
+    )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
+
+  def pensionAudit(origin:String, feedbackId: String, questions: PensionQuestions)(implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+      withFeedbackId(feedbackId) andThen
+      withAbleToDo(questions.ableToDo) andThen
+      withHowEasyScore(questions.howEasyScore) andThen
+      withWhyGiveScore(questions.whyGiveScore) andThen
+      withHowFeelScore(questions.howDoYouFeelScore) andThen
+      withLikelyToDo(questions.likelyToDo)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
