@@ -45,6 +45,8 @@ unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
 
 generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
+whyGiveScore.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
+neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?’ fod yn {0} o gymeriadau neu’n llai
 
 otherQuestions.title = Rhoi adborth - GOV.UK
 otherQuestions.heading = Adborth

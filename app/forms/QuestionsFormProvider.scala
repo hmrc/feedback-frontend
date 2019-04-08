@@ -32,7 +32,7 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->
         optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "generic.max-characters"))),
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(OtherQuestions.apply)(OtherQuestions.unapply))
 }
@@ -46,12 +46,12 @@ class PTAQuestionsFormProvider @Inject() extends Mappings {
     Form(mapping(
       "neededToDo" ->
         optional(text("neededToDo.error.required")
-          .verifying(maxLength(maxFieldSizeAbleToDo, "generic.max-characters"))),
+          .verifying(maxLength(maxFieldSizeAbleToDo, "neededToDo.error.maxlength"))),
       "ableToDo" -> optional(boolean()),
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->
         optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "generic.max-characters"))),
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(PTAQuestions.apply)(PTAQuestions.unapply))
 }
@@ -71,7 +71,7 @@ class BTAQuestionsFormProvider @Inject() extends Mappings {
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->
         optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "generic.max-characters"))),
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(BTAQuestions.apply)(BTAQuestions.unapply))
 }
@@ -86,7 +86,7 @@ class PensionQuestionsFormProvider @Inject() extends Mappings {
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->
         optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "generic.max-characters"))),
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
       "likelyToDo" -> optional(enumerable[LikelyToDoQuestion]())
     )(PensionQuestions.apply)(PensionQuestions.unapply))
