@@ -24,6 +24,7 @@ import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
+import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.prop.PropertyChecks
 import play.api.data.Form
@@ -34,7 +35,11 @@ import views.html.btaQuestions
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class BTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
+class BTAQuestionsControllerSpec extends ControllerSpecBase
+  with PropertyChecks
+  with ModelGenerators
+  with MockitoSugar
+  with ScalaFutures {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -89,7 +94,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
             "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId))).futureValue
 
           verify(mockAuditService, times(1))
             .btaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
