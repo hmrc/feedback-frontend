@@ -95,6 +95,7 @@ ptaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio 
 ptaQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
 ptaQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
 ptaQuestions.neededToDo.heading = Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw? Er enghraifft, newid eich cyfeiriad
+ptaQuestions.neededToDo.heading.hintText = Er enghraifft, newid eich cyfeiriad
 ptaQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
 ptaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 ptaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
