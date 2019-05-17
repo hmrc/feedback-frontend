@@ -82,7 +82,7 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFie
   ".whyGiveScore" must {
 
     val fieldName = "whyGiveScore"
-    val invalidError = "generic.max-characters"
+    val invalidError = "whyGiveScore.error.maxlength"
     val maxLength = 1000
 
     behave like fieldWithMaxLength(

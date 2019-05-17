@@ -45,6 +45,8 @@ unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
 
 generic.max-characters = You can enter up to {0} characters
+whyGiveScore.error.maxlength = Why did you give this score must be {0} characters or less
+neededToDo.error.maxlength = What was the main thing you needed to do today must be {0} characters or less
 
 otherQuestions.title = Give feedback - GOV.UK
 otherQuestions.heading = Feedback
