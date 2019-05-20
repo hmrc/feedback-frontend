@@ -30,7 +30,7 @@
     appConfig = appConfig,
     bodyClasses = None) {
 
-    @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") ->"true") {
+    @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
 
         @components.error_summary(form.errors)
 

@@ -25,7 +25,8 @@
   attr: String => String = identity,
   dynamicField: Field,
   dynamicFieldLabel: String,
-  dynamicFieldLength: Int)(implicit messages: Messages)
+  dynamicFieldLength: Int,
+  dynamicFieldLabelClass: Option[String] = Some("visually-hidden"))(implicit messages: Messages)
 
 <div class="form-group @if(field.hasErrors){form-group-error}">
 
@@ -68,6 +69,6 @@
     field = dynamicField,
     maximum = Some(dynamicFieldLength),
     label = messages(dynamicFieldLabel),
-    labelClass = Some("visually-hidden")
+    labelClass = dynamicFieldLabelClass
   )
 </div>

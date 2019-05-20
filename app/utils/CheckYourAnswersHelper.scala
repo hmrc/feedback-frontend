@@ -16,10 +16,7 @@
 
 package utils
 
-import controllers.routes
-import models.{CheckMode, UserAnswers}
-import pages._
-import viewmodels.{AnswerRow, RepeaterAnswerRow, RepeaterAnswerSection}
+import models.UserAnswers
 
 class CheckYourAnswersHelper(userAnswers: UserAnswers) {
 }

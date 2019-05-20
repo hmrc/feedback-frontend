@@ -23,6 +23,11 @@ import Gen._
 
 trait ModelGenerators {
 
+  implicit lazy val arbitraryGiveReason: Arbitrary[GiveReason] =
+    Arbitrary {
+      Gen.oneOf(GiveReason.values)
+    }
+
   implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)
 
   implicit lazy val arbitraryPTAQuestions: Arbitrary[PTAQuestions] = Arbitrary(ptaQuestionsGen)
@@ -30,6 +35,15 @@ trait ModelGenerators {
   implicit lazy val arbitraryBTAQuestions: Arbitrary[BTAQuestions] = Arbitrary(btaQuestionsGen)
 
   implicit lazy val arbitraryPensionQuestions: Arbitrary[PensionQuestions] = Arbitrary(pensionQuestionsGen)
+
+  implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
+    for {
+      value  <- option(arbitrary[GiveReason])
+      reason <- option(arbitrary[String])
+    } yield {
+      GiveReasonQuestions(value, reason)
+    }
+  }
 
   lazy val otherQuestionsGen: Gen[OtherQuestions] =
     for {
@@ -76,14 +90,14 @@ trait ModelGenerators {
     }
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
-    oneOf(HowEasyQuestion.values.toSeq)
+    oneOf(HowEasyQuestion.values)
 
   lazy val howDoYouFeelQuestionGen: Gen[HowDoYouFeelQuestion] =
-    oneOf(HowDoYouFeelQuestion.values.toSeq)
+    oneOf(HowDoYouFeelQuestion.values)
 
   lazy val mainServiceQuestionGen: Gen[MainServiceQuestion] =
-    oneOf(MainServiceQuestion.values.toSeq)
+    oneOf(MainServiceQuestion.values)
 
   lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
-    oneOf(LikelyToDoQuestion.values.toSeq)
+    oneOf(LikelyToDoQuestion.values)
 }

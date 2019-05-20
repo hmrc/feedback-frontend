@@ -39,6 +39,7 @@ site.no = No
 site.yes = Yes
 site.continue = Continue
 site.service_name =
+site.sendFeedback = Send feedback
 site.textarea.char_limit = (Limit is {0} characters)
 
 unauthorised.title = You can’t access this service with this account
@@ -147,3 +148,17 @@ thankYou.pension.sideBar.linkTwo = Planning your retirement income
 thankYou.pension.sideBar.linkThree = Defer your State Pension
 thankYou.pension.sideBar.linkFour = Contact the Pension Service
 thankYou.pension.sideBar.linkFive = More on State Pensions
+
+giveReason.title = Give feedback
+giveReason.heading = What did you come to do?
+giveReason.checkTaxCode = Check my tax code
+giveReason.checkTaxYear = Check my tax for this year
+giveReason.checkTaxPaid = Check the tax I paid
+giveReason.claimTaxBack = Claim tax back
+giveReason.contactAboutP800 = Contact HMRC about my P800
+giveReason.p800Wrong = My P800 letter calculation is wrong
+giveReason.payOwedTax = Pay tax I owe
+giveReason.progressChasing = Progress chasing
+giveReason.other = Other
+giveReason.error.maxlength = You can only enter up to 100 characters
+giveReason.other.reason.label = What did you come to do?
