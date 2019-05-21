@@ -53,6 +53,10 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("mainServiceOther" -> mainServiceOther.getOrElse("-"))
   def withLikelyToDo(likelyToDo: Option[LikelyToDoQuestion]): MapCont =
     _ + ("likelyToDo" -> likelyToDo.map(_.toString).getOrElse("-"))
+  def withGiveReason(giveReason: Option[GiveReason]): MapCont =
+    _ + ("value" -> giveReason.map(_.toString).getOrElse("-"))
+  def withOtherReason(otherReason: Option[String]): MapCont =
+    _ + ("reason" -> otherReason.getOrElse("-"))
 
 
   def ptaAudit(origin:String, feedbackId: String, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
@@ -110,6 +114,18 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
       withWhyGiveScore(questions.whyGiveScore) andThen
       withHowFeelScore(questions.howDoYouFeelScore) andThen
       withLikelyToDo(questions.likelyToDo)
+    )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
+
+  def giveReasonAudit(origin: String, feedbackId: String, questions: GiveReasonQuestions)(implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+      withFeedbackId(feedbackId) andThen
+      withGiveReason(questions.value) andThen
+      withOtherReason(questions.reason)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)

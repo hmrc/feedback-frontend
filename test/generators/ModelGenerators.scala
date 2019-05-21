@@ -39,7 +39,7 @@ trait ModelGenerators {
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
       value  <- option(arbitrary[GiveReason])
-      reason <- option(arbitrary[String])
+      reason <- option(arbitrary[String].suchThat(_.nonEmpty))
     } yield {
       GiveReasonQuestions(value, reason)
     }

@@ -22,7 +22,6 @@
   hint: Option[String] = None,
   trackGa: Boolean = false,
   inputs: Seq[RadioOption],
-  attr: String => String = identity,
   dynamicField: Field,
   dynamicFieldLabel: String,
   dynamicFieldLength: Int,
@@ -42,15 +41,16 @@
       }
     </legend>
 
-    @for(input <- inputs) {
+    @for(input <- inputs.init) {
       <div class="multiple-choice">
 
         <input
-          @attr(input.id)
           id="@{input.id}"
           type="radio"
           name="@{field.id}"
           value="@{input.value}"
+          data-dynamic-field-toggle
+          data-dynamic-fields-hide=@{dynamicField.id}Input
           @if(field.value == Some(input.value)){checked="checked"}
           @if(trackGa){data-journey-click="feedback-frontend:click:@{input.id}"} />
 
@@ -60,15 +60,36 @@
 
       </div>
     }
+
+    @inputs.lastOption.map { input =>
+        <div class="multiple-choice">
+
+            <input
+                id="@{input.id}"
+                type="radio"
+                name="@{field.id}"
+                value="@{input.value}"
+                data-dynamic-field-toggle
+                data-dynamic-fields-show=@{dynamicField.id}Input
+                @if(field.value == Some(input.value)){checked="checked"}
+                @if(trackGa){data-journey-click="feedback-frontend:click:@{input.id}"} />
+
+            <label class="block-label selection-button-radio" for="@{input.id}">
+                @messages(input.messageKey)
+            </label>
+
+        </div>
+
+        <div class="form-group panel panel-border-narrow js-hidden data-@{dynamicField.id}Input">
+            @components.input_text(
+                field = dynamicField,
+                maximum = Some(dynamicFieldLength),
+                label = messages(dynamicFieldLabel),
+                labelClass = dynamicFieldLabelClass
+            )
+        </div>
+    }
   </fieldset>
 
 </div>
 
-<div class="form-group panel panel-border-narrow js-hidden data-@{dynamicField.id}Input">
-  @components.input_text(
-    field = dynamicField,
-    maximum = Some(dynamicFieldLength),
-    label = messages(dynamicFieldLabel),
-    labelClass = dynamicFieldLabelClass
-  )
-</div>

@@ -16,30 +16,32 @@
 
 package controllers
 
-import connectors.FakeDataCacheConnector
 import controllers.actions._
 import forms.GiveReasonFormProvider
+import generators.Generators
 import models.{GiveReason, GiveReasonQuestions}
 import navigation.FakeNavigator
-import org.mockito.Matchers.any
+import org.mockito.Matchers.{any, eq => eqTo}
 import org.mockito.Mockito.{reset, times, verify}
 import org.scalacheck.Arbitrary.arbitrary
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.prop.PropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
+import services.AuditService
 import views.html.giveReason
 
-class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks {
+class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks with Generators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
   val formProvider = new GiveReasonFormProvider()
   val form = formProvider()
+  lazy val mockAuditService = mock[AuditService]
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new GiveReasonController(frontendAppConfig, messagesApi, FakeDataCacheConnector, new FakeNavigator(onwardRoute), FakeIdentifierAction,
-      dataRetrievalAction, new DataRequiredActionImpl, formProvider)
+    new GiveReasonController(frontendAppConfig, messagesApi, new FakeNavigator(onwardRoute), formProvider, mockAuditService)
 
   def viewAsString(form: Form[_] = form, origin: String = "") =
     giveReason(frontendAppConfig, form, routes.GiveReasonController.onSubmit(origin))(fakeRequest, messages).toString
@@ -90,17 +92,15 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks {
           reset(mockAuditService)
 
           val values = Map(
-            "value" -> answers.ableToDo.map(_.toString),
-            "reason" -> answers.howEasyScore.map(_.toString),
-            "whyGiveScore" -> answers.whyGiveScore,
-            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
-            "likelyToDo" -> answers.likelyToDo.map(_.toString))
+            "value"  -> answers.value.map(_.toString),
+            "reason" -> answers.reason
+          )
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
 
           verify(mockAuditService, times(1))
-            .pensionAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+            .giveReasonAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
   }

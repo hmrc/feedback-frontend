@@ -107,4 +107,24 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
           .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
     }
   }
+
+  "generate correct payload for give reasons" in {
+
+    forAll(arbitrary[String], arbitrary[String], arbitrary[GiveReasonQuestions]) {
+      (origin, feedbackId, questions) =>
+        reset(auditConnector)
+
+        auditService.giveReasonAudit(origin, feedbackId, questions)
+
+        val expected = Map(
+          "origin"     -> origin,
+          "feedbackId" -> feedbackId,
+          "value"      -> questions.value.fold("-")(_.toString),
+          "reason"     -> questions.reason.getOrElse("-")
+        )
+
+        verify(auditConnector, times(1))
+          .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+    }
+  }
 }
