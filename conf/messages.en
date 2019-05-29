@@ -160,5 +160,5 @@ giveReason.p800Wrong = My P800 letter calculation is wrong
 giveReason.payOwedTax = Pay tax I owe
 giveReason.progressChasing = Progress chasing
 giveReason.other = Other
-giveReason.error.maxlength = You can only enter up to 100 characters
+giveReason.error.maxlength = Why you gave this score must be 1,000 characters or less
 giveReason.other.reason.label = What did you come to do?

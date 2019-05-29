@@ -28,7 +28,7 @@ class GiveReasonFormProvider @Inject() extends Mappings {
     Form(
       mapping(
         "value" -> optional(enumerable[GiveReason]()),
-        "reason" -> optional(text().verifying(maxLength(100, "giveReason.error.maxlength")))
+        "reason" -> optional(text().verifying(maxLength(1000, "giveReason.error.maxlength")))
       )(GiveReasonQuestions.apply)(GiveReasonQuestions.unapply)
     )
 }
