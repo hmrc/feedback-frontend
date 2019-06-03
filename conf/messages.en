@@ -38,6 +38,7 @@ site.hidden-edit = Change {0}
 site.no = No
 site.yes = Yes
 site.continue = Continue
+site.sendFeedback = Send feedback
 site.service_name =
 site.sendFeedback = Send feedback
 site.textarea.char_limit = (Limit is {0} characters)
@@ -149,6 +150,7 @@ thankYou.pension.sideBar.linkThree = Defer your State Pension
 thankYou.pension.sideBar.linkFour = Contact the Pension Service
 thankYou.pension.sideBar.linkFive = More on State Pensions
 
+
 giveReason.title = Give feedback
 giveReason.heading = What did you come to do?
 giveReason.checkTaxCode = Check my tax code
@@ -162,3 +164,9 @@ giveReason.progressChasing = Progress chasing
 giveReason.other = Other
 giveReason.error.maxlength = Why you gave this score must be 1,000 characters or less
 giveReason.other.reason.label = What did you come to do?
+
+giveComments.title = Give feedback
+giveComments.heading = What did you come to do?
+giveComments.intro1 = Do not include any personal or financial information. For example, your National Insurance or credit card numbers.
+giveComments.error.length = What you came to do must be 1,000 characters or less
+

@@ -38,6 +38,7 @@ site.hidden-edit = Change {0}
 site.no = Na
 site.yes = Iawn
 site.continue = Yn eich blaen
+site.sendFeedback = Anfon adborth
 site.service_name =
 site.textarea.char_limit = (Limit is {0} characters)
 
@@ -173,3 +174,8 @@ giveReason.progressChasing = Dilyn hynt rhywbeth
 giveReason.other = Arall
 giveReason.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn 1,000 o gymeriadau neu’n llai
 giveReason.other.reason.label = Beth ddaethoch chi yma i’w wneud?
+
+giveComments.title = Rhoi adborth
+giveComments.heading = Beth ddaethoch chi yma i’w wneud?
+giveComments.intro1 = Peidiwch â chynnwys unrhyw wybodaeth bersonol nac ariannol. Er enghraifft, eich rhif Yswiriant Gwladol neu rif eich cerdyn credyd.
+giveComments.error.length = Rhaid i’r hyn y daethoch i’w wneud fod yn 1,000 o gymeriadau neu’n llai
