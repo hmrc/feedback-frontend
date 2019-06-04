@@ -19,6 +19,9 @@ POST       /:origin/business                            controllers.BTAQuestions
 GET        /:origin/pension                             controllers.PensionQuestionsController.onPageLoad(origin: String)
 POST       /:origin/pension                             controllers.PensionQuestionsController.onSubmit(origin: String)
 
+GET        /:origin/give-reason                         controllers.GiveReasonController.onPageLoad(origin: String)
+POST       /:origin/give-reason                         controllers.GiveReasonController.onSubmit(origin: String)
+
 GET        /:origin/give-comments                       controllers.GiveCommentsController.onPageLoad(origin: String)
 POST       /:origin/give-comments                       controllers.GiveCommentsController.onSubmit(origin: String)
 
@@ -28,5 +31,3 @@ GET        /thank-you-pension                           controllers.ThankYouCont
 # These routes must come last as they will match any /feedback/xxx route
 GET        /:origin                                     controllers.OtherQuestionsController.onPageLoad(origin: String)
 POST       /:origin                                     controllers.OtherQuestionsController.onSubmit(origin: String)
-
-

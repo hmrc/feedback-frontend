@@ -161,6 +161,20 @@ thankYou.pension.sideBar.linkThree = Gohirio eich Pensiwn y Wladwriaeth
 thankYou.pension.sideBar.linkFour = Cysylltu â’r Gwasanaeth Pensiwn
 thankYou.pension.sideBar.linkFive = Mwy am Bensiynau’r Wladwriaeth
 
+giveReason.title = Rhoi adborth
+giveReason.heading = Beth ddaethoch chi yma i’w wneud?
+giveReason.checkTaxCode = Gwirio fy nghod treth
+giveReason.checkTaxYear = Gwirio fy nhreth am y flwyddyn hon
+giveReason.checkTaxPaid = Gwirio’r dreth a dalais i
+giveReason.claimTaxBack = Hawlio treth yn ôl
+giveReason.contactAboutP800 = Cysylltu â CThEM ynglŷn â fy P800
+giveReason.p800Wrong = Mae fy llythyr cyfrifiad P800 yn anghywir
+giveReason.payOwedTax = Talu’r dreth sydd arnaf
+giveReason.progressChasing = Dilyn hynt rhywbeth
+giveReason.other = Arall
+giveReason.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn 1,000 o gymeriadau neu’n llai
+giveReason.other.reason.label = Beth ddaethoch chi yma i’w wneud?
+
 giveComments.title = Rhoi adborth
 giveComments.heading = Beth ddaethoch chi yma i’w wneud?
 giveComments.intro1 = Peidiwch â chynnwys unrhyw wybodaeth bersonol nac ariannol. Er enghraifft, eich rhif Yswiriant Gwladol neu rif eich cerdyn credyd.

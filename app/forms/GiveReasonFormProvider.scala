@@ -1,4 +1,4 @@
-@*
+/*
  * Copyright 2019 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,10 +12,23 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
 
-@(continueKey: String = "site.continue")(implicit messages: Messages)
+package forms
 
-<div class="section">
-    <button id="submit" class="button">@messages(continueKey)</button>
-</div>
+import javax.inject.Inject
+import forms.mappings.Mappings
+import play.api.data.Form
+import play.api.data.Forms._
+import models.{GiveReason, GiveReasonQuestions}
+
+class GiveReasonFormProvider @Inject() extends Mappings {
+
+  def apply(): Form[GiveReasonQuestions] =
+    Form(
+      mapping(
+        "value" -> optional(enumerable[GiveReason]()),
+        "reason" -> optional(text().verifying(maxLength(1000, "giveReason.error.maxlength")))
+      )(GiveReasonQuestions.apply)(GiveReasonQuestions.unapply)
+    )
+}

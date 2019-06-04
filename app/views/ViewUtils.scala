@@ -25,14 +25,16 @@ object ViewUtils {
     if (form.hasErrors || form.hasGlobalErrors) messages("error.browser.title.prefix") else ""
   }
 
-  val mainServiceDynamicFields: String => String = id => {
-    val dynamicFields =
-      if(id == "mainServiceQuestion.Other") {
-        "data-dynamic-fields-show=mainServiceOtherInput"
+  val mainServiceDynamicFields = dynamicFieldAttrs("mainServiceQuestion.Other", "mainServiceOther")
+
+  def dynamicFieldAttrs(optionId: String, targetId: String): String => String = id => {
+    val attr =
+      if(id == optionId) {
+        s"data-dynamic-fields-show=${targetId}Input"
       } else {
-        "data-dynamic-fields-hide=mainServiceOtherInput"
+        s"data-dynamic-fields-hide=${targetId}Input"
       }
 
-    "data-dynamic-field-toggle " + dynamicFields
+    "data-dynamic-field-toggle " + attr
   }
 }

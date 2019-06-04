@@ -30,7 +30,7 @@
     appConfig = appConfig,
     bodyClasses = None) {
 
-    @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") ->"true") {
+    @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
 
         @components.error_summary(form.errors)
 
@@ -47,7 +47,6 @@
             legend = messages("btaQuestions.mainService.heading"),
             legendClass = Some("heading-medium"),
             inputs = MainServiceQuestion.options,
-            attr = mainServiceDynamicFields,
             dynamicField = form("mainServiceOther"),
             dynamicFieldLabel = "btaQuestions.mainService.heading",
             dynamicFieldLength = 100
