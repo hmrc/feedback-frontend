@@ -19,7 +19,7 @@ error.integer = Give an answer in whole numbers
 error.non_numeric = Give a value using only numbers
 error.number = Please enter a valid number
 error.required = Please enter a value
-error.summary.title = There is a problem
+error.summary.title = Mae problem wedi codi
 error.invalid = Please give a valid value
 
 index.title = feedback-frontend
@@ -178,4 +178,4 @@ giveReason.other.reason.label = Beth ddaethoch chi yma i’w wneud?
 giveComments.title = Rhoi adborth
 giveComments.heading = Beth ddaethoch chi yma i’w wneud?
 giveComments.intro1 = Peidiwch â chynnwys unrhyw wybodaeth bersonol nac ariannol. Er enghraifft, eich rhif Yswiriant Gwladol neu rif eich cerdyn credyd.
-giveComments.error.length = Rhaid i’r hyn y daethoch i’w wneud fod yn 1,000 o gymeriadau neu’n llai
+giveComments.error.length = Rhaid i’r hyn y daethoch chi yma i’w wneud fod yn 1,000 o gymeriadau neu’n llai
