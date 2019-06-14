@@ -52,8 +52,8 @@ class OtherQuestionsEmployeeExpensesBetaFormProvider @Inject() extends Mappings 
     )(OtherQuestionsEmployeeExpensesBeta.apply)(OtherQuestionsEmployeeExpensesBeta.unapply))
 
   val personalDetailsMapping: Mapping[PersonalDetails] = mapping(
-        "fullName" -> optional(text().verifying(maxLength(1000, "giveReason.error.maxlength"))),
-        "email" -> optional(text().verifying(maxLength(1000, "giveReason.error.maxlength")))
+        "fullName" -> optional(text().verifying(maxLength(1000, "fullName.error.maxlength"))),
+        "email" -> optional(text().verifying(maxLength(1000, "email.error.maxlength")))
       )(PersonalDetails.apply)(PersonalDetails.unapply)
 }
 

@@ -1,0 +1,82 @@
+@*
+ * Copyright 2019 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import config.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html._
+@import models.{HowDoYouFeelQuestion, HowEasyQuestion}
+@import views.ViewUtils._
+
+@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
+
+@privacyPolicyLink = {
+    <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer">@messages("otherQuestionsEmployeeExpensesBeta.introLinkText")</a>
+}
+
+@main_template(
+    title = s"${errorPrefix(form)} ${messages("otherQuestionsEmployeeExpensesBeta.title")}",
+    appConfig = appConfig,
+    bodyClasses = None) {
+
+    @helpers.form(action = action, 'autoComplete -> "off") {
+
+        @components.error_summary(form.errors)
+
+        @components.heading("otherQuestionsEmployeeExpensesBeta.heading")
+
+        <p>@messages("otherQuestionsEmployeeExpensesBeta.intro1")</p>
+
+        <p>@Html(messages("otherQuestionsEmployeeExpensesBeta.intro2", privacyPolicyLink))</p>
+
+        <p>@messages("otherQuestionsEmployeeExpensesBeta.intro3")</p>
+
+        @components.input_yes_no(
+            field = form("ableToDo"),
+            label = messages("otherQuestionsEmployeeExpensesBeta.ableToDo.heading"),
+            labelClass = Some("heading-medium")
+        )
+
+        @components.input_radio(
+            field = form("howEasyScore"),
+            legend = messages("otherQuestionsEmployeeExpensesBeta.howEasyScore.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = HowEasyQuestion.options
+        )
+
+        @components.input_textarea(
+            field = form("whyGiveScore"),
+            label = messages("otherQuestionsEmployeeExpensesBeta.whyGiveScore.heading"),
+            labelClass = Some("heading-medium"),
+            maximum = Some(1000)
+        )
+
+        @components.input_radio(
+            field = form("howDoYouFeelScore"),
+            legend = messages("otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = HowDoYouFeelQuestion.options,
+            inputClass = Some("ga-custom-dimension-radioButton"),
+            trackGa = true,
+            gaCustomDimension = Some(73)
+        )
+
+        @components.input_text(
+            field = form("personalDetails.fullName"),
+            label = messages("otherQuestionsEmployeeExpensesBeta.fullName"),
+            hint = Some(messages("otherQuestionsEmployeeExpensesBeta.hint")),
+            maximum = Some(1000)
+        )
+    }
+}

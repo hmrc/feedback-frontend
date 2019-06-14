@@ -97,7 +97,7 @@ class OtherQuestionsEmployeeExpensesBetaFormProviderSpec extends OptionFieldBeha
 
   ".fullName" must {
     val fieldName="personalDetails.fullName"
-    val invalidError="giveReason.error.maxlength"
+    val invalidError="fullName.error.maxlength"
     val maxLength = 1000
 
     behave like fieldWithMaxLength(
@@ -110,7 +110,7 @@ class OtherQuestionsEmployeeExpensesBetaFormProviderSpec extends OptionFieldBeha
 
   ".email" must {
     val fieldName="personalDetails.email"
-    val invalidError="giveReason.error.maxlength"
+    val invalidError="email.error.maxlength"
     val maxLength = 1000
 
     behave like fieldWithMaxLength(
