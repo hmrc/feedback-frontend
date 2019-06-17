@@ -17,9 +17,9 @@
 package controllers
 
 import config.FrontendAppConfig
-import forms.OtherQuestionsFormProvider
+import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
 import javax.inject.Inject
-import models.OtherQuestions
+import models.{OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -27,35 +27,35 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.Action
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
-import views.html.otherQuestions
+import views.html.otherQuestionsEmployeeExpensesBeta
 
 import scala.concurrent.ExecutionContext
 
-class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
-                                         override val messagesApi: MessagesApi,
-                                         navigator: Navigator,
-                                         formProvider: OtherQuestionsFormProvider,
-                                         auditService: AuditService
+class OtherQuestionsEmployeeExpensesBetaController @Inject()(appConfig: FrontendAppConfig,
+                                                             override val messagesApi: MessagesApi,
+                                                             navigator: Navigator,
+                                                             formProvider: OtherQuestionsEmployeeExpensesBetaFormProvider,
+                                                             auditService: AuditService
                                         )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
-  val form: Form[OtherQuestions] = formProvider()
+  val form: Form[OtherQuestionsEmployeeExpensesBeta] = formProvider()
   lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
-  def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
+  def submitCall = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit()
 
-  def onPageLoad(origin: String) = Action {
+  def onPageLoad = Action {
     implicit request =>
-      Ok(otherQuestions(appConfig, form, submitCall(origin)))
+      Ok(otherQuestionsEmployeeExpensesBeta(appConfig, form, submitCall))
   }
 
-  def onSubmit(origin: String) = Action {
+  def onSubmit = Action {
     implicit request =>
-
+      val origin="employee-expenses"
       form.bindFromRequest().fold(
         formWithErrors =>
-          BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
+          BadRequest(otherQuestionsEmployeeExpensesBeta(appConfig, formWithErrors, submitCall)),
         value => {
           println("here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! value " + value)
-          auditService.otherAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
+          auditService.otherEmployeeExpensesBetaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
           Redirect(successPage)
         }
       )

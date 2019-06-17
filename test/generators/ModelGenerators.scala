@@ -30,6 +30,8 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)
 
+  implicit lazy val arbitraryOtherEmployeeExpensesBetaQuestions: Arbitrary[OtherQuestionsEmployeeExpensesBeta] = Arbitrary(otherQuestionsEmployeeExpensesBetaGen)
+
   implicit lazy val arbitraryPTAQuestions: Arbitrary[PTAQuestions] = Arbitrary(ptaQuestionsGen)
 
   implicit lazy val arbitraryBTAQuestions: Arbitrary[BTAQuestions] = Arbitrary(btaQuestionsGen)
@@ -55,6 +57,19 @@ trait ModelGenerators {
       OtherQuestions(ableToDo, howEasy, whyScore, howFeel)
     }
 
+
+  lazy val otherQuestionsEmployeeExpensesBetaGen: Gen[OtherQuestionsEmployeeExpensesBeta] =
+    for {
+      ableToDo <- option(arbitrary[Boolean])
+      howEasy  <- option(howEasyQuestionGen)
+      whyScore <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howFeel  <- option(howDoYouFeelQuestionGen)
+      fullName <- option(arbitrary[String].suchThat(_.nonEmpty))
+      email    <- option(arbitrary[String].suchThat(_.nonEmpty))
+    } yield {
+      val personalDetails=PersonalDetails(fullName,email)
+      OtherQuestionsEmployeeExpensesBeta(ableToDo, howEasy, whyScore, howFeel, Some(personalDetails))
+    }
   lazy val ptaQuestionsGen: Gen[PTAQuestions] =
     for {
       neededToDo <- option(arbitrary[String].suchThat(_.nonEmpty))

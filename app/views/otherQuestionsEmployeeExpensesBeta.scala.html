@@ -16,7 +16,7 @@
 
 @import config.FrontendAppConfig
 @import uk.gov.hmrc.play.views.html._
-@import models.{HowDoYouFeelQuestion, HowEasyQuestion}
+@import models.{HowDoYouFeelQuestion, HowEasyQuestion, PersonalDetails}
 @import views.ViewUtils._
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
@@ -78,5 +78,14 @@
             hint = Some(messages("otherQuestionsEmployeeExpensesBeta.hint")),
             maximum = Some(1000)
         )
+
+        @components.input_text(
+            field = form("personalDetails.email"),
+            label = messages("otherQuestionsEmployeeExpensesBeta.email"),
+            hint = Some(messages("otherQuestionsEmployeeExpensesBeta.hint")),
+            maximum = Some(1000)
+        )
+
+        @components.submit_button()
     }
 }

@@ -10,6 +10,9 @@ GET        /check-your-answers                          controllers.CheckYourAns
 
 GET        /unauthorised                                controllers.UnauthorisedController.onPageLoad
 
+GET        /employee-expenses/beta                      controllers.OtherQuestionsEmployeeExpensesBetaController.onPageLoad
+POST       /employee-expenses/beta                      controllers.OtherQuestionsEmployeeExpensesBetaController.onSubmit
+
 GET        /:origin/personal                            controllers.PTAQuestionsController.onPageLoad(origin: String)
 POST       /:origin/personal                            controllers.PTAQuestionsController.onSubmit(origin: String)
 

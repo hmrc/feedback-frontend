@@ -59,6 +59,10 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("reason" -> otherReason.getOrElse("-"))
   def withGiveComments(answer: String): MapCont =
     _ + ("giveComments" -> answer)
+  def withFullName(fullName: Option[String]): MapCont =
+    _ + ("fullName" -> fullName.getOrElse(("-")))
+  def withEmail(email: Option[String]): MapCont =
+    _ + ("email" -> email.getOrElse(""))
 
 
   def ptaAudit(origin:String, feedbackId: String, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
@@ -103,6 +107,22 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
       withHowFeelScore(questions.howDoYouFeelScore)
     )(emptyMap)
 
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
+
+  def otherEmployeeExpensesBetaAudit(origin:String, feedbackId: String, questions: OtherQuestionsEmployeeExpensesBeta)(implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+        withFeedbackId(feedbackId) andThen
+        withAbleToDo(questions.ableToDo) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore) andThen
+        withFullName(questions.personalDetails.flatMap(_.fullName)) andThen
+        withEmail(questions.personalDetails.flatMap(_.email))
+      )(emptyMap)
+    println("\n\n\n\n\n\n\n\n ffffffffffffffffffffffffffffffffffff " + auditMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 

@@ -17,9 +17,9 @@
 package controllers
 
 import controllers.actions._
-import forms.OtherQuestionsFormProvider
+import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
 import generators.ModelGenerators
-import models.OtherQuestions
+import models.{OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -30,22 +30,22 @@ import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.otherQuestions
+import views.html.{otherQuestions, otherQuestionsEmployeeExpensesBeta}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
+class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new OtherQuestionsFormProvider()
+  val formProvider = new OtherQuestionsEmployeeExpensesBetaFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
+  def submitCall = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new OtherQuestionsController(
+    new OtherQuestionsEmployeeExpensesBetaController(
       frontendAppConfig,
       messagesApi,
       new FakeNavigator(onwardRoute),
@@ -53,22 +53,22 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
       mockAuditService)
 
   def viewAsString(form: Form[_] = form, action: Call) =
-    otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
+    otherQuestionsEmployeeExpensesBeta(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "OtherQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
       forAll(arbitrary[String]) { origin =>
-        val result = controller().onPageLoad(origin)(fakeRequest)
+        val result = controller().onPageLoad(fakeRequest)
 
         status(result) mustBe OK
-        contentAsString(result) mustBe viewAsString(action = submitCall(origin))
+        contentAsString(result) mustBe viewAsString(action = submitCall)
       }
     }
 
     "redirect to the next page when valid data is submitted" in {
       forAll(arbitrary[String]) { origin =>
-        val result = controller().onSubmit(origin)(fakeRequest)
+        val result = controller().onSubmit(fakeRequest)
 
         status(result) mustBe SEE_OTHER
         redirectLocation(result) mustBe Some(onwardRoute.url)
@@ -76,7 +76,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
     }
 
     "audit response on success" in {
-      forAll(arbitrary[String], arbitrary[String], arbitrary[OtherQuestions]) {
+      forAll(arbitrary[String], arbitrary[String], arbitrary[OtherQuestionsEmployeeExpensesBeta]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -84,16 +84,19 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
             "ableToDo" -> answers.ableToDo.map(_.toString),
             "howEasyScore" -> answers.howEasyScore.map(_.toString),
             "whyGiveScore" -> answers.whyGiveScore,
-            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
+            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
+            "fullName" -> answers.personalDetails.flatMap(_.fullName),
+            "email" -> answers.personalDetails.flatMap(_.email)
+          )
 
+          println("\n\n\n\n\n\n\n\n\n\n valueMap" + values)
+          println("\n ANSEWRES " + answers)
 
-          println("\n\n\n\n\n\n\n\n\n values" + values)
-          println("\n answeer" + answers)
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
+          controller().onSubmit(request.withSession(("feedbackId", feedbackId)))
 
           verify(mockAuditService, times(1))
-            .otherAudit(eqTo("x"), eqTo(feedbackId), eqTo(answers))(any())
+            .otherEmployeeExpensesBetaAudit(eqTo("employee-expenses"), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 
@@ -102,10 +105,10 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
         val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
         val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 
-        val result = controller().onSubmit(origin)(postRequest)
+        val result = controller().onSubmit(postRequest)
 
         status(result) mustBe BAD_REQUEST
-        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall(origin))
+        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall)
       }
     }
   }
