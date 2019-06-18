@@ -26,11 +26,12 @@ import models._
 class NavigatorSpec extends SpecBase with MockitoSugar {
 
   val navigator = new Navigator
+  val origin = "/foo"
 
   "Navigator" when {
     "GenericQuestionsPage" should {
       "return ThankYou page" in {
-        navigator.nextPage(GenericQuestionsPage)(()) mustBe routes.ThankYouController.onPageLoad()
+        navigator.nextPage(GenericQuestionsPage)(origin) mustBe routes.ThankYouController.onPageLoad(origin)
       }
     }
   }

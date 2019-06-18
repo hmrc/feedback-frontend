@@ -55,7 +55,7 @@ class GiveReasonController @Inject()(
 
           auditService.giveReasonAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
 
-          Redirect(navigator.nextPage(GenericQuestionsPage)(()))
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }

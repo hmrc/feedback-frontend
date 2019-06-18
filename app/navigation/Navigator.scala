@@ -30,10 +30,10 @@ trait NextPage[A, B] {
 
 object NextPage {
 
-  implicit val genericQuestionsNextPage: NextPage[GenericQuestionsPage.type, Unit] =
-    new NextPage[GenericQuestionsPage.type, Unit] {
-      override def nextPage(page: GenericQuestionsPage.type): Unit => Call = _ =>
-        controllers.routes.ThankYouController.onPageLoad()
+  implicit val genericQuestionsNextPage: NextPage[GenericQuestionsPage.type, String] =
+    new NextPage[GenericQuestionsPage.type, String] {
+      override def nextPage(page: GenericQuestionsPage.type): String => Call = origin =>
+        controllers.routes.ThankYouController.onPageLoad(origin)
     }
 
   implicit val pensionQuestionsNextPage: NextPage[PensionQuestionsPage.type, Unit] =

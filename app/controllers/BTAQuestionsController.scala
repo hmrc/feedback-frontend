@@ -39,7 +39,6 @@ class BTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                       )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
   def submitCall(origin: String) = routes.BTAQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: String) = Action {
@@ -55,7 +54,7 @@ class BTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
           BadRequest(btaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.btaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
-          Redirect(successPage)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }

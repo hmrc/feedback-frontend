@@ -39,7 +39,6 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                       )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[PTAQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
   def submitCall(origin: String) = routes.PTAQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: String) = Action {
@@ -55,7 +54,7 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
           BadRequest(ptaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.ptaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
-          Redirect(successPage)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }

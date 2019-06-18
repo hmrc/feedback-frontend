@@ -57,7 +57,7 @@ class GiveCommentsController @Inject()(
         value => {
 
           auditService.giveCommentsAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
-          Redirect(navigator.nextPage(GenericQuestionsPage)(()))
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }

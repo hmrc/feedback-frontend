@@ -39,7 +39,6 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                         )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
   def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: String) = Action {
@@ -55,7 +54,7 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
           BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.otherAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
-          Redirect(successPage)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }

@@ -26,11 +26,12 @@ class ThankYouControllerSpec extends ControllerSpecBase {
     new ThankYouController(frontendAppConfig, messagesApi)
 
   def viewAsString() = thankYou(frontendAppConfig)(fakeRequest, messages).toString
+  val origin = "/foo"
 
   "ThankYou Controller" must {
 
     "return OK and the correct view for a GET" in {
-      val result = controller().onPageLoad(fakeRequest)
+      val result = controller().onPageLoad(origin)(fakeRequest)
 
       status(result) mustBe OK
       contentAsString(result) mustBe viewAsString()

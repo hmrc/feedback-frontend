@@ -25,7 +25,7 @@ POST       /:origin/give-reason                         controllers.GiveReasonCo
 GET        /:origin/give-comments                       controllers.GiveCommentsController.onPageLoad(origin: String)
 POST       /:origin/give-comments                       controllers.GiveCommentsController.onSubmit(origin: String)
 
-GET        /thank-you                                   controllers.ThankYouController.onPageLoad()
+GET        /:origin/thank-you                           controllers.ThankYouController.onPageLoad(origin: String)
 GET        /thank-you-pension                           controllers.ThankYouController.onPageLoadPension()
 
 # These routes must come last as they will match any /feedback/xxx route
