@@ -10,24 +10,24 @@ GET        /check-your-answers                          controllers.CheckYourAns
 
 GET        /unauthorised                                controllers.UnauthorisedController.onPageLoad
 
-GET        /:origin/personal                            controllers.PTAQuestionsController.onPageLoad(origin: String)
-POST       /:origin/personal                            controllers.PTAQuestionsController.onSubmit(origin: String)
+GET        /:origin/personal                            controllers.PTAQuestionsController.onPageLoad(origin: models.Origin)
+POST       /:origin/personal                            controllers.PTAQuestionsController.onSubmit(origin: models.Origin)
 
-GET        /:origin/business                            controllers.BTAQuestionsController.onPageLoad(origin: String)
-POST       /:origin/business                            controllers.BTAQuestionsController.onSubmit(origin: String)
+GET        /:origin/business                            controllers.BTAQuestionsController.onPageLoad(origin: models.Origin)
+POST       /:origin/business                            controllers.BTAQuestionsController.onSubmit(origin: models.Origin)
 
-GET        /:origin/pension                             controllers.PensionQuestionsController.onPageLoad(origin: String)
-POST       /:origin/pension                             controllers.PensionQuestionsController.onSubmit(origin: String)
+GET        /:origin/pension                             controllers.PensionQuestionsController.onPageLoad(origin: models.Origin)
+POST       /:origin/pension                             controllers.PensionQuestionsController.onSubmit(origin: models.Origin)
 
-GET        /:origin/give-reason                         controllers.GiveReasonController.onPageLoad(origin: String)
-POST       /:origin/give-reason                         controllers.GiveReasonController.onSubmit(origin: String)
+GET        /:origin/give-reason                         controllers.GiveReasonController.onPageLoad(origin: models.Origin)
+POST       /:origin/give-reason                         controllers.GiveReasonController.onSubmit(origin: models.Origin)
 
-GET        /:origin/give-comments                       controllers.GiveCommentsController.onPageLoad(origin: String)
-POST       /:origin/give-comments                       controllers.GiveCommentsController.onSubmit(origin: String)
+GET        /:origin/give-comments                       controllers.GiveCommentsController.onPageLoad(origin: models.Origin)
+POST       /:origin/give-comments                       controllers.GiveCommentsController.onSubmit(origin: models.Origin)
 
-GET        /:origin/thank-you                           controllers.ThankYouController.onPageLoad(origin: String)
+GET        /:origin/thank-you                           controllers.ThankYouController.onPageLoad(origin: models.Origin)
 GET        /thank-you-pension                           controllers.ThankYouController.onPageLoadPension()
 
 # These routes must come last as they will match any /feedback/xxx route
-GET        /:origin                                     controllers.OtherQuestionsController.onPageLoad(origin: String)
-POST       /:origin                                     controllers.OtherQuestionsController.onSubmit(origin: String)
+GET        /:origin                                     controllers.OtherQuestionsController.onPageLoad(origin: models.Origin)
+POST       /:origin                                     controllers.OtherQuestionsController.onSubmit(origin: models.Origin)

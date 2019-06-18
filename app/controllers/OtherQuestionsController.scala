@@ -19,7 +19,7 @@ package controllers
 import config.FrontendAppConfig
 import forms.OtherQuestionsFormProvider
 import javax.inject.Inject
-import models.OtherQuestions
+import models.{Origin, OtherQuestions}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -39,14 +39,14 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                         )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
-  def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: String) = Action {
+  def onPageLoad(origin: Origin) = Action {
     implicit request =>
       Ok(otherQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: String) = Action {
+  def onSubmit(origin: Origin) = Action {
     implicit request =>
 
       form.bindFromRequest().fold(

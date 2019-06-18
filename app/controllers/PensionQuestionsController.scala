@@ -19,7 +19,7 @@ package controllers
 import config.FrontendAppConfig
 import forms.PensionQuestionsFormProvider
 import javax.inject.Inject
-import models.PensionQuestions
+import models.{Origin, PensionQuestions}
 import navigation.Navigator
 import pages.PensionQuestionsPage
 import play.api.data.Form
@@ -40,14 +40,14 @@ class PensionQuestionsController @Inject()(appConfig: FrontendAppConfig,
 
   val form: Form[PensionQuestions] = formProvider()
   lazy val successPage = navigator.nextPage(PensionQuestionsPage)(())
-  def submitCall(origin: String) = routes.PensionQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.PensionQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: String) = Action {
+  def onPageLoad(origin: Origin) = Action {
     implicit request =>
       Ok(pensionQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: String) = Action {
+  def onSubmit(origin: Origin) = Action {
     implicit request =>
 
       form.bindFromRequest().fold(

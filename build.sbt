@@ -20,7 +20,7 @@ lazy val root = (project in file("."))
   )
   .settings(
     name := appName,
-    RoutesKeys.routesImport += "models._",
+    RoutesKeys.routesImport ++= Seq("models._", "config.Binders._"),
     PlayKeys.playDefaultPort := 9514,
     ScoverageKeys.coverageExcludedFiles := "<empty>;Reverse.*;.*filters.*;.*handlers.*;.*components.*;.*repositories.*;" +
       ".*BuildInfo.*;.*javascript.*;.*FrontendAuditConnector.*;.*Routes.*;.*GuiceInjector;" +

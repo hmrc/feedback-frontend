@@ -17,6 +17,7 @@
 package controllers
 
 import controllers.actions._
+import models.Origin
 import play.api.test.Helpers._
 import views.html.thankYou
 
@@ -26,7 +27,7 @@ class ThankYouControllerSpec extends ControllerSpecBase {
     new ThankYouController(frontendAppConfig, messagesApi)
 
   def viewAsString() = thankYou(frontendAppConfig)(fakeRequest, messages).toString
-  val origin = "/foo"
+  val origin = Origin.fromString("/foo")
 
   "ThankYou Controller" must {
 

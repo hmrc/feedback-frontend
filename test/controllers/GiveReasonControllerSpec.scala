@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.GiveReasonFormProvider
 import generators.Generators
-import models.{GiveReason, GiveReasonQuestions}
+import models.{GiveReason, GiveReasonQuestions, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{any, eq => eqTo}
 import org.mockito.Mockito.{reset, times, verify}
@@ -43,14 +43,14 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new GiveReasonController(frontendAppConfig, messagesApi, new FakeNavigator(onwardRoute), formProvider, mockAuditService)
 
-  def viewAsString(form: Form[_] = form, origin: String = "") =
+  def viewAsString(form: Form[_] = form, origin: Origin) =
     giveReason(frontendAppConfig, form, routes.GiveReasonController.onSubmit(origin))(fakeRequest, messages).toString
 
   "GiveReason Controller" must {
 
     "return OK and the correct view for a GET" in {
 
-      forAll { origin: String =>
+      forAll { origin: Origin =>
 
         val result = controller().onPageLoad(origin)(fakeRequest)
 
@@ -61,7 +61,7 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
 
     "redirect to the next page when valid data is submitted" in {
 
-      forAll { origin: String =>
+      forAll { origin: Origin =>
 
         val postRequest = fakeRequest.withFormUrlEncodedBody(("value", GiveReason.options.head.value))
 
@@ -74,7 +74,7 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
 
     "return a Bad Request and errors when invalid data is submitted" in {
 
-      forAll { origin: String =>
+      forAll { origin: Origin =>
 
         val postRequest = fakeRequest.withFormUrlEncodedBody(("value", "invalid value"))
         val boundForm = form.bind(Map("value" -> "invalid value"))
@@ -87,7 +87,7 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
     }
 
     "audit response on success" in {
-      forAll(arbitrary[String], arbitrary[String], arbitrary[GiveReasonQuestions]) {
+      forAll(arbitrary[Origin], arbitrary[String], arbitrary[GiveReasonQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 

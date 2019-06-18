@@ -22,7 +22,7 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
 import forms.BTAQuestionsFormProvider
-import models.BTAQuestions
+import models.{BTAQuestions, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.mvc.Action
@@ -39,14 +39,14 @@ class BTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                       )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()
-  def submitCall(origin: String) = routes.BTAQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: String) = Action {
+  def onPageLoad(origin: Origin) = Action {
     implicit request =>
       Ok(btaQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: String) = Action {
+  def onSubmit(origin: Origin) = Action {
     implicit request =>
 
       form.bindFromRequest().fold(
