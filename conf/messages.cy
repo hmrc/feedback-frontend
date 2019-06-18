@@ -60,6 +60,23 @@ otherQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oed
 otherQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 otherQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
+otherQuesotherQuestionsEmployeeExpensesBetations.title = Give feedback - GOV.UK
+otherQuestionsEmployeeExpensesBeta.heading = Feedback
+otherQuestionsEmployeeExpensesBeta.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+otherQuestionsEmployeeExpensesBeta.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+otherQuestionsEmployeeExpensesBeta.intro3 = The survey takes about 1 minute to complete. There are 4 questions and they are all optional.
+otherQuestionsEmployeeExpensesBeta.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
+otherQuestionsEmployeeExpensesBeta.ableToDo.heading = Were you able to do what you needed to do today?
+otherQuestionsEmployeeExpensesBeta.howEasyScore.heading = How easy was it for you to do what you needed to do today?
+otherQuestionsEmployeeExpensesBeta.whyGiveScore.heading = Why did you give this score?
+otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+otherQuestionsEmployeeExpensesBeta.paragraph1 = If you would like to take part in our research to improve this service, please give us your full name and email address.
+otherQuestionsEmployeeExpensesBeta.fullName = Full name
+otherQuestionsEmployeeExpensesBeta.email = Email address
+otherQuestionsEmployeeExpensesBeta.hint = We will only use this to contact you about our research
+otherQuestionsEmployeeExpensesBeta.paragraph2 = We may not be able to contact everyone that wants to take part in our research.
+
+
 howDoYouFeelQuestion.VerySatisfied = 5. Bodlon iawn
 howDoYouFeelQuestion.Satisfied = 4. Bodlon
 howDoYouFeelQuestion.Moderate = 3. Ddim yn fodlon nac yn anfodlon
