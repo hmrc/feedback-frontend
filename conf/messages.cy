@@ -63,22 +63,21 @@ otherQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oed
 otherQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 otherQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
-otherQuesotherQuestionsEmployeeExpensesBetations.title = Give feedback - GOV.UK
-otherQuestionsEmployeeExpensesBeta.heading = Feedback
-otherQuestionsEmployeeExpensesBeta.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
-otherQuestionsEmployeeExpensesBeta.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
-otherQuestionsEmployeeExpensesBeta.intro3 = The survey takes about 1 minute to complete. There are 4 questions and they are all optional.
-otherQuestionsEmployeeExpensesBeta.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
-otherQuestionsEmployeeExpensesBeta.ableToDo.heading = Were you able to do what you needed to do today?
-otherQuestionsEmployeeExpensesBeta.howEasyScore.heading = How easy was it for you to do what you needed to do today?
-otherQuestionsEmployeeExpensesBeta.whyGiveScore.heading = Why did you give this score?
-otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+otherQuestionsEmployeeExpensesBeta.title = Rhoi adborth - GOV.UK
+otherQuestionsEmployeeExpensesBeta.heading = Adborth
+otherQuestionsEmployeeExpensesBeta.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+otherQuestionsEmployeeExpensesBeta.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+otherQuestionsEmployeeExpensesBeta.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
+otherQuestionsEmployeeExpensesBeta.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
+otherQuestionsEmployeeExpensesBeta.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
+otherQuestionsEmployeeExpensesBeta.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
+otherQuestionsEmployeeExpensesBeta.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 otherQuestionsEmployeeExpensesBeta.paragraph1 = If you would like to take part in our research to improve this service, please give us your full name and email address.
 otherQuestionsEmployeeExpensesBeta.fullName.heading = Full name
 otherQuestionsEmployeeExpensesBeta.email.heading = Email address
 otherQuestionsEmployeeExpensesBeta.hint = We will only use this to contact you about our research
 otherQuestionsEmployeeExpensesBeta.paragraph2 = We may not be able to contact everyone that wants to take part in our research.
-
 
 howDoYouFeelQuestion.VerySatisfied = 5. Bodlon iawn
 howDoYouFeelQuestion.Satisfied = 4. Bodlon
