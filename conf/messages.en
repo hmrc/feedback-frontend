@@ -63,7 +63,7 @@ otherQuestions.howEasyScore.heading = How easy was it for you to do what you nee
 otherQuestions.whyGiveScore.heading = Why did you give this score?
 otherQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
 
-otherQuesotherQuestionsEmployeeExpensesBetations.title = Give feedback - GOV.UK
+otherQuestionsEmployeeExpensesBeta.title = Give feedback - GOV.UK
 otherQuestionsEmployeeExpensesBeta.heading = Feedback
 otherQuestionsEmployeeExpensesBeta.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
 otherQuestionsEmployeeExpensesBeta.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
