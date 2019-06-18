@@ -38,7 +38,7 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
 }
 class OtherQuestionsEmployeeExpensesBetaFormProvider @Inject() extends Mappings {
 
-  private val maxFieldSizeWhyGiveScore = 1000
+  private val maxStringFieldSize = 1000
 
   def apply(): Form[OtherQuestionsEmployeeExpensesBeta] =
     Form(mapping(
@@ -46,10 +46,10 @@ class OtherQuestionsEmployeeExpensesBetaFormProvider @Inject() extends Mappings 
       "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
       "whyGiveScore" ->
         optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
+          .verifying(maxLength(maxStringFieldSize, "whyGiveScore.error.maxlength"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
-      "fullName" -> optional(text().verifying(maxLength(1000, "fullName.error.maxlength"))),
-      "email" -> optional(text().verifying(maxLength(1000, "email.error.maxlength")))
+      "fullName" -> optional(text().verifying(maxLength(maxStringFieldSize, "fullName.error.maxlength"))),
+      "email" -> optional(text().verifying(maxLength(maxStringFieldSize, "email.error.maxlength")))
 
     )(OtherQuestionsEmployeeExpensesBeta.apply)(OtherQuestionsEmployeeExpensesBeta.unapply))
 }

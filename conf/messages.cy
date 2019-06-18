@@ -48,6 +48,9 @@ unauthorised.heading = You can’t access this service with this account
 generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
 whyGiveScore.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
 neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?’ fod yn {0} o gymeriadau neu’n llai
+fullName.error.maxlength = Full name must be {0} characters or less
+email.error.maxlength= Email must be {0} characters or less
+
 
 otherQuestions.title = Rhoi adborth - GOV.UK
 otherQuestions.heading = Adborth
@@ -71,8 +74,8 @@ otherQuestionsEmployeeExpensesBeta.howEasyScore.heading = How easy was it for yo
 otherQuestionsEmployeeExpensesBeta.whyGiveScore.heading = Why did you give this score?
 otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
 otherQuestionsEmployeeExpensesBeta.paragraph1 = If you would like to take part in our research to improve this service, please give us your full name and email address.
-otherQuestionsEmployeeExpensesBeta.fullName = Full name
-otherQuestionsEmployeeExpensesBeta.email = Email address
+otherQuestionsEmployeeExpensesBeta.fullName.heading = Full name
+otherQuestionsEmployeeExpensesBeta.email.heading = Email address
 otherQuestionsEmployeeExpensesBeta.hint = We will only use this to contact you about our research
 otherQuestionsEmployeeExpensesBeta.paragraph2 = We may not be able to contact everyone that wants to take part in our research.
 
