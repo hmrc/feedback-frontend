@@ -54,7 +54,6 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
         formWithErrors =>
           BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          println("here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! value " + value)
           auditService.otherAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
           Redirect(successPage)
         }

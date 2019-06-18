@@ -54,7 +54,6 @@ class OtherQuestionsEmployeeExpensesBetaController @Inject()(appConfig: Frontend
         formWithErrors =>
           BadRequest(otherQuestionsEmployeeExpensesBeta(appConfig, formWithErrors, submitCall)),
         value => {
-          println("here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! value " + value)
           auditService.otherEmployeeExpensesBetaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
           Redirect(successPage)
         }

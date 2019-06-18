@@ -119,10 +119,9 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore) andThen
-        withFullName(questions.personalDetails.flatMap(_.fullName)) andThen
-        withEmail(questions.personalDetails.flatMap(_.email))
+        withFullName(questions.fullName) andThen
+        withEmail(questions.email)
       )(emptyMap)
-    println("\n\n\n\n\n\n\n\n ffffffffffffffffffffffffffffffffffff " + auditMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 

@@ -19,12 +19,13 @@ package views
 import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
 import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import play.api.data.Form
-import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
+import views.behaviours.{OptionsViewBehaviours, QuestionViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import views.html.{otherQuestions, otherQuestionsEmployeeExpensesBeta}
 
 class OtherQuestionsEmployeeExpensesBetaViewSpec extends YesNoViewBehaviours[OtherQuestionsEmployeeExpensesBeta]
   with StringViewBehaviours[OtherQuestionsEmployeeExpensesBeta]
-  with OptionsViewBehaviours[OtherQuestionsEmployeeExpensesBeta] {
+  with OptionsViewBehaviours[OtherQuestionsEmployeeExpensesBeta]
+  with QuestionViewBehaviours[OtherQuestionsEmployeeExpensesBeta]{
 
   val messageKeyPrefix = "otherQuestionsEmployeeExpensesBeta"
 
@@ -38,7 +39,7 @@ class OtherQuestionsEmployeeExpensesBetaViewSpec extends YesNoViewBehaviours[Oth
 
   "OtherQuestions view" must {
 
-    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3", "paragraph1", "paragraph2")
 
     behave like yesNoPage(
       createViewUsingForm,
@@ -64,14 +65,13 @@ class OtherQuestionsEmployeeExpensesBetaViewSpec extends YesNoViewBehaviours[Oth
 
     behave like stringPage(
       createViewUsingForm,
-      "personalDetails.fullName",
+      "fullName",
       "otherQuestionsEmployeeExpensesBeta.fullName")
 
-/*    behave like stringPage(
+    behave like stringPage(
       createViewUsingForm,
-      "personalDetails.email",
-      "otherQuestionsEmployeeExpensesBeta.email")*/
-
+      "email",
+      "otherQuestionsEmployeeExpensesBeta.email")
 
     "contain second introductory paragraph" in {
       val expectedMessage = messages("otherQuestionsEmployeeExpensesBeta.intro2", messages("otherQuestionsEmployeeExpensesBeta.introLinkText"))

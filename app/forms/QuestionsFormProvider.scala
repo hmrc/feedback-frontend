@@ -48,13 +48,10 @@ class OtherQuestionsEmployeeExpensesBetaFormProvider @Inject() extends Mappings 
         optional(text("whyGiveScore.error.required")
           .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
-      "personalDetails" -> optional(personalDetailsMapping)
-    )(OtherQuestionsEmployeeExpensesBeta.apply)(OtherQuestionsEmployeeExpensesBeta.unapply))
+      "fullName" -> optional(text().verifying(maxLength(1000, "fullName.error.maxlength"))),
+      "email" -> optional(text().verifying(maxLength(1000, "email.error.maxlength")))
 
-  val personalDetailsMapping: Mapping[PersonalDetails] = mapping(
-        "fullName" -> optional(text().verifying(maxLength(1000, "fullName.error.maxlength"))),
-        "email" -> optional(text().verifying(maxLength(1000, "email.error.maxlength")))
-      )(PersonalDetails.apply)(PersonalDetails.unapply)
+    )(OtherQuestionsEmployeeExpensesBeta.apply)(OtherQuestionsEmployeeExpensesBeta.unapply))
 }
 
 

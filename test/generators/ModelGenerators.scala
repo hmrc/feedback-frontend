@@ -67,8 +67,7 @@ trait ModelGenerators {
       fullName <- option(arbitrary[String].suchThat(_.nonEmpty))
       email    <- option(arbitrary[String].suchThat(_.nonEmpty))
     } yield {
-      val personalDetails=PersonalDetails(fullName,email)
-      OtherQuestionsEmployeeExpensesBeta(ableToDo, howEasy, whyScore, howFeel, Some(personalDetails))
+      OtherQuestionsEmployeeExpensesBeta(ableToDo, howEasy, whyScore, howFeel, fullName, email)
     }
   lazy val ptaQuestionsGen: Gen[PTAQuestions] =
     for {

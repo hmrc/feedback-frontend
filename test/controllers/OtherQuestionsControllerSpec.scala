@@ -86,14 +86,11 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
             "whyGiveScore" -> answers.whyGiveScore,
             "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
 
-
-          println("\n\n\n\n\n\n\n\n\n values" + values)
-          println("\n answeer" + answers)
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
 
           verify(mockAuditService, times(1))
-            .otherAudit(eqTo("x"), eqTo(feedbackId), eqTo(answers))(any())
+            .otherAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 

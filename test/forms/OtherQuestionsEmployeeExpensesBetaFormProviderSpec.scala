@@ -52,7 +52,6 @@ class OtherQuestionsEmployeeExpensesBetaFormProviderSpec extends OptionFieldBeha
       _.ableToDo
     )
   }
-
   ".howEasyScore" must {
 
     val fieldName = "howEasyScore"
@@ -96,7 +95,7 @@ class OtherQuestionsEmployeeExpensesBetaFormProviderSpec extends OptionFieldBeha
   }
 
   ".fullName" must {
-    val fieldName="personalDetails.fullName"
+    val fieldName="fullName"
     val invalidError="fullName.error.maxlength"
     val maxLength = 1000
 
@@ -109,7 +108,7 @@ class OtherQuestionsEmployeeExpensesBetaFormProviderSpec extends OptionFieldBeha
   }
 
   ".email" must {
-    val fieldName="personalDetails.email"
+    val fieldName="email"
     val invalidError="email.error.maxlength"
     val maxLength = 1000
 

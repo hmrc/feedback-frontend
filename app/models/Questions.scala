@@ -34,7 +34,8 @@ case class OtherQuestionsEmployeeExpensesBeta(
                            howEasyScore:      Option[HowEasyQuestion],
                            whyGiveScore:      Option[String],
                            howDoYouFeelScore: Option[HowDoYouFeelQuestion],
-                           personalDetails:   Option[PersonalDetails]
+                           fullName:          Option[String],
+                           email:             Option[String]
                          )
 
 object OtherQuestionsEmployeeExpensesBeta {

@@ -72,19 +72,25 @@
             gaCustomDimension = Some(73)
         )
 
+        <p>@messages("otherQuestionsEmployeeExpensesBeta.paragraph1")</p>
+
         @components.input_text(
-            field = form("personalDetails.fullName"),
+            field = form("fullName"),
             label = messages("otherQuestionsEmployeeExpensesBeta.fullName"),
             hint = Some(messages("otherQuestionsEmployeeExpensesBeta.hint")),
+            labelClass = Some("heading-medium"),
             maximum = Some(1000)
         )
 
         @components.input_text(
-            field = form("personalDetails.email"),
+            field = form("email"),
             label = messages("otherQuestionsEmployeeExpensesBeta.email"),
             hint = Some(messages("otherQuestionsEmployeeExpensesBeta.hint")),
+            labelClass = Some("heading-medium"),
             maximum = Some(1000)
         )
+
+        <p>@messages("otherQuestionsEmployeeExpensesBeta.paragraph2")</p>
 
         @components.submit_button()
     }

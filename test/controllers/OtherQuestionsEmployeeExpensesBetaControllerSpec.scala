@@ -85,12 +85,9 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
             "howEasyScore" -> answers.howEasyScore.map(_.toString),
             "whyGiveScore" -> answers.whyGiveScore,
             "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
-            "fullName" -> answers.personalDetails.flatMap(_.fullName),
-            "email" -> answers.personalDetails.flatMap(_.email)
+            "fullName" -> answers.fullName,
+            "email" -> answers.email
           )
-
-          println("\n\n\n\n\n\n\n\n\n\n valueMap" + values)
-          println("\n ANSEWRES " + answers)
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
           controller().onSubmit(request.withSession(("feedbackId", feedbackId)))
