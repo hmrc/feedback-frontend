@@ -62,7 +62,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withFullName(fullName: Option[String]): MapCont =
     _ + ("fullName" -> fullName.getOrElse(("-")))
   def withEmail(email: Option[String]): MapCont =
-    _ + ("email" -> email.getOrElse(""))
+    _ + ("email" -> email.getOrElse("-"))
 
 
   def ptaAudit(origin:String, feedbackId: String, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
