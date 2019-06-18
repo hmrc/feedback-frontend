@@ -40,19 +40,18 @@ class OtherQuestionsEmployeeExpensesBetaController @Inject()(appConfig: Frontend
 
   val form: Form[OtherQuestionsEmployeeExpensesBeta] = formProvider()
   lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
-  def submitCall = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit()
+  def submitCall(origin: String) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
 
-  def onPageLoad = Action {
+  def onPageLoad(origin: String) = Action {
     implicit request =>
-      Ok(otherQuestionsEmployeeExpensesBeta(appConfig, form, submitCall))
+      Ok(otherQuestionsEmployeeExpensesBeta(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit = Action {
+  def onSubmit(origin: String) = Action {
     implicit request =>
-      val origin="employee-expenses"
       form.bindFromRequest().fold(
         formWithErrors =>
-          BadRequest(otherQuestionsEmployeeExpensesBeta(appConfig, formWithErrors, submitCall)),
+          BadRequest(otherQuestionsEmployeeExpensesBeta(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.otherEmployeeExpensesBetaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
           Redirect(successPage)

@@ -42,7 +42,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit
+  def submitCall(origin: String) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new OtherQuestionsEmployeeExpensesBetaController(
@@ -59,16 +59,16 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
 
     "return OK and the correct view for a GET" in {
       forAll(arbitrary[String]) { origin =>
-        val result = controller().onPageLoad(fakeRequest)
+        val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
-        contentAsString(result) mustBe viewAsString(action = submitCall)
+        contentAsString(result) mustBe viewAsString(action = submitCall(origin))
       }
     }
 
     "redirect to the next page when valid data is submitted" in {
       forAll(arbitrary[String]) { origin =>
-        val result = controller().onSubmit(fakeRequest)
+        val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
         redirectLocation(result) mustBe Some(onwardRoute.url)
@@ -90,10 +90,10 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
           )
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(request.withSession(("feedbackId", feedbackId)))
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
 
           verify(mockAuditService, times(1))
-            .otherEmployeeExpensesBetaAudit(eqTo("employee-expenses"), eqTo(feedbackId), eqTo(answers))(any())
+            .otherEmployeeExpensesBetaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 
@@ -102,10 +102,10 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
         val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
         val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 
-        val result = controller().onSubmit(postRequest)
+        val result = controller().onSubmit(origin)(postRequest)
 
         status(result) mustBe BAD_REQUEST
-        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall)
+        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall(origin))
       }
     }
   }
