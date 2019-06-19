@@ -22,7 +22,7 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
 import forms.PTAQuestionsFormProvider
-import models.PTAQuestions
+import models.{Origin, PTAQuestions}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.mvc.Action
@@ -39,15 +39,14 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
                                       )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[PTAQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
-  def submitCall(origin: String) = routes.PTAQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.PTAQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: String) = Action {
+  def onPageLoad(origin: Origin) = Action {
     implicit request =>
       Ok(ptaQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: String) = Action {
+  def onSubmit(origin: Origin) = Action {
     implicit request =>
 
       form.bindFromRequest().fold(
@@ -55,7 +54,7 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
           BadRequest(ptaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.ptaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
-          Redirect(successPage)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }

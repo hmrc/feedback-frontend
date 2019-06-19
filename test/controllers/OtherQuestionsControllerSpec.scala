@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.OtherQuestionsFormProvider
 import generators.ModelGenerators
-import models.OtherQuestions
+import models.{Origin, OtherQuestions}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -42,7 +42,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: String) = routes.OtherQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new OtherQuestionsController(
@@ -58,7 +58,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
   "OtherQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -67,7 +67,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -76,7 +76,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
     }
 
     "audit response on success" in {
-      forAll(arbitrary[String], arbitrary[String], arbitrary[OtherQuestions]) {
+      forAll(arbitrary[Origin], arbitrary[String], arbitrary[OtherQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -95,7 +95,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
         val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 

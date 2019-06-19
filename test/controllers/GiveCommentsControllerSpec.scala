@@ -19,6 +19,7 @@ package controllers
 import controllers.actions._
 import forms.GiveCommentsFormProvider
 import generators.ModelGenerators
+import models.Origin
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -44,7 +45,7 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: String) = routes.GiveCommentsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.GiveCommentsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new GiveCommentsController(
@@ -60,7 +61,7 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
   "GiveComments Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -69,7 +70,7 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val postRequest = fakeRequest.withFormUrlEncodedBody(("value", "value"))
         val result = controller().onSubmit(origin)(postRequest)
 
@@ -79,7 +80,7 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
     }
 
     "audit response on success" in {
-      forAll(arbitrary[String], arbitrary[String], arbitrary[String]) {
+      forAll(arbitrary[Origin], arbitrary[String], arbitrary[String]) {
         (origin, feedbackId, answer) =>
           reset(mockAuditService)
 
@@ -94,7 +95,7 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val invalidValue = "*" * 1001
         val postRequest = fakeRequest.withFormUrlEncodedBody(("value", invalidValue))
         val boundForm = form.bind(Map("value" -> invalidValue))

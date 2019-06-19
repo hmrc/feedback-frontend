@@ -14,25 +14,20 @@
  * limitations under the License.
  */
 
-package navigation
+package config
 
-import base.SpecBase
-import org.mockito.Mockito._
-import org.scalatest.mockito.MockitoSugar
-import controllers.routes
-import pages._
-import models._
+import models.Origin
+import play.api.mvc.PathBindable
 
-class NavigatorSpec extends SpecBase with MockitoSugar {
 
-  val navigator = new Navigator
-  val origin = Origin.fromString("/foo")
+object Binders {
 
-  "Navigator" when {
-    "GenericQuestionsPage" should {
-      "return ThankYou page" in {
-        navigator.nextPage(GenericQuestionsPage)(origin) mustBe routes.ThankYouController.onPageLoad(origin)
-      }
+  implicit def originBinder = new PathBindable[Origin] {
+    override def bind(key: String, value: String): Either[String, Origin] = {
+      Right(Origin.fromString(value))
     }
+
+    override def unbind(key: String, value: Origin): String =
+      value.value
   }
 }

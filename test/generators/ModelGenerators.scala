@@ -28,6 +28,11 @@ trait ModelGenerators {
       Gen.oneOf(GiveReason.values)
     }
 
+  implicit lazy val arbitraryOrigin: Arbitrary[Origin] =
+    Arbitrary {
+      arbitrary[String].map(Origin.fromString)
+    }
+
   implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)
 
   implicit lazy val arbitraryOtherEmployeeExpensesBetaQuestions: Arbitrary[OtherQuestionsEmployeeExpensesBeta] = Arbitrary(otherQuestionsEmployeeExpensesBetaGen)

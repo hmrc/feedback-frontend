@@ -14,25 +14,12 @@
  * limitations under the License.
  */
 
-package navigation
+package models
 
-import base.SpecBase
-import org.mockito.Mockito._
-import org.scalatest.mockito.MockitoSugar
-import controllers.routes
-import pages._
-import models._
+abstract case class Origin(value: String)
 
-class NavigatorSpec extends SpecBase with MockitoSugar {
+object Origin {
 
-  val navigator = new Navigator
-  val origin = Origin.fromString("/foo")
+  def fromString(s: String): Origin = new Origin(s) {}
 
-  "Navigator" when {
-    "GenericQuestionsPage" should {
-      "return ThankYou page" in {
-        navigator.nextPage(GenericQuestionsPage)(origin) mustBe routes.ThankYouController.onPageLoad(origin)
-      }
-    }
-  }
 }
