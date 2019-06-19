@@ -52,6 +52,7 @@ class OtherQuestionsEmployeeExpensesBetaFormProviderSpec extends OptionFieldBeha
       _.ableToDo
     )
   }
+
   ".howEasyScore" must {
 
     val fieldName = "howEasyScore"
