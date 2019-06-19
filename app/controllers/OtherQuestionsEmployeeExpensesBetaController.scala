@@ -19,7 +19,7 @@ package controllers
 import config.FrontendAppConfig
 import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
 import javax.inject.Inject
-import models.{OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
+import models.{Origin, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -39,22 +39,22 @@ class OtherQuestionsEmployeeExpensesBetaController @Inject()(appConfig: Frontend
                                         )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestionsEmployeeExpensesBeta] = formProvider()
-  lazy val successPage = navigator.nextPage(GenericQuestionsPage)(())
-  def submitCall(origin: String) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
 
-  def onPageLoad(origin: String) = Action {
+  def submitCall(origin: Origin) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
+
+  def onPageLoad(origin: Origin) = Action {
     implicit request =>
       Ok(otherQuestionsEmployeeExpensesBeta(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: String) = Action {
+  def onSubmit(origin: Origin) = Action {
     implicit request =>
       form.bindFromRequest().fold(
         formWithErrors =>
           BadRequest(otherQuestionsEmployeeExpensesBeta(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.otherEmployeeExpensesBetaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
-          Redirect(successPage)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }

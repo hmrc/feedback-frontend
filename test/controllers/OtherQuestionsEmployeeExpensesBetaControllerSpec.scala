@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
 import generators.ModelGenerators
-import models.{OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
+import models.{Origin, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -42,7 +42,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: String) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new OtherQuestionsEmployeeExpensesBetaController(
@@ -58,7 +58,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
   "OtherQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -67,7 +67,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -76,7 +76,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
     }
 
     "audit response on success" in {
-      forAll(arbitrary[String], arbitrary[String], arbitrary[OtherQuestionsEmployeeExpensesBeta]) {
+      forAll(arbitrary[Origin], arbitrary[String], arbitrary[OtherQuestionsEmployeeExpensesBeta]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -98,7 +98,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
         val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 

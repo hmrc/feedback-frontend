@@ -10,8 +10,8 @@ GET        /check-your-answers                          controllers.CheckYourAns
 
 GET        /unauthorised                                controllers.UnauthorisedController.onPageLoad
 
-GET        /:origin/beta                                controllers.OtherQuestionsEmployeeExpensesBetaController.onPageLoad(origin: String)
-POST       /:origin/beta
+GET        /:origin/beta                                controllers.OtherQuestionsEmployeeExpensesBetaController.onPageLoad(origin: models.Origin)
+POST       /:origin/beta                                controllers.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin: models.Origin)
 
 GET        /:origin/personal                            controllers.PTAQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/personal                            controllers.PTAQuestionsController.onSubmit(origin: models.Origin)

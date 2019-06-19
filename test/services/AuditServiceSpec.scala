@@ -111,13 +111,13 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
 
   "generate correct payload for otherQuestionsEmployeeExpensesBeta questions" in {
 
-    forAll(arbitrary[String], arbitrary[String], arbitrary[OtherQuestionsEmployeeExpensesBeta]) {
+    forAll(arbitrary[Origin], arbitrary[String], arbitrary[OtherQuestionsEmployeeExpensesBeta]) {
       (origin, feedbackId, questions) =>
         reset(auditConnector)
 
         auditService.otherEmployeeExpensesBetaAudit(origin, feedbackId, questions)
 
-        val expected = Map("origin" -> origin,
+        val expected = Map("origin" -> origin.value,
           "feedbackId"        -> feedbackId,
           "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
           "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
