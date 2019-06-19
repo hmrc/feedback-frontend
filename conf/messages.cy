@@ -49,7 +49,7 @@ generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
 whyGiveScore.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
 neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?’ fod yn {0} o gymeriadau neu’n llai
 fullName.error.maxlength = Full name must be {0} characters or less
-email.error.maxlength= Email must be {0} characters or less
+email.error.maxlength = Email must be {0} characters or less
 
 
 otherQuestions.title = Rhoi adborth - GOV.UK
