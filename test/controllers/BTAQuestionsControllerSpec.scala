@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.BTAQuestionsFormProvider
 import generators.ModelGenerators
-import models.BTAQuestions
+import models.{BTAQuestions, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -47,7 +47,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: String) = routes.BTAQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new BTAQuestionsController(
@@ -63,7 +63,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase
   "BTAQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -72,7 +72,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -81,7 +81,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase
     }
 
     "audit response on success" in {
-      forAll(arbitrary[String], arbitrary[String], arbitrary[BTAQuestions]) {
+      forAll(arbitrary[Origin], arbitrary[String], arbitrary[BTAQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -102,7 +102,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
         val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 

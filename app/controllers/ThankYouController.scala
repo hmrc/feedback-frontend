@@ -20,6 +20,7 @@ import javax.inject.Inject
 import play.api.i18n.{I18nSupport, MessagesApi}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
+import models.Origin
 import play.api.mvc.Action
 import views.html.{thankYou, thankYouPension}
 
@@ -27,7 +28,7 @@ class ThankYouController @Inject()(appConfig: FrontendAppConfig,
                                    override val messagesApi: MessagesApi
                                    ) extends FrontendController with I18nSupport {
 
-  def onPageLoad = Action {
+  def onPageLoad(origin: Origin) = Action {
     implicit request =>
       Ok(thankYou(appConfig))
   }

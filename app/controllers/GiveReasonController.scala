@@ -19,6 +19,7 @@ package controllers
 import config.FrontendAppConfig
 import forms.GiveReasonFormProvider
 import javax.inject.Inject
+import models.Origin
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -37,15 +38,15 @@ class GiveReasonController @Inject()(
                                       ) extends FrontendController with I18nSupport {
 
   val form = formProvider()
-  def submitCall(origin: String) = routes.GiveReasonController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.GiveReasonController.onSubmit(origin)
 
-  def onPageLoad(origin: String) = Action {
+  def onPageLoad(origin: Origin) = Action {
     implicit request =>
 
       Ok(giveReason(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: String) = Action {
+  def onSubmit(origin: Origin) = Action {
     implicit request =>
 
       form.bindFromRequest().fold(
@@ -55,7 +56,7 @@ class GiveReasonController @Inject()(
 
           auditService.giveReasonAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
 
-          Redirect(navigator.nextPage(GenericQuestionsPage)(()))
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }

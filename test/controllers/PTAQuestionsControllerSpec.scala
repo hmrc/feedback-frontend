@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.PTAQuestionsFormProvider
 import generators.ModelGenerators
-import models.PTAQuestions
+import models.{Origin, PTAQuestions}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -43,7 +43,7 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
 
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: String) = routes.PTAQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.PTAQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new PTAQuestionsController(
@@ -59,7 +59,7 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
   "PTAQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -68,7 +68,7 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -77,7 +77,7 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
     }
 
     "audit response on success" in {
-      forAll(arbitrary[String], arbitrary[String], arbitrary[PTAQuestions]) {
+      forAll(arbitrary[Origin], arbitrary[String], arbitrary[PTAQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -97,7 +97,7 @@ class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks 
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[String]) { origin =>
+      forAll(arbitrary[Origin]) { origin =>
         val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
         val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 

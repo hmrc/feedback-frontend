@@ -33,8 +33,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
   type MapCont = Map[String, String] => Map[String, String]
 
-  def withOrigin(origin: String): MapCont =
-    _ + ("origin" -> origin)
+  def withOrigin(origin: Origin): MapCont =
+    _ + ("origin" -> origin.value)
   def withFeedbackId(feedbackId: String): MapCont =
     _ + ("feedbackId" -> feedbackId)
   def withNeededToDo(neededToDo: Option[String]): MapCont =
@@ -61,7 +61,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("giveComments" -> answer)
 
 
-  def ptaAudit(origin:String, feedbackId: String, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def ptaAudit(origin:Origin, feedbackId: String, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -76,7 +76,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def btaAudit(origin:String, feedbackId: String, questions: BTAQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def btaAudit(origin:Origin, feedbackId: String, questions: BTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -92,7 +92,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def otherAudit(origin:String, feedbackId: String, questions: OtherQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def otherAudit(origin:Origin, feedbackId: String, questions: OtherQuestions)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -106,7 +106,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def pensionAudit(origin:String, feedbackId: String, questions: PensionQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def pensionAudit(origin:Origin, feedbackId: String, questions: PensionQuestions)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -121,7 +121,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def giveReasonAudit(origin: String, feedbackId: String, questions: GiveReasonQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def giveReasonAudit(origin: Origin, feedbackId: String, questions: GiveReasonQuestions)(implicit hc: HeaderCarrier): Unit = {
     val auditMap = (
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
@@ -132,7 +132,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def giveCommentsAudit(origin: String, feedbackId: String, answer: String)(implicit hc: HeaderCarrier): Unit = {
+  def giveCommentsAudit(origin: Origin, feedbackId: String, answer: String)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
