@@ -50,7 +50,7 @@ generic.max-characters = You can enter up to {0} characters
 whyGiveScore.error.maxlength = Why did you give this score must be {0} characters or less
 neededToDo.error.maxlength = What was the main thing you needed to do today must be {0} characters or less
 fullName.error.maxlength = Full name must be {0} characters or less
-email.error.maxlength= Email must be {0} characters or less
+email.error.maxlength = Email must be {0} characters or less
 
 otherQuestions.title = Give feedback - GOV.UK
 otherQuestions.heading = Feedback
