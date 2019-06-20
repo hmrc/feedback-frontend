@@ -19,7 +19,7 @@ package controllers
 import config.FrontendAppConfig
 import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
 import javax.inject.Inject
-import models.{Origin, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
+import models.{FeedbackId, Origin, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -53,7 +53,7 @@ class OtherQuestionsEmployeeExpensesBetaController @Inject()(appConfig: Frontend
         formWithErrors =>
           BadRequest(otherQuestionsEmployeeExpensesBeta(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.otherEmployeeExpensesBetaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
+          auditService.otherEmployeeExpensesBetaAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )

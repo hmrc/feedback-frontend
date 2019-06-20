@@ -19,7 +19,7 @@ package controllers
 import config.FrontendAppConfig
 import forms.GiveReasonFormProvider
 import javax.inject.Inject
-import models.Origin
+import models.{FeedbackId, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -54,7 +54,7 @@ class GiveReasonController @Inject()(
           BadRequest(giveReason(appConfig, formWithErrors, submitCall(origin))),
         value => {
 
-          auditService.giveReasonAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
+          auditService.giveReasonAudit(origin, FeedbackId.fromSession, value)
 
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }

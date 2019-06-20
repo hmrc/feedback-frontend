@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.BTAQuestionsFormProvider
 import generators.ModelGenerators
-import models.{BTAQuestions, Origin}
+import models.{BTAQuestions, FeedbackId, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -81,7 +81,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[String], arbitrary[BTAQuestions]) {
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[BTAQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -94,7 +94,7 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase
             "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId))).futureValue
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value))).futureValue
 
           verify(mockAuditService, times(1))
             .btaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())

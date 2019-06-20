@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.PensionQuestionsFormProvider
 import generators.ModelGenerators
-import models.{Origin, PensionQuestions}
+import models.{FeedbackId, Origin, PensionQuestions}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -76,7 +76,7 @@ class PensionQuestionsControllerSpec extends ControllerSpecBase with PropertyChe
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[String], arbitrary[PensionQuestions]) {
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[PensionQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -88,7 +88,7 @@ class PensionQuestionsControllerSpec extends ControllerSpecBase with PropertyChe
             "likelyToDo" -> answers.likelyToDo.map(_.toString))
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
           verify(mockAuditService, times(1))
             .pensionAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())

@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
 import generators.ModelGenerators
-import models.{Origin, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
+import models.{FeedbackId, Origin, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -76,7 +76,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[String], arbitrary[OtherQuestionsEmployeeExpensesBeta]) {
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestionsEmployeeExpensesBeta]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -90,7 +90,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
           )
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
           verify(mockAuditService, times(1))
             .otherEmployeeExpensesBetaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())

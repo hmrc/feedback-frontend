@@ -19,7 +19,7 @@ package controllers
 import config.FrontendAppConfig
 import forms.PensionQuestionsFormProvider
 import javax.inject.Inject
-import models.{Origin, PensionQuestions}
+import models.{FeedbackId, Origin, PensionQuestions}
 import navigation.Navigator
 import pages.PensionQuestionsPage
 import play.api.data.Form
@@ -54,7 +54,7 @@ class PensionQuestionsController @Inject()(appConfig: FrontendAppConfig,
         formWithErrors =>
           BadRequest(pensionQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.pensionAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
+          auditService.pensionAudit(origin, FeedbackId.fromSession, value)
           Redirect(successPage)
         }
       )

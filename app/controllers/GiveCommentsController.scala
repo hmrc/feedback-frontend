@@ -21,7 +21,7 @@ import connectors.DataCacheConnector
 import controllers.actions._
 import forms.GiveCommentsFormProvider
 import javax.inject.Inject
-import models.Origin
+import models.{FeedbackId, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -57,7 +57,7 @@ class GiveCommentsController @Inject()(
           BadRequest(giveComments(appConfig, formWithErrors, submitCall(origin))),
         value => {
 
-          auditService.giveCommentsAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
+          auditService.giveCommentsAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )

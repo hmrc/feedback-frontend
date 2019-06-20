@@ -22,7 +22,7 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
 import forms.PTAQuestionsFormProvider
-import models.{Origin, PTAQuestions}
+import models.{FeedbackId, Origin, PTAQuestions}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.mvc.Action
@@ -53,7 +53,7 @@ class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
         formWithErrors =>
           BadRequest(ptaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.ptaAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
+          auditService.ptaAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )

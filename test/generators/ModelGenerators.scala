@@ -16,10 +16,15 @@
 
 package generators
 
+
 import models._
 import org.scalacheck.{Arbitrary, Gen}
 import Arbitrary._
 import Gen._
+import base.SpecBase
+import play.api.Application
+import play.api.test.FakeRequest
+import uk.gov.hmrc.http.HeaderCarrier
 
 trait ModelGenerators {
 
@@ -31,6 +36,14 @@ trait ModelGenerators {
   implicit lazy val arbitraryOrigin: Arbitrary[Origin] =
     Arbitrary {
       arbitrary[String].map(Origin.fromString)
+    }
+
+  implicit def arbitraryFeedbackId(implicit ev: Application): Arbitrary[FeedbackId] =
+    Arbitrary {
+      arbitrary[String].map { s =>
+
+        FeedbackId.fromSession(FakeRequest("GET","").withSession("feedbackId" -> s))
+      }
     }
 
   implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)

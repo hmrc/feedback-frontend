@@ -19,7 +19,7 @@ package controllers
 import config.FrontendAppConfig
 import forms.OtherQuestionsFormProvider
 import javax.inject.Inject
-import models.{Origin, OtherQuestions}
+import models.{FeedbackId, Origin, OtherQuestions}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -53,7 +53,7 @@ class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
         formWithErrors =>
           BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.otherAudit(origin, request.session.get("feedbackId").getOrElse("-"), value)
+          auditService.otherAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )

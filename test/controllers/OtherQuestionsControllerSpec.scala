@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.OtherQuestionsFormProvider
 import generators.ModelGenerators
-import models.{Origin, OtherQuestions}
+import models.{FeedbackId, Origin, OtherQuestions}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -76,7 +76,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[String], arbitrary[OtherQuestions]) {
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -87,7 +87,7 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
             "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
           verify(mockAuditService, times(1))
             .otherAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())

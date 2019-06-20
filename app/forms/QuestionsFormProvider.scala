@@ -36,6 +36,7 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(OtherQuestions.apply)(OtherQuestions.unapply))
 }
+
 class OtherQuestionsEmployeeExpensesBetaFormProvider @Inject() extends Mappings {
 
   private val maxStringFieldSize = 1000

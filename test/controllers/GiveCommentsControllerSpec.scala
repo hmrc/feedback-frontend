@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.GiveCommentsFormProvider
 import generators.ModelGenerators
-import models.Origin
+import models.{FeedbackId, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -80,14 +80,14 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[String], arbitrary[String]) {
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[String]) {
         (origin, feedbackId, answer) =>
           reset(mockAuditService)
 
           val values = Map("value" -> answer)
 
           val request = fakeRequest.withFormUrlEncodedBody(values.toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId))).futureValue
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value))).futureValue
 
           verify(mockAuditService, times(1))
             .giveCommentsAudit(eqTo(origin), eqTo(feedbackId), eqTo(answer))(any())
