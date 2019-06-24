@@ -31,8 +31,15 @@ class ThankYouControllerSpec extends ControllerSpecBase {
 
   "ThankYou Controller" must {
 
-    "return OK and the correct view for a GET" in {
-      val result = controller().onPageLoad(origin)(fakeRequest)
+    "return OK and the correct view for a GET with Origin" in {
+      val result = controller().onPageLoadWithOrigin(origin)(fakeRequest)
+
+      status(result) mustBe OK
+      contentAsString(result) mustBe viewAsString()
+    }
+
+    "return OK and the correct view for a GET without Origin" in {
+      val result = controller().onPageLoad()(fakeRequest)
 
       status(result) mustBe OK
       contentAsString(result) mustBe viewAsString()
