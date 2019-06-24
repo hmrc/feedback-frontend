@@ -73,12 +73,11 @@ otherQuestionsEmployeeExpensesBeta.ableToDo.heading = Oeddech chi’n gallu gwne
 otherQuestionsEmployeeExpensesBeta.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 otherQuestionsEmployeeExpensesBeta.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
-otherQuestionsEmployeeExpensesBeta.paragraph1 = If you would like to take part in our research to improve this service, please give us your full name and email address.
-otherQuestionsEmployeeExpensesBeta.fullName.heading = Full name
-otherQuestionsEmployeeExpensesBeta.email.heading = Email address
-otherQuestionsEmployeeExpensesBeta.hint = We will only use this to contact you about our research
-otherQuestionsEmployeeExpensesBeta.paragraph2 = We may not be able to contact everyone that wants to take part in our research.
-
+otherQuestionsEmployeeExpensesBeta.paragraph1 = Os hoffech gymryd rhan yn ein hymchwil i wella’r gwasanaeth hwn, rhowch eich enw llawn a’ch cyfeiriad e-bost i ni.
+otherQuestionsEmployeeExpensesBeta.fullName.heading = Enw llawn
+otherQuestionsEmployeeExpensesBeta.email.heading =Cyfeiriad e-bost
+otherQuestionsEmployeeExpensesBeta.hint = Dim ond i gysylltu â chi ynglŷn ag ein hymchwil y byddwn yn defnyddio hyn
+otherQuestionsEmployeeExpensesBeta.paragraph2 = Mae’n bosibl na fyddwn yn gallu cysylltu â phawb sy’n dymuno cymryd rhan yn ein hymchwil.
 howDoYouFeelQuestion.VerySatisfied = 5. Bodlon iawn
 howDoYouFeelQuestion.Satisfied = 4. Bodlon
 howDoYouFeelQuestion.Moderate = 3. Ddim yn fodlon nac yn anfodlon
