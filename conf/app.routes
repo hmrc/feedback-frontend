@@ -25,7 +25,8 @@ POST       /:origin/give-reason                         controllers.GiveReasonCo
 GET        /:origin/give-comments                       controllers.GiveCommentsController.onPageLoad(origin: models.Origin)
 POST       /:origin/give-comments                       controllers.GiveCommentsController.onSubmit(origin: models.Origin)
 
-GET        /:origin/thank-you                           controllers.ThankYouController.onPageLoad(origin: models.Origin)
+GET        /:origin/thank-you                           controllers.ThankYouController.onPageLoadWithOrigin(origin: models.Origin)
+GET        /thank-you                                   controllers.ThankYouController.onPageLoad()
 GET        /thank-you-pension                           controllers.ThankYouController.onPageLoadPension()
 
 # These routes must come last as they will match any /feedback/xxx route

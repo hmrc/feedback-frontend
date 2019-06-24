@@ -28,7 +28,9 @@ class ThankYouController @Inject()(appConfig: FrontendAppConfig,
                                    override val messagesApi: MessagesApi
                                    ) extends FrontendController with I18nSupport {
 
-  def onPageLoad(origin: Origin) = Action {
+  def onPageLoadWithOrigin(origin: Origin) = onPageLoad()
+
+  def onPageLoad = Action {
     implicit request =>
       Ok(thankYou(appConfig))
   }
