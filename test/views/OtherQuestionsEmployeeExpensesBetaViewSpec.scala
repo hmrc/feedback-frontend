@@ -39,7 +39,7 @@ class OtherQuestionsEmployeeExpensesBetaViewSpec extends YesNoViewBehaviours[Oth
 
   "OtherQuestions view" must {
 
-    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3", "paragraph1", "paragraph2")
+    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3", "paragraph1", "paragraph2", "paragraph3")
 
     behave like yesNoPage(
       createViewUsingForm,

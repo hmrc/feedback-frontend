@@ -74,10 +74,10 @@ otherQuestionsEmployeeExpensesBeta.howEasyScore.heading = How easy was it for yo
 otherQuestionsEmployeeExpensesBeta.whyGiveScore.heading = Why did you give this score?
 otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
 otherQuestionsEmployeeExpensesBeta.paragraph1 = If you would like to take part in our research to improve this service, please give us your full name and email address.
+otherQuestionsEmployeeExpensesBeta.paragraph2 = We will only use this to contact you about our research.
 otherQuestionsEmployeeExpensesBeta.fullName.heading = Full name
 otherQuestionsEmployeeExpensesBeta.email.heading = Email address
-otherQuestionsEmployeeExpensesBeta.hint = We will only use this to contact you about our research
-otherQuestionsEmployeeExpensesBeta.paragraph2 = We may not be able to contact everyone that wants to take part in our research.
+otherQuestionsEmployeeExpensesBeta.paragraph3 = We may not be able to contact everyone that wants to take part in our research.
 
 howDoYouFeelQuestion.VerySatisfied = 5. Very satisfied
 howDoYouFeelQuestion.Satisfied = 4. Satisfied

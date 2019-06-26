@@ -73,24 +73,21 @@
         )
 
         <p>@messages("otherQuestionsEmployeeExpensesBeta.paragraph1")</p>
+        <p>@messages("otherQuestionsEmployeeExpensesBeta.paragraph2")</p>
 
         @components.input_text(
             field = form("fullName"),
             label = messages("otherQuestionsEmployeeExpensesBeta.fullName.heading"),
-            hint = Some(messages("otherQuestionsEmployeeExpensesBeta.hint")),
-            labelClass = Some("heading-medium"),
-            maximum = Some(1000)
+            labelClass = Some("heading-medium")
         )
 
         @components.input_text(
             field = form("email"),
             label = messages("otherQuestionsEmployeeExpensesBeta.email.heading"),
-            hint = Some(messages("otherQuestionsEmployeeExpensesBeta.hint")),
-            labelClass = Some("heading-medium"),
-            maximum = Some(1000)
+            labelClass = Some("heading-medium")
         )
 
-        <p>@messages("otherQuestionsEmployeeExpensesBeta.paragraph2")</p>
+        <p>@messages("otherQuestionsEmployeeExpensesBeta.paragraph3")</p>
 
         @components.submit_button()
     }
