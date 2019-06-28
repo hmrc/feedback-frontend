@@ -17,38 +17,35 @@
 package controllers
 
 import controllers.actions._
-import forms.GiveCommentsFormProvider
+import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
 import generators.ModelGenerators
-import models.{FeedbackId, Origin}
+import models.{FeedbackId, Origin, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
-import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.prop.PropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.giveComments
+import views.html.{otherQuestions, otherQuestionsEmployeeExpensesBeta}
 
-class GiveCommentsControllerSpec extends ControllerSpecBase
-  with PropertyChecks
-  with ModelGenerators
-  with MockitoSugar
-  with ScalaFutures {
+import scala.concurrent.ExecutionContext.Implicits.global
+
+class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new GiveCommentsFormProvider()
+  val formProvider = new OtherQuestionsEmployeeExpensesBetaFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: Origin) = routes.GiveCommentsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new GiveCommentsController(
+    new OtherQuestionsEmployeeExpensesBetaController(
       frontendAppConfig,
       messagesApi,
       new FakeNavigator(onwardRoute),
@@ -56,9 +53,9 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
       mockAuditService)
 
   def viewAsString(form: Form[_] = form, action: Call) =
-    giveComments(frontendAppConfig, form, action)(fakeRequest, messages).toString
+    otherQuestionsEmployeeExpensesBeta(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
-  "GiveComments Controller" must {
+  "OtherQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
       forAll(arbitrary[Origin]) { origin =>
@@ -71,8 +68,7 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
 
     "redirect to the next page when valid data is submitted" in {
       forAll(arbitrary[Origin]) { origin =>
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("value", "value"))
-        val result = controller().onSubmit(origin)(postRequest)
+        val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
         redirectLocation(result) mustBe Some(onwardRoute.url)
@@ -80,25 +76,31 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[String]) {
-        (origin, feedbackId, answer) =>
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestionsEmployeeExpensesBeta]) {
+        (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
-          val values = Map("value" -> answer)
+          val values = Map(
+            "ableToDo" -> answers.ableToDo.map(_.toString),
+            "howEasyScore" -> answers.howEasyScore.map(_.toString),
+            "whyGiveScore" -> answers.whyGiveScore,
+            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
+            "fullName" -> answers.fullName,
+            "email" -> answers.email
+          )
 
-          val request = fakeRequest.withFormUrlEncodedBody(values.toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value))).futureValue
+          val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
           verify(mockAuditService, times(1))
-            .giveCommentsAudit(eqTo(origin), eqTo(feedbackId), eqTo(answer))(any())
+            .otherEmployeeExpensesBetaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
       forAll(arbitrary[Origin]) { origin =>
-        val invalidValue = "*" * 1001
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("value", invalidValue))
-        val boundForm = form.bind(Map("value" -> invalidValue))
+        val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
+        val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 
         val result = controller().onSubmit(origin)(postRequest)
 

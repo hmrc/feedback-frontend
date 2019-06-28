@@ -29,6 +29,19 @@ object OtherQuestions {
   implicit val formats: Format[OtherQuestions] = Json.format[OtherQuestions]
 }
 
+case class OtherQuestionsEmployeeExpensesBeta(
+                           ableToDo:          Option[Boolean],
+                           howEasyScore:      Option[HowEasyQuestion],
+                           whyGiveScore:      Option[String],
+                           howDoYouFeelScore: Option[HowDoYouFeelQuestion],
+                           fullName:          Option[String],
+                           email:             Option[String]
+                         )
+
+object OtherQuestionsEmployeeExpensesBeta {
+  implicit val formats: Format[OtherQuestionsEmployeeExpensesBeta] = Json.format[OtherQuestionsEmployeeExpensesBeta]
+}
+
 case class PTAQuestions(
   neededToDo:        Option[String],
   ableToDo:          Option[Boolean],

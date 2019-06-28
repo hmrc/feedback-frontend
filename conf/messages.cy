@@ -48,6 +48,9 @@ unauthorised.heading = You can’t access this service with this account
 generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
 whyGiveScore.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
 neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?’ fod yn {0} o gymeriadau neu’n llai
+fullName.error.maxlength = Mae’n rhaid i’r enw llawn fod yn {0} o gymeriadau neu lai
+email.error.maxlength = Mae’n rhaid i’r e-bost fod yn {0} o gymeriadau neu lai
+
 
 otherQuestions.title = Rhoi adborth - GOV.UK
 otherQuestions.heading = Adborth
@@ -59,6 +62,22 @@ otherQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd an
 otherQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 otherQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 otherQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
+
+otherQuestionsEmployeeExpensesBeta.title = Rhoi adborth - GOV.UK
+otherQuestionsEmployeeExpensesBeta.heading = Adborth
+otherQuestionsEmployeeExpensesBeta.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+otherQuestionsEmployeeExpensesBeta.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+otherQuestionsEmployeeExpensesBeta.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
+otherQuestionsEmployeeExpensesBeta.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
+otherQuestionsEmployeeExpensesBeta.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
+otherQuestionsEmployeeExpensesBeta.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
+otherQuestionsEmployeeExpensesBeta.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
+otherQuestionsEmployeeExpensesBeta.paragraph1 = Os hoffech gymryd rhan yn ein hymchwil i wella’r gwasanaeth hwn, rhowch eich enw llawn a’ch cyfeiriad e-bost i ni.
+otherQuestionsEmployeeExpensesBeta.paragraph2 = Dim ond i gysylltu â chi ynglŷn ag ein hymchwil y byddwn yn defnyddio hyn.
+otherQuestionsEmployeeExpensesBeta.fullName.heading = Enw llawn
+otherQuestionsEmployeeExpensesBeta.email.heading =Cyfeiriad e-bost
+otherQuestionsEmployeeExpensesBeta.paragraph3 = Mae’n bosibl na fyddwn yn gallu cysylltu â phawb sy’n dymuno cymryd rhan yn ein hymchwil.
 
 howDoYouFeelQuestion.VerySatisfied = 5. Bodlon iawn
 howDoYouFeelQuestion.Satisfied = 4. Bodlon

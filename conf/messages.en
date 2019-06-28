@@ -49,6 +49,8 @@ unauthorised.heading = You can’t access this service with this account
 generic.max-characters = You can enter up to {0} characters
 whyGiveScore.error.maxlength = Why did you give this score must be {0} characters or less
 neededToDo.error.maxlength = What was the main thing you needed to do today must be {0} characters or less
+fullName.error.maxlength = Full name must be {0} characters or less
+email.error.maxlength = Email must be {0} characters or less
 
 otherQuestions.title = Give feedback - GOV.UK
 otherQuestions.heading = Feedback
@@ -60,6 +62,22 @@ otherQuestions.ableToDo.heading = Were you able to do what you needed to do toda
 otherQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
 otherQuestions.whyGiveScore.heading = Why did you give this score?
 otherQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+
+otherQuestionsEmployeeExpensesBeta.title = Give feedback - GOV.UK
+otherQuestionsEmployeeExpensesBeta.heading = Feedback
+otherQuestionsEmployeeExpensesBeta.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+otherQuestionsEmployeeExpensesBeta.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+otherQuestionsEmployeeExpensesBeta.intro3 = The survey takes about 1 minute to complete. There are 4 questions and they are all optional.
+otherQuestionsEmployeeExpensesBeta.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
+otherQuestionsEmployeeExpensesBeta.ableToDo.heading = Were you able to do what you needed to do today?
+otherQuestionsEmployeeExpensesBeta.howEasyScore.heading = How easy was it for you to do what you needed to do today?
+otherQuestionsEmployeeExpensesBeta.whyGiveScore.heading = Why did you give this score?
+otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+otherQuestionsEmployeeExpensesBeta.paragraph1 = If you would like to take part in our research to improve this service, please give us your full name and email address.
+otherQuestionsEmployeeExpensesBeta.paragraph2 = We will only use this to contact you about our research.
+otherQuestionsEmployeeExpensesBeta.fullName.heading = Full name
+otherQuestionsEmployeeExpensesBeta.email.heading = Email address
+otherQuestionsEmployeeExpensesBeta.paragraph3 = We may not be able to contact everyone that wants to take part in our research.
 
 howDoYouFeelQuestion.VerySatisfied = 5. Very satisfied
 howDoYouFeelQuestion.Satisfied = 4. Satisfied

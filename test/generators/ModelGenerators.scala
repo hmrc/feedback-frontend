@@ -16,10 +16,15 @@
 
 package generators
 
+
 import models._
 import org.scalacheck.{Arbitrary, Gen}
 import Arbitrary._
 import Gen._
+import base.SpecBase
+import play.api.Application
+import play.api.test.FakeRequest
+import uk.gov.hmrc.http.HeaderCarrier
 
 trait ModelGenerators {
 
@@ -33,7 +38,17 @@ trait ModelGenerators {
       arbitrary[String].map(Origin.fromString)
     }
 
+  implicit def arbitraryFeedbackId(implicit ev: Application): Arbitrary[FeedbackId] =
+    Arbitrary {
+      arbitrary[String].map { s =>
+
+        FeedbackId.fromSession(FakeRequest("GET","").withSession("feedbackId" -> s))
+      }
+    }
+
   implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)
+
+  implicit lazy val arbitraryOtherEmployeeExpensesBetaQuestions: Arbitrary[OtherQuestionsEmployeeExpensesBeta] = Arbitrary(otherQuestionsEmployeeExpensesBetaGen)
 
   implicit lazy val arbitraryPTAQuestions: Arbitrary[PTAQuestions] = Arbitrary(ptaQuestionsGen)
 
@@ -60,6 +75,18 @@ trait ModelGenerators {
       OtherQuestions(ableToDo, howEasy, whyScore, howFeel)
     }
 
+
+  lazy val otherQuestionsEmployeeExpensesBetaGen: Gen[OtherQuestionsEmployeeExpensesBeta] =
+    for {
+      ableToDo <- option(arbitrary[Boolean])
+      howEasy  <- option(howEasyQuestionGen)
+      whyScore <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howFeel  <- option(howDoYouFeelQuestionGen)
+      fullName <- option(arbitrary[String].suchThat(_.nonEmpty))
+      email    <- option(arbitrary[String].suchThat(_.nonEmpty))
+    } yield {
+      OtherQuestionsEmployeeExpensesBeta(ableToDo, howEasy, whyScore, howFeel, fullName, email)
+    }
   lazy val ptaQuestionsGen: Gen[PTAQuestions] =
     for {
       neededToDo <- option(arbitrary[String].suchThat(_.nonEmpty))

@@ -17,9 +17,9 @@
 package controllers
 
 import config.FrontendAppConfig
-import forms.OtherQuestionsFormProvider
+import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
 import javax.inject.Inject
-import models.{FeedbackId, Origin, OtherQuestions}
+import models.{FeedbackId, Origin, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -27,33 +27,33 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.Action
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
-import views.html.otherQuestions
+import views.html.otherQuestionsEmployeeExpensesBeta
 
 import scala.concurrent.ExecutionContext
 
-class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
-                                         override val messagesApi: MessagesApi,
-                                         navigator: Navigator,
-                                         formProvider: OtherQuestionsFormProvider,
-                                         auditService: AuditService
+class OtherQuestionsEmployeeExpensesBetaController @Inject()(appConfig: FrontendAppConfig,
+                                                             override val messagesApi: MessagesApi,
+                                                             navigator: Navigator,
+                                                             formProvider: OtherQuestionsEmployeeExpensesBetaFormProvider,
+                                                             auditService: AuditService
                                         )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
 
-  val form: Form[OtherQuestions] = formProvider()
-  def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
+  val form: Form[OtherQuestionsEmployeeExpensesBeta] = formProvider()
+
+  def submitCall(origin: Origin) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action {
     implicit request =>
-      Ok(otherQuestions(appConfig, form, submitCall(origin)))
+      Ok(otherQuestionsEmployeeExpensesBeta(appConfig, form, submitCall(origin)))
   }
 
   def onSubmit(origin: Origin) = Action {
     implicit request =>
-
       form.bindFromRequest().fold(
         formWithErrors =>
-          BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
+          BadRequest(otherQuestionsEmployeeExpensesBeta(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.otherAudit(origin, FeedbackId.fromSession, value)
+          auditService.otherEmployeeExpensesBetaAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )

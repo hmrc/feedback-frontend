@@ -16,6 +16,7 @@
 
 package generators
 
+import models.FeedbackId
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.{Arbitrary, Gen}
 import pages._

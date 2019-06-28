@@ -19,7 +19,7 @@ package controllers
 import controllers.actions._
 import forms.GiveReasonFormProvider
 import generators.Generators
-import models.{GiveReason, GiveReasonQuestions, Origin}
+import models.{FeedbackId, GiveReason, GiveReasonQuestions, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{any, eq => eqTo}
 import org.mockito.Mockito.{reset, times, verify}
@@ -87,7 +87,7 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[String], arbitrary[GiveReasonQuestions]) {
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[GiveReasonQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
@@ -97,7 +97,7 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
           )
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId)))
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
           verify(mockAuditService, times(1))
             .giveReasonAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())

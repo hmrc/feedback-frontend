@@ -19,7 +19,7 @@ package forms
 import javax.inject.Inject
 import forms.mappings.Mappings
 import models._
-import play.api.data.Form
+import play.api.data.{Form, Mapping}
 import play.api.data.Forms._
 
 class OtherQuestionsFormProvider @Inject() extends Mappings {
@@ -36,6 +36,26 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
       "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
     )(OtherQuestions.apply)(OtherQuestions.unapply))
 }
+
+class OtherQuestionsEmployeeExpensesBetaFormProvider @Inject() extends Mappings {
+
+  private val maxStringFieldSize = 1000
+
+  def apply(): Form[OtherQuestionsEmployeeExpensesBeta] =
+    Form(mapping(
+      "ableToDo" -> optional(boolean()),
+      "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+      "whyGiveScore" ->
+        optional(text("whyGiveScore.error.required")
+          .verifying(maxLength(maxStringFieldSize, "whyGiveScore.error.maxlength"))),
+      "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
+      "fullName" -> optional(text().verifying(maxLength(maxStringFieldSize, "fullName.error.maxlength"))),
+      "email" -> optional(text().verifying(maxLength(maxStringFieldSize, "email.error.maxlength")))
+
+    )(OtherQuestionsEmployeeExpensesBeta.apply)(OtherQuestionsEmployeeExpensesBeta.unapply))
+}
+
+
 
 class PTAQuestionsFormProvider @Inject() extends Mappings {
 
