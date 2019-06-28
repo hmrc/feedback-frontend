@@ -48,8 +48,8 @@ unauthorised.heading = You can’t access this service with this account
 generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
 whyGiveScore.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
 neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?’ fod yn {0} o gymeriadau neu’n llai
-fullName.error.maxlength = Full name must be {0} characters or less
-email.error.maxlength = Email must be {0} characters or less
+fullName.error.maxlength = Mae’n rhaid i’r enw llawn fod yn {0} o gymeriadau neu lai
+email.error.maxlength = Mae’n rhaid i’r e-bost fod yn {0} o gymeriadau neu lai
 
 
 otherQuestions.title = Rhoi adborth - GOV.UK
