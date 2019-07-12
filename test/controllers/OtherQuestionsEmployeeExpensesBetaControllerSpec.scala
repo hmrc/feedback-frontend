@@ -42,7 +42,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: Origin) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new OtherQuestionsEmployeeExpensesBetaController(
