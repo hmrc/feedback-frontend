@@ -40,7 +40,7 @@ class OtherQuestionsEmployeeExpensesBetaController @Inject()(appConfig: Frontend
 
   val form: Form[OtherQuestionsEmployeeExpensesBeta] = formProvider()
 
-  def submitCall(origin: Origin) = routes.OtherQuestionsEmployeeExpensesBetaController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action {
     implicit request =>
