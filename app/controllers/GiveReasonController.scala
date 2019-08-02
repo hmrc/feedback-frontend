@@ -30,28 +30,25 @@ import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.giveReason
 
 class GiveReasonController @Inject()(
-                                        appConfig: FrontendAppConfig,
-                                        override val messagesApi: MessagesApi,
-                                        navigator: Navigator,
-                                        formProvider: GiveReasonFormProvider,
-                                        auditService: AuditService
-                                      ) extends FrontendController with I18nSupport {
+  appConfig: FrontendAppConfig,
+  override val messagesApi: MessagesApi,
+  navigator: Navigator,
+  formProvider: GiveReasonFormProvider,
+  auditService: AuditService
+) extends FrontendController with I18nSupport {
 
   val form = formProvider()
   def submitCall(origin: Origin) = routes.GiveReasonController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action {
-    implicit request =>
-
-      Ok(giveReason(appConfig, form, submitCall(origin)))
+  def onPageLoad(origin: Origin) = Action { implicit request =>
+    Ok(giveReason(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action {
-    implicit request =>
-
-      form.bindFromRequest().fold(
-        (formWithErrors: Form[_]) =>
-          BadRequest(giveReason(appConfig, formWithErrors, submitCall(origin))),
+  def onSubmit(origin: Origin) = Action { implicit request =>
+    form
+      .bindFromRequest()
+      .fold(
+        (formWithErrors: Form[_]) => BadRequest(giveReason(appConfig, formWithErrors, submitCall(origin))),
         value => {
 
           auditService.giveReasonAudit(origin, FeedbackId.fromSession, value)

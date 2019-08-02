@@ -24,19 +24,16 @@ import models.Origin
 import play.api.mvc.Action
 import views.html.{thankYou, thankYouPension}
 
-class ThankYouController @Inject()(appConfig: FrontendAppConfig,
-                                   override val messagesApi: MessagesApi
-                                   ) extends FrontendController with I18nSupport {
+class ThankYouController @Inject()(appConfig: FrontendAppConfig, override val messagesApi: MessagesApi)
+    extends FrontendController with I18nSupport {
 
   def onPageLoadWithOrigin(origin: Origin) = onPageLoad()
 
-  def onPageLoad = Action {
-    implicit request =>
-      Ok(thankYou(appConfig))
+  def onPageLoad = Action { implicit request =>
+    Ok(thankYou(appConfig))
   }
 
-  def onPageLoadPension = Action {
-    implicit request =>
-      Ok(thankYouPension(appConfig))
+  def onPageLoadPension = Action { implicit request =>
+    Ok(thankYouPension(appConfig))
   }
 }

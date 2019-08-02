@@ -22,8 +22,7 @@ sealed abstract case class FeedbackId(value: String)
 
 object FeedbackId {
 
-  def fromSession(implicit request: Request[_]): FeedbackId = {
+  def fromSession(implicit request: Request[_]): FeedbackId =
     new FeedbackId(request.session.get("feedbackId").getOrElse("-")) {}
-  }
 
 }

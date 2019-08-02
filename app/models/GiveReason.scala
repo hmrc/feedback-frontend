@@ -23,23 +23,30 @@ sealed trait GiveReason
 
 object GiveReason {
 
-  case object CheckTaxCode     extends WithName("checkTaxCode")     with GiveReason
-  case object CheckTaxYear     extends WithName("checkTaxYear")     with GiveReason
-  case object CheckTaxPaid     extends WithName("checkTaxPaid")     with GiveReason
-  case object ClaimTaxBack     extends WithName("claimTaxBack")     with GiveReason
+  case object CheckTaxCode extends WithName("checkTaxCode") with GiveReason
+  case object CheckTaxYear extends WithName("checkTaxYear") with GiveReason
+  case object CheckTaxPaid extends WithName("checkTaxPaid") with GiveReason
+  case object ClaimTaxBack extends WithName("claimTaxBack") with GiveReason
   case object ContactAboutP800 extends WithName("contactAboutP800") with GiveReason
-  case object P800Wrong        extends WithName("p800Wrong")        with GiveReason
-  case object PayOwedTax       extends WithName("payOwedTax")       with GiveReason
-  case object ProgressChasing  extends WithName("progressChasing")  with GiveReason
-  case object Other            extends WithName("other")            with GiveReason
+  case object P800Wrong extends WithName("p800Wrong") with GiveReason
+  case object PayOwedTax extends WithName("payOwedTax") with GiveReason
+  case object ProgressChasing extends WithName("progressChasing") with GiveReason
+  case object Other extends WithName("other") with GiveReason
 
   val values: Seq[GiveReason] = Seq(
-    CheckTaxCode, CheckTaxYear, CheckTaxPaid, ClaimTaxBack, ContactAboutP800, P800Wrong, PayOwedTax, ProgressChasing, Other
+    CheckTaxCode,
+    CheckTaxYear,
+    CheckTaxPaid,
+    ClaimTaxBack,
+    ContactAboutP800,
+    P800Wrong,
+    PayOwedTax,
+    ProgressChasing,
+    Other
   )
 
-  val options: Seq[RadioOption] = values.map {
-    value =>
-      RadioOption("giveReason", value.toString)
+  val options: Seq[RadioOption] = values.map { value =>
+    RadioOption("giveReason", value.toString)
   }
 
   implicit val enumerable: Enumerable[GiveReason] =

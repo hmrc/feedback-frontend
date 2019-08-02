@@ -27,14 +27,15 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
   private val maxFieldSizeWhyGiveScore = 1000
 
   def apply(): Form[OtherQuestions] =
-    Form(mapping(
-      "ableToDo" -> optional(boolean()),
-      "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
-      "whyGiveScore" ->
-        optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-      "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
-    )(OtherQuestions.apply)(OtherQuestions.unapply))
+    Form(
+      mapping(
+        "ableToDo"     -> optional(boolean()),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "whyGiveScore" ->
+          optional(text("whyGiveScore.error.required")
+            .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+      )(OtherQuestions.apply)(OtherQuestions.unapply))
 }
 
 class OtherQuestionsEmployeeExpensesBetaFormProvider @Inject() extends Mappings {
@@ -42,20 +43,18 @@ class OtherQuestionsEmployeeExpensesBetaFormProvider @Inject() extends Mappings 
   private val maxStringFieldSize = 1000
 
   def apply(): Form[OtherQuestionsEmployeeExpensesBeta] =
-    Form(mapping(
-      "ableToDo" -> optional(boolean()),
-      "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
-      "whyGiveScore" ->
-        optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxStringFieldSize, "whyGiveScore.error.maxlength"))),
-      "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
-      "fullName" -> optional(text().verifying(maxLength(maxStringFieldSize, "fullName.error.maxlength"))),
-      "email" -> optional(text().verifying(maxLength(maxStringFieldSize, "email.error.maxlength")))
-
-    )(OtherQuestionsEmployeeExpensesBeta.apply)(OtherQuestionsEmployeeExpensesBeta.unapply))
+    Form(
+      mapping(
+        "ableToDo"     -> optional(boolean()),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "whyGiveScore" ->
+          optional(text("whyGiveScore.error.required")
+            .verifying(maxLength(maxStringFieldSize, "whyGiveScore.error.maxlength"))),
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
+        "fullName"          -> optional(text().verifying(maxLength(maxStringFieldSize, "fullName.error.maxlength"))),
+        "email"             -> optional(text().verifying(maxLength(maxStringFieldSize, "email.error.maxlength")))
+      )(OtherQuestionsEmployeeExpensesBeta.apply)(OtherQuestionsEmployeeExpensesBeta.unapply))
 }
-
-
 
 class PTAQuestionsFormProvider @Inject() extends Mappings {
 
@@ -63,17 +62,18 @@ class PTAQuestionsFormProvider @Inject() extends Mappings {
   private val maxFieldSizeWhyGiveScore = 1000
 
   def apply(): Form[PTAQuestions] =
-    Form(mapping(
-      "neededToDo" ->
-        optional(text("neededToDo.error.required")
-          .verifying(maxLength(maxFieldSizeAbleToDo, "neededToDo.error.maxlength"))),
-      "ableToDo" -> optional(boolean()),
-      "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
-      "whyGiveScore" ->
-        optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-      "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
-    )(PTAQuestions.apply)(PTAQuestions.unapply))
+    Form(
+      mapping(
+        "neededToDo" ->
+          optional(text("neededToDo.error.required")
+            .verifying(maxLength(maxFieldSizeAbleToDo, "neededToDo.error.maxlength"))),
+        "ableToDo"     -> optional(boolean()),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "whyGiveScore" ->
+          optional(text("whyGiveScore.error.required")
+            .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+      )(PTAQuestions.apply)(PTAQuestions.unapply))
 }
 
 class BTAQuestionsFormProvider @Inject() extends Mappings {
@@ -82,18 +82,19 @@ class BTAQuestionsFormProvider @Inject() extends Mappings {
   private val maxFieldSizeWhyGiveScore = 1000
 
   def apply(): Form[BTAQuestions] =
-    Form(mapping(
-      "mainService" -> optional(enumerable[MainServiceQuestion]()),
-      "mainServiceOther" ->
-        optional(text("mainServiceOther.error.required")
-          .verifying(maxLength(maxFieldSizeMainServiceOther, "generic.max-characters"))),
-      "ableToDo" -> optional(boolean()),
-      "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
-      "whyGiveScore" ->
-        optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-      "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
-    )(BTAQuestions.apply)(BTAQuestions.unapply))
+    Form(
+      mapping(
+        "mainService" -> optional(enumerable[MainServiceQuestion]()),
+        "mainServiceOther" ->
+          optional(text("mainServiceOther.error.required")
+            .verifying(maxLength(maxFieldSizeMainServiceOther, "generic.max-characters"))),
+        "ableToDo"     -> optional(boolean()),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "whyGiveScore" ->
+          optional(text("whyGiveScore.error.required")
+            .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+      )(BTAQuestions.apply)(BTAQuestions.unapply))
 }
 
 class PensionQuestionsFormProvider @Inject() extends Mappings {
@@ -101,15 +102,14 @@ class PensionQuestionsFormProvider @Inject() extends Mappings {
   private val maxFieldSizeWhyGiveScore = 1000
 
   def apply(): Form[PensionQuestions] =
-    Form(mapping(
-      "ableToDo" -> optional(boolean()),
-      "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
-      "whyGiveScore" ->
-        optional(text("whyGiveScore.error.required")
-          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-      "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
-      "likelyToDo" -> optional(enumerable[LikelyToDoQuestion]())
-    )(PensionQuestions.apply)(PensionQuestions.unapply))
+    Form(
+      mapping(
+        "ableToDo"     -> optional(boolean()),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "whyGiveScore" ->
+          optional(text("whyGiveScore.error.required")
+            .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
+        "likelyToDo"        -> optional(enumerable[LikelyToDoQuestion]())
+      )(PensionQuestions.apply)(PensionQuestions.unapply))
 }
-
-

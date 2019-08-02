@@ -30,10 +30,8 @@ class GiveReasonSpec extends WordSpec with MustMatchers with PropertyChecks with
 
       val gen = Gen.oneOf(GiveReason.values)
 
-      forAll(gen) {
-        giveReason =>
-
-          JsString(giveReason.toString).validate[GiveReason].asOpt.value mustEqual giveReason
+      forAll(gen) { giveReason =>
+        JsString(giveReason.toString).validate[GiveReason].asOpt.value mustEqual giveReason
       }
     }
 
@@ -41,10 +39,8 @@ class GiveReasonSpec extends WordSpec with MustMatchers with PropertyChecks with
 
       val gen = arbitrary[String] suchThat (!GiveReason.values.map(_.toString).contains(_))
 
-      forAll(gen) {
-        invalidValue =>
-
-          JsString(invalidValue).validate[GiveReason] mustEqual JsError("Unknown giveReason")
+      forAll(gen) { invalidValue =>
+        JsString(invalidValue).validate[GiveReason] mustEqual JsError("Unknown giveReason")
       }
     }
 
@@ -52,10 +48,8 @@ class GiveReasonSpec extends WordSpec with MustMatchers with PropertyChecks with
 
       val gen = Gen.oneOf(GiveReason.values.toSeq)
 
-      forAll(gen) {
-        giveReason =>
-
-          Json.toJson(giveReason) mustEqual JsString(giveReason.toString)
+      forAll(gen) { giveReason =>
+        Json.toJson(giveReason) mustEqual JsString(giveReason.toString)
       }
     }
   }

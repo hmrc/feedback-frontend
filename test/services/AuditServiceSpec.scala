@@ -30,8 +30,9 @@ import org.scalacheck.Arbitrary._
 import org.scalatestplus.play.OneAppPerSuite
 import utils.FeedbackFrontendHelper.boolToInt
 
-
-class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter with PropertyChecks with ModelGenerators with OneAppPerSuite {
+class AuditServiceSpec
+    extends UnitSpec with MockitoSugar with BeforeAndAfter with PropertyChecks with ModelGenerators
+    with OneAppPerSuite {
 
   implicit val hc = HeaderCarrier()
   implicit val ec = scala.concurrent.ExecutionContext.Implicits.global
@@ -43,22 +44,23 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
 
     "generate correct payload for pta questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[PTAQuestions]) {
-        (origin, feedbackId, questions) =>
-          reset(auditConnector)
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[PTAQuestions]) { (origin, feedbackId, questions) =>
+        reset(auditConnector)
 
-          auditService.ptaAudit(origin, feedbackId, questions)
+        auditService.ptaAudit(origin, feedbackId, questions)
 
-          val expected = Map("origin" -> origin.value,
-            "feedbackId"        -> feedbackId.value,
-            "neededToDo"        -> questions.neededToDo.getOrElse("-"),
-            "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-            "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-            "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-            "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
+        val expected = Map(
+          "origin"            -> origin.value,
+          "feedbackId"        -> feedbackId.value,
+          "neededToDo"        -> questions.neededToDo.getOrElse("-"),
+          "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
+          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
+          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
+          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
+        )
 
-          verify(auditConnector, times(1))
-            .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+        verify(auditConnector, times(1))
+          .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
       }
     }
   }
@@ -67,45 +69,46 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
 
     "generate correct payload for bta questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[BTAQuestions]) {
-        (origin, feedbackId, questions) =>
-          reset(auditConnector)
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[BTAQuestions]) { (origin, feedbackId, questions) =>
+        reset(auditConnector)
 
-          auditService.btaAudit(origin, feedbackId, questions)
+        auditService.btaAudit(origin, feedbackId, questions)
 
-          val expected = Map("origin" -> origin.value,
-            "feedbackId"        -> feedbackId.value,
-            "mainService"       -> questions.mainService.map(_.toString).getOrElse("-"),
-            "mainServiceOther"  -> questions.mainServiceOther.getOrElse("-"),
-            "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-            "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-            "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-            "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
+        val expected = Map(
+          "origin"            -> origin.value,
+          "feedbackId"        -> feedbackId.value,
+          "mainService"       -> questions.mainService.map(_.toString).getOrElse("-"),
+          "mainServiceOther"  -> questions.mainServiceOther.getOrElse("-"),
+          "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
+          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
+          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
+          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
+        )
 
-          verify(auditConnector, times(1))
-            .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+        verify(auditConnector, times(1))
+          .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
       }
     }
   }
 
-
   "generate correct payload for other questions" in {
 
-    forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions]) {
-      (origin, feedbackId, questions) =>
-        reset(auditConnector)
+    forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions]) { (origin, feedbackId, questions) =>
+      reset(auditConnector)
 
-        auditService.otherAudit(origin, feedbackId, questions)
+      auditService.otherAudit(origin, feedbackId, questions)
 
-        val expected = Map("origin" -> origin.value,
-          "feedbackId"        -> feedbackId.value,
-          "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
-          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"))
+      val expected = Map(
+        "origin"            -> origin.value,
+        "feedbackId"        -> feedbackId.value,
+        "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
+        "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
+        "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
+        "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
+      )
 
-        verify(auditConnector, times(1))
-          .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+      verify(auditConnector, times(1))
+        .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
     }
   }
 
@@ -117,14 +120,16 @@ class AuditServiceSpec extends UnitSpec with MockitoSugar with BeforeAndAfter wi
 
         auditService.otherEmployeeExpensesBetaAudit(origin, feedbackId, questions)
 
-        val expected = Map("origin" -> origin.value,
+        val expected = Map(
+          "origin"            -> origin.value,
           "feedbackId"        -> feedbackId.value,
           "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
           "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
           "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
           "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
           "fullName"          -> questions.fullName.getOrElse("-"),
-          "email"             -> questions.email.getOrElse("-"))
+          "email"             -> questions.email.getOrElse("-")
+        )
 
         verify(auditConnector, times(1))
           .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())

@@ -31,27 +31,26 @@ import services.AuditService
 
 import scala.concurrent.ExecutionContext
 
-class BTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
-                                       override val messagesApi: MessagesApi,
-                                       navigator: Navigator,
-                                       formProvider: BTAQuestionsFormProvider,
-                                       auditService: AuditService
-                                      )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
+class BTAQuestionsController @Inject()(
+  appConfig: FrontendAppConfig,
+  override val messagesApi: MessagesApi,
+  navigator: Navigator,
+  formProvider: BTAQuestionsFormProvider,
+  auditService: AuditService)(implicit ec: ExecutionContext)
+    extends FrontendController with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()
   def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action {
-    implicit request =>
-      Ok(btaQuestions(appConfig, form, submitCall(origin)))
+  def onPageLoad(origin: Origin) = Action { implicit request =>
+    Ok(btaQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action {
-    implicit request =>
-
-      form.bindFromRequest().fold(
-        formWithErrors =>
-          BadRequest(btaQuestions(appConfig, formWithErrors, submitCall(origin))),
+  def onSubmit(origin: Origin) = Action { implicit request =>
+    form
+      .bindFromRequest()
+      .fold(
+        formWithErrors => BadRequest(btaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.btaAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))

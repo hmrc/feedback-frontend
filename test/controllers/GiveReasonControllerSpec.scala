@@ -41,7 +41,12 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
   lazy val mockAuditService = mock[AuditService]
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new GiveReasonController(frontendAppConfig, messagesApi, new FakeNavigator(onwardRoute), formProvider, mockAuditService)
+    new GiveReasonController(
+      frontendAppConfig,
+      messagesApi,
+      new FakeNavigator(onwardRoute),
+      formProvider,
+      mockAuditService)
 
   def viewAsString(form: Form[_] = form, origin: Origin) =
     giveReason(frontendAppConfig, form, routes.GiveReasonController.onSubmit(origin))(fakeRequest, messages).toString
@@ -51,7 +56,6 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
     "return OK and the correct view for a GET" in {
 
       forAll { origin: Origin =>
-
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -62,7 +66,6 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
     "redirect to the next page when valid data is submitted" in {
 
       forAll { origin: Origin =>
-
         val postRequest = fakeRequest.withFormUrlEncodedBody(("value", GiveReason.options.head.value))
 
         val result = controller().onSubmit(origin)(postRequest)
@@ -75,7 +78,6 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
     "return a Bad Request and errors when invalid data is submitted" in {
 
       forAll { origin: Origin =>
-
         val postRequest = fakeRequest.withFormUrlEncodedBody(("value", "invalid value"))
         val boundForm = form.bind(Map("value" -> "invalid value"))
 

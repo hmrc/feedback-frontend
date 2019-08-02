@@ -22,9 +22,9 @@ import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewB
 import models.{BTAQuestions, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion}
 import views.html.btaQuestions
 
-class BTAQuestionsViewSpec extends YesNoViewBehaviours[BTAQuestions]
-  with StringViewBehaviours[BTAQuestions]
-  with OptionsViewBehaviours[BTAQuestions] {
+class BTAQuestionsViewSpec
+    extends YesNoViewBehaviours[BTAQuestions] with StringViewBehaviours[BTAQuestions]
+    with OptionsViewBehaviours[BTAQuestions] {
 
   val messageKeyPrefix = "btaQuestions"
 
@@ -39,32 +39,15 @@ class BTAQuestionsViewSpec extends YesNoViewBehaviours[BTAQuestions]
   "BTAQuestions view" must {
     behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
 
-    behave like optionsPage(
-      createViewUsingForm,
-      "mainService",
-      MainServiceQuestion.options,
-      "btaQuestions.mainService")
+    behave like optionsPage(createViewUsingForm, "mainService", MainServiceQuestion.options, "btaQuestions.mainService")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "mainServiceOther",
-      "btaQuestions.mainService")
+    behave like stringPage(createViewUsingForm, "mainServiceOther", "btaQuestions.mainService")
 
-    behave like yesNoPage(
-      createViewUsingForm,
-      "ableToDo",
-      "btaQuestions.ableToDo")
+    behave like yesNoPage(createViewUsingForm, "ableToDo", "btaQuestions.ableToDo")
 
-    behave like optionsPage(
-      createViewUsingForm,
-      "howEasyScore",
-      HowEasyQuestion.options,
-      "btaQuestions.howEasyScore")
+    behave like optionsPage(createViewUsingForm, "howEasyScore", HowEasyQuestion.options, "btaQuestions.howEasyScore")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "whyGiveScore",
-      "btaQuestions.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "btaQuestions.whyGiveScore")
 
     behave like optionsPage(
       createViewUsingForm,

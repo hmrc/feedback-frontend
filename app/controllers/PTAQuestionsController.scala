@@ -31,27 +31,26 @@ import views.html.ptaQuestions
 
 import scala.concurrent.ExecutionContext
 
-class PTAQuestionsController @Inject()(appConfig: FrontendAppConfig,
-                                         override val messagesApi: MessagesApi,
-                                         navigator: Navigator,
-                                         formProvider: PTAQuestionsFormProvider,
-                                         auditService: AuditService
-                                      )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
+class PTAQuestionsController @Inject()(
+  appConfig: FrontendAppConfig,
+  override val messagesApi: MessagesApi,
+  navigator: Navigator,
+  formProvider: PTAQuestionsFormProvider,
+  auditService: AuditService)(implicit ec: ExecutionContext)
+    extends FrontendController with I18nSupport {
 
   val form: Form[PTAQuestions] = formProvider()
   def submitCall(origin: Origin) = routes.PTAQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action {
-    implicit request =>
-      Ok(ptaQuestions(appConfig, form, submitCall(origin)))
+  def onPageLoad(origin: Origin) = Action { implicit request =>
+    Ok(ptaQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action {
-    implicit request =>
-
-      form.bindFromRequest().fold(
-        formWithErrors =>
-          BadRequest(ptaQuestions(appConfig, formWithErrors, submitCall(origin))),
+  def onSubmit(origin: Origin) = Action { implicit request =>
+    form
+      .bindFromRequest()
+      .fold(
+        formWithErrors => BadRequest(ptaQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.ptaAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))

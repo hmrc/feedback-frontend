@@ -27,14 +27,14 @@ trait QuestionViewBehaviours[A] extends ViewBehaviours {
 
   val form: Form[A]
 
-  def pageWithTextFields(createView: (Form[A]) => HtmlFormat.Appendable,
-                         messageKeyPrefix: String,
-                         expectedFormAction: String,
-                         fields: String*) = {
-
+  def pageWithTextFields(
+    createView: (Form[A]) => HtmlFormat.Appendable,
+    messageKeyPrefix: String,
+    expectedFormAction: String,
+    fields: String*) =
     "behave like a question page" when {
       "rendered" must {
-        for(field <- fields) {
+        for (field <- fields) {
           s"contain an input for $field" in {
             val doc = asDocument(createView(form))
             assertRenderedById(doc, field)
@@ -50,11 +50,12 @@ trait QuestionViewBehaviours[A] extends ViewBehaviours {
       "rendered with any error" must {
         "show an error prefix in the browser title" in {
           val doc = asDocument(createView(form.withError(error)))
-          assertEqualsValue(doc, "title", s"""${messages("error.browser.title.prefix")} ${messages(s"$messageKeyPrefix.title")}""")
+          assertEqualsValue(doc, "title", s"""${messages("error.browser.title.prefix")} ${messages(
+            s"$messageKeyPrefix.title")}""")
         }
       }
 
-      for(field <- fields) {
+      for (field <- fields) {
         s"rendered with an error with field '$field'" must {
           "show an error summary" in {
             val doc = asDocument(createView(form.withError(FormError(field, "error"))))
@@ -69,5 +70,4 @@ trait QuestionViewBehaviours[A] extends ViewBehaviours {
         }
       }
     }
-  }
 }

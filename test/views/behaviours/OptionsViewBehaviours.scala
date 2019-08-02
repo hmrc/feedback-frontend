@@ -22,11 +22,11 @@ import viewmodels.RadioOption
 
 trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
-  def optionsPage(createView: Form[A] => HtmlFormat.Appendable,
-                  fieldName: String,
-                  options: Seq[RadioOption],
-                  messageKeyPrefix: String) = {
-
+  def optionsPage(
+    createView: Form[A] => HtmlFormat.Appendable,
+    fieldName: String,
+    options: Seq[RadioOption],
+    messageKeyPrefix: String) =
     s"behave like a page with a $fieldName radio options question" when {
       "rendered" must {
         "contain a legend for the question" in {
@@ -49,14 +49,13 @@ trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
         }
       }
 
-
-      for(option <- options) {
+      for (option <- options) {
         s"rendered with a $fieldName of '${option.value}'" must {
           s"have the '${option.value}' radio button selected" in {
             val doc = asDocument(createView(form.bind(Map(fieldName -> s"${option.value}"))))
             assertContainsRadioButton(doc, option.id, fieldName, option.value, true)
 
-            for(unselectedOption <- options.filterNot(o => o == option)) {
+            for (unselectedOption <- options.filterNot(o => o == option)) {
               assertContainsRadioButton(doc, unselectedOption.id, fieldName, unselectedOption.value, false)
             }
           }
@@ -82,5 +81,4 @@ trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
         }
       }
     }
-  }
 }

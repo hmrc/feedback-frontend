@@ -25,16 +25,16 @@ sealed trait HowEasyQuestion {
 
 object HowEasyQuestion {
 
-  case object VeryEasy      extends WithName("VeryEasy") with HowEasyQuestion {
+  case object VeryEasy extends WithName("VeryEasy") with HowEasyQuestion {
     val value = 5
   }
-  case object Easy          extends WithName("Easy") with HowEasyQuestion {
+  case object Easy extends WithName("Easy") with HowEasyQuestion {
     val value = 4
   }
-  case object Moderate      extends WithName("Moderate") with HowEasyQuestion {
+  case object Moderate extends WithName("Moderate") with HowEasyQuestion {
     val value = 3
   }
-  case object Difficult     extends WithName("Difficult") with HowEasyQuestion {
+  case object Difficult extends WithName("Difficult") with HowEasyQuestion {
     val value = 2
   }
   case object VeryDifficult extends WithName("VeryDifficult") with HowEasyQuestion {
@@ -44,9 +44,8 @@ object HowEasyQuestion {
   val values: Seq[HowEasyQuestion] =
     List(VeryEasy, Easy, Moderate, Difficult, VeryDifficult)
 
-  val options: Seq[RadioOption] = values.map {
-    value =>
-      RadioOption("howEasyQuestion", value.toString)
+  val options: Seq[RadioOption] = values.map { value =>
+    RadioOption("howEasyQuestion", value.toString)
   }
 
   implicit val enumerable: Enumerable[HowEasyQuestion] =

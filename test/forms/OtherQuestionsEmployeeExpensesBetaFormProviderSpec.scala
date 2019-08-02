@@ -36,7 +36,8 @@ import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFi
 import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
 import play.api.data.FormError
 
-class OtherQuestionsEmployeeExpensesBetaFormProviderSpec extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
+class OtherQuestionsEmployeeExpensesBetaFormProviderSpec
+    extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
 
   def form = new OtherQuestionsEmployeeExpensesBetaFormProvider()()
 

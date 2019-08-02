@@ -17,5 +17,5 @@
 package utils
 
 object FeedbackFrontendHelper {
-  def boolToInt(b:Boolean) = if (b) 1 else 0
+  def boolToInt(b: Boolean) = if (b) 1 else 0
 }

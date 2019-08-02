@@ -31,9 +31,9 @@ class GiveReasonFormProviderSpec extends OptionFieldBehaviours {
     behave like optionsField[GiveReasonQuestions, GiveReason](
       form,
       fieldName,
-      validValues  = GiveReason.values.toList,
+      validValues = GiveReason.values.toList,
       invalidError = FormError(fieldName, "error.invalid"),
-      fieldValue   = _.value
+      fieldValue = _.value
     )
   }
 }

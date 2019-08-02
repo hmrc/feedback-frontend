@@ -31,27 +31,27 @@ import views.html.otherQuestionsEmployeeExpensesBeta
 
 import scala.concurrent.ExecutionContext
 
-class OtherQuestionsEmployeeExpensesBetaController @Inject()(appConfig: FrontendAppConfig,
-                                                             override val messagesApi: MessagesApi,
-                                                             navigator: Navigator,
-                                                             formProvider: OtherQuestionsEmployeeExpensesBetaFormProvider,
-                                                             auditService: AuditService
-                                        )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
+class OtherQuestionsEmployeeExpensesBetaController @Inject()(
+  appConfig: FrontendAppConfig,
+  override val messagesApi: MessagesApi,
+  navigator: Navigator,
+  formProvider: OtherQuestionsEmployeeExpensesBetaFormProvider,
+  auditService: AuditService)(implicit ec: ExecutionContext)
+    extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestionsEmployeeExpensesBeta] = formProvider()
 
   def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action {
-    implicit request =>
-      Ok(otherQuestionsEmployeeExpensesBeta(appConfig, form, submitCall(origin)))
+  def onPageLoad(origin: Origin) = Action { implicit request =>
+    Ok(otherQuestionsEmployeeExpensesBeta(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action {
-    implicit request =>
-      form.bindFromRequest().fold(
-        formWithErrors =>
-          BadRequest(otherQuestionsEmployeeExpensesBeta(appConfig, formWithErrors, submitCall(origin))),
+  def onSubmit(origin: Origin) = Action { implicit request =>
+    form
+      .bindFromRequest()
+      .fold(
+        formWithErrors => BadRequest(otherQuestionsEmployeeExpensesBeta(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.otherEmployeeExpensesBetaAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))

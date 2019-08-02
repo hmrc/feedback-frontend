@@ -31,27 +31,26 @@ import views.html.otherQuestions
 
 import scala.concurrent.ExecutionContext
 
-class OtherQuestionsController @Inject()(appConfig: FrontendAppConfig,
-                                         override val messagesApi: MessagesApi,
-                                         navigator: Navigator,
-                                         formProvider: OtherQuestionsFormProvider,
-                                         auditService: AuditService
-                                        )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
+class OtherQuestionsController @Inject()(
+  appConfig: FrontendAppConfig,
+  override val messagesApi: MessagesApi,
+  navigator: Navigator,
+  formProvider: OtherQuestionsFormProvider,
+  auditService: AuditService)(implicit ec: ExecutionContext)
+    extends FrontendController with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
   def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action {
-    implicit request =>
-      Ok(otherQuestions(appConfig, form, submitCall(origin)))
+  def onPageLoad(origin: Origin) = Action { implicit request =>
+    Ok(otherQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action {
-    implicit request =>
-
-      form.bindFromRequest().fold(
-        formWithErrors =>
-          BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
+  def onSubmit(origin: Origin) = Action { implicit request =>
+    form
+      .bindFromRequest()
+      .fold(
+        formWithErrors => BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.otherAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))

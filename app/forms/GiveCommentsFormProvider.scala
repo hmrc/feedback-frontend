@@ -26,8 +26,9 @@ class GiveCommentsFormProvider @Inject() extends Mappings {
 
   def apply(): Form[String] =
     Form(
-      "value" -> optional(text("giveComments.error.required")
-        .verifying(maxLength(1000, "giveComments.error.length")))
+      "value" -> optional(
+        text("giveComments.error.required")
+          .verifying(maxLength(1000, "giveComments.error.length")))
         .transform(_.getOrElse(""), (s: String) => Some(s))
     )
 }

@@ -23,18 +23,17 @@ sealed trait LikelyToDoQuestion
 
 object LikelyToDoQuestion {
 
-  case object OtherPensions         extends WithName("OtherPensions") with LikelyToDoQuestion
-  case object CheckFinances         extends WithName("CheckFinances") with LikelyToDoQuestion
-  case object ClarifyInformation    extends WithName("ClarifyInformation") with LikelyToDoQuestion
+  case object OtherPensions extends WithName("OtherPensions") with LikelyToDoQuestion
+  case object CheckFinances extends WithName("CheckFinances") with LikelyToDoQuestion
+  case object ClarifyInformation extends WithName("ClarifyInformation") with LikelyToDoQuestion
   case object GetProfessionalAdvice extends WithName("GetProfessionalAdvice") with LikelyToDoQuestion
-  case object DoNothing             extends WithName("DoNothing") with LikelyToDoQuestion
+  case object DoNothing extends WithName("DoNothing") with LikelyToDoQuestion
 
   val values: Seq[LikelyToDoQuestion] =
     List(OtherPensions, CheckFinances, ClarifyInformation, GetProfessionalAdvice, DoNothing)
 
-  val options: Seq[RadioOption] = values.map {
-    value =>
-      RadioOption("likelyToDoQuestion", value.toString)
+  val options: Seq[RadioOption] = values.map { value =>
+    RadioOption("likelyToDoQuestion", value.toString)
   }
 
   implicit val enumerable: Enumerable[LikelyToDoQuestion] =

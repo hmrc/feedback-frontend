@@ -23,20 +23,19 @@ sealed trait MainServiceQuestion
 
 object MainServiceQuestion {
 
-  case object SelfAssesment   extends WithName("SelfAssesment") with MainServiceQuestion
-  case object PAYE            extends WithName("PAYE") with MainServiceQuestion
-  case object VAT             extends WithName("VAT") with MainServiceQuestion
-  case object CorporationTax  extends WithName("CorporationTax") with MainServiceQuestion
-  case object CIS             extends WithName("CIS") with MainServiceQuestion
-  case object ECSales         extends WithName("ECSales") with MainServiceQuestion
-  case object Other           extends WithName("Other") with MainServiceQuestion
+  case object SelfAssesment extends WithName("SelfAssesment") with MainServiceQuestion
+  case object PAYE extends WithName("PAYE") with MainServiceQuestion
+  case object VAT extends WithName("VAT") with MainServiceQuestion
+  case object CorporationTax extends WithName("CorporationTax") with MainServiceQuestion
+  case object CIS extends WithName("CIS") with MainServiceQuestion
+  case object ECSales extends WithName("ECSales") with MainServiceQuestion
+  case object Other extends WithName("Other") with MainServiceQuestion
 
   val values: Seq[MainServiceQuestion] =
     List(SelfAssesment, PAYE, VAT, CorporationTax, CIS, ECSales, Other)
 
-  val options: Seq[RadioOption] = values.map {
-    value =>
-      RadioOption("mainServiceQuestion", value.toString)
+  val options: Seq[RadioOption] = values.map { value =>
+    RadioOption("mainServiceQuestion", value.toString)
   }
 
   implicit val enumerable: Enumerable[MainServiceQuestion] =

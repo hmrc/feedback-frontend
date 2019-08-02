@@ -22,9 +22,9 @@ import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewB
 import models.{HowDoYouFeelQuestion, HowEasyQuestion, PTAQuestions}
 import views.html.ptaQuestions
 
-class PTAQuestionsViewSpec extends YesNoViewBehaviours[PTAQuestions]
-  with StringViewBehaviours[PTAQuestions]
-  with OptionsViewBehaviours[PTAQuestions] {
+class PTAQuestionsViewSpec
+    extends YesNoViewBehaviours[PTAQuestions] with StringViewBehaviours[PTAQuestions]
+    with OptionsViewBehaviours[PTAQuestions] {
 
   val messageKeyPrefix = "ptaQuestions"
 
@@ -45,21 +45,11 @@ class PTAQuestionsViewSpec extends YesNoViewBehaviours[PTAQuestions]
       "ptaQuestions.neededToDo",
       Some("ptaQuestions.neededToDo.heading.hintText"))
 
-    behave like yesNoPage(
-      createViewUsingForm,
-      "ableToDo",
-      "ptaQuestions.ableToDo")
+    behave like yesNoPage(createViewUsingForm, "ableToDo", "ptaQuestions.ableToDo")
 
-    behave like optionsPage(
-      createViewUsingForm,
-      "howEasyScore",
-      HowEasyQuestion.options,
-      "ptaQuestions.howEasyScore")
+    behave like optionsPage(createViewUsingForm, "howEasyScore", HowEasyQuestion.options, "ptaQuestions.howEasyScore")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "whyGiveScore",
-      "ptaQuestions.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "ptaQuestions.whyGiveScore")
 
     behave like optionsPage(
       createViewUsingForm,

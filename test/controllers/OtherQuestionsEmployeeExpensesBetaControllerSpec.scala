@@ -34,7 +34,8 @@ import views.html.{otherQuestions, otherQuestionsEmployeeExpensesBeta}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
+class OtherQuestionsEmployeeExpensesBetaControllerSpec
+    extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -81,12 +82,12 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec extends ControllerSpecBas
           reset(mockAuditService)
 
           val values = Map(
-            "ableToDo" -> answers.ableToDo.map(_.toString),
-            "howEasyScore" -> answers.howEasyScore.map(_.toString),
-            "whyGiveScore" -> answers.whyGiveScore,
+            "ableToDo"          -> answers.ableToDo.map(_.toString),
+            "howEasyScore"      -> answers.howEasyScore.map(_.toString),
+            "whyGiveScore"      -> answers.whyGiveScore,
             "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
-            "fullName" -> answers.fullName,
-            "email" -> answers.email
+            "fullName"          -> answers.fullName,
+            "email"             -> answers.email
           )
 
           val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
