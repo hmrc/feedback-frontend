@@ -44,7 +44,6 @@ trait PageBehaviours extends WordSpec with MustMatchers with PropertyChecks with
 
             forAll(gen) {
               case (page, cacheMap) =>
-
                 whenever(!cacheMap.data.keySet.contains(page.toString)) {
 
                   val userAnswers = UserAnswers(cacheMap)
@@ -65,11 +64,11 @@ trait PageBehaviours extends WordSpec with MustMatchers with PropertyChecks with
               page       <- genP
               savedValue <- arbitrary[A]
               cacheMap   <- arbitrary[CacheMap]
-            } yield (page, savedValue, cacheMap copy (data = cacheMap.data + (page.toString -> Json.toJson(savedValue))))
+            } yield
+              (page, savedValue, cacheMap copy (data = cacheMap.data + (page.toString -> Json.toJson(savedValue))))
 
             forAll(gen) {
               case (page, savedValue, cacheMap) =>
-
                 val userAnswers = UserAnswers(cacheMap)
                 userAnswers.get(page).value mustEqual savedValue
             }
@@ -80,8 +79,7 @@ trait PageBehaviours extends WordSpec with MustMatchers with PropertyChecks with
   }
 
   class BeSettable[A] {
-    def apply[P <: QuestionPage[A]](genP: Gen[P])(implicit ev1: Arbitrary[A], ev2: Format[A]): Unit = {
-
+    def apply[P <: QuestionPage[A]](genP: Gen[P])(implicit ev1: Arbitrary[A], ev2: Format[A]): Unit =
       "be able to be set on UserAnswers" in {
 
         val gen = for {
@@ -92,18 +90,15 @@ trait PageBehaviours extends WordSpec with MustMatchers with PropertyChecks with
 
         forAll(gen) {
           case (page, newValue, cacheMap) =>
-
             val userAnswers = UserAnswers(cacheMap)
             val updatedAnswers = userAnswers.set(page, newValue)
             updatedAnswers.get(page).value mustEqual newValue
         }
       }
-    }
   }
 
   class BeRemovable[A] {
-    def apply[P <: QuestionPage[A]](genP: Gen[P])(implicit ev1: Arbitrary[A], ev2: Format[A]): Unit = {
-
+    def apply[P <: QuestionPage[A]](genP: Gen[P])(implicit ev1: Arbitrary[A], ev2: Format[A]): Unit =
       "be able to be removed from UserAnswers" in {
 
         val gen = for {
@@ -113,14 +108,12 @@ trait PageBehaviours extends WordSpec with MustMatchers with PropertyChecks with
         } yield (page, cacheMap copy (data = cacheMap.data + (page.toString -> Json.toJson(savedValue))))
 
         forAll(gen) {
-          case (page, cacheMap)=>
-
+          case (page, cacheMap) =>
             val userAnswers = UserAnswers(cacheMap)
             val updatedAnswers = userAnswers.remove(page)
             updatedAnswers.get(page) must be(empty)
         }
       }
-    }
   }
 
   def beRetrievable[A]: BeRetrievable[A] = new BeRetrievable[A]

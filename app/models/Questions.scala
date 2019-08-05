@@ -19,9 +19,9 @@ package models
 import play.api.libs.json.{Format, Json}
 
 case class OtherQuestions(
-  ableToDo:          Option[Boolean],
-  howEasyScore:      Option[HowEasyQuestion],
-  whyGiveScore:      Option[String],
+  ableToDo: Option[Boolean],
+  howEasyScore: Option[HowEasyQuestion],
+  whyGiveScore: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion]
 )
 
@@ -30,23 +30,23 @@ object OtherQuestions {
 }
 
 case class OtherQuestionsEmployeeExpensesBeta(
-                           ableToDo:          Option[Boolean],
-                           howEasyScore:      Option[HowEasyQuestion],
-                           whyGiveScore:      Option[String],
-                           howDoYouFeelScore: Option[HowDoYouFeelQuestion],
-                           fullName:          Option[String],
-                           email:             Option[String]
-                         )
+  ableToDo: Option[Boolean],
+  howEasyScore: Option[HowEasyQuestion],
+  whyGiveScore: Option[String],
+  howDoYouFeelScore: Option[HowDoYouFeelQuestion],
+  fullName: Option[String],
+  email: Option[String]
+)
 
 object OtherQuestionsEmployeeExpensesBeta {
   implicit val formats: Format[OtherQuestionsEmployeeExpensesBeta] = Json.format[OtherQuestionsEmployeeExpensesBeta]
 }
 
 case class PTAQuestions(
-  neededToDo:        Option[String],
-  ableToDo:          Option[Boolean],
-  howEasyScore:      Option[HowEasyQuestion],
-  whyGiveScore:      Option[String],
+  neededToDo: Option[String],
+  ableToDo: Option[Boolean],
+  howEasyScore: Option[HowEasyQuestion],
+  whyGiveScore: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion]
 )
 
@@ -55,11 +55,11 @@ object PTAQuestions {
 }
 
 case class BTAQuestions(
-  mainService:       Option[MainServiceQuestion],
-  mainServiceOther:  Option[String],
-  ableToDo:          Option[Boolean],
-  howEasyScore:      Option[HowEasyQuestion],
-  whyGiveScore:      Option[String],
+  mainService: Option[MainServiceQuestion],
+  mainServiceOther: Option[String],
+  ableToDo: Option[Boolean],
+  howEasyScore: Option[HowEasyQuestion],
+  whyGiveScore: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion]
 )
 
@@ -68,11 +68,11 @@ object BTAQuestions {
 }
 
 case class PensionQuestions(
-  ableToDo:          Option[Boolean],
-  howEasyScore:      Option[HowEasyQuestion],
-  whyGiveScore:      Option[String],
+  ableToDo: Option[Boolean],
+  howEasyScore: Option[HowEasyQuestion],
+  whyGiveScore: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion],
-  likelyToDo:        Option[LikelyToDoQuestion]
+  likelyToDo: Option[LikelyToDoQuestion]
 )
 
 object PensionQuestions {

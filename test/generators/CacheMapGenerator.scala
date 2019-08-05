@@ -28,22 +28,23 @@ trait CacheMapGenerator {
 
   val generators: Seq[Gen[(Page, JsValue)]] =
     arbitrary[(GiveReasonPage.type, JsValue)] ::
-    arbitrary[(GenericQuestionsPage.type, JsValue)] ::
-    Nil
+      arbitrary[(GenericQuestionsPage.type, JsValue)] ::
+      Nil
 
   implicit lazy val arbitraryCacheMap: Arbitrary[CacheMap] =
     Arbitrary {
       for {
         cacheId <- nonEmptyString
-        data    <- generators match {
-          case Nil => Gen.const(Map[Page, JsValue]())
-          case _   => Gen.mapOf(oneOf(generators))
-        }
-      } yield CacheMap(
-        cacheId,
-        data.map {
-          case (k, v) => ( k.toString, v )
-        }
-      )
+        data <- generators match {
+                 case Nil => Gen.const(Map[Page, JsValue]())
+                 case _   => Gen.mapOf(oneOf(generators))
+               }
+      } yield
+        CacheMap(
+          cacheId,
+          data.map {
+            case (k, v) => (k.toString, v)
+          }
+        )
     }
 }

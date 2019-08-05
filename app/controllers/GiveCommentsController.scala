@@ -31,30 +31,26 @@ import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.giveComments
 
-
 class GiveCommentsController @Inject()(
-                                        appConfig: FrontendAppConfig,
-                                        override val messagesApi: MessagesApi,
-                                        navigator: Navigator,
-                                        formProvider: GiveCommentsFormProvider,
-                                        auditService: AuditService
-                                      ) extends FrontendController with I18nSupport {
+  appConfig: FrontendAppConfig,
+  override val messagesApi: MessagesApi,
+  navigator: Navigator,
+  formProvider: GiveCommentsFormProvider,
+  auditService: AuditService
+) extends FrontendController with I18nSupport {
 
   val form = formProvider()
   def submitCall(origin: Origin) = routes.GiveCommentsController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action {
-    implicit request =>
-
-      Ok(giveComments(appConfig, form, submitCall(origin)))
+  def onPageLoad(origin: Origin) = Action { implicit request =>
+    Ok(giveComments(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action {
-    implicit request =>
-
-      form.bindFromRequest().fold(
-        (formWithErrors: Form[_]) =>
-          BadRequest(giveComments(appConfig, formWithErrors, submitCall(origin))),
+  def onSubmit(origin: Origin) = Action { implicit request =>
+    form
+      .bindFromRequest()
+      .fold(
+        (formWithErrors: Form[_]) => BadRequest(giveComments(appConfig, formWithErrors, submitCall(origin))),
         value => {
 
           auditService.giveCommentsAudit(origin, FeedbackId.fromSession, value)

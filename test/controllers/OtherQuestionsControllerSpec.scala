@@ -34,7 +34,8 @@ import views.html.otherQuestions
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
+class OtherQuestionsControllerSpec
+    extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -76,21 +77,21 @@ class OtherQuestionsControllerSpec extends ControllerSpecBase with PropertyCheck
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions]) {
-        (origin, feedbackId, answers) =>
-          reset(mockAuditService)
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions]) { (origin, feedbackId, answers) =>
+        reset(mockAuditService)
 
-          val values = Map(
-            "ableToDo" -> answers.ableToDo.map(_.toString),
-            "howEasyScore" -> answers.howEasyScore.map(_.toString),
-            "whyGiveScore" -> answers.whyGiveScore,
-            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
+        val values = Map(
+          "ableToDo"          -> answers.ableToDo.map(_.toString),
+          "howEasyScore"      -> answers.howEasyScore.map(_.toString),
+          "whyGiveScore"      -> answers.whyGiveScore,
+          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
+        )
 
-          val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+        controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
-          verify(mockAuditService, times(1))
-            .otherAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+        verify(mockAuditService, times(1))
+          .otherAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 

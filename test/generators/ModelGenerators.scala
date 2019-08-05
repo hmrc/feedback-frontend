@@ -16,7 +16,6 @@
 
 package generators
 
-
 import models._
 import org.scalacheck.{Arbitrary, Gen}
 import Arbitrary._
@@ -41,14 +40,14 @@ trait ModelGenerators {
   implicit def arbitraryFeedbackId(implicit ev: Application): Arbitrary[FeedbackId] =
     Arbitrary {
       arbitrary[String].map { s =>
-
-        FeedbackId.fromSession(FakeRequest("GET","").withSession("feedbackId" -> s))
+        FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> s))
       }
     }
 
   implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)
 
-  implicit lazy val arbitraryOtherEmployeeExpensesBetaQuestions: Arbitrary[OtherQuestionsEmployeeExpensesBeta] = Arbitrary(otherQuestionsEmployeeExpensesBetaGen)
+  implicit lazy val arbitraryOtherEmployeeExpensesBetaQuestions: Arbitrary[OtherQuestionsEmployeeExpensesBeta] =
+    Arbitrary(otherQuestionsEmployeeExpensesBetaGen)
 
   implicit lazy val arbitraryPTAQuestions: Arbitrary[PTAQuestions] = Arbitrary(ptaQuestionsGen)
 
@@ -74,7 +73,6 @@ trait ModelGenerators {
     } yield {
       OtherQuestions(ableToDo, howEasy, whyScore, howFeel)
     }
-
 
   lazy val otherQuestionsEmployeeExpensesBetaGen: Gen[OtherQuestionsEmployeeExpensesBeta] =
     for {

@@ -31,28 +31,27 @@ import views.html.pensionQuestions
 
 import scala.concurrent.ExecutionContext
 
-class PensionQuestionsController @Inject()(appConfig: FrontendAppConfig,
-                                           override val messagesApi: MessagesApi,
-                                           navigator: Navigator,
-                                           formProvider: PensionQuestionsFormProvider,
-                                           auditService: AuditService
-                                        )(implicit ec: ExecutionContext) extends FrontendController with I18nSupport {
+class PensionQuestionsController @Inject()(
+  appConfig: FrontendAppConfig,
+  override val messagesApi: MessagesApi,
+  navigator: Navigator,
+  formProvider: PensionQuestionsFormProvider,
+  auditService: AuditService)(implicit ec: ExecutionContext)
+    extends FrontendController with I18nSupport {
 
   val form: Form[PensionQuestions] = formProvider()
   lazy val successPage = navigator.nextPage(PensionQuestionsPage)(())
   def submitCall(origin: Origin) = routes.PensionQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action {
-    implicit request =>
-      Ok(pensionQuestions(appConfig, form, submitCall(origin)))
+  def onPageLoad(origin: Origin) = Action { implicit request =>
+    Ok(pensionQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action {
-    implicit request =>
-
-      form.bindFromRequest().fold(
-        formWithErrors =>
-          BadRequest(pensionQuestions(appConfig, formWithErrors, submitCall(origin))),
+  def onSubmit(origin: Origin) = Action { implicit request =>
+    form
+      .bindFromRequest()
+      .fold(
+        formWithErrors => BadRequest(pensionQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.pensionAudit(origin, FeedbackId.fromSession, value)
           Redirect(successPage)

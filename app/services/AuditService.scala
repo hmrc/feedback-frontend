@@ -24,12 +24,10 @@ import utils.FeedbackFrontendHelper.boolToInt
 
 import scala.concurrent.ExecutionContext
 
-
 class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: ExecutionContext) {
 
   private val auditType = "feedback"
   private val emptyMap: Map[String, String] = Map.empty
-
 
   type MapCont = Map[String, String] => Map[String, String]
 
@@ -64,53 +62,56 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withEmail(email: Option[String]): MapCont =
     _ + ("email" -> email.getOrElse("-"))
 
-
-  def ptaAudit(origin:Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
-      withFeedbackId(feedbackId) andThen
-      withNeededToDo(questions.neededToDo) andThen
-      withAbleToDo(questions.ableToDo) andThen
-      withHowEasyScore(questions.howEasyScore) andThen
-      withWhyGiveScore(questions.whyGiveScore) andThen
-      withHowFeelScore(questions.howDoYouFeelScore)
+        withFeedbackId(feedbackId) andThen
+        withNeededToDo(questions.neededToDo) andThen
+        withAbleToDo(questions.ableToDo) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def btaAudit(origin:Origin, feedbackId: FeedbackId, questions: BTAQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def btaAudit(origin: Origin, feedbackId: FeedbackId, questions: BTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
-      withFeedbackId(feedbackId) andThen
-      withMainService(questions.mainService) andThen
-      withMainServiceOther(questions.mainServiceOther) andThen
-      withAbleToDo(questions.ableToDo) andThen
-      withHowEasyScore(questions.howEasyScore) andThen
-      withWhyGiveScore(questions.whyGiveScore) andThen
-      withHowFeelScore(questions.howDoYouFeelScore)
+        withFeedbackId(feedbackId) andThen
+        withMainService(questions.mainService) andThen
+        withMainServiceOther(questions.mainServiceOther) andThen
+        withAbleToDo(questions.ableToDo) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def otherAudit(origin:Origin, feedbackId: FeedbackId, questions: OtherQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def otherAudit(origin: Origin, feedbackId: FeedbackId, questions: OtherQuestions)(
+    implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
-      withFeedbackId(feedbackId) andThen
-      withAbleToDo(questions.ableToDo) andThen
-      withHowEasyScore(questions.howEasyScore) andThen
-      withWhyGiveScore(questions.whyGiveScore) andThen
-      withHowFeelScore(questions.howDoYouFeelScore)
+        withFeedbackId(feedbackId) andThen
+        withAbleToDo(questions.ableToDo) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def otherEmployeeExpensesBetaAudit(origin:Origin, feedbackId: FeedbackId, questions: OtherQuestionsEmployeeExpensesBeta)(implicit hc: HeaderCarrier): Unit = {
+  def otherEmployeeExpensesBetaAudit(
+    origin: Origin,
+    feedbackId: FeedbackId,
+    questions: OtherQuestionsEmployeeExpensesBeta)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -121,32 +122,34 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withHowFeelScore(questions.howDoYouFeelScore) andThen
         withFullName(questions.fullName) andThen
         withEmail(questions.email)
-      )(emptyMap)
+    )(emptyMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def pensionAudit(origin:Origin, feedbackId: FeedbackId, questions: PensionQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def pensionAudit(origin: Origin, feedbackId: FeedbackId, questions: PensionQuestions)(
+    implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
-      withFeedbackId(feedbackId) andThen
-      withAbleToDo(questions.ableToDo) andThen
-      withHowEasyScore(questions.howEasyScore) andThen
-      withWhyGiveScore(questions.whyGiveScore) andThen
-      withHowFeelScore(questions.howDoYouFeelScore) andThen
-      withLikelyToDo(questions.likelyToDo)
+        withFeedbackId(feedbackId) andThen
+        withAbleToDo(questions.ableToDo) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore) andThen
+        withLikelyToDo(questions.likelyToDo)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def giveReasonAudit(origin: Origin, feedbackId: FeedbackId, questions: GiveReasonQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def giveReasonAudit(origin: Origin, feedbackId: FeedbackId, questions: GiveReasonQuestions)(
+    implicit hc: HeaderCarrier): Unit = {
     val auditMap = (
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
         withGiveReason(questions.value) andThen
         withOtherReason(questions.reason)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -155,8 +158,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
     val auditMap = (
       withOrigin(origin) andThen
-      withFeedbackId(feedbackId) andThen
-      withGiveComments(answer)
+        withFeedbackId(feedbackId) andThen
+        withGiveComments(answer)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)

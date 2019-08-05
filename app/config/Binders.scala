@@ -19,13 +19,11 @@ package config
 import models.Origin
 import play.api.mvc.PathBindable
 
-
 object Binders {
 
   implicit def originBinder = new PathBindable[Origin] {
-    override def bind(key: String, value: String): Either[String, Origin] = {
+    override def bind(key: String, value: String): Either[String, Origin] =
       Right(Origin.fromString(value))
-    }
 
     override def unbind(key: String, value: Origin): String =
       value.value

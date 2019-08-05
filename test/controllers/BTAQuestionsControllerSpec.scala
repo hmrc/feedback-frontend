@@ -35,11 +35,8 @@ import views.html.btaQuestions
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class BTAQuestionsControllerSpec extends ControllerSpecBase
-  with PropertyChecks
-  with ModelGenerators
-  with MockitoSugar
-  with ScalaFutures {
+class BTAQuestionsControllerSpec
+    extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -81,23 +78,23 @@ class BTAQuestionsControllerSpec extends ControllerSpecBase
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[BTAQuestions]) {
-        (origin, feedbackId, answers) =>
-          reset(mockAuditService)
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[BTAQuestions]) { (origin, feedbackId, answers) =>
+        reset(mockAuditService)
 
-          val values = Map(
-            "mainService" -> answers.mainService.map(_.toString),
-            "mainServiceOther" -> answers.mainServiceOther.map(_.toString),
-            "ableToDo" -> answers.ableToDo.map(_.toString),
-            "howEasyScore" -> answers.howEasyScore.map(_.toString),
-            "whyGiveScore" -> answers.whyGiveScore,
-            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString))
+        val values = Map(
+          "mainService"       -> answers.mainService.map(_.toString),
+          "mainServiceOther"  -> answers.mainServiceOther.map(_.toString),
+          "ableToDo"          -> answers.ableToDo.map(_.toString),
+          "howEasyScore"      -> answers.howEasyScore.map(_.toString),
+          "whyGiveScore"      -> answers.whyGiveScore,
+          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
+        )
 
-          val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value))).futureValue
+        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+        controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value))).futureValue
 
-          verify(mockAuditService, times(1))
-            .btaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+        verify(mockAuditService, times(1))
+          .btaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 

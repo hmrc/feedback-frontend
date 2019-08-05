@@ -17,10 +17,11 @@
 package forms
 
 import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
-import models.{PTAQuestions, HowDoYouFeelQuestion, HowEasyQuestion}
+import models.{HowDoYouFeelQuestion, HowEasyQuestion, PTAQuestions}
 import play.api.data.FormError
 
-class PTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
+class PTAQuestionsFormProviderSpec
+    extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
 
   def form = new PTAQuestionsFormProvider()()
 

@@ -33,11 +33,8 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.giveComments
 
-class GiveCommentsControllerSpec extends ControllerSpecBase
-  with PropertyChecks
-  with ModelGenerators
-  with MockitoSugar
-  with ScalaFutures {
+class GiveCommentsControllerSpec
+    extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -80,17 +77,16 @@ class GiveCommentsControllerSpec extends ControllerSpecBase
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[String]) {
-        (origin, feedbackId, answer) =>
-          reset(mockAuditService)
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[String]) { (origin, feedbackId, answer) =>
+        reset(mockAuditService)
 
-          val values = Map("value" -> answer)
+        val values = Map("value" -> answer)
 
-          val request = fakeRequest.withFormUrlEncodedBody(values.toList: _*)
-          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value))).futureValue
+        val request = fakeRequest.withFormUrlEncodedBody(values.toList: _*)
+        controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value))).futureValue
 
-          verify(mockAuditService, times(1))
-            .giveCommentsAudit(eqTo(origin), eqTo(feedbackId), eqTo(answer))(any())
+        verify(mockAuditService, times(1))
+          .giveCommentsAudit(eqTo(origin), eqTo(feedbackId), eqTo(answer))(any())
       }
     }
 

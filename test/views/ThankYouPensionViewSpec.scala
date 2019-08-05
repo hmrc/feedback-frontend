@@ -55,7 +55,7 @@ class ThankYouPensionViewSpec extends ViewBehaviours {
     "contain retirement link" in {
       val expectedLink = messages("thankYou.pension.retirementLink")
       val doc = asDocument(createView())
-        assertContainsLink(doc, expectedLink, frontendAppConfig.pensionRetirementUrl.getOrElse(""))
+      assertContainsLink(doc, expectedLink, frontendAppConfig.pensionRetirementUrl.getOrElse(""))
     }
 
     "contain pension wise link in sidebar" in {

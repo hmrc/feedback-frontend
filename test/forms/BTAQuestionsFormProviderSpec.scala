@@ -20,7 +20,8 @@ import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFi
 import models.{BTAQuestions, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion}
 import play.api.data.FormError
 
-class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
+class BTAQuestionsFormProviderSpec
+    extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
 
   def form = new BTAQuestionsFormProvider()()
 

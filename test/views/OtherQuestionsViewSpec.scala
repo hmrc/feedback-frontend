@@ -22,9 +22,9 @@ import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewB
 import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions}
 import views.html.otherQuestions
 
-class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
-  with StringViewBehaviours[OtherQuestions]
-  with OptionsViewBehaviours[OtherQuestions] {
+class OtherQuestionsViewSpec
+    extends YesNoViewBehaviours[OtherQuestions] with StringViewBehaviours[OtherQuestions]
+    with OptionsViewBehaviours[OtherQuestions] {
 
   val messageKeyPrefix = "otherQuestions"
 
@@ -40,21 +40,11 @@ class OtherQuestionsViewSpec extends YesNoViewBehaviours[OtherQuestions]
 
     behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
 
-    behave like yesNoPage(
-      createViewUsingForm,
-      "ableToDo",
-      "otherQuestions.ableToDo")
+    behave like yesNoPage(createViewUsingForm, "ableToDo", "otherQuestions.ableToDo")
 
-    behave like optionsPage(
-      createViewUsingForm,
-      "howEasyScore",
-      HowEasyQuestion.options,
-      "otherQuestions.howEasyScore")
+    behave like optionsPage(createViewUsingForm, "howEasyScore", HowEasyQuestion.options, "otherQuestions.howEasyScore")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "whyGiveScore",
-      "otherQuestions.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "otherQuestions.whyGiveScore")
 
     behave like optionsPage(
       createViewUsingForm,

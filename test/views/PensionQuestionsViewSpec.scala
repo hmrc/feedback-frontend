@@ -22,9 +22,9 @@ import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import views.html.pensionQuestions
 
-class PensionQuestionsViewSpec extends YesNoViewBehaviours[PensionQuestions]
-  with StringViewBehaviours[PensionQuestions]
-  with OptionsViewBehaviours[PensionQuestions] {
+class PensionQuestionsViewSpec
+    extends YesNoViewBehaviours[PensionQuestions] with StringViewBehaviours[PensionQuestions]
+    with OptionsViewBehaviours[PensionQuestions] {
 
   val messageKeyPrefix = "pensionQuestions"
 
@@ -40,10 +40,7 @@ class PensionQuestionsViewSpec extends YesNoViewBehaviours[PensionQuestions]
 
     behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
 
-    behave like yesNoPage(
-      createViewUsingForm,
-      "ableToDo",
-      "pensionQuestions.ableToDo")
+    behave like yesNoPage(createViewUsingForm, "ableToDo", "pensionQuestions.ableToDo")
 
     behave like optionsPage(
       createViewUsingForm,
@@ -51,10 +48,7 @@ class PensionQuestionsViewSpec extends YesNoViewBehaviours[PensionQuestions]
       HowEasyQuestion.options,
       "pensionQuestions.howEasyScore")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "whyGiveScore",
-      "pensionQuestions.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "pensionQuestions.whyGiveScore")
 
     behave like optionsPage(
       createViewUsingForm,

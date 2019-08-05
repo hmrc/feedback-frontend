@@ -37,10 +37,7 @@ class GiveCommentsViewSpec extends StringViewBehaviours[BTAQuestions] {
   "GiveComments view" must {
     behave like normalPage(createView, messageKeyPrefix, "intro1")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "value",
-      messageKeyPrefix)
+    behave like stringPage(createViewUsingForm, "value", messageKeyPrefix)
 
   }
 }

@@ -22,10 +22,11 @@ import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, QuestionViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import views.html.{otherQuestions, otherQuestionsEmployeeExpensesBeta}
 
-class OtherQuestionsEmployeeExpensesBetaViewSpec extends YesNoViewBehaviours[OtherQuestionsEmployeeExpensesBeta]
-  with StringViewBehaviours[OtherQuestionsEmployeeExpensesBeta]
-  with OptionsViewBehaviours[OtherQuestionsEmployeeExpensesBeta]
-  with QuestionViewBehaviours[OtherQuestionsEmployeeExpensesBeta]{
+class OtherQuestionsEmployeeExpensesBetaViewSpec
+    extends YesNoViewBehaviours[OtherQuestionsEmployeeExpensesBeta]
+    with StringViewBehaviours[OtherQuestionsEmployeeExpensesBeta]
+    with OptionsViewBehaviours[OtherQuestionsEmployeeExpensesBeta]
+    with QuestionViewBehaviours[OtherQuestionsEmployeeExpensesBeta] {
 
   val messageKeyPrefix = "otherQuestionsEmployeeExpensesBeta"
 
@@ -41,10 +42,7 @@ class OtherQuestionsEmployeeExpensesBetaViewSpec extends YesNoViewBehaviours[Oth
 
     behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3", "paragraph1", "paragraph2", "paragraph3")
 
-    behave like yesNoPage(
-      createViewUsingForm,
-      "ableToDo",
-      "otherQuestionsEmployeeExpensesBeta.ableToDo")
+    behave like yesNoPage(createViewUsingForm, "ableToDo", "otherQuestionsEmployeeExpensesBeta.ableToDo")
 
     behave like optionsPage(
       createViewUsingForm,
@@ -52,10 +50,7 @@ class OtherQuestionsEmployeeExpensesBetaViewSpec extends YesNoViewBehaviours[Oth
       HowEasyQuestion.options,
       "otherQuestionsEmployeeExpensesBeta.howEasyScore")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "whyGiveScore",
-      "otherQuestionsEmployeeExpensesBeta.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "otherQuestionsEmployeeExpensesBeta.whyGiveScore")
 
     behave like optionsPage(
       createViewUsingForm,
@@ -63,18 +58,14 @@ class OtherQuestionsEmployeeExpensesBetaViewSpec extends YesNoViewBehaviours[Oth
       HowDoYouFeelQuestion.options,
       "otherQuestionsEmployeeExpensesBeta.howDoYouFeelScore")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "fullName",
-      "otherQuestionsEmployeeExpensesBeta.fullName")
+    behave like stringPage(createViewUsingForm, "fullName", "otherQuestionsEmployeeExpensesBeta.fullName")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "email",
-      "otherQuestionsEmployeeExpensesBeta.email")
+    behave like stringPage(createViewUsingForm, "email", "otherQuestionsEmployeeExpensesBeta.email")
 
     "contain second introductory paragraph" in {
-      val expectedMessage = messages("otherQuestionsEmployeeExpensesBeta.intro2", messages("otherQuestionsEmployeeExpensesBeta.introLinkText"))
+      val expectedMessage = messages(
+        "otherQuestionsEmployeeExpensesBeta.intro2",
+        messages("otherQuestionsEmployeeExpensesBeta.introLinkText"))
       val doc = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }

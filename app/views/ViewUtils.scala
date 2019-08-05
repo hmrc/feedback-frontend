@@ -21,15 +21,14 @@ import play.api.i18n.Messages
 
 object ViewUtils {
 
-  def errorPrefix(form: Form[_])(implicit messages: Messages): String = {
+  def errorPrefix(form: Form[_])(implicit messages: Messages): String =
     if (form.hasErrors || form.hasGlobalErrors) messages("error.browser.title.prefix") else ""
-  }
 
   val mainServiceDynamicFields = dynamicFieldAttrs("mainServiceQuestion.Other", "mainServiceOther")
 
   def dynamicFieldAttrs(optionId: String, targetId: String): String => String = id => {
     val attr =
-      if(id == optionId) {
+      if (id == optionId) {
         s"data-dynamic-fields-show=${targetId}Input"
       } else {
         s"data-dynamic-fields-hide=${targetId}Input"

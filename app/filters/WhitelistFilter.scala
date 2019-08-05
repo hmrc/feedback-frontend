@@ -22,14 +22,13 @@ import play.api.Configuration
 import play.api.mvc.Call
 import uk.gov.hmrc.whitelist.AkamaiWhitelistFilter
 
-class WhitelistFilter @Inject() (
-                                  config: Configuration,
-                                  override val mat: Materializer
-                                ) extends AkamaiWhitelistFilter {
+class WhitelistFilter @Inject()(
+  config: Configuration,
+  override val mat: Materializer
+) extends AkamaiWhitelistFilter {
 
   override val whitelist: Seq[String] = {
-    config
-      .underlying
+    config.underlying
       .getString("filters.whitelist.ips")
       .split(",")
       .map(_.trim)
@@ -42,9 +41,8 @@ class WhitelistFilter @Inject() (
   }
 
   override val excludedPaths: Seq[Call] = {
-    config.underlying.getString("filters.whitelist.excluded").split(",").map {
-      path =>
-        Call("GET", path.trim)
+    config.underlying.getString("filters.whitelist.excluded").split(",").map { path =>
+      Call("GET", path.trim)
     }
   }
 }

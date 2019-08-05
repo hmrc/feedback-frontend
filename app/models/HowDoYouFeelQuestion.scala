@@ -25,16 +25,16 @@ sealed trait HowDoYouFeelQuestion {
 
 object HowDoYouFeelQuestion {
 
-  case object VerySatisfied    extends WithName("VerySatisfied") with HowDoYouFeelQuestion {
+  case object VerySatisfied extends WithName("VerySatisfied") with HowDoYouFeelQuestion {
     val value = 5
   }
-  case object Satisfied        extends WithName("Satisfied") with HowDoYouFeelQuestion {
+  case object Satisfied extends WithName("Satisfied") with HowDoYouFeelQuestion {
     val value = 4
   }
-  case object Moderate         extends WithName("Moderate") with HowDoYouFeelQuestion {
+  case object Moderate extends WithName("Moderate") with HowDoYouFeelQuestion {
     val value = 3
   }
-  case object Dissatisfied     extends WithName("Dissatisfied") with HowDoYouFeelQuestion {
+  case object Dissatisfied extends WithName("Dissatisfied") with HowDoYouFeelQuestion {
     val value = 2
   }
   case object VeryDissatisfied extends WithName("VeryDissatisfied") with HowDoYouFeelQuestion {
@@ -44,9 +44,8 @@ object HowDoYouFeelQuestion {
   val values: Seq[HowDoYouFeelQuestion] =
     List(VerySatisfied, Satisfied, Moderate, Dissatisfied, VeryDissatisfied)
 
-  val options: Seq[RadioOption] = values.map {
-    value =>
-      RadioOption("howDoYouFeelQuestion", value.toString)
+  val options: Seq[RadioOption] = values.map { value =>
+    RadioOption("howDoYouFeelQuestion", value.toString)
   }
 
   implicit val enumerable: Enumerable[HowDoYouFeelQuestion] =
@@ -67,4 +66,3 @@ object HowDoYouFeelQuestion {
     }
   }
 }
-
