@@ -198,3 +198,8 @@ giveComments.title = Rhoi adborth
 giveComments.heading = Beth ddaethoch chi yma i’w wneud?
 giveComments.intro1 = Peidiwch â chynnwys unrhyw wybodaeth bersonol nac ariannol. Er enghraifft, eich rhif Yswiriant Gwladol neu rif eich cerdyn credyd.
 giveComments.error.length = Rhaid i’r hyn y daethoch chi yma i’w wneud fod yn 1,000 o gymeriadau neu’n llai
+
+page_not_found.tabtitle = Heb ddod o hyd i'r dudalen - GOV.UK
+page_not_found.heading = Heb ddod o hyd i'r dudalen
+page.not.found.error.check.web.address.correct = Os gwnaethoch deipio‘r cyfeiriad gwe, gwiriwch ei fod yn gywir.
+page.not.found.error.check.web.address.full = Os gwnaethoch ludo'r cyfeiriad gwe, gwiriwch eich bod wedi copïo'r cyfeiriad yn llawn.
