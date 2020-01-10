@@ -33,4 +33,7 @@ class ErrorHandler @Inject()(
   override def standardErrorTemplate(pageTitle: String, heading: String, message: String)(
     implicit rh: Request[_]): Html =
     views.html.error_template(pageTitle, heading, message, appConfig)
+
+  override def notFoundTemplate(implicit request: Request[_]): Html =
+    views.html.global_not_found(appConfig)
 }
