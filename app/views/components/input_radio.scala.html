@@ -1,5 +1,5 @@
 @*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,9 @@
       <div class="multiple-choice">
 
         <input id="@{input.id}"
-          @if(inputClass.nonEmpty){class="@{inputClass.get}}"
+          @if(inputClass.nonEmpty){
+            class="@{inputClass.get}"
+          }
           type="radio"
           name="@{field.id}"
           value="@{input.value}"
