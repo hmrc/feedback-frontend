@@ -15,13 +15,8 @@
  *@
 
 @import config.FrontendAppConfig
-@import models.Mode
-@import uk.gov.hmrc.play.views.html.helpers.FormWithCSRF
-@import play.api.i18n.MessagesApi
 
-@(
-    appConfig: FrontendAppConfig
-)(implicit request: Request[_], messages: Messages)
+@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
 @main_template(
     title = Messages("page_not_found.tabtitle"),
@@ -29,6 +24,6 @@
     bodyClasses = None) {
 
     @components.heading(Messages("page_not_found.heading"))
-        <p>@messages("page.not.found.error.check.web.address.correct")
-        <p>@messages("page.not.found.error.check.web.address.full")</p>
+    <p>@messages("page.not.found.error.check.web.address.correct")</p>
+    <p>@messages("page.not.found.error.check.web.address.full")</p>
 }
