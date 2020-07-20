@@ -1,5 +1,5 @@
 
-## feedback-frontend
+# feedback-frontend
 
 Services can integrate with Feedback frontend by navigating the URL with a unique name for your service for the survey you need.
 
