@@ -23,19 +23,19 @@ import models.{FeedbackId, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
-import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.Action
+import play.api.i18n.I18nSupport
+import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.giveReason
 
 class GiveReasonController @Inject()(
   appConfig: FrontendAppConfig,
-  override val messagesApi: MessagesApi,
   navigator: Navigator,
   formProvider: GiveReasonFormProvider,
-  auditService: AuditService
-) extends FrontendController with I18nSupport {
+  auditService: AuditService,
+  mcc: MessagesControllerComponents
+) extends FrontendController(mcc) with I18nSupport {
 
   val form = formProvider()
   def submitCall(origin: Origin) = routes.GiveReasonController.onSubmit(origin)

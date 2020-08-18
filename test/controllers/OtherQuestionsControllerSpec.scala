@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,12 +46,7 @@ class OtherQuestionsControllerSpec
   def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new OtherQuestionsController(
-      frontendAppConfig,
-      messagesApi,
-      new FakeNavigator(onwardRoute),
-      formProvider,
-      mockAuditService)
+    new OtherQuestionsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString

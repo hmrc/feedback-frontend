@@ -17,21 +17,21 @@
 package config
 
 import com.google.inject.{Inject, Singleton}
-import play.api.{Configuration, Environment}
-import play.api.i18n.Lang
 import controllers.routes
-import uk.gov.hmrc.play.config.ServicesConfig
+import play.api.Configuration
+import play.api.i18n.Lang
+import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
-class FrontendAppConfig @Inject()(override val runModeConfiguration: Configuration, environment: Environment)
-    extends ServicesConfig {
+class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servicesConfig: ServicesConfig) {
 
-  override protected def mode = environment.mode
+  private def getOptionalString(key: String): Option[String] =
+    runModeConfiguration.getOptional[String](key)
 
   private def loadConfig(key: String) =
-    runModeConfiguration.getString(key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
+    getOptionalString(key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
 
-  private lazy val contactHost = runModeConfiguration.getString("contact-frontend.host").getOrElse("")
+  private lazy val contactHost = getOptionalString("contact-frontend.host").getOrElse("")
   private val contactFormServiceIdentifier = "feedbackfrontend"
 
   lazy val analyticsToken = loadConfig(s"google-analytics.token")
@@ -42,34 +42,34 @@ class FrontendAppConfig @Inject()(override val runModeConfiguration: Configurati
   lazy val betaFeedbackUrl = s"$contactHost/contact/beta-feedback"
   lazy val betaFeedbackUnauthenticatedUrl = s"$contactHost/contact/beta-feedback-unauthenticated"
 
-  lazy val authUrl = baseUrl("auth")
+  lazy val authUrl = servicesConfig.baseUrl("auth")
   lazy val loginUrl = loadConfig("urls.login")
   lazy val loginContinueUrl = loadConfig("urls.loginContinue")
 
   lazy val privacyPolicyUrl =
     "https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you"
-  lazy val urLinkUrl = runModeConfiguration.getString("microservice.services.features.ur-link-url")
+  lazy val urLinkUrl = getOptionalString("microservice.services.features.ur-link-url")
 
-  lazy val pensionSignInUrl = runModeConfiguration.getString("urls.pension.sign-in")
-  lazy val pensionRetirementUrl = runModeConfiguration.getString("urls.pension.retirement")
-  lazy val pensionSideBarOneUrl = runModeConfiguration.getString("urls.pension.sidebar.link-one")
-  lazy val pensionSideBarOneUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-one-ga")
-  lazy val pensionSideBarTwoUrl = runModeConfiguration.getString("urls.pension.sidebar.link-two")
-  lazy val pensionSideBarTwoUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-two-ga")
-  lazy val pensionSideBarThreeUrl = runModeConfiguration.getString("urls.pension.sidebar.link-three")
-  lazy val pensionSideBarThreeUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-three-ga")
-  lazy val pensionSideBarFourUrl = runModeConfiguration.getString("urls.pension.sidebar.link-four")
-  lazy val pensionSideBarFourUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-four-ga")
-  lazy val pensionSideBarFiveUrl = runModeConfiguration.getString("urls.pension.sidebar.link-five")
-  lazy val pensionSideBarFiveUrlGA = runModeConfiguration.getString("urls.pension.sidebar.link-five-ga")
+  lazy val pensionSignInUrl = getOptionalString("urls.pension.sign-in")
+  lazy val pensionRetirementUrl = getOptionalString("urls.pension.retirement")
+  lazy val pensionSideBarOneUrl = getOptionalString("urls.pension.sidebar.link-one")
+  lazy val pensionSideBarOneUrlGA = getOptionalString("urls.pension.sidebar.link-one-ga")
+  lazy val pensionSideBarTwoUrl = getOptionalString("urls.pension.sidebar.link-two")
+  lazy val pensionSideBarTwoUrlGA = getOptionalString("urls.pension.sidebar.link-two-ga")
+  lazy val pensionSideBarThreeUrl = getOptionalString("urls.pension.sidebar.link-three")
+  lazy val pensionSideBarThreeUrlGA = getOptionalString("urls.pension.sidebar.link-three-ga")
+  lazy val pensionSideBarFourUrl = getOptionalString("urls.pension.sidebar.link-four")
+  lazy val pensionSideBarFourUrlGA = getOptionalString("urls.pension.sidebar.link-four-ga")
+  lazy val pensionSideBarFiveUrl = getOptionalString("urls.pension.sidebar.link-five")
+  lazy val pensionSideBarFiveUrlGA = getOptionalString("urls.pension.sidebar.link-five-ga")
 
   lazy val govUkUrl = loadConfig(s"urls.govUk")
 
   lazy val languageTranslationEnabled =
-    runModeConfiguration.getBoolean("microservice.services.features.welsh-translation").getOrElse(true)
+    runModeConfiguration.getOptional[Boolean]("microservice.services.features.welsh-translation").getOrElse(true)
   def languageMap: Map[String, Lang] = Map("english" -> Lang("en"), "cymraeg" -> Lang("cy"))
   def routeToSwitchLanguage = (lang: String) => routes.LanguageSwitchController.switchToLanguage(lang)
 
-  lazy val isGtmEnabled = runModeConfiguration.getBoolean("google-tag-manager.enabled").getOrElse(true)
+  lazy val isGtmEnabled = runModeConfiguration.getOptional[Boolean]("google-tag-manager.enabled").getOrElse(true)
 
 }

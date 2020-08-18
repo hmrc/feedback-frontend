@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,10 @@ import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice._
 import play.api.i18n.{Messages, MessagesApi}
 import play.api.inject.Injector
+import play.api.mvc.MessagesControllerComponents
 import play.api.test.FakeRequest
+
+import scala.concurrent.ExecutionContext
 
 trait SpecBase extends PlaySpec with GuiceOneAppPerSuite {
 
@@ -34,4 +37,8 @@ trait SpecBase extends PlaySpec with GuiceOneAppPerSuite {
   def fakeRequest = FakeRequest("", "")
 
   def messages: Messages = messagesApi.preferred(fakeRequest)
+
+  def mcc: MessagesControllerComponents = injector.instanceOf[MessagesControllerComponents]
+
+  implicit lazy val ec: ExecutionContext = injector.instanceOf[ExecutionContext]
 }

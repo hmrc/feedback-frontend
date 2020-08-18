@@ -16,28 +16,28 @@
 
 package controllers
 
-import javax.inject.Inject
-import play.api.data.Form
-import play.api.i18n.{I18nSupport, MessagesApi}
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
 import forms.BTAQuestionsFormProvider
+import javax.inject.Inject
 import models.{BTAQuestions, FeedbackId, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
-import play.api.mvc.Action
-import views.html.btaQuestions
+import play.api.data.Form
+import play.api.i18n.I18nSupport
+import play.api.mvc.MessagesControllerComponents
 import services.AuditService
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import views.html.btaQuestions
 
 import scala.concurrent.ExecutionContext
 
 class BTAQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
-  override val messagesApi: MessagesApi,
   navigator: Navigator,
   formProvider: BTAQuestionsFormProvider,
-  auditService: AuditService)(implicit ec: ExecutionContext)
-    extends FrontendController with I18nSupport {
+  auditService: AuditService,
+  mcc: MessagesControllerComponents)(implicit ec: ExecutionContext)
+    extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()
   def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)

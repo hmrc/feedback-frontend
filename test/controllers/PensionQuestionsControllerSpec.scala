@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,10 +48,10 @@ class PensionQuestionsControllerSpec
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new PensionQuestionsController(
       frontendAppConfig,
-      messagesApi,
       new FakeNavigator(onwardRoute),
       formProvider,
-      mockAuditService)
+      mockAuditService,
+      mcc)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     pensionQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString

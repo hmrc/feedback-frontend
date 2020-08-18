@@ -26,9 +26,9 @@ import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.HeaderCarrierConverter
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
-class DataRequiredActionImpl @Inject() extends DataRequiredAction {
+class DataRequiredActionImpl @Inject()(implicit ec: ExecutionContext) extends DataRequiredAction {
 
   override protected def refine[A](request: OptionalDataRequest[A]): Future[Either[Result, DataRequest[A]]] = {
     implicit val hc = HeaderCarrierConverter.fromHeadersAndSession(request.headers, Some(request.session))
@@ -38,6 +38,8 @@ class DataRequiredActionImpl @Inject() extends DataRequiredAction {
       case Some(data) => Future.successful(Right(DataRequest(request.request, request.internalId, data)))
     }
   }
+
+  override protected def executionContext: ExecutionContext = ec
 }
 
 trait DataRequiredAction extends ActionRefiner[OptionalDataRequest, DataRequest]

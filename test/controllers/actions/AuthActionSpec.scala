@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,10 @@ class AuthActionSpec extends SpecBase {
     "the user hasn't logged in" must {
       "redirect the user to log in " in {
         val authAction =
-          new AuthenticatedIdentifierAction(new FakeFailingAuthConnector(new MissingBearerToken), frontendAppConfig)
+          new AuthenticatedIdentifierAction(
+            new FakeFailingAuthConnector(new MissingBearerToken),
+            frontendAppConfig,
+            mcc)
         val controller = new Harness(authAction)
         val result = controller.onPageLoad()(fakeRequest)
         status(result) mustBe SEE_OTHER
@@ -51,7 +54,10 @@ class AuthActionSpec extends SpecBase {
     "the user's session has expired" must {
       "redirect the user to log in " in {
         val authAction =
-          new AuthenticatedIdentifierAction(new FakeFailingAuthConnector(new BearerTokenExpired), frontendAppConfig)
+          new AuthenticatedIdentifierAction(
+            new FakeFailingAuthConnector(new BearerTokenExpired),
+            frontendAppConfig,
+            mcc)
         val controller = new Harness(authAction)
         val result = controller.onPageLoad()(fakeRequest)
         status(result) mustBe SEE_OTHER
@@ -62,7 +68,10 @@ class AuthActionSpec extends SpecBase {
     "the user doesn't have sufficient enrolments" must {
       "redirect the user to the unauthorised page" in {
         val authAction =
-          new AuthenticatedIdentifierAction(new FakeFailingAuthConnector(new InsufficientEnrolments), frontendAppConfig)
+          new AuthenticatedIdentifierAction(
+            new FakeFailingAuthConnector(new InsufficientEnrolments),
+            frontendAppConfig,
+            mcc)
         val controller = new Harness(authAction)
         val result = controller.onPageLoad()(fakeRequest)
         status(result) mustBe SEE_OTHER
@@ -74,7 +83,8 @@ class AuthActionSpec extends SpecBase {
       "redirect the user to the unauthorised page" in {
         val authAction = new AuthenticatedIdentifierAction(
           new FakeFailingAuthConnector(new InsufficientConfidenceLevel),
-          frontendAppConfig)
+          frontendAppConfig,
+          mcc)
         val controller = new Harness(authAction)
         val result = controller.onPageLoad()(fakeRequest)
         status(result) mustBe SEE_OTHER
@@ -86,7 +96,8 @@ class AuthActionSpec extends SpecBase {
       "redirect the user to the unauthorised page" in {
         val authAction = new AuthenticatedIdentifierAction(
           new FakeFailingAuthConnector(new UnsupportedAuthProvider),
-          frontendAppConfig)
+          frontendAppConfig,
+          mcc)
         val controller = new Harness(authAction)
         val result = controller.onPageLoad()(fakeRequest)
         status(result) mustBe SEE_OTHER
@@ -98,7 +109,8 @@ class AuthActionSpec extends SpecBase {
       "redirect the user to the unauthorised page" in {
         val authAction = new AuthenticatedIdentifierAction(
           new FakeFailingAuthConnector(new UnsupportedAffinityGroup),
-          frontendAppConfig)
+          frontendAppConfig,
+          mcc)
         val controller = new Harness(authAction)
         val result = controller.onPageLoad()(fakeRequest)
         status(result) mustBe SEE_OTHER
@@ -110,7 +122,8 @@ class AuthActionSpec extends SpecBase {
       "redirect the user to the unauthorised page" in {
         val authAction = new AuthenticatedIdentifierAction(
           new FakeFailingAuthConnector(new UnsupportedCredentialRole),
-          frontendAppConfig)
+          frontendAppConfig,
+          mcc)
         val controller = new Harness(authAction)
         val result = controller.onPageLoad()(fakeRequest)
         status(result) mustBe SEE_OTHER

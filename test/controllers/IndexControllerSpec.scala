@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +22,13 @@ import views.html.index
 class IndexControllerSpec extends ControllerSpecBase {
 
   "Index Controller" must {
+    val result = new IndexController(frontendAppConfig, mcc).onPageLoad()(fakeRequest)
+
     "return 200 for a GET" in {
-      val result = new IndexController(frontendAppConfig, messagesApi).onPageLoad()(fakeRequest)
       status(result) mustBe OK
     }
 
     "return the correct view for a GET" in {
-      val result = new IndexController(frontendAppConfig, messagesApi).onPageLoad()(fakeRequest)
       contentAsString(result) mustBe index(frontendAppConfig)(fakeRequest, messages).toString
     }
   }
