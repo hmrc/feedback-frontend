@@ -32,8 +32,6 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.otherQuestions
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
 class OtherQuestionsControllerSpec
     extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 

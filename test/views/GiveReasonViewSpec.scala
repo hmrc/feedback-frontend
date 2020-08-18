@@ -16,10 +16,9 @@
 
 package views
 
-import play.api.data.Form
 import forms.GiveReasonFormProvider
-import models.NormalMode
 import models.GiveReason
+import play.api.data.Form
 import views.behaviours.ViewBehaviours
 import views.html.giveReason
 

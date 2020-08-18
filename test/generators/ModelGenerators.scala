@@ -17,13 +17,11 @@
 package generators
 
 import models._
+import org.scalacheck.Arbitrary._
+import org.scalacheck.Gen._
 import org.scalacheck.{Arbitrary, Gen}
-import Arbitrary._
-import Gen._
-import base.SpecBase
 import play.api.Application
 import play.api.test.FakeRequest
-import uk.gov.hmrc.http.HeaderCarrier
 
 trait ModelGenerators {
 

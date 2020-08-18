@@ -32,8 +32,6 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.pensionQuestions
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
 class PensionQuestionsControllerSpec
     extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 

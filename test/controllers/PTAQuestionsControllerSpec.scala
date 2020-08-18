@@ -32,8 +32,6 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.ptaQuestions
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
 class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")

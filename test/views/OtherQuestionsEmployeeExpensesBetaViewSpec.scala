@@ -16,11 +16,11 @@
 
 package views
 
-import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
+import forms.OtherQuestionsEmployeeExpensesBetaFormProvider
+import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestionsEmployeeExpensesBeta}
 import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, QuestionViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import views.html.{otherQuestions, otherQuestionsEmployeeExpensesBeta}
+import views.html.otherQuestionsEmployeeExpensesBeta
 
 class OtherQuestionsEmployeeExpensesBetaViewSpec
     extends YesNoViewBehaviours[OtherQuestionsEmployeeExpensesBeta]

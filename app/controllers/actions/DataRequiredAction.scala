@@ -17,15 +17,12 @@
 package controllers.actions
 
 import com.google.inject.Inject
-import play.api.mvc.{ActionRefiner, Result}
-import play.api.mvc.Results.Redirect
 import controllers.routes
-import models.UserAnswers
 import models.requests.{DataRequest, OptionalDataRequest}
-import uk.gov.hmrc.http.HeaderCarrier
+import play.api.mvc.Results.Redirect
+import play.api.mvc.{ActionRefiner, Result}
 import uk.gov.hmrc.play.HeaderCarrierConverter
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.{ExecutionContext, Future}
 
 class DataRequiredActionImpl @Inject()(implicit ec: ExecutionContext) extends DataRequiredAction {

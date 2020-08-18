@@ -25,7 +25,6 @@ import models.requests.{IdentifierRequest, OptionalDataRequest}
 import uk.gov.hmrc.http.cache.client.CacheMap
 
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
 
 class DataRetrievalActionSpec extends SpecBase with MockitoSugar with ScalaFutures {
 

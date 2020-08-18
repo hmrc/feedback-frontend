@@ -20,7 +20,7 @@ import forms.BTAQuestionsFormProvider
 import models.BTAQuestions
 import play.api.data.Form
 import views.behaviours.StringViewBehaviours
-import views.html.{btaQuestions, giveComments}
+import views.html.giveComments
 
 class GiveCommentsViewSpec extends StringViewBehaviours[BTAQuestions] {
 

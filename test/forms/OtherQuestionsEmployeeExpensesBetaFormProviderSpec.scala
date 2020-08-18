@@ -33,7 +33,7 @@
 package forms
 
 import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
+import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestionsEmployeeExpensesBeta}
 import play.api.data.FormError
 
 class OtherQuestionsEmployeeExpensesBetaFormProviderSpec

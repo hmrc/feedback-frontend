@@ -33,8 +33,6 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.btaQuestions
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
 class BTAQuestionsControllerSpec
     extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
 

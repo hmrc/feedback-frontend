@@ -16,14 +16,17 @@
 
 package controllers
 
+import play.api.mvc.Result
 import play.api.test.Helpers._
 import views.html.unauthorised
+
+import scala.concurrent.Future
 
 class UnauthorisedControllerSpec extends ControllerSpecBase {
 
   "Unauthorised Controller" must {
 
-    val result = new UnauthorisedController(frontendAppConfig, mcc).onPageLoad()(fakeRequest)
+    def result: Future[Result] = new UnauthorisedController(frontendAppConfig, mcc).onPageLoad()(fakeRequest)
 
     "return 200 for a GET" in {
       status(result) mustBe OK

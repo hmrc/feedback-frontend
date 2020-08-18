@@ -16,12 +16,12 @@
 
 package connectors
 
-import com.google.inject.{ImplementedBy, Inject}
+import com.google.inject.Inject
 import play.api.libs.json.Format
-import uk.gov.hmrc.http.cache.client.CacheMap
 import repositories.SessionRepository
-import scala.concurrent.ExecutionContext.Implicits.global
+import uk.gov.hmrc.http.cache.client.CacheMap
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 class MongoCacheConnector @Inject()(val sessionRepository: SessionRepository) extends DataCacheConnector {

@@ -16,13 +16,16 @@
 
 package controllers
 
+import play.api.mvc.Result
 import play.api.test.Helpers._
 import views.html.session_expired
+
+import scala.concurrent.Future
 
 class SessionExpiredControllerSpec extends ControllerSpecBase {
 
   "SessionExpired Controller" must {
-    val result = new SessionExpiredController(frontendAppConfig, mcc).onPageLoad()(fakeRequest)
+    def result: Future[Result] = new SessionExpiredController(frontendAppConfig, mcc).onPageLoad()(fakeRequest)
 
     "return 200 for a GET" in {
       status(result) mustBe OK

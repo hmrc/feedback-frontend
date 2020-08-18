@@ -22,7 +22,6 @@ import controllers.actions.{DataRequiredAction, DataRetrievalAction, IdentifierA
 import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
-import utils.CheckYourAnswersHelper
 import viewmodels.AnswerSection
 import views.html.check_your_answers
 
@@ -35,8 +34,6 @@ class CheckYourAnswersController @Inject()(
     extends FrontendController(mcc) with I18nSupport {
 
   def onPageLoad() = (authenticate andThen getData andThen requireData) { implicit request =>
-    // TODO remove this
-    val checkYourAnswersHelper = new CheckYourAnswersHelper(request.userAnswers)
     val sections = Seq(AnswerSection(None, Seq()))
     Ok(check_your_answers(appConfig, sections))
   }

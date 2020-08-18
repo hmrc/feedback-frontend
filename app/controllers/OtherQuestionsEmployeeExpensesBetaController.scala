@@ -29,14 +29,12 @@ import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.otherQuestionsEmployeeExpensesBeta
 
-import scala.concurrent.ExecutionContext
-
 class OtherQuestionsEmployeeExpensesBetaController @Inject()(
   appConfig: FrontendAppConfig,
   navigator: Navigator,
   formProvider: OtherQuestionsEmployeeExpensesBetaFormProvider,
   auditService: AuditService,
-  mcc: MessagesControllerComponents)(implicit ec: ExecutionContext)
+  mcc: MessagesControllerComponents)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[OtherQuestionsEmployeeExpensesBeta] = formProvider()
