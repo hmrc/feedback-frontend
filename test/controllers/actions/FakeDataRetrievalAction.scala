@@ -17,6 +17,7 @@
 package controllers.actions
 
 import uk.gov.hmrc.http.cache.client.CacheMap
+import play.api.test.Helpers.stubControllerComponents
 import models.requests.{IdentifierRequest, OptionalDataRequest}
 import models.UserAnswers
 
@@ -31,5 +32,5 @@ class FakeDataRetrievalAction(cacheMapToReturn: Option[CacheMap]) extends DataRe
         Future(OptionalDataRequest(request.request, request.identifier, Some(new UserAnswers(cacheMap))))
     }
 
-  override protected def executionContext: ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global
+  override protected def executionContext: ExecutionContext = stubControllerComponents().executionContext
 }

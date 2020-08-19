@@ -18,20 +18,20 @@ package config
 
 import com.google.inject.{Inject, Singleton}
 import controllers.routes
-import play.api.Configuration
+import play.api.{ConfigLoader, Configuration}
 import play.api.i18n.Lang
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
 class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servicesConfig: ServicesConfig) {
 
-  private def getOptionalString(key: String): Option[String] =
-    runModeConfiguration.getOptional[String](key)
+  private def getOptional[A](key: String)(implicit loader: ConfigLoader[A]): Option[A] =
+    runModeConfiguration.getOptional[A](key)
 
   private def loadConfig(key: String) =
-    getOptionalString(key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
+    getOptional[String](key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
 
-  private lazy val contactHost = getOptionalString("contact-frontend.host").getOrElse("")
+  private lazy val contactHost = getOptional[String]("contact-frontend.host").getOrElse("")
   private val contactFormServiceIdentifier = "feedbackfrontend"
 
   lazy val analyticsToken = loadConfig(s"google-analytics.token")
@@ -48,28 +48,28 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
 
   lazy val privacyPolicyUrl =
     "https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you"
-  lazy val urLinkUrl = getOptionalString("microservice.services.features.ur-link-url")
+  lazy val urLinkUrl = getOptional[String]("microservice.services.features.ur-link-url")
 
-  lazy val pensionSignInUrl = getOptionalString("urls.pension.sign-in")
-  lazy val pensionRetirementUrl = getOptionalString("urls.pension.retirement")
-  lazy val pensionSideBarOneUrl = getOptionalString("urls.pension.sidebar.link-one")
-  lazy val pensionSideBarOneUrlGA = getOptionalString("urls.pension.sidebar.link-one-ga")
-  lazy val pensionSideBarTwoUrl = getOptionalString("urls.pension.sidebar.link-two")
-  lazy val pensionSideBarTwoUrlGA = getOptionalString("urls.pension.sidebar.link-two-ga")
-  lazy val pensionSideBarThreeUrl = getOptionalString("urls.pension.sidebar.link-three")
-  lazy val pensionSideBarThreeUrlGA = getOptionalString("urls.pension.sidebar.link-three-ga")
-  lazy val pensionSideBarFourUrl = getOptionalString("urls.pension.sidebar.link-four")
-  lazy val pensionSideBarFourUrlGA = getOptionalString("urls.pension.sidebar.link-four-ga")
-  lazy val pensionSideBarFiveUrl = getOptionalString("urls.pension.sidebar.link-five")
-  lazy val pensionSideBarFiveUrlGA = getOptionalString("urls.pension.sidebar.link-five-ga")
+  lazy val pensionSignInUrl = getOptional[String]("urls.pension.sign-in")
+  lazy val pensionRetirementUrl = getOptional[String]("urls.pension.retirement")
+  lazy val pensionSideBarOneUrl = getOptional[String]("urls.pension.sidebar.link-one")
+  lazy val pensionSideBarOneUrlGA = getOptional[String]("urls.pension.sidebar.link-one-ga")
+  lazy val pensionSideBarTwoUrl = getOptional[String]("urls.pension.sidebar.link-two")
+  lazy val pensionSideBarTwoUrlGA = getOptional[String]("urls.pension.sidebar.link-two-ga")
+  lazy val pensionSideBarThreeUrl = getOptional[String]("urls.pension.sidebar.link-three")
+  lazy val pensionSideBarThreeUrlGA = getOptional[String]("urls.pension.sidebar.link-three-ga")
+  lazy val pensionSideBarFourUrl = getOptional[String]("urls.pension.sidebar.link-four")
+  lazy val pensionSideBarFourUrlGA = getOptional[String]("urls.pension.sidebar.link-four-ga")
+  lazy val pensionSideBarFiveUrl = getOptional[String]("urls.pension.sidebar.link-five")
+  lazy val pensionSideBarFiveUrlGA = getOptional[String]("urls.pension.sidebar.link-five-ga")
 
   lazy val govUkUrl = loadConfig(s"urls.govUk")
 
   lazy val languageTranslationEnabled =
-    runModeConfiguration.getOptional[Boolean]("microservice.services.features.welsh-translation").getOrElse(true)
+    getOptional[Boolean]("microservice.services.features.welsh-translation").getOrElse(true)
   def languageMap: Map[String, Lang] = Map("english" -> Lang("en"), "cymraeg" -> Lang("cy"))
   def routeToSwitchLanguage = (lang: String) => routes.LanguageSwitchController.switchToLanguage(lang)
 
-  lazy val isGtmEnabled = runModeConfiguration.getOptional[Boolean]("google-tag-manager.enabled").getOrElse(true)
+  lazy val isGtmEnabled = getOptional[Boolean]("google-tag-manager.enabled").getOrElse(true)
 
 }
