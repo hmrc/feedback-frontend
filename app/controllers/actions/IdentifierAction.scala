@@ -17,21 +17,23 @@
 package controllers.actions
 
 import com.google.inject.Inject
-import play.api.mvc.{ActionBuilder, ActionFunction, Request, Result}
+import play.api.mvc.{ActionBuilder, ActionFunction, AnyContent, BodyParser, MessagesControllerComponents, Request, Result}
 import play.api.mvc.Results._
 import uk.gov.hmrc.auth.core._
-import uk.gov.hmrc.auth.core.retrieve.Retrievals
 import config.FrontendAppConfig
 import controllers.routes
 import models.requests.IdentifierRequest
+import uk.gov.hmrc.auth.core.retrieve.v2.Retrievals
 import uk.gov.hmrc.http.UnauthorizedException
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.HeaderCarrierConverter
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class AuthenticatedIdentifierAction @Inject()(override val authConnector: AuthConnector, config: FrontendAppConfig)(
-  implicit ec: ExecutionContext)
+class AuthenticatedIdentifierAction @Inject()(
+  override val authConnector: AuthConnector,
+  config: FrontendAppConfig,
+  mcc: MessagesControllerComponents)(implicit ec: ExecutionContext)
     extends IdentifierAction with AuthorisedFunctions {
 
   override def invokeBlock[A](request: Request[A], block: (IdentifierRequest[A]) => Future[Result]): Future[Result] = {
@@ -43,25 +45,30 @@ class AuthenticatedIdentifierAction @Inject()(override val authConnector: AuthCo
         block(IdentifierRequest(request, internalId))
       }.getOrElse(throw new UnauthorizedException("Unable to retrieve internal Id"))
     } recover {
-      case ex: NoActiveSession =>
+      case _: NoActiveSession =>
         Redirect(config.loginUrl, Map("continue" -> Seq(config.loginContinueUrl)))
-      case ex: InsufficientEnrolments =>
+      case _: InsufficientEnrolments =>
         Redirect(routes.UnauthorisedController.onPageLoad)
-      case ex: InsufficientConfidenceLevel =>
+      case _: InsufficientConfidenceLevel =>
         Redirect(routes.UnauthorisedController.onPageLoad)
-      case ex: UnsupportedAuthProvider =>
+      case _: UnsupportedAuthProvider =>
         Redirect(routes.UnauthorisedController.onPageLoad)
-      case ex: UnsupportedAffinityGroup =>
+      case _: UnsupportedAffinityGroup =>
         Redirect(routes.UnauthorisedController.onPageLoad)
-      case ex: UnsupportedCredentialRole =>
+      case _: UnsupportedCredentialRole =>
         Redirect(routes.UnauthorisedController.onPageLoad)
     }
   }
+
+  override def parser: BodyParser[AnyContent] = mcc.parsers.defaultBodyParser
+
+  override protected def executionContext: ExecutionContext = ec
 }
 
-trait IdentifierAction extends ActionBuilder[IdentifierRequest] with ActionFunction[Request, IdentifierRequest]
+trait IdentifierAction
+    extends ActionBuilder[IdentifierRequest, AnyContent] with ActionFunction[Request, IdentifierRequest]
 
-class SessionIdentifierAction @Inject()(config: FrontendAppConfig)(implicit ec: ExecutionContext)
+class SessionIdentifierAction @Inject()(mcc: MessagesControllerComponents)(implicit ec: ExecutionContext)
     extends IdentifierAction {
 
   override def invokeBlock[A](request: Request[A], block: (IdentifierRequest[A]) => Future[Result]): Future[Result] = {
@@ -73,4 +80,8 @@ class SessionIdentifierAction @Inject()(config: FrontendAppConfig)(implicit ec: 
       case None          => Future.successful(Redirect(routes.SessionExpiredController.onPageLoad()))
     }
   }
+
+  override def parser: BodyParser[AnyContent] = mcc.parsers.defaultBodyParser
+
+  override protected def executionContext: ExecutionContext = ec
 }

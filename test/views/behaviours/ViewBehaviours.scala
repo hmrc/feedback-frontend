@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,13 @@
 
 package views.behaviours
 
+import play.api.i18n.Lang
 import play.twirl.api.HtmlFormat
 import views.ViewSpecBase
 
 trait ViewBehaviours extends ViewSpecBase {
+
+  implicit val lang: Lang = Lang("en")
 
   def normalPage(view: () => HtmlFormat.Appendable, messageKeyPrefix: String, expectedGuidanceKeys: String*) =
     "behave like a normal page" when {

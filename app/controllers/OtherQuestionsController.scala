@@ -23,21 +23,19 @@ import models.{FeedbackId, Origin, OtherQuestions}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
-import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.Action
+import play.api.i18n.I18nSupport
+import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.otherQuestions
 
-import scala.concurrent.ExecutionContext
-
 class OtherQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
-  override val messagesApi: MessagesApi,
   navigator: Navigator,
   formProvider: OtherQuestionsFormProvider,
-  auditService: AuditService)(implicit ec: ExecutionContext)
-    extends FrontendController with I18nSupport {
+  auditService: AuditService,
+  mcc: MessagesControllerComponents)
+    extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
   def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)

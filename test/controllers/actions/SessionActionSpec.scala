@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,8 +21,6 @@ import play.api.mvc.Controller
 import play.api.test.Helpers._
 import uk.gov.hmrc.http.SessionKeys
 
-import scala.concurrent.ExecutionContext.Implicits.global
-
 class SessionActionSpec extends SpecBase {
 
   class Harness(action: IdentifierAction) extends Controller {
@@ -34,7 +32,7 @@ class SessionActionSpec extends SpecBase {
   "Session Action" when {
     "there's no active session" must {
       "redirect to the session expired page" in {
-        val sessionAction = new SessionIdentifierAction(frontendAppConfig)
+        val sessionAction = new SessionIdentifierAction(mcc)
         val controller = new Harness(sessionAction)
         val result = controller.onPageLoad()(fakeRequest)
         status(result) mustBe SEE_OTHER
@@ -43,7 +41,7 @@ class SessionActionSpec extends SpecBase {
     }
     "there's an active session" must {
       "perform the action" in {
-        val sessionAction = new SessionIdentifierAction(frontendAppConfig)
+        val sessionAction = new SessionIdentifierAction(mcc)
         val controller = new Harness(sessionAction)
         val request = fakeRequest.withSession(SessionKeys.sessionId -> "foo")
         val result = controller.onPageLoad()(request)

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,11 @@
 package controllers.actions
 
 import uk.gov.hmrc.http.cache.client.CacheMap
+import play.api.test.Helpers.stubControllerComponents
 import models.requests.{IdentifierRequest, OptionalDataRequest}
 import models.UserAnswers
 
-import scala.concurrent.Future
-
+import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class FakeDataRetrievalAction(cacheMapToReturn: Option[CacheMap]) extends DataRetrievalAction {
@@ -31,4 +31,6 @@ class FakeDataRetrievalAction(cacheMapToReturn: Option[CacheMap]) extends DataRe
       case Some(cacheMap) =>
         Future(OptionalDataRequest(request.request, request.identifier, Some(new UserAnswers(cacheMap))))
     }
+
+  override protected def executionContext: ExecutionContext = stubControllerComponents().executionContext
 }

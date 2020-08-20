@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +17,11 @@
 package generators
 
 import models._
+import org.scalacheck.Arbitrary._
+import org.scalacheck.Gen._
 import org.scalacheck.{Arbitrary, Gen}
-import Arbitrary._
-import Gen._
-import base.SpecBase
 import play.api.Application
 import play.api.test.FakeRequest
-import uk.gov.hmrc.http.HeaderCarrier
 
 trait ModelGenerators {
 

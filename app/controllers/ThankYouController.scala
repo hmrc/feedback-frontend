@@ -16,16 +16,16 @@
 
 package controllers
 
-import javax.inject.Inject
-import play.api.i18n.{I18nSupport, MessagesApi}
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
+import javax.inject.Inject
 import models.Origin
-import play.api.mvc.Action
+import play.api.i18n.I18nSupport
+import play.api.mvc.MessagesControllerComponents
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.{thankYou, thankYouPension}
 
-class ThankYouController @Inject()(appConfig: FrontendAppConfig, override val messagesApi: MessagesApi)
-    extends FrontendController with I18nSupport {
+class ThankYouController @Inject()(appConfig: FrontendAppConfig, mcc: MessagesControllerComponents)
+    extends FrontendController(mcc) with I18nSupport {
 
   def onPageLoadWithOrigin(origin: Origin) = onPageLoad()
 

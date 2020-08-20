@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,9 @@
 
 package generators
 
+import org.scalacheck.Arbitrary._
+import org.scalacheck.Gen._
 import org.scalacheck.{Arbitrary, Gen, Shrink}
-import Gen._
-import Arbitrary._
-import play.api.libs.json.{JsBoolean, JsNumber, JsString}
-import uk.gov.hmrc.http.cache.client.CacheMap
 
 trait Generators extends CacheMapGenerator with PageGenerators with ModelGenerators with UserAnswersEntryGenerators {
 

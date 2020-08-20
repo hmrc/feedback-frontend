@@ -17,27 +17,25 @@
 package controllers
 
 import config.FrontendAppConfig
-import connectors.DataCacheConnector
-import controllers.actions._
 import forms.GiveCommentsFormProvider
 import javax.inject.Inject
 import models.{FeedbackId, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
-import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.Action
+import play.api.i18n.I18nSupport
+import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.giveComments
 
 class GiveCommentsController @Inject()(
   appConfig: FrontendAppConfig,
-  override val messagesApi: MessagesApi,
   navigator: Navigator,
   formProvider: GiveCommentsFormProvider,
-  auditService: AuditService
-) extends FrontendController with I18nSupport {
+  auditService: AuditService,
+  mcc: MessagesControllerComponents
+) extends FrontendController(mcc) with I18nSupport {
 
   val form = formProvider()
   def submitCall(origin: Origin) = routes.GiveCommentsController.onSubmit(origin)

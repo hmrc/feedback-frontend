@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,12 +41,7 @@ class GiveReasonControllerSpec extends ControllerSpecBase with PropertyChecks wi
   lazy val mockAuditService = mock[AuditService]
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new GiveReasonController(
-      frontendAppConfig,
-      messagesApi,
-      new FakeNavigator(onwardRoute),
-      formProvider,
-      mockAuditService)
+    new GiveReasonController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
 
   def viewAsString(form: Form[_] = form, origin: Origin) =
     giveReason(frontendAppConfig, form, routes.GiveReasonController.onSubmit(origin))(fakeRequest, messages).toString

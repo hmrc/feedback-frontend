@@ -16,28 +16,26 @@
 
 package controllers
 
-import javax.inject.Inject
-import play.api.data.Form
-import play.api.i18n.{I18nSupport, MessagesApi}
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import config.FrontendAppConfig
 import forms.PTAQuestionsFormProvider
+import javax.inject.Inject
 import models.{FeedbackId, Origin, PTAQuestions}
 import navigation.Navigator
 import pages.GenericQuestionsPage
-import play.api.mvc.Action
+import play.api.data.Form
+import play.api.i18n.I18nSupport
+import play.api.mvc.MessagesControllerComponents
 import services.AuditService
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.ptaQuestions
-
-import scala.concurrent.ExecutionContext
 
 class PTAQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
-  override val messagesApi: MessagesApi,
   navigator: Navigator,
   formProvider: PTAQuestionsFormProvider,
-  auditService: AuditService)(implicit ec: ExecutionContext)
-    extends FrontendController with I18nSupport {
+  auditService: AuditService,
+  mcc: MessagesControllerComponents)
+    extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[PTAQuestions] = formProvider()
   def submitCall(origin: Origin) = routes.PTAQuestionsController.onSubmit(origin)

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
 package controllers
 
 import controllers.actions._
-import forms.{OtherQuestionsEmployeeExpensesBetaFormProvider, OtherQuestionsFormProvider}
+import forms.OtherQuestionsEmployeeExpensesBetaFormProvider
 import generators.ModelGenerators
-import models.{FeedbackId, Origin, OtherQuestions, OtherQuestionsEmployeeExpensesBeta}
+import models.{FeedbackId, Origin, OtherQuestionsEmployeeExpensesBeta}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -30,9 +30,7 @@ import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.{otherQuestions, otherQuestionsEmployeeExpensesBeta}
-
-import scala.concurrent.ExecutionContext.Implicits.global
+import views.html.otherQuestionsEmployeeExpensesBeta
 
 class OtherQuestionsEmployeeExpensesBetaControllerSpec
     extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
@@ -48,10 +46,10 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new OtherQuestionsEmployeeExpensesBetaController(
       frontendAppConfig,
-      messagesApi,
       new FakeNavigator(onwardRoute),
       formProvider,
-      mockAuditService)
+      mockAuditService,
+      mcc)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     otherQuestionsEmployeeExpensesBeta(frontendAppConfig, form, action)(fakeRequest, messages).toString

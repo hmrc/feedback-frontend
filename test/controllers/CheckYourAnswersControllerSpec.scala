@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,10 @@ class CheckYourAnswersControllerSpec extends ControllerSpecBase {
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new CheckYourAnswersController(
       frontendAppConfig,
-      messagesApi,
       FakeIdentifierAction,
       dataRetrievalAction,
-      new DataRequiredActionImpl)
+      new DataRequiredActionImpl,
+      mcc)
 
   "Check Your Answers Controller" must {
     "return 200 and the correct view for a GET" in {

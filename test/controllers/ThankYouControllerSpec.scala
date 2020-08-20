@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import views.html.thankYou
 class ThankYouControllerSpec extends ControllerSpecBase {
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new ThankYouController(frontendAppConfig, messagesApi)
+    new ThankYouController(frontendAppConfig, mcc)
 
   def viewAsString() = thankYou(frontendAppConfig)(fakeRequest, messages).toString
   val origin = Origin.fromString("/foo")

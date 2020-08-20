@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,19 @@
 
 package controllers.actions
 
-import play.api.mvc.{Request, Result}
+import play.api.mvc.{AnyContent, BodyParser, Request, Result}
 import models.requests.IdentifierRequest
+import play.api.test.Helpers.stubControllerComponents
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 object FakeIdentifierAction extends IdentifierAction {
   override def invokeBlock[A](request: Request[A], block: (IdentifierRequest[A]) => Future[Result]): Future[Result] =
     block(IdentifierRequest(request, "id"))
+
+  private def cc = stubControllerComponents()
+
+  override def parser: BodyParser[AnyContent] = cc.parsers.defaultBodyParser
+
+  override protected def executionContext: ExecutionContext = cc.executionContext
 }

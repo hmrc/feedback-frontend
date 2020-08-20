@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,23 @@
 
 package controllers
 
+import play.api.mvc.Result
 import play.api.test.Helpers._
 import views.html.unauthorised
+
+import scala.concurrent.Future
 
 class UnauthorisedControllerSpec extends ControllerSpecBase {
 
   "Unauthorised Controller" must {
+
+    def result: Future[Result] = new UnauthorisedController(frontendAppConfig, mcc).onPageLoad()(fakeRequest)
+
     "return 200 for a GET" in {
-      val result = new UnauthorisedController(frontendAppConfig, messagesApi).onPageLoad()(fakeRequest)
       status(result) mustBe OK
     }
 
     "return the correct view for a GET" in {
-      val result = new UnauthorisedController(frontendAppConfig, messagesApi).onPageLoad()(fakeRequest)
       contentAsString(result) mustBe unauthorised(frontendAppConfig)(fakeRequest, messages).toString
     }
   }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2020 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,20 +17,18 @@
 package connectors
 
 import generators.Generators
-import org.mockito.Mockito._
 import org.mockito.Matchers.{eq => eqTo, _}
+import org.mockito.Mockito._
 import org.scalacheck.Arbitrary.arbitrary
-import org.scalacheck.Gen
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{MustMatchers, OptionValues, WordSpec}
-import play.api.libs.json.{JsBoolean, JsNumber, JsString}
+import play.api.libs.json.JsString
 import repositories.{ReactiveMongoRepository, SessionRepository}
 import uk.gov.hmrc.http.cache.client.CacheMap
 
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
 
 class MongoCacheConnectorSpec
     extends WordSpec with MustMatchers with PropertyChecks with Generators with MockitoSugar with ScalaFutures

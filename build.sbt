@@ -2,6 +2,7 @@ import com.lucidchart.sbt.scalafmt.ScalafmtCorePlugin.autoImport.scalafmtOnCompi
 import play.sbt.routes.RoutesKeys
 import scoverage.ScoverageKeys
 import uk.gov.hmrc.DefaultBuildSettings
+import scala.sys.process._
 
 lazy val appName: String = "feedback-frontend"
 
@@ -13,13 +14,10 @@ lazy val root = (project in file("."))
   .settings(DefaultBuildSettings.defaultSettings(): _*)
   .settings(SbtDistributablesPlugin.publishingSettings: _*)
   .settings(majorVersion := 0)
-  .settings(
-    migrate := {
-      "./migrate.sh" !
-    }
-  )
+  .settings(migrate := "./migrate.sh".!)
   .settings(
     name := appName,
+    scalaVersion := "2.12.12",
     RoutesKeys.routesImport ++= Seq("models._", "config.Binders._"),
     PlayKeys.playDefaultPort := 9514,
     ScoverageKeys.coverageExcludedFiles := "<empty>;Reverse.*;.*filters.*;.*handlers.*;.*components.*;.*repositories.*;" +
@@ -28,7 +26,6 @@ lazy val root = (project in file("."))
     ScoverageKeys.coverageMinimum := 80,
     ScoverageKeys.coverageFailOnMinimum := true,
     ScoverageKeys.coverageHighlighting := true,
-    scalacOptions ++= Seq("-Xfatal-warnings", "-feature"),
     libraryDependencies ++= AppDependencies(),
     retrieveManaged := true,
     scalafmtOnCompile := true,
@@ -45,7 +42,7 @@ lazy val root = (project in file("."))
         group(Seq("javascripts/show-hide-content.js", "javascripts/feedbackfrontend.js"))
     ),
     // prevent removal of unused code which generates warning errors due to use of third-party libs
-    UglifyKeys.compressOptions := Seq("unused=false", "dead_code=false"),
+    uglifyCompressOptions := Seq("unused=false", "dead_code=false"),
     pipelineStages := Seq(digest),
     // below line required to force asset pipeline to operate in dev rather than only prod
     pipelineStages in Assets := Seq(concat, uglify),
