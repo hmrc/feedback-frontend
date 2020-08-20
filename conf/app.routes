@@ -22,6 +22,9 @@ POST       /:origin/business                            controllers.BTAQuestions
 GET        /:origin/pension                             controllers.PensionQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/pension                             controllers.PensionQuestionsController.onSubmit(origin: models.Origin)
 
+GET        /:origin/eat-out-to-help-out                 controllers.EOTHOQuestionsController.onPageLoad(origin: models.Origin)
+POST       /:origin/eat-out-to-help-out                 controllers.EOTHOQuestionsController.onSubmit(origin: models.Origin)
+
 GET        /:origin/give-reason                         controllers.GiveReasonController.onPageLoad(origin: models.Origin)
 POST       /:origin/give-reason                         controllers.GiveReasonController.onSubmit(origin: models.Origin)
 

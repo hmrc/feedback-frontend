@@ -79,6 +79,18 @@ object PensionQuestions {
   implicit val formats: Format[PensionQuestions] = Json.format[PensionQuestions]
 }
 
+case class EOTHOQuestions(
+  ableToDo: Option[Boolean],
+  howEasyScore: Option[HowEasyQuestion],
+  whyGiveScore: Option[String],
+  howDoYouFeelScore: Option[HowDoYouFeelQuestion],
+  likelyToDo: Option[LikelyToDoQuestion]
+)
+
+object EOTHOQuestions {
+  implicit val formats: Format[EOTHOQuestions] = Json.format[EOTHOQuestions]
+}
+
 case class GiveReasonQuestions(value: Option[GiveReason], reason: Option[String])
 
 object GiveReasonQuestions {

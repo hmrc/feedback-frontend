@@ -164,4 +164,21 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
+
+  //TODO
+  def eothoAudit(origin: Origin, feedbackId: FeedbackId, questions: EOTHOQuestions)(
+    implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+        withFeedbackId(feedbackId) andThen
+        withAbleToDo(questions.ableToDo) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore) andThen
+        withLikelyToDo(questions.likelyToDo)
+    )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
 }

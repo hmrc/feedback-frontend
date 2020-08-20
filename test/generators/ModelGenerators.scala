@@ -53,6 +53,8 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryPensionQuestions: Arbitrary[PensionQuestions] = Arbitrary(pensionQuestionsGen)
 
+  implicit lazy val arbitraryEothoQuesions: Arbitrary[EOTHOQuestions] = Arbitrary(eothoQuestionsGen)
+
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
       value  <- option(arbitrary[GiveReason])
@@ -115,6 +117,18 @@ trait ModelGenerators {
       likelyToDo <- option(likelyToDoQuestionGen)
     } yield {
       PensionQuestions(ableToDo, howEasy, whyScore, howFeel, likelyToDo)
+    }
+
+  //todo
+  lazy val eothoQuestionsGen: Gen[EOTHOQuestions] =
+    for {
+      ableToDo   <- option(arbitrary[Boolean])
+      howEasy    <- option(howEasyQuestionGen)
+      whyScore   <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howFeel    <- option(howDoYouFeelQuestionGen)
+      likelyToDo <- option(likelyToDoQuestionGen)
+    } yield {
+      EOTHOQuestions(ableToDo, howEasy, whyScore, howFeel, likelyToDo)
     }
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
