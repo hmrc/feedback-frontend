@@ -50,13 +50,19 @@ legendClass = Some("heading-medium"),
 inputs = NumberOfEstablishmentsQuestion.options
 )
 
+ @components.input_checkboxes(
+  field = form("value"),
+  legend = messages("whichRegion.heading"),
+  headingIsLegend = true,
+  inputs = WhichRegionQuestion.options
+ )
+
 @components.input_radio(
 field = form("comparedToMonTueWed"),
 legend = messages("eothoQuestions.comparedToMonTueWed.heading"),
 legendClass = Some("heading-medium"),
 inputs = ComparedToMonTueWedQuestion.options
 )
-
 
 @components.submit_button()
 }
