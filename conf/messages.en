@@ -161,7 +161,7 @@ eothoQuestions.intro3 = The survey takes about 1 minute to complete. There are 5
 eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
 eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
 
-numberOfEstablishmentsQuestion.25orFewer = 25 or fewer
+numberOfEstablishmentsQuestion.FewerThan25 = 25 or fewer
 numberOfEstablishmentsQuestion.MoreThan25 = More than 25
 
 thankYou.pension.title = Thank you
@@ -205,18 +205,19 @@ page_not_found.heading = Page not found
 page.not.found.error.check.web.address.correct = If you typed the web address, check it is correct.
 page.not.found.error.check.web.address.full = If you pasted the web address, check you copied the entire address.
 
-whichRegion.heading = In which regions does your business have establishments? Please select all that apply.
-whichRegion.EastMidlands = East Midlands
-whichRegion.EastOfEngland = East of England
-whichRegion.London = London
-whichRegion.NorthEast = North East
-whichRegion.NorthWest = North West
-whichRegion.SouthEast = South East
-whichRegion.SouthWest = South West
-whichRegion.WestMidlands = West Midlands
-whichRegion.YorkshireAndHumber = Yorkshire and Humber
-whichRegion.NorthernIreland = Northern Ireland
-whichRegion.Scotland = Scotland
-whichRegion.Wales = Wales
+whichRegions.heading = In which regions does your business have establishments? Please select all that apply.
+whichRegions.EastMidlands = East Midlands
+whichRegions.EastOfEngland = East of England
+whichRegions.London = London
+whichRegions.NorthEast = North East
+whichRegions.NorthWest = North West
+whichRegions.SouthEast = South East
+whichRegions.SouthWest = South West
+whichRegions.WestMidlands = West Midlands
+whichRegions.YorkshireAndHumber = Yorkshire and Humber
+whichRegions.NorthernIreland = Northern Ireland
+whichRegions.Scotland = Scotland
+whichRegions.Wales = Wales
+whichRegions.error.required = Please enter a value
 
 

@@ -50,7 +50,9 @@ class EOTHOQuestionsController @Inject()(
     form
       .bindFromRequest()
       .fold(
-        formWithErrors => BadRequest(eothoQuestions(appConfig, formWithErrors, submitCall(origin))),
+        formWithErrors => {
+          BadRequest(eothoQuestions(appConfig, formWithErrors, submitCall(origin)))
+        },
         value => {
           auditService.eothoAudit(origin, FeedbackId.fromSession, value)
           Redirect(successPage)

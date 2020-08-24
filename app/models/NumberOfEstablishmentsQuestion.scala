@@ -23,11 +23,11 @@ sealed trait NumberOfEstablishmentsQuestion
 
 object NumberOfEstablishmentsQuestion {
 
-  case object _25orFewer extends WithName("25orFewer") with NumberOfEstablishmentsQuestion
+  case object FewerThan25 extends WithName("FewerThan25") with NumberOfEstablishmentsQuestion
   case object MoreThan25 extends WithName("MoreThan25") with NumberOfEstablishmentsQuestion
 
   val values: Seq[NumberOfEstablishmentsQuestion] =
-    List(_25orFewer, MoreThan25)
+    List(FewerThan25, MoreThan25)
 
   val options: Seq[RadioOption] = values.map { value =>
     RadioOption("numberOfEstablishmentsQuestion", value.toString)
@@ -43,9 +43,9 @@ object NumberOfEstablishmentsQuestion {
 
   implicit object NumberOfEstablishmentsQuestionReads extends Reads[NumberOfEstablishmentsQuestion] {
     override def reads(json: JsValue): JsResult[NumberOfEstablishmentsQuestion] = json match {
-      case JsString(_25orFewer.toString) => JsSuccess(_25orFewer)
-      case JsString(MoreThan25.toString) => JsSuccess(MoreThan25)
-      case _                             => JsError("Unknown NumberOfEstablishmentsQuestion")
+      case JsString(FewerThan25.toString) => JsSuccess(FewerThan25)
+      case JsString(MoreThan25.toString)  => JsSuccess(MoreThan25)
+      case _                              => JsError("Unknown NumberOfEstablishmentsQuestion")
     }
   }
 }

@@ -30,7 +30,7 @@
     <fieldset id="@{field.id}" @if(field.hasErrors || hint.nonEmpty){aria-describedby="@if(field.hasErrors){error-message-@{field.id}-input} @if(hint.nonEmpty){hint-@{field.id}}"}>
         @if(headingIsLegend){
             <legend>
-                <h1 @if(legendClass.nonEmpty){class="@legendClass" }else{class="heading-xlarge"}>@legend</h1>
+                <span @if(legendClass.nonEmpty){class="@legendClass" }else{class="bold-small heading-medium"}>@legend</span>
             </legend>
         } else {
             <legend @if(legendClass.nonEmpty){class="@legendClass" }>

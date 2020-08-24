@@ -18,6 +18,7 @@ package services
 
 import javax.inject.Inject
 import models._
+import play.api.libs.json.{JsObject, Json}
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import utils.FeedbackFrontendHelper.boolToInt
@@ -31,38 +32,63 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
   type MapCont = Map[String, String] => Map[String, String]
 
+  def setToString[A](s: Seq[A]): String =
+    if (s.isEmpty) {
+      "-"
+    } else {
+      s.toString
+    }
+
   def withOrigin(origin: Origin): MapCont =
     _ + ("origin" -> origin.value)
+
   def withFeedbackId(feedbackId: FeedbackId): MapCont =
     _ + ("feedbackId" -> feedbackId.value)
+
   def withNeededToDo(neededToDo: Option[String]): MapCont =
     _ + ("neededToDo" -> neededToDo.getOrElse("-"))
+
   def withAbleToDo(ableToDo: Option[Boolean]): MapCont =
     _ + ("ableToDo" -> ableToDo.map(boolToInt(_).toString).getOrElse("-"))
+
   def withHowEasyScore(howEasy: Option[HowEasyQuestion]): MapCont =
     _ + ("howEasyScore" -> howEasy.map(_.value.toString).getOrElse("-"))
+
   def withWhyGiveScore(whyScore: Option[String]): MapCont =
     _ + ("whyGiveScore" -> whyScore.getOrElse("-"))
+
   def withHowFeelScore(howFeel: Option[HowDoYouFeelQuestion]): MapCont =
     _ + ("howDoYouFeelScore" -> howFeel.map(_.value.toString).getOrElse("-"))
+
   def withMainService(mainService: Option[MainServiceQuestion]): MapCont =
     _ + ("mainService" -> mainService.map(_.toString).getOrElse("-"))
+
   def withMainServiceOther(mainServiceOther: Option[String]): MapCont =
     _ + ("mainServiceOther" -> mainServiceOther.getOrElse("-"))
+
   def withLikelyToDo(likelyToDo: Option[LikelyToDoQuestion]): MapCont =
     _ + ("likelyToDo" -> likelyToDo.map(_.toString).getOrElse("-"))
+
   def withGiveReason(giveReason: Option[GiveReason]): MapCont =
     _ + ("value" -> giveReason.map(_.toString).getOrElse("-"))
+
   def withOtherReason(otherReason: Option[String]): MapCont =
     _ + ("reason" -> otherReason.getOrElse("-"))
+
   def withGiveComments(answer: String): MapCont =
     _ + ("giveComments" -> answer)
+
   def withFullName(fullName: Option[String]): MapCont =
     _ + ("fullName" -> fullName.getOrElse(("-")))
+
   def withEmail(email: Option[String]): MapCont =
     _ + ("email" -> email.getOrElse("-"))
+
   def withNumberOfEstablishments(numberOfEstablishments: Option[NumberOfEstablishmentsQuestion]): MapCont =
     _ + ("numberOfEstablishments" -> numberOfEstablishments.map(_.toString).getOrElse("-"))
+
+  def withWhichRegion(whichRegions: List[WhichRegionQuestion]): MapCont =
+    _ + ("whichRegions" -> setToString(whichRegions))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
@@ -170,11 +196,17 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def eothoAudit(origin: Origin, feedbackId: FeedbackId, questions: EOTHOQuestions)(
     implicit hc: HeaderCarrier): Unit = {
 
-    val auditMap = (
-      withOrigin(origin) andThen
-        withFeedbackId(feedbackId) andThen
-        withNumberOfEstablishments(questions.numberOfEstablishments)
-    )(emptyMap)
+    val auditMap =
+      (
+        withOrigin(origin) andThen
+          withFeedbackId(feedbackId) andThen
+          withNumberOfEstablishments(questions.numberOfEstablishments) andThen
+          withWhichRegion(questions.whichRegions)
+      )(emptyMap)
+
+    println("+" * 50)
+    println(Json.toJson(auditMap).as[JsObject])
+
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 }

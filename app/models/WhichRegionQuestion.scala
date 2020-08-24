@@ -18,24 +18,24 @@ package models
 
 import viewmodels.RadioOption
 
-sealed trait WhichRegion
+sealed trait WhichRegionQuestion
 
 object WhichRegionQuestion extends Enumerable.Implicits {
 
-  case object EastMidlands extends WithName("EastMidlands") with WhichRegion
-  case object EastOfEngland extends WithName("EastOfEngland") with WhichRegion
-  case object London extends WithName("London") with WhichRegion
-  case object NorthEast extends WithName("NorthEast") with WhichRegion
-  case object NorthWest extends WithName("NorthWest") with WhichRegion
-  case object SouthEast extends WithName("SouthEast") with WhichRegion
-  case object SouthWest extends WithName("SouthWest") with WhichRegion
-  case object WestMidlands extends WithName("WestMidlands") with WhichRegion
-  case object YorkshireAndHumber extends WithName("YorkshireAndHumber") with WhichRegion
-  case object NorthernIreland extends WithName("NorthernIreland") with WhichRegion
-  case object Scotland extends WithName("Scotland") with WhichRegion
-  case object Wales extends WithName("Wales") with WhichRegion
+  case object EastMidlands extends WithName("EastMidlands") with WhichRegionQuestion
+  case object EastOfEngland extends WithName("EastOfEngland") with WhichRegionQuestion
+  case object London extends WithName("London") with WhichRegionQuestion
+  case object NorthEast extends WithName("NorthEast") with WhichRegionQuestion
+  case object NorthWest extends WithName("NorthWest") with WhichRegionQuestion
+  case object SouthEast extends WithName("SouthEast") with WhichRegionQuestion
+  case object SouthWest extends WithName("SouthWest") with WhichRegionQuestion
+  case object WestMidlands extends WithName("WestMidlands") with WhichRegionQuestion
+  case object YorkshireAndHumber extends WithName("YorkshireAndHumber") with WhichRegionQuestion
+  case object NorthernIreland extends WithName("NorthernIreland") with WhichRegionQuestion
+  case object Scotland extends WithName("Scotland") with WhichRegionQuestion
+  case object Wales extends WithName("Wales") with WhichRegionQuestion
 
-  val values: Seq[WhichRegion] = Seq(
+  val values: Seq[WhichRegionQuestion] = Seq(
     EastMidlands,
     EastOfEngland,
     London,
@@ -51,9 +51,9 @@ object WhichRegionQuestion extends Enumerable.Implicits {
   )
 
   val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("whichRegion", value.toString)
+    RadioOption("whichRegions", value.toString)
   }
 
-  implicit val enumerable: Enumerable[WhichRegion] =
+  implicit val enumerable: Enumerable[WhichRegionQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
 }

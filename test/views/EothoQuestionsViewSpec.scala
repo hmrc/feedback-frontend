@@ -16,15 +16,16 @@
 
 package views
 
-import forms.{EOTHOQuestionsFormProvider}
+import forms.EOTHOQuestionsFormProvider
 import models._
 import play.api.data.Form
-import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import views.html.{eothoQuestions}
+import play.twirl.api.HtmlFormat
+import views.behaviours.{CheckboxViewBehaviours, OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
+import views.html.eothoQuestions
 
 class EOTHOQuestionsViewSpec
     extends YesNoViewBehaviours[EOTHOQuestions] with StringViewBehaviours[EOTHOQuestions]
-    with OptionsViewBehaviours[EOTHOQuestions] {
+    with OptionsViewBehaviours[EOTHOQuestions] with CheckboxViewBehaviours[EOTHOQuestions] {
 
   val messageKeyPrefix = "eothoQuestions"
 
@@ -45,6 +46,8 @@ class EOTHOQuestionsViewSpec
       "numberOfEstablishments",
       NumberOfEstablishmentsQuestion.options,
       "eothoQuestions.numberOfEstablishments")
+
+//    behave like checkboxPage(checkboxForm, applyView, messageKeyPrefix, WhichRegionQuestion.options)
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("eothoQuestions.introLinkText")

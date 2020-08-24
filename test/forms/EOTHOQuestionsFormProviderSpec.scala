@@ -32,11 +32,11 @@
 //
 package forms
 
-import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
-import models.{EOTHOQuestions, NumberOfEstablishmentsQuestion}
+import forms.behaviours.{CheckboxFieldBehaviours, OptionFieldBehaviours}
+import models.{EOTHOQuestions, NumberOfEstablishmentsQuestion, WhichRegionQuestion}
 import play.api.data.FormError
 
-class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours {
+class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with CheckboxFieldBehaviours {
 
   def form = new EOTHOQuestionsFormProvider()()
 
@@ -53,4 +53,18 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours {
       _.numberOfEstablishments
     )
   }
+
+  for {
+    (value, i) <- WhichRegionQuestion.values.zipWithIndex
+  } yield
+    "whichRegions" must {
+      s"binds `$value` successfully" in {
+        val fieldName = "whichRegions"
+        val data = Map(
+          s"$fieldName[$i]" -> value.toString
+        )
+
+        form.bind(data).get.whichRegions shouldEqual List(value)
+      }
+    }
 }

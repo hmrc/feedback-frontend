@@ -121,9 +121,10 @@ trait ModelGenerators {
 
   lazy val eothoQuestionsGen: Gen[EOTHOQuestions] =
     for {
-      numberOfEstablishments <- option(numberOfEstablishments)
+      numberOfEstablishments <- option(numberOfEstablishmentsGen)
+      whichRegions           <- arbitrary[WhichRegionQuestion]
     } yield {
-      EOTHOQuestions(numberOfEstablishments)
+      EOTHOQuestions(numberOfEstablishments, List(whichRegions))
     }
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
@@ -138,6 +139,11 @@ trait ModelGenerators {
   lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
     oneOf(LikelyToDoQuestion.values)
 
-  lazy val numberOfEstablishments: Gen[NumberOfEstablishmentsQuestion] =
+  lazy val numberOfEstablishmentsGen: Gen[NumberOfEstablishmentsQuestion] =
     oneOf(NumberOfEstablishmentsQuestion.values)
+
+  implicit lazy val arbitraryWhichRegionQuestion: Arbitrary[WhichRegionQuestion] =
+    Arbitrary {
+      Gen.oneOf(WhichRegionQuestion.values)
+    }
 }
