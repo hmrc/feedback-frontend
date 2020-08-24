@@ -171,11 +171,18 @@ eothoQuestions.heading = Feedback
 eothoQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
 eothoQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
 eothoQuestions.intro3 = The survey takes about 1 minute to complete. There are 5 questions and they are all optional.
-eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
 eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
+eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
+eothoQuestions.comparedToMonTueWed.heading= Compared to July 2020, how has your August food and drink turnover across Mondays, Tuesdays and Wednesdays changed?
 
 numberOfEstablishmentsQuestion.25orFewer = 25 or fewer
 numberOfEstablishmentsQuestion.MoreThan25 = More than 25
+
+comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
+comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Decreased by less than 50%
+comparedToMonTueWedQuestion.StayedAboutTheSame = Stayed about the same
+comparedToMonTueWedQuestion.IncreasedByLessThan50percent = Increased by less than 50%
+comparedToMonTueWedQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr

@@ -33,7 +33,7 @@
 package forms
 
 import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
-import models.{EOTHOQuestions, NumberOfEstablishmentsQuestion}
+import models.{ComparedToMonTueWedQuestion, EOTHOQuestions, NumberOfEstablishmentsQuestion}
 import play.api.data.FormError
 
 class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours {
@@ -51,6 +51,20 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours {
       NumberOfEstablishmentsQuestion.values,
       FormError(fieldName, invalidError),
       _.numberOfEstablishments
+    )
+  }
+
+  ".comparedToMonTueWed" must {
+
+    val fieldName = "comparedToMonTueWed"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, ComparedToMonTueWedQuestion](
+      form,
+      fieldName,
+      ComparedToMonTueWedQuestion.values,
+      FormError(fieldName, invalidError),
+      _.comparedToMonTueWed
     )
   }
 }

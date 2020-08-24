@@ -76,6 +76,7 @@ class EOTHOQuestionsControllerSpec
 
         val values = Map(
           "numberOfEstablishments" -> answers.numberOfEstablishments.map(_.toString),
+          "comparedToMonTueWed"    -> answers.comparedToMonTueWed.map(_.toString)
         )
 
         val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)

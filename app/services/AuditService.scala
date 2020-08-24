@@ -61,8 +61,11 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("fullName" -> fullName.getOrElse(("-")))
   def withEmail(email: Option[String]): MapCont =
     _ + ("email" -> email.getOrElse("-"))
+
   def withNumberOfEstablishments(numberOfEstablishments: Option[NumberOfEstablishmentsQuestion]): MapCont =
     _ + ("numberOfEstablishments" -> numberOfEstablishments.map(_.toString).getOrElse("-"))
+  def withComparedToMonTueWed(comparedToMonTueWedQuestion: Option[ComparedToMonTueWedQuestion]): MapCont =
+    _ + ("comparedToMonTueWed" -> comparedToMonTueWedQuestion.map(_.toString).getOrElse(("_")))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
@@ -173,8 +176,10 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     val auditMap = (
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
-        withNumberOfEstablishments(questions.numberOfEstablishments)
+        withNumberOfEstablishments(questions.numberOfEstablishments) andThen
+        withComparedToMonTueWed(questions.comparedToMonTueWed)
     )(emptyMap)
+    println("\n\n\n\n + AUDIT " + auditMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 }
