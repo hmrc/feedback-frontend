@@ -19,33 +19,33 @@ package models
 import play.api.libs.json._
 import viewmodels.RadioOption
 
-sealed trait ComparedToMonTueWedQuestion
+sealed trait ComparedToThurFriSatSunQuestion
 
-object ComparedToMonTueWedQuestion {
+object ComparedToThurFriSatSunQuestion {
 
-  case object DecreasedByMore50pc extends WithName("DecreasedByMoreThan50percent") with ComparedToMonTueWedQuestion
-  case object DecreasedByLess50pc extends WithName("DecreasedByLessThan50percent") with ComparedToMonTueWedQuestion
-  case object StayAboutTheSame extends WithName("StayedAboutTheSame") with ComparedToMonTueWedQuestion
-  case object IncreasedByLess50pc extends WithName("IncreasedByLessThan50percent") with ComparedToMonTueWedQuestion
-  case object IncreasedByMore50pc extends WithName("IncreasedByMoreThan50percent") with ComparedToMonTueWedQuestion
+  case object DecreasedByMore50pc extends WithName("DecreasedByMoreThan50percent") with ComparedToThurFriSatSunQuestion
+  case object DecreasedByLess50pc extends WithName("DecreasedByLessThan50percent") with ComparedToThurFriSatSunQuestion
+  case object StayAboutTheSame extends WithName("StayedAboutTheSame") with ComparedToThurFriSatSunQuestion
+  case object IncreasedByLess50pc extends WithName("IncreasedByLessThan50percent") with ComparedToThurFriSatSunQuestion
+  case object IncreasedByMore50pc extends WithName("IncreasedByMoreThan50percent") with ComparedToThurFriSatSunQuestion
 
-  val values: Seq[ComparedToMonTueWedQuestion] =
+  val values: Seq[ComparedToThurFriSatSunQuestion] =
     List(DecreasedByMore50pc, DecreasedByLess50pc, StayAboutTheSame, IncreasedByLess50pc, IncreasedByMore50pc)
 
   val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("comparedToMonTueWedQuestion", value.toString)
+    RadioOption("comparedToThurFriSatSunQuestion", value.toString)
   }
 
-  implicit val enumerable: Enumerable[ComparedToMonTueWedQuestion] =
+  implicit val enumerable: Enumerable[ComparedToThurFriSatSunQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
 
-  implicit object ComparedToMonTueWedQuestion extends Writes[ComparedToMonTueWedQuestion] {
-    def writes(comparedToMonTueWedQuestion: ComparedToMonTueWedQuestion) =
+  implicit object ComparedToThurFriSatSunQuestion extends Writes[ComparedToThurFriSatSunQuestion] {
+    def writes(comparedToMonTueWedQuestion: ComparedToThurFriSatSunQuestion) =
       Json.toJson(comparedToMonTueWedQuestion.toString)
   }
 
-  implicit object ComparedToMonTueWedQuestionReads extends Reads[ComparedToMonTueWedQuestion] {
-    override def reads(json: JsValue): JsResult[ComparedToMonTueWedQuestion] = json match {
+  implicit object ComparedToThurFriSatSunQuestionReads extends Reads[ComparedToThurFriSatSunQuestion] {
+    override def reads(json: JsValue): JsResult[ComparedToThurFriSatSunQuestion] = json match {
       case JsString(DecreasedByMore50pc.toString) => JsSuccess(DecreasedByMore50pc)
       case JsString(DecreasedByLess50pc.toString) => JsSuccess(DecreasedByLess50pc)
       case JsString(StayAboutTheSame.toString)    => JsSuccess(StayAboutTheSame)

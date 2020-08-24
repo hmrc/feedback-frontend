@@ -52,6 +52,12 @@ class EOTHOQuestionsViewSpec
       ComparedToMonTueWedQuestion.options,
       "eothoQuestions.comparedToMonTueWed")
 
+    behave like optionsPage(
+      createViewUsingForm,
+      "comparedToThurFriSatSun",
+      ComparedToThurFriSatSunQuestion.options,
+      "eothoQuestions.comparedToThurFriSatSun")
+
     "contain privacy anchor tag" in {
       val expectedLink = messages("eothoQuestions.introLinkText")
       val doc = asDocument(createView())

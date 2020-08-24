@@ -174,6 +174,7 @@ eothoQuestions.intro3 = The survey takes about 1 minute to complete. There are 5
 eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
 eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
 eothoQuestions.comparedToMonTueWed.heading= Compared to July 2020, how has your August food and drink turnover across Mondays, Tuesdays and Wednesdays changed?
+eothoQuestions.comparedToThurFriSatSun.heading = Compared to July 2020, how has your August food and drink turnover across Thursdays, Fridays, Saturdays and Sundays changed?
 
 numberOfEstablishmentsQuestion.25orFewer = 25 or fewer
 numberOfEstablishmentsQuestion.MoreThan25 = More than 25
@@ -183,6 +184,12 @@ comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Decreased by less tha
 comparedToMonTueWedQuestion.StayedAboutTheSame = Stayed about the same
 comparedToMonTueWedQuestion.IncreasedByLessThan50percent = Increased by less than 50%
 comparedToMonTueWedQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
+
+comparedToThurFriSatSunQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
+comparedToThurFriSatSunQuestion.DecreasedByLessThan50percent = Decreased by less than 50%
+comparedToThurFriSatSunQuestion.StayedAboutTheSame = Stayed about the same
+comparedToThurFriSatSunQuestion.IncreasedByLessThan50percent = Increased by less than 50%
+comparedToThurFriSatSunQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr
@@ -223,3 +230,17 @@ page_not_found.tabtitle = Heb ddod o hyd i’r dudalen - Rhoi adborth - GOV.UK
 page_not_found.heading = Heb ddod o hyd i’r dudalen
 page.not.found.error.check.web.address.correct = Os gwnaethoch deipio’r cyfeiriad gwe, gwiriwch ei fod yn gywir.
 page.not.found.error.check.web.address.full = Os gwnaethoch ludo’r cyfeiriad gwe, gwiriwch eich bod wedi copïo’r cyfeiriad yn llawn.
+
+whichRegion.heading = In which regions does your business have establishments? Please select all that apply.
+whichRegion.EastMidlands = East Midlands
+whichRegion.EastOfEngland = East of England
+whichRegion.London = London
+whichRegion.NorthEast = North East
+whichRegion.NorthWest = North West
+whichRegion.SouthEast = South East
+whichRegion.SouthWest = South West
+whichRegion.WestMidlands = West Midlands
+whichRegion.YorkshireAndHumber = Yorkshire and Humber
+whichRegion.NorthernIreland = Northern Ireland
+whichRegion.Scotland = Scotland
+whichRegion.Wales = Wales

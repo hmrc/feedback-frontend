@@ -161,7 +161,7 @@ eothoQuestions.intro3 = The survey takes about 1 minute to complete. There are 5
 eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
 eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
 eothoQuestions.comparedToMonTueWed.heading= Compared to July 2020, how has your August food and drink turnover across Mondays, Tuesdays and Wednesdays changed?
-
+eothoQuestions.comparedToThurFriSatSun.heading = Compared to July 2020, how has your August food and drink turnover across Thursdays, Fridays, Saturdays and Sundays changed?
 
 numberOfEstablishmentsQuestion.25orFewer = 25 or fewer
 numberOfEstablishmentsQuestion.MoreThan25 = More than 25
@@ -171,6 +171,12 @@ comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Decreased by less tha
 comparedToMonTueWedQuestion.StayedAboutTheSame = Stayed about the same
 comparedToMonTueWedQuestion.IncreasedByLessThan50percent = Increased by less than 50%
 comparedToMonTueWedQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
+
+comparedToThurFriSatSunQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
+comparedToThurFriSatSunQuestion.DecreasedByLessThan50percent = Decreased by less than 50%
+comparedToThurFriSatSunQuestion.StayedAboutTheSame = Stayed about the same
+comparedToThurFriSatSunQuestion.IncreasedByLessThan50percent = Increased by less than 50%
+comparedToThurFriSatSunQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
 
 thankYou.pension.title = Thank you
 thankYou.pension.heading = Thank you

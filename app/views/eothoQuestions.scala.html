@@ -65,6 +65,13 @@ legendClass = Some("heading-medium"),
 inputs = ComparedToMonTueWedQuestion.options
 )
 
+@components.input_radio(
+field = form("comparedToThurFriSatSun"),
+legend = messages("eothoQuestions.comparedToThurFriSatSun.heading"),
+legendClass = Some("heading-medium"),
+inputs = ComparedToThurFriSatSunQuestion.options
+)
+
 @components.submit_button()
 }
 }

@@ -119,7 +119,8 @@ class EOTHOQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[EOTHOQuestions] =
     Form(
       mapping(
-        "numberOfEstablishments" -> optional(enumerable[NumberOfEstablishmentsQuestion]()),
-        "comparedToMonTueWed"    -> optional(enumerable[ComparedToMonTueWedQuestion]())
+        "numberOfEstablishments"  -> optional(enumerable[NumberOfEstablishmentsQuestion]()),
+        "comparedToMonTueWed"     -> optional(enumerable[ComparedToMonTueWedQuestion]()),
+        "comparedToThurFriSatSun" -> optional(enumerable[ComparedToThurFriSatSunQuestion]())
       )(EOTHOQuestions.apply)(EOTHOQuestions.unapply))
 }
