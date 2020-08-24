@@ -152,6 +152,18 @@ likelyToDoQuestion.ClarifyInformation = Clarify information you have found in Ch
 likelyToDoQuestion.GetProfessionalAdvice = Get some professional advice or free guidance
 likelyToDoQuestion.DoNothing = Do nothing. You are satisfied with the information you found today
 
+
+eothoQuestions.title = Give feedback - GOV.UK
+eothoQuestions.heading = Feedback
+eothoQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+eothoQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+eothoQuestions.intro3 = The survey takes about 1 minute to complete. There are 5 questions and they are all optional.
+eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
+eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
+
+numberOfEstablishmentsQuestion.25orFewer = 25 or fewer
+numberOfEstablishmentsQuestion.MoreThan25 = More than 25
+
 thankYou.pension.title = Thank you
 thankYou.pension.heading = Thank you
 thankYou.pension.intro = We’ve received your feedback.

@@ -75,11 +75,7 @@ class EOTHOQuestionsControllerSpec
         reset(mockAuditService)
 
         val values = Map(
-          "ableToDo"          -> answers.ableToDo.map(_.toString),
-          "howEasyScore"      -> answers.howEasyScore.map(_.toString),
-          "whyGiveScore"      -> answers.whyGiveScore,
-          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
-          "likelyToDo"        -> answers.likelyToDo.map(_.toString)
+          "numberOfEstablishments" -> answers.numberOfEstablishments.map(_.toString),
         )
 
         val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
@@ -87,18 +83,6 @@ class EOTHOQuestionsControllerSpec
 
         verify(mockAuditService, times(1))
           .eothoAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
-      }
-    }
-    //TODO
-    "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
-        val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
-
-        val result = controller().onSubmit(origin)(postRequest)
-
-        status(result) mustBe BAD_REQUEST
-        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall(origin))
       }
     }
   }

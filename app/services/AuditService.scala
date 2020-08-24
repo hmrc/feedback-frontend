@@ -61,6 +61,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("fullName" -> fullName.getOrElse(("-")))
   def withEmail(email: Option[String]): MapCont =
     _ + ("email" -> email.getOrElse("-"))
+  def withNumberOfEstablishments(numberOfEstablishments: Option[NumberOfEstablishmentsQuestion]): MapCont =
+    _ + ("numberOfEstablishments" -> numberOfEstablishments.map(_.toString).getOrElse("-"))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
@@ -165,20 +167,14 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  //TODO
   def eothoAudit(origin: Origin, feedbackId: FeedbackId, questions: EOTHOQuestions)(
     implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
-        withAbleToDo(questions.ableToDo) andThen
-        withHowEasyScore(questions.howEasyScore) andThen
-        withWhyGiveScore(questions.whyGiveScore) andThen
-        withHowFeelScore(questions.howDoYouFeelScore) andThen
-        withLikelyToDo(questions.likelyToDo)
+        withNumberOfEstablishments(questions.numberOfEstablishments)
     )(emptyMap)
-
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 }

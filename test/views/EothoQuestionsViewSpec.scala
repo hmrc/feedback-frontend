@@ -16,7 +16,7 @@
 
 package views
 
-import forms.{EOTHOQuestionsFormProvider, PensionQuestionsFormProvider}
+import forms.{EOTHOQuestionsFormProvider}
 import models._
 import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
@@ -40,30 +40,14 @@ class EOTHOQuestionsViewSpec
     //TODO
     behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
 
-    behave like yesNoPage(createViewUsingForm, "ableToDo", "pensionQuestions.ableToDo")
-
     behave like optionsPage(
       createViewUsingForm,
-      "howEasyScore",
-      HowEasyQuestion.options,
-      "pensionQuestions.howEasyScore")
-
-    behave like stringPage(createViewUsingForm, "whyGiveScore", "pensionQuestions.whyGiveScore")
-
-    behave like optionsPage(
-      createViewUsingForm,
-      "howDoYouFeelScore",
-      HowDoYouFeelQuestion.options,
-      "pensionQuestions.howDoYouFeelScore")
-
-    behave like optionsPage(
-      createViewUsingForm,
-      "likelyToDo",
-      LikelyToDoQuestion.options,
-      "pensionQuestions.likelyToDo")
+      "numberOfEstablishments",
+      NumberOfEstablishmentsQuestion.options,
+      "eothoQuestions.numberOfEstablishments")
 
     "contain privacy anchor tag" in {
-      val expectedLink = messages("pensionQuestions.introLinkText")
+      val expectedLink = messages("eothoQuestions.introLinkText")
       val doc = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
     }

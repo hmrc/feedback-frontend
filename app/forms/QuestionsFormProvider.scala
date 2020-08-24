@@ -114,20 +114,11 @@ class PensionQuestionsFormProvider @Inject() extends Mappings {
       )(PensionQuestions.apply)(PensionQuestions.unapply))
 }
 
-//TODO
 class EOTHOQuestionsFormProvider @Inject() extends Mappings {
-
-  private val maxFieldSizeWhyGiveScore = 1000
 
   def apply(): Form[EOTHOQuestions] =
     Form(
       mapping(
-        "ableToDo"     -> optional(boolean()),
-        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
-        "whyGiveScore" ->
-          optional(text("whyGiveScore.error.required")
-            .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
-        "likelyToDo"        -> optional(enumerable[LikelyToDoQuestion]())
+        "numberOfEstablishments" -> optional(enumerable[NumberOfEstablishmentsQuestion]()),
       )(EOTHOQuestions.apply)(EOTHOQuestions.unapply))
 }

@@ -158,11 +158,24 @@ pensionQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn a
 
 pensionQuestions.likelyToDo.heading = Beth ydych chi’n fwyaf tebygol o’i wneud ar ôl gwirio’ch Pensiwn y Wladwriaeth?
 
+
+
 likelyToDoQuestion.OtherPensions = Bwrw golwg dros eich pensiynau eraill, fel pensiynau preifat neu bensiynau’r gweithle
 likelyToDoQuestion.CheckFinances = Gwirio’ch materion ariannol, fel cynilion a buddsoddiadau
 likelyToDoQuestion.ClarifyInformation = Cael eglurhad o’r wybodaeth a gawsoch yn ‘Gwirio’ch Pensiwn y Wladwriaeth’
 likelyToDoQuestion.GetProfessionalAdvice = Cael cyngor proffesiynol neu arweiniad yn rhad ac am ddim
 likelyToDoQuestion.DoNothing = Dim byd. Rydych yn fodlon ar yr wybodaeth y cawsoch hyd iddi heddiw
+
+eothoQuestions.title = Give feedback - GOV.UK
+eothoQuestions.heading = Feedback
+eothoQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+eothoQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+eothoQuestions.intro3 = The survey takes about 1 minute to complete. There are 5 questions and they are all optional.
+eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
+eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
+
+numberOfEstablishmentsQuestion.25orFewer = 25 or fewer
+numberOfEstablishmentsQuestion.MoreThan25 = More than 25
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr

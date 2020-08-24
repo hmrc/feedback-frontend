@@ -119,16 +119,11 @@ trait ModelGenerators {
       PensionQuestions(ableToDo, howEasy, whyScore, howFeel, likelyToDo)
     }
 
-  //todo
   lazy val eothoQuestionsGen: Gen[EOTHOQuestions] =
     for {
-      ableToDo   <- option(arbitrary[Boolean])
-      howEasy    <- option(howEasyQuestionGen)
-      whyScore   <- option(arbitrary[String].suchThat(_.nonEmpty))
-      howFeel    <- option(howDoYouFeelQuestionGen)
-      likelyToDo <- option(likelyToDoQuestionGen)
+      numberOfEstablishments <- option(numberOfEstablishments)
     } yield {
-      EOTHOQuestions(ableToDo, howEasy, whyScore, howFeel, likelyToDo)
+      EOTHOQuestions(numberOfEstablishments)
     }
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
@@ -142,4 +137,7 @@ trait ModelGenerators {
 
   lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
     oneOf(LikelyToDoQuestion.values)
+
+  lazy val numberOfEstablishments: Gen[NumberOfEstablishmentsQuestion] =
+    oneOf(NumberOfEstablishmentsQuestion.values)
 }
