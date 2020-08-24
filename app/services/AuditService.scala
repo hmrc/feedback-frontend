@@ -71,7 +71,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withNumberOfEstablishments(numberOfEstablishments: Option[NumberOfEstablishmentsQuestion]): MapCont =
     _ + ("numberOfEstablishments" -> numberOfEstablishments.map(_.toString).getOrElse("-"))
   def withComparedToMonTueWed(comparedToMonTueWedQuestion: Option[ComparedToMonTueWedQuestion]): MapCont =
-    _ + ("comparedToMonTueWed" -> comparedToMonTueWedQuestion.map(_.toString).getOrElse(("_")))
+    _ + ("comparedToMonTueWed" -> comparedToMonTueWedQuestion.map(_.toString).getOrElse("-"))
   def withComparedToThurFriSatSun(comparedToThurFriSatSunQuestion: Option[ComparedToThurFriSatSunQuestion]): MapCont =
     _ + ("comparedToThurFriSatSun" -> comparedToThurFriSatSunQuestion.map(_.toString).getOrElse(("_")))
 

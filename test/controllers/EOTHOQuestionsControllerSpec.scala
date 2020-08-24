@@ -70,30 +70,19 @@ class EOTHOQuestionsControllerSpec
         redirectLocation(result) mustBe Some(onwardRoute.url)
       }
     }
-    //TODO
+
     "audit response on success" in {
       forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[EOTHOQuestions]) { (origin, feedbackId, answers) =>
         reset(mockAuditService)
 
-        val values = Map(
-          "numberOfEstablishments"  -> answers.numberOfEstablishments.map(_.toString),
-          "whichRegions"            -> Some(answers.whichRegions.toString),
-          "comparedToMonTueWed"     -> answers.comparedToMonTueWed.map(_.toString),
-          "comparedToThurFriSatSun" -> answers.comparedToThurFriSatSun.map(_.toString)
-        )
+        val values = form.mapping.unbind(answers)
 
-        //        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-        val request =
-          fakeRequest
-            .withFormUrlEncodedBody(
-              ("numberOfEstablishments", "FewerThan25"),
-              ("whichRegions", NorthernIreland.toString))
-        val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
-        status(result) mustBe SEE_OTHER
+        val request = fakeRequest.withFormUrlEncodedBody(values.toSeq: _*)
 
-      // TODO reinstate this verify
-      //        verify(mockAuditService, times(1))
-      //          .eothoAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+        controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+
+        verify(mockAuditService, times(1))
+          .eothoAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
   }
