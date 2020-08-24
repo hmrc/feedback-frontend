@@ -121,10 +121,12 @@ trait ModelGenerators {
 
   lazy val eothoQuestionsGen: Gen[EOTHOQuestions] =
     for {
-      numberOfEstablishments <- option(numberOfEstablishmentsGen)
-      whichRegions           <- arbitrary[WhichRegionQuestion]
+      numberOfEstablishments  <- option(numberOfEstablishmentsGen)
+      whichRegions            <- arbitrary[List[WhichRegionQuestion]]
+      compareToMonTueWed      <- option(comparedToMonTueWed)
+      comparedToThurFriSatSun <- option(comparedToThurFriSatSun)
     } yield {
-      EOTHOQuestions(numberOfEstablishments, List(whichRegions))
+      EOTHOQuestions(numberOfEstablishments, whichRegions, compareToMonTueWed, comparedToThurFriSatSun)
     }
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
@@ -142,8 +144,22 @@ trait ModelGenerators {
   lazy val numberOfEstablishmentsGen: Gen[NumberOfEstablishmentsQuestion] =
     oneOf(NumberOfEstablishmentsQuestion.values)
 
+  lazy val comparedToMonTueWed: Gen[ComparedToMonTueWedQuestion] =
+    oneOf(ComparedToMonTueWedQuestion.values)
+
+  lazy val comparedToThurFriSatSun: Gen[ComparedToThurFriSatSunQuestion] =
+    oneOf(ComparedToThurFriSatSunQuestion.values)
+
+  lazy val whichRegionQuestionGen: Gen[WhichRegionQuestion] =
+    oneOf(WhichRegionQuestion.values)
+
   implicit lazy val arbitraryWhichRegionQuestion: Arbitrary[WhichRegionQuestion] =
     Arbitrary {
       Gen.oneOf(WhichRegionQuestion.values)
+    }
+
+  implicit lazy val listOfarbitraryWhichRegionQuestion: Arbitrary[List[WhichRegionQuestion]] =
+    Arbitrary {
+      Gen.listOf(whichRegionQuestionGen)
     }
 }

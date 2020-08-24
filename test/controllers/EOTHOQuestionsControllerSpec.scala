@@ -22,6 +22,7 @@ import generators.ModelGenerators
 import models.WhichRegionQuestion.NorthernIreland
 import models.{EOTHOQuestions, FeedbackId, Origin}
 import navigation.FakeNavigator
+import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
 import org.scalatest.mockito.MockitoSugar
@@ -69,17 +70,19 @@ class EOTHOQuestionsControllerSpec
         redirectLocation(result) mustBe Some(onwardRoute.url)
       }
     }
-
+    //TODO
     "audit response on success" in {
       forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[EOTHOQuestions]) { (origin, feedbackId, answers) =>
         reset(mockAuditService)
 
         val values = Map(
-          "numberOfEstablishments" -> answers.numberOfEstablishments.map(_.toString),
-          "whichRegions"           -> Some(answers.whichRegions.toString)
+          "numberOfEstablishments"  -> answers.numberOfEstablishments.map(_.toString),
+          "whichRegions"            -> Some(answers.whichRegions.toString),
+          "comparedToMonTueWed"     -> answers.comparedToMonTueWed.map(_.toString),
+          "comparedToThurFriSatSun" -> answers.comparedToThurFriSatSun.map(_.toString)
         )
 
-//        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+        //        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
         val request =
           fakeRequest
             .withFormUrlEncodedBody(
@@ -89,8 +92,8 @@ class EOTHOQuestionsControllerSpec
         status(result) mustBe SEE_OTHER
 
       // TODO reinstate this verify
-//        verify(mockAuditService, times(1))
-//          .eothoAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+      //        verify(mockAuditService, times(1))
+      //          .eothoAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
   }

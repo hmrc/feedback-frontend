@@ -57,6 +57,20 @@ inputs = NumberOfEstablishmentsQuestion.options
   inputs = WhichRegionQuestion.options
  )
 
+@components.input_radio(
+field = form("comparedToMonTueWed"),
+legend = messages("eothoQuestions.comparedToMonTueWed.heading"),
+legendClass = Some("heading-medium"),
+inputs = ComparedToMonTueWedQuestion.options
+)
+
+@components.input_radio(
+field = form("comparedToThurFriSatSun"),
+legend = messages("eothoQuestions.comparedToThurFriSatSun.heading"),
+legendClass = Some("heading-medium"),
+inputs = ComparedToThurFriSatSunQuestion.options
+)
+
 @components.submit_button()
 }
 }

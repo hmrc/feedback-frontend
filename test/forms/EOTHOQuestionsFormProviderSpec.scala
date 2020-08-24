@@ -33,7 +33,7 @@
 package forms
 
 import forms.behaviours.{CheckboxFieldBehaviours, OptionFieldBehaviours}
-import models.{EOTHOQuestions, NumberOfEstablishmentsQuestion, WhichRegionQuestion}
+import models.{ComparedToMonTueWedQuestion, ComparedToThurFriSatSunQuestion, EOTHOQuestions, NumberOfEstablishmentsQuestion, WhichRegionQuestion}
 import play.api.data.FormError
 
 class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with CheckboxFieldBehaviours {
@@ -67,4 +67,32 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
         form.bind(data).get.whichRegions shouldEqual List(value)
       }
     }
+
+  ".comparedToMonTueWed" must {
+
+    val fieldName = "comparedToMonTueWed"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, ComparedToMonTueWedQuestion](
+      form,
+      fieldName,
+      ComparedToMonTueWedQuestion.values,
+      FormError(fieldName, invalidError),
+      _.comparedToMonTueWed
+    )
+  }
+
+  ".comparedToThurFriSatSun" must {
+
+    val fieldName = "comparedToThurFriSatSun"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, ComparedToThurFriSatSunQuestion](
+      form,
+      fieldName,
+      ComparedToThurFriSatSunQuestion.values,
+      FormError(fieldName, invalidError),
+      _.comparedToThurFriSatSun
+    )
+  }
 }

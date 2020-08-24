@@ -47,6 +47,19 @@ class EOTHOQuestionsViewSpec
       NumberOfEstablishmentsQuestion.options,
       "eothoQuestions.numberOfEstablishments")
 
+    behave like optionsPage(
+      createViewUsingForm,
+      "comparedToMonTueWed",
+      ComparedToMonTueWedQuestion.options,
+      "eothoQuestions.comparedToMonTueWed")
+
+    behave like optionsPage(
+      createViewUsingForm,
+      "comparedToThurFriSatSun",
+      ComparedToThurFriSatSunQuestion.options,
+      "eothoQuestions.comparedToThurFriSatSun")
+
+    // TODO reinstate this test
 //    behave like checkboxPage(checkboxForm, applyView, messageKeyPrefix, WhichRegionQuestion.options)
 
     "contain privacy anchor tag" in {
