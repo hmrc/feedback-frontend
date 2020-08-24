@@ -50,6 +50,13 @@ legendClass = Some("heading-medium"),
 inputs = NumberOfEstablishmentsQuestion.options
 )
 
+ @components.input_checkboxes(
+  field = form("value"),
+  legend = messages("whichRegion.heading"),
+  headingIsLegend = true,
+  inputs = WhichRegionQuestion.options
+ )
+
 @components.submit_button()
 }
 }
