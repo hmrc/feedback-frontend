@@ -155,9 +155,7 @@ pensionQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd 
 pensionQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 pensionQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 pensionQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
-
 pensionQuestions.likelyToDo.heading = Beth ydych chi’n fwyaf tebygol o’i wneud ar ôl gwirio’ch Pensiwn y Wladwriaeth?
-
 
 
 likelyToDoQuestion.OtherPensions = Bwrw golwg dros eich pensiynau eraill, fel pensiynau preifat neu bensiynau’r gweithle
@@ -166,11 +164,12 @@ likelyToDoQuestion.ClarifyInformation = Cael eglurhad o’r wybodaeth a gawsoch 
 likelyToDoQuestion.GetProfessionalAdvice = Cael cyngor proffesiynol neu arweiniad yn rhad ac am ddim
 likelyToDoQuestion.DoNothing = Dim byd. Rydych yn fodlon ar yr wybodaeth y cawsoch hyd iddi heddiw
 
-eothoQuestions.title = Give feedback - GOV.UK
-eothoQuestions.heading = Feedback
-eothoQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
-eothoQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
-eothoQuestions.intro3 = The survey takes about 1 minute to complete. There are 5 questions and they are all optional.
+eothoQuestions.title = Rhoi adborth - GOV.UK
+eothoQuestions.heading = Adborth
+eothoQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+eothoQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+eothoQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 9 cwestiwn ac maent i gyd yn ddewisol.
+eothoQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
 eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
 eothoQuestions.numberOfEstablishments.heading = Faint o sefydliadau mae’ch busnes yn eu gweithredu?
 eothoQuestions.comparedToMonTueWed.heading= O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Llun, dydd Mawrth a dydd Mercher?
