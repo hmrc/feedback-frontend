@@ -221,7 +221,7 @@ offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Ydy - rydym yn bwr
 businessFuturePlans.PlanToPutAllEmployeesBackOnFurlough = Rydym yn bwriadu rhoi pob cyflogai a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo.
 businessFuturePlans.PlanToPutSomeEmployeesBackOnFurloughButNotAll = Rydym yn bwriadu rhoi rhai cyflogeion a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo, ond nid pob un.
 businessFuturePlans.DonotPlanToFurloughAnyEmployees = Nid ydym yn bwriadu rhoi unrhyw gyflogeion a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo ar hyn o bryd.
-businessFuturePlans.NotApplicableBusinessNeverFurloughedEmployees = Ddim yn berthnasol - ni wnaeth fy musnes roi unrhyw gyflogeion ar ffyrlo.
+businessFuturePlans.NotApplicableNeverFurloughedEmployees = Ddim yn berthnasol - ni wnaeth fy musnes roi unrhyw gyflogeion ar ffyrlo.
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr

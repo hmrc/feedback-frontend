@@ -208,7 +208,8 @@ offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Yes - we're planni
 businessFuturePlans.PlanToPutAllEmployeesBackOnFurlough = We plan to put all employees who were previously on furlough back on furlough
 businessFuturePlans.PlanToPutSomeEmployeesBackOnFurloughButNotAll = We plan to put some employees who were previously on furlough back on furlough but not all of them
 businessFuturePlans.DonotPlanToFurloughAnyEmployees = We are not currently planning on placing any employees who were previously furloughed back on furlough
-businessFuturePlans.NotApplicableBusinessNeverFurloughedEmployees = Not applicable - my business never furloughed any employees
+businessFuturePlans.NotApplicableNeverFurloughedEmployees = Not applicable - my business never furloughed any employees
+
 thankYou.pension.title = Thank you
 thankYou.pension.heading = Thank you
 thankYou.pension.intro = We’ve received your feedback.

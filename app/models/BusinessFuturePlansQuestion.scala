@@ -29,12 +29,15 @@ object BusinessFuturePlansQuestion {
       extends WithName("PlanToPutSomeEmployeesBackOnFurloughButNotAll") with BusinessFuturePlansQuestion
   case object DonotPlanToFurloughAnyEmployees
       extends WithName("DonotPlanToFurloughAnyEmployees") with BusinessFuturePlansQuestion
+  case object NotApplicableNeverFurloughedEmployees
+      extends WithName("NotApplicableNeverFurloughedEmployees") with BusinessFuturePlansQuestion
 
   val values: Seq[BusinessFuturePlansQuestion] =
     List(
       PlanToPutAllEmployeesBackOnFurlough,
       PlanToPutSomeEmployeesBackOnFurloughButNotAll,
-      DonotPlanToFurloughAnyEmployees
+      DonotPlanToFurloughAnyEmployees,
+      NotApplicableNeverFurloughedEmployees
     )
 
   val options: Seq[RadioOption] = values.map { value =>
@@ -57,6 +60,8 @@ object BusinessFuturePlansQuestion {
         JsSuccess(PlanToPutSomeEmployeesBackOnFurloughButNotAll)
       case JsString(DonotPlanToFurloughAnyEmployees.toString) =>
         JsSuccess(DonotPlanToFurloughAnyEmployees)
+      case JsString(NotApplicableNeverFurloughedEmployees.toString) =>
+        JsSuccess(NotApplicableNeverFurloughedEmployees)
       case _ => JsError("Unknown BusinessFuturePlansQuestion")
     }
   }
