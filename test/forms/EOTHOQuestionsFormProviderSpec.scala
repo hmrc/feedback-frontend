@@ -34,6 +34,7 @@ package forms
 
 import forms.behaviours.{CheckboxFieldBehaviours, OptionFieldBehaviours}
 import models._
+import models.eotho._
 import play.api.data.FormError
 
 class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with CheckboxFieldBehaviours {

@@ -18,6 +18,7 @@ package services
 
 import javax.inject.Inject
 import models._
+import models.eotho._
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import utils.FeedbackFrontendHelper.boolToInt

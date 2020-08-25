@@ -17,6 +17,7 @@
 package generators
 
 import models._
+import models.eotho._
 import org.scalacheck.Arbitrary._
 import org.scalacheck.Gen._
 import org.scalacheck.{Arbitrary, Gen}

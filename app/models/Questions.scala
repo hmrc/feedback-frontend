@@ -16,6 +16,7 @@
 
 package models
 
+import models.eotho._
 import play.api.libs.json.{Format, Json}
 
 case class OtherQuestions(

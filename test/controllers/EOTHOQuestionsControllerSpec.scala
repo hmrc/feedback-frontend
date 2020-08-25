@@ -19,7 +19,6 @@ package controllers
 import controllers.actions._
 import forms.EOTHOQuestionsFormProvider
 import generators.ModelGenerators
-import models.WhichRegionQuestion.NorthernIreland
 import models.{EOTHOQuestions, FeedbackId, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}

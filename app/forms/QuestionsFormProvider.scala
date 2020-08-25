@@ -19,6 +19,7 @@ package forms
 import forms.mappings.Mappings
 import javax.inject.Inject
 import models._
+import models.eotho._
 import play.api.data.Form
 import play.api.data.Forms._
 

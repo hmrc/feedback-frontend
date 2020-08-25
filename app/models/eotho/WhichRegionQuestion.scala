@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package models
+package models.eotho
 
+import models.{Enumerable, WithName}
 import viewmodels.RadioOption
 
 sealed trait WhichRegionQuestion
