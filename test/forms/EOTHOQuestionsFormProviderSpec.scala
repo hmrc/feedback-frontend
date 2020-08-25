@@ -151,4 +151,18 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
       _.businessFuturePlans
     )
   }
+
+  ".offerDiscounts" must {
+
+    val fieldName = "offerDiscounts"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, OfferDiscountsQuestion](
+      form,
+      fieldName,
+      OfferDiscountsQuestion.values,
+      FormError(fieldName, invalidError),
+      _.offerDiscounts
+    )
+  }
 }

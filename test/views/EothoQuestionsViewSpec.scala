@@ -85,6 +85,12 @@ class EOTHOQuestionsViewSpec
       BusinessFuturePlansQuestion.options,
       "eothoQuestions.businessFuturePlans")
 
+    behave like optionsPage(
+      createViewUsingForm,
+      "offerDiscounts",
+      OfferDiscountsQuestion.options,
+      "eothoQuestions.offerDiscounts")
+
     // TODO reinstate this test
 //    behave like checkboxPage(checkboxForm, applyView, messageKeyPrefix, WhichRegionQuestion.options)
 

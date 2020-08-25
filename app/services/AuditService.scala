@@ -87,6 +87,9 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withBusinessFuturePlans(businessFuturePlans: Option[BusinessFuturePlansQuestion]): MapCont =
     _ + ("businessFuturePlans" -> businessFuturePlans.map(_.toString).getOrElse(("_")))
 
+  def withOfferDiscounts(offerDiscounts: Option[OfferDiscountsQuestion]): MapCont =
+    _ + ("offerDiscounts" -> offerDiscounts.map(_.toString).getOrElse(("_")))
+
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
@@ -203,7 +206,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withComparedBusinessTurnover(questions.comparedBusinessTurnover) andThen
         withAffectedJobs(questions.affectedJobs) andThen
         withFurloughEmployees(questions.furloughEmployees) andThen
-        withBusinessFuturePlans(questions.businessFuturePlans)
+        withBusinessFuturePlans(questions.businessFuturePlans) andThen
+        withOfferDiscounts(questions.offerDiscounts)
     )(emptyMap)
     println("\n\n\n\n + AUDIT " + auditMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)

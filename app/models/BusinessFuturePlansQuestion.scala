@@ -55,6 +55,8 @@ object BusinessFuturePlansQuestion {
         JsSuccess(PlanToPutAllEmployeesBackOnFurlough)
       case JsString(PlanToPutSomeEmployeesBackOnFurloughButNotAll.toString) =>
         JsSuccess(PlanToPutSomeEmployeesBackOnFurloughButNotAll)
+      case JsString(DonotPlanToFurloughAnyEmployees.toString) =>
+        JsSuccess(DonotPlanToFurloughAnyEmployees)
       case _ => JsError("Unknown BusinessFuturePlansQuestion")
     }
   }

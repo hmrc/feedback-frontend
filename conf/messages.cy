@@ -179,6 +179,7 @@ eothoQuestions.comparedBusinessTurnover.heading = How does your business' total 
 eothoQuestions.affectedJobs.heading = Has the Eat Out to Help Out (EOHO) Scheme affected jobs in your business?
 eothoQuestions.furloughEmployees.heading = Between March and July 2020, did you business furlough any employees?
 eothoQuestions.businessFuturePlans.heading = The EOHO Scheme ends on August 31st 2020. After that, which option best describes your business' future plans?
+eothoQuestions.offerDiscounts.heading = Does your business plan to offer discounts in September, once the EOHO Scheme comes to an end?
 
 numberOfEstablishmentsQuestion.FewerThan25 = 25 or fewer
 numberOfEstablishmentsQuestion.MoreThan25 = More than 25
@@ -210,6 +211,11 @@ affectedJobs.NotApplicableBusinessDoesNotEmployAnyone =Not applicable, the busin
 furloughEmployees.YesFurloughedMostEmployees = Yes, we furloughed most of our employees
 furloughEmployees.YesFurloughedSomeEmployees = Yes, we furloughed some of our employees
 furloughEmployees.NoDidnotFurloughAnyEmployees =No, we did not furlough any employees
+
+offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = No - we do not plan to offer discounts in September
+offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Yes - up to 50% on eat-in food and drink purchased on Mondays, Tuesdays and Wednesdays in September
+offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Yes - 50% or more on eat-in food and drink purchased on Mondays, Tuesdays and Wednesdays in September
+offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Yes - we're planning on offering different discounts or deals in September
 
 businessFuturePlans.PlanToPutAllEmployeesBackOnFurlough = We plan to put all employees who were previously on furlough back on furlough
 businessFuturePlans.PlanToPutSomeEmployeesBackOnFurloughButNotAll = We plan to put some employees who were previously on furlough back on furlough but not all of them
