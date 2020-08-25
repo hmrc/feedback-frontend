@@ -83,7 +83,9 @@ case class EOTHOQuestions(
   numberOfEstablishments: Option[NumberOfEstablishmentsQuestion],
   whichRegions: List[WhichRegionQuestion],
   comparedToMonTueWed: Option[ComparedToMonTueWedQuestion],
-  comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion]
+  comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion],
+  comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion],
+  affectedJobs: Option[AffectedJobsQuestion]
 )
 
 object EOTHOQuestions {

@@ -40,8 +40,8 @@ object ComparedToThurFriSatSunQuestion {
     Enumerable(values.map(v => v.toString -> v): _*)
 
   implicit object ComparedToThurFriSatSunQuestion extends Writes[ComparedToThurFriSatSunQuestion] {
-    def writes(comparedToMonTueWedQuestion: ComparedToThurFriSatSunQuestion) =
-      Json.toJson(comparedToMonTueWedQuestion.toString)
+    def writes(comparedToThurFriSatSunQuestion: ComparedToThurFriSatSunQuestion) =
+      Json.toJson(comparedToThurFriSatSunQuestion.toString)
   }
 
   implicit object ComparedToThurFriSatSunQuestionReads extends Reads[ComparedToThurFriSatSunQuestion] {
@@ -51,7 +51,7 @@ object ComparedToThurFriSatSunQuestion {
       case JsString(StayAboutTheSame.toString)    => JsSuccess(StayAboutTheSame)
       case JsString(IncreasedByLess50pc.toString) => JsSuccess(IncreasedByLess50pc)
       case JsString(IncreasedByMore50pc.toString) => JsSuccess(IncreasedByMore50pc)
-      case _                                      => JsError("Unknown ComparedToMonTueWedQuestion")
+      case _                                      => JsError("Unknown ComparedToThurFriSatSunQuestion")
     }
   }
 }

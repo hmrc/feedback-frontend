@@ -60,6 +60,18 @@ class EOTHOQuestionsViewSpec
 
     behave like checkboxPage(form, createViewUsingForm, messageKeyPrefix, WhichRegionQuestion.options, "whichRegions")
 
+    behave like optionsPage(
+      createViewUsingForm,
+      "comparedBusinessTurnover",
+      ComparedBusinessTurnoverQuestion.options,
+      "eothoQuestions.comparedBusinessTurnover")
+
+    behave like optionsPage(
+      createViewUsingForm,
+      "affectedJobs",
+      AffectedJobsQuestion.options,
+      "eothoQuestions.affectedJobs")
+
     "contain privacy anchor tag" in {
       val expectedLink = messages("eothoQuestions.introLinkText")
       val doc = asDocument(createView())

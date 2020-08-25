@@ -121,12 +121,21 @@ trait ModelGenerators {
 
   lazy val eothoQuestionsGen: Gen[EOTHOQuestions] =
     for {
-      numberOfEstablishments  <- option(numberOfEstablishmentsGen)
-      whichRegions            <- arbitrary[List[WhichRegionQuestion]]
-      compareToMonTueWed      <- option(comparedToMonTueWed)
-      comparedToThurFriSatSun <- option(comparedToThurFriSatSun)
+      numberOfEstablishments   <- option(numberOfEstablishmentsGen)
+      whichRegions             <- arbitrary[List[WhichRegionQuestion]]
+      compareToMonTueWed       <- option(comparedToMonTueWed)
+      comparedToThurFriSatSun  <- option(comparedToThurFriSatSun)
+      comparedBusinessTurnOver <- option(comparedBusinessTurnover)
+      affectedJobs             <- option(affectedJobs)
     } yield {
-      EOTHOQuestions(numberOfEstablishments, whichRegions, compareToMonTueWed, comparedToThurFriSatSun)
+      EOTHOQuestions(
+        numberOfEstablishments,
+        whichRegions,
+        compareToMonTueWed,
+        comparedToThurFriSatSun,
+        comparedBusinessTurnOver,
+        affectedJobs
+      )
     }
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
@@ -149,6 +158,12 @@ trait ModelGenerators {
 
   lazy val comparedToThurFriSatSun: Gen[ComparedToThurFriSatSunQuestion] =
     oneOf(ComparedToThurFriSatSunQuestion.values)
+
+  lazy val comparedBusinessTurnover: Gen[ComparedBusinessTurnoverQuestion] =
+    oneOf(ComparedBusinessTurnoverQuestion.values)
+
+  lazy val affectedJobs: Gen[AffectedJobsQuestion] =
+    oneOf(AffectedJobsQuestion.values)
 
   lazy val whichRegionQuestionGen: Gen[WhichRegionQuestion] =
     oneOf(WhichRegionQuestion.values)
