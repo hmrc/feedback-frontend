@@ -21,7 +21,7 @@ import forms.EOTHOQuestionsFormProvider
 import javax.inject.Inject
 import models.{EOTHOQuestions, FeedbackId, Origin}
 import navigation.Navigator
-import pages.EothoQuestionsPage
+import pages.{EothoQuestionsPage, GenericQuestionsPage}
 import play.api.data.Form
 import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
@@ -29,7 +29,6 @@ import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.eothoQuestions
 
-//TODO
 class EOTHOQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
   navigator: Navigator,
@@ -39,7 +38,6 @@ class EOTHOQuestionsController @Inject()(
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[EOTHOQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(EothoQuestionsPage)(())
   def submitCall(origin: Origin) = routes.EOTHOQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
@@ -55,7 +53,7 @@ class EOTHOQuestionsController @Inject()(
         },
         value => {
           auditService.eothoAudit(origin, FeedbackId.fromSession, value)
-          Redirect(successPage)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }
