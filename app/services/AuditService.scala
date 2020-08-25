@@ -210,7 +210,6 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withBusinessFuturePlans(questions.businessFuturePlans) andThen
         withOfferDiscounts(questions.offerDiscounts)
     )(emptyMap)
-    println("\n\n\n\n + AUDIT " + auditMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 }
