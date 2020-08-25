@@ -39,19 +39,19 @@ object ComparedBusinessTurnoverQuestion {
   implicit val enumerable: Enumerable[ComparedBusinessTurnoverQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
 
-  implicit object BusinessTurnoverQuestion extends Writes[ComparedBusinessTurnoverQuestion] {
+  implicit object ComparedBusinessTurnoverQuestion extends Writes[ComparedBusinessTurnoverQuestion] {
     def writes(comparedBusinessTurnoverQuestion: ComparedBusinessTurnoverQuestion) =
       Json.toJson(comparedBusinessTurnoverQuestion.toString)
   }
 
-  implicit object BusinessTurnoverQuestionReads extends Reads[ComparedBusinessTurnoverQuestion] {
+  implicit object ComparedBusinessTurnoverQuestionReads extends Reads[ComparedBusinessTurnoverQuestion] {
     override def reads(json: JsValue): JsResult[ComparedBusinessTurnoverQuestion] = json match {
       case JsString(DecreasedByMore50pc.toString) => JsSuccess(DecreasedByMore50pc)
       case JsString(DecreasedByLess50pc.toString) => JsSuccess(DecreasedByLess50pc)
       case JsString(StayAboutTheSame.toString)    => JsSuccess(StayAboutTheSame)
       case JsString(IncreasedByLess50pc.toString) => JsSuccess(IncreasedByLess50pc)
       case JsString(IncreasedByMore50pc.toString) => JsSuccess(IncreasedByMore50pc)
-      case _                                      => JsError("Unknown ComparedToMonTueWedQuestion")
+      case _                                      => JsError("Unknown ComparedBusinessTurnover question")
     }
   }
 }
