@@ -79,6 +79,12 @@ class EOTHOQuestionsViewSpec
       FurloughEmployeesQuestion.options,
       "eothoQuestions.furloughEmployees")
 
+    behave like optionsPage(
+      createViewUsingForm,
+      "businessFuturePlans",
+      BusinessFuturePlansQuestion.options,
+      "eothoQuestions.businessFuturePlans")
+
     // TODO reinstate this test
 //    behave like checkboxPage(checkboxForm, applyView, messageKeyPrefix, WhichRegionQuestion.options)
 

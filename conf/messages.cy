@@ -178,6 +178,7 @@ eothoQuestions.comparedToThurFriSatSun.heading = Compared to July 2020, how has 
 eothoQuestions.comparedBusinessTurnover.heading = How does your business' total turnover in August 2020 compare to August 2019?
 eothoQuestions.affectedJobs.heading = Has the Eat Out to Help Out (EOHO) Scheme affected jobs in your business?
 eothoQuestions.furloughEmployees.heading = Between March and July 2020, did you business furlough any employees?
+eothoQuestions.businessFuturePlans.heading = The EOHO Scheme ends on August 31st 2020. After that, which option best describes your business' future plans?
 
 numberOfEstablishmentsQuestion.FewerThan25 = 25 or fewer
 numberOfEstablishmentsQuestion.MoreThan25 = More than 25
@@ -209,6 +210,10 @@ affectedJobs.NotApplicableBusinessDoesNotEmployAnyone =Not applicable, the busin
 furloughEmployees.YesFurloughedMostEmployees = Yes, we furloughed most of our employees
 furloughEmployees.YesFurloughedSomeEmployees = Yes, we furloughed some of our employees
 furloughEmployees.NoDidnotFurloughAnyEmployees =No, we did not furlough any employees
+
+businessFuturePlans.PlanToPutAllEmployeesBackOnFurlough = We plan to put all employees who were previously on furlough back on furlough
+businessFuturePlans.PlanToPutSomeEmployeesBackOnFurloughButNotAll = We plan to put some employees who were previously on furlough back on furlough but not all of them
+businessFuturePlans.DonotPlanToFurloughAnyEmployees = We are not currently planning on placing any employees who were previously furloughed back on furlough
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr

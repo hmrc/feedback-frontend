@@ -137,4 +137,18 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
       _.furloughEmployees
     )
   }
+
+  ".businessFuturePlans" must {
+
+    val fieldName = "businessFuturePlans"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, BusinessFuturePlansQuestion](
+      form,
+      fieldName,
+      BusinessFuturePlansQuestion.values,
+      FormError(fieldName, invalidError),
+      _.businessFuturePlans
+    )
+  }
 }

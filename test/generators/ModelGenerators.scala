@@ -128,6 +128,7 @@ trait ModelGenerators {
       comparedBusinessTurnOver <- option(comparedBusinessTurnover)
       affectedJobs             <- option(affectedJobs)
       furloughEmployees        <- option(furloughEmployees)
+      businessFuturePlans      <- option(businessFuturePlans)
     } yield {
       EOTHOQuestions(
         numberOfEstablishments,
@@ -136,7 +137,8 @@ trait ModelGenerators {
         comparedToThurFriSatSun,
         comparedBusinessTurnOver,
         affectedJobs,
-        furloughEmployees
+        furloughEmployees,
+        businessFuturePlans
       )
     }
 
@@ -169,6 +171,9 @@ trait ModelGenerators {
 
   lazy val furloughEmployees: Gen[FurloughEmployeesQuestion] =
     oneOf(FurloughEmployeesQuestion.values)
+
+  lazy val businessFuturePlans: Gen[BusinessFuturePlansQuestion] =
+    oneOf(BusinessFuturePlansQuestion.values)
 
   lazy val whichRegionQuestionGen: Gen[WhichRegionQuestion] =
     oneOf(WhichRegionQuestion.values)
