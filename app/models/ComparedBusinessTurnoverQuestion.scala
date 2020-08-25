@@ -51,7 +51,7 @@ object ComparedBusinessTurnoverQuestion {
       case JsString(StayAboutTheSame.toString)    => JsSuccess(StayAboutTheSame)
       case JsString(IncreasedByLess50pc.toString) => JsSuccess(IncreasedByLess50pc)
       case JsString(IncreasedByMore50pc.toString) => JsSuccess(IncreasedByMore50pc)
-      case _                                      => JsError("Unknown ComparedBusinessTurnover question")
+      case _                                      => JsError("Unknown ComparedBusinessTurnoverquestion")
     }
   }
 }

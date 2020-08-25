@@ -65,6 +65,12 @@ class EOTHOQuestionsViewSpec
       ComparedBusinessTurnoverQuestion.options,
       "eothoQuestions.comparedBusinessTurnover")
 
+    behave like optionsPage(
+      createViewUsingForm,
+      "affectedJobs",
+      AffectedJobsQuestion.options,
+      "eothoQuestions.affectedJobs")
+
     // TODO reinstate this test
 //    behave like checkboxPage(checkboxForm, applyView, messageKeyPrefix, WhichRegionQuestion.options)
 

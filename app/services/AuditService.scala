@@ -78,6 +78,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("comparedToThurFriSatSun" -> comparedToThurFriSatSun.map(_.toString).getOrElse(("_")))
   def withComparedBusinessTurnover(comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion]): MapCont =
     _ + ("comparedBusinessTurnover" -> comparedBusinessTurnover.map(_.toString).getOrElse(("_")))
+  def withAffectedJobs(affectedJobs: Option[AffectedJobsQuestion]): MapCont =
+    _ + ("affectedJobs" -> affectedJobs.map(_.toString).getOrElse(("_")))
   def withWhichRegion(whichRegions: List[WhichRegionQuestion]): MapCont =
     _ + ("whichRegions" -> setToString(whichRegions))
 
@@ -194,7 +196,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhichRegion(questions.whichRegions) andThen
         withComparedToMonTueWed(questions.comparedToMonTueWed) andThen
         withComparedToThurFriSatSun(questions.comparedToThurFriSatSun) andThen
-        withComparedBusinessTurnover(questions.comparedBusinessTurnover)
+        withComparedBusinessTurnover(questions.comparedBusinessTurnover) andThen
+        withAffectedJobs(questions.affectedJobs)
     )(emptyMap)
     println("\n\n\n\n + AUDIT " + auditMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)

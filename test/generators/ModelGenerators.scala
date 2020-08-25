@@ -126,13 +126,16 @@ trait ModelGenerators {
       compareToMonTueWed       <- option(comparedToMonTueWed)
       comparedToThurFriSatSun  <- option(comparedToThurFriSatSun)
       comparedBusinessTurnOver <- option(comparedBusinessTurnover)
+      affectedJobs             <- option(affectedJobs)
     } yield {
       EOTHOQuestions(
         numberOfEstablishments,
         whichRegions,
         compareToMonTueWed,
         comparedToThurFriSatSun,
-        comparedBusinessTurnOver)
+        comparedBusinessTurnOver,
+        affectedJobs
+      )
     }
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
@@ -158,6 +161,9 @@ trait ModelGenerators {
 
   lazy val comparedBusinessTurnover: Gen[ComparedBusinessTurnoverQuestion] =
     oneOf(ComparedBusinessTurnoverQuestion.values)
+
+  lazy val affectedJobs: Gen[AffectedJobsQuestion] =
+    oneOf(AffectedJobsQuestion.values)
 
   lazy val whichRegionQuestionGen: Gen[WhichRegionQuestion] =
     oneOf(WhichRegionQuestion.values)

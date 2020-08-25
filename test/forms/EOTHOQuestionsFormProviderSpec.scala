@@ -109,4 +109,18 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
       _.comparedBusinessTurnover
     )
   }
+
+  ".affectedJobs" must {
+
+    val fieldName = "affectedJobs"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, AffectedJobsQuestion](
+      form,
+      fieldName,
+      AffectedJobsQuestion.values,
+      FormError(fieldName, invalidError),
+      _.affectedJobs
+    )
+  }
 }
