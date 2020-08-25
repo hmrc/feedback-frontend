@@ -38,7 +38,6 @@ class EOTHOQuestionsViewSpec
     (form: Form[_]) => eothoQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "EOTHOQuestions view" must {
-    //TODO
     behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
 
     behave like optionsPage(
@@ -59,8 +58,7 @@ class EOTHOQuestionsViewSpec
       ComparedToThurFriSatSunQuestion.options,
       "eothoQuestions.comparedToThurFriSatSun")
 
-    // TODO reinstate this test
-//    behave like checkboxPage(checkboxForm, applyView, messageKeyPrefix, WhichRegionQuestion.options)
+    behave like checkboxPage(form, createViewUsingForm, messageKeyPrefix, WhichRegionQuestion.options, "whichRegions")
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("eothoQuestions.introLinkText")

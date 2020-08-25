@@ -23,8 +23,8 @@ import viewmodels.RadioOption
 trait CheckboxViewBehaviours[A] extends ViewBehaviours {
 
   def checkboxPage(
-    form: Form[Set[A]],
-    createView: Form[Set[A]] => HtmlFormat.Appendable,
+    form: Form[A],
+    createView: Form[A] => HtmlFormat.Appendable,
     messageKeyPrefix: String,
     options: Seq[RadioOption],
     fieldKey: String = "value",
@@ -32,7 +32,7 @@ trait CheckboxViewBehaviours[A] extends ViewBehaviours {
     "behave like a checkbox page" must {
       "contain a legend for the question" in {
         val doc = asDocument(createView(form))
-        val legends = doc.getElementsByTag("legend")
+        val legends = doc.getElementById(fieldKey).getElementsByTag("legend")
         legends.size mustBe 1
         legends.text contains legend.getOrElse(messages(s"$messageKeyPrefix.heading"))
       }
