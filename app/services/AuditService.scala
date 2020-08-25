@@ -68,13 +68,16 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("fullName" -> fullName.getOrElse(("-")))
   def withEmail(email: Option[String]): MapCont =
     _ + ("email" -> email.getOrElse("-"))
+
+  //eotho
   def withNumberOfEstablishments(numberOfEstablishments: Option[NumberOfEstablishmentsQuestion]): MapCont =
     _ + ("numberOfEstablishments" -> numberOfEstablishments.map(_.toString).getOrElse("-"))
-  def withComparedToMonTueWed(comparedToMonTueWedQuestion: Option[ComparedToMonTueWedQuestion]): MapCont =
-    _ + ("comparedToMonTueWed" -> comparedToMonTueWedQuestion.map(_.toString).getOrElse("-"))
-  def withComparedToThurFriSatSun(comparedToThurFriSatSunQuestion: Option[ComparedToThurFriSatSunQuestion]): MapCont =
-    _ + ("comparedToThurFriSatSun" -> comparedToThurFriSatSunQuestion.map(_.toString).getOrElse(("_")))
-
+  def withComparedToMonTueWed(comparedToMonTueWed: Option[ComparedToMonTueWedQuestion]): MapCont =
+    _ + ("comparedToMonTueWed" -> comparedToMonTueWed.map(_.toString).getOrElse("-"))
+  def withComparedToThurFriSatSun(comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion]): MapCont =
+    _ + ("comparedToThurFriSatSun" -> comparedToThurFriSatSun.map(_.toString).getOrElse(("_")))
+  def withComparedBusinessTurnover(comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion]): MapCont =
+    _ + ("comparedBusinessTurnover" -> comparedBusinessTurnover.map(_.toString).getOrElse(("_")))
   def withWhichRegion(whichRegions: List[WhichRegionQuestion]): MapCont =
     _ + ("whichRegions" -> setToString(whichRegions))
 
@@ -190,7 +193,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withNumberOfEstablishments(questions.numberOfEstablishments) andThen
         withWhichRegion(questions.whichRegions) andThen
         withComparedToMonTueWed(questions.comparedToMonTueWed) andThen
-        withComparedToThurFriSatSun(questions.comparedToThurFriSatSun)
+        withComparedToThurFriSatSun(questions.comparedToThurFriSatSun) andThen
+        withComparedBusinessTurnover(questions.comparedBusinessTurnover)
     )(emptyMap)
     println("\n\n\n\n + AUDIT " + auditMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)

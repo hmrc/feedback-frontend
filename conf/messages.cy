@@ -175,6 +175,8 @@ eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab
 eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
 eothoQuestions.comparedToMonTueWed.heading= Compared to July 2020, how has your August food and drink turnover across Mondays, Tuesdays and Wednesdays changed?
 eothoQuestions.comparedToThurFriSatSun.heading = Compared to July 2020, how has your August food and drink turnover across Thursdays, Fridays, Saturdays and Sundays changed?
+eothoQuestions.comparedBusinessTurnover.heading = How does your business' total turnover in August 2020 compare to August 2019?
+
 
 numberOfEstablishmentsQuestion.25orFewer = 25 or fewer
 numberOfEstablishmentsQuestion.MoreThan25 = More than 25
@@ -190,6 +192,12 @@ comparedToThurFriSatSunQuestion.DecreasedByLessThan50percent = Decreased by less
 comparedToThurFriSatSunQuestion.StayedAboutTheSame = Stayed about the same
 comparedToThurFriSatSunQuestion.IncreasedByLessThan50percent = Increased by less than 50%
 comparedToThurFriSatSunQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
+
+comparedBusinessTurnover.DecreasedByMoreThan50percent = Total turnover has decreased by more than 50%
+comparedBusinessTurnover.DecreasedByLessThan50percent = Total turnover has decreased by less than 50%
+comparedBusinessTurnover.StayedAboutTheSame = Total turnover has stayed about the same
+comparedBusinessTurnover.IncreasedByLessThan50percent = Total turnover has increased by less than 50%
+comparedBusinessTurnover.IncreasedByMoreThan50percent = Total turnover has increased by more than 50%
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr

@@ -33,7 +33,7 @@
 package forms
 
 import forms.behaviours.{CheckboxFieldBehaviours, OptionFieldBehaviours}
-import models.{ComparedToMonTueWedQuestion, ComparedToThurFriSatSunQuestion, EOTHOQuestions, NumberOfEstablishmentsQuestion, WhichRegionQuestion}
+import models._
 import play.api.data.FormError
 
 class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with CheckboxFieldBehaviours {
@@ -93,6 +93,20 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
       ComparedToThurFriSatSunQuestion.values,
       FormError(fieldName, invalidError),
       _.comparedToThurFriSatSun
+    )
+  }
+
+  ".comparedBusinessTurnover" must {
+
+    val fieldName = "comparedBusinessTurnover"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, ComparedBusinessTurnoverQuestion](
+      form,
+      fieldName,
+      ComparedBusinessTurnoverQuestion.values,
+      FormError(fieldName, invalidError),
+      _.comparedBusinessTurnover
     )
   }
 }

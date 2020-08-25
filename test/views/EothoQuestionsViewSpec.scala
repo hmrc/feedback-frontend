@@ -38,7 +38,7 @@ class EOTHOQuestionsViewSpec
     (form: Form[_]) => eothoQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "EOTHOQuestions view" must {
-    //TODO
+
     behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
 
     behave like optionsPage(
@@ -58,6 +58,12 @@ class EOTHOQuestionsViewSpec
       "comparedToThurFriSatSun",
       ComparedToThurFriSatSunQuestion.options,
       "eothoQuestions.comparedToThurFriSatSun")
+
+    behave like optionsPage(
+      createViewUsingForm,
+      "comparedBusinessTurnover",
+      ComparedBusinessTurnoverQuestion.options,
+      "eothoQuestions.comparedBusinessTurnover")
 
     // TODO reinstate this test
 //    behave like checkboxPage(checkboxForm, applyView, messageKeyPrefix, WhichRegionQuestion.options)

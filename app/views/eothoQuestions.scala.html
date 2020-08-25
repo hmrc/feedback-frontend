@@ -71,6 +71,13 @@ legendClass = Some("heading-medium"),
 inputs = ComparedToThurFriSatSunQuestion.options
 )
 
+@components.input_radio(
+field = form("comparedBusinessTurnover"),
+legend = messages("eothoQuestions.comparedBusinessTurnover.heading"),
+legendClass = Some("heading-medium"),
+inputs = ComparedBusinessTurnoverQuestion.options
+)
+
 @components.submit_button()
 }
 }

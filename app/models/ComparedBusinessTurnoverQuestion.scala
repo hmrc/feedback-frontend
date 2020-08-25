@@ -19,33 +19,33 @@ package models
 import play.api.libs.json._
 import viewmodels.RadioOption
 
-sealed trait ComparedToThurFriSatSunQuestion
+sealed trait ComparedBusinessTurnoverQuestion
 
-object ComparedToThurFriSatSunQuestion {
+object ComparedBusinessTurnoverQuestion {
 
-  case object DecreasedByMore50pc extends WithName("DecreasedByMoreThan50percent") with ComparedToThurFriSatSunQuestion
-  case object DecreasedByLess50pc extends WithName("DecreasedByLessThan50percent") with ComparedToThurFriSatSunQuestion
-  case object StayAboutTheSame extends WithName("StayedAboutTheSame") with ComparedToThurFriSatSunQuestion
-  case object IncreasedByLess50pc extends WithName("IncreasedByLessThan50percent") with ComparedToThurFriSatSunQuestion
-  case object IncreasedByMore50pc extends WithName("IncreasedByMoreThan50percent") with ComparedToThurFriSatSunQuestion
+  case object DecreasedByMore50pc extends WithName("DecreasedByMoreThan50percent") with ComparedBusinessTurnoverQuestion
+  case object DecreasedByLess50pc extends WithName("DecreasedByLessThan50percent") with ComparedBusinessTurnoverQuestion
+  case object StayAboutTheSame extends WithName("StayedAboutTheSame") with ComparedBusinessTurnoverQuestion
+  case object IncreasedByLess50pc extends WithName("IncreasedByLessThan50percent") with ComparedBusinessTurnoverQuestion
+  case object IncreasedByMore50pc extends WithName("IncreasedByMoreThan50percent") with ComparedBusinessTurnoverQuestion
 
-  val values: Seq[ComparedToThurFriSatSunQuestion] =
+  val values: Seq[ComparedBusinessTurnoverQuestion] =
     List(DecreasedByMore50pc, DecreasedByLess50pc, StayAboutTheSame, IncreasedByLess50pc, IncreasedByMore50pc)
 
   val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("comparedToThurFriSatSunQuestion", value.toString)
+    RadioOption("comparedBusinessTurnover", value.toString)
   }
 
-  implicit val enumerable: Enumerable[ComparedToThurFriSatSunQuestion] =
+  implicit val enumerable: Enumerable[ComparedBusinessTurnoverQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
 
-  implicit object ComparedToThurFriSatSunQuestion extends Writes[ComparedToThurFriSatSunQuestion] {
-    def writes(comparedToThurFriSatSunQuestion: ComparedToThurFriSatSunQuestion) =
-      Json.toJson(comparedToThurFriSatSunQuestion.toString)
+  implicit object BusinessTurnoverQuestion extends Writes[ComparedBusinessTurnoverQuestion] {
+    def writes(comparedBusinessTurnoverQuestion: ComparedBusinessTurnoverQuestion) =
+      Json.toJson(comparedBusinessTurnoverQuestion.toString)
   }
 
-  implicit object ComparedToThurFriSatSunQuestionReads extends Reads[ComparedToThurFriSatSunQuestion] {
-    override def reads(json: JsValue): JsResult[ComparedToThurFriSatSunQuestion] = json match {
+  implicit object BusinessTurnoverQuestionReads extends Reads[ComparedBusinessTurnoverQuestion] {
+    override def reads(json: JsValue): JsResult[ComparedBusinessTurnoverQuestion] = json match {
       case JsString(DecreasedByMore50pc.toString) => JsSuccess(DecreasedByMore50pc)
       case JsString(DecreasedByLess50pc.toString) => JsSuccess(DecreasedByLess50pc)
       case JsString(StayAboutTheSame.toString)    => JsSuccess(StayAboutTheSame)
