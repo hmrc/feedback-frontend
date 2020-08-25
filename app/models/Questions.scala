@@ -85,7 +85,8 @@ case class EOTHOQuestions(
   comparedToMonTueWed: Option[ComparedToMonTueWedQuestion],
   comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion],
   comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion],
-  affectedJobs: Option[AffectedJobsQuestion]
+  affectedJobs: Option[AffectedJobsQuestion],
+  furloughEmployees: Option[FurloughEmployeesQuestion]
 )
 
 object EOTHOQuestions {

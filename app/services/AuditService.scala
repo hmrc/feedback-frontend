@@ -82,6 +82,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("affectedJobs" -> affectedJobs.map(_.toString).getOrElse(("_")))
   def withWhichRegion(whichRegions: List[WhichRegionQuestion]): MapCont =
     _ + ("whichRegions" -> setToString(whichRegions))
+  def withFurloughEmployees(furloughEmployees: Option[FurloughEmployeesQuestion]): MapCont =
+    _ + ("furloughEmployees" -> furloughEmployees.map(_.toString).getOrElse(("_")))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
@@ -197,7 +199,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withComparedToMonTueWed(questions.comparedToMonTueWed) andThen
         withComparedToThurFriSatSun(questions.comparedToThurFriSatSun) andThen
         withComparedBusinessTurnover(questions.comparedBusinessTurnover) andThen
-        withAffectedJobs(questions.affectedJobs)
+        withAffectedJobs(questions.affectedJobs) andThen
+        withFurloughEmployees(questions.furloughEmployees)
     )(emptyMap)
     println("\n\n\n\n + AUDIT " + auditMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)

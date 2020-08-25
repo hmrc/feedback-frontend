@@ -177,8 +177,9 @@ eothoQuestions.comparedToMonTueWed.heading= Compared to July 2020, how has your 
 eothoQuestions.comparedToThurFriSatSun.heading = Compared to July 2020, how has your August food and drink turnover across Thursdays, Fridays, Saturdays and Sundays changed?
 eothoQuestions.comparedBusinessTurnover.heading = How does your business' total turnover in August 2020 compare to August 2019?
 eothoQuestions.affectedJobs.heading = Has the Eat Out to Help Out (EOHO) Scheme affected jobs in your business?
+eothoQuestions.furloughEmployees.heading = Between March and July 2020, did you business furlough any employees?
 
-numberOfEstablishmentsQuestion.25orFewer = 25 or fewer
+numberOfEstablishmentsQuestion.FewerThan25 = 25 or fewer
 numberOfEstablishmentsQuestion.MoreThan25 = More than 25
 
 comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
@@ -199,11 +200,15 @@ comparedBusinessTurnover.StayedAboutTheSame = Total turnover has stayed about th
 comparedBusinessTurnover.IncreasedByLessThan50percent = Total turnover has increased by less than 50%
 comparedBusinessTurnover.IncreasedByMoreThan50percent = Total turnover has increased by more than 50%
 
-affectedJobs.YesKeepAllAndTakeOnAdditionalEmployees = Yes, we have been able to keep all employees who were on payroll in July 2020 and take on additional staff
+affectedJobs.YesKeepAllEmployeesAndTakeOnAdditionalStaff = Yes, we have been able to keep all employees who were on payroll in July 2020 and take on additional staff
 affectedJobs.YesKeepAllEmployees = Yes, we have been able to keep all employees who were on payroll in July 2020
 affectedJobs.YesKeepSomeEmployees = Yes, we have been able to keep some employees who were on payroll in July 2020
 affectedJobs.NoNotAffectedJobs = No, the scheme has not affected jobs in my business
-affectedJobs.NotApplicableNobodyEmployed =Not applicable, the business does not employ anybody
+affectedJobs.NotApplicableBusinessDoesNotEmployAnyone =Not applicable, the business does not employ anybody
+
+furloughEmployees.YesFurloughedMostEmployees = Yes, we furloughed most of our employees
+furloughEmployees.YesFurloughedSomeEmployees = Yes, we furloughed some of our employees
+furloughEmployees.NoDidnotFurloughAnyEmployees =No, we did not furlough any employees
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr

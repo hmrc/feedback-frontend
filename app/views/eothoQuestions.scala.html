@@ -85,6 +85,13 @@ legendClass = Some("heading-medium"),
 inputs = AffectedJobsQuestion.options
 )
 
+@components.input_radio(
+field = form("furloughEmployees"),
+legend = messages("eothoQuestions.furloughEmployees.heading"),
+legendClass = Some("heading-medium"),
+inputs = FurloughEmployeesQuestion.options
+)
+
 @components.submit_button()
 }
 }
