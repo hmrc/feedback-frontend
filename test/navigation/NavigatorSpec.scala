@@ -43,5 +43,6 @@ class NavigatorSpec extends SpecBase with MockitoSugar {
         navigator.nextPage(GenericQuestionsPage)(()) mustBe routes.ThankYouController.onPageLoad()
       }
     }
+
   }
 }
