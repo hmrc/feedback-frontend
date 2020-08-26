@@ -169,6 +169,7 @@ eothoQuestions.heading = Adborth
 eothoQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 eothoQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 eothoQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 9 cwestiwn ac maent i gyd yn ddewisol.
+eothoQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
 eothoQuestions.numberOfEstablishments.heading = Faint o sefydliadau mae’ch busnes yn eu gweithredu?
 eothoQuestions.comparedToMonTueWed.heading= O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Llun, dydd Mawrth a dydd Mercher?
 
