@@ -76,20 +76,20 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withComparedToMonTueWed(comparedToMonTueWed: Option[ComparedToMonTueWedQuestion]): MapCont =
     _ + ("comparedToMonTueWed" -> comparedToMonTueWed.map(_.toString).getOrElse("-"))
   def withComparedToThurFriSatSun(comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion]): MapCont =
-    _ + ("comparedToThurFriSatSun" -> comparedToThurFriSatSun.map(_.toString).getOrElse(("_")))
+    _ + ("comparedToThurFriSatSun" -> comparedToThurFriSatSun.map(_.toString).getOrElse(("-")))
   def withComparedBusinessTurnover(comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion]): MapCont =
-    _ + ("comparedBusinessTurnover" -> comparedBusinessTurnover.map(_.toString).getOrElse(("_")))
+    _ + ("comparedBusinessTurnover" -> comparedBusinessTurnover.map(_.toString).getOrElse(("-")))
   def withAffectedJobs(affectedJobs: Option[AffectedJobsQuestion]): MapCont =
-    _ + ("affectedJobs" -> affectedJobs.map(_.toString).getOrElse(("_")))
+    _ + ("affectedJobs" -> affectedJobs.map(_.toString).getOrElse(("-")))
   def withWhichRegion(whichRegions: List[WhichRegionQuestion]): MapCont =
     _ + ("whichRegions" -> setToString(whichRegions))
   def withFurloughEmployees(furloughEmployees: Option[FurloughEmployeesQuestion]): MapCont =
-    _ + ("furloughEmployees" -> furloughEmployees.map(_.toString).getOrElse(("_")))
+    _ + ("furloughEmployees" -> furloughEmployees.map(_.toString).getOrElse(("-")))
   def withBusinessFuturePlans(businessFuturePlans: Option[BusinessFuturePlansQuestion]): MapCont =
-    _ + ("businessFuturePlans" -> businessFuturePlans.map(_.toString).getOrElse(("_")))
+    _ + ("businessFuturePlans" -> businessFuturePlans.map(_.toString).getOrElse(("-")))
 
   def withOfferDiscounts(offerDiscounts: Option[OfferDiscountsQuestion]): MapCont =
-    _ + ("offerDiscounts" -> offerDiscounts.map(_.toString).getOrElse(("_")))
+    _ + ("offerDiscounts" -> offerDiscounts.map(_.toString).getOrElse(("-")))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
