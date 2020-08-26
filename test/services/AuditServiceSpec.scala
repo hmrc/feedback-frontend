@@ -16,6 +16,7 @@
 
 package services
 
+import controllers.EOTHOQuestionsController
 import generators.ModelGenerators
 import models._
 import org.mockito.Matchers.{eq => eqTo, _}
@@ -158,13 +159,13 @@ class AuditServiceSpec
 
   "generate correct payload for eat out to help out" in {
 
-    forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[EOTHOQuestions]) { (origin, feedbackId, questions) =>
+    forAll(arbitrary[FeedbackId], arbitrary[EOTHOQuestions]) { (feedbackId, questions) =>
       reset(auditConnector)
 
-      auditService.eothoAudit(origin, feedbackId, questions)
+      auditService.eothoAudit(feedbackId, questions)
 
       val expected: Map[String, String] = Map(
-        "origin"                   -> origin.value,
+        "origin"                   -> EOTHOQuestionsController.origin.value,
         "feedbackId"               -> feedbackId.value,
         "numberOfEstablishments"   -> questions.numberOfEstablishments.fold("-")(_.toString),
         "whichRegions"             -> auditService.setToString(questions.whichRegions),

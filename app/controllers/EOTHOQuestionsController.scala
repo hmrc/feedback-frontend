@@ -38,23 +38,27 @@ class EOTHOQuestionsController @Inject()(
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[EOTHOQuestions] = formProvider()
-  def submitCall(origin: Origin) = routes.EOTHOQuestionsController.onSubmit(origin)
+  def submitCall = routes.EOTHOQuestionsController.onSubmit
 
-  def onPageLoad(origin: Origin) = Action { implicit request =>
-    Ok(eothoQuestions(appConfig, form, submitCall(origin)))
+  def onPageLoad = Action { implicit request =>
+    Ok(eothoQuestions(appConfig, form, submitCall))
   }
 
-  def onSubmit(origin: Origin) = Action { implicit request =>
+  def onSubmit = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
         formWithErrors => {
-          BadRequest(eothoQuestions(appConfig, formWithErrors, submitCall(origin)))
+          BadRequest(eothoQuestions(appConfig, formWithErrors, submitCall))
         },
         value => {
-          auditService.eothoAudit(origin, FeedbackId.fromSession, value)
-          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
+          auditService.eothoAudit(FeedbackId.fromSession, value)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(EOTHOQuestionsController.origin))
         }
       )
   }
+}
+
+object EOTHOQuestionsController {
+  val origin: Origin = Origin.fromString("eat-out-to-help-out")
 }

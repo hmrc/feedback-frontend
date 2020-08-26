@@ -42,7 +42,7 @@ class EOTHOQuestionsControllerSpec
 
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: Origin) = routes.EOTHOQuestionsController.onSubmit(origin)
+  def submitCall = routes.EOTHOQuestionsController.onSubmit
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new EOTHOQuestionsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
@@ -54,16 +54,16 @@ class EOTHOQuestionsControllerSpec
 
     "return OK and the correct view for a GET" in {
       forAll(arbitrary[Origin]) { origin =>
-        val result = controller().onPageLoad(origin)(fakeRequest)
+        val result = controller().onPageLoad(fakeRequest)
 
         status(result) mustBe OK
-        contentAsString(result) mustBe viewAsString(action = submitCall(origin))
+        contentAsString(result) mustBe viewAsString(action = submitCall)
       }
     }
 
     "redirect to the next page when valid data is submitted" in {
       forAll(arbitrary[Origin]) { origin =>
-        val result = controller().onSubmit(origin)(fakeRequest)
+        val result = controller().onSubmit(fakeRequest)
 
         status(result) mustBe SEE_OTHER
         redirectLocation(result) mustBe Some(onwardRoute.url)
@@ -78,10 +78,10 @@ class EOTHOQuestionsControllerSpec
 
         val request = fakeRequest.withFormUrlEncodedBody(values.toSeq: _*)
 
-        controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+        controller().onSubmit(request.withSession(("feedbackId", feedbackId.value)))
 
         verify(mockAuditService, times(1))
-          .eothoAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+          .eothoAudit(eqTo(feedbackId), eqTo(answers))(any())
       }
     }
   }

@@ -16,6 +16,7 @@
 
 package services
 
+import controllers.EOTHOQuestionsController
 import javax.inject.Inject
 import models._
 import models.eotho._
@@ -194,8 +195,9 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def eothoAudit(origin: Origin, feedbackId: FeedbackId, questions: EOTHOQuestions)(
-    implicit hc: HeaderCarrier): Unit = {
+  def eothoAudit(feedbackId: FeedbackId, questions: EOTHOQuestions)(implicit hc: HeaderCarrier): Unit = {
+
+    val origin = EOTHOQuestionsController.origin
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -210,6 +212,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withBusinessFuturePlans(questions.businessFuturePlans) andThen
         withOfferDiscounts(questions.offerDiscounts)
     )(emptyMap)
+
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 }
