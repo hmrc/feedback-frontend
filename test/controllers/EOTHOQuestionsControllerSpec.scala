@@ -24,8 +24,8 @@ import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.prop.PropertyChecks
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
@@ -33,18 +33,18 @@ import services.AuditService
 import views.html.eothoQuestions
 
 class EOTHOQuestionsControllerSpec
-    extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
+    extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
-  def onwardRoute = Call("GET", "/foo")
+  val onwardRoute = Call("GET", "/foo")
 
   val formProvider = new EOTHOQuestionsFormProvider()
   val form = formProvider()
 
-  lazy val mockAuditService = mock[AuditService]
+  val mockAuditService = mock[AuditService]
 
   def submitCall = routes.EOTHOQuestionsController.onSubmit
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
+  def controller() =
     new EOTHOQuestionsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
 
   def viewAsString(form: Form[_] = form, action: Call) =
@@ -53,25 +53,21 @@ class EOTHOQuestionsControllerSpec
   "EOTHOQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[Origin]) { origin =>
-        val result = controller().onPageLoad(fakeRequest)
+      val result = controller().onPageLoad(fakeRequest)
 
-        status(result) mustBe OK
-        contentAsString(result) mustBe viewAsString(action = submitCall)
-      }
+      status(result) mustBe OK
+      contentAsString(result) mustBe viewAsString(action = submitCall)
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
-        val result = controller().onSubmit(fakeRequest)
+      val result = controller().onSubmit(fakeRequest)
 
-        status(result) mustBe SEE_OTHER
-        redirectLocation(result) mustBe Some(onwardRoute.url)
-      }
+      status(result) mustBe SEE_OTHER
+      redirectLocation(result) mustBe Some(onwardRoute.url)
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[EOTHOQuestions]) { (origin, feedbackId, answers) =>
+      forAll(arbitrary[FeedbackId], arbitrary[EOTHOQuestions]) { (feedbackId, answers) =>
         reset(mockAuditService)
 
         val values = form.mapping.unbind(answers)

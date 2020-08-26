@@ -264,6 +264,3 @@ whichRegions.YorkshireAndHumber = Yorkshire and Humber
 whichRegions.NorthernIreland = Northern Ireland
 whichRegions.Scotland = Scotland
 whichRegions.Wales = Wales
-whichRegions.error.required = Please enter a value
-
-

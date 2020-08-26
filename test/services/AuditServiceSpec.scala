@@ -22,8 +22,8 @@ import models._
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalatest.BeforeAndAfter
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.prop.PropertyChecks
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import uk.gov.hmrc.play.test.UnitSpec
@@ -32,7 +32,7 @@ import org.scalatestplus.play.OneAppPerSuite
 import utils.FeedbackFrontendHelper.boolToInt
 
 class AuditServiceSpec
-    extends UnitSpec with MockitoSugar with BeforeAndAfter with PropertyChecks with ModelGenerators
+    extends UnitSpec with MockitoSugar with BeforeAndAfter with ScalaCheckPropertyChecks with ModelGenerators
     with OneAppPerSuite {
 
   implicit val hc = HeaderCarrier()

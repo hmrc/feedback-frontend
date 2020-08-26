@@ -19,7 +19,7 @@ package navigation
 import base.SpecBase
 import controllers.routes
 import models._
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
 import pages._
 
 class NavigatorSpec extends SpecBase with MockitoSugar {
@@ -43,6 +43,5 @@ class NavigatorSpec extends SpecBase with MockitoSugar {
         navigator.nextPage(GenericQuestionsPage)(()) mustBe routes.ThankYouController.onPageLoad()
       }
     }
-
   }
 }
