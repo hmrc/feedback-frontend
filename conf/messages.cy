@@ -211,10 +211,10 @@ furloughEmployees.YesFurloughedMostEmployees = Do, rhoesom y rhan fwyaf o’n cy
 furloughEmployees.YesFurloughedSomeEmployees = Do, rhoesom rai o’n cyflogeion ar ffyrlo
 furloughEmployees.NoDidnotFurloughAnyEmployees = Naddo, ni roesem unrhyw gyflogeion ar ffyrlo
 
-offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = Nac ydy - nid ydym yn bwriadu cynnig gostyngiadau ym mis Medi
-offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Ydy - hyd at 50% oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
-offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Ydy - 50% neu fwy oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
-offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Ydy - rydym yn bwriadu cynnig gostyngiadau neu fargeinion gwahanol ym mis Medi
+offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = Nac ydy – nid ydym yn bwriadu cynnig gostyngiadau ym mis Medi
+offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Ydy – hyd at 50% oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
+offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Ydy – 50% neu fwy oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
+offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Ydy – rydym yn bwriadu cynnig gostyngiadau neu fargeinion gwahanol ym mis Medi
 
 businessFuturePlans.PlanToPutAllEmployeesBackOnFurlough = Rydym yn bwriadu rhoi pob cyflogai a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo.
 businessFuturePlans.PlanToPutSomeEmployeesBackOnFurloughButNotAll = Rydym yn bwriadu rhoi rhai cyflogeion a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo, ond nid pob un.
@@ -261,7 +261,7 @@ page_not_found.heading = Heb ddod o hyd i’r dudalen
 page.not.found.error.check.web.address.correct = Os gwnaethoch deipio’r cyfeiriad gwe, gwiriwch ei fod yn gywir.
 page.not.found.error.check.web.address.full = Os gwnaethoch ludo’r cyfeiriad gwe, gwiriwch eich bod wedi copïo’r cyfeiriad yn llawn.
 
-whichRegions.heading = Ym mha ranbarthau mae sefydliadau’ch busnes? Ticiwch bob un sy’n gymwys
+whichRegions.heading = Ym mha ranbarthau mae sefydliadau’ch busnes? Ticiwch bob un sy’n gymwys.
 whichRegions.EastMidlands = Dwyrain Canolbarth Lloegr
 whichRegions.EastOfEngland = Dwyrain Lloegr
 whichRegions.London = Llundain
