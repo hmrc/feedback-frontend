@@ -211,15 +211,15 @@ furloughEmployees.YesFurloughedMostEmployees = Do, rhoesom y rhan fwyaf o’n cy
 furloughEmployees.YesFurloughedSomeEmployees = Do, rhoesom rai o’n cyflogeion ar ffyrlo
 furloughEmployees.NoDidnotFurloughAnyEmployees = Naddo, ni roesem unrhyw gyflogeion ar ffyrlo
 
-offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = Nac ydy – nid ydym yn bwriadu cynnig gostyngiadau ym mis Medi
-offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Ydy – hyd at 50% oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
-offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Ydy – 50% neu fwy oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
-offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Ydy – rydym yn bwriadu cynnig gostyngiadau neu fargeinion gwahanol ym mis Medi
+offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = Nac ydy, nid ydym yn bwriadu cynnig gostyngiadau ym mis Medi
+offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Ydy, hyd at 50% oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
+offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Ydy, 50% neu fwy oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
+offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Ydy, rydym yn bwriadu cynnig gostyngiadau neu fargeinion gwahanol ym mis Medi
 
 businessFuturePlans.PlanToPutAllEmployeesBackOnFurlough = Rydym yn bwriadu rhoi pob cyflogai a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo.
 businessFuturePlans.PlanToPutSomeEmployeesBackOnFurloughButNotAll = Rydym yn bwriadu rhoi rhai cyflogeion a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo, ond nid pob un.
 businessFuturePlans.DonotPlanToFurloughAnyEmployees = Nid ydym yn bwriadu rhoi unrhyw gyflogeion a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo ar hyn o bryd.
-businessFuturePlans.NotApplicableNeverFurloughedEmployees = Ddim yn berthnasol - ni wnaeth fy musnes roi unrhyw gyflogeion ar ffyrlo.
+businessFuturePlans.NotApplicableNeverFurloughedEmployees = Ddim yn berthnasol, ni wnaeth fy musnes roi unrhyw gyflogeion ar ffyrlo.
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr
