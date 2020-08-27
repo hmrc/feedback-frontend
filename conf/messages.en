@@ -166,7 +166,7 @@ eothoQuestions.comparedToThurFriSatSun.heading = Compared to July 2020, how has 
 eothoQuestions.comparedBusinessTurnover.heading = How does your business’s total turnover in August 2020 compare to August 2019?
 eothoQuestions.affectedJobs.heading = Has the Eat Out to Help Out (EOHO) Scheme affected jobs in your business?
 eothoQuestions.furloughEmployees.heading = Between March and July 2020, did your business furlough any employees?
-eothoQuestions.businessFuturePlans.heading = The EOHO Scheme ends on August 31st 2020. After that, which option best describes your business’s future plans?
+eothoQuestions.businessFuturePlans.heading = After the Eat Out to Help Out Scheme ends, which option best describes your business future plans?
 eothoQuestions.offerDiscounts.heading = Does your business plan to offer discounts in September, once the EOHO Scheme comes to an end?
 
 numberOfEstablishmentsQuestion.FewerThan25 = 25 or fewer
@@ -205,10 +205,10 @@ offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Yes, up to 50% on eat-in
 offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Yes, 50% or more on eat-in food and drink purchased on Mondays, Tuesdays and Wednesdays in September
 offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Yes, we’re planning on offering different discounts or deals in September
 
-businessFuturePlans.PlanToPutAllEmployeesBackOnFurlough = We plan to put all employees who were previously on furlough back on furlough
-businessFuturePlans.PlanToPutSomeEmployeesBackOnFurloughButNotAll = We plan to put some employees who were previously on furlough back on furlough, but not all of them
-businessFuturePlans.DonotPlanToFurloughAnyEmployees = We are not currently planning on placing any employees who were previously furloughed back on furlough
-businessFuturePlans.NotApplicableNeverFurloughedEmployees = Not applicable, my business never furloughed any employees
+businessFuturePlans.WePlanToStopTrading = We plan to stop trading
+businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = We plan to reduce our opening hours but will continue to trade
+businessFuturePlans.WePlanToContinueWithTheSameOpeningHours = We plan to continue with the same opening hours
+businessFuturePlans.WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments = We plan to increase our opening hours, or open more establishments
 
 thankYou.pension.title = Thank you
 thankYou.pension.heading = Thank you

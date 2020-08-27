@@ -24,21 +24,20 @@ sealed trait BusinessFuturePlansQuestion
 
 object BusinessFuturePlansQuestion {
 
-  case object PlanToPutAllEmployeesBackOnFurlough
-      extends WithName("PlanToPutAllEmployeesBackOnFurlough") with BusinessFuturePlansQuestion
-  case object PlanToPutSomeEmployeesBackOnFurloughButNotAll
-      extends WithName("PlanToPutSomeEmployeesBackOnFurloughButNotAll") with BusinessFuturePlansQuestion
-  case object DonotPlanToFurloughAnyEmployees
-      extends WithName("DonotPlanToFurloughAnyEmployees") with BusinessFuturePlansQuestion
-  case object NotApplicableNeverFurloughedEmployees
-      extends WithName("NotApplicableNeverFurloughedEmployees") with BusinessFuturePlansQuestion
+  case object WePlanToStopTrading extends WithName("WePlanToStopTrading") with BusinessFuturePlansQuestion
+  case object WePlanToReduceOurOpeningHoursButContinueToTrade
+      extends WithName("WePlanToReduceOurOpeningHoursButContinueToTrade") with BusinessFuturePlansQuestion
+  case object WePlanToContinueWithTheSameOpeningHours
+      extends WithName("WePlanToContinueWithTheSameOpeningHours") with BusinessFuturePlansQuestion
+  case object WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments
+      extends WithName("WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments") with BusinessFuturePlansQuestion
 
   val values: Seq[BusinessFuturePlansQuestion] =
     List(
-      PlanToPutAllEmployeesBackOnFurlough,
-      PlanToPutSomeEmployeesBackOnFurloughButNotAll,
-      DonotPlanToFurloughAnyEmployees,
-      NotApplicableNeverFurloughedEmployees
+      WePlanToStopTrading,
+      WePlanToReduceOurOpeningHoursButContinueToTrade,
+      WePlanToContinueWithTheSameOpeningHours,
+      WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments
     )
 
   val options: Seq[RadioOption] = values.map { value =>
@@ -55,14 +54,14 @@ object BusinessFuturePlansQuestion {
 
   implicit object BusinessFutureQuestionReads extends Reads[BusinessFuturePlansQuestion] {
     override def reads(json: JsValue): JsResult[BusinessFuturePlansQuestion] = json match {
-      case JsString(PlanToPutAllEmployeesBackOnFurlough.toString) =>
-        JsSuccess(PlanToPutAllEmployeesBackOnFurlough)
-      case JsString(PlanToPutSomeEmployeesBackOnFurloughButNotAll.toString) =>
-        JsSuccess(PlanToPutSomeEmployeesBackOnFurloughButNotAll)
-      case JsString(DonotPlanToFurloughAnyEmployees.toString) =>
-        JsSuccess(DonotPlanToFurloughAnyEmployees)
-      case JsString(NotApplicableNeverFurloughedEmployees.toString) =>
-        JsSuccess(NotApplicableNeverFurloughedEmployees)
+      case JsString(WePlanToStopTrading.toString) =>
+        JsSuccess(WePlanToStopTrading)
+      case JsString(WePlanToReduceOurOpeningHoursButContinueToTrade.toString) =>
+        JsSuccess(WePlanToReduceOurOpeningHoursButContinueToTrade)
+      case JsString(WePlanToContinueWithTheSameOpeningHours.toString) =>
+        JsSuccess(WePlanToContinueWithTheSameOpeningHours)
+      case JsString(WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments.toString) =>
+        JsSuccess(WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments)
       case _ => JsError("Unknown BusinessFuturePlansQuestion")
     }
   }

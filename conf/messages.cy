@@ -177,7 +177,7 @@ eothoQuestions.comparedToThurFriSatSun.heading = O gymharu â mis Gorffennaf 202
 eothoQuestions.comparedBusinessTurnover.heading = Sut mae cyfanswm trosiant eich busnes ym mis Awst 2020 yn cymharu â mis Awst 2019?
 eothoQuestions.affectedJobs.heading = A yw’r Cynllun Bwyta Allan i Helpu Allan (EOHO) wedi effeithio ar swyddi yn eich busnes?
 eothoQuestions.furloughEmployees.heading = Rhwng mis Mawrth a mis Gorffennaf 2020, a wnaeth eich busnes roi unrhyw gyflogeion ar ffyrlo?
-eothoQuestions.businessFuturePlans.heading = Mae’r Cynllun EOHO yn dod i ben ar 31 Awst 2020. Ar ôl hynny, pa opsiwn sy’n disgrifio cynlluniau’ch busnes orau ar gyfer y dyfodol?
+eothoQuestions.businessFuturePlans.heading = Ar ôl i’r Cynllun Bwyta Allan i Helpu Allan ddod i ben, pa opsiwn sy’n disgrifio’ch cynlluniau busnes yn y dyfodol orau?
 eothoQuestions.offerDiscounts.heading = A yw’ch busnes yn bwriadu cynnig gostyngiadau ym mis Medi, unwaith y daw’r Cynllun EOHO i ben?
 
 numberOfEstablishmentsQuestion.FewerThan25 = 25 neu lai
@@ -216,10 +216,10 @@ offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Ydy, hyd at 50% oddi ar 
 offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Ydy, 50% neu fwy oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
 offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Ydy, rydym yn bwriadu cynnig gostyngiadau neu fargeinion gwahanol ym mis Medi
 
-businessFuturePlans.PlanToPutAllEmployeesBackOnFurlough = Rydym yn bwriadu rhoi pob cyflogai a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo.
-businessFuturePlans.PlanToPutSomeEmployeesBackOnFurloughButNotAll = Rydym yn bwriadu rhoi rhai cyflogeion a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo, ond nid pob un.
-businessFuturePlans.DonotPlanToFurloughAnyEmployees = Nid ydym yn bwriadu rhoi unrhyw gyflogeion a oedd ar ffyrlo o’r blaen yn ôl ar ffyrlo ar hyn o bryd.
-businessFuturePlans.NotApplicableNeverFurloughedEmployees = Ddim yn berthnasol, ni wnaeth fy musnes roi unrhyw gyflogeion ar ffyrlo.
+businessFuturePlans.WePlanToStopTrading = Rydym yn bwriadu rhoi’r gorau i fasnachu
+businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = Rydym yn bwriadu gostwng ein horiau agor ond byddwn yn parhau i fasnachu
+businessFuturePlans.WePlanToContinueWithTheSameOpeningHours = Rydym yn bwriadu parhau gyda’r un oriau agor
+businessFuturePlans.WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments = Rydym yn bwriadu cynyddu ein horiau agor, neu agor rhagor o sefydliadau
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr
