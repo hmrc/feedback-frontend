@@ -16,13 +16,14 @@
 
 package services
 
+import controllers.EOTHOQuestionsController
 import generators.ModelGenerators
 import models._
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalatest.BeforeAndAfter
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.prop.PropertyChecks
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import uk.gov.hmrc.play.test.UnitSpec
@@ -31,7 +32,7 @@ import org.scalatestplus.play.OneAppPerSuite
 import utils.FeedbackFrontendHelper.boolToInt
 
 class AuditServiceSpec
-    extends UnitSpec with MockitoSugar with BeforeAndAfter with PropertyChecks with ModelGenerators
+    extends UnitSpec with MockitoSugar with BeforeAndAfter with ScalaCheckPropertyChecks with ModelGenerators
     with OneAppPerSuite {
 
   implicit val hc = HeaderCarrier()
@@ -135,6 +136,7 @@ class AuditServiceSpec
           .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
     }
   }
+
   "generate correct payload for give reasons" in {
 
     forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[GiveReasonQuestions]) {
@@ -152,6 +154,32 @@ class AuditServiceSpec
 
         verify(auditConnector, times(1))
           .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+    }
+  }
+
+  "generate correct payload for eat out to help out" in {
+
+    forAll(arbitrary[FeedbackId], arbitrary[EOTHOQuestions]) { (feedbackId, questions) =>
+      reset(auditConnector)
+
+      auditService.eothoAudit(feedbackId, questions)
+
+      val expected: Map[String, String] = Map(
+        "origin"                   -> EOTHOQuestionsController.origin.value,
+        "feedbackId"               -> feedbackId.value,
+        "numberOfEstablishments"   -> questions.numberOfEstablishments.fold("-")(_.toString),
+        "whichRegions"             -> auditService.setToString(questions.whichRegions),
+        "comparedToMonTueWed"      -> questions.comparedToMonTueWed.fold("-")(_.toString),
+        "comparedToThurFriSatSun"  -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
+        "comparedBusinessTurnover" -> questions.comparedBusinessTurnover.fold("-")(_.toString),
+        "affectedJobs"             -> questions.affectedJobs.fold("-")(_.toString),
+        "furloughEmployees"        -> questions.furloughEmployees.fold("-")(_.toString),
+        "businessFuturePlans"      -> questions.businessFuturePlans.fold("-")(_.toString),
+        "offerDiscounts"           -> questions.offerDiscounts.fold("-")(_.toString)
+      )
+
+      verify(auditConnector, times(1))
+        .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
     }
   }
 }

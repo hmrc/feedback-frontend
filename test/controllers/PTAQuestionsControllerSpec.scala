@@ -24,15 +24,16 @@ import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.prop.PropertyChecks
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.ptaQuestions
 
-class PTAQuestionsControllerSpec extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar {
+class PTAQuestionsControllerSpec
+    extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 

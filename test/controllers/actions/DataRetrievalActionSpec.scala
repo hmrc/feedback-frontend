@@ -18,7 +18,7 @@ package controllers.actions
 
 import org.mockito.Mockito._
 import org.scalatest.concurrent.ScalaFutures
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
 import base.SpecBase
 import connectors.DataCacheConnector
 import models.requests.{IdentifierRequest, OptionalDataRequest}

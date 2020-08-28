@@ -19,6 +19,7 @@ package forms
 import forms.mappings.Mappings
 import javax.inject.Inject
 import models._
+import models.eotho._
 import play.api.data.Form
 import play.api.data.Forms._
 
@@ -112,4 +113,21 @@ class PensionQuestionsFormProvider @Inject() extends Mappings {
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
         "likelyToDo"        -> optional(enumerable[LikelyToDoQuestion]())
       )(PensionQuestions.apply)(PensionQuestions.unapply))
+}
+
+class EOTHOQuestionsFormProvider @Inject() extends Mappings {
+
+  def apply(): Form[EOTHOQuestions] =
+    Form(
+      mapping(
+        "numberOfEstablishments"   -> optional(enumerable[NumberOfEstablishmentsQuestion]()),
+        "whichRegions"             -> list(enumerable[WhichRegionQuestion]()),
+        "comparedToMonTueWed"      -> optional(enumerable[ComparedToMonTueWedQuestion]()),
+        "comparedToThurFriSatSun"  -> optional(enumerable[ComparedToThurFriSatSunQuestion]()),
+        "comparedBusinessTurnover" -> optional(enumerable[ComparedBusinessTurnoverQuestion]()),
+        "affectedJobs"             -> optional(enumerable[AffectedJobsQuestion]()),
+        "furloughEmployees"        -> optional(enumerable[FurloughEmployeesQuestion]()),
+        "businessFuturePlans"      -> optional(enumerable[BusinessFuturePlansQuestion]()),
+        "offerDiscounts"           -> optional(enumerable[OfferDiscountsQuestion]())
+      )(EOTHOQuestions.apply)(EOTHOQuestions.unapply))
 }

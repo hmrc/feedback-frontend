@@ -16,6 +16,7 @@
 
 package models
 
+import models.eotho._
 import play.api.libs.json.{Format, Json}
 
 case class OtherQuestions(
@@ -77,6 +78,22 @@ case class PensionQuestions(
 
 object PensionQuestions {
   implicit val formats: Format[PensionQuestions] = Json.format[PensionQuestions]
+}
+
+case class EOTHOQuestions(
+  numberOfEstablishments: Option[NumberOfEstablishmentsQuestion],
+  whichRegions: List[WhichRegionQuestion],
+  comparedToMonTueWed: Option[ComparedToMonTueWedQuestion],
+  comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion],
+  comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion],
+  affectedJobs: Option[AffectedJobsQuestion],
+  furloughEmployees: Option[FurloughEmployeesQuestion],
+  businessFuturePlans: Option[BusinessFuturePlansQuestion],
+  offerDiscounts: Option[OfferDiscountsQuestion]
+)
+
+object EOTHOQuestions {
+  implicit val formats: Format[EOTHOQuestions] = Json.format[EOTHOQuestions]
 }
 
 case class GiveReasonQuestions(value: Option[GiveReason], reason: Option[String])

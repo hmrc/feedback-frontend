@@ -16,40 +16,42 @@
 
 package models
 
+import generators.ModelGenerators
+import models.eotho.WhichRegionQuestion
 import org.scalacheck.Arbitrary.arbitrary
-import org.scalacheck.Gen
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import org.scalatest.{MustMatchers, OptionValues, WordSpec}
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.libs.json.{JsError, JsString, Json}
 
-class GiveReasonSpec extends WordSpec with MustMatchers with ScalaCheckPropertyChecks with OptionValues {
+class WhichRegionQuestionSpec
+    extends WordSpec with MustMatchers with ScalaCheckPropertyChecks with OptionValues with ModelGenerators {
 
-  "GiveReason" must {
+  "WhichRegionQuestion" must {
 
     "deserialise valid values" in {
 
-      val gen = Gen.oneOf(GiveReason.values)
+      val gen = arbitrary[WhichRegionQuestion]
 
-      forAll(gen) { giveReason =>
-        JsString(giveReason.toString).validate[GiveReason].asOpt.value mustEqual giveReason
+      forAll(gen) { whatRegion =>
+        JsString(whatRegion.toString).validate[WhichRegionQuestion].asOpt.value mustEqual whatRegion
       }
     }
 
     "fail to deserialise invalid values" in {
 
-      val gen = arbitrary[String] suchThat (!GiveReason.values.map(_.toString).contains(_))
+      val gen = arbitrary[String] suchThat (!WhichRegionQuestion.values.map(_.toString).contains(_))
 
       forAll(gen) { invalidValue =>
-        JsString(invalidValue).validate[GiveReason] mustEqual JsError("Unknown giveReason")
+        JsString(invalidValue).validate[WhichRegionQuestion] mustEqual JsError("error.invalid")
       }
     }
 
     "serialise" in {
 
-      val gen = Gen.oneOf(GiveReason.values.toSeq)
+      val gen = arbitrary[WhichRegionQuestion]
 
-      forAll(gen) { giveReason =>
-        Json.toJson(giveReason) mustEqual JsString(giveReason.toString)
+      forAll(gen) { whatRegion =>
+        Json.toJson(whatRegion) mustEqual JsString(whatRegion.toString)
       }
     }
   }

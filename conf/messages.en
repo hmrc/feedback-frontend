@@ -152,6 +152,64 @@ likelyToDoQuestion.ClarifyInformation = Clarify information you have found in Ch
 likelyToDoQuestion.GetProfessionalAdvice = Get some professional advice or free guidance
 likelyToDoQuestion.DoNothing = Do nothing. You are satisfied with the information you found today
 
+
+eothoQuestions.title = Give feedback - GOV.UK
+eothoQuestions.heading = Feedback
+eothoQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+eothoQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+eothoQuestions.intro3 = The survey takes about 1 minute to complete. There are 9 questions and they are all optional.
+eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
+
+eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
+eothoQuestions.comparedToMonTueWed.heading= Compared to July 2020, how has your August food and drink turnover across Mondays, Tuesdays and Wednesdays changed?
+eothoQuestions.comparedToThurFriSatSun.heading = Compared to July 2020, how has your August food and drink turnover across Thursdays, Fridays, Saturdays and Sundays changed?
+eothoQuestions.comparedBusinessTurnover.heading = How does your business’s total turnover in August 2020 compare to August 2019?
+eothoQuestions.affectedJobs.heading = Has the Eat Out to Help Out (EOHO) Scheme affected jobs in your business?
+eothoQuestions.furloughEmployees.heading = Between March and July 2020, did your business furlough any employees?
+eothoQuestions.businessFuturePlans.heading = After the Eat Out to Help Out Scheme ends, which option best describes your business future plans?
+eothoQuestions.offerDiscounts.heading = Does your business plan to offer discounts in September, once the EOHO Scheme comes to an end?
+
+numberOfEstablishmentsQuestion.FewerThan25 = 25 or fewer
+numberOfEstablishmentsQuestion.MoreThan25 = More than 25
+
+comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
+comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Decreased by less than 50%
+comparedToMonTueWedQuestion.StayedAboutTheSame = Stayed about the same
+comparedToMonTueWedQuestion.IncreasedByLessThan50percent = Increased by less than 50%
+comparedToMonTueWedQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
+
+comparedToThurFriSatSunQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
+comparedToThurFriSatSunQuestion.DecreasedByLessThan50percent = Decreased by less than 50%
+comparedToThurFriSatSunQuestion.StayedAboutTheSame = Stayed about the same
+comparedToThurFriSatSunQuestion.IncreasedByLessThan50percent = Increased by less than 50%
+comparedToThurFriSatSunQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
+
+comparedBusinessTurnover.DecreasedByMoreThan50percent = Total turnover has decreased by more than 50%
+comparedBusinessTurnover.DecreasedByLessThan50percent = Total turnover has decreased by less than 50%
+comparedBusinessTurnover.StayedAboutTheSame = Total turnover has stayed about the same
+comparedBusinessTurnover.IncreasedByLessThan50percent = Total turnover has increased by less than 50%
+comparedBusinessTurnover.IncreasedByMoreThan50percent = Total turnover has increased by more than 50%
+
+affectedJobs.YesKeepAllEmployeesAndTakeOnAdditionalStaff = Yes, we have been able to keep all employees who were on payroll in July 2020, and take on additional staff
+affectedJobs.YesKeepAllEmployees = Yes, we have been able to keep all employees who were on payroll in July 2020
+affectedJobs.YesKeepSomeEmployees = Yes, we have been able to keep some employees who were on payroll in July 2020
+affectedJobs.NoNotAffectedJobs = No, the scheme has not affected jobs in my business
+affectedJobs.NotApplicableBusinessDoesNotEmployAnyone =Not applicable, the business does not employ anybody
+
+furloughEmployees.YesFurloughedMostEmployees = Yes, we furloughed most of our employees
+furloughEmployees.YesFurloughedSomeEmployees = Yes, we furloughed some of our employees
+furloughEmployees.NoDidnotFurloughAnyEmployees =No, we did not furlough any employees
+
+offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = No, we do not plan to offer discounts in September
+offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Yes, up to 50% on eat-in food and drink purchased on Mondays, Tuesdays and Wednesdays in September
+offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Yes, 50% or more on eat-in food and drink purchased on Mondays, Tuesdays and Wednesdays in September
+offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Yes, we’re planning on offering different discounts or deals in September
+
+businessFuturePlans.WePlanToStopTrading = We plan to stop trading
+businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = We plan to reduce our opening hours but will continue to trade
+businessFuturePlans.WePlanToContinueWithTheSameOpeningHours = We plan to continue with the same opening hours
+businessFuturePlans.WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments = We plan to increase our opening hours, or open more establishments
+
 thankYou.pension.title = Thank you
 thankYou.pension.heading = Thank you
 thankYou.pension.intro = We’ve received your feedback.
@@ -193,3 +251,16 @@ page_not_found.heading = Page not found
 page.not.found.error.check.web.address.correct = If you typed the web address, check it is correct.
 page.not.found.error.check.web.address.full = If you pasted the web address, check you copied the entire address.
 
+whichRegions.heading = In which regions does your business have establishments? Please select all that apply.
+whichRegions.EastMidlands = East Midlands
+whichRegions.EastOfEngland = East of England
+whichRegions.London = London
+whichRegions.NorthEast = North East
+whichRegions.NorthWest = North West
+whichRegions.SouthEast = South East
+whichRegions.SouthWest = South West
+whichRegions.WestMidlands = West Midlands
+whichRegions.YorkshireAndHumber = Yorkshire and Humber
+whichRegions.NorthernIreland = Northern Ireland
+whichRegions.Scotland = Scotland
+whichRegions.Wales = Wales

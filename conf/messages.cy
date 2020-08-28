@@ -155,14 +155,71 @@ pensionQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd 
 pensionQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 pensionQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 pensionQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
-
 pensionQuestions.likelyToDo.heading = Beth ydych chi’n fwyaf tebygol o’i wneud ar ôl gwirio’ch Pensiwn y Wladwriaeth?
+
 
 likelyToDoQuestion.OtherPensions = Bwrw golwg dros eich pensiynau eraill, fel pensiynau preifat neu bensiynau’r gweithle
 likelyToDoQuestion.CheckFinances = Gwirio’ch materion ariannol, fel cynilion a buddsoddiadau
 likelyToDoQuestion.ClarifyInformation = Cael eglurhad o’r wybodaeth a gawsoch yn ‘Gwirio’ch Pensiwn y Wladwriaeth’
 likelyToDoQuestion.GetProfessionalAdvice = Cael cyngor proffesiynol neu arweiniad yn rhad ac am ddim
 likelyToDoQuestion.DoNothing = Dim byd. Rydych yn fodlon ar yr wybodaeth y cawsoch hyd iddi heddiw
+
+eothoQuestions.title = Rhoi adborth - GOV.UK
+eothoQuestions.heading = Adborth
+eothoQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+eothoQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+eothoQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 9 cwestiwn ac maent i gyd yn ddewisol.
+eothoQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
+eothoQuestions.numberOfEstablishments.heading = Faint o sefydliadau mae’ch busnes yn eu gweithredu?
+eothoQuestions.comparedToMonTueWed.heading= O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Llun, dydd Mawrth a dydd Mercher?
+
+eothoQuestions.comparedToThurFriSatSun.heading = O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Iau, dydd Gwener, dydd Sadwrn a dydd Sul?
+eothoQuestions.comparedBusinessTurnover.heading = Sut mae cyfanswm trosiant eich busnes ym mis Awst 2020 yn cymharu â mis Awst 2019?
+eothoQuestions.affectedJobs.heading = A yw’r Cynllun Bwyta Allan i Helpu Allan (EOHO) wedi effeithio ar swyddi yn eich busnes?
+eothoQuestions.furloughEmployees.heading = Rhwng mis Mawrth a mis Gorffennaf 2020, a wnaeth eich busnes roi unrhyw gyflogeion ar ffyrlo?
+eothoQuestions.businessFuturePlans.heading = Ar ôl i’r Cynllun Bwyta Allan i Helpu Allan ddod i ben, pa opsiwn sy’n disgrifio’ch cynlluniau busnes yn y dyfodol orau?
+eothoQuestions.offerDiscounts.heading = A yw’ch busnes yn bwriadu cynnig gostyngiadau ym mis Medi, unwaith y daw’r Cynllun EOHO i ben?
+
+numberOfEstablishmentsQuestion.FewerThan25 = 25 neu lai
+numberOfEstablishmentsQuestion.MoreThan25 = Mwy na 25
+
+comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Wedi gostwng mwy na 50%
+comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Wedi gostwng llai na 50%
+comparedToMonTueWedQuestion.StayedAboutTheSame = Wedi aros yr un fath mwy neu lai
+comparedToMonTueWedQuestion.IncreasedByLessThan50percent = Wedi cynyddu llai na 50%
+comparedToMonTueWedQuestion.IncreasedByMoreThan50percent = Wedi cynyddu mwy na 50%
+
+comparedToThurFriSatSunQuestion.DecreasedByMoreThan50percent = Wedi gostwng mwy na 50%
+comparedToThurFriSatSunQuestion.DecreasedByLessThan50percent = Wedi gostwng llai na 50%
+comparedToThurFriSatSunQuestion.StayedAboutTheSame = Wedi aros yr un fath mwy neu lai
+comparedToThurFriSatSunQuestion.IncreasedByLessThan50percent = Wedi cynyddu llai na 50%
+comparedToThurFriSatSunQuestion.IncreasedByMoreThan50percent = Wedi cynyddu mwy na 50%
+
+comparedBusinessTurnover.DecreasedByMoreThan50percent = Cyfanswm trosiant wedi gostwng mwy na 50%
+comparedBusinessTurnover.DecreasedByLessThan50percent = Cyfanswm trosiant wedi gostwng llai na 50%
+comparedBusinessTurnover.StayedAboutTheSame = Cyfanswm trosiant wedi aros yr un fath mwy neu lai
+comparedBusinessTurnover.IncreasedByLessThan50percent = Cyfanswm trosiant wedi cynyddu llai na 50%
+comparedBusinessTurnover.IncreasedByMoreThan50percent = Cyfanswm trosiant wedi cynyddu mwy na 50%
+
+affectedJobs.YesKeepAllEmployeesAndTakeOnAdditionalStaff = Ydy, rydym wedi gallu cadw pob cyflogai a oedd ar y gyflogres ym mis Gorffennaf 2020, ac rydym wedi cyflogi staff ychwanegol
+affectedJobs.YesKeepAllEmployees = Ydy, rydym wedi gallu cadw pob cyflogai a oedd ar y gyflogres ym mis Gorffennaf 2020
+affectedJobs.YesKeepSomeEmployees = Ydy, rydym wedi gallu cadw rhai cyflogeion a oedd ar y gyflogres ym mis Gorffennaf 2020
+affectedJobs.NoNotAffectedJobs = Nac ydy, nid yw’r cynllun wedi effeithio ar swyddi yn fy musnes
+affectedJobs.NotApplicableBusinessDoesNotEmployAnyone =Ddim yn berthnasol, nid yw’r busnes yn cyflogi unrhyw un
+
+furloughEmployees.YesFurloughedMostEmployees = Do, rhoesom y rhan fwyaf o’n cyflogeion ar ffyrlo
+furloughEmployees.YesFurloughedSomeEmployees = Do, rhoesom rai o’n cyflogeion ar ffyrlo
+furloughEmployees.NoDidnotFurloughAnyEmployees = Naddo, ni roesem unrhyw gyflogeion ar ffyrlo
+
+offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = Nac ydy, nid ydym yn bwriadu cynnig gostyngiadau ym mis Medi
+offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Ydy, hyd at 50% oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
+offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Ydy, 50% neu fwy oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
+offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Ydy, rydym yn bwriadu cynnig gostyngiadau neu fargeinion gwahanol ym mis Medi
+
+businessFuturePlans.WePlanToStopTrading = Rydym yn bwriadu rhoi’r gorau i fasnachu
+businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = Rydym yn bwriadu gostwng ein horiau agor ond byddwn yn parhau i fasnachu
+businessFuturePlans.WePlanToContinueWithTheSameOpeningHours = Rydym yn bwriadu parhau gyda’r un oriau agor
+businessFuturePlans.WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments = Rydym yn bwriadu cynyddu ein horiau agor, neu agor rhagor o sefydliadau
 
 thankYou.pension.title = Diolch yn fawr
 thankYou.pension.heading = Diolch yn fawr
@@ -203,3 +260,17 @@ page_not_found.tabtitle = Heb ddod o hyd i’r dudalen - Rhoi adborth - GOV.UK
 page_not_found.heading = Heb ddod o hyd i’r dudalen
 page.not.found.error.check.web.address.correct = Os gwnaethoch deipio’r cyfeiriad gwe, gwiriwch ei fod yn gywir.
 page.not.found.error.check.web.address.full = Os gwnaethoch ludo’r cyfeiriad gwe, gwiriwch eich bod wedi copïo’r cyfeiriad yn llawn.
+
+whichRegions.heading = Ym mha ranbarthau mae sefydliadau’ch busnes? Ticiwch bob un sy’n gymwys.
+whichRegions.EastMidlands = Dwyrain Canolbarth Lloegr
+whichRegions.EastOfEngland = Dwyrain Lloegr
+whichRegions.London = Llundain
+whichRegions.NorthEast = Gogledd-ddwyrain Lloegr
+whichRegions.NorthWest = Gogledd-orllewin Lloegr
+whichRegions.SouthEast = De-ddwyrain Lloegr
+whichRegions.SouthWest = De-orllewin Lloegr
+whichRegions.WestMidlands = Gorllewin Canolbarth Lloegr
+whichRegions.YorkshireAndHumber = Swydd Efrog a Humber
+whichRegions.NorthernIreland = Gogledd Iwerddon
+whichRegions.Scotland = Yr Alban
+whichRegions.Wales = Cymru

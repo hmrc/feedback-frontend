@@ -25,8 +25,8 @@ import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
 import org.scalatest.concurrent.ScalaFutures
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.prop.PropertyChecks
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
@@ -34,7 +34,7 @@ import services.AuditService
 import views.html.giveComments
 
 class GiveCommentsControllerSpec
-    extends ControllerSpecBase with PropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
+    extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
 
   def onwardRoute = Call("GET", "/foo")
 

@@ -46,6 +46,7 @@ object NextPage {
       override def nextPage(page: PensionQuestionsPage.type): Unit => Call =
         _ => controllers.routes.ThankYouController.onPageLoadPension()
     }
+
 }
 
 @Singleton
