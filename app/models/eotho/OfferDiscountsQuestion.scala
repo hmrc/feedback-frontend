@@ -22,7 +22,7 @@ import viewmodels.RadioOption
 
 sealed trait OfferDiscountsQuestion
 
-object OfferDiscountsQuestion {
+object OfferDiscountsQuestion extends Enumerable.Implicits {
 
   case object NoDoNotPlanToOfferDiscountsInSeptember
       extends WithName("NoDoNotPlanToOfferDiscountsInSeptember") with OfferDiscountsQuestion
@@ -44,21 +44,4 @@ object OfferDiscountsQuestion {
 
   implicit val enumerable: Enumerable[OfferDiscountsQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object OfferDiscountsQuestion extends Writes[OfferDiscountsQuestion] {
-    def writes(offerDiscountsQuestion: OfferDiscountsQuestion) =
-      Json.toJson(offerDiscountsQuestion.toString)
-  }
-
-  implicit object OfferDiscountsQuestionReads extends Reads[OfferDiscountsQuestion] {
-    override def reads(json: JsValue): JsResult[OfferDiscountsQuestion] = json match {
-      case JsString(NoDoNotPlanToOfferDiscountsInSeptember.toString) =>
-        JsSuccess(NoDoNotPlanToOfferDiscountsInSeptember)
-      case JsString(YesOfferUpTo50pcOnMonTueWedInSeptember.toString) =>
-        JsSuccess(YesOfferUpTo50pcOnMonTueWedInSeptember)
-      case JsString(YesOfferDifferentDiscountsOrDealsInSeptember.toString) =>
-        JsSuccess(YesOfferDifferentDiscountsOrDealsInSeptember)
-      case _ => JsError("Unknown OfferDiscountsQuestion")
-    }
-  }
 }

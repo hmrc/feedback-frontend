@@ -17,12 +17,11 @@
 package models.eotho
 
 import models.{Enumerable, WithName}
-import play.api.libs.json._
 import viewmodels.RadioOption
 
 sealed trait NumberOfEmployeesQuestion
 
-object NumberOfEmployeesQuestion {
+object NumberOfEmployeesQuestion extends Enumerable.Implicits {
 
   case object NoEmployees extends WithName("NoEmployees") with NumberOfEmployeesQuestion
   case object OneToTenEmployees extends WithName("OneToTenEmployees") with NumberOfEmployeesQuestion
@@ -46,23 +45,4 @@ object NumberOfEmployeesQuestion {
 
   implicit val enumerable: Enumerable[NumberOfEmployeesQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object NumberOfEmployeesQuestion extends Writes[NumberOfEmployeesQuestion] {
-    def writes(numberOfEmployeesQuesiton: NumberOfEmployeesQuestion) =
-      Json.toJson(numberOfEmployeesQuesiton.toString)
-  }
-
-  implicit object NumberOfEmployeesQuestionReads extends Reads[NumberOfEmployeesQuestion] {
-    override def reads(json: JsValue): JsResult[NumberOfEmployeesQuestion] = json match {
-      case JsString(OneToTenEmployees.toString) =>
-        JsSuccess(OneToTenEmployees)
-      case JsString(ElevenToHundredEmployees.toString) =>
-        JsSuccess(ElevenToHundredEmployees)
-      case JsString(HundredToFiveHundredEmployees.toString) =>
-        JsSuccess(HundredToFiveHundredEmployees)
-      case JsString(FiveHundredOrMoreEmployees.toString) =>
-        JsSuccess(FiveHundredOrMoreEmployees)
-      case _ => JsError("Unknown NumberOfEmployeesQuestion")
-    }
-  }
 }

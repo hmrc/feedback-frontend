@@ -17,12 +17,11 @@
 package models.eotho
 
 import models.{Enumerable, WithName}
-import play.api.libs.json._
 import viewmodels.RadioOption
 
 sealed trait ComparedToThurFriSatSunQuestion
 
-object ComparedToThurFriSatSunQuestion {
+object ComparedToThurFriSatSunQuestion extends Enumerable.Implicits {
 
   case object DecreasedByMoreThan50percent
       extends WithName("DecreasedByMoreThan50percent") with ComparedToThurFriSatSunQuestion
@@ -52,22 +51,4 @@ object ComparedToThurFriSatSunQuestion {
 
   implicit val enumerable: Enumerable[ComparedToThurFriSatSunQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object ComparedToThurFriSatSunQuestion extends Writes[ComparedToThurFriSatSunQuestion] {
-    def writes(comparedToThurFriSatSunQuestion: ComparedToThurFriSatSunQuestion) =
-      Json.toJson(comparedToThurFriSatSunQuestion.toString)
-  }
-
-  implicit object ComparedToThurFriSatSunQuestionReads extends Reads[ComparedToThurFriSatSunQuestion] {
-    override def reads(json: JsValue): JsResult[ComparedToThurFriSatSunQuestion] = json match {
-      case JsString(DecreasedByMoreThan50percent.toString)   => JsSuccess(DecreasedByMoreThan50percent)
-      case JsString(DecreasedBetween20And50percent.toString) => JsSuccess(DecreasedBetween20And50percent)
-      case JsString(DecreasedByLess20percent.toString)       => JsSuccess(DecreasedByLess20percent)
-      case JsString(StayedAboutTheSame.toString)             => JsSuccess(StayedAboutTheSame)
-      case JsString(IncreasedByLess20percent.toString)       => JsSuccess(IncreasedByLess20percent)
-      case JsString(IncreasedBetween20And50percent.toString) => JsSuccess(IncreasedBetween20And50percent)
-      case JsString(IncreasedByMore50percent.toString)       => JsSuccess(IncreasedByMore50percent)
-      case _                                                 => JsError("Unknown ComparedToThurFriSatSunQuestion")
-    }
-  }
 }

@@ -167,37 +167,57 @@ trait ModelGenerators {
   lazy val numberOfEstablishmentsGen: Gen[NumberOfEstablishmentsQuestion] =
     oneOf(NumberOfEstablishmentsQuestion.values)
 
+  implicit lazy val arbitraryNumberOfEstablishments: Arbitrary[NumberOfEstablishmentsQuestion] =
+    Arbitrary(numberOfEstablishmentsGen)
+
   lazy val numberOfEmployeesGen: Gen[NumberOfEmployeesQuestion] =
     oneOf(NumberOfEmployeesQuestion.values)
+
+  implicit lazy val arbitraryNumberOfEmployees: Arbitrary[NumberOfEmployeesQuestion] =
+    Arbitrary(numberOfEmployeesGen)
 
   lazy val comparedToMonTueWed: Gen[ComparedToMonTueWedQuestion] =
     oneOf(ComparedToMonTueWedQuestion.values)
 
+  implicit lazy val arbitraryComparedToMonTueWed: Arbitrary[ComparedToMonTueWedQuestion] =
+    Arbitrary(comparedToMonTueWed)
+
   lazy val comparedToThurFriSatSun: Gen[ComparedToThurFriSatSunQuestion] =
     oneOf(ComparedToThurFriSatSunQuestion.values)
+
+  implicit lazy val arbitraryComparedToThurFriSatSun: Arbitrary[ComparedToThurFriSatSunQuestion] =
+    Arbitrary(comparedToThurFriSatSun)
 
   lazy val comparedBusinessTurnover: Gen[ComparedBusinessTurnoverQuestion] =
     oneOf(ComparedBusinessTurnoverQuestion.values)
 
+  implicit lazy val arbitraryComparedBusinessTurnover: Arbitrary[ComparedBusinessTurnoverQuestion] =
+    Arbitrary(comparedBusinessTurnover)
+
   lazy val affectedJobs: Gen[AffectedJobsQuestion] =
     oneOf(AffectedJobsQuestion.values)
+
+  implicit lazy val arbitraryAffectedJobs: Arbitrary[AffectedJobsQuestion] =
+    Arbitrary(affectedJobs)
 
   lazy val businessFuturePlans: Gen[BusinessFuturePlansQuestion] =
     oneOf(BusinessFuturePlansQuestion.values)
 
+  implicit lazy val arbitraryBusinessFuturePlans: Arbitrary[BusinessFuturePlansQuestion] =
+    Arbitrary(businessFuturePlans)
+
   lazy val offerDiscounts: Gen[OfferDiscountsQuestion] =
     oneOf(OfferDiscountsQuestion.values)
+
+  implicit lazy val arbitraryOfferDiscounts: Arbitrary[OfferDiscountsQuestion] =
+    Arbitrary(offerDiscounts)
 
   lazy val whichRegionQuestionGen: Gen[WhichRegionQuestion] =
     oneOf(WhichRegionQuestion.values)
 
   implicit lazy val arbitraryWhichRegionQuestion: Arbitrary[WhichRegionQuestion] =
-    Arbitrary {
-      Gen.oneOf(WhichRegionQuestion.values)
-    }
+    Arbitrary(whichRegionQuestionGen)
 
   implicit lazy val listOfarbitraryWhichRegionQuestion: Arbitrary[List[WhichRegionQuestion]] =
-    Arbitrary {
-      Gen.listOf(whichRegionQuestionGen)
-    }
+    Arbitrary(Gen.listOf(whichRegionQuestionGen))
 }

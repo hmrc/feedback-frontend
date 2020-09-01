@@ -17,12 +17,11 @@
 package models.eotho
 
 import models.{Enumerable, WithName}
-import play.api.libs.json._
 import viewmodels.RadioOption
 
 sealed trait BusinessFuturePlansQuestion
 
-object BusinessFuturePlansQuestion {
+object BusinessFuturePlansQuestion extends Enumerable.Implicits {
 
   case object WePlanToStopTrading extends WithName("WePlanToStopTrading") with BusinessFuturePlansQuestion
   case object WePlanToReduceOurOpeningHoursButContinueToTrade
@@ -46,23 +45,4 @@ object BusinessFuturePlansQuestion {
 
   implicit val enumerable: Enumerable[BusinessFuturePlansQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object BusinessFutureQuestion extends Writes[BusinessFuturePlansQuestion] {
-    def writes(businessFutureQuestion: BusinessFuturePlansQuestion) =
-      Json.toJson(businessFutureQuestion.toString)
-  }
-
-  implicit object BusinessFutureQuestionReads extends Reads[BusinessFuturePlansQuestion] {
-    override def reads(json: JsValue): JsResult[BusinessFuturePlansQuestion] = json match {
-      case JsString(WePlanToStopTrading.toString) =>
-        JsSuccess(WePlanToStopTrading)
-      case JsString(WePlanToReduceOurOpeningHoursButContinueToTrade.toString) =>
-        JsSuccess(WePlanToReduceOurOpeningHoursButContinueToTrade)
-      case JsString(WePlanToContinueWithTheSameOpeningHours.toString) =>
-        JsSuccess(WePlanToContinueWithTheSameOpeningHours)
-      case JsString(WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments.toString) =>
-        JsSuccess(WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments)
-      case _ => JsError("Unknown BusinessFuturePlansQuestion")
-    }
-  }
 }

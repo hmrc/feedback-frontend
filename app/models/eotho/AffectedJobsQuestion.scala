@@ -17,12 +17,11 @@
 package models.eotho
 
 import models.{Enumerable, WithName}
-import play.api.libs.json._
 import viewmodels.RadioOption
 
 sealed trait AffectedJobsQuestion
 
-object AffectedJobsQuestion {
+object AffectedJobsQuestion extends Enumerable.Implicits {
 
   case object KeepAllAndTakeOnAdditionalStaff
       extends WithName("KeepAllAndTakeOnAdditionalStaff") with AffectedJobsQuestion
@@ -40,21 +39,4 @@ object AffectedJobsQuestion {
 
   implicit val enumerable: Enumerable[AffectedJobsQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object AffectedJobsQuestion extends Writes[AffectedJobsQuestion] {
-    def writes(affectedJobsQuestion: AffectedJobsQuestion) =
-      Json.toJson(affectedJobsQuestion.toString)
-  }
-
-  implicit object AffectedJobsQuestionReads extends Reads[AffectedJobsQuestion] {
-    override def reads(json: JsValue): JsResult[AffectedJobsQuestion] = json match {
-      case JsString(KeepAllAndTakeOnAdditionalStaff.toString) =>
-        JsSuccess(KeepAllAndTakeOnAdditionalStaff)
-      case JsString(KeepAllOrMostJobs.toString)           => JsSuccess(KeepAllOrMostJobs)
-      case JsString(KeepSomeJobs.toString)                => JsSuccess(KeepSomeJobs)
-      case JsString(KeepNoJobs.toString)                  => JsSuccess(KeepNoJobs)
-      case JsString(NotApplicableNobodyEmployed.toString) => JsSuccess(NotApplicableNobodyEmployed)
-      case _                                              => JsError("Unknown AffectedJobsQuestion")
-    }
-  }
 }
