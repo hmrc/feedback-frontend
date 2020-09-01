@@ -150,20 +150,6 @@ class EOTHOQuestionsFormProviderSpec
     )
   }
 
-  ".furloughEmployees" must {
-
-    val fieldName = "furloughEmployees"
-    val invalidError = "error.invalid"
-
-    behave like optionsField[EOTHOQuestions, FurloughEmployeesQuestion](
-      form,
-      fieldName,
-      FurloughEmployeesQuestion.values,
-      FormError(fieldName, invalidError),
-      _.furloughEmployees
-    )
-  }
-
   ".businessFuturePlans" must {
 
     val fieldName = "businessFuturePlans"

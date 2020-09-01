@@ -176,7 +176,6 @@ class AuditServiceSpec
         "comparedToMonTueWed"        -> questions.comparedToMonTueWed.fold("-")(_.toString),
         "comparedToThurFriSatSun"    -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
         "comparedBusinessTurnover"   -> questions.comparedBusinessTurnover.fold("-")(_.toString),
-        "furloughEmployees"          -> questions.furloughEmployees.fold("-")(_.toString),
         "businessFuturePlans"        -> questions.businessFuturePlans.fold("-")(_.toString),
         "offerDiscounts"             -> questions.offerDiscounts.fold("-")(_.toString)
       )

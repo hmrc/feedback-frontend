@@ -130,7 +130,6 @@ trait ModelGenerators {
       compareToMonTueWed         <- option(comparedToMonTueWed)
       comparedToThurFriSatSun    <- option(comparedToThurFriSatSun)
       comparedBusinessTurnOver   <- option(comparedBusinessTurnover)
-      furloughEmployees          <- option(furloughEmployees)
       businessFuturePlans        <- option(businessFuturePlans)
       offerDiscounts             <- option(offerDiscounts)
     } yield {
@@ -144,7 +143,6 @@ trait ModelGenerators {
         compareToMonTueWed,
         comparedToThurFriSatSun,
         comparedBusinessTurnOver,
-        furloughEmployees,
         businessFuturePlans,
         offerDiscounts
       )
@@ -179,9 +177,6 @@ trait ModelGenerators {
 
   lazy val affectedJobs: Gen[AffectedJobsQuestion] =
     oneOf(AffectedJobsQuestion.values)
-
-  lazy val furloughEmployees: Gen[FurloughEmployeesQuestion] =
-    oneOf(FurloughEmployeesQuestion.values)
 
   lazy val businessFuturePlans: Gen[BusinessFuturePlansQuestion] =
     oneOf(BusinessFuturePlansQuestion.values)

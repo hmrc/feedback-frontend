@@ -90,8 +90,6 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("protectHospitalityIndustry" -> protectHospitalityIndustry.map(boolToString(_)).getOrElse("-"))
   def withWhichRegion(whichRegions: List[WhichRegionQuestion]): MapCont =
     _ + ("whichRegions" -> setToString(whichRegions))
-  def withFurloughEmployees(furloughEmployees: Option[FurloughEmployeesQuestion]): MapCont =
-    _ + ("furloughEmployees" -> furloughEmployees.map(_.toString).getOrElse(("-")))
   def withBusinessFuturePlans(businessFuturePlans: Option[BusinessFuturePlansQuestion]): MapCont =
     _ + ("businessFuturePlans" -> businessFuturePlans.map(_.toString).getOrElse(("-")))
 
@@ -217,7 +215,6 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withComparedToMonTueWed(questions.comparedToMonTueWed) andThen
         withComparedToThurFriSatSun(questions.comparedToThurFriSatSun) andThen
         withComparedBusinessTurnover(questions.comparedBusinessTurnover) andThen
-        withFurloughEmployees(questions.furloughEmployees) andThen
         withBusinessFuturePlans(questions.businessFuturePlans) andThen
         withOfferDiscounts(questions.offerDiscounts)
     )(emptyMap)

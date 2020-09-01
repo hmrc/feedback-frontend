@@ -177,7 +177,6 @@ eothoQuestions.comparedToMonTueWed.heading= O gymharu â mis Gorffennaf 2020, su
 eothoQuestions.comparedToThurFriSatSun.heading = O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Iau, dydd Gwener, dydd Sadwrn a dydd Sul?
 eothoQuestions.comparedBusinessTurnover.heading = Sut mae cyfanswm trosiant eich busnes ym mis Awst 2020 yn cymharu â mis Awst 2019?
 eothoQuestions.affectedJobs.heading = ???
-eothoQuestions.furloughEmployees.heading = Rhwng mis Mawrth a mis Gorffennaf 2020, a wnaeth eich busnes roi unrhyw gyflogeion ar ffyrlo?
 eothoQuestions.businessFuturePlans.heading = Ar ôl i’r Cynllun Bwyta Allan i Helpu Allan ddod i ben, pa opsiwn sy’n disgrifio’ch cynlluniau busnes yn y dyfodol orau?
 eothoQuestions.offerDiscounts.heading = A yw’ch busnes yn bwriadu cynnig gostyngiadau ym mis Medi, unwaith y daw’r Cynllun EOHO i ben?
 eothoQuestions.protectAtRiskJobs.heading = ???
@@ -223,10 +222,6 @@ comparedBusinessTurnover.StayedAboutTheSame = Total turnover has stayed about th
 comparedBusinessTurnover.IncreasedByLess20percent = Total turnover has increased by less than 20%
 comparedBusinessTurnover.IncreasedBetween20And50percent = Total turnover has increased between 20% and 50%
 comparedBusinessTurnover.IncreasedByMore50percent = Total turnover has increased by more than 50%
-
-furloughEmployees.YesFurloughedMostEmployees = Do, rhoesom y rhan fwyaf o’n cyflogeion ar ffyrlo
-furloughEmployees.YesFurloughedSomeEmployees = Do, rhoesom rai o’n cyflogeion ar ffyrlo
-furloughEmployees.NoDidnotFurloughAnyEmployees = Naddo, ni roesem unrhyw gyflogeion ar ffyrlo
 
 offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = Nac ydy, nid ydym yn bwriadu cynnig gostyngiadau ym mis Medi
 offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Ydy, hyd at 50% oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi

@@ -88,12 +88,6 @@ class EOTHOQuestionsViewSpec
 
     behave like optionsPage(
       createViewUsingForm,
-      "furloughEmployees",
-      FurloughEmployeesQuestion.options,
-      "eothoQuestions.furloughEmployees")
-
-    behave like optionsPage(
-      createViewUsingForm,
       "businessFuturePlans",
       BusinessFuturePlansQuestion.options,
       "eothoQuestions.businessFuturePlans")
