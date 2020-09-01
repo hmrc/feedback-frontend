@@ -55,8 +55,4 @@ class OfferDiscountsQuestionSpec
       }
     }
   }
-}qual JsString(whatRegion.toString)
-        }
-      }
-    }
-  }
+}
