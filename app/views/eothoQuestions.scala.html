@@ -116,17 +116,17 @@
         )
 
         @components.input_radio(
-            field = form("businessFuturePlans"),
-            legend = messages("eothoQuestions.businessFuturePlans.heading"),
-            legendClass = Some("heading-medium"),
-            inputs = BusinessFuturePlansQuestion.options
-        )
-
-        @components.input_radio(
             field = form("offerDiscounts"),
             legend = messages("eothoQuestions.offerDiscounts.heading"),
             legendClass = Some("heading-medium"),
             inputs = OfferDiscountsQuestion.options
+        )
+
+        @components.input_radio(
+            field = form("businessFuturePlans"),
+            legend = messages("eothoQuestions.businessFuturePlans.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = BusinessFuturePlansQuestion.options
         )
 
         @components.submit_button()

@@ -221,8 +221,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withComparedBusinessTurnover(questions.comparedBusinessTurnover) andThen
         withEncourageReopenSooner(questions.encourageReopenSooner) andThen
         withEncourageReturnToRestaurantsSooner(questions.encourageReturnToRestaurantsSooner) andThen
-        withBusinessFuturePlans(questions.businessFuturePlans) andThen
-        withOfferDiscounts(questions.offerDiscounts)
+        withOfferDiscounts(questions.offerDiscounts) andThen
+        withBusinessFuturePlans(questions.businessFuturePlans)
     )(emptyMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }

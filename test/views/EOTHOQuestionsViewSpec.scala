@@ -95,15 +95,15 @@ class EOTHOQuestionsViewSpec
 
     behave like optionsPage(
       createViewUsingForm,
-      "businessFuturePlans",
-      BusinessFuturePlansQuestion.options,
-      "eothoQuestions.businessFuturePlans")
-
-    behave like optionsPage(
-      createViewUsingForm,
       "offerDiscounts",
       OfferDiscountsQuestion.options,
       "eothoQuestions.offerDiscounts")
+
+    behave like optionsPage(
+      createViewUsingForm,
+      "businessFuturePlans",
+      BusinessFuturePlansQuestion.options,
+      "eothoQuestions.businessFuturePlans")
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("eothoQuestions.introLinkText")

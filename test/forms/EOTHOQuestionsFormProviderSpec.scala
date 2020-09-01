@@ -176,20 +176,6 @@ class EOTHOQuestionsFormProviderSpec
     )
   }
 
-  ".businessFuturePlans" must {
-
-    val fieldName = "businessFuturePlans"
-    val invalidError = "error.invalid"
-
-    behave like optionsField[EOTHOQuestions, BusinessFuturePlansQuestion](
-      form,
-      fieldName,
-      BusinessFuturePlansQuestion.values,
-      FormError(fieldName, invalidError),
-      _.businessFuturePlans
-    )
-  }
-
   ".offerDiscounts" must {
 
     val fieldName = "offerDiscounts"
@@ -201,6 +187,20 @@ class EOTHOQuestionsFormProviderSpec
       OfferDiscountsQuestion.values,
       FormError(fieldName, invalidError),
       _.offerDiscounts
+    )
+  }
+
+  ".businessFuturePlans" must {
+
+    val fieldName = "businessFuturePlans"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, BusinessFuturePlansQuestion](
+      form,
+      fieldName,
+      BusinessFuturePlansQuestion.values,
+      FormError(fieldName, invalidError),
+      _.businessFuturePlans
     )
   }
 }

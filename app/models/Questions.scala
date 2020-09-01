@@ -92,8 +92,8 @@ case class EOTHOQuestions(
   comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion],
   encourageReopenSooner: Option[Boolean],
   encourageReturnToRestaurantsSooner: Option[Boolean],
-  businessFuturePlans: Option[BusinessFuturePlansQuestion],
-  offerDiscounts: Option[OfferDiscountsQuestion])
+  offerDiscounts: Option[OfferDiscountsQuestion],
+  businessFuturePlans: Option[BusinessFuturePlansQuestion])
 
 object EOTHOQuestions {
   implicit val formats: Format[EOTHOQuestions] = Json.format[EOTHOQuestions]

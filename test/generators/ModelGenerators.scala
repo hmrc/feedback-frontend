@@ -127,13 +127,13 @@ trait ModelGenerators {
       affectedJobs                       <- option(affectedJobs)
       protectAtRiskJobs                  <- option(arbitrary[Boolean])
       protectHospitalityIndustry         <- option(arbitrary[Boolean])
-      encourageReopenSooner              <- option(arbitrary[Boolean])
-      encourageReturnToRestaurantsSooner <- option(arbitrary[Boolean])
       compareToMonTueWed                 <- option(comparedToMonTueWed)
       comparedToThurFriSatSun            <- option(comparedToThurFriSatSun)
       comparedBusinessTurnOver           <- option(comparedBusinessTurnover)
-      businessFuturePlans                <- option(businessFuturePlans)
+      encourageReopenSooner              <- option(arbitrary[Boolean])
+      encourageReturnToRestaurantsSooner <- option(arbitrary[Boolean])
       offerDiscounts                     <- option(offerDiscounts)
+      businessFuturePlans                <- option(businessFuturePlans)
     } yield {
       EOTHOQuestions(
         numberOfEstablishments,
@@ -147,8 +147,8 @@ trait ModelGenerators {
         comparedBusinessTurnOver,
         encourageReopenSooner,
         encourageReturnToRestaurantsSooner,
-        businessFuturePlans,
-        offerDiscounts
+        offerDiscounts,
+        businessFuturePlans
       )
     }
 

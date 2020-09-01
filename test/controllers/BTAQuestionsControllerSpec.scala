@@ -90,7 +90,8 @@ class BTAQuestionsControllerSpec
         )
 
         val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-        controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value))).futureValue
+        val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+        status(result) mustBe SEE_OTHER
 
         verify(mockAuditService, times(1))
           .btaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())

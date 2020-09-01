@@ -180,8 +180,8 @@ class AuditServiceSpec
         "encourageReturnToRestaurantsSooner" -> questions.encourageReturnToRestaurantsSooner
           .map(boolToString(_))
           .getOrElse("-"),
-        "businessFuturePlans" -> questions.businessFuturePlans.fold("-")(_.toString),
-        "offerDiscounts"      -> questions.offerDiscounts.fold("-")(_.toString)
+        "offerDiscounts"      -> questions.offerDiscounts.fold("-")(_.toString),
+        "businessFuturePlans" -> questions.businessFuturePlans.fold("-")(_.toString)
       )
 
       verify(auditConnector, times(1))

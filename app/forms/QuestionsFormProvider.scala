@@ -131,7 +131,7 @@ class EOTHOQuestionsFormProvider @Inject() extends Mappings {
         "comparedBusinessTurnover"           -> optional(enumerable[ComparedBusinessTurnoverQuestion]()),
         "encourageReopenSooner"              -> optional(boolean()),
         "encourageReturnToRestaurantsSooner" -> optional(boolean()),
-        "businessFuturePlans"                -> optional(enumerable[BusinessFuturePlansQuestion]()),
-        "offerDiscounts"                     -> optional(enumerable[OfferDiscountsQuestion]())
+        "offerDiscounts"                     -> optional(enumerable[OfferDiscountsQuestion]()),
+        "businessFuturePlans"                -> optional(enumerable[BusinessFuturePlansQuestion]())
       )(EOTHOQuestions.apply)(EOTHOQuestions.unapply))
 }
