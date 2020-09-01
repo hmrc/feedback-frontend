@@ -28,8 +28,6 @@ object OfferDiscountsQuestion {
       extends WithName("NoDoNotPlanToOfferDiscountsInSeptember") with OfferDiscountsQuestion
   case object YesOfferUpTo50pcOnMonTueWedInSeptember
       extends WithName("YesOfferUpTo50pcOnMonTueWedInSeptember") with OfferDiscountsQuestion
-  case object YesOffer50pcOrMoreOnMonTueWedInSeptember
-      extends WithName("YesOffer50pcOrMoreOnMonTueWedInSeptember") with OfferDiscountsQuestion
   case object YesOfferDifferentDiscountsOrDealsInSeptember
       extends WithName("YesOfferDifferentDiscountsOrDealsInSeptember") with OfferDiscountsQuestion
 
@@ -37,7 +35,6 @@ object OfferDiscountsQuestion {
     List(
       NoDoNotPlanToOfferDiscountsInSeptember,
       YesOfferUpTo50pcOnMonTueWedInSeptember,
-      YesOffer50pcOrMoreOnMonTueWedInSeptember,
       YesOfferDifferentDiscountsOrDealsInSeptember
     )
 
@@ -59,8 +56,6 @@ object OfferDiscountsQuestion {
         JsSuccess(NoDoNotPlanToOfferDiscountsInSeptember)
       case JsString(YesOfferUpTo50pcOnMonTueWedInSeptember.toString) =>
         JsSuccess(YesOfferUpTo50pcOnMonTueWedInSeptember)
-      case JsString(YesOffer50pcOrMoreOnMonTueWedInSeptember.toString) =>
-        JsSuccess(YesOffer50pcOrMoreOnMonTueWedInSeptember)
       case JsString(YesOfferDifferentDiscountsOrDealsInSeptember.toString) =>
         JsSuccess(YesOfferDifferentDiscountsOrDealsInSeptember)
       case _ => JsError("Unknown OfferDiscountsQuestion")

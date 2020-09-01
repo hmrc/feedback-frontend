@@ -227,7 +227,6 @@ comparedBusinessTurnover.IncreasedByMore50percent = Total turnover has increased
 
 offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = Nac ydy, nid ydym yn bwriadu cynnig gostyngiadau ym mis Medi
 offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Ydy, hyd at 50% oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
-offerDiscounts.YesOffer50pcOrMoreOnMonTueWedInSeptember = Ydy, 50% neu fwy oddi ar fwyd a diod a brynir i’w fwyta ar y safle ar ddydd Llun, dydd Mawrth a dydd Mercher ym mis Medi
 offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Ydy, rydym yn bwriadu cynnig gostyngiadau neu fargeinion gwahanol ym mis Medi
 
 businessFuturePlans.WePlanToStopTrading = Rydym yn bwriadu rhoi’r gorau i fasnachu
