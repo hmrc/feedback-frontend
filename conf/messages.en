@@ -189,22 +189,28 @@ affectedJobs.KeepNoJobs = We haven’t been able to keep any jobs that we had in
 affectedJobs.NotApplicableNobodyEmployed = Not applicable, the business does not employ anybody
 
 comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
-comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Decreased by less than 50%
+comparedToMonTueWedQuestion.DecreasedBetween20And50percent = Decreased between 20% and 50%
+comparedToMonTueWedQuestion.DecreasedByLess20percent = Decreased by less than 20%
 comparedToMonTueWedQuestion.StayedAboutTheSame = Stayed about the same
-comparedToMonTueWedQuestion.IncreasedByLessThan50percent = Increased by less than 50%
-comparedToMonTueWedQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
+comparedToMonTueWedQuestion.IncreasedByLess20percent = Increased by less than 20%
+comparedToMonTueWedQuestion.IncreasedBetween20And50percent = Increased between 20% and 50%
+comparedToMonTueWedQuestion.IncreasedByMore50percent = Increased by more than 50%
 
 comparedToThurFriSatSunQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
-comparedToThurFriSatSunQuestion.DecreasedByLessThan50percent = Decreased by less than 50%
+comparedToThurFriSatSunQuestion.DecreasedBetween20And50percent = Decreased between 20% and 50%
+comparedToThurFriSatSunQuestion.DecreasedByLess20percent = Decreased by less than 20%
 comparedToThurFriSatSunQuestion.StayedAboutTheSame = Stayed about the same
-comparedToThurFriSatSunQuestion.IncreasedByLessThan50percent = Increased by less than 50%
-comparedToThurFriSatSunQuestion.IncreasedByMoreThan50percent = Increased by more than 50%
+comparedToThurFriSatSunQuestion.IncreasedByLess20percent = Increased by less than 20%
+comparedToThurFriSatSunQuestion.IncreasedBetween20And50percent = Increased between 20% and 50%
+comparedToThurFriSatSunQuestion.IncreasedByMore50percent = Increased by more than 50%
 
 comparedBusinessTurnover.DecreasedByMoreThan50percent = Total turnover has decreased by more than 50%
-comparedBusinessTurnover.DecreasedByLessThan50percent = Total turnover has decreased by less than 50%
+comparedBusinessTurnover.DecreasedBetween20And50percent = Total turnover has decreased between 20% and 50%
+comparedBusinessTurnover.DecreasedByLess20percent = Total turnover has decreased by less than 20%
 comparedBusinessTurnover.StayedAboutTheSame = Total turnover has stayed about the same
-comparedBusinessTurnover.IncreasedByLessThan50percent = Total turnover has increased by less than 50%
-comparedBusinessTurnover.IncreasedByMoreThan50percent = Total turnover has increased by more than 50%
+comparedBusinessTurnover.IncreasedByLess20percent = Total turnover has increased by less than 20%
+comparedBusinessTurnover.IncreasedBetween20And50percent = Total turnover has increased between 20% and 50%
+comparedBusinessTurnover.IncreasedByMore50percent = Total turnover has increased by more than 50%
 
 furloughEmployees.YesFurloughedMostEmployees = Yes, we furloughed most of our employees
 furloughEmployees.YesFurloughedSomeEmployees = Yes, we furloughed some of our employees

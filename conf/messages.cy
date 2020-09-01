@@ -199,23 +199,29 @@ affectedJobs.KeepSomeJobs = ???
 affectedJobs.KeepNoJobs = ???
 affectedJobs.NotApplicableNobodyEmployed = ???
 
-comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Wedi gostwng mwy na 50%
-comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Wedi gostwng llai na 50%
-comparedToMonTueWedQuestion.StayedAboutTheSame = Wedi aros yr un fath mwy neu lai
-comparedToMonTueWedQuestion.IncreasedByLessThan50percent = Wedi cynyddu llai na 50%
-comparedToMonTueWedQuestion.IncreasedByMoreThan50percent = Wedi cynyddu mwy na 50%
+comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
+comparedToMonTueWedQuestion.DecreasedBetween20And50percent = Decreased between 20% and 50%
+comparedToMonTueWedQuestion.DecreasedByLess20percent = Decreased by less than 20%
+comparedToMonTueWedQuestion.StayedAboutTheSame = Stayed about the same
+comparedToMonTueWedQuestion.IncreasedByLess20percent = Increased by less than 20%
+comparedToMonTueWedQuestion.IncreasedBetween20And50percent = Increased between 20% and 50%
+comparedToMonTueWedQuestion.IncreasedByMore50percent = Increased by more than 50%
 
-comparedToThurFriSatSunQuestion.DecreasedByMoreThan50percent = Wedi gostwng mwy na 50%
-comparedToThurFriSatSunQuestion.DecreasedByLessThan50percent = Wedi gostwng llai na 50%
-comparedToThurFriSatSunQuestion.StayedAboutTheSame = Wedi aros yr un fath mwy neu lai
-comparedToThurFriSatSunQuestion.IncreasedByLessThan50percent = Wedi cynyddu llai na 50%
-comparedToThurFriSatSunQuestion.IncreasedByMoreThan50percent = Wedi cynyddu mwy na 50%
+comparedToThurFriSatSunQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
+comparedToThurFriSatSunQuestion.DecreasedBetween20And50percent = Decreased between 20% and 50%
+comparedToThurFriSatSunQuestion.DecreasedByLess20percent = Decreased by less than 20%
+comparedToThurFriSatSunQuestion.StayedAboutTheSame = Stayed about the same
+comparedToThurFriSatSunQuestion.IncreasedByLess20percent = Increased by less than 20%
+comparedToThurFriSatSunQuestion.IncreasedBetween20And50percent = Increased between 20% and 50%
+comparedToThurFriSatSunQuestion.IncreasedByMore50percent = Increased by more than 50%
 
-comparedBusinessTurnover.DecreasedByMoreThan50percent = Cyfanswm trosiant wedi gostwng mwy na 50%
-comparedBusinessTurnover.DecreasedByLessThan50percent = Cyfanswm trosiant wedi gostwng llai na 50%
-comparedBusinessTurnover.StayedAboutTheSame = Cyfanswm trosiant wedi aros yr un fath mwy neu lai
-comparedBusinessTurnover.IncreasedByLessThan50percent = Cyfanswm trosiant wedi cynyddu llai na 50%
-comparedBusinessTurnover.IncreasedByMoreThan50percent = Cyfanswm trosiant wedi cynyddu mwy na 50%
+comparedBusinessTurnover.DecreasedByMoreThan50percent = Total turnover has decreased by more than 50%
+comparedBusinessTurnover.DecreasedBetween20And50percent = Total turnover has decreased between 20% and 50%
+comparedBusinessTurnover.DecreasedByLess20percent = Total turnover has decreased by less than 20%
+comparedBusinessTurnover.StayedAboutTheSame = Total turnover has stayed about the same
+comparedBusinessTurnover.IncreasedByLess20percent = Total turnover has increased by less than 20%
+comparedBusinessTurnover.IncreasedBetween20And50percent = Total turnover has increased between 20% and 50%
+comparedBusinessTurnover.IncreasedByMore50percent = Total turnover has increased by more than 50%
 
 furloughEmployees.YesFurloughedMostEmployees = Do, rhoesom y rhan fwyaf o’n cyflogeion ar ffyrlo
 furloughEmployees.YesFurloughedSomeEmployees = Do, rhoesom rai o’n cyflogeion ar ffyrlo
