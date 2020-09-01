@@ -39,6 +39,20 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
     )
   }
 
+  ".numberOfEmployees" must {
+
+    val fieldName = "numberOfEmployees"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, NumberOfEmployeesQuestion](
+      form,
+      fieldName,
+      NumberOfEmployeesQuestion.values,
+      FormError(fieldName, invalidError),
+      _.numberOfEmployees
+    )
+  }
+
   for {
     (value, i) <- WhichRegionQuestion.values.zipWithIndex
   } yield

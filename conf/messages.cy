@@ -170,9 +170,10 @@ eothoQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau
 eothoQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 eothoQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 9 cwestiwn ac maent i gyd yn ddewisol.
 eothoQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
-eothoQuestions.numberOfEstablishments.heading = Faint o sefydliadau mae’ch busnes yn eu gweithredu?
-eothoQuestions.comparedToMonTueWed.heading= O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Llun, dydd Mawrth a dydd Mercher?
 
+eothoQuestions.numberOfEstablishments.heading = Faint o sefydliadau mae’ch busnes yn eu gweithredu?
+eothoQuestions.numberOfEmployees.heading = How many people does your business employ?
+eothoQuestions.comparedToMonTueWed.heading= O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Llun, dydd Mawrth a dydd Mercher?
 eothoQuestions.comparedToThurFriSatSun.heading = O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Iau, dydd Gwener, dydd Sadwrn a dydd Sul?
 eothoQuestions.comparedBusinessTurnover.heading = Sut mae cyfanswm trosiant eich busnes ym mis Awst 2020 yn cymharu â mis Awst 2019?
 eothoQuestions.affectedJobs.heading = A yw’r Cynllun Bwyta Allan i Helpu Allan (EOHO) wedi effeithio ar swyddi yn eich busnes?
@@ -184,6 +185,12 @@ numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10
 numberOfEstablishmentsQuestion.TenOrMoreEstablishments = 10 or more
 numberOfEstablishmentsQuestion.NationalChainEstablishment = National chain
+
+numberOfEmployeesQuestion.NoEmployees = None
+numberOfEmployeesQuestion.OneToTenEmployees = 1 to 10
+numberOfEmployeesQuestion.ElevenToHundredEmployees = 11-100
+numberOfEmployeesQuestion.HundredToFiveHundredEmployees = 101-500
+numberOfEmployeesQuestion.FiveHundredOrMoreEmployees =  501 or more
 
 comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Wedi gostwng mwy na 50%
 comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Wedi gostwng llai na 50%

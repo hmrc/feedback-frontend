@@ -49,6 +49,13 @@
             inputs = NumberOfEstablishmentsQuestion.options
         )
 
+        @components.input_radio(
+            field = form("numberOfEmployees"),
+            legend = messages("eothoQuestions.numberOfEmployees.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = NumberOfEmployeesQuestion.options
+        )
+
         @components.input_checkboxes(
             field = form("whichRegions"),
             legend = messages("whichRegions.heading"),

@@ -28,12 +28,12 @@ import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import uk.gov.hmrc.play.test.UnitSpec
 import org.scalacheck.Arbitrary._
-import org.scalatestplus.play.OneAppPerSuite
+import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import utils.FeedbackFrontendHelper.boolToInt
 
 class AuditServiceSpec
     extends UnitSpec with MockitoSugar with BeforeAndAfter with ScalaCheckPropertyChecks with ModelGenerators
-    with OneAppPerSuite {
+    with GuiceOneAppPerSuite {
 
   implicit val hc = HeaderCarrier()
   implicit val ec = scala.concurrent.ExecutionContext.Implicits.global
@@ -168,6 +168,7 @@ class AuditServiceSpec
         "origin"                   -> EOTHOQuestionsController.origin.value,
         "feedbackId"               -> feedbackId.value,
         "numberOfEstablishments"   -> questions.numberOfEstablishments.fold("-")(_.toString),
+        "numberOfEmployees"        -> questions.numberOfEmployees.fold("-")(_.toString),
         "whichRegions"             -> auditService.setToString(questions.whichRegions),
         "comparedToMonTueWed"      -> questions.comparedToMonTueWed.fold("-")(_.toString),
         "comparedToThurFriSatSun"  -> questions.comparedToThurFriSatSun.fold("-")(_.toString),

@@ -49,6 +49,12 @@ class EOTHOQuestionsViewSpec
 
     behave like optionsPage(
       createViewUsingForm,
+      "numberOfEmployees",
+      NumberOfEmployeesQuestion.options,
+      "eothoQuestions.numberOfEmployees")
+
+    behave like optionsPage(
+      createViewUsingForm,
       "comparedToMonTueWed",
       ComparedToMonTueWedQuestion.options,
       "eothoQuestions.comparedToMonTueWed")

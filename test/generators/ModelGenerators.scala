@@ -123,6 +123,7 @@ trait ModelGenerators {
   lazy val eothoQuestionsGen: Gen[EOTHOQuestions] =
     for {
       numberOfEstablishments   <- option(numberOfEstablishmentsGen)
+      numberOfEmployees        <- option(numberOfEmployeesGen)
       whichRegions             <- arbitrary[List[WhichRegionQuestion]]
       compareToMonTueWed       <- option(comparedToMonTueWed)
       comparedToThurFriSatSun  <- option(comparedToThurFriSatSun)
@@ -134,6 +135,7 @@ trait ModelGenerators {
     } yield {
       EOTHOQuestions(
         numberOfEstablishments,
+        numberOfEmployees,
         whichRegions,
         compareToMonTueWed,
         comparedToThurFriSatSun,
@@ -159,6 +161,9 @@ trait ModelGenerators {
 
   lazy val numberOfEstablishmentsGen: Gen[NumberOfEstablishmentsQuestion] =
     oneOf(NumberOfEstablishmentsQuestion.values)
+
+  lazy val numberOfEmployeesGen: Gen[NumberOfEmployeesQuestion] =
+    oneOf(NumberOfEmployeesQuestion.values)
 
   lazy val comparedToMonTueWed: Gen[ComparedToMonTueWedQuestion] =
     oneOf(ComparedToMonTueWedQuestion.values)

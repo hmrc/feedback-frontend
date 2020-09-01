@@ -82,6 +82,7 @@ object PensionQuestions {
 
 case class EOTHOQuestions(
   numberOfEstablishments: Option[NumberOfEstablishmentsQuestion],
+  numberOfEmployees: Option[NumberOfEmployeesQuestion],
   whichRegions: List[WhichRegionQuestion],
   comparedToMonTueWed: Option[ComparedToMonTueWedQuestion],
   comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion],

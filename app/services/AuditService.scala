@@ -74,6 +74,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   //eotho
   def withNumberOfEstablishments(numberOfEstablishments: Option[NumberOfEstablishmentsQuestion]): MapCont =
     _ + ("numberOfEstablishments" -> numberOfEstablishments.map(_.toString).getOrElse("-"))
+  def withNumberOfEmployees(numberOfEmployees: Option[NumberOfEmployeesQuestion]): MapCont =
+    _ + ("numberOfEmployees" -> numberOfEmployees.map(_.toString).getOrElse("-"))
   def withComparedToMonTueWed(comparedToMonTueWed: Option[ComparedToMonTueWedQuestion]): MapCont =
     _ + ("comparedToMonTueWed" -> comparedToMonTueWed.map(_.toString).getOrElse("-"))
   def withComparedToThurFriSatSun(comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion]): MapCont =
@@ -202,6 +204,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     val auditMap = (
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
+        withNumberOfEstablishments(questions.numberOfEstablishments) andThen
         withNumberOfEstablishments(questions.numberOfEstablishments) andThen
         withWhichRegion(questions.whichRegions) andThen
         withComparedToMonTueWed(questions.comparedToMonTueWed) andThen
