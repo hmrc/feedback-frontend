@@ -16,10 +16,9 @@
 
 package controllers
 
-import controllers.actions._
 import forms.EOTHOQuestionsFormProvider
 import generators.ModelGenerators
-import models.{EOTHOQuestions, FeedbackId, Origin}
+import models.{EOTHOQuestions, FeedbackId}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._

@@ -171,6 +171,7 @@ class AuditServiceSpec
         "numberOfEmployees"        -> questions.numberOfEmployees.fold("-")(_.toString),
         "whichRegions"             -> auditService.setToString(questions.whichRegions),
         "affectedJobs"             -> questions.affectedJobs.fold("-")(_.toString),
+        "protectAtRiskJobs"        -> questions.protectAtRiskJobs.fold("-")(_.toString),
         "comparedToMonTueWed"      -> questions.comparedToMonTueWed.fold("-")(_.toString),
         "comparedToThurFriSatSun"  -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
         "comparedBusinessTurnover" -> questions.comparedBusinessTurnover.fold("-")(_.toString),

@@ -180,6 +180,7 @@ eothoQuestions.affectedJobs.heading = ???
 eothoQuestions.furloughEmployees.heading = Rhwng mis Mawrth a mis Gorffennaf 2020, a wnaeth eich busnes roi unrhyw gyflogeion ar ffyrlo?
 eothoQuestions.businessFuturePlans.heading = Ar ôl i’r Cynllun Bwyta Allan i Helpu Allan ddod i ben, pa opsiwn sy’n disgrifio’ch cynlluniau busnes yn y dyfodol orau?
 eothoQuestions.offerDiscounts.heading = A yw’ch busnes yn bwriadu cynnig gostyngiadau ym mis Medi, unwaith y daw’r Cynllun EOHO i ben?
+eothoQuestions.protectAtRiskJobs.heading = ???
 
 numberOfEstablishmentsQuestion.OneEstablishment = ???
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = ???
@@ -191,6 +192,15 @@ numberOfEmployeesQuestion.OneToTenEmployees = ???
 numberOfEmployeesQuestion.ElevenToHundredEmployees = ???
 numberOfEmployeesQuestion.HundredToFiveHundredEmployees = ???
 numberOfEmployeesQuestion.FiveHundredOrMoreEmployees = ???
+
+affectedJobs.KeepAllAndTakeOnAdditionalStaff = ???
+affectedJobs.KeepAllOrMostJobs = ???
+affectedJobs.KeepSomeJobs = ???
+affectedJobs.KeepNoJobs = ???
+affectedJobs.NotApplicableNobodyEmployed = ???
+
+protectAtRiskJobs.Yes = ???
+protectAtRiskJobs.No = ???
 
 comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Wedi gostwng mwy na 50%
 comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Wedi gostwng llai na 50%
@@ -209,12 +219,6 @@ comparedBusinessTurnover.DecreasedByLessThan50percent = Cyfanswm trosiant wedi g
 comparedBusinessTurnover.StayedAboutTheSame = Cyfanswm trosiant wedi aros yr un fath mwy neu lai
 comparedBusinessTurnover.IncreasedByLessThan50percent = Cyfanswm trosiant wedi cynyddu llai na 50%
 comparedBusinessTurnover.IncreasedByMoreThan50percent = Cyfanswm trosiant wedi cynyddu mwy na 50%
-
-affectedJobs.KeepAllAndTakeOnAdditionalStaff = ???
-affectedJobs.KeepAllOrMostJobs = ???
-affectedJobs.KeepSomeJobs = ???
-affectedJobs.KeepNoJobs = ???
-affectedJobs.NotApplicableNobodyEmployed = ???
 
 furloughEmployees.YesFurloughedMostEmployees = Do, rhoesom y rhan fwyaf o’n cyflogeion ar ffyrlo
 furloughEmployees.YesFurloughedSomeEmployees = Do, rhoesom rai o’n cyflogeion ar ffyrlo

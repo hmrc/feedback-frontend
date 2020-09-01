@@ -29,8 +29,7 @@ object AffectedJobsQuestion {
   case object KeepAllOrMostJobs extends WithName("KeepAllOrMostJobs") with AffectedJobsQuestion
   case object KeepSomeJobs extends WithName("KeepSomeJobs") with AffectedJobsQuestion
   case object KeepNoJobs extends WithName("KeepNoJobs") with AffectedJobsQuestion
-  case object NotApplicableNobodyEmployed
-      extends WithName("NotApplicableBusinessDoesNotEmployAnyone") with AffectedJobsQuestion
+  case object NotApplicableNobodyEmployed extends WithName("NotApplicableNobodyEmployed") with AffectedJobsQuestion
 
   val values: Seq[AffectedJobsQuestion] =
     List(KeepAllAndTakeOnAdditionalStaff, KeepAllOrMostJobs, KeepSomeJobs, KeepNoJobs, NotApplicableNobodyEmployed)

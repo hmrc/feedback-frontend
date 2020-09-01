@@ -63,6 +63,12 @@ class EOTHOQuestionsViewSpec
 
     behave like optionsPage(
       createViewUsingForm,
+      "protectAtRiskJobs",
+      ProtectAtRiskJobsQuestion.options,
+      "eothoQuestions.protectAtRiskJobs")
+
+    behave like optionsPage(
+      createViewUsingForm,
       "comparedToMonTueWed",
       ComparedToMonTueWedQuestion.options,
       "eothoQuestions.comparedToMonTueWed")

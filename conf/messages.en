@@ -169,6 +169,7 @@ eothoQuestions.affectedJobs.heading = How has the Eat Out to Help Out Scheme aff
 eothoQuestions.furloughEmployees.heading = Between March and July 2020, did your business furlough any employees?
 eothoQuestions.businessFuturePlans.heading = After the Eat Out to Help Out Scheme ends, which option best describes your business future plans?
 eothoQuestions.offerDiscounts.heading = Does your business plan to offer discounts in September, once the EOHO Scheme comes to an end?
+eothoQuestions.protectAtRiskJobs.heading = Do you think the scheme helped to protect jobs that were at risk in your business?
 
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10
@@ -180,6 +181,15 @@ numberOfEmployeesQuestion.OneToTenEmployees = 1 to 10
 numberOfEmployeesQuestion.ElevenToHundredEmployees = 11-100
 numberOfEmployeesQuestion.HundredToFiveHundredEmployees = 101-500
 numberOfEmployeesQuestion.FiveHundredOrMoreEmployees =  501 or more
+
+affectedJobs.KeepAllAndTakeOnAdditionalStaff = We have been able to keep all jobs that we had in July 2020, and take on additional staff
+affectedJobs.KeepAllOrMostJobs = We have been able to keep all or most jobs that we had in July 2020
+affectedJobs.KeepSomeJobs = We have been able to keep some jobs that we had in July 2020
+affectedJobs.KeepNoJobs = We haven’t been able to keep any jobs that we had in July 2020
+affectedJobs.NotApplicableNobodyEmployed = Not applicable, the business does not employ anybody
+
+protectAtRiskJobs.Yes = Yes
+protectAtRiskJobs.No = No
 
 comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
 comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Decreased by less than 50%
@@ -198,12 +208,6 @@ comparedBusinessTurnover.DecreasedByLessThan50percent = Total turnover has decre
 comparedBusinessTurnover.StayedAboutTheSame = Total turnover has stayed about the same
 comparedBusinessTurnover.IncreasedByLessThan50percent = Total turnover has increased by less than 50%
 comparedBusinessTurnover.IncreasedByMoreThan50percent = Total turnover has increased by more than 50%
-
-affectedJobs.KeepAllAndTakeOnAdditionalStaff = We have been able to keep all jobs that we had in July 2020, and take on additional staff
-affectedJobs.KeepAllOrMostJobs = We have been able to keep all or most jobs that we had in July 2020
-affectedJobs.KeepSomeJobs = We have been able to keep some jobs that we had in July 2020
-affectedJobs.KeepNoJobs = We haven’t been able to keep any jobs that we had in July 2020
-affectedJobs.NotApplicableNobodyEmployed = Not applicable, the business does not employ anybody
 
 furloughEmployees.YesFurloughedMostEmployees = Yes, we furloughed most of our employees
 furloughEmployees.YesFurloughedSomeEmployees = Yes, we furloughed some of our employees

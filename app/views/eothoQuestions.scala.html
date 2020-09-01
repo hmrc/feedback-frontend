@@ -71,6 +71,13 @@
         )
 
         @components.input_radio(
+            field = form("protectAtRiskJobs"),
+            legend = messages("eothoQuestions.protectAtRiskJobs.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = ProtectAtRiskJobsQuestion.options
+        )
+
+        @components.input_radio(
             field = form("comparedToMonTueWed"),
             legend = messages("eothoQuestions.comparedToMonTueWed.heading"),
             legendClass = Some("heading-medium"),

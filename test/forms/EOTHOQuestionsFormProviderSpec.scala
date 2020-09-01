@@ -67,6 +67,34 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
       }
     }
 
+  ".affectedJobs" must {
+
+    val fieldName = "affectedJobs"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, AffectedJobsQuestion](
+      form,
+      fieldName,
+      AffectedJobsQuestion.values,
+      FormError(fieldName, invalidError),
+      _.affectedJobs
+    )
+  }
+
+  ".protectAtRiskJobs" must {
+
+    val fieldName = "protectAtRiskJobs"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, ProtectAtRiskJobsQuestion](
+      form,
+      fieldName,
+      ProtectAtRiskJobsQuestion.values,
+      FormError(fieldName, invalidError),
+      _.protectAtRiskJobs
+    )
+  }
+
   ".comparedToMonTueWed" must {
 
     val fieldName = "comparedToMonTueWed"
@@ -106,20 +134,6 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
       ComparedBusinessTurnoverQuestion.values,
       FormError(fieldName, invalidError),
       _.comparedBusinessTurnover
-    )
-  }
-
-  ".affectedJobs" must {
-
-    val fieldName = "affectedJobs"
-    val invalidError = "error.invalid"
-
-    behave like optionsField[EOTHOQuestions, AffectedJobsQuestion](
-      form,
-      fieldName,
-      AffectedJobsQuestion.values,
-      FormError(fieldName, invalidError),
-      _.affectedJobs
     )
   }
 

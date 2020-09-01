@@ -125,10 +125,11 @@ trait ModelGenerators {
       numberOfEstablishments   <- option(numberOfEstablishmentsGen)
       numberOfEmployees        <- option(numberOfEmployeesGen)
       whichRegions             <- arbitrary[List[WhichRegionQuestion]]
+      affectedJobs             <- option(affectedJobs)
+      protectAtRiskJobs        <- option(protectAtRiskJobsGen)
       compareToMonTueWed       <- option(comparedToMonTueWed)
       comparedToThurFriSatSun  <- option(comparedToThurFriSatSun)
       comparedBusinessTurnOver <- option(comparedBusinessTurnover)
-      affectedJobs             <- option(affectedJobs)
       furloughEmployees        <- option(furloughEmployees)
       businessFuturePlans      <- option(businessFuturePlans)
       offerDiscounts           <- option(offerDiscounts)
@@ -138,6 +139,7 @@ trait ModelGenerators {
         numberOfEmployees,
         whichRegions,
         affectedJobs,
+        protectAtRiskJobs,
         compareToMonTueWed,
         comparedToThurFriSatSun,
         comparedBusinessTurnOver,
@@ -176,6 +178,9 @@ trait ModelGenerators {
 
   lazy val affectedJobs: Gen[AffectedJobsQuestion] =
     oneOf(AffectedJobsQuestion.values)
+
+  lazy val protectAtRiskJobsGen: Gen[ProtectAtRiskJobsQuestion] =
+    oneOf(ProtectAtRiskJobsQuestion.values)
 
   lazy val furloughEmployees: Gen[FurloughEmployeesQuestion] =
     oneOf(FurloughEmployeesQuestion.values)
