@@ -29,7 +29,7 @@ import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import uk.gov.hmrc.play.test.UnitSpec
 import org.scalacheck.Arbitrary._
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
-import utils.FeedbackFrontendHelper.boolToInt
+import utils.FeedbackFrontendHelper._
 
 class AuditServiceSpec
     extends UnitSpec with MockitoSugar with BeforeAndAfter with ScalaCheckPropertyChecks with ModelGenerators
@@ -171,7 +171,7 @@ class AuditServiceSpec
         "numberOfEmployees"        -> questions.numberOfEmployees.fold("-")(_.toString),
         "whichRegions"             -> auditService.setToString(questions.whichRegions),
         "affectedJobs"             -> questions.affectedJobs.fold("-")(_.toString),
-        "protectAtRiskJobs"        -> questions.protectAtRiskJobs.fold("-")(_.toString),
+        "protectAtRiskJobs"        -> questions.protectAtRiskJobs.map(boolToString(_).toString).getOrElse("-"),
         "comparedToMonTueWed"      -> questions.comparedToMonTueWed.fold("-")(_.toString),
         "comparedToThurFriSatSun"  -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
         "comparedBusinessTurnover" -> questions.comparedBusinessTurnover.fold("-")(_.toString),

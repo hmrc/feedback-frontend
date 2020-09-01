@@ -199,9 +199,6 @@ affectedJobs.KeepSomeJobs = ???
 affectedJobs.KeepNoJobs = ???
 affectedJobs.NotApplicableNobodyEmployed = ???
 
-protectAtRiskJobs.Yes = ???
-protectAtRiskJobs.No = ???
-
 comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Wedi gostwng mwy na 50%
 comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Wedi gostwng llai na 50%
 comparedToMonTueWedQuestion.StayedAboutTheSame = Wedi aros yr un fath mwy neu lai

@@ -22,7 +22,7 @@ import models._
 import models.eotho._
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
-import utils.FeedbackFrontendHelper.boolToInt
+import utils.FeedbackFrontendHelper._
 
 import scala.concurrent.ExecutionContext
 
@@ -84,8 +84,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("comparedBusinessTurnover" -> comparedBusinessTurnover.map(_.toString).getOrElse(("-")))
   def withAffectedJobs(affectedJobs: Option[AffectedJobsQuestion]): MapCont =
     _ + ("affectedJobs" -> affectedJobs.map(_.toString).getOrElse(("-")))
-  def withProtectAtRiskJobs(protectAtRiskJobs: Option[ProtectAtRiskJobsQuestion]): MapCont =
-    _ + ("protectAtRiskJobs" -> protectAtRiskJobs.map(_.toString).getOrElse(("-")))
+  def withProtectAtRiskJobs(ableToDo: Option[Boolean]): MapCont =
+    _ + ("protectAtRiskJobs" -> ableToDo.map(boolToString(_).toString).getOrElse("-"))
   def withWhichRegion(whichRegions: List[WhichRegionQuestion]): MapCont =
     _ + ("whichRegions" -> setToString(whichRegions))
   def withFurloughEmployees(furloughEmployees: Option[FurloughEmployeesQuestion]): MapCont =

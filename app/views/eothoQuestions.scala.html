@@ -70,11 +70,10 @@
             inputs = AffectedJobsQuestion.options
         )
 
-        @components.input_radio(
+        @components.input_yes_no(
             field = form("protectAtRiskJobs"),
-            legend = messages("eothoQuestions.protectAtRiskJobs.heading"),
-            legendClass = Some("heading-medium"),
-            inputs = ProtectAtRiskJobsQuestion.options
+            label = messages("eothoQuestions.protectAtRiskJobs.heading"),
+            labelClass = Some("heading-medium")
         )
 
         @components.input_radio(

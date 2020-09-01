@@ -61,11 +61,7 @@ class EOTHOQuestionsViewSpec
       AffectedJobsQuestion.options,
       "eothoQuestions.affectedJobs")
 
-    behave like optionsPage(
-      createViewUsingForm,
-      "protectAtRiskJobs",
-      ProtectAtRiskJobsQuestion.options,
-      "eothoQuestions.protectAtRiskJobs")
+    behave like yesNoPage(createViewUsingForm, "protectAtRiskJobs", "eothoQuestions.protectAtRiskJobs")
 
     behave like optionsPage(
       createViewUsingForm,

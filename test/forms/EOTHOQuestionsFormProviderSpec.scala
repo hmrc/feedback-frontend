@@ -16,12 +16,13 @@
 
 package forms
 
-import forms.behaviours.{CheckboxFieldBehaviours, OptionFieldBehaviours}
+import forms.behaviours.{BooleanFieldBehaviours, CheckboxFieldBehaviours, OptionFieldBehaviours}
 import models._
 import models.eotho._
 import play.api.data.FormError
 
-class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with CheckboxFieldBehaviours {
+class EOTHOQuestionsFormProviderSpec
+    extends OptionFieldBehaviours with CheckboxFieldBehaviours with BooleanFieldBehaviours {
 
   def form = new EOTHOQuestionsFormProvider()()
 
@@ -84,13 +85,12 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
   ".protectAtRiskJobs" must {
 
     val fieldName = "protectAtRiskJobs"
-    val invalidError = "error.invalid"
+    val invalidError = "error.boolean"
 
-    behave like optionsField[EOTHOQuestions, ProtectAtRiskJobsQuestion](
+    behave like booleanField[EOTHOQuestions](
       form,
       fieldName,
-      ProtectAtRiskJobsQuestion.values,
-      FormError(fieldName, invalidError),
+      invalidError = FormError(fieldName, invalidError),
       _.protectAtRiskJobs
     )
   }

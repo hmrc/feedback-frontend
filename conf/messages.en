@@ -188,9 +188,6 @@ affectedJobs.KeepSomeJobs = We have been able to keep some jobs that we had in J
 affectedJobs.KeepNoJobs = We haven’t been able to keep any jobs that we had in July 2020
 affectedJobs.NotApplicableNobodyEmployed = Not applicable, the business does not employ anybody
 
-protectAtRiskJobs.Yes = Yes
-protectAtRiskJobs.No = No
-
 comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
 comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Decreased by less than 50%
 comparedToMonTueWedQuestion.StayedAboutTheSame = Stayed about the same

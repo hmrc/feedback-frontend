@@ -85,7 +85,7 @@ case class EOTHOQuestions(
   numberOfEmployees: Option[NumberOfEmployeesQuestion],
   whichRegions: List[WhichRegionQuestion],
   affectedJobs: Option[AffectedJobsQuestion],
-  protectAtRiskJobs: Option[ProtectAtRiskJobsQuestion],
+  protectAtRiskJobs: Option[Boolean],
   comparedToMonTueWed: Option[ComparedToMonTueWedQuestion],
   comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion],
   comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion],
