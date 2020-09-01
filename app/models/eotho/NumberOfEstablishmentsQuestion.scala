@@ -24,11 +24,14 @@ sealed trait NumberOfEstablishmentsQuestion
 
 object NumberOfEstablishmentsQuestion {
 
-  case object FewerThan25 extends WithName("FewerThan25") with NumberOfEstablishmentsQuestion
-  case object MoreThan25 extends WithName("MoreThan25") with NumberOfEstablishmentsQuestion
+  case object OneEstablishment extends WithName("OneEstablishment") with NumberOfEstablishmentsQuestion
+  case object TwoToTenEstablishments extends WithName("TwoToTenEstablishments") with NumberOfEstablishmentsQuestion
+  case object TenOrMoreEstablishments extends WithName("TenOrMoreEstablishments") with NumberOfEstablishmentsQuestion
+  case object NationalChainEstablishment
+      extends WithName("NationalChainEstablishment") with NumberOfEstablishmentsQuestion
 
   val values: Seq[NumberOfEstablishmentsQuestion] =
-    List(FewerThan25, MoreThan25)
+    List(OneEstablishment, TwoToTenEstablishments, TenOrMoreEstablishments, NationalChainEstablishment)
 
   val options: Seq[RadioOption] = values.map { value =>
     RadioOption("numberOfEstablishmentsQuestion", value.toString)
@@ -44,9 +47,11 @@ object NumberOfEstablishmentsQuestion {
 
   implicit object NumberOfEstablishmentsQuestionReads extends Reads[NumberOfEstablishmentsQuestion] {
     override def reads(json: JsValue): JsResult[NumberOfEstablishmentsQuestion] = json match {
-      case JsString(FewerThan25.toString) => JsSuccess(FewerThan25)
-      case JsString(MoreThan25.toString)  => JsSuccess(MoreThan25)
-      case _                              => JsError("Unknown NumberOfEstablishmentsQuestion")
+      case JsString(OneEstablishment.toString)           => JsSuccess(OneEstablishment)
+      case JsString(TwoToTenEstablishments.toString)     => JsSuccess(TwoToTenEstablishments)
+      case JsString(TenOrMoreEstablishments.toString)    => JsSuccess(TenOrMoreEstablishments)
+      case JsString(NationalChainEstablishment.toString) => JsSuccess(NationalChainEstablishment)
+      case _                                             => JsError("Unknown NumberOfEstablishmentsQuestion")
     }
   }
 }

@@ -169,8 +169,10 @@ eothoQuestions.furloughEmployees.heading = Between March and July 2020, did your
 eothoQuestions.businessFuturePlans.heading = After the Eat Out to Help Out Scheme ends, which option best describes your business future plans?
 eothoQuestions.offerDiscounts.heading = Does your business plan to offer discounts in September, once the EOHO Scheme comes to an end?
 
-numberOfEstablishmentsQuestion.FewerThan25 = 25 or fewer
-numberOfEstablishmentsQuestion.MoreThan25 = More than 25
+numberOfEstablishmentsQuestion.OneEstablishment = 1
+numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10
+numberOfEstablishmentsQuestion.TenOrMoreEstablishments = 10 or more
+numberOfEstablishmentsQuestion.NationalChainEstablishment = National chain
 
 comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Decreased by more than 50%
 comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Decreased by less than 50%

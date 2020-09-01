@@ -89,8 +89,7 @@ case class EOTHOQuestions(
   affectedJobs: Option[AffectedJobsQuestion],
   furloughEmployees: Option[FurloughEmployeesQuestion],
   businessFuturePlans: Option[BusinessFuturePlansQuestion],
-  offerDiscounts: Option[OfferDiscountsQuestion]
-)
+  offerDiscounts: Option[OfferDiscountsQuestion])
 
 object EOTHOQuestions {
   implicit val formats: Format[EOTHOQuestions] = Json.format[EOTHOQuestions]
