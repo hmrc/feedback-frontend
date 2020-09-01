@@ -26,15 +26,18 @@ object ComparedBusinessTurnoverQuestion {
 
   // TODO: deduplicate
   case object DecreasedByMoreThan50percent
-    extends WithName("DecreasedByMoreThan50percent") with ComparedBusinessTurnoverQuestion
+      extends WithName("DecreasedByMoreThan50percent") with ComparedBusinessTurnoverQuestion
   case object DecreasedBetween20And50percent
-    extends WithName("DecreasedBetween20And50percent") with ComparedBusinessTurnoverQuestion
-  case object DecreasedByLess20percent extends WithName("DecreasedByLess20percent") with ComparedBusinessTurnoverQuestion
+      extends WithName("DecreasedBetween20And50percent") with ComparedBusinessTurnoverQuestion
+  case object DecreasedByLess20percent
+      extends WithName("DecreasedByLess20percent") with ComparedBusinessTurnoverQuestion
   case object StayedAboutTheSame extends WithName("StayedAboutTheSame") with ComparedBusinessTurnoverQuestion
-  case object IncreasedByLess20percent extends WithName("IncreasedByLess20percent") with ComparedBusinessTurnoverQuestion
+  case object IncreasedByLess20percent
+      extends WithName("IncreasedByLess20percent") with ComparedBusinessTurnoverQuestion
   case object IncreasedBetween20And50percent
-    extends WithName("IncreasedBetween20And50percent") with ComparedBusinessTurnoverQuestion
-  case object IncreasedByMore50percent extends WithName("IncreasedByMore50percent") with ComparedBusinessTurnoverQuestion
+      extends WithName("IncreasedBetween20And50percent") with ComparedBusinessTurnoverQuestion
+  case object IncreasedByMore50percent
+      extends WithName("IncreasedByMore50percent") with ComparedBusinessTurnoverQuestion
 
   val values: Seq[ComparedBusinessTurnoverQuestion] =
     List(
@@ -68,7 +71,7 @@ object ComparedBusinessTurnoverQuestion {
       case JsString(IncreasedByLess20percent.toString)       => JsSuccess(IncreasedByLess20percent)
       case JsString(IncreasedBetween20And50percent.toString) => JsSuccess(IncreasedBetween20And50percent)
       case JsString(IncreasedByMore50percent.toString)       => JsSuccess(IncreasedByMore50percent)
-      case _                                      => JsError("Unknown ComparedBusinessTurnoverQuestion")
+      case _                                                 => JsError("Unknown ComparedBusinessTurnoverQuestion")
     }
   }
 }

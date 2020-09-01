@@ -181,6 +181,7 @@ eothoQuestions.furloughEmployees.heading = Rhwng mis Mawrth a mis Gorffennaf 202
 eothoQuestions.businessFuturePlans.heading = Ar ôl i’r Cynllun Bwyta Allan i Helpu Allan ddod i ben, pa opsiwn sy’n disgrifio’ch cynlluniau busnes yn y dyfodol orau?
 eothoQuestions.offerDiscounts.heading = A yw’ch busnes yn bwriadu cynnig gostyngiadau ym mis Medi, unwaith y daw’r Cynllun EOHO i ben?
 eothoQuestions.protectAtRiskJobs.heading = ???
+eothoQuestions.protectHospitalityIndustry.heading = ???
 
 numberOfEstablishmentsQuestion.OneEstablishment = ???
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = ???

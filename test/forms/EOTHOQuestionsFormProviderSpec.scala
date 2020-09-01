@@ -95,6 +95,19 @@ class EOTHOQuestionsFormProviderSpec
     )
   }
 
+  ".protectHospitalityIndustry" must {
+
+    val fieldName = "protectHospitalityIndustry"
+    val invalidError = "error.boolean"
+
+    behave like booleanField[EOTHOQuestions](
+      form,
+      fieldName,
+      invalidError = FormError(fieldName, invalidError),
+      _.protectHospitalityIndustry
+    )
+  }
+
   ".comparedToMonTueWed" must {
 
     val fieldName = "comparedToMonTueWed"

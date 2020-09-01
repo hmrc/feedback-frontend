@@ -63,6 +63,11 @@ class EOTHOQuestionsViewSpec
 
     behave like yesNoPage(createViewUsingForm, "protectAtRiskJobs", "eothoQuestions.protectAtRiskJobs")
 
+    behave like yesNoPage(
+      createViewUsingForm,
+      "protectHospitalityIndustry",
+      "eothoQuestions.protectHospitalityIndustry")
+
     behave like optionsPage(
       createViewUsingForm,
       "comparedToMonTueWed",

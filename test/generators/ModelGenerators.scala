@@ -21,7 +21,6 @@ import models.eotho._
 import org.scalacheck.Arbitrary._
 import org.scalacheck.Gen._
 import org.scalacheck.{Arbitrary, Gen}
-import play.api.Application
 import play.api.test.FakeRequest
 
 trait ModelGenerators {
@@ -36,7 +35,7 @@ trait ModelGenerators {
       arbitrary[String].map(Origin.fromString)
     }
 
-  implicit def arbitraryFeedbackId(implicit ev: Application): Arbitrary[FeedbackId] =
+  implicit def arbitraryFeedbackId: Arbitrary[FeedbackId] =
     Arbitrary {
       arbitrary[String].map { s =>
         FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> s))
@@ -122,17 +121,18 @@ trait ModelGenerators {
 
   lazy val eothoQuestionsGen: Gen[EOTHOQuestions] =
     for {
-      numberOfEstablishments   <- option(numberOfEstablishmentsGen)
-      numberOfEmployees        <- option(numberOfEmployeesGen)
-      whichRegions             <- arbitrary[List[WhichRegionQuestion]]
-      affectedJobs             <- option(affectedJobs)
-      protectAtRiskJobs        <- option(arbitrary[Boolean])
-      compareToMonTueWed       <- option(comparedToMonTueWed)
-      comparedToThurFriSatSun  <- option(comparedToThurFriSatSun)
-      comparedBusinessTurnOver <- option(comparedBusinessTurnover)
-      furloughEmployees        <- option(furloughEmployees)
-      businessFuturePlans      <- option(businessFuturePlans)
-      offerDiscounts           <- option(offerDiscounts)
+      numberOfEstablishments     <- option(numberOfEstablishmentsGen)
+      numberOfEmployees          <- option(numberOfEmployeesGen)
+      whichRegions               <- arbitrary[List[WhichRegionQuestion]]
+      affectedJobs               <- option(affectedJobs)
+      protectAtRiskJobs          <- option(arbitrary[Boolean])
+      protectHospitalityIndustry <- option(arbitrary[Boolean])
+      compareToMonTueWed         <- option(comparedToMonTueWed)
+      comparedToThurFriSatSun    <- option(comparedToThurFriSatSun)
+      comparedBusinessTurnOver   <- option(comparedBusinessTurnover)
+      furloughEmployees          <- option(furloughEmployees)
+      businessFuturePlans        <- option(businessFuturePlans)
+      offerDiscounts             <- option(offerDiscounts)
     } yield {
       EOTHOQuestions(
         numberOfEstablishments,
@@ -140,6 +140,7 @@ trait ModelGenerators {
         whichRegions,
         affectedJobs,
         protectAtRiskJobs,
+        protectHospitalityIndustry,
         compareToMonTueWed,
         comparedToThurFriSatSun,
         comparedBusinessTurnOver,

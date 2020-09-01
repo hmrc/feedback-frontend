@@ -76,6 +76,12 @@
             labelClass = Some("heading-medium")
         )
 
+        @components.input_yes_no(
+            field = form("protectHospitalityIndustry"),
+            label = messages("eothoQuestions.protectHospitalityIndustry.heading"),
+            labelClass = Some("heading-medium")
+        )
+
         @components.input_radio(
             field = form("comparedToMonTueWed"),
             legend = messages("eothoQuestions.comparedToMonTueWed.heading"),

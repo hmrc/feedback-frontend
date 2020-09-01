@@ -165,19 +165,20 @@ class AuditServiceSpec
       auditService.eothoAudit(feedbackId, questions)
 
       val expected: Map[String, String] = Map(
-        "origin"                   -> EOTHOQuestionsController.origin.value,
-        "feedbackId"               -> feedbackId.value,
-        "numberOfEstablishments"   -> questions.numberOfEstablishments.fold("-")(_.toString),
-        "numberOfEmployees"        -> questions.numberOfEmployees.fold("-")(_.toString),
-        "whichRegions"             -> auditService.setToString(questions.whichRegions),
-        "affectedJobs"             -> questions.affectedJobs.fold("-")(_.toString),
-        "protectAtRiskJobs"        -> questions.protectAtRiskJobs.map(boolToString(_).toString).getOrElse("-"),
-        "comparedToMonTueWed"      -> questions.comparedToMonTueWed.fold("-")(_.toString),
-        "comparedToThurFriSatSun"  -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
-        "comparedBusinessTurnover" -> questions.comparedBusinessTurnover.fold("-")(_.toString),
-        "furloughEmployees"        -> questions.furloughEmployees.fold("-")(_.toString),
-        "businessFuturePlans"      -> questions.businessFuturePlans.fold("-")(_.toString),
-        "offerDiscounts"           -> questions.offerDiscounts.fold("-")(_.toString)
+        "origin"                     -> EOTHOQuestionsController.origin.value,
+        "feedbackId"                 -> feedbackId.value,
+        "numberOfEstablishments"     -> questions.numberOfEstablishments.fold("-")(_.toString),
+        "numberOfEmployees"          -> questions.numberOfEmployees.fold("-")(_.toString),
+        "whichRegions"               -> auditService.setToString(questions.whichRegions),
+        "affectedJobs"               -> questions.affectedJobs.fold("-")(_.toString),
+        "protectAtRiskJobs"          -> questions.protectAtRiskJobs.map(boolToString(_)).getOrElse("-"),
+        "protectHospitalityIndustry" -> questions.protectHospitalityIndustry.map(boolToString(_)).getOrElse("-"),
+        "comparedToMonTueWed"        -> questions.comparedToMonTueWed.fold("-")(_.toString),
+        "comparedToThurFriSatSun"    -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
+        "comparedBusinessTurnover"   -> questions.comparedBusinessTurnover.fold("-")(_.toString),
+        "furloughEmployees"          -> questions.furloughEmployees.fold("-")(_.toString),
+        "businessFuturePlans"        -> questions.businessFuturePlans.fold("-")(_.toString),
+        "offerDiscounts"             -> questions.offerDiscounts.fold("-")(_.toString)
       )
 
       verify(auditConnector, times(1))
