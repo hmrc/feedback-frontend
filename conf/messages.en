@@ -214,9 +214,9 @@ comparedBusinessTurnover.IncreasedByLess20percent = Total turnover has increased
 comparedBusinessTurnover.IncreasedBetween20And50percent = Total turnover has increased between 20% and 50%
 comparedBusinessTurnover.IncreasedByMore50percent = Total turnover has increased by more than 50%
 
-offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = No, we do not plan to offer discounts in September
-offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Yes, up to 50% on eat-in food and drink purchased on Mondays, Tuesdays and Wednesdays in September
-offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Yes, we’re planning on offering different discounts or deals in September
+offerDiscounts.NoDoNotPlanToOfferDiscountsInSeptember = No – we do not plan to offer discounts in September
+offerDiscounts.YesOfferUpTo50pcOnMonTueWedInSeptember = Yes – up to 50% on eat-in food & drink purchased on Mondays, Tuesdays and Wednesdays in September
+offerDiscounts.YesOfferDifferentDiscountsOrDealsInSeptember = Yes – we’re planning on offering different discounts or deals in September
 
 businessFuturePlans.WePlanToStopTrading = We plan to stop trading
 businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = We plan to reduce our opening hours but will continue to trade

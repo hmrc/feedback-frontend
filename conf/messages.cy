@@ -190,13 +190,13 @@ numberOfEstablishmentsQuestion.TenOrMoreEstablishments = 10 neu fwy
 numberOfEstablishmentsQuestion.NationalChainEstablishment = Cadwyn genedlaethol
 
 numberOfEmployeesQuestion.NoEmployees = Dim
-numberOfEmployeesQuestion.OneToTenEmployees = -	1 i 10
+numberOfEmployeesQuestion.OneToTenEmployees = 1 i 10
 numberOfEmployeesQuestion.ElevenToHundredEmployees = 11-100
 numberOfEmployeesQuestion.HundredToFiveHundredEmployees = 101-500
 numberOfEmployeesQuestion.FiveHundredOrMoreEmployees = 501 neu fwy
 
 affectedJobs.KeepAllAndTakeOnAdditionalStaff = Rydym wedi gallu cadw pob swydd a oedd gennym ym mis Gorffennaf 2020, ac rydym wedi cyflogi staff ychwanegol
-affectedJobs.KeepAllOrMostJobs = Rydym wedi gallu cadw pob swydd a oedd gennym ym mis Gorffennaf 2020
+affectedJobs.KeepAllOrMostJobs = Rydym wedi gallu cadw pob swydd, neu'r rhan fwyaf o swyddi, a oedd gennym ym mis Gorffennaf 2020
 affectedJobs.KeepSomeJobs = Rydym wedi gallu cadw rhai swyddi a oedd gennym ym mis Gorffennaf 2020
 affectedJobs.KeepNoJobs = Nid ydym wedi gallu cadw unrhyw swyddi a oedd gennym ym mis Gorffennaf 2020
 affectedJobs.NotApplicableNobodyEmployed = Ddim yn berthnasol, nid yw’r busnes yn cyflogi unrhyw un
@@ -278,7 +278,7 @@ whichRegions.heading = Ym mha ranbarthau mae sefydliadau’ch busnes? Ticiwch bo
 whichRegions.EastMidlands = Dwyrain Canolbarth Lloegr
 whichRegions.EastOfEngland = Dwyrain Lloegr
 whichRegions.London = Llundain
-whichRegions.NorthEast = ogledd-ddwyrain Lloegr
+whichRegions.NorthEast = Gogledd-ddwyrain Lloegr
 whichRegions.NorthWest = Gogledd-orllewin Lloegr
 whichRegions.SouthEast = De-ddwyrain Lloegr
 whichRegions.SouthWest = De-orllewin Lloegr
