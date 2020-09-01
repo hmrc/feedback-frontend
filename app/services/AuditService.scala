@@ -92,6 +92,10 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("whichRegions" -> setToString(whichRegions))
   def withBusinessFuturePlans(businessFuturePlans: Option[BusinessFuturePlansQuestion]): MapCont =
     _ + ("businessFuturePlans" -> businessFuturePlans.map(_.toString).getOrElse(("-")))
+  def withEncourageReopenSooner(encourageReopenSooner: Option[Boolean]): MapCont =
+    _ + ("encourageReopenSooner" -> encourageReopenSooner.map(boolToString(_)).getOrElse("-"))
+  def withEncourageReturnToRestaurantsSooner(encourageReturnToRestaurantsSooner: Option[Boolean]): MapCont =
+    _ + ("encourageReturnToRestaurantsSooner" -> encourageReturnToRestaurantsSooner.map(boolToString(_)).getOrElse("-"))
 
   def withOfferDiscounts(offerDiscounts: Option[OfferDiscountsQuestion]): MapCont =
     _ + ("offerDiscounts" -> offerDiscounts.map(_.toString).getOrElse(("-")))
@@ -215,6 +219,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withComparedToMonTueWed(questions.comparedToMonTueWed) andThen
         withComparedToThurFriSatSun(questions.comparedToThurFriSatSun) andThen
         withComparedBusinessTurnover(questions.comparedBusinessTurnover) andThen
+        withEncourageReopenSooner(questions.encourageReopenSooner) andThen
+        withEncourageReturnToRestaurantsSooner(questions.encourageReturnToRestaurantsSooner) andThen
         withBusinessFuturePlans(questions.businessFuturePlans) andThen
         withOfferDiscounts(questions.offerDiscounts)
     )(emptyMap)

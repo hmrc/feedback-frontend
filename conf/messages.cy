@@ -181,6 +181,8 @@ eothoQuestions.businessFuturePlans.heading = Ar ôl i’r Cynllun Bwyta Allan i 
 eothoQuestions.offerDiscounts.heading = A yw’ch busnes yn bwriadu cynnig gostyngiadau ym mis Medi, unwaith y daw’r Cynllun EOHO i ben?
 eothoQuestions.protectAtRiskJobs.heading = ???
 eothoQuestions.protectHospitalityIndustry.heading = ???
+eothoQuestions.encourageReopenSooner.heading = ???
+eothoQuestions.encourageReturnToRestaurantsSooner.heading = ???
 
 numberOfEstablishmentsQuestion.OneEstablishment = ???
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = ???

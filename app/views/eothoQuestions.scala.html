@@ -103,6 +103,18 @@
             inputs = ComparedBusinessTurnoverQuestion.options
         )
 
+        @components.input_yes_no(
+            field = form("encourageReopenSooner"),
+            label = messages("eothoQuestions.encourageReopenSooner.heading"),
+            labelClass = Some("heading-medium")
+        )
+
+        @components.input_yes_no(
+            field = form("encourageReturnToRestaurantsSooner"),
+            label = messages("eothoQuestions.encourageReturnToRestaurantsSooner.heading"),
+            labelClass = Some("heading-medium")
+        )
+
         @components.input_radio(
             field = form("businessFuturePlans"),
             legend = messages("eothoQuestions.businessFuturePlans.heading"),

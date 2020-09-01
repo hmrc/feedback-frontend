@@ -121,17 +121,19 @@ trait ModelGenerators {
 
   lazy val eothoQuestionsGen: Gen[EOTHOQuestions] =
     for {
-      numberOfEstablishments     <- option(numberOfEstablishmentsGen)
-      numberOfEmployees          <- option(numberOfEmployeesGen)
-      whichRegions               <- arbitrary[List[WhichRegionQuestion]]
-      affectedJobs               <- option(affectedJobs)
-      protectAtRiskJobs          <- option(arbitrary[Boolean])
-      protectHospitalityIndustry <- option(arbitrary[Boolean])
-      compareToMonTueWed         <- option(comparedToMonTueWed)
-      comparedToThurFriSatSun    <- option(comparedToThurFriSatSun)
-      comparedBusinessTurnOver   <- option(comparedBusinessTurnover)
-      businessFuturePlans        <- option(businessFuturePlans)
-      offerDiscounts             <- option(offerDiscounts)
+      numberOfEstablishments             <- option(numberOfEstablishmentsGen)
+      numberOfEmployees                  <- option(numberOfEmployeesGen)
+      whichRegions                       <- arbitrary[List[WhichRegionQuestion]]
+      affectedJobs                       <- option(affectedJobs)
+      protectAtRiskJobs                  <- option(arbitrary[Boolean])
+      protectHospitalityIndustry         <- option(arbitrary[Boolean])
+      encourageReopenSooner              <- option(arbitrary[Boolean])
+      encourageReturnToRestaurantsSooner <- option(arbitrary[Boolean])
+      compareToMonTueWed                 <- option(comparedToMonTueWed)
+      comparedToThurFriSatSun            <- option(comparedToThurFriSatSun)
+      comparedBusinessTurnOver           <- option(comparedBusinessTurnover)
+      businessFuturePlans                <- option(businessFuturePlans)
+      offerDiscounts                     <- option(offerDiscounts)
     } yield {
       EOTHOQuestions(
         numberOfEstablishments,
@@ -143,6 +145,8 @@ trait ModelGenerators {
         compareToMonTueWed,
         comparedToThurFriSatSun,
         comparedBusinessTurnOver,
+        encourageReopenSooner,
+        encourageReturnToRestaurantsSooner,
         businessFuturePlans,
         offerDiscounts
       )

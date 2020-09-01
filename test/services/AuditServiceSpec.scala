@@ -176,8 +176,12 @@ class AuditServiceSpec
         "comparedToMonTueWed"        -> questions.comparedToMonTueWed.fold("-")(_.toString),
         "comparedToThurFriSatSun"    -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
         "comparedBusinessTurnover"   -> questions.comparedBusinessTurnover.fold("-")(_.toString),
-        "businessFuturePlans"        -> questions.businessFuturePlans.fold("-")(_.toString),
-        "offerDiscounts"             -> questions.offerDiscounts.fold("-")(_.toString)
+        "encourageReopenSooner"      -> questions.encourageReopenSooner.map(boolToString(_)).getOrElse("-"),
+        "encourageReturnToRestaurantsSooner" -> questions.encourageReturnToRestaurantsSooner
+          .map(boolToString(_))
+          .getOrElse("-"),
+        "businessFuturePlans" -> questions.businessFuturePlans.fold("-")(_.toString),
+        "offerDiscounts"      -> questions.offerDiscounts.fold("-")(_.toString)
       )
 
       verify(auditConnector, times(1))

@@ -90,6 +90,8 @@ case class EOTHOQuestions(
   comparedToMonTueWed: Option[ComparedToMonTueWedQuestion],
   comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion],
   comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion],
+  encourageReopenSooner: Option[Boolean],
+  encourageReturnToRestaurantsSooner: Option[Boolean],
   businessFuturePlans: Option[BusinessFuturePlansQuestion],
   offerDiscounts: Option[OfferDiscountsQuestion])
 

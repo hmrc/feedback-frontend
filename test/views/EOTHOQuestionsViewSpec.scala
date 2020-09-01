@@ -86,6 +86,13 @@ class EOTHOQuestionsViewSpec
       ComparedBusinessTurnoverQuestion.options,
       "eothoQuestions.comparedBusinessTurnover")
 
+    behave like yesNoPage(createViewUsingForm, "encourageReopenSooner", "eothoQuestions.encourageReopenSooner")
+
+    behave like yesNoPage(
+      createViewUsingForm,
+      "encourageReturnToRestaurantsSooner",
+      "eothoQuestions.encourageReturnToRestaurantsSooner")
+
     behave like optionsPage(
       createViewUsingForm,
       "businessFuturePlans",

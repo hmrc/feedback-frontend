@@ -150,6 +150,32 @@ class EOTHOQuestionsFormProviderSpec
     )
   }
 
+  ".encourageReopenSooner" must {
+
+    val fieldName = "encourageReopenSooner"
+    val invalidError = "error.boolean"
+
+    behave like booleanField[EOTHOQuestions](
+      form,
+      fieldName,
+      invalidError = FormError(fieldName, invalidError),
+      _.encourageReopenSooner
+    )
+  }
+
+  ".encourageReturnToRestaurantsSooner" must {
+
+    val fieldName = "encourageReturnToRestaurantsSooner"
+    val invalidError = "error.boolean"
+
+    behave like booleanField[EOTHOQuestions](
+      form,
+      fieldName,
+      invalidError = FormError(fieldName, invalidError),
+      _.encourageReturnToRestaurantsSooner
+    )
+  }
+
   ".businessFuturePlans" must {
 
     val fieldName = "businessFuturePlans"

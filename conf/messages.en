@@ -170,6 +170,8 @@ eothoQuestions.businessFuturePlans.heading = After the Eat Out to Help Out Schem
 eothoQuestions.offerDiscounts.heading = Does your business plan to offer discounts in September, once the EOHO Scheme comes to an end?
 eothoQuestions.protectAtRiskJobs.heading = Do you think the scheme helped to protect jobs that were at risk in your business?
 eothoQuestions.protectHospitalityIndustry.heading = Do you think the scheme helped to protect jobs across the UK hospitality industry as a whole?
+eothoQuestions.encourageReopenSooner.heading = Did the scheme encourage you to re-open sooner, or to re-open for more days each week, than you had planned?
+eothoQuestions.encourageReturnToRestaurantsSooner.heading = Do you think the scheme encouraged people to return to restaurants sooner than they would have otherwise?
 
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10
