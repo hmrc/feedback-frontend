@@ -53,6 +53,14 @@ class EOTHOQuestionsViewSpec
       NumberOfEmployeesQuestion.options,
       "eothoQuestions.numberOfEmployees")
 
+    behave like checkboxPage(form, createViewUsingForm, messageKeyPrefix, WhichRegionQuestion.options, "whichRegions")
+
+    behave like optionsPage(
+      createViewUsingForm,
+      "affectedJobs",
+      AffectedJobsQuestion.options,
+      "eothoQuestions.affectedJobs")
+
     behave like optionsPage(
       createViewUsingForm,
       "comparedToMonTueWed",
@@ -65,19 +73,11 @@ class EOTHOQuestionsViewSpec
       ComparedToThurFriSatSunQuestion.options,
       "eothoQuestions.comparedToThurFriSatSun")
 
-    behave like checkboxPage(form, createViewUsingForm, messageKeyPrefix, WhichRegionQuestion.options, "whichRegions")
-
     behave like optionsPage(
       createViewUsingForm,
       "comparedBusinessTurnover",
       ComparedBusinessTurnoverQuestion.options,
       "eothoQuestions.comparedBusinessTurnover")
-
-    behave like optionsPage(
-      createViewUsingForm,
-      "affectedJobs",
-      AffectedJobsQuestion.options,
-      "eothoQuestions.affectedJobs")
 
     behave like optionsPage(
       createViewUsingForm,

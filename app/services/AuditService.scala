@@ -205,12 +205,12 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
         withNumberOfEstablishments(questions.numberOfEstablishments) andThen
-        withNumberOfEstablishments(questions.numberOfEstablishments) andThen
+        withNumberOfEmployees(questions.numberOfEmployees) andThen
         withWhichRegion(questions.whichRegions) andThen
+        withAffectedJobs(questions.affectedJobs) andThen
         withComparedToMonTueWed(questions.comparedToMonTueWed) andThen
         withComparedToThurFriSatSun(questions.comparedToThurFriSatSun) andThen
         withComparedBusinessTurnover(questions.comparedBusinessTurnover) andThen
-        withAffectedJobs(questions.affectedJobs) andThen
         withFurloughEmployees(questions.furloughEmployees) andThen
         withBusinessFuturePlans(questions.businessFuturePlans) andThen
         withOfferDiscounts(questions.offerDiscounts)

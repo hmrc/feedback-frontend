@@ -137,10 +137,10 @@ trait ModelGenerators {
         numberOfEstablishments,
         numberOfEmployees,
         whichRegions,
+        affectedJobs,
         compareToMonTueWed,
         comparedToThurFriSatSun,
         comparedBusinessTurnOver,
-        affectedJobs,
         furloughEmployees,
         businessFuturePlans,
         offerDiscounts

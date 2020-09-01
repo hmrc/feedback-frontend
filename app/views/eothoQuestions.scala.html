@@ -64,6 +64,13 @@
         )
 
         @components.input_radio(
+            field = form("affectedJobs"),
+            legend = messages("eothoQuestions.affectedJobs.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = AffectedJobsQuestion.options
+        )
+
+        @components.input_radio(
             field = form("comparedToMonTueWed"),
             legend = messages("eothoQuestions.comparedToMonTueWed.heading"),
             legendClass = Some("heading-medium"),
@@ -82,13 +89,6 @@
             legend = messages("eothoQuestions.comparedBusinessTurnover.heading"),
             legendClass = Some("heading-medium"),
             inputs = ComparedBusinessTurnoverQuestion.options
-        )
-
-        @components.input_radio(
-            field = form("affectedJobs"),
-            legend = messages("eothoQuestions.affectedJobs.heading"),
-            legendClass = Some("heading-medium"),
-            inputs = AffectedJobsQuestion.options
         )
 
         @components.input_radio(

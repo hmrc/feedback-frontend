@@ -176,21 +176,21 @@ eothoQuestions.numberOfEmployees.heading = How many people does your business em
 eothoQuestions.comparedToMonTueWed.heading= O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Llun, dydd Mawrth a dydd Mercher?
 eothoQuestions.comparedToThurFriSatSun.heading = O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Iau, dydd Gwener, dydd Sadwrn a dydd Sul?
 eothoQuestions.comparedBusinessTurnover.heading = Sut mae cyfanswm trosiant eich busnes ym mis Awst 2020 yn cymharu â mis Awst 2019?
-eothoQuestions.affectedJobs.heading = A yw’r Cynllun Bwyta Allan i Helpu Allan (EOHO) wedi effeithio ar swyddi yn eich busnes?
+eothoQuestions.affectedJobs.heading = ???
 eothoQuestions.furloughEmployees.heading = Rhwng mis Mawrth a mis Gorffennaf 2020, a wnaeth eich busnes roi unrhyw gyflogeion ar ffyrlo?
 eothoQuestions.businessFuturePlans.heading = Ar ôl i’r Cynllun Bwyta Allan i Helpu Allan ddod i ben, pa opsiwn sy’n disgrifio’ch cynlluniau busnes yn y dyfodol orau?
 eothoQuestions.offerDiscounts.heading = A yw’ch busnes yn bwriadu cynnig gostyngiadau ym mis Medi, unwaith y daw’r Cynllun EOHO i ben?
 
-numberOfEstablishmentsQuestion.OneEstablishment = 1
-numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10
-numberOfEstablishmentsQuestion.TenOrMoreEstablishments = 10 or more
-numberOfEstablishmentsQuestion.NationalChainEstablishment = National chain
+numberOfEstablishmentsQuestion.OneEstablishment = ???
+numberOfEstablishmentsQuestion.TwoToTenEstablishments = ???
+numberOfEstablishmentsQuestion.TenOrMoreEstablishments = ???
+numberOfEstablishmentsQuestion.NationalChainEstablishment = ???
 
-numberOfEmployeesQuestion.NoEmployees = None
-numberOfEmployeesQuestion.OneToTenEmployees = 1 to 10
-numberOfEmployeesQuestion.ElevenToHundredEmployees = 11-100
-numberOfEmployeesQuestion.HundredToFiveHundredEmployees = 101-500
-numberOfEmployeesQuestion.FiveHundredOrMoreEmployees =  501 or more
+numberOfEmployeesQuestion.NoEmployees = ???
+numberOfEmployeesQuestion.OneToTenEmployees = ???
+numberOfEmployeesQuestion.ElevenToHundredEmployees = ???
+numberOfEmployeesQuestion.HundredToFiveHundredEmployees = ???
+numberOfEmployeesQuestion.FiveHundredOrMoreEmployees = ???
 
 comparedToMonTueWedQuestion.DecreasedByMoreThan50percent = Wedi gostwng mwy na 50%
 comparedToMonTueWedQuestion.DecreasedByLessThan50percent = Wedi gostwng llai na 50%
@@ -210,11 +210,11 @@ comparedBusinessTurnover.StayedAboutTheSame = Cyfanswm trosiant wedi aros yr un 
 comparedBusinessTurnover.IncreasedByLessThan50percent = Cyfanswm trosiant wedi cynyddu llai na 50%
 comparedBusinessTurnover.IncreasedByMoreThan50percent = Cyfanswm trosiant wedi cynyddu mwy na 50%
 
-affectedJobs.YesKeepAllEmployeesAndTakeOnAdditionalStaff = Ydy, rydym wedi gallu cadw pob cyflogai a oedd ar y gyflogres ym mis Gorffennaf 2020, ac rydym wedi cyflogi staff ychwanegol
-affectedJobs.YesKeepAllEmployees = Ydy, rydym wedi gallu cadw pob cyflogai a oedd ar y gyflogres ym mis Gorffennaf 2020
-affectedJobs.YesKeepSomeEmployees = Ydy, rydym wedi gallu cadw rhai cyflogeion a oedd ar y gyflogres ym mis Gorffennaf 2020
-affectedJobs.NoNotAffectedJobs = Nac ydy, nid yw’r cynllun wedi effeithio ar swyddi yn fy musnes
-affectedJobs.NotApplicableBusinessDoesNotEmployAnyone =Ddim yn berthnasol, nid yw’r busnes yn cyflogi unrhyw un
+affectedJobs.KeepAllAndTakeOnAdditionalStaff = ???
+affectedJobs.KeepAllOrMostJobs = ???
+affectedJobs.KeepSomeJobs = ???
+affectedJobs.KeepNoJobs = ???
+affectedJobs.NotApplicableNobodyEmployed = ???
 
 furloughEmployees.YesFurloughedMostEmployees = Do, rhoesom y rhan fwyaf o’n cyflogeion ar ffyrlo
 furloughEmployees.YesFurloughedSomeEmployees = Do, rhoesom rai o’n cyflogeion ar ffyrlo
