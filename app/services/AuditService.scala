@@ -22,7 +22,7 @@ import models._
 import models.eotho._
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
-import utils.FeedbackFrontendHelper.boolToInt
+import utils.FeedbackFrontendHelper._
 
 import scala.concurrent.ExecutionContext
 
@@ -74,6 +74,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   //eotho
   def withNumberOfEstablishments(numberOfEstablishments: Option[NumberOfEstablishmentsQuestion]): MapCont =
     _ + ("numberOfEstablishments" -> numberOfEstablishments.map(_.toString).getOrElse("-"))
+  def withNumberOfEmployees(numberOfEmployees: Option[NumberOfEmployeesQuestion]): MapCont =
+    _ + ("numberOfEmployees" -> numberOfEmployees.map(_.toString).getOrElse("-"))
   def withComparedToMonTueWed(comparedToMonTueWed: Option[ComparedToMonTueWedQuestion]): MapCont =
     _ + ("comparedToMonTueWed" -> comparedToMonTueWed.map(_.toString).getOrElse("-"))
   def withComparedToThurFriSatSun(comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion]): MapCont =
@@ -82,12 +84,18 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("comparedBusinessTurnover" -> comparedBusinessTurnover.map(_.toString).getOrElse(("-")))
   def withAffectedJobs(affectedJobs: Option[AffectedJobsQuestion]): MapCont =
     _ + ("affectedJobs" -> affectedJobs.map(_.toString).getOrElse(("-")))
+  def withProtectAtRiskJobs(protectAtRiskJobs: Option[Boolean]): MapCont =
+    _ + ("protectAtRiskJobs" -> protectAtRiskJobs.map(boolToString(_)).getOrElse("-"))
+  def withProtectHospitalityIndustry(protectHospitalityIndustry: Option[Boolean]): MapCont =
+    _ + ("protectHospitalityIndustry" -> protectHospitalityIndustry.map(boolToString(_)).getOrElse("-"))
   def withWhichRegion(whichRegions: List[WhichRegionQuestion]): MapCont =
     _ + ("whichRegions" -> setToString(whichRegions))
-  def withFurloughEmployees(furloughEmployees: Option[FurloughEmployeesQuestion]): MapCont =
-    _ + ("furloughEmployees" -> furloughEmployees.map(_.toString).getOrElse(("-")))
   def withBusinessFuturePlans(businessFuturePlans: Option[BusinessFuturePlansQuestion]): MapCont =
     _ + ("businessFuturePlans" -> businessFuturePlans.map(_.toString).getOrElse(("-")))
+  def withEncourageReopenSooner(encourageReopenSooner: Option[Boolean]): MapCont =
+    _ + ("encourageReopenSooner" -> encourageReopenSooner.map(boolToString(_)).getOrElse("-"))
+  def withEncourageReturnToRestaurantsSooner(encourageReturnToRestaurantsSooner: Option[Boolean]): MapCont =
+    _ + ("encourageReturnToRestaurantsSooner" -> encourageReturnToRestaurantsSooner.map(boolToString(_)).getOrElse("-"))
 
   def withOfferDiscounts(offerDiscounts: Option[OfferDiscountsQuestion]): MapCont =
     _ + ("offerDiscounts" -> offerDiscounts.map(_.toString).getOrElse(("-")))
@@ -203,14 +211,18 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
         withNumberOfEstablishments(questions.numberOfEstablishments) andThen
+        withNumberOfEmployees(questions.numberOfEmployees) andThen
         withWhichRegion(questions.whichRegions) andThen
+        withAffectedJobs(questions.affectedJobs) andThen
+        withProtectAtRiskJobs(questions.protectAtRiskJobs) andThen
+        withProtectHospitalityIndustry(questions.protectHospitalityIndustry) andThen
         withComparedToMonTueWed(questions.comparedToMonTueWed) andThen
         withComparedToThurFriSatSun(questions.comparedToThurFriSatSun) andThen
         withComparedBusinessTurnover(questions.comparedBusinessTurnover) andThen
-        withAffectedJobs(questions.affectedJobs) andThen
-        withFurloughEmployees(questions.furloughEmployees) andThen
-        withBusinessFuturePlans(questions.businessFuturePlans) andThen
-        withOfferDiscounts(questions.offerDiscounts)
+        withEncourageReopenSooner(questions.encourageReopenSooner) andThen
+        withEncourageReturnToRestaurantsSooner(questions.encourageReturnToRestaurantsSooner) andThen
+        withOfferDiscounts(questions.offerDiscounts) andThen
+        withBusinessFuturePlans(questions.businessFuturePlans)
     )(emptyMap)
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }

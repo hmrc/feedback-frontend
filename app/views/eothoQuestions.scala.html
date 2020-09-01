@@ -49,11 +49,37 @@
             inputs = NumberOfEstablishmentsQuestion.options
         )
 
+        @components.input_radio(
+            field = form("numberOfEmployees"),
+            legend = messages("eothoQuestions.numberOfEmployees.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = NumberOfEmployeesQuestion.options
+        )
+
         @components.input_checkboxes(
             field = form("whichRegions"),
             legend = messages("whichRegions.heading"),
             headingIsLegend = true,
             inputs = WhichRegionQuestion.options
+        )
+
+        @components.input_radio(
+            field = form("affectedJobs"),
+            legend = messages("eothoQuestions.affectedJobs.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = AffectedJobsQuestion.options
+        )
+
+        @components.input_yes_no(
+            field = form("protectAtRiskJobs"),
+            label = messages("eothoQuestions.protectAtRiskJobs.heading"),
+            labelClass = Some("heading-medium")
+        )
+
+        @components.input_yes_no(
+            field = form("protectHospitalityIndustry"),
+            label = messages("eothoQuestions.protectHospitalityIndustry.heading"),
+            labelClass = Some("heading-medium")
         )
 
         @components.input_radio(
@@ -77,25 +103,16 @@
             inputs = ComparedBusinessTurnoverQuestion.options
         )
 
-        @components.input_radio(
-            field = form("affectedJobs"),
-            legend = messages("eothoQuestions.affectedJobs.heading"),
-            legendClass = Some("heading-medium"),
-            inputs = AffectedJobsQuestion.options
+        @components.input_yes_no(
+            field = form("encourageReopenSooner"),
+            label = messages("eothoQuestions.encourageReopenSooner.heading"),
+            labelClass = Some("heading-medium")
         )
 
-        @components.input_radio(
-            field = form("furloughEmployees"),
-            legend = messages("eothoQuestions.furloughEmployees.heading"),
-            legendClass = Some("heading-medium"),
-            inputs = FurloughEmployeesQuestion.options
-        )
-
-        @components.input_radio(
-            field = form("businessFuturePlans"),
-            legend = messages("eothoQuestions.businessFuturePlans.heading"),
-            legendClass = Some("heading-medium"),
-            inputs = BusinessFuturePlansQuestion.options
+        @components.input_yes_no(
+            field = form("encourageReturnToRestaurantsSooner"),
+            label = messages("eothoQuestions.encourageReturnToRestaurantsSooner.heading"),
+            labelClass = Some("heading-medium")
         )
 
         @components.input_radio(
@@ -103,6 +120,13 @@
             legend = messages("eothoQuestions.offerDiscounts.heading"),
             legendClass = Some("heading-medium"),
             inputs = OfferDiscountsQuestion.options
+        )
+
+        @components.input_radio(
+            field = form("businessFuturePlans"),
+            legend = messages("eothoQuestions.businessFuturePlans.heading"),
+            legendClass = Some("heading-medium"),
+            inputs = BusinessFuturePlansQuestion.options
         )
 
         @components.submit_button()

@@ -16,12 +16,13 @@
 
 package forms
 
-import forms.behaviours.{CheckboxFieldBehaviours, OptionFieldBehaviours}
+import forms.behaviours.{BooleanFieldBehaviours, CheckboxFieldBehaviours, OptionFieldBehaviours}
 import models._
 import models.eotho._
 import play.api.data.FormError
 
-class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with CheckboxFieldBehaviours {
+class EOTHOQuestionsFormProviderSpec
+    extends OptionFieldBehaviours with CheckboxFieldBehaviours with BooleanFieldBehaviours {
 
   def form = new EOTHOQuestionsFormProvider()()
 
@@ -39,6 +40,20 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
     )
   }
 
+  ".numberOfEmployees" must {
+
+    val fieldName = "numberOfEmployees"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, NumberOfEmployeesQuestion](
+      form,
+      fieldName,
+      NumberOfEmployeesQuestion.values,
+      FormError(fieldName, invalidError),
+      _.numberOfEmployees
+    )
+  }
+
   for {
     (value, i) <- WhichRegionQuestion.values.zipWithIndex
   } yield
@@ -52,6 +67,46 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
         form.bind(data).get.whichRegions shouldEqual List(value)
       }
     }
+
+  ".affectedJobs" must {
+
+    val fieldName = "affectedJobs"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, AffectedJobsQuestion](
+      form,
+      fieldName,
+      AffectedJobsQuestion.values,
+      FormError(fieldName, invalidError),
+      _.affectedJobs
+    )
+  }
+
+  ".protectAtRiskJobs" must {
+
+    val fieldName = "protectAtRiskJobs"
+    val invalidError = "error.boolean"
+
+    behave like booleanField[EOTHOQuestions](
+      form,
+      fieldName,
+      invalidError = FormError(fieldName, invalidError),
+      _.protectAtRiskJobs
+    )
+  }
+
+  ".protectHospitalityIndustry" must {
+
+    val fieldName = "protectHospitalityIndustry"
+    val invalidError = "error.boolean"
+
+    behave like booleanField[EOTHOQuestions](
+      form,
+      fieldName,
+      invalidError = FormError(fieldName, invalidError),
+      _.protectHospitalityIndustry
+    )
+  }
 
   ".comparedToMonTueWed" must {
 
@@ -95,45 +150,29 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
     )
   }
 
-  ".affectedJobs" must {
+  ".encourageReopenSooner" must {
 
-    val fieldName = "affectedJobs"
-    val invalidError = "error.invalid"
+    val fieldName = "encourageReopenSooner"
+    val invalidError = "error.boolean"
 
-    behave like optionsField[EOTHOQuestions, AffectedJobsQuestion](
+    behave like booleanField[EOTHOQuestions](
       form,
       fieldName,
-      AffectedJobsQuestion.values,
-      FormError(fieldName, invalidError),
-      _.affectedJobs
+      invalidError = FormError(fieldName, invalidError),
+      _.encourageReopenSooner
     )
   }
 
-  ".furloughEmployees" must {
+  ".encourageReturnToRestaurantsSooner" must {
 
-    val fieldName = "furloughEmployees"
-    val invalidError = "error.invalid"
+    val fieldName = "encourageReturnToRestaurantsSooner"
+    val invalidError = "error.boolean"
 
-    behave like optionsField[EOTHOQuestions, FurloughEmployeesQuestion](
+    behave like booleanField[EOTHOQuestions](
       form,
       fieldName,
-      FurloughEmployeesQuestion.values,
-      FormError(fieldName, invalidError),
-      _.furloughEmployees
-    )
-  }
-
-  ".businessFuturePlans" must {
-
-    val fieldName = "businessFuturePlans"
-    val invalidError = "error.invalid"
-
-    behave like optionsField[EOTHOQuestions, BusinessFuturePlansQuestion](
-      form,
-      fieldName,
-      BusinessFuturePlansQuestion.values,
-      FormError(fieldName, invalidError),
-      _.businessFuturePlans
+      invalidError = FormError(fieldName, invalidError),
+      _.encourageReturnToRestaurantsSooner
     )
   }
 
@@ -148,6 +187,20 @@ class EOTHOQuestionsFormProviderSpec extends OptionFieldBehaviours with Checkbox
       OfferDiscountsQuestion.values,
       FormError(fieldName, invalidError),
       _.offerDiscounts
+    )
+  }
+
+  ".businessFuturePlans" must {
+
+    val fieldName = "businessFuturePlans"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[EOTHOQuestions, BusinessFuturePlansQuestion](
+      form,
+      fieldName,
+      BusinessFuturePlansQuestion.values,
+      FormError(fieldName, invalidError),
+      _.businessFuturePlans
     )
   }
 }

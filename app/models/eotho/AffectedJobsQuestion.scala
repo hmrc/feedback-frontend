@@ -17,28 +17,21 @@
 package models.eotho
 
 import models.{Enumerable, WithName}
-import play.api.libs.json._
 import viewmodels.RadioOption
 
 sealed trait AffectedJobsQuestion
 
-object AffectedJobsQuestion {
+object AffectedJobsQuestion extends Enumerable.Implicits {
 
-  case object YesKeepAllAndTakeOnAdditionalEmployees
-      extends WithName("YesKeepAllEmployeesAndTakeOnAdditionalStaff") with AffectedJobsQuestion
-  case object YesKeepAllEmployees extends WithName("YesKeepAllEmployees") with AffectedJobsQuestion
-  case object YesKeepSomeEmployees extends WithName("YesKeepSomeEmployees") with AffectedJobsQuestion
-  case object NoNotAffectedJobs extends WithName("NoNotAffectedJobs") with AffectedJobsQuestion
-  case object NotApplicableNobodyEmployed
-      extends WithName("NotApplicableBusinessDoesNotEmployAnyone") with AffectedJobsQuestion
+  case object KeepAllAndTakeOnAdditionalStaff
+      extends WithName("KeepAllAndTakeOnAdditionalStaff") with AffectedJobsQuestion
+  case object KeepAllOrMostJobs extends WithName("KeepAllOrMostJobs") with AffectedJobsQuestion
+  case object KeepSomeJobs extends WithName("KeepSomeJobs") with AffectedJobsQuestion
+  case object KeepNoJobs extends WithName("KeepNoJobs") with AffectedJobsQuestion
+  case object NotApplicableNobodyEmployed extends WithName("NotApplicableNobodyEmployed") with AffectedJobsQuestion
 
   val values: Seq[AffectedJobsQuestion] =
-    List(
-      YesKeepAllAndTakeOnAdditionalEmployees,
-      YesKeepAllEmployees,
-      YesKeepSomeEmployees,
-      NoNotAffectedJobs,
-      NotApplicableNobodyEmployed)
+    List(KeepAllAndTakeOnAdditionalStaff, KeepAllOrMostJobs, KeepSomeJobs, KeepNoJobs, NotApplicableNobodyEmployed)
 
   val options: Seq[RadioOption] = values.map { value =>
     RadioOption("affectedJobs", value.toString)
@@ -46,21 +39,4 @@ object AffectedJobsQuestion {
 
   implicit val enumerable: Enumerable[AffectedJobsQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object AffectedJobsQuestion extends Writes[AffectedJobsQuestion] {
-    def writes(affectedJobsQuestion: AffectedJobsQuestion) =
-      Json.toJson(affectedJobsQuestion.toString)
-  }
-
-  implicit object AffectedJobsQuestionReads extends Reads[AffectedJobsQuestion] {
-    override def reads(json: JsValue): JsResult[AffectedJobsQuestion] = json match {
-      case JsString(YesKeepAllAndTakeOnAdditionalEmployees.toString) =>
-        JsSuccess(YesKeepAllAndTakeOnAdditionalEmployees)
-      case JsString(YesKeepAllEmployees.toString)         => JsSuccess(YesKeepAllEmployees)
-      case JsString(YesKeepSomeEmployees.toString)        => JsSuccess(YesKeepSomeEmployees)
-      case JsString(NoNotAffectedJobs.toString)           => JsSuccess(NoNotAffectedJobs)
-      case JsString(NotApplicableNobodyEmployed.toString) => JsSuccess(NotApplicableNobodyEmployed)
-      case _                                              => JsError("Unknown AffectedJobsQuestion")
-    }
-  }
 }

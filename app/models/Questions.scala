@@ -82,15 +82,18 @@ object PensionQuestions {
 
 case class EOTHOQuestions(
   numberOfEstablishments: Option[NumberOfEstablishmentsQuestion],
+  numberOfEmployees: Option[NumberOfEmployeesQuestion],
   whichRegions: List[WhichRegionQuestion],
+  affectedJobs: Option[AffectedJobsQuestion],
+  protectAtRiskJobs: Option[Boolean],
+  protectHospitalityIndustry: Option[Boolean],
   comparedToMonTueWed: Option[ComparedToMonTueWedQuestion],
   comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion],
   comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion],
-  affectedJobs: Option[AffectedJobsQuestion],
-  furloughEmployees: Option[FurloughEmployeesQuestion],
-  businessFuturePlans: Option[BusinessFuturePlansQuestion],
-  offerDiscounts: Option[OfferDiscountsQuestion]
-)
+  encourageReopenSooner: Option[Boolean],
+  encourageReturnToRestaurantsSooner: Option[Boolean],
+  offerDiscounts: Option[OfferDiscountsQuestion],
+  businessFuturePlans: Option[BusinessFuturePlansQuestion])
 
 object EOTHOQuestions {
   implicit val formats: Format[EOTHOQuestions] = Json.format[EOTHOQuestions]

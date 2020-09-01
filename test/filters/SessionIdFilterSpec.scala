@@ -21,7 +21,7 @@ import java.util.UUID
 import akka.stream.Materializer
 import com.google.inject.Inject
 import org.scalatest.{MustMatchers, WordSpec}
-import org.scalatestplus.play.OneAppPerSuite
+import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import play.api.Application
 import play.api.http.{DefaultHttpFilters, HttpFilters}
 import play.api.inject.guice.GuiceApplicationBuilder
@@ -46,7 +46,7 @@ object SessionIdFilterSpec {
   ) extends SessionIdFilter(mat, UUID.fromString(sessionId), ec)
 }
 
-class SessionIdFilterSpec extends WordSpec with MustMatchers with OneAppPerSuite {
+class SessionIdFilterSpec extends WordSpec with MustMatchers with GuiceOneAppPerSuite {
 
   import SessionIdFilterSpec._
 

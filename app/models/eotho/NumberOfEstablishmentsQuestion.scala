@@ -17,18 +17,20 @@
 package models.eotho
 
 import models.{Enumerable, WithName}
-import play.api.libs.json._
 import viewmodels.RadioOption
 
 sealed trait NumberOfEstablishmentsQuestion
 
-object NumberOfEstablishmentsQuestion {
+object NumberOfEstablishmentsQuestion extends Enumerable.Implicits {
 
-  case object FewerThan25 extends WithName("FewerThan25") with NumberOfEstablishmentsQuestion
-  case object MoreThan25 extends WithName("MoreThan25") with NumberOfEstablishmentsQuestion
+  case object OneEstablishment extends WithName("OneEstablishment") with NumberOfEstablishmentsQuestion
+  case object TwoToTenEstablishments extends WithName("TwoToTenEstablishments") with NumberOfEstablishmentsQuestion
+  case object TenOrMoreEstablishments extends WithName("TenOrMoreEstablishments") with NumberOfEstablishmentsQuestion
+  case object NationalChainEstablishment
+      extends WithName("NationalChainEstablishment") with NumberOfEstablishmentsQuestion
 
   val values: Seq[NumberOfEstablishmentsQuestion] =
-    List(FewerThan25, MoreThan25)
+    List(OneEstablishment, TwoToTenEstablishments, TenOrMoreEstablishments, NationalChainEstablishment)
 
   val options: Seq[RadioOption] = values.map { value =>
     RadioOption("numberOfEstablishmentsQuestion", value.toString)
@@ -36,17 +38,4 @@ object NumberOfEstablishmentsQuestion {
 
   implicit val enumerable: Enumerable[NumberOfEstablishmentsQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object NumberOfEstablishmentsQuestionWrites extends Writes[NumberOfEstablishmentsQuestion] {
-    def writes(numberOfEstablishmentsQuestion: NumberOfEstablishmentsQuestion) =
-      Json.toJson(numberOfEstablishmentsQuestion.toString)
-  }
-
-  implicit object NumberOfEstablishmentsQuestionReads extends Reads[NumberOfEstablishmentsQuestion] {
-    override def reads(json: JsValue): JsResult[NumberOfEstablishmentsQuestion] = json match {
-      case JsString(FewerThan25.toString) => JsSuccess(FewerThan25)
-      case JsString(MoreThan25.toString)  => JsSuccess(MoreThan25)
-      case _                              => JsError("Unknown NumberOfEstablishmentsQuestion")
-    }
-  }
 }

@@ -17,21 +17,36 @@
 package models.eotho
 
 import models.{Enumerable, WithName}
-import play.api.libs.json._
 import viewmodels.RadioOption
 
 sealed trait ComparedBusinessTurnoverQuestion
 
-object ComparedBusinessTurnoverQuestion {
+object ComparedBusinessTurnoverQuestion extends Enumerable.Implicits {
 
-  case object DecreasedByMore50pc extends WithName("DecreasedByMoreThan50percent") with ComparedBusinessTurnoverQuestion
-  case object DecreasedByLess50pc extends WithName("DecreasedByLessThan50percent") with ComparedBusinessTurnoverQuestion
-  case object StayAboutTheSame extends WithName("StayedAboutTheSame") with ComparedBusinessTurnoverQuestion
-  case object IncreasedByLess50pc extends WithName("IncreasedByLessThan50percent") with ComparedBusinessTurnoverQuestion
-  case object IncreasedByMore50pc extends WithName("IncreasedByMoreThan50percent") with ComparedBusinessTurnoverQuestion
+  case object DecreasedByMoreThan50percent
+      extends WithName("DecreasedByMoreThan50percent") with ComparedBusinessTurnoverQuestion
+  case object DecreasedBetween20And50percent
+      extends WithName("DecreasedBetween20And50percent") with ComparedBusinessTurnoverQuestion
+  case object DecreasedByLess20percent
+      extends WithName("DecreasedByLess20percent") with ComparedBusinessTurnoverQuestion
+  case object StayedAboutTheSame extends WithName("StayedAboutTheSame") with ComparedBusinessTurnoverQuestion
+  case object IncreasedByLess20percent
+      extends WithName("IncreasedByLess20percent") with ComparedBusinessTurnoverQuestion
+  case object IncreasedBetween20And50percent
+      extends WithName("IncreasedBetween20And50percent") with ComparedBusinessTurnoverQuestion
+  case object IncreasedByMore50percent
+      extends WithName("IncreasedByMore50percent") with ComparedBusinessTurnoverQuestion
 
   val values: Seq[ComparedBusinessTurnoverQuestion] =
-    List(DecreasedByMore50pc, DecreasedByLess50pc, StayAboutTheSame, IncreasedByLess50pc, IncreasedByMore50pc)
+    List(
+      DecreasedByMoreThan50percent,
+      DecreasedBetween20And50percent,
+      DecreasedByLess20percent,
+      StayedAboutTheSame,
+      IncreasedByLess20percent,
+      IncreasedBetween20And50percent,
+      IncreasedByMore50percent
+    )
 
   val options: Seq[RadioOption] = values.map { value =>
     RadioOption("comparedBusinessTurnover", value.toString)
@@ -39,20 +54,4 @@ object ComparedBusinessTurnoverQuestion {
 
   implicit val enumerable: Enumerable[ComparedBusinessTurnoverQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object ComparedBusinessTurnoverQuestion extends Writes[ComparedBusinessTurnoverQuestion] {
-    def writes(comparedBusinessTurnoverQuestion: ComparedBusinessTurnoverQuestion) =
-      Json.toJson(comparedBusinessTurnoverQuestion.toString)
-  }
-
-  implicit object ComparedBusinessTurnoverQuestionReads extends Reads[ComparedBusinessTurnoverQuestion] {
-    override def reads(json: JsValue): JsResult[ComparedBusinessTurnoverQuestion] = json match {
-      case JsString(DecreasedByMore50pc.toString) => JsSuccess(DecreasedByMore50pc)
-      case JsString(DecreasedByLess50pc.toString) => JsSuccess(DecreasedByLess50pc)
-      case JsString(StayAboutTheSame.toString)    => JsSuccess(StayAboutTheSame)
-      case JsString(IncreasedByLess50pc.toString) => JsSuccess(IncreasedByLess50pc)
-      case JsString(IncreasedByMore50pc.toString) => JsSuccess(IncreasedByMore50pc)
-      case _                                      => JsError("Unknown ComparedBusinessTurnoverQuestion")
-    }
-  }
 }

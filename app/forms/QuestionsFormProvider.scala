@@ -120,14 +120,18 @@ class EOTHOQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[EOTHOQuestions] =
     Form(
       mapping(
-        "numberOfEstablishments"   -> optional(enumerable[NumberOfEstablishmentsQuestion]()),
-        "whichRegions"             -> list(enumerable[WhichRegionQuestion]()),
-        "comparedToMonTueWed"      -> optional(enumerable[ComparedToMonTueWedQuestion]()),
-        "comparedToThurFriSatSun"  -> optional(enumerable[ComparedToThurFriSatSunQuestion]()),
-        "comparedBusinessTurnover" -> optional(enumerable[ComparedBusinessTurnoverQuestion]()),
-        "affectedJobs"             -> optional(enumerable[AffectedJobsQuestion]()),
-        "furloughEmployees"        -> optional(enumerable[FurloughEmployeesQuestion]()),
-        "businessFuturePlans"      -> optional(enumerable[BusinessFuturePlansQuestion]()),
-        "offerDiscounts"           -> optional(enumerable[OfferDiscountsQuestion]())
+        "numberOfEstablishments"             -> optional(enumerable[NumberOfEstablishmentsQuestion]()),
+        "numberOfEmployees"                  -> optional(enumerable[NumberOfEmployeesQuestion]()),
+        "whichRegions"                       -> list(enumerable[WhichRegionQuestion]()),
+        "affectedJobs"                       -> optional(enumerable[AffectedJobsQuestion]()),
+        "protectAtRiskJobs"                  -> optional(boolean()),
+        "protectHospitalityIndustry"         -> optional(boolean()),
+        "comparedToMonTueWed"                -> optional(enumerable[ComparedToMonTueWedQuestion]()),
+        "comparedToThurFriSatSun"            -> optional(enumerable[ComparedToThurFriSatSunQuestion]()),
+        "comparedBusinessTurnover"           -> optional(enumerable[ComparedBusinessTurnoverQuestion]()),
+        "encourageReopenSooner"              -> optional(boolean()),
+        "encourageReturnToRestaurantsSooner" -> optional(boolean()),
+        "offerDiscounts"                     -> optional(enumerable[OfferDiscountsQuestion]()),
+        "businessFuturePlans"                -> optional(enumerable[BusinessFuturePlansQuestion]())
       )(EOTHOQuestions.apply)(EOTHOQuestions.unapply))
 }

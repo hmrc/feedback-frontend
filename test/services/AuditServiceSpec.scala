@@ -28,12 +28,12 @@ import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import uk.gov.hmrc.play.test.UnitSpec
 import org.scalacheck.Arbitrary._
-import org.scalatestplus.play.OneAppPerSuite
-import utils.FeedbackFrontendHelper.boolToInt
+import org.scalatestplus.play.guice.GuiceOneAppPerSuite
+import utils.FeedbackFrontendHelper._
 
 class AuditServiceSpec
     extends UnitSpec with MockitoSugar with BeforeAndAfter with ScalaCheckPropertyChecks with ModelGenerators
-    with OneAppPerSuite {
+    with GuiceOneAppPerSuite {
 
   implicit val hc = HeaderCarrier()
   implicit val ec = scala.concurrent.ExecutionContext.Implicits.global
@@ -165,17 +165,23 @@ class AuditServiceSpec
       auditService.eothoAudit(feedbackId, questions)
 
       val expected: Map[String, String] = Map(
-        "origin"                   -> EOTHOQuestionsController.origin.value,
-        "feedbackId"               -> feedbackId.value,
-        "numberOfEstablishments"   -> questions.numberOfEstablishments.fold("-")(_.toString),
-        "whichRegions"             -> auditService.setToString(questions.whichRegions),
-        "comparedToMonTueWed"      -> questions.comparedToMonTueWed.fold("-")(_.toString),
-        "comparedToThurFriSatSun"  -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
-        "comparedBusinessTurnover" -> questions.comparedBusinessTurnover.fold("-")(_.toString),
-        "affectedJobs"             -> questions.affectedJobs.fold("-")(_.toString),
-        "furloughEmployees"        -> questions.furloughEmployees.fold("-")(_.toString),
-        "businessFuturePlans"      -> questions.businessFuturePlans.fold("-")(_.toString),
-        "offerDiscounts"           -> questions.offerDiscounts.fold("-")(_.toString)
+        "origin"                     -> EOTHOQuestionsController.origin.value,
+        "feedbackId"                 -> feedbackId.value,
+        "numberOfEstablishments"     -> questions.numberOfEstablishments.fold("-")(_.toString),
+        "numberOfEmployees"          -> questions.numberOfEmployees.fold("-")(_.toString),
+        "whichRegions"               -> auditService.setToString(questions.whichRegions),
+        "affectedJobs"               -> questions.affectedJobs.fold("-")(_.toString),
+        "protectAtRiskJobs"          -> questions.protectAtRiskJobs.map(boolToString(_)).getOrElse("-"),
+        "protectHospitalityIndustry" -> questions.protectHospitalityIndustry.map(boolToString(_)).getOrElse("-"),
+        "comparedToMonTueWed"        -> questions.comparedToMonTueWed.fold("-")(_.toString),
+        "comparedToThurFriSatSun"    -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
+        "comparedBusinessTurnover"   -> questions.comparedBusinessTurnover.fold("-")(_.toString),
+        "encourageReopenSooner"      -> questions.encourageReopenSooner.map(boolToString(_)).getOrElse("-"),
+        "encourageReturnToRestaurantsSooner" -> questions.encourageReturnToRestaurantsSooner
+          .map(boolToString(_))
+          .getOrElse("-"),
+        "offerDiscounts"      -> questions.offerDiscounts.fold("-")(_.toString),
+        "businessFuturePlans" -> questions.businessFuturePlans.fold("-")(_.toString)
       )
 
       verify(auditConnector, times(1))

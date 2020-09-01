@@ -49,6 +49,27 @@ class EOTHOQuestionsViewSpec
 
     behave like optionsPage(
       createViewUsingForm,
+      "numberOfEmployees",
+      NumberOfEmployeesQuestion.options,
+      "eothoQuestions.numberOfEmployees")
+
+    behave like checkboxPage(form, createViewUsingForm, messageKeyPrefix, WhichRegionQuestion.options, "whichRegions")
+
+    behave like optionsPage(
+      createViewUsingForm,
+      "affectedJobs",
+      AffectedJobsQuestion.options,
+      "eothoQuestions.affectedJobs")
+
+    behave like yesNoPage(createViewUsingForm, "protectAtRiskJobs", "eothoQuestions.protectAtRiskJobs")
+
+    behave like yesNoPage(
+      createViewUsingForm,
+      "protectHospitalityIndustry",
+      "eothoQuestions.protectHospitalityIndustry")
+
+    behave like optionsPage(
+      createViewUsingForm,
       "comparedToMonTueWed",
       ComparedToMonTueWedQuestion.options,
       "eothoQuestions.comparedToMonTueWed")
@@ -59,37 +80,30 @@ class EOTHOQuestionsViewSpec
       ComparedToThurFriSatSunQuestion.options,
       "eothoQuestions.comparedToThurFriSatSun")
 
-    behave like checkboxPage(form, createViewUsingForm, messageKeyPrefix, WhichRegionQuestion.options, "whichRegions")
-
     behave like optionsPage(
       createViewUsingForm,
       "comparedBusinessTurnover",
       ComparedBusinessTurnoverQuestion.options,
       "eothoQuestions.comparedBusinessTurnover")
 
-    behave like optionsPage(
-      createViewUsingForm,
-      "affectedJobs",
-      AffectedJobsQuestion.options,
-      "eothoQuestions.affectedJobs")
+    behave like yesNoPage(createViewUsingForm, "encourageReopenSooner", "eothoQuestions.encourageReopenSooner")
 
-    behave like optionsPage(
+    behave like yesNoPage(
       createViewUsingForm,
-      "furloughEmployees",
-      FurloughEmployeesQuestion.options,
-      "eothoQuestions.furloughEmployees")
-
-    behave like optionsPage(
-      createViewUsingForm,
-      "businessFuturePlans",
-      BusinessFuturePlansQuestion.options,
-      "eothoQuestions.businessFuturePlans")
+      "encourageReturnToRestaurantsSooner",
+      "eothoQuestions.encourageReturnToRestaurantsSooner")
 
     behave like optionsPage(
       createViewUsingForm,
       "offerDiscounts",
       OfferDiscountsQuestion.options,
       "eothoQuestions.offerDiscounts")
+
+    behave like optionsPage(
+      createViewUsingForm,
+      "businessFuturePlans",
+      BusinessFuturePlansQuestion.options,
+      "eothoQuestions.businessFuturePlans")
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("eothoQuestions.introLinkText")
