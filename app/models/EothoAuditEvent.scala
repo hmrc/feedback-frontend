@@ -16,11 +16,10 @@
 
 package models
 
-import play.api.mvc.Request
+import play.api.libs.json.{Format, Json}
 
-sealed abstract case class FeedbackId(value: String)
+final case class EothoAuditEvent(origin: String, feedbackId: String, questions: EOTHOQuestions)
 
-object FeedbackId {
-  def fromSession(implicit request: Request[_]): FeedbackId =
-    new FeedbackId(request.session.get("feedbackId").getOrElse("-")) {}
+object EothoAuditEvent {
+  implicit val formats: Format[EothoAuditEvent] = Json.format[EothoAuditEvent]
 }

@@ -164,28 +164,10 @@ class AuditServiceSpec
 
       auditService.eothoAudit(feedbackId, questions)
 
-      val expected: Map[String, String] = Map(
-        "origin"                     -> EOTHOQuestionsController.origin.value,
-        "feedbackId"                 -> feedbackId.value,
-        "numberOfEstablishments"     -> questions.numberOfEstablishments.fold("-")(_.toString),
-        "numberOfEmployees"          -> questions.numberOfEmployees.fold("-")(_.toString),
-        "whichRegions"               -> auditService.setToString(questions.whichRegions),
-        "affectedJobs"               -> questions.affectedJobs.fold("-")(_.toString),
-        "protectAtRiskJobs"          -> questions.protectAtRiskJobs.map(boolToString(_)).getOrElse("-"),
-        "protectHospitalityIndustry" -> questions.protectHospitalityIndustry.map(boolToString(_)).getOrElse("-"),
-        "comparedToMonTueWed"        -> questions.comparedToMonTueWed.fold("-")(_.toString),
-        "comparedToThurFriSatSun"    -> questions.comparedToThurFriSatSun.fold("-")(_.toString),
-        "comparedBusinessTurnover"   -> questions.comparedBusinessTurnover.fold("-")(_.toString),
-        "encourageReopenSooner"      -> questions.encourageReopenSooner.map(boolToString(_)).getOrElse("-"),
-        "encourageReturnToRestaurantsSooner" -> questions.encourageReturnToRestaurantsSooner
-          .map(boolToString(_))
-          .getOrElse("-"),
-        "offerDiscounts"      -> questions.offerDiscounts.fold("-")(_.toString),
-        "businessFuturePlans" -> questions.businessFuturePlans.fold("-")(_.toString)
-      )
+      val expected = EothoAuditEvent(EOTHOQuestionsController.origin.value, feedbackId.value, questions)
 
       verify(auditConnector, times(1))
-        .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+        .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any(), any())
     }
   }
 }

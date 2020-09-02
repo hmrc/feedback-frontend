@@ -19,7 +19,6 @@ package services
 import controllers.EOTHOQuestionsController
 import javax.inject.Inject
 import models._
-import models.eotho._
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import utils.FeedbackFrontendHelper._
@@ -32,13 +31,6 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   private val emptyMap: Map[String, String] = Map.empty
 
   type MapCont = Map[String, String] => Map[String, String]
-
-  def setToString[A](s: Seq[A]): String =
-    if (s.isEmpty) {
-      "-"
-    } else {
-      s.toString
-    }
 
   def withOrigin(origin: Origin): MapCont =
     _ + ("origin" -> origin.value)
@@ -70,35 +62,6 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("fullName" -> fullName.getOrElse(("-")))
   def withEmail(email: Option[String]): MapCont =
     _ + ("email" -> email.getOrElse("-"))
-
-  //eotho
-  def withNumberOfEstablishments(numberOfEstablishments: Option[NumberOfEstablishmentsQuestion]): MapCont =
-    _ + ("numberOfEstablishments" -> numberOfEstablishments.map(_.toString).getOrElse("-"))
-  def withNumberOfEmployees(numberOfEmployees: Option[NumberOfEmployeesQuestion]): MapCont =
-    _ + ("numberOfEmployees" -> numberOfEmployees.map(_.toString).getOrElse("-"))
-  def withComparedToMonTueWed(comparedToMonTueWed: Option[ComparedToMonTueWedQuestion]): MapCont =
-    _ + ("comparedToMonTueWed" -> comparedToMonTueWed.map(_.toString).getOrElse("-"))
-  def withComparedToThurFriSatSun(comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion]): MapCont =
-    _ + ("comparedToThurFriSatSun" -> comparedToThurFriSatSun.map(_.toString).getOrElse(("-")))
-  def withComparedBusinessTurnover(comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion]): MapCont =
-    _ + ("comparedBusinessTurnover" -> comparedBusinessTurnover.map(_.toString).getOrElse(("-")))
-  def withAffectedJobs(affectedJobs: Option[AffectedJobsQuestion]): MapCont =
-    _ + ("affectedJobs" -> affectedJobs.map(_.toString).getOrElse(("-")))
-  def withProtectAtRiskJobs(protectAtRiskJobs: Option[Boolean]): MapCont =
-    _ + ("protectAtRiskJobs" -> protectAtRiskJobs.map(boolToString(_)).getOrElse("-"))
-  def withProtectHospitalityIndustry(protectHospitalityIndustry: Option[Boolean]): MapCont =
-    _ + ("protectHospitalityIndustry" -> protectHospitalityIndustry.map(boolToString(_)).getOrElse("-"))
-  def withWhichRegion(whichRegions: List[WhichRegionQuestion]): MapCont =
-    _ + ("whichRegions" -> setToString(whichRegions))
-  def withBusinessFuturePlans(businessFuturePlans: Option[BusinessFuturePlansQuestion]): MapCont =
-    _ + ("businessFuturePlans" -> businessFuturePlans.map(_.toString).getOrElse(("-")))
-  def withEncourageReopenSooner(encourageReopenSooner: Option[Boolean]): MapCont =
-    _ + ("encourageReopenSooner" -> encourageReopenSooner.map(boolToString(_)).getOrElse("-"))
-  def withEncourageReturnToRestaurantsSooner(encourageReturnToRestaurantsSooner: Option[Boolean]): MapCont =
-    _ + ("encourageReturnToRestaurantsSooner" -> encourageReturnToRestaurantsSooner.map(boolToString(_)).getOrElse("-"))
-
-  def withOfferDiscounts(offerDiscounts: Option[OfferDiscountsQuestion]): MapCont =
-    _ + ("offerDiscounts" -> offerDiscounts.map(_.toString).getOrElse(("-")))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
@@ -204,26 +167,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   }
 
   def eothoAudit(feedbackId: FeedbackId, questions: EOTHOQuestions)(implicit hc: HeaderCarrier): Unit = {
-
-    val origin = EOTHOQuestionsController.origin
-
-    val auditMap = (
-      withOrigin(origin) andThen
-        withFeedbackId(feedbackId) andThen
-        withNumberOfEstablishments(questions.numberOfEstablishments) andThen
-        withNumberOfEmployees(questions.numberOfEmployees) andThen
-        withWhichRegion(questions.whichRegions) andThen
-        withAffectedJobs(questions.affectedJobs) andThen
-        withProtectAtRiskJobs(questions.protectAtRiskJobs) andThen
-        withProtectHospitalityIndustry(questions.protectHospitalityIndustry) andThen
-        withComparedToMonTueWed(questions.comparedToMonTueWed) andThen
-        withComparedToThurFriSatSun(questions.comparedToThurFriSatSun) andThen
-        withComparedBusinessTurnover(questions.comparedBusinessTurnover) andThen
-        withEncourageReopenSooner(questions.encourageReopenSooner) andThen
-        withEncourageReturnToRestaurantsSooner(questions.encourageReturnToRestaurantsSooner) andThen
-        withOfferDiscounts(questions.offerDiscounts) andThen
-        withBusinessFuturePlans(questions.businessFuturePlans)
-    )(emptyMap)
-    auditConnector.sendExplicitAudit(auditType, auditMap)
+    val detail = EothoAuditEvent(EOTHOQuestionsController.origin.value, feedbackId.value, questions)
+    auditConnector.sendExplicitAudit(auditType, detail)
   }
 }
