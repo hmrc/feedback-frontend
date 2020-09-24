@@ -54,59 +54,53 @@ class FeedbackSurveyControllerSpec extends ControllerSpecBase with MockitoSugar 
     "redirect to pta feedback page for pta origin" in {
       val result = testFeedbackSurveyController.feedbackRedirect(ptaOrigin)(fakeRequest)
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback/PERTAX/personal")
+      redirectLocation(result).get must include("/feedback-survey/PERTAX/personal")
     }
 
     "redirect to general feedback page for non-pta origin" in {
       val result = testFeedbackSurveyController.feedbackRedirect(nonPtaOrigin)(fakeRequest)
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback/ATS/beta")
+      redirectLocation(result).get must include("/feedback-survey/ATS/beta")
     }
 
     "redirect to pta feedback page for pta origin as non string" in {
-      val result = testFeedbackSurveyController.feedbackRedirect(Origin.fromString(ptaOrigin))(fakeRequest)
+      val result = testFeedbackSurveyController.feedbackHomePageRedirect(fakeRequest)
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback/PERTAX/personal")
-    }
-
-    "redirect to general feedback page for non-pta origin as non string" in {
-      val result = testFeedbackSurveyController.feedbackRedirect(Origin.fromString(nonPtaOrigin))(fakeRequest)
-      status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback/ATS/beta")
+      redirectLocation(result).get must include("/feedback-survey/feedback/beta")
     }
 
     "audit the ableToDo data and redirect to pta feedback page for pta origin" in {
       val result = testFeedbackSurveyController.ableToDoContinue(ptaOrigin)(testRequest(ptaOrigin)).run()
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback/PERTAX/personal")
+      redirectLocation(result).get must include("/feedback-survey/PERTAX/personal")
       verify(mockAuditService, times(1)).feedbackSurveyAbleToDoAudit(any(), any())(any())
     }
 
     "audit the ableToDo data and redirect to general feedback page for non-pta origin" in {
       val result = testFeedbackSurveyController.ableToDoContinue(nonPtaOrigin)(testRequest(nonPtaOrigin)).run()
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback/ATS/beta")
+      redirectLocation(result).get must include("/feedback-survey/ATS/beta")
       verify(mockAuditService, times(1)).feedbackSurveyAbleToDoAudit(any(), any())(any())
     }
 
     "audit the usingService data and redirect to general feedback page for non-pta origin" in {
       val result = testFeedbackSurveyController.usingServiceContinue(nonPtaOrigin)(testRequest(nonPtaOrigin)).run()
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback/ATS/beta")
+      redirectLocation(result).get must include("/feedback-survey/ATS/beta")
       verify(mockAuditService, times(1)).feedbackSurveyUsingServiceAudit(any(), any())(any())
     }
 
     "audit the aboutService data and redirect to general feedback page for non-pta origin" in {
       val result = testFeedbackSurveyController.aboutServiceContinue(nonPtaOrigin)(testRequest(nonPtaOrigin)).run()
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback/ATS/beta")
+      redirectLocation(result).get must include("/feedback-survey/ATS/beta")
       verify(mockAuditService, times(1)).feedbackSurveyAboutServiceAudit(any(), any())(any())
     }
 
     "audit the recommendService data and redirect to general feedback page for non-pta origin" in {
       val result = testFeedbackSurveyController.recommendServiceContinue(nonPtaOrigin)(testRequest(nonPtaOrigin)).run()
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback/ATS/beta")
+      redirectLocation(result).get must include("/feedback-survey/ATS/beta")
       verify(mockAuditService, times(1)).feedbackSurveyRecommendServiceAudit(any(), any(), any())(any())
     }
 

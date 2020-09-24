@@ -33,8 +33,8 @@ class FeedbackSurveyController @Inject()(
     ptaRedirect(origin)
   }
 
-  def feedbackRedirect(origin: Origin) = Action { implicit request =>
-    ptaRedirect(origin.value)
+  def feedbackHomePageRedirect = Action { implicit request =>
+    ptaRedirect("feedback")
   }
 
   def ableToDoContinue(origin: String) = Action(parse.form(formMappings.ableToDoForm)) { implicit request =>
