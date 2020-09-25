@@ -17,16 +17,12 @@
 package controllers
 
 import com.google.inject.Inject
-import models.{Origin, formMappings}
+import models.Origin
 import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, MessagesControllerComponents}
-import services.{AuditService, OriginService}
+import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
-class FeedbackSurveyController @Inject()(
-  auditService: AuditService,
-  originService: OriginService,
-  mcc: MessagesControllerComponents)
+class FeedbackSurveyController @Inject()(mcc: MessagesControllerComponents)
     extends FrontendController(mcc) with I18nSupport {
 
   def feedbackRedirect(origin: String) = Action { implicit request =>
@@ -34,32 +30,7 @@ class FeedbackSurveyController @Inject()(
   }
 
   def feedbackHomePageRedirect = Action { implicit request =>
-    ptaRedirect("feedback")
-  }
-
-  def ableToDoContinue(origin: String) = Action(parse.form(formMappings.ableToDoForm)) { implicit request =>
-    auditService.feedbackSurveyAbleToDoAudit(origin, request.body.ableToDoWhatNeeded)
-    ptaRedirect(origin)
-  }
-
-  def usingServiceContinue(origin: String) = Action(parse.form(formMappings.usingServiceForm)) { implicit request =>
-    auditService.feedbackSurveyUsingServiceAudit(origin, request.body.beforeUsingThisService)
-    ptaRedirect(origin)
-  }
-
-  def aboutServiceContinue(origin: String) = Action(parse.form(formMappings.aboutServiceForm)) { implicit request =>
-    auditService.feedbackSurveyAboutServiceAudit(origin, request.body.serviceReceived)
-    ptaRedirect(origin)
-  }
-
-  def recommendServiceContinue(origin: String) = Action(parse.form(formMappings.recommendServiceForm)) {
-    implicit request =>
-      auditService
-        .feedbackSurveyRecommendServiceAudit(origin, request.body.reasonForRating, request.body.recommendRating)
-      originService.customFeedbackUrl(origin) match {
-        case Some(x) => Redirect(x)
-        case None    => ptaRedirect(origin)
-      }
+    Redirect(routes.OtherQuestionsController.onPageLoad(Origin.fromString("feedback")))
   }
 
   def ptaRedirect(origin: String) = {

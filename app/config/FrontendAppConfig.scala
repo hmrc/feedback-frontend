@@ -20,26 +20,19 @@ import com.google.inject.{Inject, Singleton}
 import controllers.routes
 import play.api.i18n.Lang
 import play.api.{ConfigLoader, Configuration}
-import services.OriginConfigItem
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
-import scala.collection.JavaConversions._
 
 @Singleton
-class FrontendAppConfig @Inject()(val config: Configuration, servicesConfig: ServicesConfig) {
+class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servicesConfig: ServicesConfig) {
 
   private def getOptional[A](key: String)(implicit loader: ConfigLoader[A]): Option[A] =
-    config.getOptional[A](key)
+    runModeConfiguration.getOptional[A](key)
 
   private def loadConfig(key: String) =
     getOptional[String](key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
 
   private lazy val contactHost = getOptional[String]("contact-frontend.host").getOrElse("")
   private val contactFormServiceIdentifier = "feedbackfrontend"
-
-  lazy val originConfigItems: List[OriginConfigItem] =
-    config.getConfigList("origin-services").map(_.toList).getOrElse(Nil).map { configItem =>
-      OriginConfigItem(configItem.getString("token"), configItem.getString("customFeedbackUrl"))
-    }
 
   lazy val analyticsToken = loadConfig(s"google-analytics.token")
   lazy val analyticsHost = loadConfig(s"google-analytics.host")
