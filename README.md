@@ -29,7 +29,7 @@ Personal tax accounts
 http://localhost:9514/feedback/SERVICE_NAME/personal
 ```
 
-Replace `SERVICE_NAME` with the identifier for your service, 
+Replace `SERVICE_NAME` with the identifier for your service.
 
 #### Service manager
 
