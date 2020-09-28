@@ -35,6 +35,14 @@ GET        /:origin/thank-you                           controllers.ThankYouCont
 GET        /thank-you                                   controllers.ThankYouController.onPageLoad()
 GET        /thank-you-pension                           controllers.ThankYouController.onPageLoadPension()
 
+# These are the routes mapping for feedback-survey
+GET         /                                 controllers.FeedbackSurveyController.feedbackHomePageRedirect
+GET        /ableToDo/:origin                  controllers.FeedbackSurveyController.feedbackRedirect(origin: String)
+GET        /usingService/:origin              controllers.FeedbackSurveyController.feedbackRedirect(origin: String)
+GET        /aboutService/:origin              controllers.FeedbackSurveyController.feedbackRedirect(origin: String)
+GET        /recommendService/:origin          controllers.FeedbackSurveyController.feedbackRedirect(origin: String)
+GET        /thankYou                          controllers.FeedbackSurveyController.feedbackHomePageRedirect
+
 # These routes must come last as they will match any /feedback/xxx route
 GET        /:origin                                     controllers.OtherQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin                                     controllers.OtherQuestionsController.onSubmit(origin: models.Origin)

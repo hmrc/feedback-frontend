@@ -18,8 +18,8 @@ package config
 
 import com.google.inject.{Inject, Singleton}
 import controllers.routes
-import play.api.{ConfigLoader, Configuration}
 import play.api.i18n.Lang
+import play.api.{ConfigLoader, Configuration}
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
