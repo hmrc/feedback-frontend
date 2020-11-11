@@ -135,3 +135,12 @@ class EOTHOQuestionsFormProvider @Inject() extends Mappings {
         "businessFuturePlans"                -> optional(enumerable[BusinessFuturePlansQuestion]())
       )(EOTHOQuestions.apply)(EOTHOQuestions.unapply))
 }
+
+class CCGQuestionsFormProvider @Inject() extends Mappings {
+
+  def apply(): Form[CCGQuestions] =
+    Form(
+      mapping(
+        "complianceCheckUnderstanding" -> text("mainServiceOther.error.required")
+      )(CCGQuestions.apply)(CCGQuestions.unapply))
+}

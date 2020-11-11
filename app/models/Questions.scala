@@ -99,6 +99,12 @@ object EOTHOQuestions {
   implicit val formats: Format[EOTHOQuestions] = Json.format[EOTHOQuestions]
 }
 
+case class CCGQuestions(complianceCheckUnderstanding: String)
+
+object CCGOQuestions {
+  implicit val formats: Format[CCGQuestions] = Json.format[CCGQuestions]
+}
+
 case class GiveReasonQuestions(value: Option[GiveReason], reason: Option[String])
 
 object GiveReasonQuestions {
