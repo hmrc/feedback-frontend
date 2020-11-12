@@ -42,16 +42,13 @@ bodyClasses = None) {
 
 <p>@messages("ccgQuestions.intro3")</p>
 
-@components.input_radio_dynamicField(
+@components.input_radio(
 
  field = form("complianceCheckUnderstanding"),
  legend = messages("ccgQuestions.complianceCheckUnderstanding.heading"),
  legendClass = Some("heading-medium"),
  inputs = ComplianceCheckUnderstandingQuestion.options,
- dynamicField = form("complianceCheckUnderstandingOther"),
- dynamicFieldLabel = "ccgQuestions.complianceCheckUnderstanding.heading",
- dynamicFieldLength = 100
-  )
 
+  )
  }
 }
