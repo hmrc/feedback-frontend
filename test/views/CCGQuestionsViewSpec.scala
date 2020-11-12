@@ -46,11 +46,6 @@ class CCGQuestionsViewSpec
       ComplianceCheckUnderstandingQuestion.options,
       "ccgQuestions.complianceCheckUnderstanding")
 
-    behave like stringPage(
-      createViewUsingForm,
-      "complianceCheckUnderstandingOther",
-      "ccgQuestions.complianceCheckUnderstanding")
-
     "contain second introductory paragraph" in {
       val expectedMessage = messages("ccgQuestions.intro2", messages("ccgQuestions.introLinkText"))
       val doc = asDocument(createView())
