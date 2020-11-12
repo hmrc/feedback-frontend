@@ -179,6 +179,13 @@ ccgQuestions.heading = Feedback
 ccgQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
 ccgQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
 ccgQuestions.intro3 = The survey takes about 1 minute to complete. There are 4 questions and they are all optional.
+ccgQuestions.complianceCheckUnderstanding.heading = During the compliance check, how easy was it for you to understand what was happening?
+
+complianceCheckUnderstandingQuestion.VeryEasy = Very Easy
+complianceCheckUnderstandingQuestion.Easy = Easy
+complianceCheckUnderstandingQuestion.NeitherEasyOrDifficult = Neither easy or difficult
+complianceCheckUnderstandingQuestion.Difficult = Difficult
+complianceCheckUnderstandingQuestion.VeryDifficult = Very difficult
 
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10

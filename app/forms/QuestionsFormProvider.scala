@@ -19,6 +19,7 @@ package forms
 import forms.mappings.Mappings
 import javax.inject.Inject
 import models._
+import models.ccg.ComplianceCheckUnderstandingQuestion
 import models.eotho._
 import play.api.data.Form
 import play.api.data.Forms._
@@ -141,6 +142,6 @@ class CCGQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[CCGQuestions] =
     Form(
       mapping(
-        "complianceCheckUnderstanding" -> text("mainServiceOther.error.required")
+        "complianceCheckUnderstanding" -> optional(enumerable[ComplianceCheckUnderstandingQuestion]()),
       )(CCGQuestions.apply)(CCGQuestions.unapply))
 }

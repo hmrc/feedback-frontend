@@ -16,7 +16,7 @@
 
 @import config.FrontendAppConfig
 @import uk.gov.hmrc.play.views.html._
-@import models.eotho._
+@import models.ccg._
 @import views.ViewUtils._
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
@@ -41,5 +41,17 @@ bodyClasses = None) {
 <p>@Html(messages("ccgQuestions.intro2", privacyPolicyLink))</p>
 
 <p>@messages("ccgQuestions.intro3")</p>
-}}
 
+@components.input_radio_dynamicField(
+
+ field = form("complianceCheckUnderstanding"),
+ legend = messages("ccgQuestions.complianceCheckUnderstanding.heading"),
+ legendClass = Some("heading-medium"),
+ inputs = ComplianceCheckUnderstandingQuestion.options,
+ dynamicField = form("complianceCheckUnderstandingOther"),
+ dynamicFieldLabel = "ccgQuestions.complianceCheckUnderstanding.heading",
+ dynamicFieldLength = 100
+  )
+
+ }
+}
