@@ -19,8 +19,8 @@ POST       /:origin/personal                            controllers.PTAQuestions
 GET        /:origin/business                            controllers.BTAQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/business                            controllers.BTAQuestionsController.onSubmit(origin: models.Origin)
 
-GET        /:origin/ccg                                 controllers.CCGQuestionsController.onPageLoad(origin: models.Origin)
-POST       /:origin/ccg                                 controllers.CCGQuestionsController.onSubmit(origin: models.Origin)
+GET        /ccg                                         controllers.CCGQuestionsController.onPageLoad()
+POST       /ccg                                         controllers.CCGQuestionsController.onSubmit()
 
 GET        /:origin/pension                             controllers.PensionQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/pension                             controllers.PensionQuestionsController.onSubmit(origin: models.Origin)

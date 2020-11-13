@@ -18,14 +18,9 @@ package controllers
 
 import controllers.actions.DataRetrievalAction
 import forms.CCGQuestionsFormProvider
-import models.{CCGQuestions, EOTHOQuestions, FeedbackId, Origin}
-import org.scalatest.concurrent.ScalaFutures
 import views.html.ccgQuestions
 import generators.ModelGenerators
 import navigation.FakeNavigator
-import org.mockito.Matchers.{eq => eqTo, _}
-import org.mockito.Mockito._
-import org.scalacheck.Arbitrary._
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
@@ -42,7 +37,7 @@ class CCGQuestionsControllerSpec
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
+  def submitCall() = routes.CCGQuestionsController.onSubmit()
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new CCGQuestionsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
@@ -53,22 +48,17 @@ class CCGQuestionsControllerSpec
   "CCGQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[Origin]) { origin =>
-        val result = controller().onPageLoad(origin)(fakeRequest)
+      val result = controller().onPageLoad()(fakeRequest)
 
-        status(result) mustBe OK
-        contentAsString(result) mustBe viewAsString(action = submitCall(origin))
-      }
+      status(result) mustBe OK
+      contentAsString(result) mustBe viewAsString(action = submitCall())
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
-        val result = controller().onSubmit(origin)(fakeRequest)
+      val result = controller().onSubmit()(fakeRequest)
 
-        status(result) mustBe SEE_OTHER
-        redirectLocation(result) mustBe Some(onwardRoute.url)
-
-      }
+      status(result) mustBe SEE_OTHER
+      redirectLocation(result) mustBe Some(onwardRoute.url)
     }
   }
 }
