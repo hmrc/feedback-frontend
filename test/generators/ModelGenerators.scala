@@ -58,6 +58,9 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryCcgQuesions: Arbitrary[CCGQuestions] = Arbitrary(ccgQuestionsGen)
 
+  implicit lazy val arbitraryComplianceCheckUnderstandingQuestionSpec: Arbitrary[ComplianceCheckUnderstandingQuestion] =
+    Arbitrary(complianceCheckUnderstandingGen)
+
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
       value  <- option(arbitrary[GiveReason])

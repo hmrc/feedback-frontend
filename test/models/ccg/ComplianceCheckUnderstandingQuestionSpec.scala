@@ -16,24 +16,23 @@
 
 package models.ccg
 
+import generators.ModelGenerators
+import org.scalacheck.Arbitrary.arbitrary
 import org.scalatest.{MustMatchers, OptionValues, WordSpec}
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
-import generators.ModelGenerators
-import models.ccg.ComplianceCheckUnderstandingQuestion
-import org.scalacheck.Arbitrary.arbitrary
-import org.scalacheck.Gen
 import play.api.libs.json.{JsError, JsString, Json}
-import models.CCGQuestions._
 
 class ComplianceCheckUnderstandingQuestionSpec
     extends WordSpec with MustMatchers with ScalaCheckPropertyChecks with OptionValues with ModelGenerators {
 
-  "AffectedJobsQuestion" must {
+  val gen = arbitrary[ComplianceCheckUnderstandingQuestion]
+
+  "ComplianceCheckUnderstandingQuestion" must {
 
     "deserialise valid values" in {
 
-      forAll(ccgQuestionsGen) { whatRegion =>
-        JsString(whatRegion.toString).validate[ComplianceCheckUnderstandingQuestion].asOpt.value mustEqual whatRegion
+      forAll(gen) { value =>
+        JsString(value.toString).validate[ComplianceCheckUnderstandingQuestion].asOpt.value mustEqual value
       }
     }
 
@@ -42,14 +41,15 @@ class ComplianceCheckUnderstandingQuestionSpec
       val gen = arbitrary[String] suchThat (!ComplianceCheckUnderstandingQuestion.values.map(_.toString).contains(_))
 
       forAll(gen) { invalidValue =>
-        JsString(invalidValue).validate[ComplianceCheckUnderstandingQuestion] mustEqual JsError("error.invalid")
+        JsString(invalidValue).validate[ComplianceCheckUnderstandingQuestion] mustEqual JsError(
+          "Unknown ComplianceCheckUnderstandingQuestion")
       }
     }
 
     "serialise" in {
 
-      forAll(ccgQuestionsGen) { whatRegion =>
-        Json.toJson(whatRegion) mustEqual JsString(whatRegion.toString)
+      forAll(gen) { value =>
+        Json.toJson(value) mustEqual JsString(value.toString)
       }
     }
   }
