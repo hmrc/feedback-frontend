@@ -17,6 +17,7 @@
 package generators
 
 import models._
+import models.ccg.ComplianceCheckUnderstandingQuestion
 import models.eotho._
 import org.scalacheck.Arbitrary._
 import org.scalacheck.Gen._
@@ -54,6 +55,8 @@ trait ModelGenerators {
   implicit lazy val arbitraryPensionQuestions: Arbitrary[PensionQuestions] = Arbitrary(pensionQuestionsGen)
 
   implicit lazy val arbitraryEothoQuesions: Arbitrary[EOTHOQuestions] = Arbitrary(eothoQuestionsGen)
+
+  implicit lazy val arbitraryCcgQuesions: Arbitrary[CCGQuestions] = Arbitrary(ccgQuestionsGen)
 
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
@@ -151,6 +154,17 @@ trait ModelGenerators {
         businessFuturePlans
       )
     }
+
+  lazy val ccgQuestionsGen: Gen[CCGQuestions] =
+    for {
+      complianceCheckUnderstanding <- option(complianceCheckUnderstandingGen)
+    } yield
+      CCGQuestions(
+        complianceCheckUnderstanding
+      )
+
+  lazy val complianceCheckUnderstandingGen: Gen[ComplianceCheckUnderstandingQuestion] =
+    oneOf(ComplianceCheckUnderstandingQuestion.values)
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
     oneOf(HowEasyQuestion.values)
