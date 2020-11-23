@@ -44,11 +44,21 @@ bodyClasses = None) {
 
 @components.input_radio(
 
+field = form("treatedProfessionally"),
+legend = messages("ccgQuestions.treatedProfessionally.heading"),
+legendClass = Some("heading-medium"),
+hint = Some(messages("ccgQuestions.treatedProfessionally.subHeading")),
+hintClass = Some("ccg-hint"),
+inputs = TreatedProfessionallyQuestion.options,
+)
+
+@components.input_radio(
+
  field = form("complianceCheckUnderstanding"),
  legend = messages("ccgQuestions.complianceCheckUnderstanding.heading"),
  legendClass = Some("heading-medium"),
  inputs = ComplianceCheckUnderstandingQuestion.options,
-
   )
+
  }
 }

@@ -16,7 +16,7 @@
 
 package models
 
-import models.ccg.ComplianceCheckUnderstandingQuestion
+import models.ccg._
 import models.eotho._
 import play.api.libs.json.{Format, Json}
 
@@ -100,7 +100,9 @@ object EOTHOQuestions {
   implicit val formats: Format[EOTHOQuestions] = Json.format[EOTHOQuestions]
 }
 
-case class CCGQuestions(complianceCheckUnderstanding: Option[ComplianceCheckUnderstandingQuestion])
+case class CCGQuestions(
+  complianceCheckUnderstanding: Option[ComplianceCheckUnderstandingQuestion],
+  treatedProfessionally: Option[TreatedProfessionallyQuestion])
 
 object CCGQuestions {
   implicit val formats: Format[CCGQuestions] = Json.format[CCGQuestions]

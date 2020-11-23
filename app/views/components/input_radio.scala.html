@@ -21,6 +21,7 @@
   legend: String,
   legendClass: Option[String] = None,
   hint: Option[String] = None,
+  hintClass: Option[String] = None,
   trackGa: Boolean = false,
   inputs: Seq[RadioOption],
   inputClass: Option[String] = None,
@@ -32,13 +33,14 @@
 
     <legend>
       <span class="bold-small @if(legendClass.nonEmpty){@{legendClass.get}}">@legend</span>
+    </legend>
+
       @if(hint.nonEmpty){
-        <span class="form-hint">@{hint.get}</span>
+        <span class="form-hint @if(hintClass.nonEmpty){@{hintClass.get}}">@{hint.get}</span>
       }
       @field.errors.map { error =>
         <span class="error-message" id="error-message-@{field.id}-input">@messages(error.message, error.args: _*)</span>
       }
-    </legend>
 
     @for(input <- inputs) {
       <div class="multiple-choice">
