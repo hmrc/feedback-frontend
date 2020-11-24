@@ -17,7 +17,7 @@
 package generators
 
 import models._
-import models.ccg.ComplianceCheckUnderstandingQuestion
+import models.ccg._
 import models.eotho._
 import org.scalacheck.Arbitrary._
 import org.scalacheck.Gen._
@@ -57,9 +57,6 @@ trait ModelGenerators {
   implicit lazy val arbitraryEothoQuesions: Arbitrary[EOTHOQuestions] = Arbitrary(eothoQuestionsGen)
 
   implicit lazy val arbitraryCcgQuesions: Arbitrary[CCGQuestions] = Arbitrary(ccgQuestionsGen)
-
-  implicit lazy val arbitraryComplianceCheckUnderstandingQuestionSpec: Arbitrary[ComplianceCheckUnderstandingQuestion] =
-    Arbitrary(complianceCheckUnderstandingGen)
 
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
@@ -161,13 +158,18 @@ trait ModelGenerators {
   lazy val ccgQuestionsGen: Gen[CCGQuestions] =
     for {
       complianceCheckUnderstanding <- option(complianceCheckUnderstandingGen)
+      treatedProfessionally        <- option(treatedProfessionallyGen)
     } yield
       CCGQuestions(
-        complianceCheckUnderstanding
+        complianceCheckUnderstanding,
+        treatedProfessionally
       )
 
   lazy val complianceCheckUnderstandingGen: Gen[ComplianceCheckUnderstandingQuestion] =
     oneOf(ComplianceCheckUnderstandingQuestion.values)
+
+  lazy val treatedProfessionallyGen: Gen[TreatedProfessionallyQuestion] =
+    oneOf(TreatedProfessionallyQuestion.values)
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
     oneOf(HowEasyQuestion.values)
@@ -237,4 +239,12 @@ trait ModelGenerators {
 
   implicit lazy val listOfarbitraryWhichRegionQuestion: Arbitrary[List[WhichRegionQuestion]] =
     Arbitrary(Gen.listOf(whichRegionQuestionGen))
+
+  //ccg
+
+  implicit lazy val arbitraryComplianceCheckUnderstandingQuestionSpec: Arbitrary[ComplianceCheckUnderstandingQuestion] =
+    Arbitrary(complianceCheckUnderstandingGen)
+
+  implicit lazy val treatedProfessionallyQuestionSpec: Arbitrary[TreatedProfessionallyQuestion] =
+    Arbitrary(treatedProfessionallyGen)
 }
