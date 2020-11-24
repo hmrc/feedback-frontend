@@ -18,7 +18,7 @@ package forms
 
 import forms.behaviours._
 import models.CCGQuestions
-import models.ccg.ComplianceCheckUnderstandingQuestion
+import models.ccg._
 import play.api.data.FormError
 
 class CCGQuestionsFormProviderSpec
@@ -36,6 +36,20 @@ class CCGQuestionsFormProviderSpec
       ComplianceCheckUnderstandingQuestion.values,
       FormError(fieldName, invalidError),
       _.complianceCheckUnderstanding
+    )
+  }
+
+  ".treatedProfessionally" must {
+
+    val fieldName = "treatedProfessionally"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[CCGQuestions, TreatedProfessionallyQuestion](
+      form,
+      fieldName,
+      TreatedProfessionallyQuestion.values,
+      FormError(fieldName, invalidError),
+      _.treatedProfessionally
     )
   }
 }
