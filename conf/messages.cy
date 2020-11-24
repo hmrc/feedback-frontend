@@ -184,6 +184,28 @@ eothoQuestions.protectHospitalityIndustry.heading = A ydych o’r farn bod y cyn
 eothoQuestions.encourageReopenSooner.heading = A wnaeth y cynllun eich annog i ailagor yn gynt, neu i ailagor am fwy o ddiwrnodau’r wythnos, nag oeddech wedi’i fwriadu?
 eothoQuestions.encourageReturnToRestaurantsSooner.heading = A ydych o’r farn bod y cynllun wedi annog pobl i ddychwelyd i fwytai yn gynt nag y byddent wedi fel arall?
 
+ccgQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
+ccgQuestions.title = Rhoi adborth - GOV.UK
+ccgQuestions.heading = Adborth
+ccgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.age.
+ccgQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+ccgQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 13 cwestiwn ac maent i gyd yn ddewisol.
+
+ccgQuestions.treatedProfessionally.heading = I ba raddau rydych yn cytuno neu’n anghytuno â’r datganiad canlynol?
+ccgQuestions.treatedProfessionally.subHeading = Gwnaeth CThEM fy nhrin yn broffesiynol yn ystod y gwiriad cydymffurfio.
+treatedProfessionallyQuestion.StronglyAgree = Cytuno’n gryf
+treatedProfessionallyQuestion.Agree = Cytuno
+treatedProfessionallyQuestion.NeitherAgreeNorDisagree = Ddim yn cytuno nac yn anghytuno
+treatedProfessionallyQuestion.Disagree = Anghytuno
+treatedProfessionallyQuestion.StronglyDisagree = StronglyDisagree
+
+ccgQuestions.complianceCheckUnderstanding.heading = Yn ystod y gwiriad cydymffurfio, pa mor hawdd oedd hi i chi ddeall beth oedd yn digwydd?
+complianceCheckUnderstandingQuestion.VeryEasy = Hawdd iawn
+complianceCheckUnderstandingQuestion.Easy = Hawdd
+complianceCheckUnderstandingQuestion.NeitherEasyOrDifficult = Ddim yn hawdd nac yn anodd
+complianceCheckUnderstandingQuestion.Difficult = Anodd
+complianceCheckUnderstandingQuestion.VeryDifficult = Anodd iawn
+
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 i 10
 numberOfEstablishmentsQuestion.TenOrMoreEstablishments = 10 neu fwy
