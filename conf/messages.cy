@@ -47,6 +47,7 @@ unauthorised.heading = You can’t access this service with this account
 
 generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
 whyGiveScore.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
+whyGiveAnswer.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
 neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?’ fod yn {0} o gymeriadau neu’n llai
 fullName.error.maxlength = Mae’n rhaid i’r enw llawn fod yn {0} o gymeriadau neu lai
 email.error.maxlength = Mae’n rhaid i’r e-bost fod yn {0} o gymeriadau neu lai
@@ -205,6 +206,9 @@ complianceCheckUnderstandingQuestion.Easy = Hawdd
 complianceCheckUnderstandingQuestion.NeitherEasyOrDifficult = Ddim yn hawdd nac yn anodd
 complianceCheckUnderstandingQuestion.Difficult = Anodd
 complianceCheckUnderstandingQuestion.VeryDifficult = Anodd iawn
+
+ccgQuestions.whyGiveAnswer.heading = Pam gwnaethoch chi roi’r ateb hwn?
+ccgQuestions.whyGiveAnswer.hint = Dylech ystyried pob rhan o’r gwiriadau cydymffurfio. Peidiwch â rhoi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, cyfeirnod treth neu fanylion banc.
 
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 i 10
