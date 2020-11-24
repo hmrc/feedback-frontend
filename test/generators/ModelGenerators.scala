@@ -159,10 +159,13 @@ trait ModelGenerators {
     for {
       complianceCheckUnderstanding <- option(complianceCheckUnderstandingGen)
       treatedProfessionally        <- option(treatedProfessionallyGen)
+      whyAnswer                    <- option(arbitrary[String].suchThat(_.nonEmpty))
+
     } yield
       CCGQuestions(
         complianceCheckUnderstanding,
-        treatedProfessionally
+        treatedProfessionally,
+        whyAnswer
       )
 
   lazy val complianceCheckUnderstandingGen: Gen[ComplianceCheckUnderstandingQuestion] =
