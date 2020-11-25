@@ -160,12 +160,14 @@ trait ModelGenerators {
       complianceCheckUnderstanding <- option(complianceCheckUnderstandingGen)
       treatedProfessionally        <- option(treatedProfessionallyGen)
       whyAnswer                    <- option(arbitrary[String].suchThat(_.nonEmpty))
+      supportFutureTax             <- option(supportFutureTaxGen)
 
     } yield
       CCGQuestions(
         complianceCheckUnderstanding,
         treatedProfessionally,
-        whyAnswer
+        whyAnswer,
+        supportFutureTax
       )
 
   lazy val complianceCheckUnderstandingGen: Gen[ComplianceCheckUnderstandingQuestion] =
@@ -173,6 +175,9 @@ trait ModelGenerators {
 
   lazy val treatedProfessionallyGen: Gen[TreatedProfessionallyQuestion] =
     oneOf(TreatedProfessionallyQuestion.values)
+
+  lazy val supportFutureTaxGen: Gen[SupportFutureTaxQuestion] =
+    oneOf(SupportFutureTaxQuestion.values)
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
     oneOf(HowEasyQuestion.values)
@@ -250,4 +255,7 @@ trait ModelGenerators {
 
   implicit lazy val treatedProfessionallyQuestionSpec: Arbitrary[TreatedProfessionallyQuestion] =
     Arbitrary(treatedProfessionallyGen)
+
+  implicit lazy val supportFutureTaxQuestionSpec: Arbitrary[SupportFutureTaxQuestion] =
+    Arbitrary(supportFutureTaxGen)
 }
