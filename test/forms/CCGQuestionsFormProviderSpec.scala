@@ -67,4 +67,19 @@ class CCGQuestionsFormProviderSpec
     )
 
   }
+
+  ".supportFutureTax" must {
+
+    val fieldName = "supportFutureTax"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[CCGQuestions, SupportFutureTaxQuestion](
+      form,
+      fieldName,
+      SupportFutureTaxQuestion.values,
+      FormError(fieldName, invalidError),
+      _.supportFutureTaxQuestion
+    )
+  }
+
 }
