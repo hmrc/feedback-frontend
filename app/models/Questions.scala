@@ -103,7 +103,8 @@ object EOTHOQuestions {
 case class CCGQuestions(
   complianceCheckUnderstanding: Option[ComplianceCheckUnderstandingQuestion],
   treatedProfessionally: Option[TreatedProfessionallyQuestion],
-  whyGiveAnswer: Option[String]
+  whyGiveAnswer: Option[String],
+  supportFutureTaxQuestion: Option[SupportFutureTaxQuestion]
 )
 
 object CCGQuestions {

@@ -210,6 +210,13 @@ complianceCheckUnderstandingQuestion.VeryDifficult = Anodd iawn
 ccgQuestions.whyGiveAnswer.heading = Pam gwnaethoch chi roi’r ateb hwn?
 ccgQuestions.whyGiveAnswer.hint = Dylech ystyried pob rhan o’r gwiriadau cydymffurfio. Peidiwch â rhoi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, cyfeirnod treth neu fanylion banc.
 
+ccgQuestions.supportFutureTax.heading = Pa mor hyderus ydych chi y bydd eich rhyngweithio â CThEM yn ystod y gwiriad cydymffurfio hwn yn eich cynorthwyo wrth i chi fodloni’ch ymrwymiadau treth yn y dyfodol?
+supportFutureTaxQuestion.VeryConfident = Hyderus iawn
+supportFutureTaxQuestion.FairlyConfident = Yn eithaf hyderus
+supportFutureTaxQuestion.Neutral = Niwtral
+supportFutureTaxQuestion.NotVeryConfident = Ddim yn hyderus iawn
+supportFutureTaxQuestion.NotAtAllConfident = Ddim yn hyderus o gwbl
+
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 i 10
 numberOfEstablishmentsQuestion.TenOrMoreEstablishments = 10 neu fwy

@@ -43,17 +43,15 @@ bodyClasses = None) {
 <p>@messages("ccgQuestions.intro3")</p>
 
 @components.input_radio(
-
-field = form("treatedProfessionally"),
-legend = messages("ccgQuestions.treatedProfessionally.heading"),
-legendClass = Some("heading-medium"),
-hint = Some(messages("ccgQuestions.treatedProfessionally.subHeading")),
-hintClass = Some("ccg-hint"),
-inputs = TreatedProfessionallyQuestion.options,
+ field = form("treatedProfessionally"),
+ legend = messages("ccgQuestions.treatedProfessionally.heading"),
+ legendClass = Some("heading-medium"),
+ hint = Some(messages("ccgQuestions.treatedProfessionally.subHeading")),
+ hintClass = Some("ccg-hint"),
+ inputs = TreatedProfessionallyQuestion.options,
 )
 
 @components.input_radio(
-
  field = form("complianceCheckUnderstanding"),
  legend = messages("ccgQuestions.complianceCheckUnderstanding.heading"),
  legendClass = Some("heading-medium"),
@@ -66,6 +64,13 @@ inputs = TreatedProfessionallyQuestion.options,
  hint = Some(messages("ccgQuestions.whyGiveAnswer.hint")),
  labelClass = Some("heading-medium"),
  maximum = Some(1000)
+)
+
+@components.input_radio(
+ field = form("supportFutureTax"),
+ legend = messages("ccgQuestions.supportFutureTax.heading"),
+ legendClass = Some("heading-medium"),
+ inputs = SupportFutureTaxQuestion.options,
 )
 
  }

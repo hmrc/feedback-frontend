@@ -199,6 +199,13 @@ complianceCheckUnderstandingQuestion.VeryDifficult = Very difficult
 ccgQuestions.whyGiveAnswer.heading = Why did you give this answer?
 ccgQuestions.whyGiveAnswer.hint = Please consider all parts of the compliance check. Do not give any personal information like your National Insurance number, tax reference number or bank details.
 
+ccgQuestions.supportFutureTax.heading = How confident are you that your interactions with HMRC during this compliance check will support you in meeting your future tax obligations?
+supportFutureTaxQuestion.VeryConfident = Very confident
+supportFutureTaxQuestion.FairlyConfident = Fairly confident
+supportFutureTaxQuestion.Neutral = Neutral
+supportFutureTaxQuestion.NotVeryConfident = Not very confident
+supportFutureTaxQuestion.NotAtAllConfident= Not at all confident
+
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10
 numberOfEstablishmentsQuestion.TenOrMoreEstablishments = 10 or more
@@ -264,7 +271,6 @@ thankYou.pension.sideBar.linkTwo = Planning your retirement income
 thankYou.pension.sideBar.linkThree = Defer your State Pension
 thankYou.pension.sideBar.linkFour = Contact the Pension Service
 thankYou.pension.sideBar.linkFive = More on State Pensions
-
 
 giveReason.title = Give feedback
 giveReason.heading = What did you come to do?
