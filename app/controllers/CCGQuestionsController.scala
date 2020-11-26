@@ -28,6 +28,7 @@ import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 import views.html.ccgQuestions
+import models.{CCGQuestions, FeedbackId, Origin}
 
 class CCGQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
@@ -50,9 +51,13 @@ class CCGQuestionsController @Inject()(
       .fold(
         formWithErrors => BadRequest(ccgQuestions(appConfig, formWithErrors, submitCall())),
         value => {
+          auditService.ccgAudit(FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)())
         }
       )
   }
+}
 
+object CCGQuestionsController {
+  val origin: Origin = Origin.fromString("CCG")
 }

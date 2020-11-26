@@ -16,9 +16,10 @@
 
 package services
 
-import controllers.EOTHOQuestionsController
+import controllers.{CCGQuestionsController, EOTHOQuestionsController}
 import generators.ModelGenerators
 import models._
+import models.ccg.CCGAuditEvent
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalatest.BeforeAndAfter
@@ -168,6 +169,23 @@ class AuditServiceSpec
 
       verify(auditConnector, times(1))
         .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any(), any())
+    }
+  }
+
+  "AuditService.ccgAudit" should {
+
+    "generate correct payload for ccg questions" in {
+
+      forAll(arbitrary[FeedbackId], arbitrary[CCGQuestions]) { (feedbackId, questions) =>
+        reset(auditConnector)
+
+        auditService.ccgAudit(feedbackId, questions)
+
+        val expected = CCGAuditEvent(CCGQuestionsController.origin.value, feedbackId.value, questions)
+
+        verify(auditConnector, times(1))
+          .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any(), any())
+      }
     }
   }
 }

@@ -16,9 +16,10 @@
 
 package services
 
-import controllers.EOTHOQuestionsController
+import controllers.{CCGQuestionsController, EOTHOQuestionsController}
 import javax.inject.Inject
 import models._
+import models.ccg.CCGAuditEvent
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import utils.FeedbackFrontendHelper._
@@ -168,6 +169,11 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
   def eothoAudit(feedbackId: FeedbackId, questions: EOTHOQuestions)(implicit hc: HeaderCarrier): Unit = {
     val detail = EothoAuditEvent(EOTHOQuestionsController.origin.value, feedbackId.value, questions)
+    auditConnector.sendExplicitAudit(auditType, detail)
+  }
+
+  def ccgAudit(feedbackId: FeedbackId, questions: CCGQuestions)(implicit hc: HeaderCarrier): Unit = {
+    val detail = CCGAuditEvent(CCGQuestionsController.origin.value, feedbackId.value, questions)
     auditConnector.sendExplicitAudit(auditType, detail)
   }
 }
