@@ -18,7 +18,7 @@ package views
 
 import forms.CCGQuestionsFormProvider
 import models.CCGQuestions
-import models.ccg.ComplianceCheckUnderstandingQuestion
+import models.ccg.{ComplianceCheckUnderstandingQuestion, SupportFutureTaxQuestion, TreatedProfessionallyQuestion}
 import play.api.data.Form
 import views.behaviours._
 import views.html.ccgQuestions
@@ -42,9 +42,23 @@ class CCGQuestionsViewSpec
 
     behave like optionsPage(
       createViewUsingForm,
+      "treatedProfessionally",
+      TreatedProfessionallyQuestion.options,
+      "ccgQuestions.treatedProfessionally")
+
+    behave like optionsPage(
+      createViewUsingForm,
       "complianceCheckUnderstanding",
       ComplianceCheckUnderstandingQuestion.options,
       "ccgQuestions.complianceCheckUnderstanding")
+
+    behave like stringPage(createViewUsingForm, "whyGiveAnswer", "ccgQuestions.whyGiveAnswer")
+
+    behave like optionsPage(
+      createViewUsingForm,
+      "supportFutureTax",
+      SupportFutureTaxQuestion.options,
+      "ccgQuestions.supportFutureTax")
 
     "contain second introductory paragraph" in {
       val expectedMessage = messages("ccgQuestions.intro2", messages("ccgQuestions.introLinkText"))
