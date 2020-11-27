@@ -16,17 +16,21 @@
 
 package controllers
 
-import controllers.actions.DataRetrievalAction
 import forms.CCGQuestionsFormProvider
 import views.html.ccgQuestions
 import generators.ModelGenerators
+import models.{CCGQuestions, FeedbackId, Origin}
 import navigation.FakeNavigator
+import org.mockito.Matchers.any
+import org.mockito.Mockito.{reset, times, verify}
+import org.scalacheck.Arbitrary.arbitrary
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
+import org.mockito.Matchers.{eq => eqTo, _}
 
 class CCGQuestionsControllerSpec
     extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
@@ -59,6 +63,34 @@ class CCGQuestionsControllerSpec
 
       status(result) mustBe SEE_OTHER
       redirectLocation(result) mustBe Some(onwardRoute.url)
+    }
+
+    "audit response on success" in {
+      forAll(arbitrary[FeedbackId], arbitrary[CCGQuestions]) { (feedbackId, answers) =>
+        reset(mockAuditService)
+
+        val values = form.mapping.unbind(answers)
+
+        val request = fakeRequest.withFormUrlEncodedBody(values.toSeq: _*)
+
+        controller().onSubmit(request.withSession(("feedbackId", feedbackId.value)))
+
+        verify(mockAuditService, times(1))
+          .ccgAudit(eqTo(feedbackId), eqTo(answers))(any())
+      }
+    }
+
+    "return a Bad Request and errors when invalid data is submitted" in {
+      forAll(arbitrary[Origin]) { origin =>
+        val invalidValue = "*" * 1001
+        val postRequest = fakeRequest.withFormUrlEncodedBody(("whyGiveAnswer", invalidValue))
+        val boundForm = form.bind(Map("whyGiveAnswer" -> invalidValue))
+
+        val result = controller().onSubmit()(postRequest)
+
+        status(result) mustBe BAD_REQUEST
+        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall())
+      }
     }
   }
 }

@@ -45,7 +45,7 @@ class CCGQuestionsController @Inject()(
     Ok(ccgQuestions(appConfig, form, submitCall()))
   }
 
-  def onSubmit() = Action { implicit request =>
+  def onSubmit = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
