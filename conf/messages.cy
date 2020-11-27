@@ -198,7 +198,7 @@ treatedProfessionallyQuestion.StronglyAgree = Cytuno’n gryf
 treatedProfessionallyQuestion.Agree = Cytuno
 treatedProfessionallyQuestion.NeitherAgreeNorDisagree = Ddim yn cytuno nac yn anghytuno
 treatedProfessionallyQuestion.Disagree = Anghytuno
-treatedProfessionallyQuestion.StronglyDisagree = StronglyDisagree
+treatedProfessionallyQuestion.StronglyDisagree = Anghytuno’n gryf
 
 ccgQuestions.complianceCheckUnderstanding.heading = Yn ystod y gwiriad cydymffurfio, pa mor hawdd oedd hi i chi ddeall beth oedd yn digwydd?
 complianceCheckUnderstandingQuestion.VeryEasy = Hawdd iawn
