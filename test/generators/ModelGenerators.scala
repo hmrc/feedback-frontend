@@ -248,8 +248,6 @@ trait ModelGenerators {
   implicit lazy val listOfarbitraryWhichRegionQuestion: Arbitrary[List[WhichRegionQuestion]] =
     Arbitrary(Gen.listOf(whichRegionQuestionGen))
 
-  //ccg
-
   implicit lazy val arbitraryComplianceCheckUnderstandingQuestionSpec: Arbitrary[ComplianceCheckUnderstandingQuestion] =
     Arbitrary(complianceCheckUnderstandingGen)
 

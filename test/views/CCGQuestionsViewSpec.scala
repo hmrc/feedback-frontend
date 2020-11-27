@@ -24,8 +24,7 @@ import views.behaviours._
 import views.html.ccgQuestions
 
 class CCGQuestionsViewSpec
-    extends YesNoViewBehaviours[CCGQuestions] with StringViewBehaviours[CCGQuestions]
-    with OptionsViewBehaviours[CCGQuestions] with CheckboxViewBehaviours[CCGQuestions] {
+    extends StringViewBehaviours[CCGQuestions] with OptionsViewBehaviours[CCGQuestions] {
 
   val messageKeyPrefix = "ccgQuestions"
 
