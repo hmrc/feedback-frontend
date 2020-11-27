@@ -39,7 +39,7 @@ class CCGQuestionsControllerSpec
 
   def submitCall() = routes.CCGQuestionsController.onSubmit()
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
+  def controller() =
     new CCGQuestionsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
 
   def viewAsString(form: Form[_] = form, action: Call) =
