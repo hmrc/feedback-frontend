@@ -23,8 +23,7 @@ import play.api.data.Form
 import views.behaviours._
 import views.html.ccgQuestions
 
-class CCGQuestionsViewSpec
-    extends StringViewBehaviours[CCGQuestions] with OptionsViewBehaviours[CCGQuestions] {
+class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with OptionsViewBehaviours[CCGQuestions] {
 
   val messageKeyPrefix = "ccgQuestions"
 

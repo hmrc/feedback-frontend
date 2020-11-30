@@ -41,7 +41,7 @@ class CCGQuestionsControllerSpec
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall() = routes.CCGQuestionsController.onSubmit()
+  def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
 
   def controller() =
     new CCGQuestionsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
@@ -52,31 +52,40 @@ class CCGQuestionsControllerSpec
   "CCGQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      val result = controller().onPageLoad()(fakeRequest)
+      forAll(arbitrary[Origin]) { origin =>
+        val result = controller().onPageLoad(origin)(fakeRequest)
 
-      status(result) mustBe OK
-      contentAsString(result) mustBe viewAsString(action = submitCall())
+        status(result) mustBe OK
+        contentAsString(result) mustBe viewAsString(action = submitCall(origin))
+      }
     }
 
     "redirect to the next page when valid data is submitted" in {
-      val result = controller().onSubmit()(fakeRequest)
+      forAll(arbitrary[Origin]) { origin =>
+        val result = controller().onSubmit(origin)(fakeRequest)
 
-      status(result) mustBe SEE_OTHER
-      redirectLocation(result) mustBe Some(onwardRoute.url)
+        status(result) mustBe SEE_OTHER
+        redirectLocation(result) mustBe Some(onwardRoute.url)
+      }
     }
 
     "audit response on success" in {
-      forAll(arbitrary[FeedbackId], arbitrary[CCGQuestions]) { (feedbackId, answers) =>
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[CCGQuestions]) { (origin, feedbackId, answers) =>
         reset(mockAuditService)
 
-        val values = form.mapping.unbind(answers)
+        val values = Map(
+          "complianceCheckUnderstanding" -> answers.complianceCheckUnderstanding.map(_.toString),
+          "treatedProfessionally"        -> answers.treatedProfessionally.map(_.toString),
+          "whyGiveAnswer"                -> answers.whyGiveAnswer,
+          "supportFutureTax"             -> answers.supportFutureTaxQuestion.map(_.toString)
+        )
 
-        val request = fakeRequest.withFormUrlEncodedBody(values.toSeq: _*)
-
-        controller().onSubmit(request.withSession(("feedbackId", feedbackId.value)))
+        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+        val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+        status(result) mustBe SEE_OTHER
 
         verify(mockAuditService, times(1))
-          .ccgAudit(eqTo(feedbackId), eqTo(answers))(any())
+          .ccgAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
       }
     }
 
@@ -86,10 +95,10 @@ class CCGQuestionsControllerSpec
         val postRequest = fakeRequest.withFormUrlEncodedBody(("whyGiveAnswer", invalidValue))
         val boundForm = form.bind(Map("whyGiveAnswer" -> invalidValue))
 
-        val result = controller().onSubmit()(postRequest)
+        val result = controller().onSubmit(origin)(postRequest)
 
         status(result) mustBe BAD_REQUEST
-        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall())
+        contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall(origin))
       }
     }
   }

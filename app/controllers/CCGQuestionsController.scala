@@ -39,25 +39,21 @@ class CCGQuestionsController @Inject()(
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[CCGQuestions] = formProvider()
-  def submitCall() = routes.CCGQuestionsController.onSubmit()
+  def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
 
-  def onPageLoad() = Action { implicit request =>
-    Ok(ccgQuestions(appConfig, form, submitCall()))
+  def onPageLoad(origin: Origin) = Action { implicit request =>
+    Ok(ccgQuestions(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit = Action { implicit request =>
+  def onSubmit(origin: Origin) = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
-        formWithErrors => BadRequest(ccgQuestions(appConfig, formWithErrors, submitCall())),
+        formWithErrors => BadRequest(ccgQuestions(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.ccgAudit(FeedbackId.fromSession, value)
-          Redirect(navigator.nextPage(GenericQuestionsPage)())
+          auditService.ccgAudit(origin, FeedbackId.fromSession, value)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }
-}
-
-object CCGQuestionsController {
-  val origin: Origin = Origin.fromString("CCG")
 }
