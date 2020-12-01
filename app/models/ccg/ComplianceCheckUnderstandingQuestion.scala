@@ -17,7 +17,6 @@
 package models.ccg
 
 import models.{Enumerable, WithName}
-import play.api.libs.json._
 import viewmodels.RadioOption
 
 sealed trait ComplianceCheckUnderstandingQuestion
@@ -40,20 +39,4 @@ object ComplianceCheckUnderstandingQuestion extends Enumerable.Implicits {
 
   implicit val enumerable: Enumerable[ComplianceCheckUnderstandingQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object ComplianceCheckUnderstandingQuestionWrites extends Writes[ComplianceCheckUnderstandingQuestion] {
-    def writes(complianceCheckUnderstandingQuestion: ComplianceCheckUnderstandingQuestion) =
-      Json.toJson(complianceCheckUnderstandingQuestion.toString)
-  }
-
-  implicit object ComplianceCheckUnderstandingQuestionReads extends Reads[ComplianceCheckUnderstandingQuestion] {
-    override def reads(json: JsValue): JsResult[ComplianceCheckUnderstandingQuestion] = json match {
-      case JsString(VeryEasy.toString)               => JsSuccess(VeryEasy)
-      case JsString(Easy.toString)                   => JsSuccess(Easy)
-      case JsString(NeitherEasyOrDifficult.toString) => JsSuccess(NeitherEasyOrDifficult)
-      case JsString(Difficult.toString)              => JsSuccess(Difficult)
-      case JsString(VeryDifficult.toString)          => JsSuccess(VeryDifficult)
-      case _                                         => JsError("Unknown ComplianceCheckUnderstandingQuestion")
-    }
-  }
 }

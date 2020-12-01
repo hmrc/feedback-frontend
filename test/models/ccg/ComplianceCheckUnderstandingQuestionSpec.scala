@@ -41,8 +41,7 @@ class ComplianceCheckUnderstandingQuestionSpec
       val gen = arbitrary[String] suchThat (!ComplianceCheckUnderstandingQuestion.values.map(_.toString).contains(_))
 
       forAll(gen) { invalidValue =>
-        JsString(invalidValue).validate[ComplianceCheckUnderstandingQuestion] mustEqual JsError(
-          "Unknown ComplianceCheckUnderstandingQuestion")
+        JsString(invalidValue).validate[ComplianceCheckUnderstandingQuestion] mustEqual JsError("error.invalid")
       }
     }
 

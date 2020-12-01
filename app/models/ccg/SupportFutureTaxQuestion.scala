@@ -39,20 +39,4 @@ object SupportFutureTaxQuestion extends Enumerable.Implicits {
 
   implicit val enumerable: Enumerable[SupportFutureTaxQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object SupportFutureTaxQuestionWrites extends Writes[SupportFutureTaxQuestion] {
-    def writes(supportFutureTaxQuestion: SupportFutureTaxQuestion) =
-      Json.toJson(supportFutureTaxQuestion.toString)
-  }
-
-  implicit object SupportFutureTaxQuestionReads extends Reads[SupportFutureTaxQuestion] {
-    override def reads(json: JsValue): JsResult[SupportFutureTaxQuestion] = json match {
-      case JsString(VeryConfident.toString)     => JsSuccess(VeryConfident)
-      case JsString(FairlyConfident.toString)   => JsSuccess(FairlyConfident)
-      case JsString(Neutral.toString)           => JsSuccess(Neutral)
-      case JsString(NotVeryConfident.toString)  => JsSuccess(NotVeryConfident)
-      case JsString(NotAtAllConfident.toString) => JsSuccess(NotAtAllConfident)
-      case _                                    => JsError("Unknown SupportFutureTaxQuestion")
-    }
-  }
 }

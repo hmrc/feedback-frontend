@@ -39,20 +39,4 @@ object TreatedProfessionallyQuestion extends Enumerable.Implicits {
 
   implicit val enumerable: Enumerable[TreatedProfessionallyQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object TreatedProfessionallyQuestionWrites extends Writes[TreatedProfessionallyQuestion] {
-    def writes(treatedProfessionallyQuestion: TreatedProfessionallyQuestion) =
-      Json.toJson(treatedProfessionallyQuestion.toString)
-  }
-
-  implicit object TreatedProfessionallyQuestionReads extends Reads[TreatedProfessionallyQuestion] {
-    override def reads(json: JsValue): JsResult[TreatedProfessionallyQuestion] = json match {
-      case JsString(StronglyAgree.toString)           => JsSuccess(StronglyAgree)
-      case JsString(Agree.toString)                   => JsSuccess(Agree)
-      case JsString(NeitherAgreeNorDisagree.toString) => JsSuccess(NeitherAgreeNorDisagree)
-      case JsString(Disagree.toString)                => JsSuccess(Disagree)
-      case JsString(StronglyDisagree.toString)        => JsSuccess(StronglyDisagree)
-      case _                                          => JsError("Unknown TreatedProfessionallyQuestion")
-    }
-  }
 }

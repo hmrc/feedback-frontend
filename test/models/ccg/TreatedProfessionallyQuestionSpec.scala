@@ -41,8 +41,7 @@ class TreatedProfessionallyQuestionSpec
       val gen = arbitrary[String] suchThat (!TreatedProfessionallyQuestion.values.map(_.toString).contains(_))
 
       forAll(gen) { invalidValue =>
-        JsString(invalidValue).validate[TreatedProfessionallyQuestion] mustEqual JsError(
-          "Unknown TreatedProfessionallyQuestion")
+        JsString(invalidValue).validate[TreatedProfessionallyQuestion] mustEqual JsError("error.invalid")
       }
     }
 

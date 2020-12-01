@@ -41,7 +41,7 @@ class SupportFutureTaxQuestionSpec
       val gen = arbitrary[String] suchThat (!SupportFutureTaxQuestion.values.map(_.toString).contains(_))
 
       forAll(gen) { invalidValue =>
-        JsString(invalidValue).validate[SupportFutureTaxQuestion] mustEqual JsError("Unknown SupportFutureTaxQuestion")
+        JsString(invalidValue).validate[SupportFutureTaxQuestion] mustEqual JsError("error.invalid")
       }
     }
 
