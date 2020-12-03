@@ -47,6 +47,7 @@ unauthorised.heading = You can’t access this service with this account
 
 generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
 whyGiveScore.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
+whyGiveAnswer.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
 neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?’ fod yn {0} o gymeriadau neu’n llai
 fullName.error.maxlength = Mae’n rhaid i’r enw llawn fod yn {0} o gymeriadau neu lai
 email.error.maxlength = Mae’n rhaid i’r e-bost fod yn {0} o gymeriadau neu lai
@@ -183,6 +184,38 @@ eothoQuestions.protectAtRiskJobs.heading = A ydych o’r farn bod y cynllun wedi
 eothoQuestions.protectHospitalityIndustry.heading = A ydych o’r farn bod y cynllun wedi helpu i ddiogelu swyddi ar draws y diwydiant lletygarwch cyfan yn y DU?
 eothoQuestions.encourageReopenSooner.heading = A wnaeth y cynllun eich annog i ailagor yn gynt, neu i ailagor am fwy o ddiwrnodau’r wythnos, nag oeddech wedi’i fwriadu?
 eothoQuestions.encourageReturnToRestaurantsSooner.heading = A ydych o’r farn bod y cynllun wedi annog pobl i ddychwelyd i fwytai yn gynt nag y byddent wedi fel arall?
+
+ccgQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
+ccgQuestions.title = Rhoi adborth - GOV.UK
+ccgQuestions.heading = Adborth
+ccgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+ccgQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+ccgQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
+
+ccgQuestions.treatedProfessionally.heading = I ba raddau rydych yn cytuno neu’n anghytuno â’r datganiad canlynol?
+ccgQuestions.treatedProfessionally.subHeading = Gwnaeth CThEM fy nhrin yn broffesiynol yn ystod y gwiriad cydymffurfio.
+treatedProfessionallyQuestion.StronglyAgree = Cytuno’n gryf
+treatedProfessionallyQuestion.Agree = Cytuno
+treatedProfessionallyQuestion.NeitherAgreeNorDisagree = Ddim yn cytuno nac yn anghytuno
+treatedProfessionallyQuestion.Disagree = Anghytuno
+treatedProfessionallyQuestion.StronglyDisagree = Anghytuno’n gryf
+
+ccgQuestions.complianceCheckUnderstanding.heading = Yn ystod y gwiriad cydymffurfio, pa mor hawdd oedd hi i chi ddeall beth oedd yn digwydd?
+complianceCheckUnderstandingQuestion.VeryEasy = Hawdd iawn
+complianceCheckUnderstandingQuestion.Easy = Hawdd
+complianceCheckUnderstandingQuestion.NeitherEasyOrDifficult = Ddim yn hawdd nac yn anodd
+complianceCheckUnderstandingQuestion.Difficult = Anodd
+complianceCheckUnderstandingQuestion.VeryDifficult = Anodd iawn
+
+ccgQuestions.whyGiveAnswer.heading = Pam gwnaethoch chi roi’r ateb hwn?
+ccgQuestions.whyGiveAnswer.hint = Dylech ystyried pob rhan o’r gwiriadau cydymffurfio. Peidiwch â rhoi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, cyfeirnod treth neu fanylion banc.
+
+ccgQuestions.supportFutureTax.heading = Pa mor hyderus ydych chi y bydd eich rhyngweithio â CThEM yn ystod y gwiriad cydymffurfio hwn yn eich cynorthwyo wrth i chi fodloni’ch ymrwymiadau treth yn y dyfodol?
+supportFutureTaxQuestion.VeryConfident = Hyderus iawn
+supportFutureTaxQuestion.FairlyConfident = Yn eithaf hyderus
+supportFutureTaxQuestion.Neutral = Niwtral
+supportFutureTaxQuestion.NotVeryConfident = Ddim yn hyderus iawn
+supportFutureTaxQuestion.NotAtAllConfident = Ddim yn hyderus o gwbl
 
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 i 10

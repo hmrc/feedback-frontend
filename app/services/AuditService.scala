@@ -16,9 +16,10 @@
 
 package services
 
-import controllers.EOTHOQuestionsController
+import controllers.{CCGQuestionsController, EOTHOQuestionsController}
 import javax.inject.Inject
 import models._
+import models.ccg._
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import utils.FeedbackFrontendHelper._
@@ -46,10 +47,13 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("whyGiveScore" -> whyScore.getOrElse("-"))
   def withHowFeelScore(howFeel: Option[HowDoYouFeelQuestion]): MapCont =
     _ + ("howDoYouFeelScore" -> howFeel.map(_.value.toString).getOrElse("-"))
+
   def withMainService(mainService: Option[MainServiceQuestion]): MapCont =
     _ + ("mainService" -> mainService.map(_.toString).getOrElse("-"))
+
   def withMainServiceOther(mainServiceOther: Option[String]): MapCont =
     _ + ("mainServiceOther" -> mainServiceOther.getOrElse("-"))
+
   def withLikelyToDo(likelyToDo: Option[LikelyToDoQuestion]): MapCont =
     _ + ("likelyToDo" -> likelyToDo.map(_.toString).getOrElse("-"))
   def withGiveReason(giveReason: Option[GiveReason]): MapCont =
@@ -62,6 +66,19 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("fullName" -> fullName.getOrElse(("-")))
   def withEmail(email: Option[String]): MapCont =
     _ + ("email" -> email.getOrElse("-"))
+
+  def withComplianceCheckUnderstanding(
+    complianceCheckUnderstanding: Option[ComplianceCheckUnderstandingQuestion]): MapCont =
+    _ + ("complianceCheckUnderstanding" -> complianceCheckUnderstanding.map(_.toString).getOrElse("-"))
+
+  def withTreatedProfessionally(treatedProfessionally: Option[TreatedProfessionallyQuestion]): MapCont =
+    _ + ("treatedProfessionally" -> treatedProfessionally.map(_.toString).getOrElse("-"))
+
+  def withWhyGiveAnswer(whyGiveAnswer: Option[String]): MapCont =
+    _ + ("whyGiveAnswer" -> whyGiveAnswer.getOrElse("-"))
+
+  def withSupportFutureTax(supportFutureTax: Option[SupportFutureTaxQuestion]): MapCont =
+    _ + ("supportFutureTax" -> supportFutureTax.map(_.toString).getOrElse("-"))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
@@ -169,5 +186,19 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def eothoAudit(feedbackId: FeedbackId, questions: EOTHOQuestions)(implicit hc: HeaderCarrier): Unit = {
     val detail = EothoAuditEvent(EOTHOQuestionsController.origin.value, feedbackId.value, questions)
     auditConnector.sendExplicitAudit(auditType, detail)
+  }
+
+  def ccgAudit(origin: Origin, feedbackId: FeedbackId, questions: CCGQuestions)(implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+        withFeedbackId(feedbackId) andThen
+        withComplianceCheckUnderstanding(questions.complianceCheckUnderstanding) andThen
+        withTreatedProfessionally(questions.treatedProfessionally) andThen
+        withWhyGiveAnswer(questions.whyGiveAnswer) andThen
+        withSupportFutureTax(questions.supportFutureTaxQuestion)
+    )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 }

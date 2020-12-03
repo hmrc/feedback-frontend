@@ -1,0 +1,79 @@
+@*
+ * Copyright 2020 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import config.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html._
+@import models.ccg._
+@import views.ViewUtils._
+
+@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
+
+@privacyPolicyLink = {
+<a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer">@messages("ccgQuestions.introLinkText")</a>
+}
+
+@main_template(
+title = s"${errorPrefix(form)} ${messages("ccgQuestions.title")}",
+appConfig = appConfig,
+bodyClasses = None) {
+
+@helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
+
+@components.error_summary(form.errors)
+
+@components.heading("ccgQuestions.heading")
+
+<p>@messages("ccgQuestions.intro1")</p>
+
+<p>@Html(messages("ccgQuestions.intro2", privacyPolicyLink))</p>
+
+<p>@messages("ccgQuestions.intro3")</p>
+
+@components.input_radio(
+ field = form("treatedProfessionally"),
+ legend = messages("ccgQuestions.treatedProfessionally.heading"),
+ legendClass = Some("heading-medium"),
+ hint = Some(messages("ccgQuestions.treatedProfessionally.subHeading")),
+ hintClass = Some("ccg-hint"),
+ inputs = TreatedProfessionallyQuestion.options,
+)
+
+@components.input_radio(
+ field = form("complianceCheckUnderstanding"),
+ legend = messages("ccgQuestions.complianceCheckUnderstanding.heading"),
+ legendClass = Some("heading-medium"),
+ inputs = ComplianceCheckUnderstandingQuestion.options,
+  )
+
+@components.input_textarea(
+ field = form("whyGiveAnswer"),
+ label = messages("ccgQuestions.whyGiveAnswer.heading"),
+ hint = Some(messages("ccgQuestions.whyGiveAnswer.hint")),
+ labelClass = Some("heading-medium"),
+ maximum = Some(1000)
+)
+
+@components.input_radio(
+ field = form("supportFutureTax"),
+ legend = messages("ccgQuestions.supportFutureTax.heading"),
+ legendClass = Some("heading-medium"),
+ inputs = SupportFutureTaxQuestion.options,
+)
+
+@components.submit_button()
+
+ }
+}

@@ -17,6 +17,7 @@
 package generators
 
 import models._
+import models.ccg._
 import models.eotho._
 import org.scalacheck.Arbitrary._
 import org.scalacheck.Gen._
@@ -54,6 +55,8 @@ trait ModelGenerators {
   implicit lazy val arbitraryPensionQuestions: Arbitrary[PensionQuestions] = Arbitrary(pensionQuestionsGen)
 
   implicit lazy val arbitraryEothoQuesions: Arbitrary[EOTHOQuestions] = Arbitrary(eothoQuestionsGen)
+
+  implicit lazy val arbitraryCcgQuesions: Arbitrary[CCGQuestions] = Arbitrary(ccgQuestionsGen)
 
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
@@ -152,6 +155,30 @@ trait ModelGenerators {
       )
     }
 
+  lazy val ccgQuestionsGen: Gen[CCGQuestions] =
+    for {
+      complianceCheckUnderstanding <- option(complianceCheckUnderstandingGen)
+      treatedProfessionally        <- option(treatedProfessionallyGen)
+      whyAnswer                    <- option(arbitrary[String].suchThat(_.nonEmpty))
+      supportFutureTax             <- option(supportFutureTaxGen)
+
+    } yield
+      CCGQuestions(
+        complianceCheckUnderstanding,
+        treatedProfessionally,
+        whyAnswer,
+        supportFutureTax
+      )
+
+  lazy val complianceCheckUnderstandingGen: Gen[ComplianceCheckUnderstandingQuestion] =
+    oneOf(ComplianceCheckUnderstandingQuestion.values)
+
+  lazy val treatedProfessionallyGen: Gen[TreatedProfessionallyQuestion] =
+    oneOf(TreatedProfessionallyQuestion.values)
+
+  lazy val supportFutureTaxGen: Gen[SupportFutureTaxQuestion] =
+    oneOf(SupportFutureTaxQuestion.values)
+
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
     oneOf(HowEasyQuestion.values)
 
@@ -220,4 +247,13 @@ trait ModelGenerators {
 
   implicit lazy val listOfarbitraryWhichRegionQuestion: Arbitrary[List[WhichRegionQuestion]] =
     Arbitrary(Gen.listOf(whichRegionQuestionGen))
+
+  implicit lazy val arbitraryComplianceCheckUnderstandingQuestionSpec: Arbitrary[ComplianceCheckUnderstandingQuestion] =
+    Arbitrary(complianceCheckUnderstandingGen)
+
+  implicit lazy val treatedProfessionallyQuestionSpec: Arbitrary[TreatedProfessionallyQuestion] =
+    Arbitrary(treatedProfessionallyGen)
+
+  implicit lazy val supportFutureTaxQuestionSpec: Arbitrary[SupportFutureTaxQuestion] =
+    Arbitrary(supportFutureTaxGen)
 }

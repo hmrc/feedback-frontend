@@ -48,6 +48,7 @@ unauthorised.heading = You can’t access this service with this account
 
 generic.max-characters = You can enter up to {0} characters
 whyGiveScore.error.maxlength = Why did you give this score must be {0} characters or less
+whyGiveAnswer.error.maxlength = Why did you give this answer must be {0} characters or less
 neededToDo.error.maxlength = What was the main thing you needed to do today must be {0} characters or less
 fullName.error.maxlength = Full name must be {0} characters or less
 email.error.maxlength = Email must be {0} characters or less
@@ -173,6 +174,38 @@ eothoQuestions.protectHospitalityIndustry.heading = Do you think the scheme help
 eothoQuestions.encourageReopenSooner.heading = Did the scheme encourage you to re-open sooner, or to re-open for more days each week, than you had planned?
 eothoQuestions.encourageReturnToRestaurantsSooner.heading = Do you think the scheme encouraged people to return to restaurants sooner than they would have otherwise?
 
+ccgQuestions.introLinkText = HMRC Privacy Notice (opens in new tab)
+ccgQuestions.title = Give feedback - GOV.UK
+ccgQuestions.heading = Feedback
+ccgQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+ccgQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+ccgQuestions.intro3 = The survey takes about 1 minute to complete. There are 4 questions and they are all optional.
+
+ccgQuestions.treatedProfessionally.heading = How strongly do you agree or disagree with the following statement?
+ccgQuestions.treatedProfessionally.subHeading = HMRC treated me professionally during the compliance check.
+treatedProfessionallyQuestion.StronglyAgree = Strongly agree
+treatedProfessionallyQuestion.Agree = Agree
+treatedProfessionallyQuestion.NeitherAgreeNorDisagree = Neither agree nor disagree
+treatedProfessionallyQuestion.Disagree = Disagree
+treatedProfessionallyQuestion.StronglyDisagree = Strongly disagree
+
+ccgQuestions.complianceCheckUnderstanding.heading = During the compliance check, how easy was it for you to understand what was happening?
+complianceCheckUnderstandingQuestion.VeryEasy = Very Easy
+complianceCheckUnderstandingQuestion.Easy = Easy
+complianceCheckUnderstandingQuestion.NeitherEasyOrDifficult = Neither easy or difficult
+complianceCheckUnderstandingQuestion.Difficult = Difficult
+complianceCheckUnderstandingQuestion.VeryDifficult = Very difficult
+
+ccgQuestions.whyGiveAnswer.heading = Why did you give this answer?
+ccgQuestions.whyGiveAnswer.hint = Please consider all parts of the compliance check. Do not give any personal information like your National Insurance number, tax reference number or bank details.
+
+ccgQuestions.supportFutureTax.heading = How confident are you that your interactions with HMRC during this compliance check will support you in meeting your future tax obligations?
+supportFutureTaxQuestion.VeryConfident = Very confident
+supportFutureTaxQuestion.FairlyConfident = Fairly confident
+supportFutureTaxQuestion.Neutral = Neutral
+supportFutureTaxQuestion.NotVeryConfident = Not very confident
+supportFutureTaxQuestion.NotAtAllConfident= Not at all confident
+
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10
 numberOfEstablishmentsQuestion.TenOrMoreEstablishments = 10 or more
@@ -238,7 +271,6 @@ thankYou.pension.sideBar.linkTwo = Planning your retirement income
 thankYou.pension.sideBar.linkThree = Defer your State Pension
 thankYou.pension.sideBar.linkFour = Contact the Pension Service
 thankYou.pension.sideBar.linkFive = More on State Pensions
-
 
 giveReason.title = Give feedback
 giveReason.heading = What did you come to do?

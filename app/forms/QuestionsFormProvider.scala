@@ -19,6 +19,7 @@ package forms
 import forms.mappings.Mappings
 import javax.inject.Inject
 import models._
+import models.ccg._
 import models.eotho._
 import play.api.data.Form
 import play.api.data.Forms._
@@ -134,4 +135,20 @@ class EOTHOQuestionsFormProvider @Inject() extends Mappings {
         "offerDiscounts"                     -> optional(enumerable[OfferDiscountsQuestion]()),
         "businessFuturePlans"                -> optional(enumerable[BusinessFuturePlansQuestion]())
       )(EOTHOQuestions.apply)(EOTHOQuestions.unapply))
+}
+
+class CCGQuestionsFormProvider @Inject() extends Mappings {
+
+  private val maxFieldSizeWhyGiveAnswer = 1000
+
+  def apply(): Form[CCGQuestions] =
+    Form(
+      mapping(
+        "complianceCheckUnderstanding" -> optional(enumerable[ComplianceCheckUnderstandingQuestion]()),
+        "treatedProfessionally"        -> optional(enumerable[TreatedProfessionallyQuestion]()),
+        "whyGiveAnswer" ->
+          optional(text("whyGiveAnswer.error.required")
+            .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
+        "supportFutureTax" -> optional(enumerable[SupportFutureTaxQuestion]())
+      )(CCGQuestions.apply)(CCGQuestions.unapply))
 }
