@@ -185,12 +185,12 @@ eothoQuestions.protectHospitalityIndustry.heading = A ydych o’r farn bod y cyn
 eothoQuestions.encourageReopenSooner.heading = A wnaeth y cynllun eich annog i ailagor yn gynt, neu i ailagor am fwy o ddiwrnodau’r wythnos, nag oeddech wedi’i fwriadu?
 eothoQuestions.encourageReturnToRestaurantsSooner.heading = A ydych o’r farn bod y cynllun wedi annog pobl i ddychwelyd i fwytai yn gynt nag y byddent wedi fel arall?
 
-ccgQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
+ccgQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
 ccgQuestions.title = Rhoi adborth - GOV.UK
 ccgQuestions.heading = Adborth
-ccgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.age.
+ccgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 ccgQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
-ccgQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 13 cwestiwn ac maent i gyd yn ddewisol.
+ccgQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
 
 ccgQuestions.treatedProfessionally.heading = I ba raddau rydych yn cytuno neu’n anghytuno â’r datganiad canlynol?
 ccgQuestions.treatedProfessionally.subHeading = Gwnaeth CThEM fy nhrin yn broffesiynol yn ystod y gwiriad cydymffurfio.
