@@ -31,12 +31,7 @@
   scriptElem: Option[Html] = None)(implicit request: Request[_], messages: Messages)
 
 @head = {
-
-    @if(appConfig.isGtmEnabled) {
-      @snippets.google_tag_manager(appConfig)
-    }
-
-    @uiLayouts.head(
+    @uiLayouts.headWithTrackingConsent(
       linkElem = None,
       headScripts = None)
     <meta name="format-detection" content="telephone=no" />
@@ -54,9 +49,6 @@
 }
 
 @afterHeader = {
-    @if(appConfig.isGtmEnabled) {
-      @snippets.google_tag_manager_noscript(appConfig)
-    }
 }
 
 @bodyEnd = {
