@@ -36,7 +36,6 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
 
   lazy val analyticsToken = loadConfig(s"google-analytics.token")
   lazy val analyticsHost = loadConfig(s"google-analytics.host")
-  lazy val gtmContainerId = loadConfig(s"google-tag-manager.containerId")
   lazy val reportAProblemPartialUrl = s"$contactHost/contact/problem_reports_ajax?service=$contactFormServiceIdentifier"
   lazy val reportAProblemNonJSUrl = s"$contactHost/contact/problem_reports_nonjs?service=$contactFormServiceIdentifier"
   lazy val betaFeedbackUrl = s"$contactHost/contact/beta-feedback"
@@ -69,7 +68,5 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
     getOptional[Boolean]("microservice.services.features.welsh-translation").getOrElse(true)
   def languageMap: Map[String, Lang] = Map("english" -> Lang("en"), "cymraeg" -> Lang("cy"))
   def routeToSwitchLanguage = (lang: String) => routes.LanguageSwitchController.switchToLanguage(lang)
-
-  lazy val isGtmEnabled = getOptional[Boolean]("google-tag-manager.enabled").getOrElse(true)
 
 }
