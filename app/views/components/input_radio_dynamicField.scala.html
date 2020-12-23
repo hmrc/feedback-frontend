@@ -49,8 +49,6 @@
           type="radio"
           name="@{field.id}"
           value="@{input.value}"
-          data-dynamic-field-toggle
-          data-dynamic-fields-hide=@{dynamicField.id}Input
           @if(field.value == Some(input.value)){checked="checked"}
           @if(trackGa){data-journey-click="feedback-frontend:click:@{input.id}"} />
 
@@ -62,15 +60,13 @@
     }
 
     @inputs.lastOption.map { input =>
-        <div class="multiple-choice">
+        <div class="multiple-choice flush--bottom" data-target="@{dynamicField.id}Input">
 
             <input
                 id="@{input.id}"
                 type="radio"
                 name="@{field.id}"
                 value="@{input.value}"
-                data-dynamic-field-toggle
-                data-dynamic-fields-show=@{dynamicField.id}Input
                 @if(field.value == Some(input.value)){checked="checked"}
                 @if(trackGa){data-journey-click="feedback-frontend:click:@{input.id}"} />
 
@@ -80,7 +76,7 @@
 
         </div>
 
-        <div class="form-group panel panel-border-narrow js-hidden data-@{dynamicField.id}Input">
+        <div id="@{dynamicField.id}Input" class="dynamicInput panel panel-border-narrow js-hidden">
             @components.input_text(
                 field = dynamicField,
                 maximum = Some(dynamicFieldLength),
