@@ -8,13 +8,4 @@
 
 @import 'partials/_shame';
 
-
-.dynamicInput {
-    margin-left: 18px;
-    padding-left: 33px;
-    padding-top: 0;
-}
-
-.form-group .panel-border-narrow.dynamicInput {
-    margin-bottom: 20px;
-}
+@import 'custom';
