@@ -40,7 +40,7 @@ lazy val root = (project in file("."))
     // concatenate js
     Concat.groups := Seq(
       "javascripts/feedbackfrontend-app.js" ->
-        group(Seq("javascripts/show-hide-content.js", "javascripts/feedbackfrontend.js"))
+        group(Seq("javascripts/feedbackfrontend.js"))
     ),
     // prevent removal of unused code which generates warning errors due to use of third-party libs
     uglifyCompressOptions := Seq("unused=false", "dead_code=false"),
