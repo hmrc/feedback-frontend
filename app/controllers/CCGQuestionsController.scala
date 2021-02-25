@@ -21,7 +21,7 @@ import forms.CCGQuestionsFormProvider
 import javax.inject.Inject
 import models.{CCGQuestions, FeedbackId, Origin}
 import navigation.Navigator
-import pages.{EothoQuestionsPage, GenericQuestionsPage}
+import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents

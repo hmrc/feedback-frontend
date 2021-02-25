@@ -20,7 +20,6 @@ import forms.mappings.Mappings
 import javax.inject.Inject
 import models._
 import models.ccg._
-import models.eotho._
 import play.api.data.Form
 import play.api.data.Forms._
 
@@ -114,27 +113,6 @@ class PensionQuestionsFormProvider @Inject() extends Mappings {
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
         "likelyToDo"        -> optional(enumerable[LikelyToDoQuestion]())
       )(PensionQuestions.apply)(PensionQuestions.unapply))
-}
-
-class EOTHOQuestionsFormProvider @Inject() extends Mappings {
-
-  def apply(): Form[EOTHOQuestions] =
-    Form(
-      mapping(
-        "numberOfEstablishments"             -> optional(enumerable[NumberOfEstablishmentsQuestion]()),
-        "numberOfEmployees"                  -> optional(enumerable[NumberOfEmployeesQuestion]()),
-        "whichRegions"                       -> list(enumerable[WhichRegionQuestion]()),
-        "affectedJobs"                       -> optional(enumerable[AffectedJobsQuestion]()),
-        "protectAtRiskJobs"                  -> optional(boolean()),
-        "protectHospitalityIndustry"         -> optional(boolean()),
-        "comparedToMonTueWed"                -> optional(enumerable[ComparedToMonTueWedQuestion]()),
-        "comparedToThurFriSatSun"            -> optional(enumerable[ComparedToThurFriSatSunQuestion]()),
-        "comparedBusinessTurnover"           -> optional(enumerable[ComparedBusinessTurnoverQuestion]()),
-        "encourageReopenSooner"              -> optional(boolean()),
-        "encourageReturnToRestaurantsSooner" -> optional(boolean()),
-        "offerDiscounts"                     -> optional(enumerable[OfferDiscountsQuestion]()),
-        "businessFuturePlans"                -> optional(enumerable[BusinessFuturePlansQuestion]())
-      )(EOTHOQuestions.apply)(EOTHOQuestions.unapply))
 }
 
 class CCGQuestionsFormProvider @Inject() extends Mappings {

@@ -18,7 +18,6 @@ package generators
 
 import models._
 import models.ccg._
-import models.eotho._
 import org.scalacheck.Arbitrary._
 import org.scalacheck.Gen._
 import org.scalacheck.{Arbitrary, Gen}
@@ -53,8 +52,6 @@ trait ModelGenerators {
   implicit lazy val arbitraryBTAQuestions: Arbitrary[BTAQuestions] = Arbitrary(btaQuestionsGen)
 
   implicit lazy val arbitraryPensionQuestions: Arbitrary[PensionQuestions] = Arbitrary(pensionQuestionsGen)
-
-  implicit lazy val arbitraryEothoQuesions: Arbitrary[EOTHOQuestions] = Arbitrary(eothoQuestionsGen)
 
   implicit lazy val arbitraryCcgQuesions: Arbitrary[CCGQuestions] = Arbitrary(ccgQuestionsGen)
 
@@ -122,39 +119,6 @@ trait ModelGenerators {
       PensionQuestions(ableToDo, howEasy, whyScore, howFeel, likelyToDo)
     }
 
-  lazy val eothoQuestionsGen: Gen[EOTHOQuestions] =
-    for {
-      numberOfEstablishments             <- option(numberOfEstablishmentsGen)
-      numberOfEmployees                  <- option(numberOfEmployeesGen)
-      whichRegions                       <- arbitrary[List[WhichRegionQuestion]]
-      affectedJobs                       <- option(affectedJobs)
-      protectAtRiskJobs                  <- option(arbitrary[Boolean])
-      protectHospitalityIndustry         <- option(arbitrary[Boolean])
-      compareToMonTueWed                 <- option(comparedToMonTueWed)
-      comparedToThurFriSatSun            <- option(comparedToThurFriSatSun)
-      comparedBusinessTurnOver           <- option(comparedBusinessTurnover)
-      encourageReopenSooner              <- option(arbitrary[Boolean])
-      encourageReturnToRestaurantsSooner <- option(arbitrary[Boolean])
-      offerDiscounts                     <- option(offerDiscounts)
-      businessFuturePlans                <- option(businessFuturePlans)
-    } yield {
-      EOTHOQuestions(
-        numberOfEstablishments,
-        numberOfEmployees,
-        whichRegions,
-        affectedJobs,
-        protectAtRiskJobs,
-        protectHospitalityIndustry,
-        compareToMonTueWed,
-        comparedToThurFriSatSun,
-        comparedBusinessTurnOver,
-        encourageReopenSooner,
-        encourageReturnToRestaurantsSooner,
-        offerDiscounts,
-        businessFuturePlans
-      )
-    }
-
   lazy val ccgQuestionsGen: Gen[CCGQuestions] =
     for {
       complianceCheckUnderstanding <- option(complianceCheckUnderstandingGen)
@@ -190,63 +154,6 @@ trait ModelGenerators {
 
   lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
     oneOf(LikelyToDoQuestion.values)
-
-  lazy val numberOfEstablishmentsGen: Gen[NumberOfEstablishmentsQuestion] =
-    oneOf(NumberOfEstablishmentsQuestion.values)
-
-  implicit lazy val arbitraryNumberOfEstablishments: Arbitrary[NumberOfEstablishmentsQuestion] =
-    Arbitrary(numberOfEstablishmentsGen)
-
-  lazy val numberOfEmployeesGen: Gen[NumberOfEmployeesQuestion] =
-    oneOf(NumberOfEmployeesQuestion.values)
-
-  implicit lazy val arbitraryNumberOfEmployees: Arbitrary[NumberOfEmployeesQuestion] =
-    Arbitrary(numberOfEmployeesGen)
-
-  lazy val comparedToMonTueWed: Gen[ComparedToMonTueWedQuestion] =
-    oneOf(ComparedToMonTueWedQuestion.values)
-
-  implicit lazy val arbitraryComparedToMonTueWed: Arbitrary[ComparedToMonTueWedQuestion] =
-    Arbitrary(comparedToMonTueWed)
-
-  lazy val comparedToThurFriSatSun: Gen[ComparedToThurFriSatSunQuestion] =
-    oneOf(ComparedToThurFriSatSunQuestion.values)
-
-  implicit lazy val arbitraryComparedToThurFriSatSun: Arbitrary[ComparedToThurFriSatSunQuestion] =
-    Arbitrary(comparedToThurFriSatSun)
-
-  lazy val comparedBusinessTurnover: Gen[ComparedBusinessTurnoverQuestion] =
-    oneOf(ComparedBusinessTurnoverQuestion.values)
-
-  implicit lazy val arbitraryComparedBusinessTurnover: Arbitrary[ComparedBusinessTurnoverQuestion] =
-    Arbitrary(comparedBusinessTurnover)
-
-  lazy val affectedJobs: Gen[AffectedJobsQuestion] =
-    oneOf(AffectedJobsQuestion.values)
-
-  implicit lazy val arbitraryAffectedJobs: Arbitrary[AffectedJobsQuestion] =
-    Arbitrary(affectedJobs)
-
-  lazy val businessFuturePlans: Gen[BusinessFuturePlansQuestion] =
-    oneOf(BusinessFuturePlansQuestion.values)
-
-  implicit lazy val arbitraryBusinessFuturePlans: Arbitrary[BusinessFuturePlansQuestion] =
-    Arbitrary(businessFuturePlans)
-
-  lazy val offerDiscounts: Gen[OfferDiscountsQuestion] =
-    oneOf(OfferDiscountsQuestion.values)
-
-  implicit lazy val arbitraryOfferDiscounts: Arbitrary[OfferDiscountsQuestion] =
-    Arbitrary(offerDiscounts)
-
-  lazy val whichRegionQuestionGen: Gen[WhichRegionQuestion] =
-    oneOf(WhichRegionQuestion.values)
-
-  implicit lazy val arbitraryWhichRegionQuestion: Arbitrary[WhichRegionQuestion] =
-    Arbitrary(whichRegionQuestionGen)
-
-  implicit lazy val listOfarbitraryWhichRegionQuestion: Arbitrary[List[WhichRegionQuestion]] =
-    Arbitrary(Gen.listOf(whichRegionQuestionGen))
 
   implicit lazy val arbitraryComplianceCheckUnderstandingQuestionSpec: Arbitrary[ComplianceCheckUnderstandingQuestion] =
     Arbitrary(complianceCheckUnderstandingGen)

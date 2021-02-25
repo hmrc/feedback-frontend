@@ -153,27 +153,6 @@ likelyToDoQuestion.ClarifyInformation = Clarify information you have found in Ch
 likelyToDoQuestion.GetProfessionalAdvice = Get some professional advice or free guidance
 likelyToDoQuestion.DoNothing = Do nothing. You are satisfied with the information you found today
 
-
-eothoQuestions.title = Give feedback - GOV.UK
-eothoQuestions.heading = Feedback
-eothoQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
-eothoQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
-eothoQuestions.intro3 = The survey takes about 1 minute to complete. There are 13 questions and they are all optional.
-eothoQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
-
-eothoQuestions.numberOfEstablishments.heading = How many establishments does your business operate?
-eothoQuestions.numberOfEmployees.heading = How many people does your business employ?
-eothoQuestions.comparedToMonTueWed.heading= Compared to July 2020, how has your August food and drink turnover across Mondays, Tuesdays and Wednesdays changed?
-eothoQuestions.comparedToThurFriSatSun.heading = Compared to July 2020, how has your August food and drink turnover across Thursdays, Fridays, Saturdays and Sundays changed?
-eothoQuestions.comparedBusinessTurnover.heading = How does your business’s total turnover in August 2020 compare to August 2019?
-eothoQuestions.affectedJobs.heading = How has the Eat Out to Help Out Scheme affected the number of jobs in your business?
-eothoQuestions.businessFuturePlans.heading = After the Eat Out to Help Out Scheme ends, which option best describes your future business plans?
-eothoQuestions.offerDiscounts.heading = Does your business plan to offer discounts in September, once the Eat Out to Help Out Scheme comes to an end?
-eothoQuestions.protectAtRiskJobs.heading = Do you think the scheme helped to protect jobs that were at risk in your business?
-eothoQuestions.protectHospitalityIndustry.heading = Do you think the scheme helped to protect jobs across the UK hospitality industry as a whole?
-eothoQuestions.encourageReopenSooner.heading = Did the scheme encourage you to re-open sooner, or to re-open for more days each week, than you had planned?
-eothoQuestions.encourageReturnToRestaurantsSooner.heading = Do you think the scheme encouraged people to return to restaurants sooner than they would have otherwise?
-
 ccgQuestions.introLinkText = HMRC Privacy Notice (opens in new tab)
 ccgQuestions.title = Give feedback - GOV.UK
 ccgQuestions.heading = Feedback

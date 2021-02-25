@@ -16,7 +16,7 @@
 
 package services
 
-import controllers.{CCGQuestionsController, EOTHOQuestionsController}
+import controllers.CCGQuestionsController
 import generators.ModelGenerators
 import models._
 import org.mockito.Matchers.{eq => eqTo, _}
@@ -154,20 +154,6 @@ class AuditServiceSpec
 
         verify(auditConnector, times(1))
           .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
-    }
-  }
-
-  "generate correct payload for eat out to help out" in {
-
-    forAll(arbitrary[FeedbackId], arbitrary[EOTHOQuestions]) { (feedbackId, questions) =>
-      reset(auditConnector)
-
-      auditService.eothoAudit(feedbackId, questions)
-
-      val expected = EothoAuditEvent(EOTHOQuestionsController.origin.value, feedbackId.value, questions)
-
-      verify(auditConnector, times(1))
-        .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any(), any())
     }
   }
 
