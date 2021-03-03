@@ -16,7 +16,6 @@
 
 package services
 
-import controllers.{CCGQuestionsController, EOTHOQuestionsController}
 import javax.inject.Inject
 import models._
 import models.ccg._
@@ -181,11 +180,6 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
-  }
-
-  def eothoAudit(feedbackId: FeedbackId, questions: EOTHOQuestions)(implicit hc: HeaderCarrier): Unit = {
-    val detail = EothoAuditEvent(EOTHOQuestionsController.origin.value, feedbackId.value, questions)
-    auditConnector.sendExplicitAudit(auditType, detail)
   }
 
   def ccgAudit(origin: Origin, feedbackId: FeedbackId, questions: CCGQuestions)(implicit hc: HeaderCarrier): Unit = {

@@ -17,7 +17,6 @@
 package models
 
 import models.ccg._
-import models.eotho._
 import play.api.libs.json.{Format, Json}
 
 case class OtherQuestions(
@@ -79,25 +78,6 @@ case class PensionQuestions(
 
 object PensionQuestions {
   implicit val formats: Format[PensionQuestions] = Json.format[PensionQuestions]
-}
-
-case class EOTHOQuestions(
-  numberOfEstablishments: Option[NumberOfEstablishmentsQuestion],
-  numberOfEmployees: Option[NumberOfEmployeesQuestion],
-  whichRegions: List[WhichRegionQuestion],
-  affectedJobs: Option[AffectedJobsQuestion],
-  protectAtRiskJobs: Option[Boolean],
-  protectHospitalityIndustry: Option[Boolean],
-  comparedToMonTueWed: Option[ComparedToMonTueWedQuestion],
-  comparedToThurFriSatSun: Option[ComparedToThurFriSatSunQuestion],
-  comparedBusinessTurnover: Option[ComparedBusinessTurnoverQuestion],
-  encourageReopenSooner: Option[Boolean],
-  encourageReturnToRestaurantsSooner: Option[Boolean],
-  offerDiscounts: Option[OfferDiscountsQuestion],
-  businessFuturePlans: Option[BusinessFuturePlansQuestion])
-
-object EOTHOQuestions {
-  implicit val formats: Format[EOTHOQuestions] = Json.format[EOTHOQuestions]
 }
 
 case class CCGQuestions(

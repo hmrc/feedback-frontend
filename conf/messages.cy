@@ -165,26 +165,6 @@ likelyToDoQuestion.ClarifyInformation = Cael eglurhad o’r wybodaeth a gawsoch 
 likelyToDoQuestion.GetProfessionalAdvice = Cael cyngor proffesiynol neu arweiniad yn rhad ac am ddim
 likelyToDoQuestion.DoNothing = Dim byd. Rydych yn fodlon ar yr wybodaeth y cawsoch hyd iddi heddiw
 
-eothoQuestions.title = Rhoi adborth - GOV.UK
-eothoQuestions.heading = Adborth
-eothoQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
-eothoQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
-eothoQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 13 cwestiwn ac maent i gyd yn ddewisol.
-eothoQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
-
-eothoQuestions.numberOfEstablishments.heading = Faint o sefydliadau mae’ch busnes yn eu gweithredu?
-eothoQuestions.numberOfEmployees.heading = Faint o bobl mae’ch busnes yn eu cyflogi?
-eothoQuestions.comparedToMonTueWed.heading= O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Llun, dydd Mawrth a dydd Mercher?
-eothoQuestions.comparedToThurFriSatSun.heading = O gymharu â mis Gorffennaf 2020, sut mae’ch trosiant o ran bwyd a diod ym mis Awst wedi newid ar ddydd Iau, dydd Gwener, dydd Sadwrn a dydd Sul?
-eothoQuestions.comparedBusinessTurnover.heading = Sut mae cyfanswm trosiant eich busnes ym mis Awst 2020 yn cymharu â mis Awst 2019?
-eothoQuestions.affectedJobs.heading = Sut mae’r Cynllun Bwyta Allan i Helpu Allan wedi effeithio ar nifer y swyddi yn eich busnes?
-eothoQuestions.businessFuturePlans.heading = Ar ôl i’r Cynllun Bwyta Allan i Helpu Allan ddod i ben, pa opsiwn sy’n disgrifio’ch cynlluniau busnes yn y dyfodol orau?
-eothoQuestions.offerDiscounts.heading = A yw’ch busnes yn bwriadu cynnig gostyngiadau ym mis Medi, unwaith y daw’r Cynllun Bwyta Allan i Helpu Allan i ben?
-eothoQuestions.protectAtRiskJobs.heading = A ydych o’r farn bod y cynllun wedi helpu i ddiogelu swyddi a oedd mewn perygl yn eich busnes?
-eothoQuestions.protectHospitalityIndustry.heading = A ydych o’r farn bod y cynllun wedi helpu i ddiogelu swyddi ar draws y diwydiant lletygarwch cyfan yn y DU?
-eothoQuestions.encourageReopenSooner.heading = A wnaeth y cynllun eich annog i ailagor yn gynt, neu i ailagor am fwy o ddiwrnodau’r wythnos, nag oeddech wedi’i fwriadu?
-eothoQuestions.encourageReturnToRestaurantsSooner.heading = A ydych o’r farn bod y cynllun wedi annog pobl i ddychwelyd i fwytai yn gynt nag y byddent wedi fel arall?
-
 ccgQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
 ccgQuestions.title = Rhoi adborth - GOV.UK
 ccgQuestions.heading = Adborth
