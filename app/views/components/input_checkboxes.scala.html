@@ -21,7 +21,6 @@
         legend: String,
         legendClass: Option[String] = None,
         hint: Option[String] = None,
-        trackGa: Boolean = false,
         headingIsLegend: Boolean = false,
         inputs: Seq[RadioOption]
 )(implicit messages: Messages)
@@ -58,9 +57,7 @@
                     type="checkbox"
                     name="@field(s"[$index]").name"
                     value="@value"
-                        @if(answers.contains(value)) {checked="checked"}
-                        @if(trackGa) {data-journey-click="test-frontend:click:@field(s"[$index]").id"}
-                    />
+                        @if(answers.contains(value)) {checked="checked"} />
                     <label for="@field(s"[$index]").id">
                     @messages(messageKey)
                     </label>

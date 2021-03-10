@@ -118,20 +118,6 @@ $(document).ready(function() {
           afterPrintCall();
       }
 
-      $('.ga-custom-dimension-radioButton').click(function() {
-        if ( $(this).attr('data-journey-ga-custom-dimension') ) {
-
-          var vals = $(this).attr('data-journey-ga-custom-dimension').split(":")
-
-          switch( parseInt($(this).attr('data-ga-custom-dimension')) ) {
-            case 73:
-              ga('send', hitType = 'event',
-                eventCategory = vals[0], eventAction = vals[1], eventLabel = vals[2], {dimension73 : $(this).attr("id")});
-              break;
-            default:
-          }
-        }
-      });
   });
 
 

@@ -81,32 +81,27 @@
       <ul class="sidebar__list">
         @appConfig.pensionSideBarOneUrl.map { pensionSideBarOneUrl =>
           <li class="sidebar__list-item">
-            <a href="@pensionSideBarOneUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarOneUrlGA.map {pensionSideBarOneUrlGA =>
-              data-journey-click="@pensionSideBarOneUrlGA"}>@messages("thankYou.pension.sideBar.linkOne")</a>
+            <a href="@pensionSideBarOneUrl" target="_blank" rel="noopener noreferrer">@messages("thankYou.pension.sideBar.linkOne")</a>
           </li>
         }
         @appConfig.pensionSideBarTwoUrl.map { pensionSideBarTwoUrl =>
           <li class="sidebar__list-item">
-            <a href="@pensionSideBarTwoUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarTwoUrlGA.map {pensionSideBarTwoUrlGA =>
-              data-journey-click="@pensionSideBarTwoUrlGA"}>@messages("thankYou.pension.sideBar.linkTwo", pensionSideBarTwoUrl)</a>
+            <a href="@pensionSideBarTwoUrl" target="_blank" rel="noopener noreferrer">@messages("thankYou.pension.sideBar.linkTwo", pensionSideBarTwoUrl)</a>
           </li>
         }
         @appConfig.pensionSideBarThreeUrl.map { pensionSideBarThreeUrl =>
           <li class="sidebar__list-item">
-            <a href="@pensionSideBarThreeUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarThreeUrlGA.map {pensionSideBarThreeUrlGA =>
-              data-journey-click="@pensionSideBarThreeUrlGA"}>@messages("thankYou.pension.sideBar.linkThree", pensionSideBarThreeUrl)</a>
+            <a href="@pensionSideBarThreeUrl" target="_blank" rel="noopener noreferrer">@messages("thankYou.pension.sideBar.linkThree", pensionSideBarThreeUrl)</a>
           </li>
         }
         @appConfig.pensionSideBarFourUrl.map { pensionSideBarFourUrl =>
           <li class="sidebar__list-item">
-            <a href="@pensionSideBarFourUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarFourUrlGA.map {pensionSideBarFourUrlGA =>
-              data-journey-click="@pensionSideBarFourUrlGA"}>@messages("thankYou.pension.sideBar.linkFour", pensionSideBarFourUrl)</a>
+            <a href="@pensionSideBarFourUrl" target="_blank" rel="noopener noreferrer">@messages("thankYou.pension.sideBar.linkFour", pensionSideBarFourUrl)</a>
           </li>
         }
         @appConfig.pensionSideBarFiveUrl.map { pensionSideBarFiveUrl =>
           <li class="sidebar__list-item">
-            <a href="@pensionSideBarFiveUrl" target="_blank" rel="noopener noreferrer" @appConfig.pensionSideBarFiveUrlGA.map {pensionSideBarFiveUrlGA =>
-              data-journey-click="@pensionSideBarFiveUrlGA"}>@messages("thankYou.pension.sideBar.linkFive", pensionSideBarFiveUrl)</a>
+            <a href="@pensionSideBarFiveUrl" target="_blank" rel="noopener noreferrer">@messages("thankYou.pension.sideBar.linkFive", pensionSideBarFiveUrl)</a>
           </li>
         }
       </ul>

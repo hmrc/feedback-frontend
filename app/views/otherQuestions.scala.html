@@ -66,10 +66,7 @@
             field = form("howDoYouFeelScore"),
             legend = messages("otherQuestions.howDoYouFeelScore.heading"),
             legendClass = Some("heading-medium"),
-            inputs = HowDoYouFeelQuestion.options,
-            inputClass = Some("ga-custom-dimension-radioButton"),
-            trackGa = true,
-            gaCustomDimension = Some(73)
+            inputs = HowDoYouFeelQuestion.options
         )
 
         @components.submit_button()
