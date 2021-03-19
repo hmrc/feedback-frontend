@@ -17,11 +17,10 @@
 package repositories
 
 import javax.inject.{Inject, Singleton}
-
 import org.joda.time.{DateTime, DateTimeZone}
-import play.api.{Configuration, Logger}
 import play.api.libs.json.{JsValue, Json}
-import play.modules.reactivemongo.MongoDbConnection
+import play.api.{Configuration, Logger}
+import play.modules.reactivemongo._
 import reactivemongo.api.DefaultDB
 import reactivemongo.api.indexes.{Index, IndexType}
 import reactivemongo.bson.{BSONDocument, BSONObjectID}
@@ -82,11 +81,9 @@ class ReactiveMongoRepository(config: Configuration, mongo: () => DefaultDB)
 }
 
 @Singleton
-class SessionRepository @Inject()(config: Configuration) {
+class SessionRepository @Inject()(config: Configuration, dbConnection: ReactiveMongoComponent) {
 
-  class DbConnection extends MongoDbConnection
-
-  private lazy val sessionRepository = new ReactiveMongoRepository(config, new DbConnection().db)
+  private lazy val sessionRepository = new ReactiveMongoRepository(config, dbConnection.mongoConnector.db)
 
   def apply(): ReactiveMongoRepository = sessionRepository
 }
