@@ -117,7 +117,6 @@ $(document).ready(function() {
       window.onafterprint = function(){
           afterPrintCall();
       }
-
   });
 
 
