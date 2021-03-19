@@ -22,8 +22,10 @@
   legendClass: Option[String] = None,
   hint: Option[String] = None,
   hintClass: Option[String] = None,
+  trackGa: Boolean = false,
   inputs: Seq[RadioOption],
-  inputClass: Option[String] = None
+  inputClass: Option[String] = None,
+  gaCustomDimension: Option[Int] = None
 )(implicit messages: Messages)
 
 <div class="form-group @if(field.hasErrors){form-group-error}">
@@ -50,7 +52,13 @@
           type="radio"
           name="@{field.id}"
           value="@{input.value}"
-          @if(field.value == Some(input.value)){checked="checked"}/>
+          @if(field.value == Some(input.value)){checked="checked"}
+          @if(trackGa) {
+            data-journey-@if(gaCustomDimension.nonEmpty){ga-custom-dimension}else{click}="feedback-frontend:click:@{input.id}"
+            @if(gaCustomDimension.nonEmpty) {
+              data-ga-custom-dimension="@{gaCustomDimension.get}"
+            }
+          } />
 
         <label class="block-label selection-button-radio" for="@{input.id}">
           @messages(input.messageKey)
