@@ -9,7 +9,7 @@ object AppDependencies {
     play.sbt.PlayImport.ws,
     "uk.gov.hmrc" %% "simple-reactivemongo"          % s"7.30.0-$playVersion",
     "uk.gov.hmrc" %% "logback-json-logger"           % "4.8.0",
-    "uk.gov.hmrc" %% "govuk-template"                % s"5.56.0-$playVersion",
+    "uk.gov.hmrc" %% "govuk-template"                % s"5.65.0-$playVersion",
     "uk.gov.hmrc" %% "play-health"                   % s"3.15.0-$playVersion",
     "uk.gov.hmrc" %% "play-ui"                       % s"9.0.0-$playVersion",
     "uk.gov.hmrc" %% "http-caching-client"           % s"9.1.0-$playVersion",
