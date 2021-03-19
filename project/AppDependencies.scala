@@ -1,3 +1,4 @@
+import play.sbt.PlayImport.guice
 import sbt._
 
 object AppDependencies {
@@ -7,8 +8,8 @@ object AppDependencies {
 
   val compile = Seq(
     play.sbt.PlayImport.ws,
-    "uk.gov.hmrc" %% "simple-reactivemongo"          % s"8.0.0-$playVersion",
-    "uk.gov.hmrc" %% "logback-json-logger"           % "5.1.0",
+    "uk.gov.hmrc" %% "simple-reactivemongo"          % s"7.30.0-$playVersion",
+    "uk.gov.hmrc" %% "logback-json-logger"           % "4.8.0",
     "uk.gov.hmrc" %% "govuk-template"                % s"5.65.0-$playVersion",
     "uk.gov.hmrc" %% "play-health"                   % s"3.16.0-$playVersion",
     "uk.gov.hmrc" %% "play-ui"                       % s"9.0.0-$playVersion",
@@ -18,6 +19,7 @@ object AppDependencies {
     "uk.gov.hmrc" %% "play-language"                 % s"4.11.0-$playVersion")
 
   val test = Seq(
+    guice,
     "uk.gov.hmrc"            %% "hmrctest"           % s"3.9.0-$playVersion",
     "org.scalatest"          %% "scalatest"          % "3.0.4",
     "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.3",

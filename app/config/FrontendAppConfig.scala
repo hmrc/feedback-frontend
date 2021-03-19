@@ -32,21 +32,19 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
     getOptional[String](key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
 
   private lazy val contactHost = getOptional[String]("contact-frontend.host").getOrElse("")
+
   private val contactFormServiceIdentifier = "feedbackfrontend"
 
   lazy val reportAProblemPartialUrl = s"$contactHost/contact/problem_reports_ajax?service=$contactFormServiceIdentifier"
   lazy val reportAProblemNonJSUrl = s"$contactHost/contact/problem_reports_nonjs?service=$contactFormServiceIdentifier"
   lazy val betaFeedbackUrl = s"$contactHost/contact/beta-feedback"
   lazy val betaFeedbackUnauthenticatedUrl = s"$contactHost/contact/beta-feedback-unauthenticated"
-
   lazy val authUrl = servicesConfig.baseUrl("auth")
   lazy val loginUrl = loadConfig("urls.login")
   lazy val loginContinueUrl = loadConfig("urls.loginContinue")
-
   lazy val privacyPolicyUrl =
     "https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you"
   lazy val urLinkUrl = getOptional[String]("microservice.services.features.ur-link-url")
-
   lazy val pensionSignInUrl = getOptional[String]("urls.pension.sign-in")
   lazy val pensionRetirementUrl = getOptional[String]("urls.pension.retirement")
   lazy val pensionSideBarOneUrl = getOptional[String]("urls.pension.sidebar.link-one")
@@ -59,7 +57,8 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
 
   lazy val languageTranslationEnabled =
     getOptional[Boolean]("microservice.services.features.welsh-translation").getOrElse(true)
-  def languageMap: Map[String, Lang] = Map("english" -> Lang("en"), "cymraeg" -> Lang("cy"))
-  def routeToSwitchLanguage = (lang: String) => routes.LanguageSwitchController.switchToLanguage(lang)
 
+  def languageMap: Map[String, Lang] = Map("english" -> Lang("en"), "cymraeg" -> Lang("cy"))
+
+  def routeToSwitchLanguage = (lang: String) => routes.LanguageSwitchController.switchToLanguage(lang)
 }
