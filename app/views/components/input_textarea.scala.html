@@ -21,29 +21,40 @@
         inputClass: Option[String] = None,
         labelClass: Option[String] = None,
         hint: Option[String] = None,
-        maximum: Option[Int] = None
+        maximum: Option[Int] = None,
+        labelH1: Boolean = false
 )(implicit messages: Messages)
 
 <div class="form-group @if(field.hasErrors){form-group-error}">
-    <label class="form-label" for="@{field.id}">
-        <span class="@labelClass">@label</span>
-        @hint.map { hint =>
-            <span class="form-hint">@hint</span>
+
+        @if(labelH1) {
+            <h1>
+                <label class="heading-48" for="@{field.id}">@label</label>
+            </h1>
+        } else {
+            <label class="form-label" for="@{field.id}">
+                <span class="@labelClass">@label</span>
+            </label>
         }
-        @field.errors.map { error =>
-            <span class="error-message" id="error-message-@{field.id}-input">@messages(error.message, error.args: _*)</span>
-        }
-    </label>
+
+
+    @hint.map { hint =>
+        <span class="form-hint" id="textarea-hint-text">@hint</span>
+    }
+    @field.errors.map { error =>
+        <span class="error-message" id="error-message-@{field.id}-input">@messages(error.message, error.args: _*)</span>
+    }
+
     <textarea
         class="form-control form-control--full-width @inputClass"
         id="@{field.id}"
         name="@{field.id}"
-        @if(field.hasErrors) { aria-describedby="error-message-@{field.id}-input" }
+        @if(hint.nonEmpty || field.hasErrors || maximum.nonEmpty) {aria-describedby="@if(hint.nonEmpty) {textarea-hint-text}@if(hint.nonEmpty && field.hasErrors){ }@if(field.hasErrors){error-message-@{field.id}-input}@if(maximum.nonEmpty && field.hasErrors || maximum.nonEmpty && hint.nonEmpty){ }@if(maximum.nonEmpty) {maximum-char-hint}"}
         rows="5"
         maxlength="10000"
     >@{field.value}</textarea>
     @maximum.map { maximum =>
-        <p class="form-field--hint">@messages("generic.max-characters", maximum)</p>
+        <p id="maximum-char-hint" class="form-field--hint">@messages("generic.max-characters", maximum)</p>
     }
 </div>
 

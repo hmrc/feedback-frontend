@@ -26,13 +26,15 @@
 <div class="form-group @if(field.hasErrors){form-group-error}">
     <label class="form-label" for="@{field.id}">
         <span class="@labelClass">@label</span>
-        @if(hint.nonEmpty){
-            <span class="form-hint">@hint</span>
-        }
-        @field.errors.map { error =>
-            <span class="error-message" id="error-message-@{field.id}-input">@messages(error.message, error.args: _*)</span>
-        }
     </label>
+
+    @if(hint.nonEmpty){
+        <span class="form-hint" id="form-hint-text">@hint</span>
+    }
+    @field.errors.map { error =>
+        <span class="error-message" id="error-message-@{field.id}-input">@messages(error.message, error.args: _*)</span>
+    }
+
     <div class="form-control-wrapper">
         <input
         class="form-control @inputClass"
@@ -40,11 +42,11 @@
         id="@{field.id}"
         name="@{field.name}"
         value="@{field.value}"
-        @if(field.hasErrors){aria-describedby="error-message-@{field.id}-input"}
+        @if(hint.nonEmpty || field.hasErrors || maximum.nonEmpty) {aria-describedby="@if(hint.nonEmpty) {form-hint-text}@if(hint.nonEmpty && field.hasErrors){ }@if(field.hasErrors){error-message-@{field.id}-input}@if(maximum.nonEmpty && field.hasErrors || maximum.nonEmpty && hint.nonEmpty){ }@if(maximum.nonEmpty) {maximum-char-text-hint}"}
         maxlength="10000"
         />
         @maximum.map { maximum =>
-          <p class="form-field--hint">@messages("generic.max-characters", maximum)</p>
+          <p id="maximum-char-text-hint" class="form-field--hint">@messages("generic.max-characters", maximum)</p>
         }
     </div>
 </div>
