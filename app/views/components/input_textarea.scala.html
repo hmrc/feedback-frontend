@@ -14,6 +14,8 @@
  * limitations under the License.
  *@
 
+@import scala.collection.mutable.ListBuffer
+
 @(
         field: Field,
         label: String,
@@ -24,6 +26,15 @@
         maximum: Option[Int] = None,
         labelH1: Boolean = false
 )(implicit messages: Messages)
+
+@errorMessages = @{
+    var errors = new ListBuffer[String]()
+    if (hint.nonEmpty) errors += "textarea-hint-text"
+    if (field.hasErrors) errors += s"error-message-${field.id}-input"
+    if (maximum.nonEmpty) errors += s"maximum-char-${field.id}-hint"
+    errors.mkString(" ")
+}
+
 
 <div class="form-group @if(field.hasErrors){form-group-error}">
 
@@ -49,12 +60,12 @@
         class="form-control form-control--full-width @inputClass"
         id="@{field.id}"
         name="@{field.id}"
-        @if(hint.nonEmpty || field.hasErrors || maximum.nonEmpty) {aria-describedby="@if(hint.nonEmpty) {textarea-hint-text}@if(hint.nonEmpty && field.hasErrors){ }@if(field.hasErrors){error-message-@{field.id}-input}@if(maximum.nonEmpty && field.hasErrors || maximum.nonEmpty && hint.nonEmpty){ }@if(maximum.nonEmpty) {maximum-char-hint}"}
+        @if(errorMessages.nonEmpty) { aria-describedby="@errorMessages" }
         rows="5"
         maxlength="10000"
     >@{field.value}</textarea>
     @maximum.map { maximum =>
-        <p id="maximum-char-hint" class="form-field--hint">@messages("generic.max-characters", maximum)</p>
+        <p id="maximum-char-@{field.id}-hint" class="form-field--hint">@messages("generic.max-characters", maximum)</p>
     }
 </div>
 
