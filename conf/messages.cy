@@ -165,7 +165,7 @@ likelyToDoQuestion.ClarifyInformation = Cael eglurhad o’r wybodaeth a gawsoch 
 likelyToDoQuestion.GetProfessionalAdvice = Cael cyngor proffesiynol neu arweiniad yn rhad ac am ddim
 likelyToDoQuestion.DoNothing = Dim byd. Rydych yn fodlon ar yr wybodaeth y cawsoch hyd iddi heddiw
 
-ccgQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
+ccgQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor mewn ffenestr neu dab newydd)
 ccgQuestions.title = Rhoi adborth - GOV.UK
 ccgQuestions.heading = Adborth
 ccgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
@@ -257,11 +257,11 @@ thankYou.pension.subContent = Mae bwrw golwg ar eich Pensiwn y Wladwriaeth yn dd
 thankYou.pension.retirementLink = Bod â mwy ar ôl ymddeol
 
 thankYou.pension.sideBar.header = Beth allwch chi ei wneud nesaf
-thankYou.pension.sideBar.linkOne = Pension Wise - deall eich opsiynau pensiwn
-thankYou.pension.sideBar.linkTwo = Cynllunio eich incwm ymddeoliad
-thankYou.pension.sideBar.linkThree = Gohirio eich Pensiwn y Wladwriaeth
-thankYou.pension.sideBar.linkFour = Cysylltu â’r Gwasanaeth Pensiwn
-thankYou.pension.sideBar.linkFive = Mwy am Bensiynau’r Wladwriaeth
+thankYou.pension.sideBar.linkOne = Pension Wise - deall eich opsiynau pensiwn (yn agor mewn ffenestr neu dab newydd)
+thankYou.pension.sideBar.linkTwo = Cynllunio eich incwm ymddeoliad (yn agor mewn ffenestr neu dab newydd)
+thankYou.pension.sideBar.linkThree = Gohirio eich Pensiwn y Wladwriaeth (yn agor mewn ffenestr neu dab newydd)
+thankYou.pension.sideBar.linkFour = Cysylltu â’r Gwasanaeth Pensiwn (yn agor mewn ffenestr neu dab newydd)
+thankYou.pension.sideBar.linkFive = Mwy am Bensiynau’r Wladwriaeth (yn agor mewn ffenestr neu dab newydd)
 
 giveReason.title = Beth ddaethoch chi yma i’w wneud? - Rhoi adborth - GOV.UK
 giveReason.heading = Beth ddaethoch chi yma i’w wneud?

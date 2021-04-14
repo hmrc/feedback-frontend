@@ -153,7 +153,7 @@ likelyToDoQuestion.ClarifyInformation = Clarify information you have found in Ch
 likelyToDoQuestion.GetProfessionalAdvice = Get some professional advice or free guidance
 likelyToDoQuestion.DoNothing = Do nothing. You are satisfied with the information you found today
 
-ccgQuestions.introLinkText = HMRC Privacy Notice (opens in new tab)
+ccgQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
 ccgQuestions.title = Give feedback - GOV.UK
 ccgQuestions.heading = Feedback
 ccgQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
@@ -245,11 +245,11 @@ thankYou.pension.subContent = Checking your State Pension is a good start, but y
 thankYou.pension.retirementLink = Having more in retirement
 
 thankYou.pension.sideBar.header = What you can do next
-thankYou.pension.sideBar.linkOne = Pension Wise - understanding your pension options
-thankYou.pension.sideBar.linkTwo = Planning your retirement income
-thankYou.pension.sideBar.linkThree = Defer your State Pension
-thankYou.pension.sideBar.linkFour = Contact the Pension Service
-thankYou.pension.sideBar.linkFive = More on State Pensions
+thankYou.pension.sideBar.linkOne = Pension Wise - understanding your pension options (opens in a new window or tab)
+thankYou.pension.sideBar.linkTwo = Planning your retirement income (opens in a new window or tab)
+thankYou.pension.sideBar.linkThree = Defer your State Pension (opens in a new window or tab)
+thankYou.pension.sideBar.linkFour = Contact the Pension Service (opens in a new window or tab)
+thankYou.pension.sideBar.linkFive = More on State Pensions (opens in a new window or tab)
 
 giveReason.title = What did you come to do? - Give feedback - GOV.UK
 giveReason.heading = What did you come to do?
