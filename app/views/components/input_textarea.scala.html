@@ -14,6 +14,8 @@
  * limitations under the License.
  *@
 
+@import scala.collection.mutable.ListBuffer
+
 @(
         field: Field,
         label: String,
@@ -21,29 +23,49 @@
         inputClass: Option[String] = None,
         labelClass: Option[String] = None,
         hint: Option[String] = None,
-        maximum: Option[Int] = None
+        maximum: Option[Int] = None,
+        labelH1: Boolean = false
 )(implicit messages: Messages)
 
+@errorMessages = @{
+    var errors = new ListBuffer[String]()
+    if (hint.nonEmpty) errors += "textarea-hint-text"
+    if (field.hasErrors) errors += s"error-message-${field.id}-input"
+    if (maximum.nonEmpty) errors += s"maximum-char-${field.id}-hint"
+    errors.mkString(" ")
+}
+
+
 <div class="form-group @if(field.hasErrors){form-group-error}">
-    <label class="form-label" for="@{field.id}">
-        <span class="@labelClass">@label</span>
-        @hint.map { hint =>
-            <span class="form-hint">@hint</span>
+
+        @if(labelH1) {
+            <h1>
+                <label class="heading-48" for="@{field.id}">@label</label>
+            </h1>
+        } else {
+            <label class="form-label" for="@{field.id}">
+                <span class="@labelClass">@label</span>
+            </label>
         }
-        @field.errors.map { error =>
-            <span class="error-message" id="error-message-@{field.id}-input">@messages(error.message, error.args: _*)</span>
-        }
-    </label>
+
+
+    @hint.map { hint =>
+        <span class="form-hint" id="textarea-hint-text">@hint</span>
+    }
+    @field.errors.map { error =>
+        <span class="error-message" id="error-message-@{field.id}-input">@messages(error.message, error.args: _*)</span>
+    }
+
     <textarea
         class="form-control form-control--full-width @inputClass"
         id="@{field.id}"
         name="@{field.id}"
-        @if(field.hasErrors) { aria-describedby="error-message-@{field.id}-input" }
+        @if(errorMessages.nonEmpty) { aria-describedby="@errorMessages" }
         rows="5"
         maxlength="10000"
     >@{field.value}</textarea>
     @maximum.map { maximum =>
-        <p class="form-field--hint">@messages("generic.max-characters", maximum)</p>
+        <p id="maximum-char-@{field.id}-hint" class="form-field--hint">@messages("generic.max-characters", maximum)</p>
     }
 </div>
 
