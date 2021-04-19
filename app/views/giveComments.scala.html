@@ -33,14 +33,11 @@
 
         @components.error_summary(form.errors)
 
-        @components.heading("giveComments.heading")
-
-        <p>@messages("giveComments.intro1")</p>
-
         @components.input_textarea(
           field = form("value"),
           label = messages("giveComments.heading"),
-          labelClass = Some("visually-hidden")
+          hint = Some(messages("giveComments.intro1")),
+          labelH1 = true
         )
 
         @components.submit_button("site.sendFeedback")

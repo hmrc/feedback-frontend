@@ -65,8 +65,21 @@ Taken from GDS Elements
 
 .form-hint {
     display: block;
+    color: #505a5f;
+    margin-bottom: 15px;
 }
 
+.error-message {
+    margin-bottom: 15px;
+}
+
+.form-group .heading-48 {
+    margin-bottom: 15px;
+}
+
+.form-field--hint {
+    color: #505a5f;
+}
 /*
 =====================================
 Error styling to bring in line with GDS
@@ -87,10 +100,10 @@ Error styling to bring in line with GDS
     }
 }
 .form-field--error .form-control {
-    border: 4px solid #b10e1e;
+    border: 4px solid #d4351c;
 }
 .error-summary {
-    border: 4px solid #b10e1e;
+    border: 4px solid #d4351c;
     margin-top: 15px;
     margin-bottom: 15px;
     padding: 15px 10px;
@@ -101,14 +114,14 @@ Error styling to bring in line with GDS
 }
 @media (min-width: 641px){
     .error-summary {
-        border: 5px solid #b10e1e;
+        border: 5px solid #d4351c;
         margin-top: 30px;
         margin-bottom: 30px;
         padding: 20px 15px 15px;
     }
 }
 .error-summary .error-summary-list a {
-    color: #b10e1e;
+    color: #d4351c;
     font-weight: bold;
     text-decoration: underline;
 }
@@ -154,10 +167,6 @@ override character count display
     .char-counter {
         display: block;
     }
-}
-
-.heading-medium {
-    display: inline;
 }
 
 .form-hint.ccg-hint {
