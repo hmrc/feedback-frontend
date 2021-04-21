@@ -92,6 +92,34 @@ class AuditServiceSpec
     }
   }
 
+  "AuditService.trustsAudit" should {
+
+    "generate correct payload for bta questions" in {
+
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[TrustsQuestions]) { (origin, feedbackId, questions) =>
+        reset(auditConnector)
+
+        auditService.trustsAudit(origin, feedbackId, questions)
+
+        val expected = Map(
+          "origin"            -> origin.value,
+          "feedbackId"        -> feedbackId.value,
+          "isAgent"           -> questions.isAgent.map(boolToInt(_).toString).getOrElse("-"),
+          "tryingToDo"        -> questions.tryingToDo.map(_.toString).getOrElse("-"),
+          "tryingToDoOther"   -> questions.tryingToDoOther.getOrElse("-"),
+          "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
+          "whyNotAbleToDo"    -> questions.whyNotAbleToDo.getOrElse("-"),
+          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
+          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
+          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
+        )
+
+        verify(auditConnector, times(1))
+          .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+      }
+    }
+  }
+
   "generate correct payload for other questions" in {
 
     forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions]) { (origin, feedbackId, questions) =>

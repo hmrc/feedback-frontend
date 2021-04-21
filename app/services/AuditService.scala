@@ -19,6 +19,7 @@ package services
 import javax.inject.Inject
 import models._
 import models.ccg._
+import play.api.libs.json.Json
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import utils.FeedbackFrontendHelper._
@@ -52,6 +53,18 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
   def withMainServiceOther(mainServiceOther: Option[String]): MapCont =
     _ + ("mainServiceOther" -> mainServiceOther.getOrElse("-"))
+
+  def withIsAgent(ableToDo: Option[Boolean]): MapCont =
+    _ + ("isAgent" -> ableToDo.map(boolToInt(_).toString).getOrElse("-"))
+
+  def withTryingToDo(tryingToDo: Option[TryingToDoQuestion]): MapCont =
+    _ + ("tryingToDo" -> tryingToDo.map(_.toString).getOrElse("-"))
+
+  def withTryingToDoOther(tryingToDoOther: Option[String]): MapCont =
+    _ + ("tryingToDoOther" -> tryingToDoOther.getOrElse("-"))
+
+  def withWhyNotAbleToDo(whyNotAbleToDO: Option[String]): MapCont =
+    _ + ("whyNotAbleToDo" -> whyNotAbleToDO.getOrElse("-"))
 
   def withLikelyToDo(likelyToDo: Option[LikelyToDoQuestion]): MapCont =
     _ + ("likelyToDo" -> likelyToDo.map(_.toString).getOrElse("-"))
@@ -102,6 +115,25 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withMainService(questions.mainService) andThen
         withMainServiceOther(questions.mainServiceOther) andThen
         withAbleToDo(questions.ableToDo) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore)
+    )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
+
+  def trustsAudit(origin: Origin, feedbackId: FeedbackId, questions: TrustsQuestions)(
+    implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+        withFeedbackId(feedbackId) andThen
+        withIsAgent(questions.isAgent) andThen
+        withTryingToDo(questions.tryingToDo) andThen
+        withTryingToDoOther(questions.tryingToDoOther) andThen
+        withAbleToDo(questions.ableToDo) andThen
+        withWhyNotAbleToDo(questions.whyNotAbleToDo) andThen
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)

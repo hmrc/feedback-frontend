@@ -51,6 +51,8 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryBTAQuestions: Arbitrary[BTAQuestions] = Arbitrary(btaQuestionsGen)
 
+  implicit lazy val arbitraryTrustsQuestions: Arbitrary[TrustsQuestions] = Arbitrary(trustsQuestionsGen)
+
   implicit lazy val arbitraryPensionQuestions: Arbitrary[PensionQuestions] = Arbitrary(pensionQuestionsGen)
 
   implicit lazy val arbitraryCcgQuesions: Arbitrary[CCGQuestions] = Arbitrary(ccgQuestionsGen)
@@ -108,6 +110,20 @@ trait ModelGenerators {
       BTAQuestions(mainService, mainServiceOther, ableToDo, howEasy, whyScore, howFeel)
     }
 
+  lazy val trustsQuestionsGen: Gen[TrustsQuestions] =
+    for {
+      isAgent         <- option(arbitrary[Boolean])
+      tryingToDo      <- option(tryingToDoQuestionGen)
+      tryingToDoOther <- option(arbitrary[String].suchThat(_.nonEmpty))
+      ableToDo        <- option(arbitrary[Boolean])
+      whyNotAbleToDo  <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howEasy         <- option(howEasyQuestionGen)
+      whyScore        <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howFeel         <- option(howDoYouFeelQuestionGen)
+    } yield {
+      TrustsQuestions(isAgent, tryingToDo, tryingToDoOther, ableToDo, whyNotAbleToDo, howEasy, whyScore, howFeel)
+    }
+
   lazy val pensionQuestionsGen: Gen[PensionQuestions] =
     for {
       ableToDo   <- option(arbitrary[Boolean])
@@ -151,6 +167,9 @@ trait ModelGenerators {
 
   lazy val mainServiceQuestionGen: Gen[MainServiceQuestion] =
     oneOf(MainServiceQuestion.values)
+
+  lazy val tryingToDoQuestionGen: Gen[TryingToDoQuestion] =
+    oneOf(TryingToDoQuestion.values)
 
   lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
     oneOf(LikelyToDoQuestion.values)
