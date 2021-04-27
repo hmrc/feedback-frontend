@@ -34,7 +34,6 @@ lazy val root = (project in file("."))
       EvictionWarningOptions.default.withWarnScalaVersionEviction(false),
     fork in Test := true,
     resolvers ++= Seq(
-      Resolver.bintrayRepo("hmrc", "releases"),
       Resolver.jcenterRepo
     ),
     // concatenate js
