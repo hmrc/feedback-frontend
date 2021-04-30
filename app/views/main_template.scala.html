@@ -15,8 +15,9 @@
  *@
 
 @import config.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html.layouts._
 
-@this(govuk_wrapper: govuk_wrapper)
+@this(govuk_wrapper: govuk_wrapper, sidebarUI: Sidebar, article: Article)
 
 @(title: String,
   appConfig: FrontendAppConfig,
@@ -26,13 +27,11 @@
   mainClass: Option[String] = None,
   scriptElem: Option[Html] = None)(mainContent: Html)(implicit request : Request[_], messages: Messages)
 
-@import uk.gov.hmrc.play.views.html.layouts
-
 @serviceInfoContent = {}
 
 @sidebar = {
     @if(sidebarLinks.isDefined) {
-        @layouts.sidebar(sidebarLinks.get, Some("sidebar"))
+        @sidebarUI(sidebarLinks.get, Some("sidebar"))
     }
 }
 
@@ -42,7 +41,7 @@
                bodyClasses = bodyClasses,
                sidebar = sidebar,
                contentHeader = contentHeader,
-               mainContent = layouts.article(mainContent),
+               mainContent = article(mainContent),
                serviceInfoContent = serviceInfoContent,
                scriptElem = scriptElem
 )
