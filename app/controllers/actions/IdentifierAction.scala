@@ -30,41 +30,6 @@ import uk.gov.hmrc.play.HeaderCarrierConverter
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class AuthenticatedIdentifierAction @Inject()(
-  override val authConnector: AuthConnector,
-  config: FrontendAppConfig,
-  mcc: MessagesControllerComponents)(implicit ec: ExecutionContext)
-    extends IdentifierAction with AuthorisedFunctions {
-
-  override def invokeBlock[A](request: Request[A], block: (IdentifierRequest[A]) => Future[Result]): Future[Result] = {
-    implicit val hc: HeaderCarrier =
-      HeaderCarrierConverter.fromHeadersAndSession(request.headers, Some(request.session))
-
-    authorised().retrieve(Retrievals.internalId) {
-      _.map { internalId =>
-        block(IdentifierRequest(request, internalId))
-      }.getOrElse(throw new UnauthorizedException("Unable to retrieve internal Id"))
-    } recover {
-      case _: NoActiveSession =>
-        Redirect(config.loginUrl, Map("continue" -> Seq(config.loginContinueUrl)))
-      case _: InsufficientEnrolments =>
-        Redirect(routes.UnauthorisedController.onPageLoad)
-      case _: InsufficientConfidenceLevel =>
-        Redirect(routes.UnauthorisedController.onPageLoad)
-      case _: UnsupportedAuthProvider =>
-        Redirect(routes.UnauthorisedController.onPageLoad)
-      case _: UnsupportedAffinityGroup =>
-        Redirect(routes.UnauthorisedController.onPageLoad)
-      case _: UnsupportedCredentialRole =>
-        Redirect(routes.UnauthorisedController.onPageLoad)
-    }
-  }
-
-  override def parser: BodyParser[AnyContent] = mcc.parsers.defaultBodyParser
-
-  override protected def executionContext: ExecutionContext = ec
-}
-
 trait IdentifierAction
     extends ActionBuilder[IdentifierRequest, AnyContent] with ActionFunction[Request, IdentifierRequest]
 

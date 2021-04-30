@@ -15,7 +15,7 @@ object AppDependencies {
     "uk.gov.hmrc" %% "play-ui"                       % s"9.0.0-$playVersion",
     "uk.gov.hmrc" %% "http-caching-client"           % s"9.3.0-$playVersion",
     "uk.gov.hmrc" %% "play-conditional-form-mapping" % s"1.6.0-$playVersion",
-    "uk.gov.hmrc" %% s"bootstrap-$playVersion"       % "3.1.0",
+    "uk.gov.hmrc" %% s"bootstrap-frontend-$playVersion"       % "4.3.0",
     "uk.gov.hmrc" %% "play-language"                 % s"4.11.0-$playVersion")
 
   val test = Seq(
