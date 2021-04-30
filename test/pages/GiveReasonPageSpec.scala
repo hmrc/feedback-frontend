@@ -19,7 +19,7 @@ package pages
 import models.GiveReason
 import pages.behaviours.PageBehaviours
 
-class GiveReasonSpec extends PageBehaviours {
+class GiveReasonPageSpec extends PageBehaviours {
 
   "YourLocation" must {
 

@@ -44,7 +44,7 @@ class BTAQuestionsControllerSpec
 
   def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
+  def controller() =
     new BTAQuestionsController(
       frontendAppConfig,
       new FakeNavigator(onwardRoute),
