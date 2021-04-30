@@ -30,7 +30,8 @@ class CheckYourAnswersController @Inject()(
   authenticate: IdentifierAction,
   getData: DataRetrievalAction,
   requireData: DataRequiredAction,
-  mcc: MessagesControllerComponents)
+  mcc: MessagesControllerComponents,
+  check_your_answers: check_your_answers)
     extends FrontendController(mcc) with I18nSupport {
 
   def onPageLoad() = (authenticate andThen getData andThen requireData) { implicit request =>

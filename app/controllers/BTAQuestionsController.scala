@@ -34,7 +34,8 @@ class BTAQuestionsController @Inject()(
   navigator: Navigator,
   formProvider: BTAQuestionsFormProvider,
   auditService: AuditService,
-  mcc: MessagesControllerComponents)
+  mcc: MessagesControllerComponents,
+  btaQuestions: btaQuestions)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()

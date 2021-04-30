@@ -35,7 +35,8 @@ class PensionQuestionsController @Inject()(
   navigator: Navigator,
   formProvider: PensionQuestionsFormProvider,
   auditService: AuditService,
-  mcc: MessagesControllerComponents)
+  mcc: MessagesControllerComponents,
+  pensionQuestions: pensionQuestions)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[PensionQuestions] = formProvider()

@@ -24,8 +24,11 @@ import scala.concurrent.Future
 
 class SessionExpiredControllerSpec extends ControllerSpecBase {
 
+  val session_expired = inject[session_expired]
+
   "SessionExpired Controller" must {
-    def result: Future[Result] = new SessionExpiredController(frontendAppConfig, mcc).onPageLoad()(fakeRequest)
+    def result: Future[Result] =
+      new SessionExpiredController(frontendAppConfig, mcc, session_expired).onPageLoad()(fakeRequest)
 
     "return 200 for a GET" in {
       status(result) mustBe OK

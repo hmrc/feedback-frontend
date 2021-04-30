@@ -25,7 +25,11 @@ import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
 import views.html.{thankYou, thankYouPension}
 
-class ThankYouController @Inject()(appConfig: FrontendAppConfig, mcc: MessagesControllerComponents)
+class ThankYouController @Inject()(
+  appConfig: FrontendAppConfig,
+  mcc: MessagesControllerComponents,
+  thankYou: thankYou,
+  thankYouPension: thankYouPension)
     extends FrontendController(mcc) with I18nSupport {
 
   def onPageLoadWithOrigin(origin: Origin) = onPageLoad()

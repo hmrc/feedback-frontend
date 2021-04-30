@@ -35,7 +35,8 @@ class PTAQuestionsController @Inject()(
   navigator: Navigator,
   formProvider: PTAQuestionsFormProvider,
   auditService: AuditService,
-  mcc: MessagesControllerComponents)
+  mcc: MessagesControllerComponents,
+  ptaQuestions: ptaQuestions)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[PTAQuestions] = formProvider()

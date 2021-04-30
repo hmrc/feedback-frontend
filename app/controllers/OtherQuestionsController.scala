@@ -35,7 +35,8 @@ class OtherQuestionsController @Inject()(
   navigator: Navigator,
   formProvider: OtherQuestionsFormProvider,
   auditService: AuditService,
-  mcc: MessagesControllerComponents)
+  mcc: MessagesControllerComponents,
+  otherQuestions: otherQuestions)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()

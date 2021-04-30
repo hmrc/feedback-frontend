@@ -20,25 +20,22 @@ import config.FrontendAppConfig
 import org.scalatestplus.play.PlaySpec
 import org.scalatestplus.play.guice._
 import play.api.i18n.{Messages, MessagesApi}
-import play.api.inject.Injector
 import play.api.mvc.MessagesControllerComponents
-import play.api.test.FakeRequest
+import play.api.test.{FakeRequest, Injecting}
 
 import scala.concurrent.ExecutionContext
 
-trait SpecBase extends PlaySpec with GuiceOneAppPerSuite {
+trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with Injecting {
 
-  def injector: Injector = app.injector
+  def frontendAppConfig: FrontendAppConfig = inject[FrontendAppConfig]
 
-  def frontendAppConfig: FrontendAppConfig = injector.instanceOf[FrontendAppConfig]
-
-  def messagesApi: MessagesApi = injector.instanceOf[MessagesApi]
+  def messagesApi: MessagesApi = inject[MessagesApi]
 
   def fakeRequest = FakeRequest("", "")
 
   def messages: Messages = messagesApi.preferred(fakeRequest)
 
-  def mcc: MessagesControllerComponents = injector.instanceOf[MessagesControllerComponents]
+  def mcc: MessagesControllerComponents = inject[MessagesControllerComponents]
 
-  implicit lazy val ec: ExecutionContext = injector.instanceOf[ExecutionContext]
+  implicit lazy val ec: ExecutionContext = inject[ExecutionContext]
 }

@@ -35,7 +35,8 @@ class GiveCommentsController @Inject()(
   navigator: Navigator,
   formProvider: GiveCommentsFormProvider,
   auditService: AuditService,
-  mcc: MessagesControllerComponents
+  mcc: MessagesControllerComponents,
+  giveComments: giveComments
 ) extends FrontendController(mcc) with I18nSupport {
 
   val form = formProvider()

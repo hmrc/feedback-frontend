@@ -34,7 +34,8 @@ class CCGQuestionsController @Inject()(
   navigator: Navigator,
   formProvider: CCGQuestionsFormProvider,
   auditService: AuditService,
-  mcc: MessagesControllerComponents)
+  mcc: MessagesControllerComponents,
+  ccgQuestions: ccgQuestions)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[CCGQuestions] = formProvider()

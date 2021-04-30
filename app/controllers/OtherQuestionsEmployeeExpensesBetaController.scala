@@ -35,7 +35,8 @@ class OtherQuestionsEmployeeExpensesBetaController @Inject()(
   navigator: Navigator,
   formProvider: OtherQuestionsEmployeeExpensesBetaFormProvider,
   auditService: AuditService,
-  mcc: MessagesControllerComponents)
+  mcc: MessagesControllerComponents,
+  otherQuestionsEmployeeExpensesBeta: otherQuestionsEmployeeExpensesBeta)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[OtherQuestionsEmployeeExpensesBeta] = formProvider()

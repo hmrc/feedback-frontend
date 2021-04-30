@@ -35,7 +35,8 @@ class GiveReasonController @Inject()(
   navigator: Navigator,
   formProvider: GiveReasonFormProvider,
   auditService: AuditService,
-  mcc: MessagesControllerComponents
+  mcc: MessagesControllerComponents,
+  giveReason: giveReason
 ) extends FrontendController(mcc) with I18nSupport {
 
   val form = formProvider()

@@ -15,9 +15,11 @@
  *@
 
 @import layouts.{govuk_template => hmrcGovUkTemplate}
-@import uk.gov.hmrc.play.views.html.{layouts => uiLayouts}
+@import uk.gov.hmrc.play.views.html._
 @import uk.gov.hmrc.play.views.html.{helpers => uiHelpers}
 @import play.twirl.api.HtmlFormat
+
+@this(headWithTrackingConsent: HeadWithTrackingConsent)
 
 @(appConfig: config.FrontendAppConfig,
   title: String,
@@ -31,7 +33,7 @@
   scriptElem: Option[Html] = None)(implicit request: Request[_], messages: Messages)
 
 @head = {
-    @uiLayouts.headWithTrackingConsent(
+    @headWithTrackingConsent(
       linkElem = None,
       headScripts = None)
     <meta name="format-detection" content="telephone=no" />
