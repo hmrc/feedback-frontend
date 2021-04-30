@@ -19,14 +19,13 @@ package controllers
 import config.FrontendAppConfig
 import forms.CCGQuestionsFormProvider
 import javax.inject.Inject
-import models.{CCGQuestions, FeedbackId, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import services.AuditService
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.ccgQuestions
 import models.{CCGQuestions, FeedbackId, Origin}
 

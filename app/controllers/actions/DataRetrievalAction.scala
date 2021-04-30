@@ -21,7 +21,7 @@ import connectors.DataCacheConnector
 import models.UserAnswers
 import models.requests.{IdentifierRequest, OptionalDataRequest}
 import play.api.mvc.ActionTransformer
-import uk.gov.hmrc.play.HeaderCarrierConverter
+import uk.gov.hmrc.play.http.HeaderCarrierConverter
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -29,7 +29,7 @@ class DataRetrievalActionImpl @Inject()(val dataCacheConnector: DataCacheConnect
     extends DataRetrievalAction {
 
   override protected def transform[A](request: IdentifierRequest[A]): Future[OptionalDataRequest[A]] = {
-    implicit val hc = HeaderCarrierConverter.fromHeadersAndSession(request.headers, Some(request.session))
+    implicit val hc = HeaderCarrierConverter.fromRequestAndSession(request, request.session)
 
     dataCacheConnector.fetch(request.identifier).map {
       case None       => OptionalDataRequest(request.request, request.identifier, None)

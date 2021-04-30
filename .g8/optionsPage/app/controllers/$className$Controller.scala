@@ -4,7 +4,8 @@ import javax.inject.Inject
 
 import play.api.data.Form
 import play.api.i18n.{I18nSupport, MessagesApi}
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+
 import connectors.DataCacheConnector
 import controllers.actions._
 import config.FrontendAppConfig
