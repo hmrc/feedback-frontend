@@ -16,7 +16,6 @@
 
 package controllers
 
-import controllers.actions._
 import forms.BTAQuestionsFormProvider
 import generators.ModelGenerators
 import models.{BTAQuestions, FeedbackId, Origin}
