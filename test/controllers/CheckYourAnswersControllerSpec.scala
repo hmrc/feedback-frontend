@@ -22,6 +22,7 @@ import viewmodels.AnswerSection
 import views.html.check_your_answers
 
 class CheckYourAnswersControllerSpec extends ControllerSpecBase {
+  lazy val check_your_answers = inject[check_your_answers]
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new CheckYourAnswersController(
@@ -29,7 +30,9 @@ class CheckYourAnswersControllerSpec extends ControllerSpecBase {
       FakeIdentifierAction,
       dataRetrievalAction,
       new DataRequiredActionImpl,
-      mcc)
+      mcc,
+      check_your_answers
+    )
 
   "Check Your Answers Controller" must {
     "return 200 and the correct view for a GET" in {

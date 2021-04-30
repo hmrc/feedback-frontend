@@ -31,6 +31,8 @@ class GiveCommentsViewSpec extends StringViewBehaviours[BTAQuestions] {
 
   def createView = () => createViewUsingForm(form)
 
+  lazy val giveComments = inject[giveComments]
+
   def createViewUsingForm =
     (form: Form[_]) => giveComments(frontendAppConfig, form, action)(fakeRequest, messages)
 

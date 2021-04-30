@@ -41,11 +41,18 @@ class PTAQuestionsControllerSpec
   val form = formProvider()
 
   lazy val mockAuditService = mock[AuditService]
+  lazy val ptaQuestions = inject[ptaQuestions]
 
   def submitCall(origin: Origin) = routes.PTAQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new PTAQuestionsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
+    new PTAQuestionsController(
+      frontendAppConfig,
+      new FakeNavigator(onwardRoute),
+      formProvider,
+      mockAuditService,
+      mcc,
+      ptaQuestions)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     ptaQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString

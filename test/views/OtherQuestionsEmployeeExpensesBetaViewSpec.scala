@@ -33,6 +33,8 @@ class OtherQuestionsEmployeeExpensesBetaViewSpec
   val form = new OtherQuestionsEmployeeExpensesBetaFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
+  lazy val otherQuestionsEmployeeExpensesBeta = inject[otherQuestionsEmployeeExpensesBeta]
+
   def createView = () => otherQuestionsEmployeeExpensesBeta(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =

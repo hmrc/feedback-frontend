@@ -30,6 +30,8 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
   val form = new CCGQuestionsFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
+  lazy val ccgQuestions = inject[ccgQuestions]
+
   def createView = () => ccgQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =

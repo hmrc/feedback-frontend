@@ -16,15 +16,17 @@
 
 package controllers
 
-import controllers.actions._
 import models.Origin
 import play.api.test.Helpers._
-import views.html.thankYou
+import views.html.{thankYou, thankYouPension}
 
 class ThankYouControllerSpec extends ControllerSpecBase {
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new ThankYouController(frontendAppConfig, mcc)
+  lazy val thankYou = inject[thankYou]
+  lazy val thankYouPension = inject[thankYouPension]
+
+  def controller() =
+    new ThankYouController(frontendAppConfig, mcc, thankYou, thankYouPension)
 
   def viewAsString() = thankYou(frontendAppConfig)(fakeRequest, messages).toString
   val origin = Origin.fromString("/foo")

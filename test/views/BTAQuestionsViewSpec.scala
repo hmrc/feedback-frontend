@@ -31,6 +31,8 @@ class BTAQuestionsViewSpec
   val form = new BTAQuestionsFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
+  lazy val btaQuestions = inject[btaQuestions]
+
   def createView = () => btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =

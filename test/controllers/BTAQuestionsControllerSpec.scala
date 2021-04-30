@@ -49,8 +49,11 @@ class BTAQuestionsControllerSpec
       new FakeNavigator(onwardRoute),
       formProvider,
       mockAuditService,
-      mcc
+      mcc,
+      inject[btaQuestions]
     )
+
+  lazy val btaQuestions = inject[btaQuestions]
 
   def viewAsString(form: Form[_] = form, action: Call) =
     btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString

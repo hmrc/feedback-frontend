@@ -31,6 +31,8 @@ class PTAQuestionsViewSpec
   val form = new PTAQuestionsFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
+  lazy val ptaQuestions = inject[ptaQuestions]
+
   def createView = () => ptaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =

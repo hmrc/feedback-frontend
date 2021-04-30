@@ -40,6 +40,7 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec
   val formProvider = new OtherQuestionsEmployeeExpensesBetaFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
+  lazy val otherQuestionsEmployeeExpensesBeta = inject[otherQuestionsEmployeeExpensesBeta]
 
   def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
@@ -49,7 +50,8 @@ class OtherQuestionsEmployeeExpensesBetaControllerSpec
       new FakeNavigator(onwardRoute),
       formProvider,
       mockAuditService,
-      mcc)
+      mcc,
+      otherQuestionsEmployeeExpensesBeta)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     otherQuestionsEmployeeExpensesBeta(frontendAppConfig, form, action)(fakeRequest, messages).toString
