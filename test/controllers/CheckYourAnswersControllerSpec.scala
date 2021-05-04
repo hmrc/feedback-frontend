@@ -19,10 +19,10 @@ package controllers
 import play.api.test.Helpers._
 import controllers.actions.{DataRequiredActionImpl, DataRetrievalAction, FakeIdentifierAction}
 import viewmodels.AnswerSection
-import views.html.check_your_answers
+import views.html.checkYourAnswers
 
 class CheckYourAnswersControllerSpec extends ControllerSpecBase {
-  lazy val check_your_answers = inject[check_your_answers]
+  lazy val checkYourAnswers = inject[checkYourAnswers]
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
     new CheckYourAnswersController(
@@ -31,14 +31,14 @@ class CheckYourAnswersControllerSpec extends ControllerSpecBase {
       dataRetrievalAction,
       new DataRequiredActionImpl,
       mcc,
-      check_your_answers
+      checkYourAnswers
     )
 
   "Check Your Answers Controller" must {
     "return 200 and the correct view for a GET" in {
       val result = controller().onPageLoad()(fakeRequest)
       status(result) mustBe OK
-      contentAsString(result) mustBe check_your_answers(frontendAppConfig, Seq(AnswerSection(None, Seq())))(
+      contentAsString(result) mustBe checkYourAnswers(frontendAppConfig, Seq(AnswerSection(None, Seq())))(
         fakeRequest,
         messages).toString
     }

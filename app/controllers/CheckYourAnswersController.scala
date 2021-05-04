@@ -23,7 +23,7 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import viewmodels.AnswerSection
-import views.html.check_your_answers
+import views.html.checkYourAnswers
 
 class CheckYourAnswersController @Inject()(
   appConfig: FrontendAppConfig,
@@ -31,11 +31,11 @@ class CheckYourAnswersController @Inject()(
   getData: DataRetrievalAction,
   requireData: DataRequiredAction,
   mcc: MessagesControllerComponents,
-  check_your_answers: check_your_answers)
+  checkYourAnswers: checkYourAnswers)
     extends FrontendController(mcc) with I18nSupport {
 
   def onPageLoad() = (authenticate andThen getData andThen requireData) { implicit request =>
     val sections = Seq(AnswerSection(None, Seq()))
-    Ok(check_your_answers(appConfig, sections))
+    Ok(checkYourAnswers(appConfig, sections))
   }
 }

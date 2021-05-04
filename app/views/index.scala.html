@@ -16,11 +16,11 @@
 
 @import config.FrontendAppConfig
 
-@this(main_template: main_template)
+@this(mainTemplate: mainTemplate)
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
-@main_template(
+@mainTemplate(
     title = messages("index.title"),
     appConfig = appConfig,
     bodyClasses = None) {

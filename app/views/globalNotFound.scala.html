@@ -16,16 +16,16 @@
 
 @import config.FrontendAppConfig
 
-@this(main_template: main_template)
+@this(mainTemplate: mainTemplate)
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
-@main_template(
-    title = messages("session_expired.title"),
+@mainTemplate(
+    title = Messages("page_not_found.tabtitle"),
     appConfig = appConfig,
     bodyClasses = None) {
 
-    @components.heading("session_expired.heading")
-
-    <p>@messages("session_expired.guidance")</p>
+    @components.heading(Messages("page_not_found.heading"))
+    <p>@messages("page.not.found.error.check.web.address.correct")</p>
+    <p>@messages("page.not.found.error.check.web.address.full")</p>
 }

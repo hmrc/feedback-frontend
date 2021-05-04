@@ -21,11 +21,11 @@
 @import models.Mode
 @import views.ViewUtils._
 
-@this(main_template: main_template)
+@this(mainTemplate: mainTemplate)
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
-@main_template(
+@mainTemplate(
     title = s"${errorPrefix(form)} ${messages("giveReason.title")}",
     appConfig = appConfig,
     bodyClasses = None) {

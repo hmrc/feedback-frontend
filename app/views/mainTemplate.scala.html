@@ -17,7 +17,7 @@
 @import config.FrontendAppConfig
 @import uk.gov.hmrc.play.views.html.layouts._
 
-@this(govuk_wrapper: govuk_wrapper, sidebarUI: Sidebar, article: Article)
+@this(govukWrapper: govukWrapper, sidebarUI: Sidebar, article: Article)
 
 @(title: String,
   appConfig: FrontendAppConfig,
@@ -35,7 +35,7 @@
     }
 }
 
-@govuk_wrapper(appConfig = appConfig,
+@govukWrapper(appConfig = appConfig,
                title = title,
                mainClass = mainClass,
                bodyClasses = bodyClasses,

@@ -19,7 +19,7 @@
 @import models.{HowDoYouFeelQuestion, HowEasyQuestion}
 @import views.ViewUtils._
 
-@this(main_template: main_template)
+@this(mainTemplate: mainTemplate)
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
@@ -27,7 +27,7 @@
     <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer">@messages("ptaQuestions.introLinkText")</a>
 }
 
-@main_template(
+@mainTemplate(
     title = s"${errorPrefix(form)} ${messages("ptaQuestions.title")}",
     appConfig = appConfig,
     bodyClasses = None) {
