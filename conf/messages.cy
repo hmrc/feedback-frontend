@@ -160,8 +160,7 @@ ccgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. 
 ccgQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 ccgQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
 
-ccgQuestions.treatedProfessionally.heading = I ba raddau rydych yn cytuno neu’n anghytuno â’r datganiad canlynol?
-ccgQuestions.treatedProfessionally.subHeading = Gwnaeth CThEM fy nhrin yn broffesiynol yn ystod y gwiriad cydymffurfio.
+ccgQuestions.treatedProfessionally.heading = Pa mor gryf yr ydych yn cytuno neu’n anghytuno y gwnaeth CThEM eich trin yn broffesiynol yn ystod y gwiriad cydymffurfio?
 treatedProfessionallyQuestion.StronglyAgree = Cytuno’n gryf
 treatedProfessionallyQuestion.Agree = Cytuno
 treatedProfessionallyQuestion.NeitherAgreeNorDisagree = Ddim yn cytuno nac yn anghytuno
