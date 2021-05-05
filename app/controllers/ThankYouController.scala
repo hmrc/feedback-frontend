@@ -21,10 +21,15 @@ import javax.inject.Inject
 import models.Origin
 import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+
 import views.html.{thankYou, thankYouPension}
 
-class ThankYouController @Inject()(appConfig: FrontendAppConfig, mcc: MessagesControllerComponents)
+class ThankYouController @Inject()(
+  appConfig: FrontendAppConfig,
+  mcc: MessagesControllerComponents,
+  thankYou: thankYou,
+  thankYouPension: thankYouPension)
     extends FrontendController(mcc) with I18nSupport {
 
   def onPageLoadWithOrigin(origin: Origin) = onPageLoad()

@@ -24,9 +24,12 @@ import scala.concurrent.Future
 
 class UnauthorisedControllerSpec extends ControllerSpecBase {
 
+  lazy val unauthorised = inject[unauthorised]
+
   "Unauthorised Controller" must {
 
-    def result: Future[Result] = new UnauthorisedController(frontendAppConfig, mcc).onPageLoad()(fakeRequest)
+    def result: Future[Result] =
+      new UnauthorisedController(frontendAppConfig, mcc, unauthorised).onPageLoad()(fakeRequest)
 
     "return 200 for a GET" in {
       status(result) mustBe OK

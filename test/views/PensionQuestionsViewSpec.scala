@@ -31,6 +31,8 @@ class PensionQuestionsViewSpec
   val form = new PensionQuestionsFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
+  lazy val pensionQuestions = inject[pensionQuestions]
+
   def createView = () => pensionQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =

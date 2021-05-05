@@ -31,6 +31,8 @@ class OtherQuestionsViewSpec
   val form = new OtherQuestionsFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
+  lazy val otherQuestions = inject[otherQuestions]
+
   def createView = () => otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =

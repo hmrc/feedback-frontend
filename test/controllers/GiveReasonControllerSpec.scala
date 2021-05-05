@@ -40,9 +40,16 @@ class GiveReasonControllerSpec
   val formProvider = new GiveReasonFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
+  lazy val giveReason = inject[giveReason]
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new GiveReasonController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
+    new GiveReasonController(
+      frontendAppConfig,
+      new FakeNavigator(onwardRoute),
+      formProvider,
+      mockAuditService,
+      mcc,
+      giveReason)
 
   def viewAsString(form: Form[_] = form, origin: Origin) =
     giveReason(frontendAppConfig, form, routes.GiveReasonController.onSubmit(origin))(fakeRequest, messages).toString

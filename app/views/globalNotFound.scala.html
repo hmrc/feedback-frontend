@@ -15,25 +15,17 @@
  *@
 
 @import config.FrontendAppConfig
-@import viewmodels.{Section, AnswerSection, RepeaterAnswerSection}
 
-@(appConfig: FrontendAppConfig, answerSections: Seq[Section])(implicit request: Request[_], messages: Messages)
+@this(mainTemplate: mainTemplate)
 
-@main_template(
-    title = messages("checkYourAnswers.title"),
+@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+
+@mainTemplate(
+    title = Messages("page_not_found.tabtitle"),
     appConfig = appConfig,
     bodyClasses = None) {
 
-    @components.heading("checkYourAnswers.heading")</h1>
-
-    <p>@messages("checkYourAnswers.guidance")</p>
-
-    @for(section <- answerSections){
-        @{
-            section match {
-                case a: AnswerSection => components.answer_section(a)
-                case r: RepeaterAnswerSection => components.repeater_answer_section(r)
-            }
-        }
-    }
+    @components.heading(Messages("page_not_found.heading"))
+    <p>@messages("page.not.found.error.check.web.address.correct")</p>
+    <p>@messages("page.not.found.error.check.web.address.full")</p>
 }

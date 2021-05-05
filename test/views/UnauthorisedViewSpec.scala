@@ -21,6 +21,8 @@ import views.html.unauthorised
 
 class UnauthorisedViewSpec extends ViewBehaviours {
 
+  lazy val unauthorised = inject[unauthorised]
+
   def view = () => unauthorised(frontendAppConfig)(fakeRequest, messages)
 
   "Unauthorised view" must {

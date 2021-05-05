@@ -40,6 +40,7 @@ class PensionQuestionsControllerSpec
   val formProvider = new PensionQuestionsFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
+  lazy val pensionQuestions = inject[pensionQuestions]
 
   def submitCall(origin: Origin) = routes.PensionQuestionsController.onSubmit(origin)
 
@@ -49,7 +50,8 @@ class PensionQuestionsControllerSpec
       new FakeNavigator(onwardRoute),
       formProvider,
       mockAuditService,
-      mcc)
+      mcc,
+      pensionQuestions)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     pensionQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString

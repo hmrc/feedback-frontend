@@ -16,14 +16,16 @@
 
 @import config.FrontendAppConfig
 
-@(pageTitle: String, heading: String, message: String, appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+@this(mainTemplate: mainTemplate)
 
-@contentHeader = {
-  <h1>@heading</h1>
+@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+
+@mainTemplate(
+    title = messages("sessionExpired.title"),
+    appConfig = appConfig,
+    bodyClasses = None) {
+
+    @components.heading("sessionExpired.heading")
+
+    <p>@messages("sessionExpired.guidance")</p>
 }
-
-@mainContent = {
-  <p>@message</p>
-}
-
-@govuk_wrapper(appConfig = appConfig, title = pageTitle, contentHeader = Some(contentHeader), mainContent = mainContent)

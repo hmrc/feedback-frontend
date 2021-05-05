@@ -19,13 +19,15 @@
 @import models.ccg._
 @import views.ViewUtils._
 
+@this(mainTemplate: mainTemplate)
+
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
 @privacyPolicyLink = {
 <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer">@messages("ccgQuestions.introLinkText")</a>
 }
 
-@main_template(
+@mainTemplate(
 title = s"${errorPrefix(form)} ${messages("ccgQuestions.title")}",
 appConfig = appConfig,
 bodyClasses = None) {

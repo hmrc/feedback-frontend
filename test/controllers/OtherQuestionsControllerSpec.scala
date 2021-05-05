@@ -40,11 +40,18 @@ class OtherQuestionsControllerSpec
   val formProvider = new OtherQuestionsFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
+  lazy val otherQuestions = inject[otherQuestions]
 
   def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
   def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new OtherQuestionsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
+    new OtherQuestionsController(
+      frontendAppConfig,
+      new FakeNavigator(onwardRoute),
+      formProvider,
+      mockAuditService,
+      mcc,
+      otherQuestions)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString

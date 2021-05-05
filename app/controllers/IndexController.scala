@@ -20,10 +20,11 @@ import config.FrontendAppConfig
 import javax.inject.Inject
 import play.api.i18n.I18nSupport
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+
 import views.html.index
 
-class IndexController @Inject()(val appConfig: FrontendAppConfig, mcc: MessagesControllerComponents)
+class IndexController @Inject()(val appConfig: FrontendAppConfig, mcc: MessagesControllerComponents, index: index)
     extends FrontendController(mcc) with I18nSupport {
 
   def onPageLoad: Action[AnyContent] = Action { implicit request =>

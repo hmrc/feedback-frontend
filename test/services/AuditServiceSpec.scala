@@ -16,24 +16,22 @@
 
 package services
 
-import controllers.CCGQuestionsController
 import generators.ModelGenerators
 import models._
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
-import org.scalatest.BeforeAndAfter
+import org.scalacheck.Arbitrary._
+import org.scalatest.{BeforeAndAfter, Matchers, OptionValues, WordSpec}
 import org.scalatestplus.mockito.MockitoSugar
+import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
-import uk.gov.hmrc.play.test.UnitSpec
-import org.scalacheck.Arbitrary._
-import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import utils.FeedbackFrontendHelper._
 
 class AuditServiceSpec
-    extends UnitSpec with MockitoSugar with BeforeAndAfter with ScalaCheckPropertyChecks with ModelGenerators
-    with GuiceOneAppPerSuite {
+    extends WordSpec with Matchers with OptionValues with MockitoSugar with BeforeAndAfter with ScalaCheckPropertyChecks
+    with ModelGenerators with GuiceOneAppPerSuite {
 
   implicit val hc = HeaderCarrier()
   implicit val ec = scala.concurrent.ExecutionContext.Implicits.global

@@ -24,8 +24,10 @@ import scala.concurrent.Future
 
 class IndexControllerSpec extends ControllerSpecBase {
 
+  lazy val index = inject[index]
+
   "Index Controller" must {
-    def result: Future[Result] = new IndexController(frontendAppConfig, mcc).onPageLoad()(fakeRequest)
+    def result: Future[Result] = new IndexController(frontendAppConfig, mcc, index).onPageLoad()(fakeRequest)
 
     "return 200 for a GET" in {
       status(result) mustBe OK

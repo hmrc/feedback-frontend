@@ -16,9 +16,11 @@
 
 @import config.FrontendAppConfig
 
+@this(mainTemplate: mainTemplate)
+
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
-@main_template(
+@mainTemplate(
     title = messages("unauthorised.title"),
     appConfig = appConfig,
     bodyClasses = None) {
