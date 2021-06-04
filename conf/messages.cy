@@ -98,7 +98,7 @@ mainServiceQuestion.VAT = TAW
 mainServiceQuestion.CorporationTax = Treth Gorfforaeth
 mainServiceQuestion.CIS = Cynllun y Diwydiant Adeiladu (CIS)
 mainServiceQuestion.ECSales = Gwerthiannau yn y GE
-mainServiceQuestion.Other = Arall, Rhowch fanylion
+mainServiceQuestion.Other = Arall, rhowch fanylion
 
 thankYou.title = Diolch am eich adborth
 thankYou.heading = Diolch am eich adborth
@@ -128,6 +128,7 @@ btaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. 
 btaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 btaQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
 btaQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
+btaQuestions.mainService.heading = Rhowch wybod i ni am y prif wasanaeth a ddefnyddioch heddiw
 btaQuestions.neededToDo.heading = Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?
 btaQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
 btaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
