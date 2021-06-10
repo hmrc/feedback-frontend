@@ -260,9 +260,9 @@ giveReason.contactAboutP800 = Cysylltu â CThEM ynglŷn â fy P800
 giveReason.p800Wrong = Mae fy llythyr cyfrifiad P800 yn anghywir
 giveReason.payOwedTax = Talu’r dreth sydd arnaf
 giveReason.progressChasing = Dilyn hynt rhywbeth
-giveReason.other = Arall
+giveReason.other = Arall, rhowch fanylion
 giveReason.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn 1,000 o gymeriadau neu’n llai
-giveReason.other.reason.label = Beth ddaethoch chi yma i’w wneud?
+giveReason.other.reason.label = Rhowch wybod i ni yr hyn y daethoch chi yma i’w wneud
 
 giveComments.title = Beth ddaethoch chi yma i’w wneud? - Rhoi adborth - GOV.UK
 giveComments.heading = Beth ddaethoch chi yma i’w wneud?

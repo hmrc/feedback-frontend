@@ -260,9 +260,9 @@ giveReason.contactAboutP800 = Contact HMRC about my P800
 giveReason.p800Wrong = My P800 letter calculation is wrong
 giveReason.payOwedTax = Pay tax I owe
 giveReason.progressChasing = Progress chasing
-giveReason.other = Other
+giveReason.other = Other, please specify
 giveReason.error.maxlength = Why you gave this score must be 1,000 characters or less
-giveReason.other.reason.label = What did you come to do?
+giveReason.other.reason.label = Tell us what you came to do
 
 giveComments.title = What did you come to do? - Give feedback - GOV.UK
 giveComments.heading = What did you come to do?
