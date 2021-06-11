@@ -14,6 +14,27 @@
  * limitations under the License.
  *@
 
-@this()
+@import config.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html._
 
-<p>Hello World</p>
+@this(mainTemplate: mainTemplate)
+
+@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+
+@privacyPolicyLink = {
+<a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer">@messages("nmwCcgQuestions.introLinkText")</a>
+}
+
+@mainTemplate(
+title = s"${messages("nmwCcgQuestions.title")}",
+appConfig = appConfig,
+bodyClasses = None) {
+
+@components.heading("nmwCcgQuestions.heading")
+
+<p>@messages("nmwCcgQuestions.intro1")</p>
+
+<p>@Html(messages("nmwCcgQuestions.intro2", privacyPolicyLink))</p>
+
+<p>@messages("nmwCcgQuestions.intro3")</p>
+}

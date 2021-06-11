@@ -19,6 +19,7 @@ POST       /:origin/personal                            controllers.PTAQuestions
 GET        /:origin/business                            controllers.BTAQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/business                            controllers.BTAQuestionsController.onSubmit(origin: models.Origin)
 
+#TODO Sort issue when these routes are below /:origin/ccg and nmw/ccg matches on /:origin/ccg route
 GET        /nmw/ccg                                     controllers.NmwCcgQuestionsController.onPageLoad
 POST       /nmw/ccg                                     controllers.NmwCcgQuestionsController.onSubmit
 

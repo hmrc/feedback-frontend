@@ -16,20 +16,27 @@
 
 package controllers
 
+import config.FrontendAppConfig
+import models.Origin
 import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.NmwCcgQuestionsView
+
 import javax.inject.Inject
 
 class NmwCcgQuestionsController @Inject()(
+  appConfig: FrontendAppConfig,
   mcc: MessagesControllerComponents,
   nmwCcgQuestionsView: NmwCcgQuestionsView
 ) extends FrontendController(mcc) with I18nSupport {
 
+  val origin = Origin.fromString("nmw")
+  val submitCall: Call = routes.NmwCcgQuestionsController.onSubmit()
+
   def onPageLoad: Action[AnyContent] =
     Action { implicit request =>
-      Ok(nmwCcgQuestionsView())
+      Ok(nmwCcgQuestionsView(appConfig))
 
     }
 

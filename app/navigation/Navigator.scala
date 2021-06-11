@@ -25,6 +25,7 @@ import models._
 trait NextPage[A, B] {
 
   def nextPage(page: A): B => Call
+
 }
 
 object NextPage {
@@ -37,11 +38,9 @@ object NextPage {
 
   implicit val pensionQuestionsNextPage: NextPage[PensionQuestionsPage.type, Unit] =
     (_: PensionQuestionsPage.type) => _ => controllers.routes.ThankYouController.onPageLoadPension()
-
 }
 
 @Singleton
 class Navigator @Inject()() {
-
   def nextPage[A, B](page: A)(b: B)(implicit np: NextPage[A, B]): Call = np.nextPage(page)(b)
 }
