@@ -131,11 +131,11 @@ class CCGQuestionsFormProvider @Inject() extends Mappings {
       )(CCGQuestions.apply)(CCGQuestions.unapply))
 }
 
-class NmwCcgQuestionsFormProvider extends Mappings {
-  def apply(): Form[NmwQuestions] =
+class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
+  def apply(): Form[NmwCcgQuestions] =
     Form(
       mapping(
         "treatedProfessionally" -> optional(enumerable[TreatedProfessionallyQuestion]()),
-      )(NmwQuestions.apply)(NmwQuestions.unapply)
+      )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
     )
 }

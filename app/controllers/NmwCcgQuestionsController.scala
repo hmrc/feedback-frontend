@@ -18,7 +18,7 @@ package controllers
 
 import config.FrontendAppConfig
 import forms.NmwCcgQuestionsFormProvider
-import models.{NmwQuestions, Origin}
+import models.{NmwCcgQuestions, Origin}
 import play.api.data.Form
 import play.api.i18n.I18nSupport
 import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
@@ -35,7 +35,7 @@ class NmwCcgQuestionsController @Inject()(
 ) extends FrontendController(mcc) with I18nSupport {
 
   val origin = Origin.fromString("nmw")
-  val form: Form[NmwQuestions] = formProvider()
+  val form: Form[NmwCcgQuestions] = formProvider()
   val submitCall: Call = routes.NmwCcgQuestionsController.onSubmit()
 
   def onPageLoad: Action[AnyContent] =
