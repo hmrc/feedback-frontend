@@ -91,6 +91,14 @@ object CCGQuestions {
   implicit val formats: Format[CCGQuestions] = Json.format[CCGQuestions]
 }
 
+case class NmwQuestions(
+  treatedProfessionally: Option[TreatedProfessionallyQuestion],
+)
+
+object NmwQuestions {
+  implicit val formats: Format[NmwQuestions] = Json.format[NmwQuestions]
+}
+
 case class GiveReasonQuestions(value: Option[GiveReason], reason: Option[String])
 
 object GiveReasonQuestions {

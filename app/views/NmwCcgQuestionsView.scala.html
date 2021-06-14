@@ -16,19 +16,25 @@
 
 @import config.FrontendAppConfig
 @import uk.gov.hmrc.play.views.html._
+@import views.ViewUtils._
+@import models.ccg._
 
 @this(mainTemplate: mainTemplate)
 
-@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
 @privacyPolicyLink = {
 <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer">@messages("nmwCcgQuestions.introLinkText")</a>
 }
 
 @mainTemplate(
-title = s"${messages("nmwCcgQuestions.title")}",
+title = s"${errorPrefix(form)} ${messages("nmwCcgQuestions.title")}",
 appConfig = appConfig,
 bodyClasses = None) {
+
+@helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
+
+@components.error_summary(form.errors)
 
 @components.heading("nmwCcgQuestions.heading")
 
@@ -37,4 +43,14 @@ bodyClasses = None) {
 <p>@Html(messages("nmwCcgQuestions.intro2", privacyPolicyLink))</p>
 
 <p>@messages("nmwCcgQuestions.intro3")</p>
+
+@components.input_radio(
+ field = form("treatedProfessionally"),
+ legend = messages("nmwCcgQuestions.treatedProfessionally.heading"),
+ legendClass = Some("heading-medium"),
+ hint = Some(messages("nmwCcgQuestions.treatedProfessionally.subHeading")),
+ hintClass = Some("ccg-hint"),
+ inputs = TreatedProfessionallyQuestion.options,
+  )
+ }
 }

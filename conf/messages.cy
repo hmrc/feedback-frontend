@@ -294,3 +294,6 @@ nmwCcgQuestions.heading = Adborth
 nmwCcgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 nmwCcgQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 nmwCcgQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
+
+nmwCcgQuestions.treatedProfessionally.heading=???
+nmwCcgQuestions.treatedProfessionally.subHeading=???
