@@ -297,3 +297,5 @@ nmwCcgQuestions.intro3 = The survey takes about 1 minute to complete. There are 
 
 nmwCcgQuestions.treatedProfessionally.heading = How strongly do you agree or disagree that HMRC treated you professionally during the National Minimum Wage (NMW) enquiry?
 nmwCcgQuestions.CheckUnderstanding.heading = During the NMW enquiry, how easy was it for you to understand what was happening?
+nmwCcgQuestions.whyGiveAnswer.heading = Why did you give this answer?
+nmwCcgQuestions.whyGiveAnswer.hint = Please consider all parts of the NMW enquiry. Do not give any personal information like your National Insurance number, PAYE reference number or bank details.

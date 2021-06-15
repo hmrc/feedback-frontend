@@ -93,7 +93,8 @@ object CCGQuestions {
 
 case class NmwCcgQuestions(
   treatedProfessionally: Option[TreatedProfessionallyQuestion],
-  checkUnderstanding: Option[CheckUnderstandingQuestion]
+  checkUnderstanding: Option[CheckUnderstandingQuestion],
+  whyGiveAnswer: Option[String]
 )
 
 object NmwCcgQuestions {

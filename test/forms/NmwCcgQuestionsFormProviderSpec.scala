@@ -54,4 +54,19 @@ class NmwCcgQuestionsFormProviderSpec
     )
   }
 
+  ".whyGiveAnswer" must {
+
+    val fieldName = "whyGiveAnswer"
+    val invalidError = "whyGiveAnswer.error.maxlength"
+    val maxLength = 1000
+
+    behave like fieldWithMaxLength(
+      form,
+      fieldName,
+      maxLength,
+      FormError(fieldName, invalidError, List(maxLength))
+    )
+
+  }
+
 }

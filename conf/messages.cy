@@ -297,3 +297,5 @@ nmwCcgQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4
 
 nmwCcgQuestions.treatedProfessionally.heading=???
 nmwCcgQuestions.CheckUnderstanding.heading=???
+nmwCcgQuestions.whyGiveAnswer.heading = ???
+nmwCcgQuestions.whyGiveAnswer.hint = ???

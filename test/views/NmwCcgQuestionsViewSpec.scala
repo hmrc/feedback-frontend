@@ -53,6 +53,9 @@ class NmwCcgQuestionsViewSpec
       "checkUnderstanding",
       CheckUnderstandingQuestion.options,
       "nmwCcgQuestions.CheckUnderstanding")
+
+    behave like stringPage(createViewUsingForm, "whyGiveAnswer", "nmwCcgQuestions.whyGiveAnswer")
+
   }
 
   "contain second introductory paragraph" in {

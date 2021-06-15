@@ -58,5 +58,13 @@ legend = messages("nmwCcgQuestions.CheckUnderstanding.heading"),
 legendClass = Some("heading-medium"),
 inputs = CheckUnderstandingQuestion.options,
   )
+
+@components.input_textarea(
+field = form("whyGiveAnswer"),
+label = messages("nmwCcgQuestions.whyGiveAnswer.heading"),
+hint = Some(messages("nmwCcgQuestions.whyGiveAnswer.hint")),
+labelClass = Some("heading-medium"),
+maximum = Some(1000)
+)
  }
 }

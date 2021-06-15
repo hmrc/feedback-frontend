@@ -132,11 +132,18 @@ class CCGQuestionsFormProvider @Inject() extends Mappings {
 }
 
 class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
+
+  private val maxFieldSizeWhyGiveAnswer = 1000
+
   def apply(): Form[NmwCcgQuestions] =
     Form(
       mapping(
         "treatedProfessionally" -> optional(enumerable[TreatedProfessionallyQuestion]()),
-        "checkUnderstanding"    -> optional(enumerable[CheckUnderstandingQuestion]())
+        "checkUnderstanding"    -> optional(enumerable[CheckUnderstandingQuestion]()),
+        "whyGiveAnswer" ->
+          optional(
+            text("whyGiveAnswer.error.required")
+              .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength")))
       )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
     )
 }
