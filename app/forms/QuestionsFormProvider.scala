@@ -135,7 +135,8 @@ class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[NmwCcgQuestions] =
     Form(
       mapping(
-        "treatedProfessionally" -> optional(enumerable[TreatedProfessionallyQuestion]()),
+        "treatedProfessionally"        -> optional(enumerable[TreatedProfessionallyQuestion]()),
+        "complianceCheckUnderstanding" -> optional(enumerable[ComplianceCheckUnderstandingQuestion]())
       )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
     )
 }

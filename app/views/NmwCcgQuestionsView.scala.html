@@ -51,5 +51,12 @@ bodyClasses = None) {
  hintClass = Some("ccg-hint"),
  inputs = TreatedProfessionallyQuestion.options,
   )
+
+@components.input_radio(
+field = form("complianceCheckUnderstanding"),
+legend = messages("nmwCcgQuestions.CheckUnderstanding.heading"),
+legendClass = Some("heading-medium"),
+inputs = ComplianceCheckUnderstandingQuestion.options,
+  )
  }
 }
