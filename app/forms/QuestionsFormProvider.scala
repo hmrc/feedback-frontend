@@ -122,7 +122,7 @@ class CCGQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[CCGQuestions] =
     Form(
       mapping(
-        "complianceCheckUnderstanding" -> optional(enumerable[ComplianceCheckUnderstandingQuestion]()),
+        "complianceCheckUnderstanding" -> optional(enumerable[CheckUnderstandingQuestion]()),
         "treatedProfessionally"        -> optional(enumerable[TreatedProfessionallyQuestion]()),
         "whyGiveAnswer" ->
           optional(text("whyGiveAnswer.error.required")
@@ -135,8 +135,8 @@ class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[NmwCcgQuestions] =
     Form(
       mapping(
-        "treatedProfessionally"        -> optional(enumerable[TreatedProfessionallyQuestion]()),
-        "complianceCheckUnderstanding" -> optional(enumerable[ComplianceCheckUnderstandingQuestion]())
+        "treatedProfessionally" -> optional(enumerable[TreatedProfessionallyQuestion]()),
+        "checkUnderstanding"    -> optional(enumerable[CheckUnderstandingQuestion]())
       )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
     )
 }

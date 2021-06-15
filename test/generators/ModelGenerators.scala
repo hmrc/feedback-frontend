@@ -134,8 +134,8 @@ trait ModelGenerators {
         supportFutureTax
       )
 
-  lazy val complianceCheckUnderstandingGen: Gen[ComplianceCheckUnderstandingQuestion] =
-    oneOf(ComplianceCheckUnderstandingQuestion.values)
+  lazy val complianceCheckUnderstandingGen: Gen[CheckUnderstandingQuestion] =
+    oneOf(CheckUnderstandingQuestion.values)
 
   lazy val treatedProfessionallyGen: Gen[TreatedProfessionallyQuestion] =
     oneOf(TreatedProfessionallyQuestion.values)
@@ -155,7 +155,7 @@ trait ModelGenerators {
   lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
     oneOf(LikelyToDoQuestion.values)
 
-  implicit lazy val arbitraryComplianceCheckUnderstandingQuestionSpec: Arbitrary[ComplianceCheckUnderstandingQuestion] =
+  implicit lazy val arbitraryComplianceCheckUnderstandingQuestionSpec: Arbitrary[CheckUnderstandingQuestion] =
     Arbitrary(complianceCheckUnderstandingGen)
 
   implicit lazy val treatedProfessionallyQuestionSpec: Arbitrary[TreatedProfessionallyQuestion] =

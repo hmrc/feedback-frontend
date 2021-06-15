@@ -19,24 +19,23 @@ package models.ccg
 import models.{Enumerable, WithName}
 import viewmodels.RadioOption
 
-sealed trait ComplianceCheckUnderstandingQuestion
+sealed trait CheckUnderstandingQuestion
 
-object ComplianceCheckUnderstandingQuestion extends Enumerable.Implicits {
+object CheckUnderstandingQuestion extends Enumerable.Implicits {
 
-  case object VeryEasy extends WithName("VeryEasy") with ComplianceCheckUnderstandingQuestion
-  case object Easy extends WithName("Easy") with ComplianceCheckUnderstandingQuestion
-  case object NeitherEasyOrDifficult
-      extends WithName("NeitherEasyOrDifficult") with ComplianceCheckUnderstandingQuestion
-  case object Difficult extends WithName("Difficult") with ComplianceCheckUnderstandingQuestion
-  case object VeryDifficult extends WithName("VeryDifficult") with ComplianceCheckUnderstandingQuestion
+  case object VeryEasy extends WithName("VeryEasy") with CheckUnderstandingQuestion
+  case object Easy extends WithName("Easy") with CheckUnderstandingQuestion
+  case object NeitherEasyOrDifficult extends WithName("NeitherEasyOrDifficult") with CheckUnderstandingQuestion
+  case object Difficult extends WithName("Difficult") with CheckUnderstandingQuestion
+  case object VeryDifficult extends WithName("VeryDifficult") with CheckUnderstandingQuestion
 
-  val values: Seq[ComplianceCheckUnderstandingQuestion] =
+  val values: Seq[CheckUnderstandingQuestion] =
     List(VeryEasy, Easy, NeitherEasyOrDifficult, Difficult, VeryDifficult)
 
   val options: Seq[RadioOption] = values.map { value =>
     RadioOption("complianceCheckUnderstandingQuestion", value.toString)
   }
 
-  implicit val enumerable: Enumerable[ComplianceCheckUnderstandingQuestion] =
+  implicit val enumerable: Enumerable[CheckUnderstandingQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
 }

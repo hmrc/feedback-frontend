@@ -66,8 +66,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withEmail(email: Option[String]): MapCont =
     _ + ("email" -> email.getOrElse("-"))
 
-  def withComplianceCheckUnderstanding(
-    complianceCheckUnderstanding: Option[ComplianceCheckUnderstandingQuestion]): MapCont =
+  def withComplianceCheckUnderstanding(complianceCheckUnderstanding: Option[CheckUnderstandingQuestion]): MapCont =
     _ + ("complianceCheckUnderstanding" -> complianceCheckUnderstanding.map(_.toString).getOrElse("-"))
 
   def withTreatedProfessionally(treatedProfessionally: Option[TreatedProfessionallyQuestion]): MapCont =

@@ -81,7 +81,7 @@ object PensionQuestions {
 }
 
 case class CCGQuestions(
-  complianceCheckUnderstanding: Option[ComplianceCheckUnderstandingQuestion],
+  complianceCheckUnderstanding: Option[CheckUnderstandingQuestion],
   treatedProfessionally: Option[TreatedProfessionallyQuestion],
   whyGiveAnswer: Option[String],
   supportFutureTaxQuestion: Option[SupportFutureTaxQuestion]
@@ -93,7 +93,7 @@ object CCGQuestions {
 
 case class NmwCcgQuestions(
   treatedProfessionally: Option[TreatedProfessionallyQuestion],
-  complianceCheckUnderstanding: Option[ComplianceCheckUnderstandingQuestion]
+  checkUnderstanding: Option[CheckUnderstandingQuestion]
 )
 
 object NmwCcgQuestions {

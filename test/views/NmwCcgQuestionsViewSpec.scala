@@ -18,7 +18,7 @@ package views
 
 import forms.NmwCcgQuestionsFormProvider
 import models.NmwCcgQuestions
-import models.ccg.{ComplianceCheckUnderstandingQuestion, TreatedProfessionallyQuestion}
+import models.ccg.{CheckUnderstandingQuestion, TreatedProfessionallyQuestion}
 import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours}
 import views.html.NmwCcgQuestionsView
@@ -50,8 +50,8 @@ class NmwCcgQuestionsViewSpec
 
     behave like optionsPage(
       createViewUsingForm,
-      "complianceCheckUnderstanding",
-      ComplianceCheckUnderstandingQuestion.options,
+      "checkUnderstanding",
+      CheckUnderstandingQuestion.options,
       "nmwCcgQuestions.CheckUnderstanding")
   }
 

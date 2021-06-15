@@ -18,7 +18,7 @@ package forms
 
 import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
 import models.NmwCcgQuestions
-import models.ccg.{ComplianceCheckUnderstandingQuestion, TreatedProfessionallyQuestion}
+import models.ccg.{CheckUnderstandingQuestion, TreatedProfessionallyQuestion}
 import play.api.data.FormError
 
 class NmwCcgQuestionsFormProviderSpec
@@ -40,17 +40,17 @@ class NmwCcgQuestionsFormProviderSpec
     )
   }
 
-  ".complianceCheckUnderstanding" must {
+  ".checkUnderstanding" must {
 
-    val fieldName = "complianceCheckUnderstanding"
+    val fieldName = "checkUnderstanding"
     val invalidError = "error.invalid"
 
-    behave like optionsField[NmwCcgQuestions, ComplianceCheckUnderstandingQuestion](
+    behave like optionsField[NmwCcgQuestions, CheckUnderstandingQuestion](
       form,
       fieldName,
-      ComplianceCheckUnderstandingQuestion.values,
+      CheckUnderstandingQuestion.values,
       FormError(fieldName, invalidError),
-      _.complianceCheckUnderstanding
+      _.checkUnderstanding
     )
   }
 

@@ -30,10 +30,10 @@ class CCGQuestionsFormProviderSpec
     val fieldName = "complianceCheckUnderstanding"
     val invalidError = "error.invalid"
 
-    behave like optionsField[CCGQuestions, ComplianceCheckUnderstandingQuestion](
+    behave like optionsField[CCGQuestions, CheckUnderstandingQuestion](
       form,
       fieldName,
-      ComplianceCheckUnderstandingQuestion.values,
+      CheckUnderstandingQuestion.values,
       FormError(fieldName, invalidError),
       _.complianceCheckUnderstanding
     )

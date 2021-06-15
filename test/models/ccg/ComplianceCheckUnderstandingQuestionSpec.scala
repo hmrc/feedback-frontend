@@ -25,23 +25,23 @@ import play.api.libs.json.{JsError, JsString, Json}
 class ComplianceCheckUnderstandingQuestionSpec
     extends WordSpec with MustMatchers with ScalaCheckPropertyChecks with OptionValues with ModelGenerators {
 
-  val gen = arbitrary[ComplianceCheckUnderstandingQuestion]
+  val gen = arbitrary[CheckUnderstandingQuestion]
 
-  "ComplianceCheckUnderstandingQuestion" must {
+  "CheckUnderstandingQuestion" must {
 
     "deserialise valid values" in {
 
       forAll(gen) { value =>
-        JsString(value.toString).validate[ComplianceCheckUnderstandingQuestion].asOpt.value mustEqual value
+        JsString(value.toString).validate[CheckUnderstandingQuestion].asOpt.value mustEqual value
       }
     }
 
     "fail to deserialise invalid values" in {
 
-      val gen = arbitrary[String] suchThat (!ComplianceCheckUnderstandingQuestion.values.map(_.toString).contains(_))
+      val gen = arbitrary[String] suchThat (!CheckUnderstandingQuestion.values.map(_.toString).contains(_))
 
       forAll(gen) { invalidValue =>
-        JsString(invalidValue).validate[ComplianceCheckUnderstandingQuestion] mustEqual JsError("error.invalid")
+        JsString(invalidValue).validate[CheckUnderstandingQuestion] mustEqual JsError("error.invalid")
       }
     }
 
