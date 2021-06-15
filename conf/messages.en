@@ -295,6 +295,4 @@ nmwCcgQuestions.intro1 = We use your feedback to improve our services. To better
 nmwCcgQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
 nmwCcgQuestions.intro3 = The survey takes about 1 minute to complete. There are 4 questions and they are all optional.
 
-nmwCcgQuestions.treatedProfessionally.heading = How strongly do you agree or disagree with the following statement?
-nmwCcgQuestions.treatedProfessionally.subHeading = HMRC treated me professionally during the National Minimum Wage (NMW) enquiry
-
+nmwCcgQuestions.treatedProfessionally.heading = How strongly do you agree or disagree that HMRC treated you professionally during the National Minimum Wage (NMW) enquiry?

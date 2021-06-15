@@ -296,4 +296,3 @@ nmwCcgQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnydd
 nmwCcgQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
 
 nmwCcgQuestions.treatedProfessionally.heading=???
-nmwCcgQuestions.treatedProfessionally.subHeading=???
