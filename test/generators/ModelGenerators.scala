@@ -140,8 +140,8 @@ trait ModelGenerators {
   lazy val treatedProfessionallyGen: Gen[TreatedProfessionallyQuestion] =
     oneOf(TreatedProfessionallyQuestion.values)
 
-  lazy val supportFutureTaxGen: Gen[SupportFutureTaxQuestion] =
-    oneOf(SupportFutureTaxQuestion.values)
+  lazy val supportFutureTaxGen: Gen[SupportFutureQuestion] =
+    oneOf(SupportFutureQuestion.values)
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
     oneOf(HowEasyQuestion.values)
@@ -161,6 +161,6 @@ trait ModelGenerators {
   implicit lazy val treatedProfessionallyQuestionSpec: Arbitrary[TreatedProfessionallyQuestion] =
     Arbitrary(treatedProfessionallyGen)
 
-  implicit lazy val supportFutureTaxQuestionSpec: Arbitrary[SupportFutureTaxQuestion] =
+  implicit lazy val supportFutureTaxQuestionSpec: Arbitrary[SupportFutureQuestion] =
     Arbitrary(supportFutureTaxGen)
 }

@@ -18,7 +18,7 @@ package views
 
 import forms.CCGQuestionsFormProvider
 import models.CCGQuestions
-import models.ccg.{CheckUnderstandingQuestion, SupportFutureTaxQuestion, TreatedProfessionallyQuestion}
+import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.Form
 import views.behaviours._
 import views.html.ccgQuestions
@@ -57,7 +57,7 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
     behave like optionsPage(
       createViewUsingForm,
       "supportFutureTax",
-      SupportFutureTaxQuestion.options,
+      SupportFutureQuestion.options,
       "ccgQuestions.supportFutureTax")
 
     "contain second introductory paragraph" in {

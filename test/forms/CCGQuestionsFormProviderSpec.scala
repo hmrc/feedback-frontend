@@ -73,10 +73,10 @@ class CCGQuestionsFormProviderSpec
     val fieldName = "supportFutureTax"
     val invalidError = "error.invalid"
 
-    behave like optionsField[CCGQuestions, SupportFutureTaxQuestion](
+    behave like optionsField[CCGQuestions, SupportFutureQuestion](
       form,
       fieldName,
-      SupportFutureTaxQuestion.values,
+      SupportFutureQuestion.values,
       FormError(fieldName, invalidError),
       _.supportFutureTaxQuestion
     )

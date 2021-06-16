@@ -84,7 +84,7 @@ case class CCGQuestions(
   complianceCheckUnderstanding: Option[CheckUnderstandingQuestion],
   treatedProfessionally: Option[TreatedProfessionallyQuestion],
   whyGiveAnswer: Option[String],
-  supportFutureTaxQuestion: Option[SupportFutureTaxQuestion]
+  supportFutureTaxQuestion: Option[SupportFutureQuestion]
 )
 
 object CCGQuestions {

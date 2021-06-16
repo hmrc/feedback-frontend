@@ -75,7 +75,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withWhyGiveAnswer(whyGiveAnswer: Option[String]): MapCont =
     _ + ("whyGiveAnswer" -> whyGiveAnswer.getOrElse("-"))
 
-  def withSupportFutureTax(supportFutureTax: Option[SupportFutureTaxQuestion]): MapCont =
+  def withSupportFutureTax(supportFutureTax: Option[SupportFutureQuestion]): MapCont =
     _ + ("supportFutureTax" -> supportFutureTax.map(_.toString).getOrElse("-"))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {

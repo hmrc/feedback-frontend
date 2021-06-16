@@ -25,23 +25,23 @@ import play.api.libs.json.{JsError, JsString, Json}
 class SupportFutureTaxQuestionSpec
     extends WordSpec with MustMatchers with ScalaCheckPropertyChecks with OptionValues with ModelGenerators {
 
-  val gen = arbitrary[SupportFutureTaxQuestion]
+  val gen = arbitrary[SupportFutureQuestion]
 
-  "SupportFutureTaxQuestion" must {
+  "SupportFutureQuestion" must {
 
     "deserialise valid values" in {
 
       forAll(gen) { value =>
-        JsString(value.toString).validate[SupportFutureTaxQuestion].asOpt.value mustEqual value
+        JsString(value.toString).validate[SupportFutureQuestion].asOpt.value mustEqual value
       }
     }
 
     "fail to deserialise invalid values" in {
 
-      val gen = arbitrary[String] suchThat (!SupportFutureTaxQuestion.values.map(_.toString).contains(_))
+      val gen = arbitrary[String] suchThat (!SupportFutureQuestion.values.map(_.toString).contains(_))
 
       forAll(gen) { invalidValue =>
-        JsString(invalidValue).validate[SupportFutureTaxQuestion] mustEqual JsError("error.invalid")
+        JsString(invalidValue).validate[SupportFutureQuestion] mustEqual JsError("error.invalid")
       }
     }
 

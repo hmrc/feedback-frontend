@@ -127,7 +127,7 @@ class CCGQuestionsFormProvider @Inject() extends Mappings {
         "whyGiveAnswer" ->
           optional(text("whyGiveAnswer.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
-        "supportFutureTax" -> optional(enumerable[SupportFutureTaxQuestion]())
+        "supportFutureTax" -> optional(enumerable[SupportFutureQuestion]())
       )(CCGQuestions.apply)(CCGQuestions.unapply))
 }
 

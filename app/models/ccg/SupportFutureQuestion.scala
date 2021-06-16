@@ -20,23 +20,23 @@ import models.{Enumerable, WithName}
 import play.api.libs.json._
 import viewmodels.RadioOption
 
-trait SupportFutureTaxQuestion
+trait SupportFutureQuestion
 
-object SupportFutureTaxQuestion extends Enumerable.Implicits {
+object SupportFutureQuestion extends Enumerable.Implicits {
 
-  case object VeryConfident extends WithName("VeryConfident") with SupportFutureTaxQuestion
-  case object FairlyConfident extends WithName("FairlyConfident") with SupportFutureTaxQuestion
-  case object Neutral extends WithName("Neutral") with SupportFutureTaxQuestion
-  case object NotVeryConfident extends WithName("NotVeryConfident") with SupportFutureTaxQuestion
-  case object NotAtAllConfident extends WithName("NotAtAllConfident") with SupportFutureTaxQuestion
+  case object VeryConfident extends WithName("VeryConfident") with SupportFutureQuestion
+  case object FairlyConfident extends WithName("FairlyConfident") with SupportFutureQuestion
+  case object Neutral extends WithName("Neutral") with SupportFutureQuestion
+  case object NotVeryConfident extends WithName("NotVeryConfident") with SupportFutureQuestion
+  case object NotAtAllConfident extends WithName("NotAtAllConfident") with SupportFutureQuestion
 
-  val values: Seq[SupportFutureTaxQuestion] =
+  val values: Seq[SupportFutureQuestion] =
     List(VeryConfident, FairlyConfident, Neutral, NotVeryConfident, NotAtAllConfident)
 
   val options: Seq[RadioOption] = values.map { value =>
     RadioOption("supportFutureTaxQuestion", value.toString)
   }
 
-  implicit val enumerable: Enumerable[SupportFutureTaxQuestion] =
+  implicit val enumerable: Enumerable[SupportFutureQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
 }
