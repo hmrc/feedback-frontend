@@ -299,3 +299,4 @@ nmwCcgQuestions.treatedProfessionally.heading=???
 nmwCcgQuestions.CheckUnderstanding.heading=???
 nmwCcgQuestions.whyGiveAnswer.heading = ???
 nmwCcgQuestions.whyGiveAnswer.hint = ???
+nmwCcgQuestions.supportFutureNmw.heading = ???

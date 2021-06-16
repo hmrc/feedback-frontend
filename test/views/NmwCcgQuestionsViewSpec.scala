@@ -18,7 +18,7 @@ package views
 
 import forms.NmwCcgQuestionsFormProvider
 import models.NmwCcgQuestions
-import models.ccg.{CheckUnderstandingQuestion, TreatedProfessionallyQuestion}
+import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours}
 import views.html.NmwCcgQuestionsView
@@ -55,6 +55,12 @@ class NmwCcgQuestionsViewSpec
       "nmwCcgQuestions.CheckUnderstanding")
 
     behave like stringPage(createViewUsingForm, "whyGiveAnswer", "nmwCcgQuestions.whyGiveAnswer")
+
+    behave like optionsPage(
+      createViewUsingForm,
+      "supportFutureNmw",
+      SupportFutureQuestion.options,
+      "nmwCcgQuestions.supportFutureNmw")
 
   }
 

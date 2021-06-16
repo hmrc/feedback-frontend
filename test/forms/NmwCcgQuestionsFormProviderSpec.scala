@@ -18,7 +18,7 @@ package forms
 
 import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
 import models.NmwCcgQuestions
-import models.ccg.{CheckUnderstandingQuestion, TreatedProfessionallyQuestion}
+import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.FormError
 
 class NmwCcgQuestionsFormProviderSpec
@@ -66,7 +66,20 @@ class NmwCcgQuestionsFormProviderSpec
       maxLength,
       FormError(fieldName, invalidError, List(maxLength))
     )
+  }
 
+  ".supportFutureNmw" must {
+
+    val fieldName = "supportFutureNmw"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[NmwCcgQuestions, SupportFutureQuestion](
+      form,
+      fieldName,
+      SupportFutureQuestion.values,
+      FormError(fieldName, invalidError),
+      _.supportFutureNmw
+    )
   }
 
 }

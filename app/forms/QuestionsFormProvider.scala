@@ -143,7 +143,8 @@ class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
         "whyGiveAnswer" ->
           optional(
             text("whyGiveAnswer.error.required")
-              .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength")))
+              .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
+        "supportFutureNmw" -> optional(enumerable[SupportFutureQuestion]())
       )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
     )
 }

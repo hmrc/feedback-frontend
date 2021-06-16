@@ -299,3 +299,4 @@ nmwCcgQuestions.treatedProfessionally.heading = How strongly do you agree or dis
 nmwCcgQuestions.CheckUnderstanding.heading = During the NMW enquiry, how easy was it for you to understand what was happening?
 nmwCcgQuestions.whyGiveAnswer.heading = Why did you give this answer?
 nmwCcgQuestions.whyGiveAnswer.hint = Please consider all parts of the NMW enquiry. Do not give any personal information like your National Insurance number, PAYE reference number or bank details.
+nmwCcgQuestions.supportFutureNmw.heading = How confident are you, based on this enquiry, that HMRC will support you in meeting your future National Minimum Wage obligations?
