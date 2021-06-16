@@ -55,6 +55,8 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryCcgQuesions: Arbitrary[CCGQuestions] = Arbitrary(ccgQuestionsGen)
 
+  implicit lazy val arbitraryNmwCcgQuesions: Arbitrary[NmwCcgQuestions] = Arbitrary(nmwCcgQuestionsGen)
+
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
       value  <- option(arbitrary[GiveReason])
@@ -134,13 +136,34 @@ trait ModelGenerators {
         supportFutureTax
       )
 
+  lazy val nmwCcgQuestionsGen: Gen[NmwCcgQuestions] =
+    for {
+      treatedProfessionally <- option(treatedProfessionallyGen)
+      checkUnderstanding    <- option(checkUnderstandingGen)
+      whyGiveAnswer         <- option(arbitrary[String].suchThat(_.nonEmpty))
+      supportFutureNmw      <- option(supportFutureNmwGen)
+
+    } yield
+      NmwCcgQuestions(
+        treatedProfessionally,
+        checkUnderstanding,
+        whyGiveAnswer,
+        supportFutureNmw
+      )
+
   lazy val complianceCheckUnderstandingGen: Gen[CheckUnderstandingQuestion] =
+    oneOf(CheckUnderstandingQuestion.values)
+
+  lazy val checkUnderstandingGen: Gen[CheckUnderstandingQuestion] =
     oneOf(CheckUnderstandingQuestion.values)
 
   lazy val treatedProfessionallyGen: Gen[TreatedProfessionallyQuestion] =
     oneOf(TreatedProfessionallyQuestion.values)
 
   lazy val supportFutureTaxGen: Gen[SupportFutureQuestion] =
+    oneOf(SupportFutureQuestion.values)
+
+  lazy val supportFutureNmwGen: Gen[SupportFutureQuestion] =
     oneOf(SupportFutureQuestion.values)
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =

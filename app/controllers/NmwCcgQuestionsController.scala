@@ -18,10 +18,13 @@ package controllers
 
 import config.FrontendAppConfig
 import forms.NmwCcgQuestionsFormProvider
-import models.{NmwCcgQuestions, Origin}
+import models.{FeedbackId, NmwCcgQuestions, Origin}
+import navigation.Navigator
+import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
 import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
+import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.NmwCcgQuestionsView
 
@@ -31,12 +34,14 @@ class NmwCcgQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
   mcc: MessagesControllerComponents,
   nmwCcgQuestionsView: NmwCcgQuestionsView,
-  formProvider: NmwCcgQuestionsFormProvider
+  formProvider: NmwCcgQuestionsFormProvider,
+  auditService: AuditService,
+  navigator: Navigator,
 ) extends FrontendController(mcc) with I18nSupport {
 
   val origin = Origin.fromString("nmw")
   val form: Form[NmwCcgQuestions] = formProvider()
-  val submitCall: Call = routes.NmwCcgQuestionsController.onSubmit()
+  lazy val submitCall: Call = routes.NmwCcgQuestionsController.onSubmit()
 
   def onPageLoad: Action[AnyContent] =
     Action { implicit request =>
@@ -44,6 +49,15 @@ class NmwCcgQuestionsController @Inject()(
 
     }
 
-  def onSubmit: Action[AnyContent] = ???
-
+  def onSubmit: Action[AnyContent] = Action { implicit request =>
+    form
+      .bindFromRequest()
+      .fold(
+        formWithErrors => BadRequest(nmwCcgQuestionsView(appConfig, formWithErrors, submitCall)),
+        value => {
+          auditService.nmwCcgAudit(origin, FeedbackId.fromSession, value)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
+        }
+      )
+  }
 }

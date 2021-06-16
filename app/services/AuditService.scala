@@ -69,6 +69,9 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withComplianceCheckUnderstanding(complianceCheckUnderstanding: Option[CheckUnderstandingQuestion]): MapCont =
     _ + ("complianceCheckUnderstanding" -> complianceCheckUnderstanding.map(_.toString).getOrElse("-"))
 
+  def withCheckUnderstanding(checkUnderstanding: Option[CheckUnderstandingQuestion]): MapCont =
+    _ + ("checkUnderstanding" -> checkUnderstanding.map(_.toString).getOrElse("-"))
+
   def withTreatedProfessionally(treatedProfessionally: Option[TreatedProfessionallyQuestion]): MapCont =
     _ + ("treatedProfessionally" -> treatedProfessionally.map(_.toString).getOrElse("-"))
 
@@ -77,6 +80,9 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
   def withSupportFutureTax(supportFutureTax: Option[SupportFutureQuestion]): MapCont =
     _ + ("supportFutureTax" -> supportFutureTax.map(_.toString).getOrElse("-"))
+
+  def withSupportFutureNmw(supportFutureNmw: Option[SupportFutureQuestion]): MapCont =
+    _ + ("supportFutureNmw" -> supportFutureNmw.map(_.toString).getOrElse("-"))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
@@ -190,6 +196,21 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withTreatedProfessionally(questions.treatedProfessionally) andThen
         withWhyGiveAnswer(questions.whyGiveAnswer) andThen
         withSupportFutureTax(questions.supportFutureTaxQuestion)
+    )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
+
+  def nmwCcgAudit(origin: Origin, feedbackId: FeedbackId, questions: NmwCcgQuestions)(
+    implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+        withFeedbackId(feedbackId) andThen
+        withTreatedProfessionally(questions.treatedProfessionally) andThen
+        withCheckUnderstanding(questions.checkUnderstanding) andThen
+        withWhyGiveAnswer(questions.whyGiveAnswer) andThen
+        withSupportFutureNmw(questions.supportFutureNmw)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
