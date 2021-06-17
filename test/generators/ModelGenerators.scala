@@ -123,10 +123,10 @@ trait ModelGenerators {
 
   lazy val ccgQuestionsGen: Gen[CCGQuestions] =
     for {
-      complianceCheckUnderstanding <- option(complianceCheckUnderstandingGen)
+      complianceCheckUnderstanding <- option(checkUnderstandingGen)
       treatedProfessionally        <- option(treatedProfessionallyGen)
       whyAnswer                    <- option(arbitrary[String].suchThat(_.nonEmpty))
-      supportFutureTax             <- option(supportFutureTaxGen)
+      supportFutureTax             <- option(supportFutureGen)
 
     } yield
       CCGQuestions(
@@ -141,7 +141,7 @@ trait ModelGenerators {
       treatedProfessionally <- option(treatedProfessionallyGen)
       checkUnderstanding    <- option(checkUnderstandingGen)
       whyGiveAnswer         <- option(arbitrary[String].suchThat(_.nonEmpty))
-      supportFutureNmw      <- option(supportFutureNmwGen)
+      supportFutureNmw      <- option(supportFutureGen)
 
     } yield
       NmwCcgQuestions(
@@ -151,19 +151,13 @@ trait ModelGenerators {
         supportFutureNmw
       )
 
-  lazy val complianceCheckUnderstandingGen: Gen[CheckUnderstandingQuestion] =
-    oneOf(CheckUnderstandingQuestion.values)
-
   lazy val checkUnderstandingGen: Gen[CheckUnderstandingQuestion] =
     oneOf(CheckUnderstandingQuestion.values)
 
   lazy val treatedProfessionallyGen: Gen[TreatedProfessionallyQuestion] =
     oneOf(TreatedProfessionallyQuestion.values)
 
-  lazy val supportFutureTaxGen: Gen[SupportFutureQuestion] =
-    oneOf(SupportFutureQuestion.values)
-
-  lazy val supportFutureNmwGen: Gen[SupportFutureQuestion] =
+  lazy val supportFutureGen: Gen[SupportFutureQuestion] =
     oneOf(SupportFutureQuestion.values)
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
@@ -178,12 +172,12 @@ trait ModelGenerators {
   lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
     oneOf(LikelyToDoQuestion.values)
 
-  implicit lazy val arbitraryComplianceCheckUnderstandingQuestionSpec: Arbitrary[CheckUnderstandingQuestion] =
-    Arbitrary(complianceCheckUnderstandingGen)
+  implicit lazy val arbitraryCheckUnderstandingQuestionSpec: Arbitrary[CheckUnderstandingQuestion] =
+    Arbitrary(checkUnderstandingGen)
 
   implicit lazy val treatedProfessionallyQuestionSpec: Arbitrary[TreatedProfessionallyQuestion] =
     Arbitrary(treatedProfessionallyGen)
 
-  implicit lazy val supportFutureTaxQuestionSpec: Arbitrary[SupportFutureQuestion] =
-    Arbitrary(supportFutureTaxGen)
+  implicit lazy val supportFutureQuestionSpec: Arbitrary[SupportFutureQuestion] =
+    Arbitrary(supportFutureGen)
 }
