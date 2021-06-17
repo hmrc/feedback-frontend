@@ -165,12 +165,12 @@ class AuditServiceSpec
         auditService.ccgAudit(origin, feedbackId, questions)
 
         val expected = Map(
-          "origin"                       -> origin.value,
-          "feedbackId"                   -> feedbackId.value,
-          "complianceCheckUnderstanding" -> questions.complianceCheckUnderstanding.map(_.toString).getOrElse("-"),
-          "treatedProfessionally"        -> questions.treatedProfessionally.map(_.toString).getOrElse("-"),
-          "whyGiveAnswer"                -> questions.whyGiveAnswer.getOrElse("-"),
-          "supportFutureTax"             -> questions.supportFutureTaxQuestion.map(_.toString).getOrElse("-")
+          "origin"                -> origin.value,
+          "feedbackId"            -> feedbackId.value,
+          "checkUnderstanding"    -> questions.complianceCheckUnderstanding.map(_.toString).getOrElse("-"),
+          "treatedProfessionally" -> questions.treatedProfessionally.map(_.toString).getOrElse("-"),
+          "whyGiveAnswer"         -> questions.whyGiveAnswer.getOrElse("-"),
+          "supportFuture"         -> questions.supportFutureTaxQuestion.map(_.toString).getOrElse("-")
         )
 
         verify(auditConnector, times(1))
@@ -196,7 +196,7 @@ class AuditServiceSpec
           "treatedProfessionally" -> questions.treatedProfessionally.map(_.toString).getOrElse("-"),
           "checkUnderstanding"    -> questions.checkUnderstanding.map(_.toString).getOrElse("-"),
           "whyGiveAnswer"         -> questions.whyGiveAnswer.getOrElse("-"),
-          "supportFutureNmw"      -> questions.supportFutureNmw.map(_.toString).getOrElse("-")
+          "supportFuture"         -> questions.supportFutureNmw.map(_.toString).getOrElse("-")
         )
 
         verify(auditConnector, times(1))
