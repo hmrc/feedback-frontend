@@ -22,7 +22,7 @@ import org.scalatest.{MustMatchers, OptionValues, WordSpec}
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.libs.json.{JsError, JsString, Json}
 
-class SupportFutureTaxQuestionSpec
+class SupportFutureQuestionSpec
     extends WordSpec with MustMatchers with ScalaCheckPropertyChecks with OptionValues with ModelGenerators {
 
   val gen = arbitrary[SupportFutureQuestion]
