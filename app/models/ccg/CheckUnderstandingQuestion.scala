@@ -33,7 +33,7 @@ object CheckUnderstandingQuestion extends Enumerable.Implicits {
     List(VeryEasy, Easy, NeitherEasyOrDifficult, Difficult, VeryDifficult)
 
   val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("complianceCheckUnderstandingQuestion", value.toString)
+    RadioOption("checkUnderstandingQuestion", value.toString)
   }
 
   implicit val enumerable: Enumerable[CheckUnderstandingQuestion] =
