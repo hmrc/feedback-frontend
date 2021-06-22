@@ -20,7 +20,7 @@ import forms.TrustsQuestionsFormProvider
 import models.{HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, TrustsQuestions, TryingToDoQuestion}
 import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import views.html.trustsQuestions
+import views.html.TrustsQuestionsView
 
 class TrustsQuestionsViewSpec
     extends YesNoViewBehaviours[TrustsQuestions] with StringViewBehaviours[TrustsQuestions]
@@ -31,7 +31,7 @@ class TrustsQuestionsViewSpec
   val form = new TrustsQuestionsFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
-  lazy val trustsQuestions = inject[trustsQuestions]
+  lazy val trustsQuestions = inject[TrustsQuestionsView]
 
   def createView = () => trustsQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 

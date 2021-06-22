@@ -92,9 +92,11 @@ class AuditServiceSpec
 
   "AuditService.trustsAudit" should {
 
-    "generate correct payload for bta questions" in {
+    "generate correct payload for trusts questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[TrustsQuestions]) { (origin, feedbackId, questions) =>
+      val origin: Origin = Origin.fromString("trusts")
+
+      forAll(arbitrary[FeedbackId], arbitrary[TrustsQuestions]) { (feedbackId, questions) =>
         reset(auditConnector)
 
         auditService.trustsAudit(origin, feedbackId, questions)

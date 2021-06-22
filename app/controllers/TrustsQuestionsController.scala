@@ -26,7 +26,7 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.trustsQuestions
+import views.html.TrustsQuestionsView
 
 import javax.inject.Inject
 
@@ -36,7 +36,7 @@ class TrustsQuestionsController @Inject()(
   formProvider: TrustsQuestionsFormProvider,
   auditService: AuditService,
   mcc: MessagesControllerComponents,
-  trustsQuestions: trustsQuestions)
+  trustsQuestions: TrustsQuestionsView)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[TrustsQuestions] = formProvider()
@@ -47,13 +47,15 @@ class TrustsQuestionsController @Inject()(
   }
 
   def onSubmit(): Action[AnyContent] = Action { implicit request =>
+    val origin: Origin = Origin.fromString("trusts")
+
     form
       .bindFromRequest()
       .fold(
         formWithErrors => BadRequest(trustsQuestions(appConfig, formWithErrors, submitCall())),
         value => {
-          auditService.trustsAudit(Origin.fromString("trusts"), FeedbackId.fromSession, value)
-          Redirect(navigator.nextPage(GenericQuestionsPage)(Origin.fromString("trusts")))
+          auditService.trustsAudit(origin, FeedbackId.fromSession, value)
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
   }

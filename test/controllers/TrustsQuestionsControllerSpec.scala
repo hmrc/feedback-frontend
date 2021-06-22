@@ -30,7 +30,7 @@ import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.trustsQuestions
+import views.html.TrustsQuestionsView
 
 class TrustsQuestionsControllerSpec
     extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
@@ -41,7 +41,7 @@ class TrustsQuestionsControllerSpec
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall() = routes.TrustsQuestionsController.onSubmit()
+  lazy val submitCall: Call = routes.TrustsQuestionsController.onSubmit()
 
   def controller() =
     new TrustsQuestionsController(
@@ -50,13 +50,13 @@ class TrustsQuestionsControllerSpec
       formProvider,
       mockAuditService,
       mcc,
-      inject[trustsQuestions]
+      inject[TrustsQuestionsView]
     )
 
-  lazy val trustsQuestions = inject[trustsQuestions]
+  lazy val trustsQuestions = inject[TrustsQuestionsView]
 
-  def viewAsString(form: Form[_] = form, action: Call) =
-    trustsQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
+  def viewAsString(form: Form[_] = form) =
+    trustsQuestions(frontendAppConfig, form, submitCall)(fakeRequest, messages).toString
 
   "TrustsQuestions Controller" must {
 
@@ -64,7 +64,7 @@ class TrustsQuestionsControllerSpec
       val result = controller().onPageLoad()(fakeRequest)
 
       status(result) mustBe OK
-      contentAsString(result) mustBe viewAsString(action = submitCall())
+      contentAsString(result) mustBe viewAsString()
     }
 
     "redirect to the next page when valid data is submitted" in {
@@ -105,7 +105,7 @@ class TrustsQuestionsControllerSpec
       val result = controller().onSubmit()(postRequest)
 
       status(result) mustBe BAD_REQUEST
-      contentAsString(result) mustBe viewAsString(form = boundForm, action = submitCall())
+      contentAsString(result) mustBe viewAsString(form = boundForm)
     }
   }
 }
