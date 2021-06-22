@@ -17,7 +17,7 @@
 package forms
 
 import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
-import models.{BTAQuestions, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, TrustsQuestions, TryingToDoQuestion}
+import models.{HowDoYouFeelQuestion, HowEasyQuestion, TrustsQuestions, TryingToDoQuestion}
 import play.api.data.FormError
 
 class TrustsQuestionsFormProviderSpec

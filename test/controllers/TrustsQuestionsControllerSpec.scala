@@ -16,7 +16,6 @@
 
 package controllers
 
-import controllers.actions._
 import forms.TrustsQuestionsFormProvider
 import generators.ModelGenerators
 import models.{FeedbackId, Origin, TrustsQuestions}
@@ -44,14 +43,17 @@ class TrustsQuestionsControllerSpec
 
   def submitCall() = routes.TrustsQuestionsController.onSubmit()
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
+  def controller() =
     new TrustsQuestionsController(
       frontendAppConfig,
       new FakeNavigator(onwardRoute),
       formProvider,
       mockAuditService,
-      mcc
+      mcc,
+      inject[trustsQuestions]
     )
+
+  lazy val trustsQuestions = inject[trustsQuestions]
 
   def viewAsString(form: Form[_] = form, action: Call) =
     trustsQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString

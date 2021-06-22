@@ -31,6 +31,8 @@ class TrustsQuestionsViewSpec
   val form = new TrustsQuestionsFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
+  lazy val trustsQuestions = inject[trustsQuestions]
+
   def createView = () => trustsQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =
