@@ -26,9 +26,9 @@ index.title = feedback-frontend
 index.heading = feedback-frontend
 index.guidance = Welcome to your new frontend. Please see the README file for a guide to getting started.
 
-session_expired.title = For your security, this service has been reset
-session_expired.heading = For your security, this service has been reset
-session_expired.guidance = The details you have given have been deleted because you did not continue the service for 15 minutes.
+sessionExpired.title = For your security, this service has been reset
+sessionExpired.heading = For your security, this service has been reset
+sessionExpired.guidance = The details you have given have been deleted because you did not continue the service for 15 minutes.
 
 site.back = Back
 site.delete = Remove
@@ -181,8 +181,7 @@ ccgQuestions.intro1 = We use your feedback to improve our services. To better un
 ccgQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
 ccgQuestions.intro3 = The survey takes about 1 minute to complete. There are 4 questions and they are all optional.
 
-ccgQuestions.treatedProfessionally.heading = How strongly do you agree or disagree with the following statement?
-ccgQuestions.treatedProfessionally.subHeading = HMRC treated me professionally during the compliance check.
+ccgQuestions.treatedProfessionally.heading = How strongly do you agree or disagree that HMRC treated you professionally during the compliance check?
 treatedProfessionallyQuestion.StronglyAgree = Strongly agree
 treatedProfessionallyQuestion.Agree = Agree
 treatedProfessionallyQuestion.NeitherAgreeNorDisagree = Neither agree nor disagree
@@ -282,11 +281,11 @@ giveReason.contactAboutP800 = Contact HMRC about my P800
 giveReason.p800Wrong = My P800 letter calculation is wrong
 giveReason.payOwedTax = Pay tax I owe
 giveReason.progressChasing = Progress chasing
-giveReason.other = Other
+giveReason.other = Other, please specify
 giveReason.error.maxlength = Why you gave this score must be 1,000 characters or less
-giveReason.other.reason.label = What did you come to do?
+giveReason.other.reason.label = Tell us what you came to do
 
-giveComments.title = Give feedback
+giveComments.title = What did you come to do? - Give feedback - GOV.UK
 giveComments.heading = What did you come to do?
 giveComments.intro1 = Do not include any personal or financial information. For example, your National Insurance or credit card numbers.
 giveComments.error.length = What you came to do must be 1,000 characters or less

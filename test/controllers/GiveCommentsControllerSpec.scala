@@ -16,7 +16,6 @@
 
 package controllers
 
-import controllers.actions._
 import forms.GiveCommentsFormProvider
 import generators.ModelGenerators
 import models.{FeedbackId, Origin}
@@ -41,11 +40,18 @@ class GiveCommentsControllerSpec
   val formProvider = new GiveCommentsFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
+  lazy val giveComments = inject[giveComments]
 
   def submitCall(origin: Origin) = routes.GiveCommentsController.onSubmit(origin)
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
-    new GiveCommentsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
+  def controller() =
+    new GiveCommentsController(
+      frontendAppConfig,
+      new FakeNavigator(onwardRoute),
+      formProvider,
+      mockAuditService,
+      mcc,
+      giveComments)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     giveComments(frontendAppConfig, form, action)(fakeRequest, messages).toString

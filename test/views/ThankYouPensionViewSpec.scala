@@ -23,6 +23,8 @@ class ThankYouPensionViewSpec extends ViewBehaviours {
 
   val messageKeyPrefix = "thankYou.pension"
 
+  lazy val thankYouPension = inject[thankYouPension]
+
   def createView = () => thankYouPension(frontendAppConfig)(fakeRequest, messages)
 
   "ThankYou view" must {

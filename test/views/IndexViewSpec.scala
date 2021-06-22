@@ -21,6 +21,8 @@ import views.html.index
 
 class IndexViewSpec extends ViewBehaviours {
 
+  lazy val index = inject[index]
+
   def view = () => index(frontendAppConfig)(fakeRequest, messages)
 
   "Index view" must {

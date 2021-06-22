@@ -6,7 +6,7 @@
 
 @(appConfig: FrontendAppConfig, form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
 
-@main_template(
+@mainTemplate(
     title = s"\${errorPrefix(form)} \${messages("$className;format="decap"$.title")}",
     appConfig = appConfig,
     bodyClasses = None) {

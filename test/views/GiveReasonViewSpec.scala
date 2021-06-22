@@ -29,6 +29,8 @@ class GiveReasonViewSpec extends ViewBehaviours {
   val form = new GiveReasonFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
+  lazy val giveReason = inject[giveReason]
+
   def createView = () => giveReason(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm = (form: Form[_]) => giveReason(frontendAppConfig, form, action)(fakeRequest, messages)

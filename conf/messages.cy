@@ -26,9 +26,9 @@ index.title = feedback-frontend
 index.heading = feedback-frontend
 index.guidance = Welcome to your new frontend. Please see the README file for a guide to getting started.
 
-session_expired.title = For your security, this service has been reset
-session_expired.heading = For your security, this service has been reset
-session_expired.guidance = The details you have given have been deleted because you did not continue the service for 15 minutes.
+sessionExpired.title = For your security, this service has been reset
+sessionExpired.heading = For your security, this service has been reset
+sessionExpired.guidance = The details you have given have been deleted because you did not continue the service for 15 minutes.
 
 site.back = Yn ôl
 site.delete = Remove
@@ -160,8 +160,7 @@ ccgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. 
 ccgQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 ccgQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
 
-ccgQuestions.treatedProfessionally.heading = I ba raddau rydych yn cytuno neu’n anghytuno â’r datganiad canlynol?
-ccgQuestions.treatedProfessionally.subHeading = Gwnaeth CThEM fy nhrin yn broffesiynol yn ystod y gwiriad cydymffurfio.
+ccgQuestions.treatedProfessionally.heading = Pa mor gryf yr ydych yn cytuno neu’n anghytuno y gwnaeth CThEM eich trin yn broffesiynol yn ystod y gwiriad cydymffurfio?
 treatedProfessionallyQuestion.StronglyAgree = Cytuno’n gryf
 treatedProfessionallyQuestion.Agree = Cytuno
 treatedProfessionallyQuestion.NeitherAgreeNorDisagree = Ddim yn cytuno nac yn anghytuno
@@ -261,11 +260,11 @@ giveReason.contactAboutP800 = Cysylltu â CThEM ynglŷn â fy P800
 giveReason.p800Wrong = Mae fy llythyr cyfrifiad P800 yn anghywir
 giveReason.payOwedTax = Talu’r dreth sydd arnaf
 giveReason.progressChasing = Dilyn hynt rhywbeth
-giveReason.other = Arall
+giveReason.other = Arall, rhowch fanylion
 giveReason.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn 1,000 o gymeriadau neu’n llai
-giveReason.other.reason.label = Beth ddaethoch chi yma i’w wneud?
+giveReason.other.reason.label = Rhowch wybod i ni yr hyn y daethoch chi yma i’w wneud
 
-giveComments.title = Rhoi adborth
+giveComments.title = Beth ddaethoch chi yma i’w wneud? - Rhoi adborth - GOV.UK
 giveComments.heading = Beth ddaethoch chi yma i’w wneud?
 giveComments.intro1 = Peidiwch â chynnwys unrhyw wybodaeth bersonol nac ariannol. Er enghraifft, eich rhif Yswiriant Gwladol neu rif eich cerdyn credyd.
 giveComments.error.length = Rhaid i’r hyn y daethoch chi yma i’w wneud fod yn 1,000 o gymeriadau neu’n llai

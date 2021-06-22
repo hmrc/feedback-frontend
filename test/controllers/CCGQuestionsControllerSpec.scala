@@ -40,11 +40,18 @@ class CCGQuestionsControllerSpec
   val formProvider = new CCGQuestionsFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
+  lazy val ccgQuestions = inject[ccgQuestions]
 
   def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
 
   def controller() =
-    new CCGQuestionsController(frontendAppConfig, new FakeNavigator(onwardRoute), formProvider, mockAuditService, mcc)
+    new CCGQuestionsController(
+      frontendAppConfig,
+      new FakeNavigator(onwardRoute),
+      formProvider,
+      mockAuditService,
+      mcc,
+      ccgQuestions)
 
   def viewAsString(form: Form[_] = form, action: Call) =
     ccgQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString

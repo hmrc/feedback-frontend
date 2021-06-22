@@ -17,14 +17,14 @@
 package controllers.actions
 
 import base.SpecBase
-import play.api.mvc.Controller
+import play.api.mvc.InjectedController
 import play.api.test.Helpers._
 import uk.gov.hmrc.http.SessionKeys
 
 class SessionActionSpec extends SpecBase {
 
-  class Harness(action: IdentifierAction) extends Controller {
-    def onPageLoad() = action { request =>
+  class Harness(action: IdentifierAction) extends InjectedController {
+    def onPageLoad() = action { _ =>
       Ok
     }
   }

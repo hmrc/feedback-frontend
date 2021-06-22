@@ -16,6 +16,8 @@
 
 @import config.FrontendAppConfig
 
+@this(mainTemplate: mainTemplate)
+
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
 @signInLink = {
@@ -24,7 +26,7 @@
   }
 }
 
-@main_template(
+@mainTemplate(
   title = messages("thankYou.pension.title"),
   appConfig = appConfig,
   bodyClasses = Some("full-width")

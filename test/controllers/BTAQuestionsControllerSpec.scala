@@ -16,7 +16,6 @@
 
 package controllers
 
-import controllers.actions._
 import forms.BTAQuestionsFormProvider
 import generators.ModelGenerators
 import models.{BTAQuestions, FeedbackId, Origin}
@@ -44,14 +43,17 @@ class BTAQuestionsControllerSpec
 
   def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
+  def controller() =
     new BTAQuestionsController(
       frontendAppConfig,
       new FakeNavigator(onwardRoute),
       formProvider,
       mockAuditService,
-      mcc
+      mcc,
+      inject[btaQuestions]
     )
+
+  lazy val btaQuestions = inject[btaQuestions]
 
   def viewAsString(form: Form[_] = form, action: Call) =
     btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
