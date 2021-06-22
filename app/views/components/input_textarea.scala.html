@@ -24,7 +24,8 @@
         labelClass: Option[String] = None,
         hint: Option[String] = None,
         maximum: Option[Int] = None,
-        labelH1: Boolean = false
+        labelH1: Boolean = false,
+        countdownChar: Boolean = false
 )(implicit messages: Messages)
 
 @errorMessages = @{
@@ -36,7 +37,7 @@
 }
 
 
-<div class="form-group @if(field.hasErrors){form-group-error}">
+<div class="form-group @if(field.hasErrors){form-group-error}" @if(countdownChar) {data-char-counter}>
 
         @if(labelH1) {
             <h1>
@@ -62,10 +63,11 @@
         name="@{field.id}"
         @if(errorMessages.nonEmpty) { aria-describedby="@errorMessages" }
         rows="5"
-        maxlength="10000"
+        @if(countdownChar) {maxlength = "1000" data-char-field} else {maxlength = "10000"}
     >@{field.value}</textarea>
-    @maximum.map { maximum =>
+    @if(!countdownChar){ @maximum.map { maximum =>
         <p id="maximum-char-@{field.id}-hint" class="form-field--hint">@messages("generic.max-characters", maximum)</p>
+        }
     }
 </div>
 
