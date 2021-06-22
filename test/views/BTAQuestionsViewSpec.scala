@@ -43,7 +43,7 @@ class BTAQuestionsViewSpec
 
     behave like optionsPage(createViewUsingForm, "mainService", MainServiceQuestion.options, "btaQuestions.mainService")
 
-    behave like stringPage(createViewUsingForm, "mainServiceOther", "btaQuestions.mainService")
+    behave like stringPage(createViewUsingForm, "mainServiceOther", "btaQuestions.mainService.label")
 
     behave like yesNoPage(createViewUsingForm, "ableToDo", "btaQuestions.ableToDo")
 
