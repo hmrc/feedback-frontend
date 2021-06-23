@@ -20,6 +20,10 @@
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
+@govUkLink = {
+<a href="@appConfig.govUkUrl">@messages("thankYou.userResearch.urLinkText")</a>
+}
+
 @mainTemplate(
     title = messages("thankYou.title"),
     appConfig = appConfig,
@@ -32,22 +36,13 @@
     @appConfig.urLinkUrl.map { urLinkUrl =>
 
         <h2>
-            @Html(messages("thankYou.userResearch.intro1",
-                components.anchor(
-                    href = appConfig.govUkUrl,
-                    messageKey = "thankYou.userResearch.urLinkText")))
+            @Html(messages("thankYou.userResearch.intro1", govUkLink))
         </h2>
 
         <p>
-            @Html(messages("thankYou.userResearch.intro2",
-                components.anchor(
-                    href = appConfig.govUkUrl,
-                    messageKey = "thankYou.userResearch.urLinkText")))
+            @Html(messages("thankYou.userResearch.intro2", govUkLink))
         </p>
 
-        @components.anchor(
-            href = urLinkUrl,
-            messageKey = "thankYou.userResearch.UrLink"
-        )
+        <a href="@urLinkUrl">@messages("thankYou.userResearch.UrLink")</a>
     }
 }
