@@ -39,7 +39,7 @@ class NmwCcgQuestionsController @Inject()(
   navigator: Navigator,
 ) extends FrontendController(mcc) with I18nSupport {
 
-  val origin = Origin.fromString("nmw")
+  lazy val origin = Origin.fromString("nmw")
   val form: Form[NmwCcgQuestions] = formProvider()
   lazy val submitCall: Call = routes.NmwCcgQuestionsController.onSubmit()
 
