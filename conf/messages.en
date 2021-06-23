@@ -168,21 +168,21 @@ treatedProfessionallyQuestion.Disagree = Disagree
 treatedProfessionallyQuestion.StronglyDisagree = Strongly disagree
 
 ccgQuestions.complianceCheckUnderstanding.heading = During the compliance check, how easy was it for you to understand what was happening?
-complianceCheckUnderstandingQuestion.VeryEasy = Very Easy
-complianceCheckUnderstandingQuestion.Easy = Easy
-complianceCheckUnderstandingQuestion.NeitherEasyOrDifficult = Neither easy or difficult
-complianceCheckUnderstandingQuestion.Difficult = Difficult
-complianceCheckUnderstandingQuestion.VeryDifficult = Very difficult
+checkUnderstandingQuestion.VeryEasy = Very Easy
+checkUnderstandingQuestion.Easy = Easy
+checkUnderstandingQuestion.NeitherEasyOrDifficult = Neither easy or difficult
+checkUnderstandingQuestion.Difficult = Difficult
+checkUnderstandingQuestion.VeryDifficult = Very difficult
 
 ccgQuestions.whyGiveAnswer.heading = Why did you give this answer?
 ccgQuestions.whyGiveAnswer.hint = Please consider all parts of the compliance check. Do not give any personal information like your National Insurance number, tax reference number or bank details.
 
 ccgQuestions.supportFutureTax.heading = How confident are you that your interactions with HMRC during this compliance check will support you in meeting your future tax obligations?
-supportFutureTaxQuestion.VeryConfident = Very confident
-supportFutureTaxQuestion.FairlyConfident = Fairly confident
-supportFutureTaxQuestion.Neutral = Neutral
-supportFutureTaxQuestion.NotVeryConfident = Not very confident
-supportFutureTaxQuestion.NotAtAllConfident= Not at all confident
+supportFutureQuestion.VeryConfident = Very confident
+supportFutureQuestion.FairlyConfident = Fairly confident
+supportFutureQuestion.Neutral = Neutral
+supportFutureQuestion.NotVeryConfident = Not very confident
+supportFutureQuestion.NotAtAllConfident= Not at all confident
 
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10

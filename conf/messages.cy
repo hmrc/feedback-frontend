@@ -168,21 +168,21 @@ treatedProfessionallyQuestion.Disagree = Anghytuno
 treatedProfessionallyQuestion.StronglyDisagree = Anghytuno’n gryf
 
 ccgQuestions.complianceCheckUnderstanding.heading = Yn ystod y gwiriad cydymffurfio, pa mor hawdd oedd hi i chi ddeall beth oedd yn digwydd?
-complianceCheckUnderstandingQuestion.VeryEasy = Hawdd iawn
-complianceCheckUnderstandingQuestion.Easy = Hawdd
-complianceCheckUnderstandingQuestion.NeitherEasyOrDifficult = Ddim yn hawdd nac yn anodd
-complianceCheckUnderstandingQuestion.Difficult = Anodd
-complianceCheckUnderstandingQuestion.VeryDifficult = Anodd iawn
+checkUnderstandingQuestion.VeryEasy = Hawdd iawn
+checkUnderstandingQuestion.Easy = Hawdd
+checkUnderstandingQuestion.NeitherEasyOrDifficult = Ddim yn hawdd nac yn anodd
+checkUnderstandingQuestion.Difficult = Anodd
+checkUnderstandingQuestion.VeryDifficult = Anodd iawn
 
 ccgQuestions.whyGiveAnswer.heading = Pam gwnaethoch chi roi’r ateb hwn?
 ccgQuestions.whyGiveAnswer.hint = Dylech ystyried pob rhan o’r gwiriadau cydymffurfio. Peidiwch â rhoi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, cyfeirnod treth neu fanylion banc.
 
 ccgQuestions.supportFutureTax.heading = Pa mor hyderus ydych chi y bydd eich rhyngweithio â CThEM yn ystod y gwiriad cydymffurfio hwn yn eich cynorthwyo wrth i chi fodloni’ch ymrwymiadau treth yn y dyfodol?
-supportFutureTaxQuestion.VeryConfident = Hyderus iawn
-supportFutureTaxQuestion.FairlyConfident = Yn eithaf hyderus
-supportFutureTaxQuestion.Neutral = Niwtral
-supportFutureTaxQuestion.NotVeryConfident = Ddim yn hyderus iawn
-supportFutureTaxQuestion.NotAtAllConfident = Ddim yn hyderus o gwbl
+supportFutureQuestion.VeryConfident = Hyderus iawn
+supportFutureQuestion.FairlyConfident = Yn eithaf hyderus
+supportFutureQuestion.Neutral = Niwtral
+supportFutureQuestion.NotVeryConfident = Ddim yn hyderus iawn
+supportFutureQuestion.NotAtAllConfident = Ddim yn hyderus o gwbl
 
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 i 10
