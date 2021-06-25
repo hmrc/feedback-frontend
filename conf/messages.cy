@@ -100,11 +100,11 @@ mainServiceQuestion.CIS = Cynllun y Diwydiant Adeiladu (CIS)
 mainServiceQuestion.ECSales = Gwerthiannau yn y GE
 mainServiceQuestion.Other = Arall, Rhowch fanylion
 
-TryingToDoQuestion.RegisterATrust = Cofrestrwch ymddiriedolaeth
+TryingToDoQuestion.RegisterATrust = Cofrestru ymddiriedolaeth
 TryingToDoQuestion.ClaimATrust = Hawlio ymddiriedolaeth
-TryingToDoQuestion.CloseATrust = Caewch ymddiriedolaeth
-TryingToDoQuestion.MaintainATrust = Diweddarwch fanylion yr ymddiriedolaeth
-TryingToDoQuestion.GetEvidenceOfRegistration = Mynnwch dystiolaeth o gofrestriad yr ymddiriedolaeth
+TryingToDoQuestion.CloseATrust = Cau ymddiriedolaeth
+TryingToDoQuestion.MaintainATrust = Diweddaru manylion yr ymddiriedolaeth
+TryingToDoQuestion.GetEvidenceOfRegistration = Cael tystiolaeth o gofrestriad yr ymddiriedolaeth
 TryingToDoQuestion.Other = Arall, Nodwch
 
 thankYou.title = Diolch am eich adborth
@@ -147,8 +147,8 @@ trustsQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaetha
 trustsQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 trustsQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 7 cwestiwn ac maent i gyd yn ddewisol.
 trustsQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
-trustsQuestions.isAgent.heading = Ydych chi'n asiant sy'n gweithio ar ran cleient?
-trustsQuestions.tryingToDo.heading = Beth oeddech chi'n ceisio ei wneud gan ddefnyddio'r gwasanaeth heddiw?
+trustsQuestions.isAgent.heading = Ydych chi’n asiant sy’n gweithio ar ran cleient?
+trustsQuestions.tryingToDo.heading = Beth oeddech chi’n ceisio ei wneud wrth ddefnyddio’r gwasanaeth heddiw?
 trustsQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
 trustsQuestions.whyNotAbleToDo.heading = Os nad oeddech yn gallu gwneud yr hyn yr oedd angen i chi ei wneud, dywedwch wrthym pam.
 trustsQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
