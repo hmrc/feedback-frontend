@@ -53,6 +53,9 @@ neededToDo.error.maxlength = What was the main thing you needed to do today must
 fullName.error.maxlength = Full name must be {0} characters or less
 email.error.maxlength = Email must be {0} characters or less
 
+ableToDo.No = No
+ableToDo.Yes = Yes
+
 otherQuestions.title = Give feedback - GOV.UK
 otherQuestions.heading = Feedback
 otherQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.

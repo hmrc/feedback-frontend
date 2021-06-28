@@ -19,8 +19,8 @@ package views
 import play.api.data.Form
 import forms.PTAQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, Origin, PTAQuestions}
-import views.html.ptaQuestions
+import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, Origin, PTAQuestions}
+import views.html.PtaQuestionsView
 
 class PTAQuestionsViewSpec
     extends YesNoViewBehaviours[PTAQuestions] with StringViewBehaviours[PTAQuestions]
@@ -31,32 +31,40 @@ class PTAQuestionsViewSpec
   val form = new PTAQuestionsFormProvider()()
   val action = controllers.routes.PTAQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val ptaQuestions = inject[ptaQuestions]
+  lazy val ptaQuestionsView = inject[PtaQuestionsView]
 
-  def createView = () => ptaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView = () => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =
-    (form: Form[_]) => ptaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+    (form: Form[_]) => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "PTAQuestions view" must {
-    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPageNew(createView, messageKeyPrefix, "intro1", "intro3")
 
-    behave like stringPage(
+    behave like stringPageNew(
       createViewUsingForm,
       "neededToDo",
       "ptaQuestions.neededToDo",
       Some("ptaQuestions.neededToDo.heading.hintText"))
 
-    behave like yesNoPage(createViewUsingForm, "ableToDo", "ptaQuestions.ableToDo")
+    behave like optionsPageWithRadioItems(
+      createViewUsingForm,
+      "ableToDo",
+      AbleToDo.options(form),
+      "ptaQuestions.ableToDo")
 
-    behave like optionsPage(createViewUsingForm, "howEasyScore", HowEasyQuestion.options, "ptaQuestions.howEasyScore")
+    behave like optionsPageWithRadioItems(
+      createViewUsingForm,
+      "howEasyScore",
+      HowEasyQuestion.options(form),
+      "ptaQuestions.howEasyScore")
 
-    behave like stringPage(createViewUsingForm, "whyGiveScore", "ptaQuestions.whyGiveScore")
+    behave like stringPageNew(createViewUsingForm, "whyGiveScore", "ptaQuestions.whyGiveScore")
 
-    behave like optionsPage(
+    behave like optionsPageWithRadioItems(
       createViewUsingForm,
       "howDoYouFeelScore",
-      HowDoYouFeelQuestion.options,
+      HowDoYouFeelQuestion.options(form),
       "ptaQuestions.howDoYouFeelScore")
 
     "contain second introductory paragraph" in {

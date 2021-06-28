@@ -50,11 +50,29 @@ trait ViewBehaviours extends ViewSpecBase {
       }
     }
 
-  def pageWithBackLink(view: () => HtmlFormat.Appendable) =
-    "behave like a page with a back link" must {
-      "have a back link" in {
-        val doc = asDocument(view())
-        assertRenderedById(doc, "back-link")
+  def normalPageNew(view: () => HtmlFormat.Appendable, messageKeyPrefix: String, expectedGuidanceKeys: String*) =
+    "behave like a normal page" when {
+      "rendered" must {
+
+        "display the correct browser title" in {
+          val doc = asDocument(view())
+          assertEqualsMessage(doc, "title", s"$messageKeyPrefix.title")
+        }
+
+        "display the correct page title" in {
+          val doc = asDocument(view())
+          doc.getElementsByClass("govuk-heading-xl").first().text() mustBe messages(s"$messageKeyPrefix.heading")
+        }
+
+        "display the correct guidance" in {
+          val doc = asDocument(view())
+          for (key <- expectedGuidanceKeys) assertContainsText(doc, messages(s"$messageKeyPrefix.$key"))
+        }
+
+        "display language toggles" in {
+          val doc = asDocument(view())
+          assertContainsText(doc, "Cymraeg")
+        }
       }
     }
 }

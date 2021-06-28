@@ -16,12 +16,17 @@
 
 package models
 
-import play.api.libs.json._
+import play.api.data.Form
+import play.api.i18n.Messages
+import uk.gov.hmrc.govukfrontend.views.Aliases.Text
+import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
 import viewmodels.RadioOption
 
 sealed trait MainServiceQuestion
 
 object MainServiceQuestion {
+
+  val baseMessageKey: String = "mainServiceQuestion"
 
   case object SelfAssesment extends WithName("SelfAssesment") with MainServiceQuestion
   case object PAYE extends WithName("PAYE") with MainServiceQuestion
@@ -38,23 +43,15 @@ object MainServiceQuestion {
     RadioOption("mainServiceQuestion", value.toString)
   }
 
+  def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
+    RadioItem(
+      id = Some(s"$baseMessageKey-${value.toString}"),
+      value = Some(value.toString),
+      content = Text(messages(s"$baseMessageKey.$value")),
+      checked = form(baseMessageKey).value.contains(value.toString)
+    )
+  }
+
   implicit val enumerable: Enumerable[MainServiceQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object MainServiceQuestionWrites extends Writes[MainServiceQuestion] {
-    def writes(mainServiceQuestion: MainServiceQuestion) = Json.toJson(mainServiceQuestion.toString)
-  }
-
-  implicit object MainServiceQuestionReads extends Reads[MainServiceQuestion] {
-    override def reads(json: JsValue): JsResult[MainServiceQuestion] = json match {
-      case JsString(SelfAssesment.toString)  => JsSuccess(SelfAssesment)
-      case JsString(PAYE.toString)           => JsSuccess(PAYE)
-      case JsString(VAT.toString)            => JsSuccess(VAT)
-      case JsString(CorporationTax.toString) => JsSuccess(CorporationTax)
-      case JsString(CIS.toString)            => JsSuccess(CIS)
-      case JsString(ECSales.toString)        => JsSuccess(ECSales)
-      case JsString(Other.toString)          => JsSuccess(Other)
-      case _                                 => JsError("Unknown MainServiceQuestion")
-    }
-  }
 }

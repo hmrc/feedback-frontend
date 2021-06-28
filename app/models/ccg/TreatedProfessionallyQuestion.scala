@@ -17,7 +17,6 @@
 package models.ccg
 
 import models.{Enumerable, WithName}
-import play.api.libs.json._
 import viewmodels.RadioOption
 
 sealed trait TreatedProfessionallyQuestion

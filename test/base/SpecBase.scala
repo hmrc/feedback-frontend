@@ -33,7 +33,7 @@ trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with Injecting {
 
   def fakeRequest = FakeRequest("", "")
 
-  def messages: Messages = messagesApi.preferred(fakeRequest)
+  implicit def messages: Messages = messagesApi.preferred(fakeRequest)
 
   def mcc: MessagesControllerComponents = inject[MessagesControllerComponents]
 

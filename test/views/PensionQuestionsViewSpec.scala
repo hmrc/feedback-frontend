@@ -17,10 +17,10 @@
 package views
 
 import forms.PensionQuestionsFormProvider
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, LikelyToDoQuestion, Origin, PensionQuestions}
+import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, LikelyToDoQuestion, Origin, PensionQuestions}
 import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import views.html.pensionQuestions
+import views.html.PensionQuestionsView
 
 class PensionQuestionsViewSpec
     extends YesNoViewBehaviours[PensionQuestions] with StringViewBehaviours[PensionQuestions]
@@ -31,37 +31,41 @@ class PensionQuestionsViewSpec
   val form = new PensionQuestionsFormProvider()()
   val action = controllers.routes.PensionQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val pensionQuestions = inject[pensionQuestions]
+  lazy val pensionQuestionsView = inject[PensionQuestionsView]
 
-  def createView = () => pensionQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView = () => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =
-    (form: Form[_]) => pensionQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+    (form: Form[_]) => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "PensionQuestions view" must {
 
-    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPageNew(createView, messageKeyPrefix, "intro1", "intro3")
 
-    behave like yesNoPage(createViewUsingForm, "ableToDo", "pensionQuestions.ableToDo")
+    behave like optionsPageWithRadioItems(
+      createViewUsingForm,
+      "ableToDo",
+      AbleToDo.options(form),
+      "pensionQuestions.ableToDo")
 
-    behave like optionsPage(
+    behave like optionsPageWithRadioItems(
       createViewUsingForm,
       "howEasyScore",
-      HowEasyQuestion.options,
+      HowEasyQuestion.options(form),
       "pensionQuestions.howEasyScore")
 
-    behave like stringPage(createViewUsingForm, "whyGiveScore", "pensionQuestions.whyGiveScore")
+    behave like stringPageNew(createViewUsingForm, "whyGiveScore", "pensionQuestions.whyGiveScore")
 
-    behave like optionsPage(
+    behave like optionsPageWithRadioItems(
       createViewUsingForm,
       "howDoYouFeelScore",
-      HowDoYouFeelQuestion.options,
+      HowDoYouFeelQuestion.options(form),
       "pensionQuestions.howDoYouFeelScore")
 
-    behave like optionsPage(
+    behave like optionsPageWithRadioItems(
       createViewUsingForm,
       "likelyToDo",
-      LikelyToDoQuestion.options,
+      LikelyToDoQuestion.options(form),
       "pensionQuestions.likelyToDo")
 
     "contain privacy anchor tag" in {

@@ -28,7 +28,7 @@ import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
-import views.html.pensionQuestions
+import views.html.PensionQuestionsView
 
 class PensionQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
@@ -36,7 +36,7 @@ class PensionQuestionsController @Inject()(
   formProvider: PensionQuestionsFormProvider,
   auditService: AuditService,
   mcc: MessagesControllerComponents,
-  pensionQuestions: pensionQuestions)
+  pensionQuestionsView: PensionQuestionsView)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[PensionQuestions] = formProvider()
@@ -44,14 +44,14 @@ class PensionQuestionsController @Inject()(
   def submitCall(origin: Origin) = routes.PensionQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
-    Ok(pensionQuestions(appConfig, form, submitCall(origin)))
+    Ok(pensionQuestionsView(appConfig, form, submitCall(origin)))
   }
 
   def onSubmit(origin: Origin) = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
-        formWithErrors => BadRequest(pensionQuestions(appConfig, formWithErrors, submitCall(origin))),
+        formWithErrors => BadRequest(pensionQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.pensionAudit(origin, FeedbackId.fromSession, value)
           Redirect(successPage)

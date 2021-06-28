@@ -19,8 +19,8 @@ package views
 import play.api.data.Form
 import forms.BTAQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import models.{BTAQuestions, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, Origin}
-import views.html.btaQuestions
+import models.{AbleToDo, BTAQuestions, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, Origin}
+import views.html.BtaQuestionsView
 
 class BTAQuestionsViewSpec
     extends YesNoViewBehaviours[BTAQuestions] with StringViewBehaviours[BTAQuestions]
@@ -31,30 +31,42 @@ class BTAQuestionsViewSpec
   val form = new BTAQuestionsFormProvider()()
   val action = controllers.routes.BTAQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val btaQuestions = inject[btaQuestions]
+  lazy val btaQuestionsView = inject[BtaQuestionsView]
 
-  def createView = () => btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView = () => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =
-    (form: Form[_]) => btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+    (form: Form[_]) => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "BTAQuestions view" must {
-    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPageNew(createView, messageKeyPrefix, "intro1", "intro3")
 
-    behave like optionsPage(createViewUsingForm, "mainService", MainServiceQuestion.options, "btaQuestions.mainService")
+    behave like optionsPageWithRadioItems(
+      createViewUsingForm,
+      "mainService",
+      MainServiceQuestion.options(form),
+      "btaQuestions.mainService")
 
-    behave like stringPage(createViewUsingForm, "mainServiceOther", "btaQuestions.mainService.label")
+    behave like stringPageNew(createViewUsingForm, "mainServiceOther", "btaQuestions.mainService.label")
 
-    behave like yesNoPage(createViewUsingForm, "ableToDo", "btaQuestions.ableToDo")
+    behave like optionsPageWithRadioItems(
+      createViewUsingForm,
+      "ableToDo",
+      AbleToDo.options(form),
+      "btaQuestions.ableToDo")
 
-    behave like optionsPage(createViewUsingForm, "howEasyScore", HowEasyQuestion.options, "btaQuestions.howEasyScore")
+    behave like optionsPageWithRadioItems(
+      createViewUsingForm,
+      "howEasyScore",
+      HowEasyQuestion.options(form),
+      "btaQuestions.howEasyScore")
 
-    behave like stringPage(createViewUsingForm, "whyGiveScore", "btaQuestions.whyGiveScore")
+    behave like stringPageNew(createViewUsingForm, "whyGiveScore", "btaQuestions.whyGiveScore")
 
-    behave like optionsPage(
+    behave like optionsPageWithRadioItems(
       createViewUsingForm,
       "howDoYouFeelScore",
-      HowDoYouFeelQuestion.options,
+      HowDoYouFeelQuestion.options(form),
       "btaQuestions.howDoYouFeelScore")
 
     "contain second introductory paragraph" in {

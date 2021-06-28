@@ -19,8 +19,8 @@ package views
 import play.api.data.Form
 import forms.OtherQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, Origin, OtherQuestions}
-import views.html.otherQuestions
+import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, Origin, OtherQuestions}
+import views.html.OtherQuestionsView
 
 class OtherQuestionsViewSpec
     extends YesNoViewBehaviours[OtherQuestions] with StringViewBehaviours[OtherQuestions]
@@ -31,27 +31,35 @@ class OtherQuestionsViewSpec
   val form = new OtherQuestionsFormProvider()()
   val action = controllers.routes.OtherQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val otherQuestions = inject[otherQuestions]
+  lazy val otherQuestionsView = inject[OtherQuestionsView]
 
-  def createView = () => otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView = () => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =
-    (form: Form[_]) => otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+    (form: Form[_]) => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "OtherQuestions view" must {
 
-    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPageNew(createView, messageKeyPrefix, "intro1", "intro3")
 
-    behave like yesNoPage(createViewUsingForm, "ableToDo", "otherQuestions.ableToDo")
+    behave like optionsPageWithRadioItems(
+      createViewUsingForm,
+      "ableToDo",
+      AbleToDo.options(form),
+      "otherQuestions.ableToDo")
 
-    behave like optionsPage(createViewUsingForm, "howEasyScore", HowEasyQuestion.options, "otherQuestions.howEasyScore")
+    behave like optionsPageWithRadioItems(
+      createViewUsingForm,
+      "howEasyScore",
+      HowEasyQuestion.options(form),
+      "otherQuestions.howEasyScore")
 
-    behave like stringPage(createViewUsingForm, "whyGiveScore", "otherQuestions.whyGiveScore")
+    behave like stringPageNew(createViewUsingForm, "whyGiveScore", "otherQuestions.whyGiveScore")
 
-    behave like optionsPage(
+    behave like optionsPageWithRadioItems(
       createViewUsingForm,
       "howDoYouFeelScore",
-      HowDoYouFeelQuestion.options,
+      HowDoYouFeelQuestion.options(form),
       "otherQuestions.howDoYouFeelScore")
 
     "contain second introductory paragraph" in {

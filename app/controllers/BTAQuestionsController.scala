@@ -27,7 +27,7 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.btaQuestions
+import views.html.BtaQuestionsView
 
 class BTAQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
@@ -35,21 +35,21 @@ class BTAQuestionsController @Inject()(
   formProvider: BTAQuestionsFormProvider,
   auditService: AuditService,
   mcc: MessagesControllerComponents,
-  btaQuestions: btaQuestions)
+  btaQuestionsView: BtaQuestionsView)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()
   def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
-    Ok(btaQuestions(appConfig, form, submitCall(origin)))
+    Ok(btaQuestionsView(appConfig, form, submitCall(origin)))
   }
 
   def onSubmit(origin: Origin) = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
-        formWithErrors => BadRequest(btaQuestions(appConfig, formWithErrors, submitCall(origin))),
+        formWithErrors => BadRequest(btaQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.btaAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))

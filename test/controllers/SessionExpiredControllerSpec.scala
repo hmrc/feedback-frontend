@@ -19,24 +19,24 @@ package controllers
 import base.SpecBase
 import play.api.mvc.Result
 import play.api.test.Helpers._
-import views.html.sessionExpired
+import views.html.SessionExpiredView
 
 import scala.concurrent.Future
 
 class SessionExpiredControllerSpec extends SpecBase {
 
-  val sessionExpired = inject[sessionExpired]
+  val sessionExpiredView = inject[SessionExpiredView]
 
   "SessionExpired Controller" must {
     def result: Future[Result] =
-      new SessionExpiredController(frontendAppConfig, mcc, sessionExpired).onPageLoad()(fakeRequest)
+      new SessionExpiredController(mcc, sessionExpiredView).onPageLoad()(fakeRequest)
 
     "return 200 for a GET" in {
       status(result) mustBe OK
     }
 
     "return the correct view for a GET" in {
-      contentAsString(result) mustBe sessionExpired(frontendAppConfig)(fakeRequest, messages).toString
+      contentAsString(result) mustBe sessionExpiredView()(fakeRequest, messages).toString
     }
   }
 }

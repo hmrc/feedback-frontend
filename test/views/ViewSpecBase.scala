@@ -81,7 +81,8 @@ trait ViewSpecBase extends SpecBase {
     doc: Document,
     forElement: String,
     expectedText: String,
-    expectedHintText: Option[String] = None) = {
+    expectedHintText: Option[String] = None,
+    expectedHintClass: Option[String] = None) = {
     val labels = doc.getElementsByAttributeValue("for", forElement)
     assert(labels.size == 1, s"\n\nLabel for $forElement was not rendered on the page.")
     val label = labels.first
@@ -89,8 +90,9 @@ trait ViewSpecBase extends SpecBase {
 
     if (expectedHintText.isDefined) {
       assert(
-        doc.getElementsByClass("form-hint").first.text == expectedHintText.get,
-        s"\n\nLabel for $forElement did not contain hint text $expectedHintText")
+        doc.getElementsByClass(expectedHintClass.getOrElse("form-hint")).first.text.contains(expectedHintText.get),
+        s"\n\nLabel for $forElement did not contain hint text ${expectedHintText.get}"
+      )
     }
   }
 
@@ -100,6 +102,7 @@ trait ViewSpecBase extends SpecBase {
   def assertContainsRadioButton(doc: Document, id: String, name: String, value: String, isChecked: Boolean) = {
     assertRenderedById(doc, id)
     val radio = doc.getElementById(id)
+
     assert(radio.attr("name") == name, s"\n\nElement $id does not have name $name")
     assert(radio.attr("value") == value, s"\n\nElement $id does not have value $value")
     isChecked match {

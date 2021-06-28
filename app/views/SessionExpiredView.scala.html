@@ -14,18 +14,19 @@
  * limitations under the License.
  *@
 
-@import config.FrontendAppConfig
+@this(
+ mainTemplate: MainTemplateNew,
+ h1: components.h1,
+ p: components.p
+)
 
-@this(mainTemplate: mainTemplate)
-
-@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+@()(implicit request: Request[_], messages: Messages)
 
 @mainTemplate(
 title = messages("sessionExpired.title"),
-appConfig = appConfig,
 bodyClasses = None) {
 
-@components.heading("sessionExpired.heading")
+  @h1("sessionExpired.heading")
 
-<p>@messages("sessionExpired.guidance")</p>
+  @p(Html(messages("sessionExpired.guidance")))
 }

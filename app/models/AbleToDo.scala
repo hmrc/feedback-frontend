@@ -20,25 +20,22 @@ import play.api.data.Form
 import play.api.i18n.Messages
 import uk.gov.hmrc.govukfrontend.views.Aliases.Text
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
-import viewmodels.RadioOption
 
-sealed trait LikelyToDoQuestion
+sealed trait AbleToDo {
+  val value: Int
+}
 
-object LikelyToDoQuestion {
+object AbleToDo {
 
-  val baseMessageKey: String = "likelyToDoQuestion"
+  val baseMessageKey: String = "ableToDo"
 
-  case object OtherPensions extends WithName("OtherPensions") with LikelyToDoQuestion
-  case object CheckFinances extends WithName("CheckFinances") with LikelyToDoQuestion
-  case object ClarifyInformation extends WithName("ClarifyInformation") with LikelyToDoQuestion
-  case object GetProfessionalAdvice extends WithName("GetProfessionalAdvice") with LikelyToDoQuestion
-  case object DoNothing extends WithName("DoNothing") with LikelyToDoQuestion
+  val values: Seq[AbleToDo] = List(Yes, No)
 
-  val values: Seq[LikelyToDoQuestion] =
-    List(OtherPensions, CheckFinances, ClarifyInformation, GetProfessionalAdvice, DoNothing)
+  def from(bool: Boolean): AbleToDo = if (bool) Yes else No
 
-  val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("likelyToDoQuestion", value.toString)
+  def to(yesNo: AbleToDo): Boolean = yesNo match {
+    case Yes => true
+    case No  => false
   }
 
   def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
@@ -50,6 +47,14 @@ object LikelyToDoQuestion {
     )
   }
 
-  implicit val enumerable: Enumerable[LikelyToDoQuestion] =
+  implicit val enumerable: Enumerable[AbleToDo] =
     Enumerable(values.map(v => v.toString -> v): _*)
+
+  case object Yes extends WithName("Yes") with AbleToDo {
+    val value = 1
+  }
+
+  case object No extends WithName("No") with AbleToDo {
+    val value = 0
+  }
 }
