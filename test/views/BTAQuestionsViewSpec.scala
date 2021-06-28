@@ -19,7 +19,7 @@ package views
 import play.api.data.Form
 import forms.BTAQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import models.{BTAQuestions, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion}
+import models.{BTAQuestions, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, Origin}
 import views.html.btaQuestions
 
 class BTAQuestionsViewSpec
@@ -29,7 +29,7 @@ class BTAQuestionsViewSpec
   val messageKeyPrefix = "btaQuestions"
 
   val form = new BTAQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad()
+  val action = controllers.routes.BTAQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val btaQuestions = inject[btaQuestions]
 

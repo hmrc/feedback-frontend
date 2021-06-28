@@ -17,7 +17,7 @@
 package views
 
 import forms.CCGQuestionsFormProvider
-import models.CCGQuestions
+import models.{CCGQuestions, Origin}
 import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.Form
 import views.behaviours._
@@ -28,7 +28,7 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
   val messageKeyPrefix = "ccgQuestions"
 
   val form = new CCGQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad()
+  val action = controllers.routes.CCGQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val ccgQuestions = inject[ccgQuestions]
 

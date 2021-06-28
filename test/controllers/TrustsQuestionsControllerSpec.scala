@@ -16,6 +16,7 @@
 
 package controllers
 
+import base.SpecBase
 import forms.TrustsQuestionsFormProvider
 import generators.ModelGenerators
 import models.{FeedbackId, Origin, TrustsQuestions}
@@ -33,7 +34,7 @@ import services.AuditService
 import views.html.TrustsQuestionsView
 
 class TrustsQuestionsControllerSpec
-    extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
+    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
 
   def onwardRoute = Call("GET", "/foo")
 

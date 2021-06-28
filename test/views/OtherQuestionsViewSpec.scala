@@ -19,7 +19,7 @@ package views
 import play.api.data.Form
 import forms.OtherQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions}
+import models.{HowDoYouFeelQuestion, HowEasyQuestion, Origin, OtherQuestions}
 import views.html.otherQuestions
 
 class OtherQuestionsViewSpec
@@ -29,7 +29,7 @@ class OtherQuestionsViewSpec
   val messageKeyPrefix = "otherQuestions"
 
   val form = new OtherQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad()
+  val action = controllers.routes.OtherQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val otherQuestions = inject[otherQuestions]
 

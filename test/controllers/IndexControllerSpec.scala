@@ -16,13 +16,14 @@
 
 package controllers
 
+import base.SpecBase
 import play.api.mvc.Result
 import play.api.test.Helpers._
 import views.html.index
 
 import scala.concurrent.Future
 
-class IndexControllerSpec extends ControllerSpecBase {
+class IndexControllerSpec extends SpecBase {
 
   lazy val index = inject[index]
 

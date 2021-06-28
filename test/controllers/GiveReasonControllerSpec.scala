@@ -16,7 +16,7 @@
 
 package controllers
 
-import controllers.actions._
+import base.SpecBase
 import forms.GiveReasonFormProvider
 import generators.Generators
 import models.{FeedbackId, GiveReason, GiveReasonQuestions, Origin}
@@ -32,8 +32,7 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.giveReason
 
-class GiveReasonControllerSpec
-    extends ControllerSpecBase with ScalaCheckPropertyChecks with Generators with MockitoSugar {
+class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks with Generators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -42,7 +41,7 @@ class GiveReasonControllerSpec
   lazy val mockAuditService = mock[AuditService]
   lazy val giveReason = inject[giveReason]
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
+  def controller() =
     new GiveReasonController(
       frontendAppConfig,
       new FakeNavigator(onwardRoute),

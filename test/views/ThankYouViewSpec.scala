@@ -17,13 +17,13 @@
 package views
 
 import views.behaviours.ViewBehaviours
-import views.html.thankYou
+import views.html.ThankYou
 
 class ThankYouViewSpec extends ViewBehaviours {
 
   val messageKeyPrefix = "thankYou"
 
-  lazy val thankYou = inject[thankYou]
+  lazy val thankYou = inject[ThankYou]
 
   def createView = () => thankYou(frontendAppConfig)(fakeRequest, messages)
 

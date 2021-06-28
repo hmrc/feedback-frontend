@@ -19,7 +19,7 @@ package views
 import play.api.data.Form
 import forms.PTAQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, PTAQuestions}
+import models.{HowDoYouFeelQuestion, HowEasyQuestion, Origin, PTAQuestions}
 import views.html.ptaQuestions
 
 class PTAQuestionsViewSpec
@@ -29,7 +29,7 @@ class PTAQuestionsViewSpec
   val messageKeyPrefix = "ptaQuestions"
 
   val form = new PTAQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad()
+  val action = controllers.routes.PTAQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val ptaQuestions = inject[ptaQuestions]
 

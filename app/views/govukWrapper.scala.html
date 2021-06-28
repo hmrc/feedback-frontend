@@ -17,9 +17,10 @@
 @import play.twirl.api.HtmlFormat
 @import uk.gov.hmrc.play.views.html.helpers.ReportAProblemLink
 @import uk.gov.hmrc.play.views.html.layouts._
+@import uk.gov.hmrc.play.views.html.layouts.{Footer => playUiFooter}
 @import views.html.layouts.GovUkTemplate
 
-@this(headWithTrackingConsent: HeadWithTrackingConsent, headerNav: HeaderNav, footer: Footer, serviceInfoUI: ServiceInfo, reportAProblemLink: ReportAProblemLink, mainContentHeaderUI: MainContentHeader,
+@this(headWithTrackingConsent: HeadWithTrackingConsent, headerNav: HeaderNav, footer: playUiFooter, serviceInfoUI: ServiceInfo, reportAProblemLink: ReportAProblemLink, mainContentHeaderUI: MainContentHeader,
         mainContentUI: MainContent, hmrcGovUkTemplate: GovUkTemplate, footerLinks: FooterLinks)
 
 

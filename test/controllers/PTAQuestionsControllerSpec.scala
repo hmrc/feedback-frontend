@@ -16,7 +16,7 @@
 
 package controllers
 
-import controllers.actions._
+import base.SpecBase
 import forms.PTAQuestionsFormProvider
 import generators.ModelGenerators
 import models.{FeedbackId, Origin, PTAQuestions}
@@ -32,8 +32,7 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.ptaQuestions
 
-class PTAQuestionsControllerSpec
-    extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -45,7 +44,7 @@ class PTAQuestionsControllerSpec
 
   def submitCall(origin: Origin) = routes.PTAQuestionsController.onSubmit(origin)
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
+  def controller() =
     new PTAQuestionsController(
       frontendAppConfig,
       new FakeNavigator(onwardRoute),

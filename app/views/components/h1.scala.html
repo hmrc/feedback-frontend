@@ -1,4 +1,4 @@
-/*
+@*
  * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,21 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *@
 
-package views
+@this()
 
-import views.behaviours.ViewBehaviours
-import views.html.unauthorised
+@(msg: String, classes: Option[String] = None)(implicit messages: Messages)
 
-class UnauthorisedViewSpec extends ViewBehaviours {
-
-  lazy val unauthorised = inject[unauthorised]
-
-  def view = () => unauthorised(frontendAppConfig)(fakeRequest, messages)
-
-  "Unauthorised view" must {
-
-    behave like normalPage(view, "unauthorised")
-  }
-}
+<h1 class="@classes.getOrElse("govuk-heading-xl")">@messages(msg)</h1>

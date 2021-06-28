@@ -23,12 +23,12 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
-import views.html.{thankYou, thankYouPension}
+import views.html.{ThankYou, thankYouPension}
 
 class ThankYouController @Inject()(
   appConfig: FrontendAppConfig,
   mcc: MessagesControllerComponents,
-  thankYou: thankYou,
+  thankYou: ThankYou,
   thankYouPension: thankYouPension)
     extends FrontendController(mcc) with I18nSupport {
 

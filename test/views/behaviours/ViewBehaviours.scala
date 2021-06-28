@@ -27,12 +27,6 @@ trait ViewBehaviours extends ViewSpecBase {
   def normalPage(view: () => HtmlFormat.Appendable, messageKeyPrefix: String, expectedGuidanceKeys: String*) =
     "behave like a normal page" when {
       "rendered" must {
-        "have the correct banner title" in {
-          val doc = asDocument(view())
-          val nav = doc.getElementById("proposition-menu")
-          val span = nav.children.first
-          span.text mustBe messagesApi("site.service_name")
-        }
 
         "display the correct browser title" in {
           val doc = asDocument(view())
@@ -51,7 +45,7 @@ trait ViewBehaviours extends ViewSpecBase {
 
         "display language toggles" in {
           val doc = asDocument(view())
-          assertRenderedById(doc, "cymraeg-switch")
+          assertContainsText(doc, "Cymraeg")
         }
       }
     }

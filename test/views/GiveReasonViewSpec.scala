@@ -17,7 +17,7 @@
 package views
 
 import forms.GiveReasonFormProvider
-import models.GiveReason
+import models.{GiveReason, Origin}
 import play.api.data.Form
 import views.behaviours.ViewBehaviours
 import views.html.giveReason
@@ -27,7 +27,7 @@ class GiveReasonViewSpec extends ViewBehaviours {
   val messageKeyPrefix = "giveReason"
 
   val form = new GiveReasonFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad()
+  val action = controllers.routes.GiveReasonController.onPageLoad(Origin.fromString("origin"))
 
   lazy val giveReason = inject[giveReason]
 

@@ -1,4 +1,4 @@
-/*
+@*
  * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,22 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *@
 
-package connectors
+@this()
 
-import play.api.libs.json.Format
-import uk.gov.hmrc.http.cache.client.CacheMap
+@(msg: String, classes: Option[String] = None, elmId: Option[String] = None, args: Seq[String] = Seq.empty)(implicit messages: Messages)
 
-import scala.concurrent.Future
-
-import scala.concurrent.ExecutionContext.Implicits.global
-
-object FakeDataCacheConnector extends DataCacheConnector {
-
-  override def save[A](cacheMap: CacheMap): Future[CacheMap] = Future.successful(cacheMap)
-
-  override def fetch(cacheId: String): Future[Option[CacheMap]] = Future(Some(CacheMap(cacheId, Map())))
-
-  override def getEntry[A](cacheId: String, key: String)(implicit fmt: Format[A]): Future[Option[A]] = ???
-}
+<h2 @elmId.map { i => id="@{i}"} class="@classes.getOrElse("govuk-heading-m")">@messages(msg, args)</h2>

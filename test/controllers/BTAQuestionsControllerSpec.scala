@@ -16,6 +16,7 @@
 
 package controllers
 
+import base.SpecBase
 import forms.BTAQuestionsFormProvider
 import generators.ModelGenerators
 import models.{BTAQuestions, FeedbackId, Origin}
@@ -33,7 +34,7 @@ import services.AuditService
 import views.html.btaQuestions
 
 class BTAQuestionsControllerSpec
-    extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
+    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
 
   def onwardRoute = Call("GET", "/foo")
 
