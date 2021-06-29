@@ -1,0 +1,75 @@
+{
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": true,
+  "debugWindow": true,
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "ignoreHTTPSErrors": true
+  },
+  "id": "backstop_default",
+  "onBeforeScript": "puppet/onBefore.js",
+  "onReadyScript": "puppet/onReady.js",
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "ci_report": "backstop_data/ci_report",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report"
+  },
+  "report": [
+    "browser"
+  ],
+  "scenarios": [
+    {
+      "clickSelector": [
+        "#ableToDo-yes",
+        "#howEasyQuestion.VeryDifficult",
+        "#howDoYouFeelQuestion.VeryDissatisfied",
+        ".section #submit"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 0,
+      "expect": 0,
+      "hideSelectors": [],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters (in the happy path version, anyway).",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "Feedback frontend",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 0,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [],
+      "requireSameDimensions": true,
+      "scrollToSelector": "#submit",
+      "selectorExpansion": true,
+      "selectors": [
+        "document",
+        "viewport"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/beta"
+    }
+  ],
+  "viewports": [
+    {
+      "height": 480,
+      "label": "phone",
+      "width": 320
+    },
+    {
+      "height": 768,
+      "label": "tablet",
+      "width": 1024
+    }
+  ]
+}

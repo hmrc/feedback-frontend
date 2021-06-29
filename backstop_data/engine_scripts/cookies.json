@@ -1,0 +1,29 @@
+[
+  {
+    "domain": "localhost",
+    "expires": -1,
+    "httpOnly": true,
+    "name": "Use-Welsh",
+    "path": "/",
+    "secure": false,
+    "value": "false"
+  },
+  {
+    "domain": "localhost",
+    "expires": 1626097641,
+    "httpOnly": false,
+    "name": "seen_cookie_message",
+    "path": "/",
+    "secure": false,
+    "value": "yes"
+  },
+  {
+    "domain": "localhost",
+    "expires": -1,
+    "httpOnly": false,
+    "name": "PLAY_LANG",
+    "path": "/",
+    "secure": false,
+    "value": "en"
+  }
+]

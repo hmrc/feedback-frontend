@@ -1,0 +1,24 @@
+{
+  "recommendations": [
+    "bierner.github-markdown-preview",
+    "bierner.markdown-checkbox",
+    "bierner.markdown-emoji",
+    "bierner.markdown-preview-github-styles",
+    "bierner.markdown-prism",
+    "bierner.markdown-yaml-preamble",
+    "davidanson.vscode-markdownlint",
+    "esbenp.prettier-vscode",
+    "firefox-devtools.vscode-firefox-debug",
+    "hilleer.yaml-plus-json",
+    "jebbs.markdown-extended",
+    "marcospereira.vscode-play-snippets",
+    "ms-edgedevtools.vscode-edge-devtools",
+    "msjsdiag.debugger-for-chrome",
+    "msjsdiag.debugger-for-edge",
+    "pascalreitermann93.vscode-yaml-sort",
+    "redhat.vscode-yaml",
+    "scala-lang.scala",
+    "scala-lang.scala-snippets",
+    "scalameta.metals"
+  ]
+}
