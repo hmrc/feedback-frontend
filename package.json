@@ -35,6 +35,7 @@
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0",
     "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.19.0"
   },
   "description": "Services can integrate with Feedback frontend by navigating the URL with a unique name for your service for the survey you need.",
@@ -45,10 +46,20 @@
     "node": ">= 12.0.0"
   },
   "homepage": "https://github.com/hmrc/feedback-frontend#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "pre-push": "npm test"
+    }
+  },
   "keywords": [],
   "license": "MIT",
   "main": "index.js",
   "name": "feedback-frontend",
+  "pre-commit": [
+    "precommit-msg",
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hmrc/feedback-frontend.git"
@@ -56,6 +67,10 @@
   "scripts": {
     "approve": "backstop approve",
     "init": "backstop init",
+    "lint": "run-s lint:js lint:scss",
+    "lint:js": "eslint --fix './app/assets/javascripts/**/*.js'",
+    "lint:scss": "stylelint --fix 'app/assets/stylesheets/**/*.scss'",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
     "reference": "backstop reference",
     "test": "backstop test",
     "trash": "run-s reference init"
