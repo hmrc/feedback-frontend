@@ -100,6 +100,13 @@ mainServiceQuestion.CIS = Construction Industry Scheme (CIS)
 mainServiceQuestion.ECSales = EC Sales
 mainServiceQuestion.Other = Other, please specify
 
+TryingToDoQuestion.RegisterATrust = Register a trust
+TryingToDoQuestion.ClaimATrust = Claim a trust
+TryingToDoQuestion.CloseATrust = Close a trust
+TryingToDoQuestion.MaintainATrust = Update the trust details
+TryingToDoQuestion.GetEvidenceOfRegistration = Get evidence of the trust’s registration
+TryingToDoQuestion.Other = Other, Please specify
+
 thankYou.title = Thank you for your feedback
 thankYou.heading = Thank you for your feedback
 thankYou.intro = We will use your feedback to make our services better.
@@ -134,6 +141,20 @@ btaQuestions.ableToDo.heading = Were you able to do what you needed to do today?
 btaQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
 btaQuestions.whyGiveScore.heading = Why did you give this score?
 btaQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+
+trustsQuestions.title = Give feedback - GOV.UK
+trustsQuestions.heading = Feedback
+trustsQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+trustsQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+trustsQuestions.intro3 = The survey takes about 1 minute to complete. There are 7 questions and they are all optional.
+trustsQuestions.introLinkText = HMRC Privacy Notice (opens in new tab)
+trustsQuestions.isAgent.heading = Are you an agent that is working on behalf of a client?
+trustsQuestions.tryingToDo.heading = What were you trying to do on the service today?
+trustsQuestions.ableToDo.heading = Were you able to do what you needed to do today?
+trustsQuestions.whyNotAbleToDo.heading = If you were not able to do what you needed to do, tell us why.
+trustsQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
+trustsQuestions.whyGiveScore.heading = Why did you give this score?
+trustsQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
 
 pensionQuestions.title = Give feedback - GOV.UK
 pensionQuestions.heading = Feedback
