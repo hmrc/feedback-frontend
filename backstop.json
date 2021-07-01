@@ -28,8 +28,8 @@
     {
       "clickSelector": [
         "#ableToDo-yes",
-        "#howEasyQuestion.VeryDifficult",
-        "#howDoYouFeelQuestion.VeryDissatisfied",
+        "#howEasyQuestion-VeryDifficult",
+        "#howDoYouFeelQuestion-VeryDissatisfied",
         ".section #submit"
       ],
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
@@ -49,7 +49,7 @@
       "readyEvent": "",
       "readySelector": ".js",
       "referenceUrl": "",
-      "removeSelectors": [],
+      "removeSelectors": [".cbanner-govuk-cookie-banner"],
       "requireSameDimensions": true,
       "scrollToSelector": "#submit",
       "selectorExpansion": true,
