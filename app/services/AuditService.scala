@@ -79,9 +79,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withEmail(email: Option[String]): MapCont =
     _ + ("email" -> email.getOrElse("-"))
 
-  def withComplianceCheckUnderstanding(
-    complianceCheckUnderstanding: Option[ComplianceCheckUnderstandingQuestion]): MapCont =
-    _ + ("complianceCheckUnderstanding" -> complianceCheckUnderstanding.map(_.toString).getOrElse("-"))
+  def withCheckUnderstanding(checkUnderstanding: Option[CheckUnderstandingQuestion]): MapCont =
+    _ + ("checkUnderstanding" -> checkUnderstanding.map(_.toString).getOrElse("-"))
 
   def withTreatedProfessionally(treatedProfessionally: Option[TreatedProfessionallyQuestion]): MapCont =
     _ + ("treatedProfessionally" -> treatedProfessionally.map(_.toString).getOrElse("-"))
@@ -89,8 +88,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withWhyGiveAnswer(whyGiveAnswer: Option[String]): MapCont =
     _ + ("whyGiveAnswer" -> whyGiveAnswer.getOrElse("-"))
 
-  def withSupportFutureTax(supportFutureTax: Option[SupportFutureTaxQuestion]): MapCont =
-    _ + ("supportFutureTax" -> supportFutureTax.map(_.toString).getOrElse("-"))
+  def withSupportFuture(supportFuture: Option[SupportFutureQuestion]): MapCont =
+    _ + ("supportFuture" -> supportFuture.map(_.toString).getOrElse("-"))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
@@ -219,10 +218,25 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     val auditMap = (
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
-        withComplianceCheckUnderstanding(questions.complianceCheckUnderstanding) andThen
+        withCheckUnderstanding(questions.complianceCheckUnderstanding) andThen
         withTreatedProfessionally(questions.treatedProfessionally) andThen
         withWhyGiveAnswer(questions.whyGiveAnswer) andThen
-        withSupportFutureTax(questions.supportFutureTaxQuestion)
+        withSupportFuture(questions.supportFutureTaxQuestion)
+    )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
+
+  def nmwCcgAudit(origin: Origin, feedbackId: FeedbackId, questions: NmwCcgQuestions)(
+    implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+        withFeedbackId(feedbackId) andThen
+        withTreatedProfessionally(questions.treatedProfessionally) andThen
+        withCheckUnderstanding(questions.checkUnderstanding) andThen
+        withWhyGiveAnswer(questions.whyGiveAnswer) andThen
+        withSupportFuture(questions.supportFutureNmw)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)

@@ -96,14 +96,25 @@ object PensionQuestions {
 }
 
 case class CCGQuestions(
-  complianceCheckUnderstanding: Option[ComplianceCheckUnderstandingQuestion],
+  complianceCheckUnderstanding: Option[CheckUnderstandingQuestion],
   treatedProfessionally: Option[TreatedProfessionallyQuestion],
   whyGiveAnswer: Option[String],
-  supportFutureTaxQuestion: Option[SupportFutureTaxQuestion]
+  supportFutureTaxQuestion: Option[SupportFutureQuestion]
 )
 
 object CCGQuestions {
   implicit val formats: Format[CCGQuestions] = Json.format[CCGQuestions]
+}
+
+case class NmwCcgQuestions(
+  treatedProfessionally: Option[TreatedProfessionallyQuestion],
+  checkUnderstanding: Option[CheckUnderstandingQuestion],
+  whyGiveAnswer: Option[String],
+  supportFutureNmw: Option[SupportFutureQuestion]
+)
+
+object NmwCcgQuestions {
+  implicit val formats: Format[NmwCcgQuestions] = Json.format[NmwCcgQuestions]
 }
 
 case class GiveReasonQuestions(value: Option[GiveReason], reason: Option[String])

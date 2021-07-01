@@ -190,21 +190,21 @@ treatedProfessionallyQuestion.Disagree = Disagree
 treatedProfessionallyQuestion.StronglyDisagree = Strongly disagree
 
 ccgQuestions.complianceCheckUnderstanding.heading = During the compliance check, how easy was it for you to understand what was happening?
-complianceCheckUnderstandingQuestion.VeryEasy = Very Easy
-complianceCheckUnderstandingQuestion.Easy = Easy
-complianceCheckUnderstandingQuestion.NeitherEasyOrDifficult = Neither easy or difficult
-complianceCheckUnderstandingQuestion.Difficult = Difficult
-complianceCheckUnderstandingQuestion.VeryDifficult = Very difficult
+checkUnderstandingQuestion.VeryEasy = Very Easy
+checkUnderstandingQuestion.Easy = Easy
+checkUnderstandingQuestion.NeitherEasyOrDifficult = Neither easy or difficult
+checkUnderstandingQuestion.Difficult = Difficult
+checkUnderstandingQuestion.VeryDifficult = Very difficult
 
 ccgQuestions.whyGiveAnswer.heading = Why did you give this answer?
 ccgQuestions.whyGiveAnswer.hint = Please consider all parts of the compliance check. Do not give any personal information like your National Insurance number, tax reference number or bank details.
 
 ccgQuestions.supportFutureTax.heading = How confident are you that your interactions with HMRC during this compliance check will support you in meeting your future tax obligations?
-supportFutureTaxQuestion.VeryConfident = Very confident
-supportFutureTaxQuestion.FairlyConfident = Fairly confident
-supportFutureTaxQuestion.Neutral = Neutral
-supportFutureTaxQuestion.NotVeryConfident = Not very confident
-supportFutureTaxQuestion.NotAtAllConfident= Not at all confident
+supportFutureQuestion.VeryConfident = Very confident
+supportFutureQuestion.FairlyConfident = Fairly confident
+supportFutureQuestion.Neutral = Neutral
+supportFutureQuestion.NotVeryConfident = Not very confident
+supportFutureQuestion.NotAtAllConfident= Not at all confident
 
 numberOfEstablishmentsQuestion.OneEstablishment = 1
 numberOfEstablishmentsQuestion.TwoToTenEstablishments = 2 to 10
@@ -309,3 +309,16 @@ whichRegions.YorkshireAndHumber = Yorkshire and Humber
 whichRegions.NorthernIreland = Northern Ireland
 whichRegions.Scotland = Scotland
 whichRegions.Wales = Wales
+
+nmwCcgQuestions.introLinkText=HMRC Privacy Notice (opens in new tab)
+nmwCcgQuestions.title = Give feedback - GOV.UK
+nmwCcgQuestions.heading = Feedback
+nmwCcgQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+nmwCcgQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+nmwCcgQuestions.intro3 = The survey takes about 1 minute to complete. There are 4 questions and they are all optional.
+
+nmwCcgQuestions.treatedProfessionally.heading = How strongly do you agree or disagree that HMRC treated you professionally during the National Minimum Wage (NMW) enquiry?
+nmwCcgQuestions.CheckUnderstanding.heading = During the NMW enquiry, how easy was it for you to understand what was happening?
+nmwCcgQuestions.whyGiveAnswer.heading = Why did you give this answer?
+nmwCcgQuestions.whyGiveAnswer.hint = Please consider all parts of the NMW enquiry. Do not give any personal information like your National Insurance number, PAYE reference number or bank details.
+nmwCcgQuestions.supportFutureNmw.heading = How confident are you, based on this enquiry, that HMRC will support you in meeting your future National Minimum Wage obligations?

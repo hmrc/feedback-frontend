@@ -147,11 +147,29 @@ class CCGQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[CCGQuestions] =
     Form(
       mapping(
-        "complianceCheckUnderstanding" -> optional(enumerable[ComplianceCheckUnderstandingQuestion]()),
+        "complianceCheckUnderstanding" -> optional(enumerable[CheckUnderstandingQuestion]()),
         "treatedProfessionally"        -> optional(enumerable[TreatedProfessionallyQuestion]()),
         "whyGiveAnswer" ->
           optional(text("whyGiveAnswer.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
-        "supportFutureTax" -> optional(enumerable[SupportFutureTaxQuestion]())
+        "supportFutureTax" -> optional(enumerable[SupportFutureQuestion]())
       )(CCGQuestions.apply)(CCGQuestions.unapply))
+}
+
+class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
+
+  private val maxFieldSizeWhyGiveAnswer = 1000
+
+  def apply(): Form[NmwCcgQuestions] =
+    Form(
+      mapping(
+        "treatedProfessionally" -> optional(enumerable[TreatedProfessionallyQuestion]()),
+        "checkUnderstanding"    -> optional(enumerable[CheckUnderstandingQuestion]()),
+        "whyGiveAnswer" ->
+          optional(
+            text("whyGiveAnswer.error.required")
+              .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
+        "supportFutureNmw" -> optional(enumerable[SupportFutureQuestion]())
+      )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
+    )
 }

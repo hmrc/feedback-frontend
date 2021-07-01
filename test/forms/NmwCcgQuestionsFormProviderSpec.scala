@@ -16,40 +16,41 @@
 
 package forms
 
-import forms.behaviours._
-import models.CCGQuestions
-import models.ccg._
+import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
+import models.NmwCcgQuestions
+import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.FormError
 
-class CCGQuestionsFormProviderSpec
+class NmwCcgQuestionsFormProviderSpec
     extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
-  def form = new CCGQuestionsFormProvider()()
 
-  ".complianceCheckUnderstanding" must {
-
-    val fieldName = "complianceCheckUnderstanding"
-    val invalidError = "error.invalid"
-
-    behave like optionsField[CCGQuestions, CheckUnderstandingQuestion](
-      form,
-      fieldName,
-      CheckUnderstandingQuestion.values,
-      FormError(fieldName, invalidError),
-      _.complianceCheckUnderstanding
-    )
-  }
+  val form = new NmwCcgQuestionsFormProvider()()
 
   ".treatedProfessionally" must {
 
     val fieldName = "treatedProfessionally"
     val invalidError = "error.invalid"
 
-    behave like optionsField[CCGQuestions, TreatedProfessionallyQuestion](
+    behave like optionsField[NmwCcgQuestions, TreatedProfessionallyQuestion](
       form,
       fieldName,
       TreatedProfessionallyQuestion.values,
       FormError(fieldName, invalidError),
       _.treatedProfessionally
+    )
+  }
+
+  ".checkUnderstanding" must {
+
+    val fieldName = "checkUnderstanding"
+    val invalidError = "error.invalid"
+
+    behave like optionsField[NmwCcgQuestions, CheckUnderstandingQuestion](
+      form,
+      fieldName,
+      CheckUnderstandingQuestion.values,
+      FormError(fieldName, invalidError),
+      _.checkUnderstanding
     )
   }
 
@@ -65,20 +66,19 @@ class CCGQuestionsFormProviderSpec
       maxLength,
       FormError(fieldName, invalidError, List(maxLength))
     )
-
   }
 
-  ".supportFutureTax" must {
+  ".supportFutureNmw" must {
 
-    val fieldName = "supportFutureTax"
+    val fieldName = "supportFutureNmw"
     val invalidError = "error.invalid"
 
-    behave like optionsField[CCGQuestions, SupportFutureQuestion](
+    behave like optionsField[NmwCcgQuestions, SupportFutureQuestion](
       form,
       fieldName,
       SupportFutureQuestion.values,
       FormError(fieldName, invalidError),
-      _.supportFutureTaxQuestion
+      _.supportFutureNmw
     )
   }
 
