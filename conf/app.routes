@@ -19,6 +19,9 @@ POST       /:origin/personal                            controllers.PTAQuestions
 GET        /:origin/business                            controllers.BTAQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/business                            controllers.BTAQuestionsController.onSubmit(origin: models.Origin)
 
+GET        /trusts                                      controllers.TrustsQuestionsController.onPageLoad()
+POST       /trusts                                      controllers.TrustsQuestionsController.onSubmit()
+
 GET        /ccg/nmw                                     controllers.NmwCcgQuestionsController.onPageLoad
 POST       /ccg/nmw                                     controllers.NmwCcgQuestionsController.onSubmit
 

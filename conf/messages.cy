@@ -98,7 +98,14 @@ mainServiceQuestion.VAT = TAW
 mainServiceQuestion.CorporationTax = Treth Gorfforaeth
 mainServiceQuestion.CIS = Cynllun y Diwydiant Adeiladu (CIS)
 mainServiceQuestion.ECSales = Gwerthiannau yn y GE
-mainServiceQuestion.Other = Arall, Rhowch fanylion
+mainServiceQuestion.Other = Arall, rhowch fanylion
+
+TryingToDoQuestion.RegisterATrust = Cofrestru ymddiriedolaeth
+TryingToDoQuestion.ClaimATrust = Hawlio ymddiriedolaeth
+TryingToDoQuestion.CloseATrust = Cau ymddiriedolaeth
+TryingToDoQuestion.MaintainATrust = Diweddaru manylion yr ymddiriedolaeth
+TryingToDoQuestion.GetEvidenceOfRegistration = Cael tystiolaeth o gofrestriad yr ymddiriedolaeth
+TryingToDoQuestion.Other = Arall, Nodwch
 
 thankYou.title = Diolch am eich adborth
 thankYou.heading = Diolch am eich adborth
@@ -128,11 +135,27 @@ btaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. 
 btaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 btaQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
 btaQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
+btaQuestions.mainService.heading = Beth oedd y prif wasanaeth y gwnaethoch ei ddefnyddio heddiw?
+btaQuestions.mainService.label.heading = Rhowch wybod i ni am y prif wasanaeth a ddefnyddioch heddiw
 btaQuestions.neededToDo.heading = Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?
 btaQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
 btaQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 btaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 btaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
+
+trustsQuestions.title = Rhoi adborth - GOV.UK
+trustsQuestions.heading = Adborth
+trustsQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+trustsQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+trustsQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w lenwi. Mae 7 cwestiwn ac maent i gyd yn ddewisol.
+trustsQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
+trustsQuestions.isAgent.heading = Ydych chi’n asiant sy’n gweithio ar ran cleient?
+trustsQuestions.tryingToDo.heading = Beth oeddech chi’n ceisio ei wneud wrth ddefnyddio’r gwasanaeth heddiw?
+trustsQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
+trustsQuestions.whyNotAbleToDo.heading = Os nad oeddech yn gallu gwneud yr hyn yr oedd angen i chi ei wneud, dywedwch wrthym pam.
+trustsQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
+trustsQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+trustsQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
 pensionQuestions.title = Rhoi adborth - GOV.UK
 pensionQuestions.heading = Adborth
