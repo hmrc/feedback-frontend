@@ -1,32 +1,44 @@
 {
-  "extends": [
-    "airbnb-base"
-  ],
-  "root": true,
   "env": {
-    "browser": true
+    "es6": true,
+    "node": true,
+    "browser": true,
+    "jest": true
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:sonarjs/recommended",
+    "prettier"
+  ],
   "ignorePatterns": [
-    "js/src/entrypoints/optimizely.js",
     "js/test/backstop/**/*"
   ],
-  "parserOptions": {
-    "project": "./tsconfig.json"
+  "plugins": [
+    "ie11",
+    "import",
+    "jsx-a11y",
+    "node",
+    "sonarjs",
+    "promise"
+  ],
+  "root": true,
+  "rules": {
+    "ie11/no-collection-args": [
+      "error"
+    ],
+    "ie11/no-for-in-const": [
+      "error"
+    ],
+    "ie11/no-loop-func": [
+      "warn"
+    ],
+    "ie11/no-weak-collections": [
+      "error"
+    ]
   },
   "settings": {
     "react": {
       "version": "latest"
     }
-  },
-  "overrides": [
-    {
-      "files": [
-        "js/test/**/*"
-      ],
-      "env": {
-        "browser": true,
-        "jest": true
-      }
-    }
-  ]
+  }
 }

@@ -11,7 +11,7 @@
     ],
     "ignoreHTTPSErrors": true
   },
-  "id": "backstop_default",
+  "id": "feedback-frontend",
   "onBeforeScript": "puppet/onBefore.js",
   "onReadyScript": "puppet/onReady.js",
   "paths": {
@@ -26,16 +26,17 @@
   ],
   "scenarios": [
     {
-      "clickSelector": [
+      "clickSelectors": [
         "#ableToDo-yes",
-        "#howEasyQuestion-VeryDifficult",
-        "#howDoYouFeelQuestion-VeryDissatisfied",
-        ".section #submit"
+        "#howEasyQuestion-VeryEasy",
+        "#howDoYouFeelQuestion-VerySatisfied"
       ],
       "cookiePath": "backstop_data/engine_scripts/cookies.json",
-      "delay": 0,
+      "delay": 300,
       "expect": 0,
-      "hideSelectors": [],
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
       "hoverSelector": "",
       "keyPressSelectors": [
         {
@@ -45,13 +46,15 @@
       ],
       "label": "Feedback frontend",
       "misMatchThreshold": 0.1,
-      "postInteractionWait": 0,
+      "postInteractionWait": 300,
       "readyEvent": "",
       "readySelector": ".js",
       "referenceUrl": "",
-      "removeSelectors": [".cbanner-govuk-cookie-banner"],
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
       "requireSameDimensions": true,
-      "scrollToSelector": "#submit",
+      "scrollToSelector": "",
       "selectorExpansion": true,
       "selectors": [
         "document",

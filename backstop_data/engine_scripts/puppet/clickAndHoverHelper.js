@@ -2,13 +2,16 @@ module.exports = async (page, scenario) => {
   const hoverSelector = scenario.hoverSelectors || scenario.hoverSelector;
   const clickSelector = scenario.clickSelectors || scenario.clickSelector;
   const keyPressSelector = scenario.keyPressSelectors || scenario.keyPressSelector;
-  const { scrollToSelector } = scenario;
-  const { postInteractionWait } = scenario; // selector [str] | ms [int]
+  const scrollToSelector = scenario.scrollToSelector;
+  const postInteractionWait = scenario.postInteractionWait; // selector [str] | ms [int]
 
   if (keyPressSelector) {
     for (const keyPressSelectorItem of [].concat(keyPressSelector)) {
       await page.waitForTimeout(keyPressSelectorItem.selector);
-      await page.type(keyPressSelectorItem.selector, keyPressSelectorItem.keyPress);
+      await page.type(
+        keyPressSelectorItem.selector,
+        keyPressSelectorItem.keyPress
+      );
     }
   }
 
@@ -21,9 +24,9 @@ module.exports = async (page, scenario) => {
 
   if (clickSelector) {
     for (const clickSelectorIndex of [].concat(clickSelector)) {
-      await page.click(clickSelectorIndex);
       await page.waitForTimeout(clickSelectorIndex);
-      await page.waitForNavigation({ waitUntil: 'networkidle0' });
+      await page.click(clickSelectorIndex);
+      await console.log({ clickSelector, clickSelectorIndex });
     }
   }
 
