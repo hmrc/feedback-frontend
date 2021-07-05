@@ -1,0 +1,500 @@
+{
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": true,
+  "debugWindow": true,
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "ignoreHTTPSErrors": true
+  },
+  "id": "feedback-frontend",
+  "onBeforeScript": "puppet/onBefore.js",
+  "onReadyScript": "puppet/onReady.js",
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "ci_report": "backstop_data/ci_report",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report"
+  },
+  "report": [
+    "browser"
+  ],
+  "viewports": [
+    {
+      "height": 480,
+      "label": "phone",
+      "width": 320
+    },
+    {
+      "height": 768,
+      "label": "tablet",
+      "width": 1024
+    }
+  ],
+  "scenarios": [
+    {
+      "clickSelectors": [
+        "#ableToDo-yes",
+        "#howEasyQuestion-VeryDifficult",
+        "#howDoYouFeelQuestion-VeryDissatisfied"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters (in the happy path version, anyway).",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "test/backstop/scenarios/beta-rating-01.test.js/Feedback frontend",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/beta"
+    },
+    {
+      "clickSelectors": [
+        "#ableToDo-yes",
+        "#howEasyQuestion-Difficult",
+        "#howDoYouFeelQuestion-Dissatisfied"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters (in the happy path version, anyway).",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "test/backstop/scenarios/beta-rating-02.test.js/Feedback frontend",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/beta"
+    },
+    {
+      "clickSelectors": [
+        "#ableToDo-yes",
+        "#howEasyQuestion-Moderate",
+        "#howDoYouFeelQuestion-Moderate"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters (in the happy path version, anyway).",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "test/backstop/scenarios/beta-rating-03.test.js/Feedback frontend",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/beta"
+    },
+    {
+      "clickSelectors": [
+        "#ableToDo-yes",
+        "#howEasyQuestion-Easy",
+        "#howDoYouFeelQuestion-Satisfied"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters (in the happy path version, anyway).",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "test/backstop/scenarios/beta-rating-04.test.js/Feedback frontend",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/beta"
+    },
+    {
+      "clickSelectors": [
+        "#ableToDo-yes",
+        "#howEasyQuestion-VeryEasy",
+        "#howDoYouFeelQuestion-VerySatisfied"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters (in the happy path version, anyway).",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "test/backstop/scenarios/beta-rating-05.test.js/Feedback frontend",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/beta"
+    },
+    {
+      "clickSelectors": [
+        "#ableToDo-yes",
+        "#howEasyQuestion-Moderate",
+        "#howDoYouFeelQuestion-Moderate"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters.",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "test/backstop/scenarios/beta.test.js/Feedback frontend",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/beta"
+    },
+    {
+      "clickSelectors": [
+        "#mainServiceQuestion-VAT",
+        "#ableToDo-no",
+        "#howEasyQuestion-Difficult",
+        "#howDoYouFeelQuestion-Dissatisfied"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters.",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "test/backstop/scenarios/business.test.js/Feedback frontend: business",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/business"
+    },
+    {
+      "clickSelectors": [
+        "#treatedProfessionallyQuestion-NeitherAgreeNorDisagree",
+        "#complianceCheckUnderstandingQuestion-NeitherEasyOrDifficult",
+        "#supportFutureTaxQuestion-Neutral"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters.",
+          "selector": "#whyGiveAnswer"
+        }
+      ],
+      "label": "test/backstop/scenarios/ccg.test.js/Feedback frontend: ccg",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/ccg"
+    },
+    {
+      "clickSelectors": [],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters.",
+          "selector": "#value"
+        }
+      ],
+      "label": "test/backstop/scenarios/give-comments.test.js/Feedback frontend: give-comments",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/give-comments"
+    },
+    {
+      "clickSelectors": [
+        "#giveReason-other"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "I came to complain about inaccessible input fields on feedback forms.",
+          "selector": "#reasonInput"
+        }
+      ],
+      "label": "test/backstop/scenarios/give-reason.test.js/Feedback frontend: give-reason",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/give-reason"
+    },
+    {
+      "clickSelectors": [
+        "#ableToDo-yes",
+        "#howEasyQuestion-Moderate",
+        "#howDoYouFeelQuestion-Moderate",
+        "#likelyToDoQuestion-GetProfessionalAdvice"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters.",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "test/backstop/scenarios/pension.test.js/Feedback frontend: pension",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/pension"
+    },
+    {
+      "clickSelectors": [
+        "#ableToDo-yes",
+        "#howEasyQuestion-VeryEasy",
+        "#howDoYouFeelQuestion-VerySatisfied"
+      ],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 200 characters.",
+          "selector": "#neededToDo"
+        },
+        {
+          "keyPress": "Write anything in here as long as it doesn’t go over 1,000 characters.",
+          "selector": "#whyGiveScore"
+        }
+      ],
+      "label": "test/backstop/scenarios/personal.test.js/Feedback frontend: personal",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/personal"
+    },
+    {
+      "clickSelectors": [],
+      "cookiePath": "backstop_data/engine_scripts/cookies.json",
+      "delay": 300,
+      "expect": 0,
+      "hideSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "hoverSelector": "",
+      "keyPressSelectors": [],
+      "label": "test/backstop/scenarios/thank-you.test.js/Feedback frontend: thank-you",
+      "misMatchThreshold": 0.1,
+      "postInteractionWait": 300,
+      "readyEvent": "",
+      "readySelector": ".js",
+      "referenceUrl": "",
+      "removeSelectors": [
+        ".cbanner-govuk-cookie-banner"
+      ],
+      "requireSameDimensions": true,
+      "scrollToSelector": "",
+      "selectorExpansion": true,
+      "selectors": [
+        "document"
+      ],
+      "url": "http://localhost:9514/feedback-survey/feedback/thank-you"
+    }
+  ]
+}
