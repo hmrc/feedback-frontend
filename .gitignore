@@ -30,4 +30,4 @@ server.pid
 target/
 test-result/
 tmp/
-
+node_modules/
