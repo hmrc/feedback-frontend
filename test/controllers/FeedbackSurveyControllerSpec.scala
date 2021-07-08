@@ -16,11 +16,12 @@
 
 package controllers
 
+import base.SpecBase
 import org.scalatest.BeforeAndAfterEach
 import org.scalatestplus.mockito.MockitoSugar
 import play.api.test.Helpers._
 
-class FeedbackSurveyControllerSpec extends ControllerSpecBase with MockitoSugar with BeforeAndAfterEach {
+class FeedbackSurveyControllerSpec extends SpecBase with MockitoSugar with BeforeAndAfterEach {
 
   val ptaOrigin = "PERTAX"
   val nonPtaOrigin = "ATS"

@@ -16,6 +16,7 @@
 
 package controllers
 
+import base.SpecBase
 import forms.CCGQuestionsFormProvider
 import views.html.ccgQuestions
 import generators.ModelGenerators
@@ -32,8 +33,7 @@ import play.api.test.Helpers._
 import services.AuditService
 import org.mockito.Matchers.{eq => eqTo, _}
 
-class CCGQuestionsControllerSpec
-    extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 

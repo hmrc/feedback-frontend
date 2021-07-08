@@ -16,13 +16,14 @@
 
 package controllers
 
+import base.SpecBase
 import play.api.mvc.Result
 import play.api.test.Helpers._
 import views.html.sessionExpired
 
 import scala.concurrent.Future
 
-class SessionExpiredControllerSpec extends ControllerSpecBase {
+class SessionExpiredControllerSpec extends SpecBase {
 
   val sessionExpired = inject[sessionExpired]
 

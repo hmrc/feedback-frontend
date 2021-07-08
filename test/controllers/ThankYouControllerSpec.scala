@@ -16,13 +16,14 @@
 
 package controllers
 
+import base.SpecBase
 import models.Origin
 import play.api.test.Helpers._
-import views.html.{thankYou, thankYouPension}
+import views.html.{ThankYou, thankYouPension}
 
-class ThankYouControllerSpec extends ControllerSpecBase {
+class ThankYouControllerSpec extends SpecBase {
 
-  lazy val thankYou = inject[thankYou]
+  lazy val thankYou = inject[ThankYou]
   lazy val thankYouPension = inject[thankYouPension]
 
   def controller() =

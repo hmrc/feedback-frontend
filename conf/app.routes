@@ -1,14 +1,13 @@
 # microservice specific routes
 
-GET        /assets/*file                                controllers.Assets.versioned(path="/public", file: Asset)
+->         /govuk-frontend                              govuk.Routes
+->         /hmrc-frontend                               hmrcfrontend.Routes
 
-GET        /language/:lang                              controllers.LanguageSwitchController.switchToLanguage(lang: String)
+GET        /assets/*file                                controllers.Assets.versioned(path="/public", file: Asset)
 
 GET        /this-service-has-been-reset                 controllers.SessionExpiredController.onPageLoad
 
-GET        /check-your-answers                          controllers.CheckYourAnswersController.onPageLoad
-
-GET        /unauthorised                                controllers.UnauthorisedController.onPageLoad
+GET        /language/:lang                              controllers.LanguageSwitchController.switchToLanguage(lang: String)
 
 GET        /:origin/beta                                controllers.OtherQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/beta                                controllers.OtherQuestionsController.onSubmit(origin: models.Origin)

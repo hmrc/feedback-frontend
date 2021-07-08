@@ -16,6 +16,7 @@
 
 package controllers
 
+import base.SpecBase
 import forms.NmwCcgQuestionsFormProvider
 import generators.ModelGenerators
 import models.{FeedbackId, NmwCcgQuestions, Origin}
@@ -33,7 +34,7 @@ import org.scalacheck.Arbitrary.arbitrary
 import org.mockito.Matchers.{eq => eqTo, _}
 
 class NmwCcgQuestionsControllerSpec
-    extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 

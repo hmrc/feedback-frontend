@@ -17,7 +17,7 @@
 package views
 
 import forms.PensionQuestionsFormProvider
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, LikelyToDoQuestion, PensionQuestions}
+import models.{HowDoYouFeelQuestion, HowEasyQuestion, LikelyToDoQuestion, Origin, PensionQuestions}
 import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import views.html.pensionQuestions
@@ -29,7 +29,7 @@ class PensionQuestionsViewSpec
   val messageKeyPrefix = "pensionQuestions"
 
   val form = new PensionQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad()
+  val action = controllers.routes.PensionQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val pensionQuestions = inject[pensionQuestions]
 

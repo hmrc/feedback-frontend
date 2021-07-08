@@ -17,7 +17,7 @@
 package views
 
 import forms.BTAQuestionsFormProvider
-import models.BTAQuestions
+import models.{BTAQuestions, Origin}
 import play.api.data.Form
 import views.behaviours.StringViewBehaviours
 import views.html.giveComments
@@ -27,7 +27,7 @@ class GiveCommentsViewSpec extends StringViewBehaviours[BTAQuestions] {
   val messageKeyPrefix = "giveComments"
 
   val form = new BTAQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad()
+  val action = controllers.routes.GiveCommentsController.onPageLoad(Origin.fromString("origin"))
 
   def createView = () => createViewUsingForm(form)
 

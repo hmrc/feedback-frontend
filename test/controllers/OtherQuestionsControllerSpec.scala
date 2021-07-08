@@ -16,7 +16,7 @@
 
 package controllers
 
-import controllers.actions._
+import base.SpecBase
 import forms.OtherQuestionsFormProvider
 import generators.ModelGenerators
 import models.{FeedbackId, Origin, OtherQuestions}
@@ -33,7 +33,7 @@ import services.AuditService
 import views.html.otherQuestions
 
 class OtherQuestionsControllerSpec
-    extends ControllerSpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -44,7 +44,7 @@ class OtherQuestionsControllerSpec
 
   def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
-  def controller(dataRetrievalAction: DataRetrievalAction = getEmptyCacheMap) =
+  def controller() =
     new OtherQuestionsController(
       frontendAppConfig,
       new FakeNavigator(onwardRoute),

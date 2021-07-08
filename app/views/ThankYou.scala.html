@@ -16,15 +16,31 @@
 
 @import config.FrontendAppConfig
 
-@this(mainTemplate: mainTemplate)
+@this(
+    mainTemplateNew: MainTemplateNew,
+    h1: components.h1,
+    h2: components.h2,
+    p: components.p,
+    link: components.link
+)
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
-@mainTemplate(
-    title = messages("unauthorised.title"),
-    appConfig = appConfig,
-    bodyClasses = None) {
+@govUkLink = {
+    @link(appConfig.govUkUrl, messageKey = "thankYou.userResearch.urLinkText")
+}
 
-    @components.heading("unauthorised.heading")
+@mainTemplateNew(title = messages("thankYou.title")) {
 
+    @h1("thankYou.heading")
+
+    @p(Html(messages("thankYou.intro")))
+
+    @appConfig.urLinkUrl.map { urLinkUrl =>
+        @h2("thankYou.userResearch.intro1")
+
+        @p(Html(messages("thankYou.userResearch.intro2", govUkLink)))
+
+        @p(link(link = urLinkUrl, messageKey = "thankYou.userResearch.UrLink"))
+    }
 }
