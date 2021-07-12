@@ -56,7 +56,10 @@
   "license": "MIT",
   "main": "index.js",
   "name": "feedback-frontend",
-  "pre-commit": ["precommit-msg", "lint"],
+  "pre-commit": [
+    "precommit-msg",
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hmrc/feedback-frontend.git"
