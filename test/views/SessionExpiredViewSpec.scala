@@ -27,6 +27,6 @@ class SessionExpiredViewSpec extends ViewBehaviours {
 
   "Session Expired view" must {
 
-    behave like normalPage(template, "sessionExpired", "guidance")
+    behave like normalPage(template, "sessionExpired", "govuk-heading-xl", "guidance")
   }
 }

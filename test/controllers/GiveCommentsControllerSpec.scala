@@ -31,7 +31,7 @@ import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.giveComments
+import views.html.GiveCommentsView
 
 class GiveCommentsControllerSpec
     extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
@@ -41,7 +41,7 @@ class GiveCommentsControllerSpec
   val formProvider = new GiveCommentsFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
-  lazy val giveComments = inject[giveComments]
+  lazy val giveCommentsView = inject[GiveCommentsView]
 
   def submitCall(origin: Origin) = routes.GiveCommentsController.onSubmit(origin)
 
@@ -52,10 +52,10 @@ class GiveCommentsControllerSpec
       formProvider,
       mockAuditService,
       mcc,
-      giveComments)
+      giveCommentsView)
 
   def viewAsString(form: Form[_] = form, action: Call) =
-    giveComments(frontendAppConfig, form, action)(fakeRequest, messages).toString
+    giveCommentsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "GiveComments Controller" must {
 

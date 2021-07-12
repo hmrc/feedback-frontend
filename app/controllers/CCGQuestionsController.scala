@@ -26,7 +26,7 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-import views.html.ccgQuestions
+import views.html.CcgQuestionsView
 import models.{CCGQuestions, FeedbackId, Origin}
 
 class CCGQuestionsController @Inject()(
@@ -35,21 +35,21 @@ class CCGQuestionsController @Inject()(
   formProvider: CCGQuestionsFormProvider,
   auditService: AuditService,
   mcc: MessagesControllerComponents,
-  ccgQuestions: ccgQuestions)
+  ccgQuestionsView: CcgQuestionsView)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[CCGQuestions] = formProvider()
   def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
-    Ok(ccgQuestions(appConfig, form, submitCall(origin)))
+    Ok(ccgQuestionsView(appConfig, form, submitCall(origin)))
   }
 
   def onSubmit(origin: Origin) = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
-        formWithErrors => BadRequest(ccgQuestions(appConfig, formWithErrors, submitCall(origin))),
+        formWithErrors => BadRequest(ccgQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.ccgAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))

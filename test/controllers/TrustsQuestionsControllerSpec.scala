@@ -82,7 +82,7 @@ class TrustsQuestionsControllerSpec
         val values = Map(
           "isAgent"           -> answers.isAgent.map(_.toString),
           "tryingToDo"        -> answers.tryingToDo.map(_.toString),
-          "tryingToDoOther"   -> answers.tryingToDoOther.map(_.toString),
+          "tryingToDoOther"   -> answers.tryingToDoOther,
           "ableToDo"          -> answers.ableToDo.map(_.toString),
           "whyNotAbleToDo"    -> answers.whyNotAbleToDo,
           "howEasyScore"      -> answers.howEasyScore.map(_.toString),

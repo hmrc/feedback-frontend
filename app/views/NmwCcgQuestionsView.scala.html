@@ -19,63 +19,79 @@
 @import views.ViewUtils._
 @import models.ccg._
 
-@this(mainTemplate: mainTemplate)
+@this(
+    mainTemplate: MainTemplate,
+    formHelper: FormWithCSRF,
+    h1: components.H1,
+    p: components.P,
+    inputRadio: components.InputRadio,
+    inputTextArea: components.InputTextArea,
+    button: components.Button,
+    errorSummary:  components.ErrorSummary
+)
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
 @privacyPolicyLink = {
-<a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer">@messages("nmwCcgQuestions.introLinkText")</a>
+<a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("nmwCcgQuestions.introLinkText")</a>
 }
 
 @mainTemplate(
 title = s"${errorPrefix(form)} ${messages("nmwCcgQuestions.title")}",
-appConfig = appConfig,
 bodyClasses = None) {
 
 @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
 
-@components.error_summary(form.errors)
+       @errorSummary(form)
 
-@components.heading("nmwCcgQuestions.heading")
+       @h1("nmwCcgQuestions.heading")
 
-<p>@messages("nmwCcgQuestions.intro1")</p>
+       @p(Html(messages("nmwCcgQuestions.intro1")))
 
-<p>@Html(messages("nmwCcgQuestions.intro2", privacyPolicyLink))</p>
+       @p(Html(messages("nmwCcgQuestions.intro2", privacyPolicyLink)))
 
-<p>@messages("nmwCcgQuestions.intro3")</p>
+       @p(Html(messages("nmwCcgQuestions.intro3")))
 
-@components.input_radio(
- field = form("treatedProfessionally"),
- legend = messages("nmwCcgQuestions.treatedProfessionally.heading"),
- legendClass = Some("heading-medium"),
- hintClass = Some("ccg-hint"),
- inputs = TreatedProfessionallyQuestion.options,
-  )
+       @inputRadio(
+            form = form,
+            legend = messages("nmwCcgQuestions.treatedProfessionally.heading"),
+            items = TreatedProfessionallyQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "treatedProfessionally",
+            legendAsHeading = false
+       )
 
-@components.input_radio(
-field = form("checkUnderstanding"),
-legend = messages("nmwCcgQuestions.CheckUnderstanding.heading"),
-legendClass = Some("heading-medium"),
-inputs = CheckUnderstandingQuestion.options,
-  )
+       @inputRadio(
+            form = form,
+            legend = messages("nmwCcgQuestions.CheckUnderstanding.heading"),
+            items = CheckUnderstandingQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "checkUnderstanding",
+            legendAsHeading = false
+       )
 
-@components.input_textarea(
-field = form("whyGiveAnswer"),
-label = messages("nmwCcgQuestions.whyGiveAnswer.heading"),
-hint = Some(messages("nmwCcgQuestions.whyGiveAnswer.hint")),
-labelClass = Some("heading-medium"),
-inputClass = Some("js-char-count govuk-c-charcount"),
-countdownChar = true
-)
+        @inputTextArea(
+            form = form,
+            id = "whyGiveAnswer",
+            name = "whyGiveAnswer",
+            label = messages("nmwCcgQuestions.whyGiveAnswer.heading"),
+            labelClass = "govuk-label--m",
+            isPageHeading = false,
+            hint = Some(Html(messages("nmwCcgQuestions.whyGiveAnswer.hint"))),
+            maxCharacters = Some(1000)
+        )
 
-@components.input_radio(
-field = form("supportFutureNmw"),
-legend = messages("nmwCcgQuestions.supportFutureNmw.heading"),
-legendClass = Some("heading-medium"),
-inputs = SupportFutureQuestion.options,
-)
+        @inputRadio(
+            form = form,
+            legend = messages("nmwCcgQuestions.supportFutureNmw.heading"),
+            items = SupportFutureQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "supportFutureNmw",
+            legendAsHeading = false
+        )
 
-@components.submit_button()
+
+       @button(messages("site.continue"))
 
  }
 }

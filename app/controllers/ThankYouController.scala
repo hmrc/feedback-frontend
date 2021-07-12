@@ -23,13 +23,13 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
-import views.html.{ThankYou, thankYouPension}
+import views.html.{ThankYou, ThankYouPensionView}
 
 class ThankYouController @Inject()(
   appConfig: FrontendAppConfig,
   mcc: MessagesControllerComponents,
   thankYou: ThankYou,
-  thankYouPension: thankYouPension)
+  thankYouPensionView: ThankYouPensionView)
     extends FrontendController(mcc) with I18nSupport {
 
   def onPageLoadWithOrigin(origin: Origin) = onPageLoad()
@@ -39,6 +39,6 @@ class ThankYouController @Inject()(
   }
 
   def onPageLoadPension = Action { implicit request =>
-    Ok(thankYouPension(appConfig))
+    Ok(thankYouPensionView(appConfig))
   }
 }

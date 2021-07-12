@@ -1,4 +1,4 @@
-/*
+@*
  * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,22 +12,23 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *@
 
-package generators
+@import config.FrontendAppConfig
 
-import org.scalacheck.Arbitrary
-import org.scalacheck.Arbitrary.arbitrary
-import pages._
-import play.api.libs.json.{JsValue, Json}
+@this(
+    mainTemplate: MainTemplate,
+    h1: components.H1,
+    p: components.P
+)
 
-trait UserAnswersEntryGenerators extends PageGenerators with ModelGenerators {
+@(pageTitle: String, heading: String, message: String, appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
-  implicit lazy val arbitraryAbleToDoUserAnswersEntry: Arbitrary[(GenericQuestionsPage.type, JsValue)] =
-    Arbitrary {
-      for {
-        page  <- arbitrary[GenericQuestionsPage.type]
-        value <- arbitrary[Boolean].map(Json.toJson(_))
-      } yield (page, value)
-    }
+  @mainTemplate(
+    title = Messages(pageTitle),
+    bodyClasses = None) {
+
+    @h1(Messages(heading))
+
+    @p(Html(messages(message)))
 }

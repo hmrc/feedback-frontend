@@ -40,18 +40,18 @@ class NmwCcgQuestionsViewSpec
 
   "NmwCcgQuestionsView" must {
 
-    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")
 
     behave like optionsPage(
       createViewUsingForm,
       "treatedProfessionally",
-      TreatedProfessionallyQuestion.options,
+      TreatedProfessionallyQuestion.options(form),
       "nmwCcgQuestions.treatedProfessionally")
 
     behave like optionsPage(
       createViewUsingForm,
       "checkUnderstanding",
-      CheckUnderstandingQuestion.options,
+      CheckUnderstandingQuestion.options(form),
       "nmwCcgQuestions.CheckUnderstanding")
 
     behave like stringPage(createViewUsingForm, "whyGiveAnswer", "nmwCcgQuestions.whyGiveAnswer")
@@ -59,7 +59,7 @@ class NmwCcgQuestionsViewSpec
     behave like optionsPage(
       createViewUsingForm,
       "supportFutureNmw",
-      SupportFutureQuestion.options,
+      SupportFutureQuestion.options(form),
       "nmwCcgQuestions.supportFutureNmw")
 
   }

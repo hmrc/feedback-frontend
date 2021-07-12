@@ -39,29 +39,25 @@ class PTAQuestionsViewSpec
     (form: Form[_]) => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "PTAQuestions view" must {
-    behave like normalPageNew(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")
 
-    behave like stringPageNew(
+    behave like stringPage(
       createViewUsingForm,
       "neededToDo",
       "ptaQuestions.neededToDo",
       Some("ptaQuestions.neededToDo.heading.hintText"))
 
-    behave like optionsPageWithRadioItems(
-      createViewUsingForm,
-      "ableToDo",
-      AbleToDo.options(form),
-      "ptaQuestions.ableToDo")
+    behave like optionsPage(createViewUsingForm, "ableToDo", AbleToDo.options(form), "ptaQuestions.ableToDo")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options(form),
       "ptaQuestions.howEasyScore")
 
-    behave like stringPageNew(createViewUsingForm, "whyGiveScore", "ptaQuestions.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "ptaQuestions.whyGiveScore")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options(form),

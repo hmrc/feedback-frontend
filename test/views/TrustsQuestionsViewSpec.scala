@@ -17,7 +17,7 @@
 package views
 
 import forms.TrustsQuestionsFormProvider
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, TrustsQuestions, TryingToDoQuestion}
+import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, TrustsQuestions, TryingToDoQuestion, YesNo}
 import play.api.data.Form
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import views.html.TrustsQuestionsView
@@ -31,30 +31,34 @@ class TrustsQuestionsViewSpec
   val form = new TrustsQuestionsFormProvider()()
   val action = controllers.routes.SessionExpiredController.onPageLoad()
 
-  lazy val trustsQuestions = inject[TrustsQuestionsView]
+  lazy val trustsQuestionsView = inject[TrustsQuestionsView]
 
-  def createView = () => trustsQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView = () => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =
-    (form: Form[_]) => trustsQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+    (form: Form[_]) => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "TrustsQuestions view" must {
-    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")
 
-    behave like yesNoPage(createViewUsingForm, "isAgent", "trustsQuestions.isAgent")
+    behave like optionsPage(createViewUsingForm, "isAgent", YesNo.options(form), "trustsQuestions.isAgent")
 
-    behave like optionsPage(createViewUsingForm, "tryingToDo", TryingToDoQuestion.options, "trustsQuestions.tryingToDo")
+    behave like optionsPage(
+      createViewUsingForm,
+      "tryingToDo",
+      TryingToDoQuestion.options(form),
+      "trustsQuestions.tryingToDo")
 
     behave like stringPage(createViewUsingForm, "tryingToDoOther", "trustsQuestions.tryingToDo")
 
-    behave like yesNoPage(createViewUsingForm, "ableToDo", "trustsQuestions.ableToDo")
+    behave like optionsPage(createViewUsingForm, "ableToDo", AbleToDo.options(form), "trustsQuestions.ableToDo")
 
     behave like stringPage(createViewUsingForm, "whyNotAbleToDo", "trustsQuestions.whyNotAbleToDo")
 
     behave like optionsPage(
       createViewUsingForm,
       "howEasyScore",
-      HowEasyQuestion.options,
+      HowEasyQuestion.options(form),
       "trustsQuestions.howEasyScore")
 
     behave like stringPage(createViewUsingForm, "whyGiveScore", "trustsQuestions.whyGiveScore")
@@ -62,7 +66,7 @@ class TrustsQuestionsViewSpec
     behave like optionsPage(
       createViewUsingForm,
       "howDoYouFeelScore",
-      HowDoYouFeelQuestion.options,
+      HowDoYouFeelQuestion.options(form),
       "trustsQuestions.howDoYouFeelScore")
 
     "contain second introductory paragraph" in {

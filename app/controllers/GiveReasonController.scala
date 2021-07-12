@@ -18,7 +18,6 @@ package controllers
 
 import config.FrontendAppConfig
 import forms.GiveReasonFormProvider
-import javax.inject.Inject
 import models.{FeedbackId, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
@@ -27,8 +26,9 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import views.html.GiveReasonView
 
-import views.html.giveReason
+import javax.inject.Inject
 
 class GiveReasonController @Inject()(
   appConfig: FrontendAppConfig,
@@ -36,21 +36,21 @@ class GiveReasonController @Inject()(
   formProvider: GiveReasonFormProvider,
   auditService: AuditService,
   mcc: MessagesControllerComponents,
-  giveReason: giveReason
+  giveReasonView: GiveReasonView
 ) extends FrontendController(mcc) with I18nSupport {
 
   val form = formProvider()
   def submitCall(origin: Origin) = routes.GiveReasonController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
-    Ok(giveReason(appConfig, form, submitCall(origin)))
+    Ok(giveReasonView(appConfig, form, submitCall(origin)))
   }
 
   def onSubmit(origin: Origin) = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
-        (formWithErrors: Form[_]) => BadRequest(giveReason(appConfig, formWithErrors, submitCall(origin))),
+        (formWithErrors: Form[_]) => BadRequest(giveReasonView(appConfig, formWithErrors, submitCall(origin))),
         value => {
 
           auditService.giveReasonAudit(origin, FeedbackId.fromSession, value)

@@ -20,7 +20,6 @@ import models._
 import models.ccg._
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
-import utils.FeedbackFrontendHelper._
 
 import javax.inject.Inject
 import scala.concurrent.ExecutionContext
@@ -38,9 +37,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("feedbackId" -> feedbackId.value)
   def withNeededToDo(neededToDo: Option[String]): MapCont =
     _ + ("neededToDo" -> neededToDo.getOrElse("-"))
-  def withAbleToDo(ableToDo: Option[Boolean]): MapCont =
-    _ + ("ableToDo" -> ableToDo.map(boolToInt(_).toString).getOrElse("-"))
-  def withAbleToDoNew(ableToDo: Option[AbleToDo]): MapCont =
+  def withAbleToDo(ableToDo: Option[AbleToDo]): MapCont =
     _ + ("ableToDo" -> ableToDo.map(_.value.toString).getOrElse("-"))
   def withHowEasyScore(howEasy: Option[HowEasyQuestion]): MapCont =
     _ + ("howEasyScore" -> howEasy.map(_.value.toString).getOrElse("-"))
@@ -55,8 +52,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withMainServiceOther(mainServiceOther: Option[String]): MapCont =
     _ + ("mainServiceOther" -> mainServiceOther.getOrElse("-"))
 
-  def withIsAgent(ableToDo: Option[Boolean]): MapCont =
-    _ + ("isAgent" -> ableToDo.map(boolToInt(_).toString).getOrElse("-"))
+  def withIsAgent(isAgent: Option[YesNo]): MapCont =
+    _ + ("isAgent" -> isAgent.map(_.value.toString).getOrElse("-"))
 
   def withTryingToDo(tryingToDo: Option[TryingToDoQuestion]): MapCont =
     _ + ("tryingToDo" -> tryingToDo.map(_.toString).getOrElse("-"))
@@ -98,7 +95,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
         withNeededToDo(questions.neededToDo) andThen
-        withAbleToDoNew(questions.ableToDo) andThen
+        withAbleToDo(questions.ableToDo) andThen
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
@@ -114,7 +111,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withFeedbackId(feedbackId) andThen
         withMainService(questions.mainService) andThen
         withMainServiceOther(questions.mainServiceOther) andThen
-        withAbleToDoNew(questions.ableToDo) andThen
+        withAbleToDo(questions.ableToDo) andThen
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
@@ -148,7 +145,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     val auditMap = (
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
-        withAbleToDoNew(questions.ableToDo) andThen
+        withAbleToDo(questions.ableToDo) andThen
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
@@ -163,7 +160,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     val auditMap = (
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
-        withAbleToDoNew(questions.ableToDo) andThen
+        withAbleToDo(questions.ableToDo) andThen
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore) andThen

@@ -19,81 +19,118 @@
 @import models.{MainServiceQuestion, HowDoYouFeelQuestion, HowEasyQuestion}
 @import views.ViewUtils._
 
-@this(mainTemplate: mainTemplate)
+@this(
+    mainTemplate: MainTemplate,
+    formHelper: FormWithCSRF,
+    h1: components.H1,
+    p: components.P,
+    inputRadio: components.InputRadio,
+    inputRadioDynamic: components.InputRadioDynamic,
+    inputTextArea: components.InputTextArea,
+    govukInput: govukInput,
+    button: components.Button,
+    errorSummary:  components.ErrorSummary
+)
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
 @privacyPolicyLink = {
-    <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer">@messages("trustsQuestions.introLinkText")</a>
+    <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("trustsQuestions.introLinkText")</a>
 }
 
 @mainTemplate(
     title = s"${errorPrefix(form)} ${messages("trustsQuestions.title")}",
-    appConfig = appConfig,
     bodyClasses = None) {
 
     @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
 
-        @components.error_summary(form.errors)
+        @errorSummary(form)
 
-        @components.heading("trustsQuestions.heading")
+        @h1("trustsQuestions.heading")
 
-        <p>@messages("trustsQuestions.intro1")</p>
+        @p(Html(messages("trustsQuestions.intro1")))
 
-        <p>@Html(messages("trustsQuestions.intro2", privacyPolicyLink))</p>
+        @p(Html(messages("trustsQuestions.intro2", privacyPolicyLink)))
 
-        <p>@messages("trustsQuestions.intro3")</p>
+        @p(Html(messages("trustsQuestions.intro3")))
 
-        @components.input_yes_no(
-            field = form("isAgent"),
-            label = messages("trustsQuestions.isAgent.heading"),
-            labelClass = Some("heading-medium")
+        @inputRadio(
+            form = form,
+            legend = messages("trustsQuestions.isAgent.heading"),
+            items = YesNo.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "isAgent",
+            inline = true,
+            legendAsHeading = false
         )
 
-        @components.input_radio_dynamicField(
-            field = form("tryingToDo"),
+        @inputRadioDynamic(
+            form = form,
             legend = messages("trustsQuestions.tryingToDo.heading"),
-            legendClass = Some("heading-medium"),
-            inputs = TryingToDoQuestion.options,
-            dynamicField = form("tryingToDoOther"),
-            dynamicFieldLabel = "trustsQuestions.tryingToDo.heading",
-            dynamicFieldLength = 100
+            items = TryingToDoQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "tryingToDo",
+            conditionalHtml = Some(
+                    govukInput(Input(
+                    id = "tryingToDoOther",
+                    name = "tryingToDoOther",
+                    value = form("tryingToDoOther").value,
+                    label = Label(content = Text(messages("trustsQuestions.tryingToDo.heading"))),
+                    hint = Some(Hint(content = Text(messages("generic.max-characters", 100)))),
+                    errorMessage = form("tryingToDoOther").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*)))),
+                    classes = "govuk-!-width-one-third",
+                    attributes = Map("maxlength" -> "100")))
+            )
         )
 
-        @components.input_yes_no(
-            field = form("ableToDo"),
-            label = messages("trustsQuestions.ableToDo.heading"),
-            labelClass = Some("heading-medium")
+        @inputRadio(
+            form = form,
+            legend = messages("trustsQuestions.ableToDo.heading"),
+            items = AbleToDo.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "ableToDo",
+            inline = true,
+            legendAsHeading = false
         )
 
-        @components.input_textarea(
-            field = form("whyNotAbleToDo"),
+        @inputTextArea(
+            form = form,
+            id = "whyNotAbleToDo",
+            name = "whyNotAbleToDo",
             label = messages("trustsQuestions.whyNotAbleToDo.heading"),
-            labelClass = Some("heading-medium"),
-            maximum = Some(1000)
+            labelClass = "govuk-label--m",
+            isPageHeading = false,
+            maxCharacters = Some(1000)
         )
 
-        @components.input_radio(
-            field = form("howEasyScore"),
+        @inputRadio(
+            form = form,
             legend = messages("trustsQuestions.howEasyScore.heading"),
-            legendClass = Some("heading-medium"),
-            inputs = HowEasyQuestion.options
+            items = HowEasyQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "howEasyScore",
+            legendAsHeading = false
         )
 
-        @components.input_textarea(
-            field = form("whyGiveScore"),
+        @inputTextArea(
+            form = form,
+            id = "whyGiveScore",
+            name = "whyGiveScore",
             label = messages("trustsQuestions.whyGiveScore.heading"),
-            labelClass = Some("heading-medium"),
-            maximum = Some(1000)
+            labelClass = "govuk-label--m",
+            isPageHeading = false,
+            maxCharacters = Some(1000)
         )
 
-        @components.input_radio(
-            field = form("howDoYouFeelScore"),
+        @inputRadio(
+            form = form,
             legend = messages("trustsQuestions.howDoYouFeelScore.heading"),
-            legendClass = Some("heading-medium"),
-            inputs = HowDoYouFeelQuestion.options
+            items = HowDoYouFeelQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "howDoYouFeelScore",
+            legendAsHeading = false
         )
 
-        @components.submit_button()
+        @button(messages("site.continue"))
     }
 }

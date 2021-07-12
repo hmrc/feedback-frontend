@@ -14,28 +14,22 @@
  * limitations under the License.
  */
 
-package models.ccg
+package models
 
-import models.{Enumerable, WithName}
 import play.api.data.Form
 import play.api.i18n.Messages
 import uk.gov.hmrc.govukfrontend.views.Aliases.Text
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
 
-sealed trait TreatedProfessionallyQuestion
+sealed trait YesNo {
+  val value: Int
+}
 
-object TreatedProfessionallyQuestion extends Enumerable.Implicits {
+object YesNo {
 
-  val baseMessageKey: String = "treatedProfessionallyQuestion"
+  val baseMessageKey: String = "yesNo"
 
-  case object StronglyAgree extends WithName("StronglyAgree") with TreatedProfessionallyQuestion
-  case object Agree extends WithName("Agree") with TreatedProfessionallyQuestion
-  case object NeitherAgreeNorDisagree extends WithName("NeitherAgreeNorDisagree") with TreatedProfessionallyQuestion
-  case object Disagree extends WithName("Disagree") with TreatedProfessionallyQuestion
-  case object StronglyDisagree extends WithName("StronglyDisagree") with TreatedProfessionallyQuestion
-
-  val values: Seq[TreatedProfessionallyQuestion] =
-    List(StronglyAgree, Agree, NeitherAgreeNorDisagree, Disagree, StronglyDisagree)
+  val values: Seq[YesNo] = List(Yes, No)
 
   def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
     RadioItem(
@@ -46,6 +40,14 @@ object TreatedProfessionallyQuestion extends Enumerable.Implicits {
     )
   }
 
-  implicit val enumerable: Enumerable[TreatedProfessionallyQuestion] =
+  implicit val enumerable: Enumerable[YesNo] =
     Enumerable(values.map(v => v.toString -> v): _*)
+
+  case object Yes extends WithName("Yes") with YesNo {
+    val value = 1
+  }
+
+  case object No extends WithName("No") with YesNo {
+    val value = 0
+  }
 }

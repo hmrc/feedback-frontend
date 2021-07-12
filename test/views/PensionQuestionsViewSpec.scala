@@ -40,29 +40,25 @@ class PensionQuestionsViewSpec
 
   "PensionQuestions view" must {
 
-    behave like normalPageNew(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")
 
-    behave like optionsPageWithRadioItems(
-      createViewUsingForm,
-      "ableToDo",
-      AbleToDo.options(form),
-      "pensionQuestions.ableToDo")
+    behave like optionsPage(createViewUsingForm, "ableToDo", AbleToDo.options(form), "pensionQuestions.ableToDo")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options(form),
       "pensionQuestions.howEasyScore")
 
-    behave like stringPageNew(createViewUsingForm, "whyGiveScore", "pensionQuestions.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "pensionQuestions.whyGiveScore")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options(form),
       "pensionQuestions.howDoYouFeelScore")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "likelyToDo",
       LikelyToDoQuestion.options(form),

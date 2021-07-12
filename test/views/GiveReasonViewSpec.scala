@@ -17,49 +17,36 @@
 package views
 
 import forms.GiveReasonFormProvider
-import models.{GiveReason, Origin}
+import models.{GiveReason, GiveReasonQuestions, Origin}
 import play.api.data.Form
-import views.behaviours.ViewBehaviours
-import views.html.giveReason
+import views.behaviours.{OptionsViewBehaviours, ViewBehaviours}
+import views.html.GiveReasonView
 
-class GiveReasonViewSpec extends ViewBehaviours {
+class GiveReasonViewSpec extends ViewBehaviours with OptionsViewBehaviours[GiveReasonQuestions] {
 
   val messageKeyPrefix = "giveReason"
 
   val form = new GiveReasonFormProvider()()
   val action = controllers.routes.GiveReasonController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val giveReason = inject[giveReason]
+  lazy val giveReasonView = inject[GiveReasonView]
 
-  def createView = () => giveReason(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView = () => giveReasonView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm = (form: Form[_]) => giveReason(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createViewUsingForm = (form: Form[_]) => giveReasonView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "GiveReason view" must {
-    behave like normalPage(createView, messageKeyPrefix)
+    behave like normalPage(createView, messageKeyPrefix, "govuk-fieldset__heading")
   }
 
   "GiveReason view" when {
     "rendered" must {
-      "contain radio buttons for the value" in {
-        val doc = asDocument(createViewUsingForm(form))
-        for (option <- GiveReason.options) {
-          assertContainsRadioButton(doc, option.id, "value", option.value, false)
-        }
-      }
-    }
-
-    for (option <- GiveReason.options) {
-      s"rendered with a value of '${option.value}'" must {
-        s"have the '${option.value}' radio button selected" in {
-          val doc = asDocument(createViewUsingForm(form.bind(Map("value" -> s"${option.value}"))))
-          assertContainsRadioButton(doc, option.id, "value", option.value, true)
-
-          for (unselectedOption <- GiveReason.options.filterNot(o => o == option)) {
-            assertContainsRadioButton(doc, unselectedOption.id, "value", unselectedOption.value, false)
-          }
-        }
-      }
+      behave like optionsPage(
+        createViewUsingForm,
+        "value",
+        GiveReason.options(form),
+        messageKeyPrefix,
+        "govuk-fieldset__legend--xl")
     }
   }
 }

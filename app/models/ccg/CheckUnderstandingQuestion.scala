@@ -17,11 +17,16 @@
 package models.ccg
 
 import models.{Enumerable, WithName}
-import viewmodels.RadioOption
+import play.api.data.Form
+import play.api.i18n.Messages
+import uk.gov.hmrc.govukfrontend.views.Aliases.Text
+import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
 
 sealed trait CheckUnderstandingQuestion
 
 object CheckUnderstandingQuestion extends Enumerable.Implicits {
+
+  val baseMessageKey: String = "checkUnderstandingQuestion"
 
   case object VeryEasy extends WithName("VeryEasy") with CheckUnderstandingQuestion
   case object Easy extends WithName("Easy") with CheckUnderstandingQuestion
@@ -32,8 +37,13 @@ object CheckUnderstandingQuestion extends Enumerable.Implicits {
   val values: Seq[CheckUnderstandingQuestion] =
     List(VeryEasy, Easy, NeitherEasyOrDifficult, Difficult, VeryDifficult)
 
-  val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("checkUnderstandingQuestion", value.toString)
+  def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
+    RadioItem(
+      id = Some(s"$baseMessageKey-${value.toString}"),
+      value = Some(value.toString),
+      content = Text(messages(s"$baseMessageKey.$value")),
+      checked = form(baseMessageKey).value.contains(value.toString)
+    )
   }
 
   implicit val enumerable: Enumerable[CheckUnderstandingQuestion] =

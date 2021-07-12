@@ -21,14 +21,14 @@
 @import views.ViewUtils._
 
 @this(
-    mainTemplate: MainTemplateNew,
+    mainTemplate: MainTemplate,
     formHelper: FormWithCSRF,
-    h1: components.h1,
-    p: components.p,
-    inputRadio: components.inputRadio,
-    inputTextArea: components.inputTextArea,
-    button: components.buttonNew,
-    errorSummary:  components.errorSummary
+    h1: components.H1,
+    p: components.P,
+    inputRadio: components.InputRadio,
+    inputTextArea: components.InputTextArea,
+    button: components.Button,
+    errorSummary:  components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)

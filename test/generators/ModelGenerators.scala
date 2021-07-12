@@ -100,10 +100,10 @@ trait ModelGenerators {
 
   lazy val trustsQuestionsGen: Gen[TrustsQuestions] =
     for {
-      isAgent         <- option(arbitrary[Boolean])
+      isAgent         <- option(yesNoGen)
       tryingToDo      <- option(tryingToDoQuestionGen)
       tryingToDoOther <- option(arbitrary[String].suchThat(_.nonEmpty))
-      ableToDo        <- option(arbitrary[Boolean])
+      ableToDo        <- option(ableToDoGen)
       whyNotAbleToDo  <- option(arbitrary[String].suchThat(_.nonEmpty))
       howEasy         <- option(howEasyQuestionGen)
       whyScore        <- option(arbitrary[String].suchThat(_.nonEmpty))
@@ -167,6 +167,9 @@ trait ModelGenerators {
 
   lazy val ableToDoGen: Gen[AbleToDo] =
     oneOf(AbleToDo.values)
+
+  lazy val yesNoGen: Gen[YesNo] =
+    oneOf(YesNo.values)
 
   lazy val howDoYouFeelQuestionGen: Gen[HowDoYouFeelQuestion] =
     oneOf(HowDoYouFeelQuestion.values)

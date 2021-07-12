@@ -35,8 +35,6 @@ site.delete = Remove
 site.edit = Change
 site.hidden-delete = Delete {0}
 site.hidden-edit = Change {0}
-site.no = No
-site.yes = Yes
 site.continue = Continue
 site.sendFeedback = Send feedback
 site.service_name =
@@ -52,6 +50,9 @@ whyGiveAnswer.error.maxlength = Why did you give this answer must be {0} charact
 neededToDo.error.maxlength = What was the main thing you needed to do today must be {0} characters or less
 fullName.error.maxlength = Full name must be {0} characters or less
 email.error.maxlength = Email must be {0} characters or less
+
+yesNo.No = No
+yesNo.Yes = Yes
 
 ableToDo.No = No
 ableToDo.Yes = Yes

@@ -19,17 +19,17 @@ package controllers
 import base.SpecBase
 import models.Origin
 import play.api.test.Helpers._
-import views.html.{ThankYou, thankYouPension}
+import views.html.{ThankYou, ThankYouPensionView}
 
 class ThankYouControllerSpec extends SpecBase {
 
-  lazy val thankYou = inject[ThankYou]
-  lazy val thankYouPension = inject[thankYouPension]
+  lazy val thankYouView = inject[ThankYou]
+  lazy val thankYouPensionView = inject[ThankYouPensionView]
 
   def controller() =
-    new ThankYouController(frontendAppConfig, mcc, thankYou, thankYouPension)
+    new ThankYouController(frontendAppConfig, mcc, thankYouView, thankYouPensionView)
 
-  def viewAsString() = thankYou(frontendAppConfig)(fakeRequest, messages).toString
+  def viewAsString() = thankYouView(frontendAppConfig)(fakeRequest, messages).toString
   val origin = Origin.fromString("/foo")
 
   "ThankYou Controller" must {
