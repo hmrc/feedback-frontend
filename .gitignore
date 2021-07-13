@@ -31,3 +31,4 @@ target/
 test-result/
 tmp/
 node_modules/
+cypress/fixtures
