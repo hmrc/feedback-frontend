@@ -72,6 +72,8 @@ For any failing tests where visually it is different, there will be comparison s
 
 Note: there is a bug in cypress where it fails some tests due to focus issue - it would focus on selected element in one but not in the other even though focus wasn't changed from our side. See https://github.com/cypress-io/cypress/issues/5023
 
+See cypress documentation here: https://docs.cypress.io/guides/overview/why-cypress
+
 ### License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
