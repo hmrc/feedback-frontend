@@ -22,19 +22,17 @@
  *  - [ ] #howDoYouFeelQuestion-Dissatisfied
  *  - [ ] #howDoYouFeelQuestion-VeryDissatisfied
  **/
-const journey = 'feedback--give-reason';
+const journey = 'feedback--thank-you-pension';
 
-describe('Feedback :: Give-reason', () => {
-  it('fills in the feedback form', () => {
-    cy.visit('http://localhost:9514/feedback/PERTAX/give-reason');
+describe('Feedback :: Thank you pension', () => {
+  it('display the thank you pension page', () => {
+    cy.visit('http://localhost:9514/feedback/thank-you-pension');
 
-    describe('What did you come to do?', () => {
-      cy.get('#giveReason-checkTaxYear').click();
-    });
-
-    describe('All done, submit the form', () => {
-      cy.matchImageSnapshot(`${journey}`);
-      cy.get('#submit').click();
+    describe('checks correct h1 is present', () => {
+        cy.get('h1').should(
+          'have.text',
+          'Thank you'
+        );
     });
 
     describe('take screenshot', () => {

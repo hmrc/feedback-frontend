@@ -22,30 +22,47 @@
  *  - [ ] #howDoYouFeelQuestion-Dissatisfied
  *  - [ ] #howDoYouFeelQuestion-VeryDissatisfied
  **/
-const journey = 'feedback--ccg';
-const whyGiveAnswer =
+const journey = 'feedback--trusts';
+const whyNotAbleToDo =
+  'I was able to do everything.';
+
+  const whyGiveScore =
   'It has been a good experience.';
 
-describe('Feedback :: ccg', () => {
+describe('Feedback :: Trusts', () => {
   it('fills in the feedback form', () => {
-    cy.visit('http://localhost:9514/feedback/PERTAX/ccg');
+    cy.visit('http://localhost:9514/feedback-survey/trusts');
 
-    describe('How strongly do you agree or disagree that HMRC treated you professionally during the compliance check?', () => {
-      cy.get('#treatedProfessionallyQuestion-NeitherAgreeNorDisagree').click();
+    describe('Are you an agent that is working on behalf of a client?', () => {
+      cy.get('#isAgent-yes').click();
     });
 
-    describe('During the compliance check, how easy was it for you to understand what was happening?', () => {
-      cy.get('#checkUnderstandingQuestion-NeitherEasyOrDifficult').click();
+    describe('What were you trying to do on the service today?', () => {
+      cy.get('#TryingToDoQuestion-RegisterATrust').click();
+    });
+
+    describe('Were you able to do what you needed to do today?', () => {
+      cy.get('#ableToDo-yes').click();
+    });
+
+    describe('If you were not able to do what you needed to do, tell us why.', () => {
+      cy.get('#whyNotAbleToDo')
+        .type(whyNotAbleToDo)
+        .should('have.value', whyNotAbleToDo);
+    });
+
+    describe('How easy was it for you to do what you needed to do today?', () => {
+      cy.get('#howEasyQuestion-Moderate').click();
     });
 
     describe('Why did you give this score?', () => {
-      cy.get('#whyGiveAnswer')
-        .type(whyGiveAnswer)
-        .should('have.value', whyGiveAnswer);
+      cy.get('#whyGiveScore')
+        .type(whyGiveScore)
+        .should('have.value', whyGiveScore);
     });
 
-    describe('How confident are you that your interactions with HMRC during this compliance check will support you in meeting your future tax obligations?', () => {
-      cy.get('#supportFutureQuestion-Neutral').click();
+    describe('Overall, how did you feel about the service you received today?', () => {
+      cy.get('#howDoYouFeelQuestion-Moderate').click();
     });
 
     describe('All done, submit the form', () => {

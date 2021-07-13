@@ -22,29 +22,29 @@
  *  - [ ] #howDoYouFeelQuestion-Dissatisfied
  *  - [ ] #howDoYouFeelQuestion-VeryDissatisfied
  **/
-const journey = 'feedback--ccg';
+const journey = 'feedback--ccg-nmw';
 const whyGiveAnswer =
   'It has been a good experience.';
 
-describe('Feedback :: ccg', () => {
+describe('Feedback :: ccg-nmw', () => {
   it('fills in the feedback form', () => {
     cy.visit('http://localhost:9514/feedback/PERTAX/ccg');
 
-    describe('How strongly do you agree or disagree that HMRC treated you professionally during the compliance check?', () => {
+    describe('How strongly do you agree or disagree that HMRC treated you professionally during the National Minimum Wage (NMW) enquiry?', () => {
       cy.get('#treatedProfessionallyQuestion-NeitherAgreeNorDisagree').click();
     });
 
-    describe('During the compliance check, how easy was it for you to understand what was happening?', () => {
+    describe('During the NMW enquiry, how easy was it for you to understand what was happening?', () => {
       cy.get('#checkUnderstandingQuestion-NeitherEasyOrDifficult').click();
     });
 
-    describe('Why did you give this score?', () => {
+    describe('Why did you give this answer?', () => {
       cy.get('#whyGiveAnswer')
         .type(whyGiveAnswer)
         .should('have.value', whyGiveAnswer);
     });
 
-    describe('How confident are you that your interactions with HMRC during this compliance check will support you in meeting your future tax obligations?', () => {
+    describe('How confident are you, based on this enquiry, that HMRC will support you in meeting your future National Minimum Wage obligations?', () => {
       cy.get('#supportFutureQuestion-Neutral').click();
     });
 

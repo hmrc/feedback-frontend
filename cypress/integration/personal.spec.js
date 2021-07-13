@@ -24,7 +24,7 @@
  **/
 const journey = 'feedback--personal';
 const whyGiveScore =
-  'Overall, how did you feel about the service you received today?';
+  'It has been a good experience.';
 
 describe('Feedback :: Personal', () => {
   it('fills in the feedback form', () => {
@@ -53,7 +53,7 @@ describe('Feedback :: Personal', () => {
       cy.get('#submit').click();
     });
 
-    describe('', () => {
+    describe('take screenshot', () => {
       cy.matchImageSnapshot(`${journey}--thanks`);
     });
   });

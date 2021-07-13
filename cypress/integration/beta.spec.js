@@ -24,7 +24,7 @@
  **/
 const journey = 'feedback--beta';
 const whyGiveScore =
-  'Overall, how did you feel about the service you received today?';
+  'It has been a good experience.';
 
 describe('Feedback :: Beta', () => {
   it('fills in the feedback form', () => {
@@ -48,12 +48,12 @@ describe('Feedback :: Beta', () => {
       cy.get('#howDoYouFeelQuestion-Moderate').click();
     });
 
-    describe('All done, su submit the form', () => {
+    describe('All done, submit the form', () => {
       cy.matchImageSnapshot(`${journey}`);
       cy.get('#submit').click();
     });
 
-    describe('', () => {
+    describe('take screenshot', () => {
       cy.matchImageSnapshot(`${journey}--thanks`);
     });
   });

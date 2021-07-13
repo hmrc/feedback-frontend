@@ -60,6 +60,18 @@ auditConnector.sendExplicitAudit("service-name", auditData)
 Redirect("http://localhost:9514/feedback/SERVICE_NAME").withSession(("feedbackId", uuid))
 ```
 
+### Cypress visual regression testing
+
+To setup run `npm install`
+
+To run the test, run `node_modules/.bin/cypress open`
+
+This will open up a Cypress box with list of available tests. Click on one of the tests, or run all specs and it will launch and display the test results in Chrome.
+
+For any failing tests where visually it is different, there will be comparison screenshot in the `cypress > snapshots` folder.
+
+Note: there is a bug in cypress where it fails some tests due to focus issue - it would focus on selected element in one but not in the other even though focus wasn't changed from our side. See https://github.com/cypress-io/cypress/issues/5023
+
 ### License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").

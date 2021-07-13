@@ -42,7 +42,7 @@ describe('Feedback :: Give-comments', () => {
       cy.get('#submit').click();
     });
 
-    describe('', () => {
+    describe('take screenshot', () => {
       cy.matchImageSnapshot(`${journey}--thanks`);
     });
   });
