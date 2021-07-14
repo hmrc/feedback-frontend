@@ -17,13 +17,13 @@
 package views
 
 import views.behaviours.ViewBehaviours
-import views.html.sessionExpired
+import views.html.SessionExpiredView
 
 class SessionExpiredViewSpec extends ViewBehaviours {
 
-  val view = inject[sessionExpired]
+  val sessionExpiredView = inject[SessionExpiredView]
 
-  def template = () => view(frontendAppConfig)(fakeRequest, messages)
+  def template = () => sessionExpiredView()(fakeRequest, messages)
 
   "Session Expired view" must {
 

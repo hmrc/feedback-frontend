@@ -1,4 +1,4 @@
-/*
+@*
  * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,21 +12,24 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *@
 
-package controllers
+@import views.ViewUtils
 
-import javax.inject.Inject
-import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
-import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+@this(govukErrorSummary: GovukErrorSummary)
 
-import views.html.SessionExpiredView
+@(form: Form[_], errorFieldName: Option[String] = None)(implicit messages: Messages)
 
-class SessionExpiredController @Inject()(mcc: MessagesControllerComponents, sessionExpiredView: SessionExpiredView)
-    extends FrontendController(mcc) with I18nSupport {
-
-  def onPageLoad: Action[AnyContent] = Action { implicit request =>
-    Ok(sessionExpiredView())
-  }
+@if(form.errors.nonEmpty) {
+    @defining(form.errors.map { error =>
+        ErrorLink(
+        href = Some(ViewUtils.errorLinkId(error.key, form)),
+        content = Text(messages(error.message, error.args:_*))
+        )
+    }) { errorLinks =>
+        @govukErrorSummary(ErrorSummary(
+        errorList = errorLinks,
+        title = Text(messages("error.summary.title"))
+        ))
+    }
 }

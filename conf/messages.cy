@@ -26,9 +26,9 @@ index.title = feedback-frontend
 index.heading = feedback-frontend
 index.guidance = Welcome to your new frontend. Please see the README file for a guide to getting started.
 
-sessionExpired.title = For your security, this service has been reset
-sessionExpired.heading = For your security, this service has been reset
-sessionExpired.guidance = The details you have given have been deleted because you did not continue the service for 15 minutes.
+sessionExpired.title = Er eich diogelwch, mae’r gwasanaeth hwn wedi’i ailosod
+sessionExpired.heading = Er eich diogelwch, mae’r gwasanaeth hwn wedi’i ailosod
+sessionExpired.guidance = Mae’r manylion a roddwyd gennych wedi’u dileu gan nad ydych wedi mynd yn eich blaen â’r gwasanaeth ers 15 munud.
 
 site.back = Yn ôl
 site.delete = Remove
@@ -52,6 +52,8 @@ neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i ch
 fullName.error.maxlength = Mae’n rhaid i’r enw llawn fod yn {0} o gymeriadau neu lai
 email.error.maxlength = Mae’n rhaid i’r e-bost fod yn {0} o gymeriadau neu lai
 
+ableToDo.No = Na
+ableToDo.Yes = Iawn
 
 otherQuestions.title = Rhoi adborth - GOV.UK
 otherQuestions.heading = Adborth

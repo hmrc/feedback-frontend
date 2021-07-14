@@ -18,7 +18,9 @@ package views.behaviours
 
 import play.api.data.{Form, FormError}
 import play.twirl.api.HtmlFormat
+import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
 import viewmodels.RadioOption
+import views.ViewUtils
 
 trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
@@ -73,6 +75,55 @@ trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
           val errorSpan = doc.getElementsByClass("error-message").first
           errorSpan.text mustBe messages(errorMessage)
+        }
+
+        "show an error prefix in the browser title" in {
+          val doc = asDocument(createView(form.withError(error)))
+          assertContainsValue(doc, "title", messages("error.browser.title.prefix"))
+        }
+      }
+    }
+
+  def optionsPageWithRadioItems(
+    createView: Form[A] => HtmlFormat.Appendable,
+    fieldName: String,
+    options: Seq[RadioItem],
+    messageKeyPrefix: String) =
+    s"behave like a page with a $fieldName radio options question" when {
+      "rendered" must {
+        "contain a legend for the question" in {
+          val doc = asDocument(createView(form))
+          val legends = doc.getElementsByClass("govuk-fieldset__legend govuk-fieldset__legend--m")
+          legends.eachText() must contain(messages(s"$messageKeyPrefix.heading"))
+        }
+
+        "contain an input for the value" in {
+          val doc = asDocument(createView(form))
+          for (option <- options) {
+            assertContainsRadioButton(doc, option.id.get, fieldName, option.value.get, false)
+          }
+        }
+
+        "not render an error summary" in {
+          val doc = asDocument(createView(form))
+          assertNotRenderedById(doc, "error-summary-title")
+        }
+      }
+
+      "rendered with an error" must {
+        "show an error summary with error links" in {
+          val doc = asDocument(createView(form.withError(FormError(fieldName, "error.invalid"))))
+          assertRenderedById(doc, "error-summary-title")
+          val errorLinksUl = doc.getElementsByClass("govuk-list govuk-error-summary__list").first()
+          val errorLinkUrl = errorLinksUl.children().first().child(0).attr("href")
+          errorLinkUrl mustBe s"""${ViewUtils.errorLinkId(fieldName, form)}"""
+        }
+
+        "show an error in the value field's label" in {
+          val doc = asDocument(createView(form.withError(FormError(fieldName, "error.invalid"))))
+
+          val errorSpan = doc.getElementsByClass("govuk-error-message").first
+          errorSpan.text must include(messages("error.invalid"))
         }
 
         "show an error prefix in the browser title" in {

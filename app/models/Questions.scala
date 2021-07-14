@@ -17,56 +17,30 @@
 package models
 
 import models.ccg._
-import play.api.libs.json.{Format, Json}
 
 case class OtherQuestions(
-  ableToDo: Option[Boolean],
+  ableToDo: Option[AbleToDo],
   howEasyScore: Option[HowEasyQuestion],
   whyGiveScore: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion]
 )
-
-object OtherQuestions {
-  implicit val formats: Format[OtherQuestions] = Json.format[OtherQuestions]
-}
-
-case class OtherQuestionsEmployeeExpensesBeta(
-  ableToDo: Option[Boolean],
-  howEasyScore: Option[HowEasyQuestion],
-  whyGiveScore: Option[String],
-  howDoYouFeelScore: Option[HowDoYouFeelQuestion],
-  fullName: Option[String],
-  email: Option[String]
-)
-
-object OtherQuestionsEmployeeExpensesBeta {
-  implicit val formats: Format[OtherQuestionsEmployeeExpensesBeta] = Json.format[OtherQuestionsEmployeeExpensesBeta]
-}
 
 case class PTAQuestions(
   neededToDo: Option[String],
-  ableToDo: Option[Boolean],
+  ableToDo: Option[AbleToDo],
   howEasyScore: Option[HowEasyQuestion],
   whyGiveScore: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion]
 )
-
-object PTAQuestions {
-  implicit val formats: Format[PTAQuestions] = Json.format[PTAQuestions]
-}
 
 case class BTAQuestions(
   mainService: Option[MainServiceQuestion],
   mainServiceOther: Option[String],
-  ableToDo: Option[Boolean],
+  ableToDo: Option[AbleToDo],
   howEasyScore: Option[HowEasyQuestion],
   whyGiveScore: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion]
 )
-
-object BTAQuestions {
-  implicit val formats: Format[BTAQuestions] = Json.format[BTAQuestions]
-}
 
 case class TrustsQuestions(
   isAgent: Option[Boolean],
@@ -79,21 +53,13 @@ case class TrustsQuestions(
   howDoYouFeelScore: Option[HowDoYouFeelQuestion]
 )
 
-object TrustsQuestions {
-  implicit val formats: Format[TrustsQuestions] = Json.format[TrustsQuestions]
-}
-
 case class PensionQuestions(
-  ableToDo: Option[Boolean],
+  ableToDo: Option[AbleToDo],
   howEasyScore: Option[HowEasyQuestion],
   whyGiveScore: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion],
   likelyToDo: Option[LikelyToDoQuestion]
 )
-
-object PensionQuestions {
-  implicit val formats: Format[PensionQuestions] = Json.format[PensionQuestions]
-}
 
 case class CCGQuestions(
   complianceCheckUnderstanding: Option[CheckUnderstandingQuestion],
@@ -102,10 +68,6 @@ case class CCGQuestions(
   supportFutureTaxQuestion: Option[SupportFutureQuestion]
 )
 
-object CCGQuestions {
-  implicit val formats: Format[CCGQuestions] = Json.format[CCGQuestions]
-}
-
 case class NmwCcgQuestions(
   treatedProfessionally: Option[TreatedProfessionallyQuestion],
   checkUnderstanding: Option[CheckUnderstandingQuestion],
@@ -113,13 +75,4 @@ case class NmwCcgQuestions(
   supportFutureNmw: Option[SupportFutureQuestion]
 )
 
-object NmwCcgQuestions {
-  implicit val formats: Format[NmwCcgQuestions] = Json.format[NmwCcgQuestions]
-}
-
 case class GiveReasonQuestions(value: Option[GiveReason], reason: Option[String])
-
-object GiveReasonQuestions {
-
-  implicit val formats: Format[GiveReasonQuestions] = Json.format[GiveReasonQuestions]
-}

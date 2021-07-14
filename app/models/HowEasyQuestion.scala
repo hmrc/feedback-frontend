@@ -16,7 +16,10 @@
 
 package models
 
-import play.api.libs.json._
+import play.api.data.Form
+import play.api.i18n.Messages
+import uk.gov.hmrc.govukfrontend.views.Aliases.Text
+import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
 import viewmodels.RadioOption
 
 sealed trait HowEasyQuestion {
@@ -24,6 +27,8 @@ sealed trait HowEasyQuestion {
 }
 
 object HowEasyQuestion {
+
+  val baseMessageKey: String = "howEasyQuestion"
 
   case object VeryEasy extends WithName("VeryEasy") with HowEasyQuestion {
     val value = 5
@@ -48,21 +53,16 @@ object HowEasyQuestion {
     RadioOption("howEasyQuestion", value.toString)
   }
 
+  def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
+    RadioItem(
+      id = Some(s"$baseMessageKey-${value.toString}"),
+      value = Some(value.toString),
+      content = Text(messages(s"$baseMessageKey.$value")),
+      checked = form(baseMessageKey).value.contains(value.toString)
+    )
+  }
+
   implicit val enumerable: Enumerable[HowEasyQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
 
-  implicit object HowEasyQuestionWrites extends Writes[HowEasyQuestion] {
-    def writes(howEasyQuestion: HowEasyQuestion) = Json.toJson(howEasyQuestion.toString)
-  }
-
-  implicit object HowEasyQuestionReads extends Reads[HowEasyQuestion] {
-    override def reads(json: JsValue): JsResult[HowEasyQuestion] = json match {
-      case JsString(VeryEasy.toString)      => JsSuccess(VeryEasy)
-      case JsString(Easy.toString)          => JsSuccess(Easy)
-      case JsString(Moderate.toString)      => JsSuccess(Moderate)
-      case JsString(Difficult.toString)     => JsSuccess(Difficult)
-      case JsString(VeryDifficult.toString) => JsSuccess(VeryDifficult)
-      case _                                => JsError("Unknown howEasyQuestion")
-    }
-  }
 }

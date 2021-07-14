@@ -30,7 +30,7 @@ import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.ptaQuestions
+import views.html.PtaQuestionsView
 
 class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
@@ -40,7 +40,7 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
   val form = formProvider()
 
   lazy val mockAuditService = mock[AuditService]
-  lazy val ptaQuestions = inject[ptaQuestions]
+  lazy val ptaQuestionsView = inject[PtaQuestionsView]
 
   def submitCall(origin: Origin) = routes.PTAQuestionsController.onSubmit(origin)
 
@@ -51,10 +51,10 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
       formProvider,
       mockAuditService,
       mcc,
-      ptaQuestions)
+      ptaQuestionsView)
 
   def viewAsString(form: Form[_] = form, action: Call) =
-    ptaQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
+    ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "PTAQuestions Controller" must {
 

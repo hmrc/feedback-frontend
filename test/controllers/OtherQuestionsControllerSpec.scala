@@ -30,7 +30,7 @@ import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.otherQuestions
+import views.html.OtherQuestionsView
 
 class OtherQuestionsControllerSpec
     extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
@@ -40,7 +40,7 @@ class OtherQuestionsControllerSpec
   val formProvider = new OtherQuestionsFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
-  lazy val otherQuestions = inject[otherQuestions]
+  lazy val otherQuestionsView = inject[OtherQuestionsView]
 
   def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
@@ -51,10 +51,10 @@ class OtherQuestionsControllerSpec
       formProvider,
       mockAuditService,
       mcc,
-      otherQuestions)
+      otherQuestionsView)
 
   def viewAsString(form: Form[_] = form, action: Call) =
-    otherQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
+    otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "OtherQuestions Controller" must {
 

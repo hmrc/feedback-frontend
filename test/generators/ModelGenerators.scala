@@ -44,9 +44,6 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)
 
-  implicit lazy val arbitraryOtherEmployeeExpensesBetaQuestions: Arbitrary[OtherQuestionsEmployeeExpensesBeta] =
-    Arbitrary(otherQuestionsEmployeeExpensesBetaGen)
-
   implicit lazy val arbitraryPTAQuestions: Arbitrary[PTAQuestions] = Arbitrary(ptaQuestionsGen)
 
   implicit lazy val arbitraryBTAQuestions: Arbitrary[BTAQuestions] = Arbitrary(btaQuestionsGen)
@@ -70,7 +67,7 @@ trait ModelGenerators {
 
   lazy val otherQuestionsGen: Gen[OtherQuestions] =
     for {
-      ableToDo <- option(arbitrary[Boolean])
+      ableToDo <- option(ableToDoGen)
       howEasy  <- option(howEasyQuestionGen)
       whyScore <- option(arbitrary[String].suchThat(_.nonEmpty))
       howFeel  <- option(howDoYouFeelQuestionGen)
@@ -78,21 +75,10 @@ trait ModelGenerators {
       OtherQuestions(ableToDo, howEasy, whyScore, howFeel)
     }
 
-  lazy val otherQuestionsEmployeeExpensesBetaGen: Gen[OtherQuestionsEmployeeExpensesBeta] =
-    for {
-      ableToDo <- option(arbitrary[Boolean])
-      howEasy  <- option(howEasyQuestionGen)
-      whyScore <- option(arbitrary[String].suchThat(_.nonEmpty))
-      howFeel  <- option(howDoYouFeelQuestionGen)
-      fullName <- option(arbitrary[String].suchThat(_.nonEmpty))
-      email    <- option(arbitrary[String].suchThat(_.nonEmpty))
-    } yield {
-      OtherQuestionsEmployeeExpensesBeta(ableToDo, howEasy, whyScore, howFeel, fullName, email)
-    }
   lazy val ptaQuestionsGen: Gen[PTAQuestions] =
     for {
       neededToDo <- option(arbitrary[String].suchThat(_.nonEmpty))
-      ableToDo   <- option(arbitrary[Boolean])
+      ableToDo   <- option(ableToDoGen)
       howEasy    <- option(howEasyQuestionGen)
       whyScore   <- option(arbitrary[String].suchThat(_.nonEmpty))
       howFeel    <- option(howDoYouFeelQuestionGen)
@@ -104,7 +90,7 @@ trait ModelGenerators {
     for {
       mainService      <- option(mainServiceQuestionGen)
       mainServiceOther <- option(arbitrary[String].suchThat(_.nonEmpty))
-      ableToDo         <- option(arbitrary[Boolean])
+      ableToDo         <- option(ableToDoGen)
       howEasy          <- option(howEasyQuestionGen)
       whyScore         <- option(arbitrary[String].suchThat(_.nonEmpty))
       howFeel          <- option(howDoYouFeelQuestionGen)
@@ -128,7 +114,7 @@ trait ModelGenerators {
 
   lazy val pensionQuestionsGen: Gen[PensionQuestions] =
     for {
-      ableToDo   <- option(arbitrary[Boolean])
+      ableToDo   <- option(ableToDoGen)
       howEasy    <- option(howEasyQuestionGen)
       whyScore   <- option(arbitrary[String].suchThat(_.nonEmpty))
       howFeel    <- option(howDoYouFeelQuestionGen)
@@ -178,6 +164,9 @@ trait ModelGenerators {
 
   lazy val howEasyQuestionGen: Gen[HowEasyQuestion] =
     oneOf(HowEasyQuestion.values)
+
+  lazy val ableToDoGen: Gen[AbleToDo] =
+    oneOf(AbleToDo.values)
 
   lazy val howDoYouFeelQuestionGen: Gen[HowDoYouFeelQuestion] =
     oneOf(HowDoYouFeelQuestion.values)

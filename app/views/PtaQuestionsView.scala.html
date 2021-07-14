@@ -1,0 +1,107 @@
+@*
+ * Copyright 2021 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import play.twirl.api._
+@import config.FrontendAppConfig
+@import uk.gov.hmrc.play.views.html._
+@import models.{HowDoYouFeelQuestion, HowEasyQuestion}
+@import views.ViewUtils._
+
+@this(
+    mainTemplate: MainTemplateNew,
+    formHelper: FormWithCSRF,
+    h1: components.h1,
+    p: components.p,
+    inputRadio: components.inputRadio,
+    inputTextArea: components.inputTextArea,
+    button: components.buttonNew,
+    errorSummary:  components.errorSummary
+)
+
+@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
+
+@privacyPolicyLink = {
+    <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("ptaQuestions.introLinkText")</a>
+}
+
+@mainTemplate(
+    title = s"${errorPrefix(form)} ${messages("ptaQuestions.title")}",
+    bodyClasses = None) {
+
+    @helpers.form(action = action, 'autoComplete -> "off") {
+
+        @errorSummary(form)
+
+        @h1("ptaQuestions.heading")
+
+        @p(Html(messages("ptaQuestions.intro1")))
+
+        @p(Html(messages("ptaQuestions.intro2", privacyPolicyLink)))
+
+        @p(Html(messages("ptaQuestions.intro3")))
+
+        @inputTextArea(
+            form = form,
+            id = "neededToDo",
+            name = "neededToDo",
+            label = messages("ptaQuestions.neededToDo.heading"),
+            labelClass = "govuk-label--m",
+            isPageHeading = false,
+            hint = Some(Html(messages("ptaQuestions.neededToDo.heading.hintText"))),
+            maxCharacters = Some(200)
+        )
+
+        @inputRadio(
+            form = form,
+            legend = messages("ptaQuestions.ableToDo.heading"),
+            items = AbleToDo.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "ableToDo",
+            inline = true,
+            legendAsHeading = false
+        )
+
+        @inputRadio(
+            form = form,
+            legend = messages("ptaQuestions.howEasyScore.heading"),
+            items = HowEasyQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "howEasyScore",
+            legendAsHeading = false
+        )
+
+        @inputTextArea(
+            form = form,
+            id = "whyGiveScore",
+            name = "whyGiveScore",
+            label = messages("ptaQuestions.whyGiveScore.heading"),
+            labelClass = "govuk-label--m",
+            isPageHeading = false,
+            maxCharacters = Some(1000)
+        )
+
+        @inputRadio(
+            form = form,
+            legend = messages("ptaQuestions.howDoYouFeelScore.heading"),
+            items = HowDoYouFeelQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "howDoYouFeelScore",
+            legendAsHeading = false
+        )
+
+        @button(messages("site.continue"))
+    }
+}

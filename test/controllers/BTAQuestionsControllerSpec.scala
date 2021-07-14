@@ -31,7 +31,7 @@ import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.btaQuestions
+import views.html.BtaQuestionsView
 
 class BTAQuestionsControllerSpec
     extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
@@ -44,6 +44,8 @@ class BTAQuestionsControllerSpec
 
   def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
 
+  lazy val btaQuestionsView = inject[BtaQuestionsView]
+
   def controller() =
     new BTAQuestionsController(
       frontendAppConfig,
@@ -51,13 +53,11 @@ class BTAQuestionsControllerSpec
       formProvider,
       mockAuditService,
       mcc,
-      inject[btaQuestions]
+      btaQuestionsView
     )
 
-  lazy val btaQuestions = inject[btaQuestions]
-
   def viewAsString(form: Form[_] = form, action: Call) =
-    btaQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
+    btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "BTAQuestions Controller" must {
 

@@ -71,4 +71,58 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
         }
       }
     }
+
+  def stringPageNew(
+    createView: Form[A] => HtmlFormat.Appendable,
+    fieldName: String,
+    messageKeyPrefix: String,
+    expectedHintKey: Option[String] = None) =
+    s"behave like a page with a string value field of '$fieldName'" when {
+      "rendered" must {
+
+        "contain a label for the value" in {
+          val doc = asDocument(createView(form))
+          val expectedHintText = expectedHintKey map (k => messages(k))
+          assertContainsLabel(
+            doc,
+            fieldName,
+            messages(s"$messageKeyPrefix.heading"),
+            expectedHintText,
+            Some("govuk-hint"))
+        }
+
+        "contain an input for the value" in {
+          val doc = asDocument(createView(form))
+          assertRenderedById(doc, fieldName)
+        }
+      }
+
+      "rendered with a valid form" must {
+        "include the form's value in the value input" in {
+          val boundForm = form.bind(Map(fieldName -> answer))
+          val doc = asDocument(createView(boundForm))
+
+          doc.getElementById(fieldName).`val`() mustBe answer
+        }
+      }
+
+      "rendered with an error" must {
+        "show an error summary" in {
+          val doc = asDocument(createView(form.withError(error)))
+          assertRenderedById(doc, "error-summary-title")
+        }
+
+        "show an error in the value field's label" in {
+          val doc = asDocument(createView(form.withError(FormError(fieldName, "error.invalid"))))
+
+          val errorSpan = doc.getElementsByClass("govuk-error-message").first
+          errorSpan.text must include(messages("error.invalid"))
+        }
+
+        "show an error prefix in the browser title" in {
+          val doc = asDocument(createView(form.withError(error)))
+          assertContainsValue(doc, "title", messages("error.browser.title.prefix"))
+        }
+      }
+    }
 }

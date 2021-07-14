@@ -28,7 +28,7 @@ import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
-import views.html.otherQuestions
+import views.html.OtherQuestionsView
 
 class OtherQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
@@ -36,21 +36,21 @@ class OtherQuestionsController @Inject()(
   formProvider: OtherQuestionsFormProvider,
   auditService: AuditService,
   mcc: MessagesControllerComponents,
-  otherQuestions: otherQuestions)
+  otherQuestionsView: OtherQuestionsView)
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
   def submitCall(origin: Origin) = routes.OtherQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
-    Ok(otherQuestions(appConfig, form, submitCall(origin)))
+    Ok(otherQuestionsView(appConfig, form, submitCall(origin)))
   }
 
   def onSubmit(origin: Origin) = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
-        formWithErrors => BadRequest(otherQuestions(appConfig, formWithErrors, submitCall(origin))),
+        formWithErrors => BadRequest(otherQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.otherAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
