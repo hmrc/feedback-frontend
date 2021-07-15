@@ -39,6 +39,7 @@ class BTAQuestionsController @Inject()(
     extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()
+
   def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>

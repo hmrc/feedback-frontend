@@ -15,9 +15,6 @@
  *@
 
 @import config.FrontendAppConfig
-@import uk.gov.hmrc.play.views.html._
-@import controllers.routes._
-@import models.Mode
 @import views.ViewUtils._
 
 @this(
@@ -38,7 +35,7 @@
     bodyClasses = None,
     showBackLink = true) {
 
-    @helpers.form(action = action, 'autoComplete -> "off") {
+    @formHelper(action = action, 'autoComplete -> "off") {
 
         @errorSummary(form)
 
@@ -49,7 +46,8 @@
             label = messages("giveComments.heading"),
             labelClass = "govuk-label--m",
             isPageHeading = true,
-            hint = Some(Html(messages("giveComments.intro1")))
+            hint = Some(Html(messages("giveComments.intro1"))),
+            maxCharacters = Some(1000)
         )
 
         @button(messages("site.sendFeedback"))

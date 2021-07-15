@@ -41,7 +41,7 @@ class NmwCcgQuestionsController @Inject()(
 
   lazy val origin = Origin.fromString("nmw")
   val form: Form[NmwCcgQuestions] = formProvider()
-  lazy val submitCall: Call = routes.NmwCcgQuestionsController.onSubmit()
+  lazy val submitCall: Call = routes.NmwCcgQuestionsController.onSubmit
 
   def onPageLoad: Action[AnyContent] =
     Action { implicit request =>

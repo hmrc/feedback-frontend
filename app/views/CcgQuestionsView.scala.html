@@ -15,7 +15,6 @@
  *@
 
 @import config.FrontendAppConfig
-@import uk.gov.hmrc.play.views.html._
 @import models.ccg._
 @import views.ViewUtils._
 
@@ -40,7 +39,7 @@
 title = s"${errorPrefix(form)} ${messages("ccgQuestions.title")}",
 bodyClasses = None) {
 
-@helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
+@formHelper(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
 
         @errorSummary(form)
 

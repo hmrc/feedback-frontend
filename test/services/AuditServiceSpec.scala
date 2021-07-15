@@ -21,7 +21,9 @@ import models._
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
-import org.scalatest.{BeforeAndAfter, Matchers, OptionValues, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.{BeforeAndAfter, OptionValues, Outcome}
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
@@ -29,8 +31,8 @@ import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 
 class AuditServiceSpec
-    extends WordSpec with Matchers with OptionValues with MockitoSugar with BeforeAndAfter with ScalaCheckPropertyChecks
-    with ModelGenerators with GuiceOneAppPerSuite {
+    extends AnyWordSpec with Matchers with OptionValues with MockitoSugar with BeforeAndAfter
+    with ScalaCheckPropertyChecks with ModelGenerators with GuiceOneAppPerSuite {
 
   implicit val hc = HeaderCarrier()
   implicit val ec = scala.concurrent.ExecutionContext.Implicits.global
@@ -209,5 +211,4 @@ class AuditServiceSpec
       }
     }
   }
-
 }

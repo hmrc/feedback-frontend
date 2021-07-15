@@ -29,7 +29,7 @@ class NmwCcgQuestionsViewSpec
   val messageKeyPrefix = "nmwCcgQuestions"
 
   val form = new NmwCcgQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad()
+  val action = controllers.routes.SessionExpiredController.onPageLoad
 
   lazy val nmwCcgQuestionsView = inject[NmwCcgQuestionsView]
 

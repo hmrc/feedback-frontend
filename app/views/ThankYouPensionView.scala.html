@@ -36,7 +36,7 @@
   <a href="@appConfig.govUkUrl" class="govuk-link">@messages("thankYou.userResearch.urLinkText")</a>
 }
 
-@sidebarLinks = {
+@sidebarHtml = {
 <section class="section subsection section--blue-top">
 
     @h2(messages("thankYou.pension.sideBar.header"))
@@ -65,7 +65,7 @@
 @mainTemplate(
   title = messages("thankYou.pension.title"),
   bodyClasses = Some("full-width"),
-  sidebarLinks =  Some(sidebarLinks)
+  sidebarHtml =  Some(sidebarHtml)
 ) {
 
   <div class="grid-row">

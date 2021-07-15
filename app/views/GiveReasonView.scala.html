@@ -15,7 +15,6 @@
  *@
 
 @import config.FrontendAppConfig
-@import uk.gov.hmrc.play.views.html._
 @import controllers.routes._
 @import models.GiveReason
 @import models.Mode
@@ -37,7 +36,7 @@
     title = s"${errorPrefix(form)} ${messages("giveReason.title")}",
     bodyClasses = None) {
 
-    @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
+    @formHelper(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
 
         @errorSummary(form)
 
