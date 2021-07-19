@@ -16,12 +16,10 @@
 
 package forms
 
-import org.scalatest.OptionValues
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.wordspec.AnyWordSpecLike
+import base.BaseSpec
 import play.api.data.{Form, FormError}
 
-trait FormSpec extends AnyWordSpecLike with OptionValues with Matchers {
+trait FormSpec extends BaseSpec {
 
   def checkForError(form: Form[_], data: Map[String, String], expectedErrors: Seq[FormError]) =
     form
@@ -29,8 +27,8 @@ trait FormSpec extends AnyWordSpecLike with OptionValues with Matchers {
       .fold(
         formWithErrors => {
           for (error <- expectedErrors)
-            formWithErrors.errors should contain(FormError(error.key, error.message, error.args))
-          formWithErrors.errors.size shouldBe expectedErrors.size
+            formWithErrors.errors must contain(FormError(error.key, error.message, error.args))
+          formWithErrors.errors.size mustBe expectedErrors.size
         },
         form => {
           fail("Expected a validation error when binding the form, but it was bound successfully.")

@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package models
+package base
 
-case class Field(name: String, errorKeys: Map[ErrorType, String])
+import generators.{Generators, ModelGenerators}
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.{BeforeAndAfter, EitherValues, OptionValues}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-object Field {
-
-  def apply(name: String, errors: (ErrorType, String)*): Field =
-    Field(name, errors.toMap)
-}
-
-sealed trait ErrorType
-case object Required extends ErrorType
-case object Invalid extends ErrorType
+trait BaseSpec
+    extends AnyWordSpec with OptionValues with Matchers with ScalaCheckPropertyChecks with ModelGenerators
+    with EitherValues with MockitoSugar with BeforeAndAfter with Generators
