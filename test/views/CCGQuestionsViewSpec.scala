@@ -21,7 +21,7 @@ import models.{CCGQuestions, Origin}
 import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.Form
 import views.behaviours._
-import views.html.ccgQuestions
+import views.html.CcgQuestionsView
 
 class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with OptionsViewBehaviours[CCGQuestions] {
 
@@ -30,26 +30,26 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
   val form = new CCGQuestionsFormProvider()()
   val action = controllers.routes.CCGQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val ccgQuestions = inject[ccgQuestions]
+  lazy val ccgQuestionsView = inject[CcgQuestionsView]
 
-  def createView = () => ccgQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView = () => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm =
-    (form: Form[_]) => ccgQuestions(frontendAppConfig, form, action)(fakeRequest, messages)
+    (form: Form[_]) => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "CCGQuestions view" must {
-    behave like normalPage(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")
 
     behave like optionsPage(
       createViewUsingForm,
       "treatedProfessionally",
-      TreatedProfessionallyQuestion.options,
+      TreatedProfessionallyQuestion.options(form),
       "ccgQuestions.treatedProfessionally")
 
     behave like optionsPage(
       createViewUsingForm,
       "complianceCheckUnderstanding",
-      CheckUnderstandingQuestion.options,
+      CheckUnderstandingQuestion.options(form),
       "ccgQuestions.complianceCheckUnderstanding")
 
     behave like stringPage(createViewUsingForm, "whyGiveAnswer", "ccgQuestions.whyGiveAnswer")
@@ -57,7 +57,7 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
     behave like optionsPage(
       createViewUsingForm,
       "supportFutureTax",
-      SupportFutureQuestion.options,
+      SupportFutureQuestion.options(form),
       "ccgQuestions.supportFutureTax")
 
     "contain second introductory paragraph" in {

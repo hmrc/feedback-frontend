@@ -7,8 +7,6 @@ GET        /assets/*file                                controllers.Assets.versi
 
 GET        /this-service-has-been-reset                 controllers.SessionExpiredController.onPageLoad
 
-GET        /language/:lang                              controllers.LanguageSwitchController.switchToLanguage(lang: String)
-
 GET        /:origin/beta                                controllers.OtherQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/beta                                controllers.OtherQuestionsController.onSubmit(origin: models.Origin)
 

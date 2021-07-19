@@ -43,10 +43,10 @@ case class BTAQuestions(
 )
 
 case class TrustsQuestions(
-  isAgent: Option[Boolean],
+  isAgent: Option[YesNo],
   tryingToDo: Option[TryingToDoQuestion],
   tryingToDoOther: Option[String],
-  ableToDo: Option[Boolean],
+  ableToDo: Option[AbleToDo],
   whyNotAbleToDo: Option[String],
   howEasyScore: Option[HowEasyQuestion],
   whyGiveScore: Option[String],

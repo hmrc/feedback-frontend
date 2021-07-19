@@ -20,7 +20,6 @@ import play.api.data.Form
 import play.api.i18n.Messages
 import uk.gov.hmrc.govukfrontend.views.Aliases.Text
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
-import viewmodels.RadioOption
 
 sealed trait LikelyToDoQuestion
 
@@ -36,10 +35,6 @@ object LikelyToDoQuestion {
 
   val values: Seq[LikelyToDoQuestion] =
     List(OtherPensions, CheckFinances, ClarifyInformation, GetProfessionalAdvice, DoNothing)
-
-  val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("likelyToDoQuestion", value.toString)
-  }
 
   def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
     RadioItem(

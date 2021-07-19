@@ -20,18 +20,16 @@ import base.SpecBase
 import forms.NmwCcgQuestionsFormProvider
 import generators.ModelGenerators
 import models.{FeedbackId, NmwCcgQuestions, Origin}
+import navigation.FakeNavigator
+import org.mockito.Matchers.{any, eq => eqTo}
+import org.mockito.Mockito.{reset, times, verify}
+import org.scalacheck.Arbitrary.arbitrary
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
-import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.NmwCcgQuestionsView
-import navigation.FakeNavigator
-import org.mockito.Matchers.any
-import org.mockito.Mockito.{reset, times, verify}
-import org.scalacheck.Arbitrary.arbitrary
-import org.mockito.Matchers.{eq => eqTo, _}
 
 class NmwCcgQuestionsControllerSpec
     extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {

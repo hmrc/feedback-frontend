@@ -17,18 +17,18 @@
 package views
 
 import views.behaviours.ViewBehaviours
-import views.html.thankYouPension
+import views.html.ThankYouPensionView
 
 class ThankYouPensionViewSpec extends ViewBehaviours {
 
   val messageKeyPrefix = "thankYou.pension"
 
-  lazy val thankYouPension = inject[thankYouPension]
+  lazy val thankYouPensionView = inject[ThankYouPensionView]
 
-  def createView = () => thankYouPension(frontendAppConfig)(fakeRequest, messages)
+  def createView = () => thankYouPensionView(frontendAppConfig)(fakeRequest, messages)
 
   "ThankYou view" must {
-    behave like normalPage(createView, messageKeyPrefix)
+    behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl")
 
     "contain pension intro paragraph" in {
       val expectedMessage = messages("thankYou.pension.intro")

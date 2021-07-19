@@ -40,23 +40,19 @@ class OtherQuestionsViewSpec
 
   "OtherQuestions view" must {
 
-    behave like normalPageNew(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")
 
-    behave like optionsPageWithRadioItems(
-      createViewUsingForm,
-      "ableToDo",
-      AbleToDo.options(form),
-      "otherQuestions.ableToDo")
+    behave like optionsPage(createViewUsingForm, "ableToDo", AbleToDo.options(form), "otherQuestions.ableToDo")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options(form),
       "otherQuestions.howEasyScore")
 
-    behave like stringPageNew(createViewUsingForm, "whyGiveScore", "otherQuestions.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "otherQuestions.whyGiveScore")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options(form),

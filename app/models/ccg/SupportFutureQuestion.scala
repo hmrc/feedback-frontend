@@ -17,11 +17,16 @@
 package models.ccg
 
 import models.{Enumerable, WithName}
-import viewmodels.RadioOption
+import play.api.data.Form
+import play.api.i18n.Messages
+import uk.gov.hmrc.govukfrontend.views.Aliases.Text
+import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
 
 trait SupportFutureQuestion
 
 object SupportFutureQuestion extends Enumerable.Implicits {
+
+  val baseMessageKey: String = "supportFutureQuestion"
 
   case object VeryConfident extends WithName("VeryConfident") with SupportFutureQuestion
   case object FairlyConfident extends WithName("FairlyConfident") with SupportFutureQuestion
@@ -32,8 +37,13 @@ object SupportFutureQuestion extends Enumerable.Implicits {
   val values: Seq[SupportFutureQuestion] =
     List(VeryConfident, FairlyConfident, Neutral, NotVeryConfident, NotAtAllConfident)
 
-  val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("supportFutureQuestion", value.toString)
+  def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
+    RadioItem(
+      id = Some(s"$baseMessageKey-${value.toString}"),
+      value = Some(value.toString),
+      content = Text(messages(s"$baseMessageKey.$value")),
+      checked = form(baseMessageKey).value.contains(value.toString)
+    )
   }
 
   implicit val enumerable: Enumerable[SupportFutureQuestion] =

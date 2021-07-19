@@ -18,7 +18,6 @@ package controllers
 
 import config.FrontendAppConfig
 import forms.GiveCommentsFormProvider
-import javax.inject.Inject
 import models.{FeedbackId, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
@@ -27,8 +26,9 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import views.html.GiveCommentsView
 
-import views.html.giveComments
+import javax.inject.Inject
 
 class GiveCommentsController @Inject()(
   appConfig: FrontendAppConfig,
@@ -36,21 +36,21 @@ class GiveCommentsController @Inject()(
   formProvider: GiveCommentsFormProvider,
   auditService: AuditService,
   mcc: MessagesControllerComponents,
-  giveComments: giveComments
+  giveCommentsView: GiveCommentsView
 ) extends FrontendController(mcc) with I18nSupport {
 
   val form = formProvider()
   def submitCall(origin: Origin) = routes.GiveCommentsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
-    Ok(giveComments(appConfig, form, submitCall(origin)))
+    Ok(giveCommentsView(appConfig, form, submitCall(origin)))
   }
 
   def onSubmit(origin: Origin) = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
-        (formWithErrors: Form[_]) => BadRequest(giveComments(appConfig, formWithErrors, submitCall(origin))),
+        (formWithErrors: Form[_]) => BadRequest(giveCommentsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
 
           auditService.giveCommentsAudit(origin, FeedbackId.fromSession, value)

@@ -30,7 +30,7 @@ import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import views.html.giveReason
+import views.html.GiveReasonView
 
 class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks with Generators with MockitoSugar {
 
@@ -39,7 +39,7 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
   val formProvider = new GiveReasonFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
-  lazy val giveReason = inject[giveReason]
+  lazy val giveReasonView = inject[GiveReasonView]
 
   def controller() =
     new GiveReasonController(
@@ -48,10 +48,10 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
       formProvider,
       mockAuditService,
       mcc,
-      giveReason)
+      giveReasonView)
 
   def viewAsString(form: Form[_] = form, origin: Origin) =
-    giveReason(frontendAppConfig, form, routes.GiveReasonController.onSubmit(origin))(fakeRequest, messages).toString
+    giveReasonView(frontendAppConfig, form, routes.GiveReasonController.onSubmit(origin))(fakeRequest, messages).toString
 
   "GiveReason Controller" must {
 
@@ -68,7 +68,7 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
     "redirect to the next page when valid data is submitted" in {
 
       forAll { origin: Origin =>
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("value", GiveReason.options.head.value))
+        val postRequest = fakeRequest.withFormUrlEncodedBody(("value", GiveReason.options(form).head.value.get))
 
         val result = controller().onSubmit(origin)(postRequest)
 

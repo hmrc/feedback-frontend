@@ -1,0 +1,73 @@
+@*
+ * Copyright 2021 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import uk.gov.hmrc.hmrcfrontend.views.html.helpers.{HmrcStandardHeader, HmrcStandardFooter, HmrcScripts, HmrcHead, HmrcLanguageSelectHelper}
+@import views.html.helper.CSPNonce
+@import play.twirl.api.HtmlFormat
+
+@this(
+    govukLayout: GovukLayout,
+    hmrcStandardHeader: HmrcStandardHeader,
+    hmrcStandardFooter: HmrcStandardFooter,
+    hmrcLanguageSelectHelper: HmrcLanguageSelectHelper,
+    hmrcHead: hmrcHead,
+    scripts: HmrcScripts,
+    twoThirdsOneThirdMainContent: TwoThirdsOneThirdMainContent,
+    twoThirdsMainContent: TwoThirdsMainContent,
+    hmrcReportTechnicalIssueHelper: HmrcReportTechnicalIssueHelper,
+    govukBackLink: GovukBackLink,
+)
+
+@(
+    pageTitle: String,
+    sidebar: Option[Html] = None,
+    headScripts: Option[Html] = None,
+    showBackLink: Boolean = false
+)(content: Html)(implicit request: RequestHeader, messages: Messages)
+
+
+@headBlock = {
+    @headScripts
+    <meta name="format-detection" content="telephone=no" />
+}
+
+@contentBlock = {
+    @content
+
+    <div class="govuk-!-display-none-print">
+        @hmrcReportTechnicalIssueHelper()
+    </div>
+}
+
+@beforeContentBlock = {
+    @hmrcLanguageSelectHelper()
+    @if(showBackLink) {
+        @govukBackLink(BackLink(href = "#", content = Text(messages("site.back")), attributes = Map("id" -> "back-link")))
+    }
+}
+
+@govukLayout(
+    pageTitle = Some(pageTitle),
+    headBlock = Some(hmrcHead(headBlock = Some(headBlock), nonce = CSPNonce.get)),
+    headerBlock = Some(hmrcStandardHeader(displayHmrcBanner = true)),
+    scriptsBlock = Some(scripts(nonce = CSPNonce.get)),
+    beforeContentBlock = Some(beforeContentBlock),
+    footerBlock = Some(hmrcStandardFooter()),
+    mainContentLayout = Some(sidebar match {
+                                case Some(sidebarHtml) => twoThirdsOneThirdMainContent(sidebarHtml)
+                                case None => twoThirdsMainContent(_)
+                            })
+)(contentBlock)

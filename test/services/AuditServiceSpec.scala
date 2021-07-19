@@ -27,7 +27,6 @@ import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
-import utils.FeedbackFrontendHelper._
 
 class AuditServiceSpec
     extends WordSpec with Matchers with OptionValues with MockitoSugar with BeforeAndAfter with ScalaCheckPropertyChecks
@@ -104,10 +103,10 @@ class AuditServiceSpec
         val expected = Map(
           "origin"            -> origin.value,
           "feedbackId"        -> feedbackId.value,
-          "isAgent"           -> questions.isAgent.map(boolToInt(_).toString).getOrElse("-"),
+          "isAgent"           -> questions.isAgent.map(_.value.toString).getOrElse("-"),
           "tryingToDo"        -> questions.tryingToDo.map(_.toString).getOrElse("-"),
           "tryingToDoOther"   -> questions.tryingToDoOther.getOrElse("-"),
-          "ableToDo"          -> questions.ableToDo.map(boolToInt(_).toString).getOrElse("-"),
+          "ableToDo"          -> questions.ableToDo.map(_.value.toString).getOrElse("-"),
           "whyNotAbleToDo"    -> questions.whyNotAbleToDo.getOrElse("-"),
           "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
           "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),

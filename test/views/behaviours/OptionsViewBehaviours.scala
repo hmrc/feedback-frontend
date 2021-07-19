@@ -19,7 +19,6 @@ package views.behaviours
 import play.api.data.{Form, FormError}
 import play.twirl.api.HtmlFormat
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
-import viewmodels.RadioOption
 import views.ViewUtils
 
 trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
@@ -27,73 +26,14 @@ trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
   def optionsPage(
     createView: Form[A] => HtmlFormat.Appendable,
     fieldName: String,
-    options: Seq[RadioOption],
-    messageKeyPrefix: String) =
-    s"behave like a page with a $fieldName radio options question" when {
-      "rendered" must {
-        "contain a legend for the question" in {
-          val doc = asDocument(createView(form))
-          val legends = doc.select(s"#$fieldName legend")
-          legends.size mustBe 1
-          legends.first.text mustBe messages(s"$messageKeyPrefix.heading")
-        }
-
-        "contain an input for the value" in {
-          val doc = asDocument(createView(form))
-          for (option <- options) {
-            assertContainsRadioButton(doc, option.id, fieldName, option.value, false)
-          }
-        }
-
-        "not render an error summary" in {
-          val doc = asDocument(createView(form))
-          assertNotRenderedById(doc, "error-summary_header")
-        }
-      }
-
-      for (option <- options) {
-        s"rendered with a $fieldName of '${option.value}'" must {
-          s"have the '${option.value}' radio button selected" in {
-            val doc = asDocument(createView(form.bind(Map(fieldName -> s"${option.value}"))))
-            assertContainsRadioButton(doc, option.id, fieldName, option.value, true)
-
-            for (unselectedOption <- options.filterNot(o => o == option)) {
-              assertContainsRadioButton(doc, unselectedOption.id, fieldName, unselectedOption.value, false)
-            }
-          }
-        }
-      }
-
-      "rendered with an error" must {
-        "show an error summary" in {
-          val doc = asDocument(createView(form.withError(error)))
-          assertRenderedById(doc, "error-summary-heading")
-        }
-
-        "show an error in the value field's label" in {
-          val doc = asDocument(createView(form.withError(FormError(fieldName, errorMessage))))
-
-          val errorSpan = doc.getElementsByClass("error-message").first
-          errorSpan.text mustBe messages(errorMessage)
-        }
-
-        "show an error prefix in the browser title" in {
-          val doc = asDocument(createView(form.withError(error)))
-          assertContainsValue(doc, "title", messages("error.browser.title.prefix"))
-        }
-      }
-    }
-
-  def optionsPageWithRadioItems(
-    createView: Form[A] => HtmlFormat.Appendable,
-    fieldName: String,
     options: Seq[RadioItem],
-    messageKeyPrefix: String) =
+    messageKeyPrefix: String,
+    legendClass: String = "govuk-fieldset__legend--m") =
     s"behave like a page with a $fieldName radio options question" when {
       "rendered" must {
         "contain a legend for the question" in {
           val doc = asDocument(createView(form))
-          val legends = doc.getElementsByClass("govuk-fieldset__legend govuk-fieldset__legend--m")
+          val legends = doc.getElementsByClass(legendClass)
           legends.eachText() must contain(messages(s"$messageKeyPrefix.heading"))
         }
 

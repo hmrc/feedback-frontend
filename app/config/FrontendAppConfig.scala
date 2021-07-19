@@ -17,8 +17,6 @@
 package config
 
 import com.google.inject.{Inject, Singleton}
-import controllers.routes
-import play.api.i18n.Lang
 import play.api.{ConfigLoader, Configuration}
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
@@ -57,8 +55,4 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
 
   lazy val languageTranslationEnabled =
     getOptional[Boolean]("microservice.services.features.welsh-translation").getOrElse(true)
-
-  def languageMap: Map[String, Lang] = Map("english" -> Lang("en"), "cymraeg" -> Lang("cy"))
-
-  def routeToSwitchLanguage = (lang: String) => routes.LanguageSwitchController.switchToLanguage(lang)
 }

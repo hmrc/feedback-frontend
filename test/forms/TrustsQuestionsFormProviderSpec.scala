@@ -17,7 +17,7 @@
 package forms
 
 import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
-import models.{HowDoYouFeelQuestion, HowEasyQuestion, TrustsQuestions, TryingToDoQuestion}
+import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, TrustsQuestions, TryingToDoQuestion, YesNo}
 import play.api.data.FormError
 
 class TrustsQuestionsFormProviderSpec
@@ -28,11 +28,12 @@ class TrustsQuestionsFormProviderSpec
   ".isAgent" must {
 
     val fieldName = "isAgent"
-    val invalidError = "error.boolean"
+    val invalidError = "error.invalid"
 
-    behave like booleanField[TrustsQuestions](
+    behave like optionsField[TrustsQuestions, YesNo](
       form,
       fieldName,
+      YesNo.values,
       invalidError = FormError(fieldName, invalidError),
       _.isAgent
     )
@@ -69,11 +70,12 @@ class TrustsQuestionsFormProviderSpec
   ".ableToDo" must {
 
     val fieldName = "ableToDo"
-    val invalidError = "error.boolean"
+    val invalidError = "error.invalid"
 
-    behave like booleanField[TrustsQuestions](
+    behave like optionsField[TrustsQuestions, AbleToDo](
       form,
       fieldName,
+      AbleToDo.values,
       invalidError = FormError(fieldName, invalidError),
       _.ableToDo
     )

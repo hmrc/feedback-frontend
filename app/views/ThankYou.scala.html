@@ -17,11 +17,11 @@
 @import config.FrontendAppConfig
 
 @this(
-    mainTemplateNew: MainTemplateNew,
-    h1: components.h1,
-    h2: components.h2,
-    p: components.p,
-    link: components.link
+    mainTemplate: MainTemplate,
+    h1: components.H1,
+    h2: components.H2,
+    p: components.P,
+    link: components.Link
 )
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
@@ -30,7 +30,7 @@
     @link(appConfig.govUkUrl, messageKey = "thankYou.userResearch.urLinkText")
 }
 
-@mainTemplateNew(title = messages("thankYou.title")) {
+@mainTemplate(title = messages("thankYou.title")) {
 
     @h1("thankYou.heading")
 

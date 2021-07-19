@@ -20,7 +20,6 @@ import play.api.data.Form
 import play.api.i18n.Messages
 import uk.gov.hmrc.govukfrontend.views.Aliases.Text
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
-import viewmodels.RadioOption
 
 sealed trait MainServiceQuestion
 
@@ -38,10 +37,6 @@ object MainServiceQuestion {
 
   val values: Seq[MainServiceQuestion] =
     List(SelfAssesment, PAYE, VAT, CorporationTax, CIS, ECSales, Other)
-
-  val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("mainServiceQuestion", value.toString)
-  }
 
   def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
     RadioItem(

@@ -28,6 +28,6 @@ class ThankYouViewSpec extends ViewBehaviours {
   def createView = () => thankYou(frontendAppConfig)(fakeRequest, messages)
 
   "ThankYou view" must {
-    behave like normalPage(createView, messageKeyPrefix)
+    behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl")
   }
 }

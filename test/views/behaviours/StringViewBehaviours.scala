@@ -34,55 +34,6 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
         "contain a label for the value" in {
           val doc = asDocument(createView(form))
           val expectedHintText = expectedHintKey map (k => messages(k))
-          assertContainsLabel(doc, fieldName, messages(s"$messageKeyPrefix.heading"), expectedHintText)
-        }
-
-        "contain an input for the value" in {
-          val doc = asDocument(createView(form))
-          assertRenderedById(doc, fieldName)
-        }
-      }
-
-      "rendered with a valid form" must {
-        "include the form's value in the value input" in {
-          val boundForm = form.bind(Map(fieldName -> answer))
-          val doc = asDocument(createView(boundForm))
-
-          doc.getElementById(fieldName).`val`() mustBe answer
-        }
-      }
-
-      "rendered with an error" must {
-
-        "show an error summary" in {
-          val doc = asDocument(createView(form.withError(error)))
-          assertRenderedById(doc, "error-summary-heading")
-        }
-
-        "show an error in the value field's label" in {
-          val doc = asDocument(createView(form.withError(FormError(fieldName, errorMessage))))
-          val errorSpan = doc.getElementsByClass("error-message").first
-          errorSpan.text mustBe messages(errorMessage)
-        }
-
-        "show an error prefix in the browser title" in {
-          val doc = asDocument(createView(form.withError(error)))
-          assertContainsValue(doc, "title", messages("error.browser.title.prefix"))
-        }
-      }
-    }
-
-  def stringPageNew(
-    createView: Form[A] => HtmlFormat.Appendable,
-    fieldName: String,
-    messageKeyPrefix: String,
-    expectedHintKey: Option[String] = None) =
-    s"behave like a page with a string value field of '$fieldName'" when {
-      "rendered" must {
-
-        "contain a label for the value" in {
-          val doc = asDocument(createView(form))
-          val expectedHintText = expectedHintKey map (k => messages(k))
           assertContainsLabel(
             doc,
             fieldName,

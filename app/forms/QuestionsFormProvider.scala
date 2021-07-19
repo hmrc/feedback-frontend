@@ -89,12 +89,12 @@ class TrustsQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[TrustsQuestions] =
     Form(
       mapping(
-        "isAgent"    -> optional(boolean()),
+        "isAgent"    -> optional(enumerable[YesNo]()),
         "tryingToDo" -> optional(enumerable[TryingToDoQuestion]()),
         "tryingToDoOther" ->
           optional(text("tryingToDoOther.error.required")
             .verifying(maxLength(maxFieldSizeTryingToDoOther, "generic.max-characters"))),
-        "ableToDo" -> optional(boolean()),
+        "ableToDo" -> optional(enumerable[AbleToDo]()),
         "whyNotAbleToDo" -> optional(text("whyNotAbleToDo.error.required")
           .verifying(maxLength(maxFieldSizeWhyNotAbleToDo, "whyNotAbleToDo.error.maxlength"))),
         "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),

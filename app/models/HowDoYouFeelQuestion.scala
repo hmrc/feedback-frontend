@@ -20,7 +20,6 @@ import play.api.data.Form
 import play.api.i18n.Messages
 import uk.gov.hmrc.govukfrontend.views.Aliases.Text
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
-import viewmodels.RadioOption
 
 sealed trait HowDoYouFeelQuestion {
   val value: Int
@@ -48,10 +47,6 @@ object HowDoYouFeelQuestion {
 
   val values: Seq[HowDoYouFeelQuestion] =
     List(VerySatisfied, Satisfied, Moderate, Dissatisfied, VeryDissatisfied)
-
-  val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("howDoYouFeelQuestion", value.toString)
-  }
 
   def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
     RadioItem(

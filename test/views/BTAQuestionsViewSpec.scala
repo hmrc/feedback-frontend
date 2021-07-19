@@ -39,31 +39,27 @@ class BTAQuestionsViewSpec
     (form: Form[_]) => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "BTAQuestions view" must {
-    behave like normalPageNew(createView, messageKeyPrefix, "intro1", "intro3")
+    behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "mainService",
       MainServiceQuestion.options(form),
       "btaQuestions.mainService")
 
-    behave like stringPageNew(createViewUsingForm, "mainServiceOther", "btaQuestions.mainService.label")
+    behave like stringPage(createViewUsingForm, "mainServiceOther", "btaQuestions.mainService.label")
 
-    behave like optionsPageWithRadioItems(
-      createViewUsingForm,
-      "ableToDo",
-      AbleToDo.options(form),
-      "btaQuestions.ableToDo")
+    behave like optionsPage(createViewUsingForm, "ableToDo", AbleToDo.options(form), "btaQuestions.ableToDo")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options(form),
       "btaQuestions.howEasyScore")
 
-    behave like stringPageNew(createViewUsingForm, "whyGiveScore", "btaQuestions.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "btaQuestions.whyGiveScore")
 
-    behave like optionsPageWithRadioItems(
+    behave like optionsPage(
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options(form),

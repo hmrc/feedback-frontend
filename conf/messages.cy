@@ -35,8 +35,6 @@ site.delete = Remove
 site.edit = Change
 site.hidden-delete = Delete {0}
 site.hidden-edit = Change {0}
-site.no = Na
-site.yes = Iawn
 site.continue = Yn eich blaen
 site.sendFeedback = Anfon adborth
 site.service_name =
@@ -51,6 +49,9 @@ whyGiveAnswer.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ 
 neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?’ fod yn {0} o gymeriadau neu’n llai
 fullName.error.maxlength = Mae’n rhaid i’r enw llawn fod yn {0} o gymeriadau neu lai
 email.error.maxlength = Mae’n rhaid i’r e-bost fod yn {0} o gymeriadau neu lai
+
+yesNo.No = Na
+yesNo.Yes = Iawn
 
 ableToDo.No = Na
 ableToDo.Yes = Iawn

@@ -18,7 +18,7 @@ package controllers
 
 import base.SpecBase
 import forms.CCGQuestionsFormProvider
-import views.html.ccgQuestions
+import views.html.CcgQuestionsView
 import generators.ModelGenerators
 import models.{CCGQuestions, FeedbackId, Origin}
 import navigation.FakeNavigator
@@ -40,7 +40,7 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
   val formProvider = new CCGQuestionsFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
-  lazy val ccgQuestions = inject[ccgQuestions]
+  lazy val ccgQuestionsView = inject[CcgQuestionsView]
 
   def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
 
@@ -51,10 +51,10 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
       formProvider,
       mockAuditService,
       mcc,
-      ccgQuestions)
+      ccgQuestionsView)
 
   def viewAsString(form: Form[_] = form, action: Call) =
-    ccgQuestions(frontendAppConfig, form, action)(fakeRequest, messages).toString
+    ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "CCGQuestions Controller" must {
 

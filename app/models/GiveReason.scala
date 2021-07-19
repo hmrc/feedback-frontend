@@ -18,10 +18,8 @@ package models
 
 import play.api.data.Form
 import play.api.i18n.Messages
-import play.api.libs.json._
 import uk.gov.hmrc.govukfrontend.views.Aliases.Text
 import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
-import viewmodels.RadioOption
 
 sealed trait GiveReason
 
@@ -51,10 +49,6 @@ object GiveReason {
     Other
   )
 
-  val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("giveReason", value.toString)
-  }
-
   def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
     RadioItem(
       id = Some(value.toString),
@@ -66,23 +60,4 @@ object GiveReason {
 
   implicit val enumerable: Enumerable[GiveReason] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object GiveReasonWrites extends Writes[GiveReason] {
-    def writes(giveReason: GiveReason) = Json.toJson(giveReason.toString)
-  }
-
-  implicit object GiveReasonReads extends Reads[GiveReason] {
-    override def reads(json: JsValue): JsResult[GiveReason] = json match {
-      case JsString(CheckTaxCode.toString)     => JsSuccess(CheckTaxCode)
-      case JsString(CheckTaxYear.toString)     => JsSuccess(CheckTaxYear)
-      case JsString(CheckTaxPaid.toString)     => JsSuccess(CheckTaxPaid)
-      case JsString(ClaimTaxBack.toString)     => JsSuccess(ClaimTaxBack)
-      case JsString(ContactAboutP800.toString) => JsSuccess(ContactAboutP800)
-      case JsString(P800Wrong.toString)        => JsSuccess(P800Wrong)
-      case JsString(PayOwedTax.toString)       => JsSuccess(PayOwedTax)
-      case JsString(ProgressChasing.toString)  => JsSuccess(ProgressChasing)
-      case JsString(Other.toString)            => JsSuccess(Other)
-      case _                                   => JsError("Unknown giveReason")
-    }
-  }
 }

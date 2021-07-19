@@ -16,12 +16,16 @@
 
 package models
 
-import play.api.libs.json._
-import viewmodels.RadioOption
+import play.api.data.Form
+import play.api.i18n.Messages
+import uk.gov.hmrc.govukfrontend.views.Aliases.Text
+import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
 
 sealed trait TryingToDoQuestion
 
 object TryingToDoQuestion {
+
+  val baseMessageKey: String = "TryingToDoQuestion"
 
   case object RegisterATrust extends WithName("RegisterATrust") with TryingToDoQuestion
   case object ClaimATrust extends WithName("ClaimATrust") with TryingToDoQuestion
@@ -33,26 +37,15 @@ object TryingToDoQuestion {
   val values: Seq[TryingToDoQuestion] =
     List(RegisterATrust, ClaimATrust, CloseATrust, MaintainATrust, GetEvidenceOfRegistration, Other)
 
-  val options: Seq[RadioOption] = values.map { value =>
-    RadioOption("TryingToDoQuestion", value.toString)
+  def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
+    RadioItem(
+      id = Some(s"$baseMessageKey-${value.toString}"),
+      value = Some(value.toString),
+      content = Text(messages(s"$baseMessageKey.$value")),
+      checked = form(baseMessageKey).value.contains(value.toString)
+    )
   }
 
   implicit val enumerable: Enumerable[TryingToDoQuestion] =
     Enumerable(values.map(v => v.toString -> v): _*)
-
-  implicit object TryingToDoQuestionWrites extends Writes[TryingToDoQuestion] {
-    def writes(TryingToDoQuestion: TryingToDoQuestion) = Json.toJson(TryingToDoQuestion.toString)
-  }
-
-  implicit object TryingToDoQuestionReads extends Reads[TryingToDoQuestion] {
-    override def reads(json: JsValue): JsResult[TryingToDoQuestion] = json match {
-      case JsString(RegisterATrust.toString)            => JsSuccess(RegisterATrust)
-      case JsString(ClaimATrust.toString)               => JsSuccess(ClaimATrust)
-      case JsString(CloseATrust.toString)               => JsSuccess(CloseATrust)
-      case JsString(MaintainATrust.toString)            => JsSuccess(MaintainATrust)
-      case JsString(GetEvidenceOfRegistration.toString) => JsSuccess(GetEvidenceOfRegistration)
-      case JsString(Other.toString)                     => JsSuccess(Other)
-      case _                                            => JsError("Unknown TryingToDoQuestion")
-    }
-  }
 }

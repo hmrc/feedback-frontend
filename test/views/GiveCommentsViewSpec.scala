@@ -20,7 +20,7 @@ import forms.BTAQuestionsFormProvider
 import models.{BTAQuestions, Origin}
 import play.api.data.Form
 import views.behaviours.StringViewBehaviours
-import views.html.giveComments
+import views.html.GiveCommentsView
 
 class GiveCommentsViewSpec extends StringViewBehaviours[BTAQuestions] {
 
@@ -31,13 +31,13 @@ class GiveCommentsViewSpec extends StringViewBehaviours[BTAQuestions] {
 
   def createView = () => createViewUsingForm(form)
 
-  lazy val giveComments = inject[giveComments]
+  lazy val giveCommentsView = inject[GiveCommentsView]
 
   def createViewUsingForm =
-    (form: Form[_]) => giveComments(frontendAppConfig, form, action)(fakeRequest, messages)
+    (form: Form[_]) => giveCommentsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "GiveComments view" must {
-    behave like normalPage(createView, messageKeyPrefix, "intro1")
+    behave like normalPage(createView, messageKeyPrefix, "govuk-label--xl", "intro1")
 
     behave like stringPage(createViewUsingForm, "value", messageKeyPrefix)
 
