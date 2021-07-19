@@ -1,5 +1,13 @@
 {
   "chromeWebSecurity": false,
+  "reporter": "mocha-multi-reporters",
+  "reporterOptions": {
+    "configFile": "cypress-reporters.json"
+  },
+  "retries": {
+    "openMode": 0,
+    "runMode": 0
+  },
   "viewportHeight": 1024,
   "viewportWidth": 768
 }

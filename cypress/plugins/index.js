@@ -15,10 +15,28 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-module.exports = (on, config) => {
-  addMatchImageSnapshotPlugin(on, config);
-};
-
 const {
   addMatchImageSnapshotPlugin,
 } = require('cypress-image-snapshot/plugin');
+
+module.exports = (on, config) => {
+  addMatchImageSnapshotPlugin(on, config);
+  require('cypress-log-to-output').install(on);
+  // or, if there is already a before:browser:launch handler, use .browserLaunchHandler inside of it
+  // @see https://github.com/flotwig/cypress-log-to-output/issues/5
+
+  // Log things to the console
+  on('task', {
+    log(message) {
+      console.log(message);
+
+      return null;
+    },
+    table(message) {
+      console.table(message);
+
+      return null;
+    },
+  });
+
+};
