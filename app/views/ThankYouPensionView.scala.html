@@ -43,19 +43,19 @@
 
     <ul class="govuk-list" id="nav-bar">
         @appConfig.pensionSideBarOneUrl.map { pensionSideBarOneUrl =>
-            @p(link(link = pensionSideBarOneUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkOne"))
+            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarOneUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkOne")</li>
         }
         @appConfig.pensionSideBarTwoUrl.map { pensionSideBarTwoUrl =>
-            @p(link(link = pensionSideBarTwoUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkTwo"))
+            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarTwoUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkTwo")</li>
         }
         @appConfig.pensionSideBarThreeUrl.map { pensionSideBarThreeUrl =>
-            @p(link(link = pensionSideBarThreeUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkThree"))
+            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarThreeUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkThree")</li>
         }
         @appConfig.pensionSideBarFourUrl.map { pensionSideBarFourUrl =>
-            @p(link(link = pensionSideBarFourUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkFour"))
+            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarFourUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkFour")</li>
         }
         @appConfig.pensionSideBarFiveUrl.map { pensionSideBarFiveUrl =>
-            @p(link(link = pensionSideBarFiveUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkFive"))
+            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarFiveUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkFive")</li>
         }
     </ul>
 
