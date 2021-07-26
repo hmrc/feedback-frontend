@@ -44,6 +44,24 @@ unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
 
 generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
+
+isAgent.error = Dewiswch a ydych yn asiant sy’n gweithredu ar ran cleient
+tryingToDo.error = Dewiswch beth oeddech yn ceisio ei wneud yn y gwasanaeth heddiw
+ableToDo.error = Dewiswch a oeddech yn gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw
+howEasyScore.error = Dewiswch pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw
+howDoYouFeelScore.error = Dewiswch beth yw'ch barn am y gwasanaeth a gawsoch heddiw
+mainService.error = Dewiswch y prif wasanaeth y gwnaethoch ei ddefnyddio heddiw
+likelyToDo.error = Dewiswch yr hyn rydych yn fwyaf tebygol o’i wneud ar ôl gwirio’ch Pensiwn y Wladwriaeth
+checkUnderstandingQuestion.error = Dewiswch pa mor hawdd oedd hi i chi ddeall beth oedd yn digwydd yn ystod yr ymholiad am yr Isafswm Cyflog Cenedlaethol
+treatedProfessionally.error = Dewiswch pa mor gryf yr ydych yn cytuno neu’n anghytuno y gwnaeth CThEM eich trin yn broffesiynol yn ystod yr ymholiad am yr Isafswm Cyflog Cenedlaethol
+supportFutureQuestion.error = Dewiswch pa mor hyderus ydych y bydd CThEM yn eich helpu i fodloni’ch rhwymedigaethau yn y dyfodol o ran yr Isafswm Cyflog Cenedlaethol
+complianceCheckUnderstanding.error = Dewiswch pa mor hawdd oedd hi i chi ddeall beth oedd yn digwydd yn ystod y gwiriad cydymffurfio
+complianceTreatedProfessionally.error = Dewiswch pa mor gryf yr ydych yn cytuno neu’n anghytuno fod CThEM wedi eich trin yn broffesiynol yn ystod y gwiriad cydymffurfio
+supportFutureTax.error = Dewiswch pa mor hyderus yr ydych y bydd CThEM, yn ystod y gwiriad cydymffurfio hwn, yn eich cefnogi i fodloni’ch rhwymedigaethau treth yn y dyfodol
+giveReason.error = Dewiswch yr hyn y daethoch yma i’w wneud
+whyNotAbleToDo.error.maxlength = Mae’n rhaid i’ch sylw os nad oeddech yn gallu gwneud yr hyn yr oedd angen i chi ei wneud fod yn {0} o gymeriadau neu’n llai
+
+
 whyGiveScore.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
 whyGiveAnswer.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn {0} o gymeriadau neu’n llai
 neededToDo.error.maxlength = Rhaid i ‘Beth oedd y prif beth yr oedd angen i chi ei wneud heddiw?’ fod yn {0} o gymeriadau neu’n llai

@@ -28,7 +28,7 @@ class TrustsQuestionsFormProviderSpec
   ".isAgent" must {
 
     val fieldName = "isAgent"
-    val invalidError = "error.invalid"
+    val invalidError = "isAgent.error"
 
     behave like optionsField[TrustsQuestions, YesNo](
       form,
@@ -42,7 +42,7 @@ class TrustsQuestionsFormProviderSpec
   ".tryingToDo" must {
 
     val fieldName = "tryingToDo"
-    val invalidError = "error.invalid"
+    val invalidError = "tryingToDo.error"
 
     behave like optionsField[TrustsQuestions, TryingToDoQuestion](
       form,
@@ -70,7 +70,7 @@ class TrustsQuestionsFormProviderSpec
   ".ableToDo" must {
 
     val fieldName = "ableToDo"
-    val invalidError = "error.invalid"
+    val invalidError = "ableToDo.error"
 
     behave like optionsField[TrustsQuestions, AbleToDo](
       form,
@@ -98,7 +98,7 @@ class TrustsQuestionsFormProviderSpec
   ".howEasyScore" must {
 
     val fieldName = "howEasyScore"
-    val invalidError = "error.invalid"
+    val invalidError = "howEasyScore.error"
 
     behave like optionsField[TrustsQuestions, HowEasyQuestion](
       form,
@@ -126,7 +126,7 @@ class TrustsQuestionsFormProviderSpec
   ".howDoYouFeelScore" must {
 
     val fieldName = "howDoYouFeelScore"
-    val invalidError = "error.invalid"
+    val invalidError = "howDoYouFeelScore.error"
 
     behave like optionsField[TrustsQuestions, HowDoYouFeelQuestion](
       form,

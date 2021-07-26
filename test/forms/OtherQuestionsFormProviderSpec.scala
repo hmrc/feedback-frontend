@@ -28,7 +28,7 @@ class OtherQuestionsFormProviderSpec
   ".ableToDo" must {
 
     val fieldName = "ableToDo"
-    val invalidError = "error.invalid"
+    val invalidError = "ableToDo.error"
 
     behave like optionsField[OtherQuestions, AbleToDo](
       form,
@@ -42,7 +42,7 @@ class OtherQuestionsFormProviderSpec
   ".howEasyScore" must {
 
     val fieldName = "howEasyScore"
-    val invalidError = "error.invalid"
+    val invalidError = "howEasyScore.error"
 
     behave like optionsField[OtherQuestions, HowEasyQuestion](
       form,
@@ -70,7 +70,7 @@ class OtherQuestionsFormProviderSpec
   ".howDoYouFeelScore" must {
 
     val fieldName = "howDoYouFeelScore"
-    val invalidError = "error.invalid"
+    val invalidError = "howDoYouFeelScore.error"
 
     behave like optionsField[OtherQuestions, HowDoYouFeelQuestion](
       form,

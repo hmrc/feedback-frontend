@@ -30,12 +30,12 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[OtherQuestions] =
     Form(
       mapping(
-        "ableToDo"     -> optional(enumerable[AbleToDo]()),
-        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "ableToDo"     -> optional(enumerable[AbleToDo](invalidKey = "ableToDo.error")),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
         "whyGiveScore" ->
           optional(text("whyGiveScore.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
       )(OtherQuestions.apply)(OtherQuestions.unapply))
 }
 
@@ -50,12 +50,12 @@ class PTAQuestionsFormProvider @Inject() extends Mappings {
         "neededToDo" ->
           optional(text("neededToDo.error.required")
             .verifying(maxLength(maxFieldSizeAbleToDo, "neededToDo.error.maxlength"))),
-        "ableToDo"     -> optional(enumerable[AbleToDo]()),
-        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "ableToDo"     -> optional(enumerable[AbleToDo](invalidKey = "ableToDo.error")),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
         "whyGiveScore" ->
           optional(text("whyGiveScore.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
       )(PTAQuestions.apply)(PTAQuestions.unapply))
 }
 
@@ -67,16 +67,16 @@ class BTAQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[BTAQuestions] =
     Form(
       mapping(
-        "mainService" -> optional(enumerable[MainServiceQuestion]()),
+        "mainService" -> optional(enumerable[MainServiceQuestion](invalidKey = "mainService.error")),
         "mainServiceOther" ->
           optional(text("mainServiceOther.error.required")
             .verifying(maxLength(maxFieldSizeMainServiceOther, "generic.max-characters"))),
-        "ableToDo"     -> optional(enumerable[AbleToDo]()),
-        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "ableToDo"     -> optional(enumerable[AbleToDo](invalidKey = "ableToDo.error")),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
         "whyGiveScore" ->
           optional(text("whyGiveScore.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
       )(BTAQuestions.apply)(BTAQuestions.unapply))
 }
 
@@ -89,19 +89,19 @@ class TrustsQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[TrustsQuestions] =
     Form(
       mapping(
-        "isAgent"    -> optional(enumerable[YesNo]()),
-        "tryingToDo" -> optional(enumerable[TryingToDoQuestion]()),
+        "isAgent"    -> optional(enumerable[YesNo](invalidKey = "isAgent.error")),
+        "tryingToDo" -> optional(enumerable[TryingToDoQuestion](invalidKey = "tryingToDo.error")),
         "tryingToDoOther" ->
           optional(text("tryingToDoOther.error.required")
             .verifying(maxLength(maxFieldSizeTryingToDoOther, "generic.max-characters"))),
-        "ableToDo" -> optional(enumerable[AbleToDo]()),
+        "ableToDo" -> optional(enumerable[AbleToDo](invalidKey = "ableToDo.error")),
         "whyNotAbleToDo" -> optional(text("whyNotAbleToDo.error.required")
           .verifying(maxLength(maxFieldSizeWhyNotAbleToDo, "whyNotAbleToDo.error.maxlength"))),
-        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
         "whyGiveScore" ->
           optional(text("whyGiveScore.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]())
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
       )(TrustsQuestions.apply)(TrustsQuestions.unapply))
 }
 
@@ -112,13 +112,13 @@ class PensionQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[PensionQuestions] =
     Form(
       mapping(
-        "ableToDo"     -> optional(enumerable[AbleToDo]()),
-        "howEasyScore" -> optional(enumerable[HowEasyQuestion]()),
+        "ableToDo"     -> optional(enumerable[AbleToDo](invalidKey = "ableToDo.error")),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
         "whyGiveScore" ->
           optional(text("whyGiveScore.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
-        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion]()),
-        "likelyToDo"        -> optional(enumerable[LikelyToDoQuestion]())
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error")),
+        "likelyToDo"        -> optional(enumerable[LikelyToDoQuestion](invalidKey = "likelyToDo.error"))
       )(PensionQuestions.apply)(PensionQuestions.unapply))
 }
 
@@ -129,12 +129,15 @@ class CCGQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[CCGQuestions] =
     Form(
       mapping(
-        "complianceCheckUnderstanding" -> optional(enumerable[CheckUnderstandingQuestion]()),
-        "treatedProfessionally"        -> optional(enumerable[TreatedProfessionallyQuestion]()),
+        "complianceCheckUnderstanding" -> optional(
+          enumerable[CheckUnderstandingQuestion](invalidKey = "complianceCheckUnderstanding.error")),
+        "treatedProfessionally" -> optional(
+          enumerable[TreatedProfessionallyQuestion](invalidKey = "complianceTreatedProfessionally.error")),
         "whyGiveAnswer" ->
           optional(text("whyGiveAnswer.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
-        "supportFutureTax" -> optional(enumerable[SupportFutureQuestion]())
+        "supportFutureTax" -> optional(
+          enumerable[SupportFutureQuestion](invalidKey = "supportFutureTax.error"))
       )(CCGQuestions.apply)(CCGQuestions.unapply))
 }
 
@@ -145,13 +148,15 @@ class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
   def apply(): Form[NmwCcgQuestions] =
     Form(
       mapping(
-        "treatedProfessionally" -> optional(enumerable[TreatedProfessionallyQuestion]()),
-        "checkUnderstanding"    -> optional(enumerable[CheckUnderstandingQuestion]()),
+        "treatedProfessionally" -> optional(
+          enumerable[TreatedProfessionallyQuestion](invalidKey = "treatedProfessionally.error")),
+        "checkUnderstanding" -> optional(
+          enumerable[CheckUnderstandingQuestion](invalidKey = "checkUnderstandingQuestion.error")),
         "whyGiveAnswer" ->
           optional(
             text("whyGiveAnswer.error.required")
               .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
-        "supportFutureNmw" -> optional(enumerable[SupportFutureQuestion]())
+        "supportFutureNmw" -> optional(enumerable[SupportFutureQuestion](invalidKey = "supportFutureQuestion.error"))
       )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
     )
 }

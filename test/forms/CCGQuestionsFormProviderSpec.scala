@@ -28,7 +28,7 @@ class CCGQuestionsFormProviderSpec
   ".complianceCheckUnderstanding" must {
 
     val fieldName = "complianceCheckUnderstanding"
-    val invalidError = "error.invalid"
+    val invalidError = "complianceCheckUnderstanding.error"
 
     behave like optionsField[CCGQuestions, CheckUnderstandingQuestion](
       form,
@@ -42,7 +42,7 @@ class CCGQuestionsFormProviderSpec
   ".treatedProfessionally" must {
 
     val fieldName = "treatedProfessionally"
-    val invalidError = "error.invalid"
+    val invalidError = "complianceTreatedProfessionally.error"
 
     behave like optionsField[CCGQuestions, TreatedProfessionallyQuestion](
       form,
@@ -71,7 +71,7 @@ class CCGQuestionsFormProviderSpec
   ".supportFutureTax" must {
 
     val fieldName = "supportFutureTax"
-    val invalidError = "error.invalid"
+    val invalidError = "supportFutureTax.error"
 
     behave like optionsField[CCGQuestions, SupportFutureQuestion](
       form,

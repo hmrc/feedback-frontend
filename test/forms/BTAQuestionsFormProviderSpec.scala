@@ -28,7 +28,7 @@ class BTAQuestionsFormProviderSpec
   ".mainService" must {
 
     val fieldName = "mainService"
-    val invalidError = "error.invalid"
+    val invalidError = "mainService.error"
 
     behave like optionsField[BTAQuestions, MainServiceQuestion](
       form,
@@ -56,7 +56,7 @@ class BTAQuestionsFormProviderSpec
   ".ableToDo" must {
 
     val fieldName = "ableToDo"
-    val invalidError = "error.invalid"
+    val invalidError = "ableToDo.error"
 
     behave like optionsField[BTAQuestions, AbleToDo](
       form,
@@ -70,7 +70,7 @@ class BTAQuestionsFormProviderSpec
   ".howEasyScore" must {
 
     val fieldName = "howEasyScore"
-    val invalidError = "error.invalid"
+    val invalidError = "howEasyScore.error"
 
     behave like optionsField[BTAQuestions, HowEasyQuestion](
       form,
@@ -98,7 +98,7 @@ class BTAQuestionsFormProviderSpec
   ".howDoYouFeelScore" must {
 
     val fieldName = "howDoYouFeelScore"
-    val invalidError = "error.invalid"
+    val invalidError = "howDoYouFeelScore.error"
 
     behave like optionsField[BTAQuestions, HowDoYouFeelQuestion](
       form,

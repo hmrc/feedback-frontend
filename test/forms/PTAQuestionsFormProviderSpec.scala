@@ -42,7 +42,7 @@ class PTAQuestionsFormProviderSpec
   ".ableToDo" must {
 
     val fieldName = "ableToDo"
-    val invalidError = "error.invalid"
+    val invalidError = "ableToDo.error"
 
     behave like optionsField[PTAQuestions, AbleToDo](
       form,
@@ -56,7 +56,7 @@ class PTAQuestionsFormProviderSpec
   ".howEasyScore" must {
 
     val fieldName = "howEasyScore"
-    val invalidError = "error.invalid"
+    val invalidError = "howEasyScore.error"
 
     behave like optionsField[PTAQuestions, HowEasyQuestion](
       form,
@@ -84,7 +84,7 @@ class PTAQuestionsFormProviderSpec
   ".howDoYouFeelScore" must {
 
     val fieldName = "howDoYouFeelScore"
-    val invalidError = "error.invalid"
+    val invalidError = "howDoYouFeelScore.error"
 
     behave like optionsField[PTAQuestions, HowDoYouFeelQuestion](
       form,
