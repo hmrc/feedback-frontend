@@ -29,7 +29,7 @@ class TrustsQuestionsViewSpec
   val messageKeyPrefix = "trustsQuestions"
 
   val form = new TrustsQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad()
+  val action = controllers.routes.SessionExpiredController.onPageLoad
 
   lazy val trustsQuestionsView = inject[TrustsQuestionsView]
 

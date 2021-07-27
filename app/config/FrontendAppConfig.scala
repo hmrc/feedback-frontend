@@ -37,7 +37,6 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
   lazy val reportAProblemNonJSUrl = s"$contactHost/contact/problem_reports_nonjs?service=$contactFormServiceIdentifier"
   lazy val betaFeedbackUrl = s"$contactHost/contact/beta-feedback"
   lazy val betaFeedbackUnauthenticatedUrl = s"$contactHost/contact/beta-feedback-unauthenticated"
-  lazy val authUrl = servicesConfig.baseUrl("auth")
   lazy val loginUrl = loadConfig("urls.login")
   lazy val loginContinueUrl = loadConfig("urls.loginContinue")
   lazy val privacyPolicyUrl =
@@ -52,7 +51,4 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
   lazy val pensionSideBarFiveUrl = getOptional[String]("urls.pension.sidebar.link-five")
 
   lazy val govUkUrl = loadConfig(s"urls.govUk")
-
-  lazy val languageTranslationEnabled =
-    getOptional[Boolean]("microservice.services.features.welsh-translation").getOrElse(true)
 }

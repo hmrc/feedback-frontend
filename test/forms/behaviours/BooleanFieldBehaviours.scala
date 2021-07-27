@@ -29,19 +29,19 @@ trait BooleanFieldBehaviours extends FieldBehaviours {
 
     "bind true" in {
       val result = form.bind(Map(fieldName -> "true"))
-      fieldValue(result.value.value) shouldBe Some(true)
+      fieldValue(result.value.value) mustBe Some(true)
     }
 
     "bind false" in {
       val result = form.bind(Map(fieldName -> "false"))
-      fieldValue(result.value.value) shouldBe Some(false)
+      fieldValue(result.value.value) mustBe Some(false)
     }
 
     "not bind non-booleans" in {
 
       forAll(nonBooleans -> "nonBoolean") { nonBoolean =>
         val result = form.bind(Map(fieldName -> nonBoolean)).apply(fieldName)
-        result.errors shouldEqual Seq(invalidError)
+        result.errors mustBe Seq(invalidError)
       }
     }
   }

@@ -16,10 +16,9 @@
 
 package forms.behaviours
 
-import forms.FormSpec
 import play.api.data.{Form, FormError}
 
-trait CheckboxFieldBehaviours extends FormSpec {
+trait CheckboxFieldBehaviours extends FieldBehaviours {
 
   def checkboxField[T](form: Form[_], fieldName: String, validValues: Seq[T], invalidError: FormError): Unit = {
     for {
@@ -30,14 +29,14 @@ trait CheckboxFieldBehaviours extends FormSpec {
           s"$fieldName[$i]" -> value.toString
         )
 
-        form.bind(data).get shouldEqual Set(value)
+        form.bind(data).get mustBe Set(value)
       }
 
     "fail to bind when the answer is invalid" in {
       val data = Map(
         s"$fieldName[0]" -> "invalid value"
       )
-      form.bind(data).errors should contain(invalidError)
+      form.bind(data).errors must contain(invalidError)
     }
   }
 
@@ -45,14 +44,14 @@ trait CheckboxFieldBehaviours extends FormSpec {
 
     "fail to bind when no answers are selected" in {
       val data = Map.empty[String, String]
-      form.bind(data).errors should contain(FormError(s"$fieldName", requiredKey))
+      form.bind(data).errors must contain(FormError(s"$fieldName", requiredKey))
     }
 
     "fail to bind when blank answer provided" in {
       val data = Map(
         s"$fieldName[0]" -> ""
       )
-      form.bind(data).errors should contain(FormError(s"$fieldName[0]", requiredKey))
+      form.bind(data).errors must contain(FormError(s"$fieldName[0]", requiredKey))
     }
   }
 }

@@ -39,7 +39,7 @@ class NmwCcgQuestionsControllerSpec
   val formProvider = new NmwCcgQuestionsFormProvider()
   val form = formProvider()
   lazy val nmwCcgQuestionsView = inject[NmwCcgQuestionsView]
-  val submitCall = routes.NmwCcgQuestionsController.onSubmit()
+  val submitCall = routes.NmwCcgQuestionsController.onSubmit
   val viewAsString = nmwCcgQuestionsView(frontendAppConfig, form, submitCall)(fakeRequest, messages).toString
   lazy val mockAuditService = mock[AuditService]
   val origin = Origin.fromString("nmw")

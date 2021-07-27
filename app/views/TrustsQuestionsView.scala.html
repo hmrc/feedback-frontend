@@ -15,7 +15,6 @@
  *@
 
 @import config.FrontendAppConfig
-@import uk.gov.hmrc.play.views.html._
 @import models.{MainServiceQuestion, HowDoYouFeelQuestion, HowEasyQuestion}
 @import views.ViewUtils._
 
@@ -42,7 +41,7 @@
     title = s"${errorPrefix(form)} ${messages("trustsQuestions.title")}",
     bodyClasses = None) {
 
-    @helpers.form(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
+    @formHelper(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
 
         @errorSummary(form)
 

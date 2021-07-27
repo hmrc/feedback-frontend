@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
-package pages
+package base
 
-import models.GiveReason
+import generators.{Generators, ModelGenerators}
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.{BeforeAndAfter, EitherValues, OptionValues}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
-case object GiveReasonPage extends QuestionPage[GiveReason] {
-
-  override def toString: String = "giveReason"
-}
+trait BaseSpec
+    extends AnyWordSpec with OptionValues with Matchers with ScalaCheckPropertyChecks with ModelGenerators
+    with EitherValues with MockitoSugar with BeforeAndAfter with Generators

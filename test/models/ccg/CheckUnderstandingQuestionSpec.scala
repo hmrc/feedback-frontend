@@ -16,14 +16,11 @@
 
 package models.ccg
 
-import generators.ModelGenerators
+import base.BaseSpec
 import org.scalacheck.Arbitrary.arbitrary
-import org.scalatest.{MustMatchers, OptionValues, WordSpec}
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.libs.json.{JsError, JsString, Json}
 
-class CheckUnderstandingQuestionSpec
-    extends WordSpec with MustMatchers with ScalaCheckPropertyChecks with OptionValues with ModelGenerators {
+class CheckUnderstandingQuestionSpec extends BaseSpec {
 
   val gen = arbitrary[CheckUnderstandingQuestion]
 
