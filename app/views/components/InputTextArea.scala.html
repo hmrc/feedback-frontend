@@ -15,11 +15,11 @@
  *@
 
 @import uk.gov.hmrc.govukfrontend.views.viewmodels.content.Content
-@import uk.gov.hmrc.govukfrontend.views.html.components.CharacterCount
+@import uk.gov.hmrc.hmrcfrontend.views.viewmodels.charactercount.CharacterCount
 
 @this(
     govukTextArea: GovukTextarea,
-    govukCharacterCount: GovukCharacterCount
+    hmrcCharacterCount: HmrcCharacterCount
 )
 
 @(
@@ -45,7 +45,7 @@
 }
 
 @if(maxCharacters.isDefined) {
-    @govukCharacterCount(CharacterCount(
+    @HmrcCharacterCount(CharacterCount(
         id = id,
         name = name,
         maxLength = maxCharacters,
