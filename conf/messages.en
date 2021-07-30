@@ -260,13 +260,11 @@ businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = We plan to
 businessFuturePlans.WePlanToContinueWithTheSameOpeningHours = We plan to continue with the same opening hours
 businessFuturePlans.WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments = We plan to increase our opening hours, or open more establishments
 
-thankYou.pension.title = Thank you
-thankYou.pension.heading = Thank you
-thankYou.pension.intro = We’ve received your feedback.
-thankYou.pension.signIn = To use the service again you’ll need to {0}
+thankYou.pension.intro = We will use your feedback to make our services better.
+thankYou.pension.signIn = To use the service again you will need to {0}
 thankYou.pension.signInLink = sign in.
-thankYou.pension.subHeading = Planning for retirement
-thankYou.pension.subContent = Checking your State Pension is a good start, but you should also think about how much you will need to live on when you are saving for your future.
+thankYou.pension.subHeading = Are you planning for retirement?
+thankYou.pension.subContent = Checking your state pension is a good start when planning for retirement. Get help working out how much you will need to live on and ways of saving for the future.
 thankYou.pension.retirementLink = Having more in retirement
 
 thankYou.pension.sideBar.header = What you can do next

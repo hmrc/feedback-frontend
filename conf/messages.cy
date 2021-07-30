@@ -260,8 +260,6 @@ businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = Rydym yn b
 businessFuturePlans.WePlanToContinueWithTheSameOpeningHours = Rydym yn bwriadu parhau gyda’r un oriau agor
 businessFuturePlans.WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments = Rydym yn bwriadu cynyddu ein horiau agor, neu agor rhagor o sefydliadau
 
-thankYou.pension.title = Diolch yn fawr
-thankYou.pension.heading = Diolch yn fawr
 thankYou.pension.intro = Rydym wedi derbyn eich adborth.
 thankYou.pension.signIn = I ddefnyddio’r gwasanaeth eto bydd angen i chi {0}
 thankYou.pension.signInLink = fewngofnodi.
