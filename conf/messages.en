@@ -36,9 +36,8 @@ site.edit = Change
 site.hidden-delete = Delete {0}
 site.hidden-edit = Change {0}
 site.continue = Continue
-site.sendFeedback = Send feedback
+site.submitFeedback = Submit feedback
 site.service_name =
-site.sendFeedback = Send feedback
 site.textarea.char_limit = (Limit is {0} characters)
 
 unauthorised.title = You can’t access this service with this account

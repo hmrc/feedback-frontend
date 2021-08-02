@@ -36,7 +36,7 @@ site.edit = Change
 site.hidden-delete = Delete {0}
 site.hidden-edit = Change {0}
 site.continue = Yn eich blaen
-site.sendFeedback = Anfon adborth
+site.submitFeedback = Cyflwyno adborth
 site.service_name =
 site.textarea.char_limit = (Limit is {0} characters)
 
