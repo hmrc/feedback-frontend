@@ -260,6 +260,8 @@ businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = We plan to
 businessFuturePlans.WePlanToContinueWithTheSameOpeningHours = We plan to continue with the same opening hours
 businessFuturePlans.WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments = We plan to increase our opening hours, or open more establishments
 
+thankYou.pension.title = Thank you for your feedback
+thankYou.pension.heading = Thank you for your feedback
 thankYou.pension.intro = We will use your feedback to make our services better.
 thankYou.pension.signIn = To use the service again you will need to {0}
 thankYou.pension.signInLink = sign in.
