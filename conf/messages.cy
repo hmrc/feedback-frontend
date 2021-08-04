@@ -260,11 +260,11 @@ businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = Rydym yn b
 businessFuturePlans.WePlanToContinueWithTheSameOpeningHours = Rydym yn bwriadu parhau gyda’r un oriau agor
 businessFuturePlans.WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments = Rydym yn bwriadu cynyddu ein horiau agor, neu agor rhagor o sefydliadau
 
-thankYou.pension.intro = Rydym wedi derbyn eich adborth.
-thankYou.pension.signIn = I ddefnyddio’r gwasanaeth eto bydd angen i chi {0}
+thankYou.pension.intro = Byddwn yn defnyddio’ch adborth i wella ein gwasanaethau.
+thankYou.pension.signIn = I ddefnyddio'r gwasanaeth eto bydd yn rhaid i chi {0}
 thankYou.pension.signInLink = fewngofnodi.
-thankYou.pension.subHeading = Cynllunio ar gyfer ymddeoliad
-thankYou.pension.subContent = Mae bwrw golwg ar eich Pensiwn y Wladwriaeth yn ddechrau da, ond dylech hefyd ystyried faint o arian y bydd ei angen arnoch i fyw arno wrth gynilo ar gyfer eich dyfodol.
+thankYou.pension.subHeading = A ydych yn cynllunio ar gyfer eich ymddeoliad?
+thankYou.pension.subContent = Mae gwirio’ch Pensiwn y Wladwriaeth yn ddechrau da wrth gynllunio ar gyfer eich ymddeoliad. Cael help i gyfrifo faint y bydd ei angen arnoch i'ch cynnal eich hun a chael hyd i ddulliau o gynilo ar gyfer y dyfodol.
 thankYou.pension.retirementLink = Bod â mwy ar ôl ymddeol
 
 thankYou.pension.sideBar.header = Beth allwch chi ei wneud nesaf
