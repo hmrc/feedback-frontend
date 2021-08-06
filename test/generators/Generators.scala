@@ -95,6 +95,9 @@ trait Generators extends UserAnswersEntryGenerators {
   def stringsExceptSpecificValues(excluded: Set[String]): Gen[String] =
     nonEmptyString suchThat (!excluded.contains(_))
 
+  def stringsOfLength(fixedLength: Int): Gen[String] =
+    Gen.listOfN(fixedLength, Gen.alphaChar).map(_.mkString)
+
   def oneOf[T](xs: Seq[Gen[T]]): Gen[T] =
     if (xs.isEmpty) {
       throw new IllegalArgumentException("oneOf called on empty collection")

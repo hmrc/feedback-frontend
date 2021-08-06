@@ -20,12 +20,20 @@ import play.api.data.{Form, FormError}
 
 trait StringFieldBehaviours extends FieldBehaviours {
 
-  def fieldWithMaxLength(form: Form[_], fieldName: String, maxLength: Int, lengthError: FormError): Unit =
+  def fieldWithMaxLength(form: Form[_], fieldName: String, maxLength: Int, lengthError: FormError): Unit = {
     s"not bind strings longer than $maxLength characters" in {
-
       forAll(stringsLongerThan(maxLength) -> "longString") { string =>
         val result = form.bind(Map(fieldName -> string)).apply(fieldName)
         result.errors mustEqual Seq(lengthError)
       }
     }
+
+    "trim spaces before validation" in {
+      forAll(stringsOfLength(maxLength) -> "maxString") { string =>
+        val stringWithSpaces = s"     $string     "
+        val result = form.bind(Map(fieldName -> stringWithSpaces)).apply(fieldName)
+        result.hasErrors mustBe false
+      }
+    }
+  }
 }
