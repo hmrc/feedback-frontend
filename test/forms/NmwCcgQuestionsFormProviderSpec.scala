@@ -29,7 +29,7 @@ class NmwCcgQuestionsFormProviderSpec
   ".treatedProfessionally" must {
 
     val fieldName = "treatedProfessionally"
-    val invalidError = "error.invalid"
+    val invalidError = "treatedProfessionally.error"
 
     behave like optionsField[NmwCcgQuestions, TreatedProfessionallyQuestion](
       form,
@@ -43,7 +43,7 @@ class NmwCcgQuestionsFormProviderSpec
   ".checkUnderstanding" must {
 
     val fieldName = "checkUnderstanding"
-    val invalidError = "error.invalid"
+    val invalidError = "checkUnderstandingQuestion.error"
 
     behave like optionsField[NmwCcgQuestions, CheckUnderstandingQuestion](
       form,
@@ -71,7 +71,7 @@ class NmwCcgQuestionsFormProviderSpec
   ".supportFutureNmw" must {
 
     val fieldName = "supportFutureNmw"
-    val invalidError = "error.invalid"
+    val invalidError = "supportFutureQuestion.error"
 
     behave like optionsField[NmwCcgQuestions, SupportFutureQuestion](
       form,

@@ -45,6 +45,23 @@ unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
 
 generic.max-characters = You can enter up to {0} characters
+
+isAgent.error = Select if you are an agent that is working on behalf of a client
+tryingToDo.error = Select what were you trying to do on the service today
+ableToDo.error = Select if you were able to do what you needed to today
+howEasyScore.error = Select how easy it was to do what you needed to today
+howDoYouFeelScore.error = Select how you feel about the service you received today
+mainService.error = Select the main service you used today
+likelyToDo.error = Select what you are most likely to do after checking your State Pension
+checkUnderstandingQuestion.error = Select how easy it was for you to understand what was happening during the National Minimum Wage enquiry
+treatedProfessionally.error = Select how strongly you agree or disagree that HMRC treated you professionally during the National Minimum Wage (NMW) enquiry
+supportFutureQuestion.error = Select how confident you are that HMRC will support you in meeting your future National Minimum Wage obligations
+complianceCheckUnderstanding.error = Select how easy it was for you to understand what was happening during the compliance check
+complianceTreatedProfessionally.error = Select how strongly you agree or disagree that HMRC treated you professionally during the compliance check
+supportFutureTax.error = Select how confident you are that HMRC will support you in meeting your future tax obligations during this compliance check
+giveReason.error = Select what you came here to do
+whyNotAbleToDo.error.maxlength = If you were not able to do what you needed to do must be {0} characters or less
+
 whyGiveScore.error.maxlength = Why did you give this score must be {0} characters or less
 whyGiveAnswer.error.maxlength = Why did you give this answer must be {0} characters or less
 neededToDo.error.maxlength = What was the main thing you needed to do today must be {0} characters or less

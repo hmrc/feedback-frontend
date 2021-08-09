@@ -27,7 +27,7 @@ class GiveReasonFormProvider @Inject() extends Mappings {
   def apply(): Form[GiveReasonQuestions] =
     Form(
       mapping(
-        "value"  -> optional(enumerable[GiveReason]()),
+        "value"  -> optional(enumerable[GiveReason](invalidKey = "giveReason.error")),
         "reason" -> optional(text().verifying(maxLength(1000, "giveReason.error.maxlength")))
       )(GiveReasonQuestions.apply)(GiveReasonQuestions.unapply)
     )
