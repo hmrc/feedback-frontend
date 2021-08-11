@@ -43,7 +43,8 @@ site.textarea.char_limit = (Limit is {0} characters)
 unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
 
-generic.max-characters = Gallwch nodi hyd at {0} o gymeriadau
+generic.max-characters = Mae gennych {0} o gymeriadau yn weddill
+
 
 isAgent.error = Dewiswch a ydych yn asiant sy’n gweithredu ar ran cleient
 tryingToDo.error = Dewiswch beth oeddech yn ceisio ei wneud yn y gwasanaeth heddiw
