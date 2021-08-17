@@ -306,7 +306,7 @@ giveReason.p800Wrong = Mae fy llythyr cyfrifiad P800 yn anghywir
 giveReason.payOwedTax = Talu’r dreth sydd arnaf
 giveReason.progressChasing = Dilyn hynt rhywbeth
 giveReason.other = Arall, rhowch fanylion
-giveReason.error.maxlength = Rhaid i ‘Pam gwnaethoch roi’r sgôr hon?’ fod yn 1,000 o gymeriadau neu’n llai
+giveReason.error.maxlength = Mae’n rhaid i’ch ateb ar gyfer ‘Yr hyn y daethoch yma i’w wneud’ fod yn 100 o gymeriadau neu lai
 giveReason.other.reason.label = Rhowch wybod i ni yr hyn y daethoch chi yma i’w wneud
 
 giveComments.title = Beth ddaethoch chi yma i’w wneud? - Rhoi adborth - GOV.UK
