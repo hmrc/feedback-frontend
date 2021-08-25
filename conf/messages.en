@@ -304,7 +304,7 @@ giveReason.p800Wrong = My P800 letter calculation is wrong
 giveReason.payOwedTax = Pay tax I owe
 giveReason.progressChasing = Progress chasing
 giveReason.other = Other, please specify
-giveReason.error.maxlength = Why you gave this score must be 1,000 characters or less
+giveReason.error.maxlength = What you came to do must be 100 characters or less
 giveReason.other.reason.label = Tell us what you came to do
 
 giveComments.title = What did you come to do? - Give feedback - GOV.UK

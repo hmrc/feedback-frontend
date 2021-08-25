@@ -54,8 +54,7 @@
                     label = Label(content = Text(messages("giveReason.other.reason.label"))),
                     hint = Some(Hint(content = Text(messages("generic.max-characters", 100)))),
                     errorMessage = form("reason").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*)))),
-                    classes = "govuk-!-width-one-third",
-                    attributes = Map("maxlength" -> "100")))
+                    classes = "govuk-!-width-one-third"))
             )
         )
 
