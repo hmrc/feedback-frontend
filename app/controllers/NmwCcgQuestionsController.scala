@@ -39,21 +39,20 @@ class NmwCcgQuestionsController @Inject()(
   navigator: Navigator,
 ) extends FrontendController(mcc) with I18nSupport {
 
-  lazy val origin = Origin.fromString("nmw")
   val form: Form[NmwCcgQuestions] = formProvider()
-  lazy val submitCall: Call = routes.NmwCcgQuestionsController.onSubmit
+  def submitCall(origin: Origin) = routes.NmwCcgQuestionsController.onSubmit(origin)
 
-  def onPageLoad: Action[AnyContent] =
+  def onPageLoad(origin: Origin): Action[AnyContent] =
     Action { implicit request =>
-      Ok(nmwCcgQuestionsView(appConfig, form, submitCall))
+      Ok(nmwCcgQuestionsView(appConfig, form, submitCall(origin)))
 
     }
 
-  def onSubmit: Action[AnyContent] = Action { implicit request =>
+  def onSubmit(origin: Origin): Action[AnyContent] = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
-        formWithErrors => BadRequest(nmwCcgQuestionsView(appConfig, formWithErrors, submitCall)),
+        formWithErrors => BadRequest(nmwCcgQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.nmwCcgAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
