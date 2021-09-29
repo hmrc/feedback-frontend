@@ -183,9 +183,7 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
     "generate correct payload for nmw questions" in {
 
-      val origin = Origin.fromString("nmw")
-
-      forAll(arbitrary[FeedbackId], arbitrary[NmwCcgQuestions]) { (feedbackId, questions) =>
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[NmwCcgQuestions]) { (origin, feedbackId, questions) =>
         reset(auditConnector)
 
         auditService.nmwCcgAudit(origin, feedbackId, questions)

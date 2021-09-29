@@ -26,6 +26,7 @@ import org.mockito.Mockito.{reset, times, verify}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
+import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
@@ -39,10 +40,10 @@ class NmwCcgQuestionsControllerSpec
   val formProvider = new NmwCcgQuestionsFormProvider()
   val form = formProvider()
   lazy val nmwCcgQuestionsView = inject[NmwCcgQuestionsView]
-  val submitCall = routes.NmwCcgQuestionsController.onSubmit
-  val viewAsString = nmwCcgQuestionsView(frontendAppConfig, form, submitCall)(fakeRequest, messages).toString
+  def submitCall(origin: Origin) = routes.NmwCcgQuestionsController.onSubmit(origin)
+  def viewAsString(form: Form[_] = form, action: Call) =
+    nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
   lazy val mockAuditService = mock[AuditService]
-  val origin = Origin.fromString("nmw")
 
   val controller = new NmwCcgQuestionsController(
     frontendAppConfig,
@@ -56,23 +57,29 @@ class NmwCcgQuestionsControllerSpec
   "NmwCcgQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      val result = controller.onPageLoad()(fakeRequest)
 
-      status(result) mustBe OK
-      contentAsString(result) mustBe viewAsString
+      forAll(arbitrary[Origin]) { origin =>
+        val result = controller.onPageLoad(origin)(fakeRequest)
+
+        status(result) mustBe OK
+        contentAsString(result) mustBe viewAsString(action = submitCall(origin))
+      }
     }
   }
 
   "redirect to the next page when valid data is submitted" in {
-    val result = controller.onSubmit()(fakeRequest)
 
-    status(result) mustBe SEE_OTHER
-    redirectLocation(result) mustBe Some(onwardRoute.url)
+    forAll(arbitrary[Origin]) { origin =>
+      val result = controller.onSubmit(origin)(fakeRequest)
 
+      status(result) mustBe SEE_OTHER
+      redirectLocation(result) mustBe Some(onwardRoute.url)
+
+    }
   }
 
   "audit response on success" in {
-    forAll(arbitrary[FeedbackId], arbitrary[NmwCcgQuestions]) { (feedbackId, answers) =>
+    forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[NmwCcgQuestions]) { (origin, feedbackId, answers) =>
       reset(mockAuditService)
 
       val values = Map(
@@ -83,7 +90,7 @@ class NmwCcgQuestionsControllerSpec
       )
 
       val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-      val result = controller.onSubmit()(request.withSession(("feedbackId", feedbackId.value)))
+      val result = controller.onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
       status(result) mustBe SEE_OTHER
 
       verify(mockAuditService, times(1))
@@ -92,14 +99,17 @@ class NmwCcgQuestionsControllerSpec
   }
 
   "return a Bad Request and errors when invalid data is submitted" in {
-    val invalidValue = "*" * 1001
-    val postRequest = fakeRequest.withFormUrlEncodedBody(("whyGiveAnswer", invalidValue))
-    val boundForm = form.bind(Map("whyGiveAnswer" -> invalidValue))
-    val viewAsString = nmwCcgQuestionsView(frontendAppConfig, boundForm, submitCall)(fakeRequest, messages).toString
-    val result = controller.onSubmit()(postRequest)
+    forAll(arbitrary[Origin]) { origin =>
+      val invalidValue = "*" * 1001
+      val postRequest = fakeRequest.withFormUrlEncodedBody(("whyGiveAnswer", invalidValue))
+      val boundForm = form.bind(Map("whyGiveAnswer" -> invalidValue))
+      val viewAsString =
+        nmwCcgQuestionsView(frontendAppConfig, boundForm, submitCall(origin))(fakeRequest, messages).toString
+      val result = controller.onSubmit(origin)(postRequest)
 
-    status(result) mustBe BAD_REQUEST
-    contentAsString(result) mustBe viewAsString
+      status(result) mustBe BAD_REQUEST
+      contentAsString(result) mustBe viewAsString
 
+    }
   }
 }
