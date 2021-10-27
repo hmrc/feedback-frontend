@@ -136,7 +136,7 @@ thankYou.intro = Byddwn yn defnyddio’ch adborth i wella ein gwasanaethau.
 thankYou.userResearch.intro1 = Helpwch i wella GOV.UK
 thankYou.userResearch.intro2 = Mae angen eich help ar GOV.UK i wella ac i sicrhau bod y wefan yn gweithio’n dda i’r bobl sydd ei hangen.
 thankYou.userResearch.urLinkText = GOV.UK
-thankYou.userResearch.UrLink = Gallwch fod yn rhan o wneud gwasanaethau’r Llywodraeth yn well
+thankYou.userResearch.UrLink = ???
 
 ptaQuestions.title = Rhoi adborth - GOV.UK
 ptaQuestions.heading = Adborth
