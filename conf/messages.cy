@@ -102,17 +102,17 @@ otherQuestionsEmployeeExpensesBeta.fullName.heading = Enw llawn
 otherQuestionsEmployeeExpensesBeta.email.heading =Cyfeiriad e-bost
 otherQuestionsEmployeeExpensesBeta.paragraph3 = Mae’n bosibl na fyddwn yn gallu cysylltu â phawb sy’n dymuno cymryd rhan yn ein hymchwil.
 
-howDoYouFeelQuestion.VerySatisfied = 5. Bodlon iawn
-howDoYouFeelQuestion.Satisfied = 4. Bodlon
-howDoYouFeelQuestion.Moderate = 3. Ddim yn fodlon nac yn anfodlon
-howDoYouFeelQuestion.Dissatisfied = 2. Anfodlon
-howDoYouFeelQuestion.VeryDissatisfied = 1. Anfodlon iawn
+howDoYouFeelQuestion.VerySatisfied = Bodlon iawn
+howDoYouFeelQuestion.Satisfied = Bodlon
+howDoYouFeelQuestion.Moderate = Ddim yn fodlon nac yn anfodlon
+howDoYouFeelQuestion.Dissatisfied = Anfodlon
+howDoYouFeelQuestion.VeryDissatisfied = Anfodlon iawn
 
-howEasyQuestion.VeryEasy = 5. Hawdd iawn
-howEasyQuestion.Easy = 4. Hawdd
-howEasyQuestion.Moderate = 3. Ddim yn hawdd nac yn anodd
-howEasyQuestion.Difficult = 2. Anodd
-howEasyQuestion.VeryDifficult = 1. Anodd iawn
+howEasyQuestion.VeryEasy = Hawdd iawn
+howEasyQuestion.Easy = Hawdd
+howEasyQuestion.Moderate = Ddim yn hawdd nac yn anodd
+howEasyQuestion.Difficult = Anodd
+howEasyQuestion.VeryDifficult = Anodd iawn
 
 mainServiceQuestion.SelfAssesment = Hunanasesiad
 mainServiceQuestion.PAYE = TWE ar gyfer cyflogwyr

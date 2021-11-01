@@ -101,17 +101,17 @@ otherQuestionsEmployeeExpensesBeta.fullName.heading = Full name
 otherQuestionsEmployeeExpensesBeta.email.heading = Email address
 otherQuestionsEmployeeExpensesBeta.paragraph3 = We may not be able to contact everyone that wants to take part in our research.
 
-howDoYouFeelQuestion.VerySatisfied = 5. Very satisfied
-howDoYouFeelQuestion.Satisfied = 4. Satisfied
-howDoYouFeelQuestion.Moderate = 3. Neither satisfied or dissatisfied
-howDoYouFeelQuestion.Dissatisfied = 2. Dissatisfied
-howDoYouFeelQuestion.VeryDissatisfied = 1. Very dissatisfied
+howDoYouFeelQuestion.VerySatisfied = Very satisfied
+howDoYouFeelQuestion.Satisfied = Satisfied
+howDoYouFeelQuestion.Moderate = Neither satisfied or dissatisfied
+howDoYouFeelQuestion.Dissatisfied = Dissatisfied
+howDoYouFeelQuestion.VeryDissatisfied = Very dissatisfied
 
-howEasyQuestion.VeryEasy = 5. Very easy
-howEasyQuestion.Easy = 4. Easy
-howEasyQuestion.Moderate = 3. Neither easy or difficult
-howEasyQuestion.Difficult = 2. Difficult
-howEasyQuestion.VeryDifficult = 1. Very difficult
+howEasyQuestion.VeryEasy = Very easy
+howEasyQuestion.Easy = Easy
+howEasyQuestion.Moderate = Neither easy or difficult
+howEasyQuestion.Difficult = Difficult
+howEasyQuestion.VeryDifficult = Very difficult
 
 mainServiceQuestion.SelfAssesment = Self Assessment
 mainServiceQuestion.PAYE = PAYE for employers
