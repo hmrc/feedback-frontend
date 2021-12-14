@@ -76,7 +76,7 @@ ableToDo.No = Na
 ableToDo.Yes = Iawn
 
 otherQuestions.title = Rhoi adborth - GOV.UK
-otherQuestions.heading = Adborth
+otherQuestions.heading = Rhoi adborth
 otherQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 otherQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 otherQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 4 o gwestiynau dewisol.
@@ -87,7 +87,7 @@ otherQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 otherQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
 otherQuestionsEmployeeExpensesBeta.title = Rhoi adborth - GOV.UK
-otherQuestionsEmployeeExpensesBeta.heading = Adborth
+otherQuestionsEmployeeExpensesBeta.heading = Rhoi adborth
 otherQuestionsEmployeeExpensesBeta.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 otherQuestionsEmployeeExpensesBeta.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 otherQuestionsEmployeeExpensesBeta.intro3 = Mae’r arolwg hwn yn cynnwys 4 o gwestiynau dewisol.
@@ -139,7 +139,7 @@ thankYou.userResearch.urLinkText = GOV.UK
 thankYou.userResearch.UrLink = Helpwch i wella GOV.UK
 
 ptaQuestions.title = Rhoi adborth - GOV.UK
-ptaQuestions.heading = Adborth
+ptaQuestions.heading = Rhoi adborth 
 ptaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 ptaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 ptaQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 5 o gwestiynau dewisol.
@@ -152,7 +152,7 @@ ptaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 ptaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
 btaQuestions.title = Rhoi adborth - GOV.UK
-btaQuestions.heading = Adborth
+btaQuestions.heading = Rhoi adborth
 btaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 btaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 btaQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 5 o gwestiynau dewisol.
@@ -166,7 +166,7 @@ btaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 btaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
 trustsQuestions.title = Rhoi adborth - GOV.UK
-trustsQuestions.heading = Adborth
+trustsQuestions.heading = Rhoi adborth
 trustsQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 trustsQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 trustsQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 7 o gwestiynau dewisol.
@@ -180,7 +180,7 @@ trustsQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 trustsQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
 pensionQuestions.title = Rhoi adborth - GOV.UK
-pensionQuestions.heading = Adborth
+pensionQuestions.heading = Rhoi adborth
 pensionQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 pensionQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 pensionQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 5 o gwestiynau dewisol.
@@ -200,7 +200,7 @@ likelyToDoQuestion.DoNothing = Dim byd. Rydych yn fodlon ar yr wybodaeth y cawso
 
 ccgQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
 ccgQuestions.title = Rhoi adborth - GOV.UK
-ccgQuestions.heading = Adborth
+ccgQuestions.heading = Rhoi adborth
 ccgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 ccgQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 ccgQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 4 o gwestiynau dewisol.
@@ -335,7 +335,7 @@ whichRegions.Wales = Cymru
 
 nmwCcgQuestions.introLinkText=Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
 nmwCcgQuestions.title = Rhoi adborth - GOV.UK
-nmwCcgQuestions.heading = Adborth
+nmwCcgQuestions.heading = Rhoi adborth
 nmwCcgQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 nmwCcgQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 nmwCcgQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 4 o gwestiynau dewisol.
