@@ -68,8 +68,7 @@
                     label = Label(content = Text(messages("btaQuestions.mainService.label.heading"))),
                     hint = Some(Hint(content = Text(messages("generic.max-characters", 100)))),
                     errorMessage = form("mainServiceOther").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*)))),
-                    classes = "govuk-!-width-one-third",
-                    attributes = Map("maxlength" -> "100")))
+                    classes = "govuk-!-width-one-third"))
             )
         )
 
