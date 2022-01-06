@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ trait ModelGenerators {
 
   implicit def arbitraryFeedbackId: Arbitrary[FeedbackId] =
     Arbitrary {
-      arbitrary[String].map { s =>
+      asciiStr.map { s =>
         FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> s))
       }
     }
