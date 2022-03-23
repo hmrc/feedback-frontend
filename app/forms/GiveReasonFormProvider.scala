@@ -18,6 +18,7 @@ package forms
 
 import javax.inject.Inject
 import forms.mappings.Mappings
+import models.GiveReason.Other
 import play.api.data.Form
 import play.api.data.Forms._
 import models.{GiveReason, GiveReasonQuestions}
@@ -29,6 +30,14 @@ class GiveReasonFormProvider @Inject() extends Mappings {
       mapping(
         "value"  -> optional(enumerable[GiveReason](invalidKey = "giveReason.error")),
         "reason" -> optional(text().verifying(maxLength(100, "giveReason.error.maxlength")))
-      )(GiveReasonQuestions.apply)(GiveReasonQuestions.unapply)
+      )(GiveReasonQuestions.apply)(GiveReasonQuestions.unapply).transform(
+        fields =>
+          fields.value match {
+            case Some(value) if value != Other => new GiveReasonQuestions(Some(value), None)
+            case _ => fields
+
+          },
+
+      )
     )
 }

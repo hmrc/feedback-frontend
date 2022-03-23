@@ -50,8 +50,17 @@ class GiveReasonController @Inject()(
     form
       .bindFromRequest()
       .fold(
-        (formWithErrors: Form[_]) => BadRequest(giveReasonView(appConfig, formWithErrors, submitCall(origin))),
+        (formWithErrors: Form[_]) => {
+          println("2" * 101)
+          println(formWithErrors)
+          println("2" * 100)
+          BadRequest(giveReasonView(appConfig, formWithErrors, submitCall(origin)))
+        },
         value => {
+
+          println("1" * 101)
+          println(value)
+          println("1" * 100)
 
           auditService.giveReasonAudit(origin, FeedbackId.fromSession, value)
 
