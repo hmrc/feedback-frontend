@@ -40,6 +40,14 @@ class GiveReasonController @Inject()(
 ) extends FrontendController(mcc) with I18nSupport {
 
   val form = formProvider()
+
+  private def cleanForm(data: Map[String, Seq[String]]): Map[String, Seq[String]] =
+    data.apply("value") match {
+      case value if value.head != "other" =>
+        Map("value" -> value, "reason" -> Seq(""))
+      case _ => data
+    }
+
   def submitCall(origin: Origin) = routes.GiveReasonController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
@@ -47,23 +55,14 @@ class GiveReasonController @Inject()(
   }
 
   def onSubmit(origin: Origin) = Action { implicit request =>
+    val data = cleanForm(request.body.asFormUrlEncoded.get)
+
     form
-      .bindFromRequest()
+      .bindFromRequest(data)
       .fold(
-        (formWithErrors: Form[_]) => {
-          println("2" * 101)
-          println(formWithErrors)
-          println("2" * 100)
-          BadRequest(giveReasonView(appConfig, formWithErrors, submitCall(origin)))
-        },
+        (formWithErrors: Form[_]) => BadRequest(giveReasonView(appConfig, formWithErrors, submitCall(origin))),
         value => {
-
-          println("1" * 101)
-          println(value)
-          println("1" * 100)
-
           auditService.giveReasonAudit(origin, FeedbackId.fromSession, value)
-
           Redirect(navigator.nextPage(GenericQuestionsPage)(()))
         }
       )

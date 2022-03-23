@@ -30,14 +30,6 @@ class GiveReasonFormProvider @Inject() extends Mappings {
       mapping(
         "value"  -> optional(enumerable[GiveReason](invalidKey = "giveReason.error")),
         "reason" -> optional(text().verifying(maxLength(100, "giveReason.error.maxlength")))
-      )(GiveReasonQuestions.apply)(GiveReasonQuestions.unapply).transform(
-        fields =>
-          fields.value match {
-            case Some(value) if value != Other => new GiveReasonQuestions(Some(value), None)
-            case _ => fields
-
-          },
-
-      )
+      )(GiveReasonQuestions.apply)(GiveReasonQuestions.unapply)
     )
 }

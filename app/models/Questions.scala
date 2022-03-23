@@ -16,7 +16,6 @@
 
 package models
 
-import models.GiveReason.Other
 import models.ccg._
 
 case class OtherQuestions(
@@ -77,20 +76,3 @@ case class NmwCcgQuestions(
 )
 
 case class GiveReasonQuestions(value: Option[GiveReason], reason: Option[String])
-
-object GiveReasonQuestions {
-  def apply(value: Option[GiveReason], reason: Option[String]): GiveReasonQuestions =
-    if (value.get != Other) { //TODO - Change .get
-      println("3" * 101)
-      println(value)
-      println(reason)
-      println("3" * 100)
-      new GiveReasonQuestions(value, None)
-    } else {
-      println("4" * 101)
-      println(value)
-      println(reason)
-      println("4" * 100)
-      new GiveReasonQuestions(value, reason)
-    }
-}
