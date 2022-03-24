@@ -42,10 +42,14 @@ class GiveReasonController @Inject()(
   val form = formProvider()
 
   private def cleanForm(data: Map[String, Seq[String]]): Map[String, Seq[String]] =
-    data.apply("value") match {
-      case value if value.head != "other" =>
-        Map("value" -> value, "reason" -> Seq(""))
-      case _ => data
+    if (data.contains("value")) {
+      data.apply("value") match {
+        case value if value.head != "other" && value.nonEmpty =>
+          Map("value" -> value, "reason" -> Seq(""))
+        case _ => data
+      }
+    } else {
+      data
     }
 
   def submitCall(origin: Origin) = routes.GiveReasonController.onSubmit(origin)
@@ -55,7 +59,7 @@ class GiveReasonController @Inject()(
   }
 
   def onSubmit(origin: Origin) = Action { implicit request =>
-    val data = cleanForm(request.body.asFormUrlEncoded.get)
+    val data = cleanForm(request.body.asFormUrlEncoded.getOrElse(Map.empty))
 
     form
       .bindFromRequest(data)
