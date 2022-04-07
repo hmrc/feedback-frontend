@@ -52,17 +52,7 @@ class GiveReasonController @Inject()(
         } else {
           data
         }
-      }
-
-    if (data.contains("value")) {
-      data.apply("value") match {
-        case value if value.head != "other" && value.nonEmpty =>
-          Map("value" -> value, "reason" -> Seq(""))
-        case _ => data
-      }
-    } else {
-      data
-    }
+      }.getOrElse(data)
   }
 
   def submitCall(origin: Origin) = routes.GiveReasonController.onSubmit(origin)
