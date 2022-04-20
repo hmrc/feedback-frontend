@@ -19,6 +19,7 @@ package controllers
 import base.SpecBase
 import forms.GiveReasonFormProvider
 import generators.Generators
+import models.GiveReason.Other
 import models.{FeedbackId, GiveReason, GiveReasonQuestions, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{any, eq => eqTo}
@@ -90,13 +91,31 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
       }
     }
 
-    "audit response on success" in {
+    "audit response on success with reasons besides Other" in {
       forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[GiveReasonQuestions]) {
         (origin, feedbackId, answers) =>
           reset(mockAuditService)
 
           val values = Map(
             "value"  -> answers.value.map(_.toString),
+            "reason" -> None
+          )
+
+          val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+          controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+
+          verify(mockAuditService, times(1))
+            .giveReasonAudit(eqTo(origin), eqTo(feedbackId), eqTo(GiveReasonQuestions(answers.value, None)))(any())
+      }
+    }
+
+    "audit response on success with the reason being Other" in {
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[GiveReasonQuestions]) {
+        (origin, feedbackId, answers) =>
+          reset(mockAuditService)
+
+          val values = Map(
+            "value"  -> Some("other"),
             "reason" -> answers.reason
           )
 
@@ -104,7 +123,8 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
           verify(mockAuditService, times(1))
-            .giveReasonAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+            .giveReasonAudit(eqTo(origin), eqTo(feedbackId), eqTo(GiveReasonQuestions(Some(Other), answers.reason)))(
+              any())
       }
     }
   }
