@@ -20,7 +20,7 @@ import base.SpecBase
 import forms.CCGQuestionsFormProvider
 import views.html.CcgQuestionsView
 import generators.ModelGenerators
-import models.{CCGQuestions, FeedbackId, Origin}
+import models.{CCGQuestions, Cid, FeedbackId, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{reset, times, verify}
@@ -77,22 +77,27 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[CCGQuestions]) { (origin, feedbackId, answers) =>
-        reset(mockAuditService)
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[CCGQuestions], arbitrary[Cid]) {
+        (origin, feedbackId, answers, cid) =>
+          reset(mockAuditService)
 
-        val values = Map(
-          "complianceCheckUnderstanding" -> answers.complianceCheckUnderstanding.map(_.toString),
-          "treatedProfessionally"        -> answers.treatedProfessionally.map(_.toString),
-          "whyGiveAnswer"                -> answers.whyGiveAnswer,
-          "supportFutureTax"             -> answers.supportFutureTaxQuestion.map(_.toString)
-        )
+          val values = Map(
+            "complianceCheckUnderstanding" -> answers.complianceCheckUnderstanding.map(_.toString),
+            "treatedProfessionally"        -> answers.treatedProfessionally.map(_.toString),
+            "whyGiveAnswer"                -> answers.whyGiveAnswer,
+            "supportFutureTax"             -> answers.supportFutureTaxQuestion.map(_.toString)
+          )
 
-        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
-        val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
-        status(result) mustBe SEE_OTHER
+          val request = fakeRequest
+            .withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+            .withSession(("feedbackId", feedbackId.value))
+            .withHeaders("referer" -> s"/feedback/ccg/cgg?cid=${cid.value}")
 
-        verify(mockAuditService, times(1))
-          .ccgAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+          val result = controller().onSubmit(origin)(request)
+          status(result) mustBe SEE_OTHER
+
+          verify(mockAuditService, times(1))
+            .ccgAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers), eqTo(cid))(any())
       }
     }
 

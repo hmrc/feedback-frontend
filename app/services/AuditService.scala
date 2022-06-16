@@ -197,7 +197,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def ccgAudit(origin: Origin, feedbackId: FeedbackId, questions: CCGQuestions)(implicit hc: HeaderCarrier): Unit = {
+  def ccgAudit(origin: Origin, feedbackId: FeedbackId, questions: CCGQuestions, cid: Cid)(
+    implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -205,7 +206,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withCheckUnderstanding(questions.complianceCheckUnderstanding) andThen
         withTreatedProfessionally(questions.treatedProfessionally) andThen
         withWhyGiveAnswer(questions.whyGiveAnswer) andThen
-        withSupportFuture(questions.supportFutureTaxQuestion)
+        withSupportFuture(questions.supportFutureTaxQuestion) andThen
+        withCid(cid)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)

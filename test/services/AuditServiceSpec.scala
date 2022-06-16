@@ -161,22 +161,24 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
     "generate correct payload for ccg questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[CCGQuestions]) { (origin, feedbackId, questions) =>
-        reset(auditConnector)
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[CCGQuestions], arbitrary[Cid]) {
+        (origin, feedbackId, questions, cid) =>
+          reset(auditConnector)
 
-        auditService.ccgAudit(origin, feedbackId, questions)
+          auditService.ccgAudit(origin, feedbackId, questions, cid)
 
-        val expected = Map(
-          "origin"                -> origin.value,
-          "feedbackId"            -> feedbackId.value,
-          "checkUnderstanding"    -> questions.complianceCheckUnderstanding.map(_.toString).getOrElse("-"),
-          "treatedProfessionally" -> questions.treatedProfessionally.map(_.toString).getOrElse("-"),
-          "whyGiveAnswer"         -> questions.whyGiveAnswer.getOrElse("-"),
-          "supportFuture"         -> questions.supportFutureTaxQuestion.map(_.toString).getOrElse("-")
-        )
+          val expected = Map(
+            "origin"                -> origin.value,
+            "feedbackId"            -> feedbackId.value,
+            "checkUnderstanding"    -> questions.complianceCheckUnderstanding.map(_.toString).getOrElse("-"),
+            "treatedProfessionally" -> questions.treatedProfessionally.map(_.toString).getOrElse("-"),
+            "whyGiveAnswer"         -> questions.whyGiveAnswer.getOrElse("-"),
+            "supportFuture"         -> questions.supportFutureTaxQuestion.map(_.toString).getOrElse("-"),
+            "cid"                   -> cid.value
+          )
 
-        verify(auditConnector, times(1))
-          .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+          verify(auditConnector, times(1))
+            .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
       }
     }
   }

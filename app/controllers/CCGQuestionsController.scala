@@ -18,6 +18,7 @@ package controllers
 
 import config.FrontendAppConfig
 import forms.CCGQuestionsFormProvider
+
 import javax.inject.Inject
 import navigation.Navigator
 import pages.GenericQuestionsPage
@@ -27,7 +28,7 @@ import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.CcgQuestionsView
-import models.{CCGQuestions, FeedbackId, Origin}
+import models.{CCGQuestions, Cid, FeedbackId, Origin}
 
 class CCGQuestionsController @Inject()(
   appConfig: FrontendAppConfig,
@@ -42,6 +43,10 @@ class CCGQuestionsController @Inject()(
   def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
+    println("1" * 100)
+    println(request.headers.get("referral"))
+    println("1" * 100)
+
     Ok(ccgQuestionsView(appConfig, form, submitCall(origin)))
   }
 
@@ -51,7 +56,12 @@ class CCGQuestionsController @Inject()(
       .fold(
         formWithErrors => BadRequest(ccgQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.ccgAudit(origin, FeedbackId.fromSession, value)
+
+          println("2" * 100)
+          println(Cid.fromUrl)
+          println("2" * 100)
+
+          auditService.ccgAudit(origin, FeedbackId.fromSession, value, Cid.fromUrl)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
