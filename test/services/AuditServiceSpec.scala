@@ -116,22 +116,24 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
   "generate correct payload for other questions" in {
 
-    forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions]) { (origin, feedbackId, questions) =>
-      reset(auditConnector)
+    forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions], arbitrary[Cid]) {
+      (origin, feedbackId, questions, cid) =>
+        reset(auditConnector)
 
-      auditService.otherAudit(origin, feedbackId, questions)
+        auditService.otherAudit(origin, feedbackId, questions, cid)
 
-      val expected = Map(
-        "origin"            -> origin.value,
-        "feedbackId"        -> feedbackId.value,
-        "ableToDo"          -> questions.ableToDo.map(_.value.toString).getOrElse("-"),
-        "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-        "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-        "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
-      )
+        val expected = Map(
+          "origin"            -> origin.value,
+          "feedbackId"        -> feedbackId.value,
+          "ableToDo"          -> questions.ableToDo.map(_.value.toString).getOrElse("-"),
+          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
+          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
+          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
+          "cid"               -> cid.value
+        )
 
-      verify(auditConnector, times(1))
-        .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+        verify(auditConnector, times(1))
+          .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
     }
   }
 

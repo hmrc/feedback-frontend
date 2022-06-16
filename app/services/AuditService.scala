@@ -89,6 +89,9 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   def withSupportFuture(supportFuture: Option[SupportFutureQuestion]): MapCont =
     _ + ("supportFuture" -> supportFuture.map(_.toString).getOrElse("-"))
 
+  def withCid(cid: Cid): MapCont =
+    _ + ("cid" -> cid.value)
+
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
@@ -139,7 +142,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def otherAudit(origin: Origin, feedbackId: FeedbackId, questions: OtherQuestions)(
+  def otherAudit(origin: Origin, feedbackId: FeedbackId, questions: OtherQuestions, cid: Cid)(
     implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
@@ -148,7 +151,8 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withAbleToDo(questions.ableToDo) andThen
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
-        withHowFeelScore(questions.howDoYouFeelScore)
+        withHowFeelScore(questions.howDoYouFeelScore) andThen
+        withCid(cid)
     )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
