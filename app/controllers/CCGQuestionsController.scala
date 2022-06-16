@@ -43,10 +43,6 @@ class CCGQuestionsController @Inject()(
   def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
-    println("1" * 100)
-    println(request.headers.get("referral"))
-    println("1" * 100)
-
     Ok(ccgQuestionsView(appConfig, form, submitCall(origin)))
   }
 
@@ -56,11 +52,6 @@ class CCGQuestionsController @Inject()(
       .fold(
         formWithErrors => BadRequest(ccgQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
-
-          println("2" * 100)
-          println(Cid.fromUrl)
-          println("2" * 100)
-
           auditService.ccgAudit(origin, FeedbackId.fromSession, value, Cid.fromUrl)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
