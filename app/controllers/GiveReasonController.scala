@@ -41,7 +41,7 @@ class GiveReasonController @Inject()(
 
   val form = formProvider()
 
-  private def cleanForm(data: Map[String, Seq[String]]): Map[String, Seq[String]] = {
+  private def cleanForm(data: Map[String, Seq[String]]): Map[String, Seq[String]] =
     data
       .get("value")
       .map { formValueReasonType =>
@@ -52,8 +52,8 @@ class GiveReasonController @Inject()(
         } else {
           data
         }
-      }.getOrElse(data)
-  }
+      }
+      .getOrElse(data)
 
   def submitCall(origin: Origin) = routes.GiveReasonController.onSubmit(origin)
 
