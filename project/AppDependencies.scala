@@ -15,11 +15,11 @@ object AppDependencies {
   val test = Seq(
     "org.scalatest"          %% "scalatest"          % "3.2.9",
     "org.scalatestplus.play" %% "scalatestplus-play" % "5.1.0",
-    "org.jsoup"              % "jsoup"               % "1.10.3",
+    "org.jsoup"              % "jsoup"               % "1.14.3",
     "com.typesafe.play"      %% "play-test"          % PlayVersion.current,
     "org.scalatestplus"      %% "scalatestplus-scalacheck" % "3.1.0.0-RC2",
     "org.scalatestplus"      %% "scalatestplus-mockito"    % "1.0.0-M2",
-    "com.vladsch.flexmark"   % "flexmark-all"       % "0.35.10"
+    "com.vladsch.flexmark"   % "flexmark-all"       % "0.36.8"
   ).map(_ % Test)
 
   def apply(): Seq[ModuleID] = compile ++ test
