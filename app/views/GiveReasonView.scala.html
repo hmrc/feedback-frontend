@@ -19,13 +19,14 @@
 @import models.GiveReason
 @import models.Mode
 @import views.ViewUtils._
+@import uk.gov.hmrc.govukfrontend.views.html.components._
 
 @this(
     mainTemplate: MainTemplate,
     formHelper: FormWithCSRF,
     h1: components.H1,
     inputRadioDynamic: components.InputRadioDynamic,
-    govukInput: govukInput,
+    govukInput: GovukInput,
     button: components.Button,
     errorSummary:  components.ErrorSummary
 )

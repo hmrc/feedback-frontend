@@ -17,6 +17,8 @@
 @import config.FrontendAppConfig
 @import models.{MainServiceQuestion, HowDoYouFeelQuestion, HowEasyQuestion}
 @import views.ViewUtils._
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+
 
 @this(
     mainTemplate: MainTemplate,
@@ -26,7 +28,7 @@
     inputRadio: components.InputRadio,
     inputRadioDynamic: components.InputRadioDynamic,
     inputTextArea: components.InputTextArea,
-    govukInput: govukInput,
+    govukInput: GovukInput,
     button: components.Button,
     errorSummary:  components.ErrorSummary
 )
