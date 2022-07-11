@@ -16,12 +16,12 @@
 
 package forms
 
-import javax.inject.Inject
 import forms.mappings.Mappings
-import models.GiveReason.Other
+import models.{GiveReason, GiveReasonQuestions}
 import play.api.data.Form
 import play.api.data.Forms._
-import models.{GiveReason, GiveReasonQuestions}
+
+import javax.inject.Inject
 
 class GiveReasonFormProvider @Inject() extends Mappings {
 
