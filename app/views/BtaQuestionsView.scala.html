@@ -42,8 +42,6 @@
     title = s"${errorPrefix(form)} ${messages("btaQuestions.title")}",
     bodyClasses = None) {
 
-@form("mainService").value
-
     @formHelper(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
 
         @errorSummary(form)
