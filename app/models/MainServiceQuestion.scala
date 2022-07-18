@@ -26,6 +26,7 @@ sealed trait MainServiceQuestion
 object MainServiceQuestion {
 
   val baseMessageKey: String = "mainServiceQuestion"
+  val formFieldName: String = "mainService"
 
   case object SelfAssesment extends WithName("SelfAssesment") with MainServiceQuestion
   case object PAYE extends WithName("PAYE") with MainServiceQuestion
@@ -43,7 +44,7 @@ object MainServiceQuestion {
       id = Some(s"$baseMessageKey-${value.toString}"),
       value = Some(value.toString),
       content = Text(messages(s"$baseMessageKey.$value")),
-      checked = form(baseMessageKey).value.contains(value.toString)
+      checked = form(formFieldName).value.contains(value.toString)
     )
   }
 

@@ -42,7 +42,7 @@ class BTAQuestionsFormProviderSpec
   ".mainServiceOther" must {
 
     val fieldName = "mainServiceOther"
-    val invalidError = "generic.max-characters"
+    val invalidError = "otherService.max-characters"
     val maxLength = 100
 
     behave like fieldWithMaxLength(

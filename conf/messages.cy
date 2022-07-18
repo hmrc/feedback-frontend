@@ -44,7 +44,7 @@ unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
 
 generic.max-characters = Mae gennych {0} o gymeriadau yn weddill
-
+otherService.max-characters = Mae’n rhaid i’r disgrifiad o’r prif wasanaeth fod yn {0} o gymeriadau neu lai
 
 isAgent.error = Dewiswch a ydych yn asiant sy’n gweithredu ar ran cleient
 tryingToDo.error = Dewiswch beth oeddech yn ceisio ei wneud yn y gwasanaeth heddiw
