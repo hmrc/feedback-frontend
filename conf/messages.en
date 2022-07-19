@@ -45,6 +45,7 @@ unauthorised.title = You can’t access this service with this account
 unauthorised.heading = You can’t access this service with this account
 
 generic.max-characters = You can enter up to {0} characters
+otherService.max-characters = Description of main service must be {0} characters or fewer
 
 isAgent.error = Select if you are an agent that is working on behalf of a client
 tryingToDo.error = Select what were you trying to do on the service today

@@ -70,7 +70,7 @@ class BTAQuestionsFormProvider @Inject() extends Mappings {
         "mainService" -> optional(enumerable[MainServiceQuestion](invalidKey = "mainService.error")),
         "mainServiceOther" ->
           optional(text("mainServiceOther.error.required")
-            .verifying(maxLength(maxFieldSizeMainServiceOther, "generic.max-characters"))),
+            .verifying(maxLength(maxFieldSizeMainServiceOther, "otherService.max-characters"))),
         "ableToDo"     -> optional(enumerable[AbleToDo](invalidKey = "ableToDo.error")),
         "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
         "whyGiveScore" ->
