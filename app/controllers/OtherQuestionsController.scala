@@ -18,8 +18,9 @@ package controllers
 
 import config.FrontendAppConfig
 import forms.OtherQuestionsFormProvider
+
 import javax.inject.Inject
-import models.{FeedbackId, Origin, OtherQuestions}
+import models.{Cid, FeedbackId, Origin, OtherQuestions}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -27,7 +28,6 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-
 import views.html.OtherQuestionsView
 
 class OtherQuestionsController @Inject()(
@@ -52,7 +52,7 @@ class OtherQuestionsController @Inject()(
       .fold(
         formWithErrors => BadRequest(otherQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.otherAudit(origin, FeedbackId.fromSession, value)
+          auditService.otherAudit(origin, FeedbackId.fromSession, value, Cid.fromUrl)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )

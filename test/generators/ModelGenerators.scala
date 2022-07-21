@@ -42,6 +42,13 @@ trait ModelGenerators {
       }
     }
 
+  implicit def arbitraryFeedbackCid: Arbitrary[Cid] =
+    Arbitrary {
+      numStr.map { s =>
+        Cid.fromUrl(FakeRequest("GET", "").withHeaders("referer" -> s"/feedback/EXAMPLE?cid=$s"))
+      }
+    }
+
   implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)
 
   implicit lazy val arbitraryPTAQuestions: Arbitrary[PTAQuestions] = Arbitrary(ptaQuestionsGen)
