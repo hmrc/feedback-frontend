@@ -20,8 +20,6 @@ import scala.language.implicitConversions
 
 trait Page
 
-object Page {
+case object GenericQuestionsPage extends Page
 
-  implicit def toString(page: Page): String =
-    page.toString
-}
+case object PensionQuestionsPage extends Page

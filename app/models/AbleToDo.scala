@@ -31,13 +31,6 @@ object AbleToDo {
 
   val values: Seq[AbleToDo] = List(Yes, No)
 
-  def from(bool: Boolean): AbleToDo = if (bool) Yes else No
-
-  def to(yesNo: AbleToDo): Boolean = yesNo match {
-    case Yes => true
-    case No  => false
-  }
-
   def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
     RadioItem(
       id = Some(s"$baseMessageKey-${value.toString}"),
