@@ -47,5 +47,13 @@ class ThankYouControllerSpec extends SpecBase {
       status(result) mustBe OK
       contentAsString(result) mustBe viewAsString()
     }
+
+    "return OK and the correct view for a GET pension page" in {
+      def viewAsString() = thankYouPensionView(frontendAppConfig)(fakeRequest, messages).toString
+      val result = controller().onPageLoadPension()(fakeRequest)
+
+      status(result) mustBe OK
+      contentAsString(result) mustBe viewAsString()
+    }
   }
 }

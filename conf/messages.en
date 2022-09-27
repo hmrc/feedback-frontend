@@ -313,7 +313,7 @@ giveComments.heading = What did you come to do?
 giveComments.intro1 = Do not include any personal or financial information. For example, your National Insurance or credit card numbers.
 giveComments.error.length = What you came to do must be 1,000 characters or less
 
-page_not_found.tabtitle = Page not found - Give feedback - GOV.UK
+page_not_found.title = Page not found - Give feedback - GOV.UK
 page_not_found.heading = Page not found
 page.not.found.error.check.web.address.correct = If you typed the web address, check it is correct.
 page.not.found.error.check.web.address.full = If you pasted the web address, check you copied the entire address.

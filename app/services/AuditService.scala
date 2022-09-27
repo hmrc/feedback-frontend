@@ -72,10 +72,6 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("reason" -> otherReason.getOrElse("-"))
   def withGiveComments(answer: String): MapCont =
     _ + ("giveComments" -> answer)
-  def withFullName(fullName: Option[String]): MapCont =
-    _ + ("fullName" -> fullName.getOrElse(("-")))
-  def withEmail(email: Option[String]): MapCont =
-    _ + ("email" -> email.getOrElse("-"))
 
   def withCheckUnderstanding(checkUnderstanding: Option[CheckUnderstandingQuestion]): MapCont =
     _ + ("checkUnderstanding" -> checkUnderstanding.map(_.toString).getOrElse("-"))
