@@ -69,7 +69,9 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
     "redirect to the next page when valid data is submitted" in {
 
       forAll { origin: Origin =>
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("value", GiveReason.options(form).head.value.get))
+        val postRequest = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(("value", GiveReason.options(form).head.value.get))
 
         val result = controller().onSubmit(origin)(postRequest)
 
@@ -81,7 +83,9 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
     "return a Bad Request and errors when invalid data is submitted" in {
 
       forAll { origin: Origin =>
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("value", "invalid value"))
+        val postRequest = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(("value", "invalid value"))
         val boundForm = form.bind(Map("value" -> "invalid value"))
 
         val result = controller().onSubmit(origin)(postRequest)
@@ -99,9 +103,11 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
           val values = Map(
             "value"  -> answers.value.map(_.toString),
             "reason" -> None
-          )
+          ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
-          val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+          val request = fakeRequest
+            .withMethod("POST")
+            .withFormUrlEncodedBody(values: _*)
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
           verify(mockAuditService, times(1))
@@ -117,9 +123,11 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
           val values = Map(
             "value"  -> Some("other"),
             "reason" -> answers.reason
-          )
+          ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
-          val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+          val request = fakeRequest
+            .withMethod("POST")
+            .withFormUrlEncodedBody(values: _*)
           controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
           verify(mockAuditService, times(1))

@@ -43,7 +43,7 @@
     title = s"${errorPrefix(form)} ${messages("trustsQuestions.title")}",
     bodyClasses = None) {
 
-    @formHelper(action = action, 'autoComplete -> "off", Symbol("data-dynamic-form") -> "true") {
+    @formHelper(action = action, Symbol("autoComplete") -> "off", Symbol("data-dynamic-form") -> "true") {
 
         @errorSummary(form)
 

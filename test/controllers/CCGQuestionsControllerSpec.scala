@@ -86,10 +86,11 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
             "treatedProfessionally"        -> answers.treatedProfessionally.map(_.toString),
             "whyGiveAnswer"                -> answers.whyGiveAnswer,
             "supportFutureTax"             -> answers.supportFutureTaxQuestion.map(_.toString)
-          )
+          ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
           val request = fakeRequest
-            .withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+            .withMethod("POST")
+            .withFormUrlEncodedBody(values: _*)
             .withSession(("feedbackId", feedbackId.value))
             .withHeaders("referer" -> s"/feedback/ccg/cgg?cid=${cid.value}")
 
@@ -104,7 +105,9 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     "return a Bad Request and errors when invalid data is submitted" in {
       forAll(arbitrary[Origin]) { origin =>
         val invalidValue = "*" * 1001
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("whyGiveAnswer", invalidValue))
+        val postRequest = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(("whyGiveAnswer", invalidValue))
         val boundForm = form.bind(Map("whyGiveAnswer" -> invalidValue))
 
         val result = controller().onSubmit(origin)(postRequest)

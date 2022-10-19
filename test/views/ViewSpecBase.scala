@@ -20,7 +20,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import play.twirl.api.Html
 import base.SpecBase
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 trait ViewSpecBase extends SpecBase {
 

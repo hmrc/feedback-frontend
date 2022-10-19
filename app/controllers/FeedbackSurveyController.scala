@@ -19,21 +19,23 @@ package controllers
 import com.google.inject.Inject
 import models.Origin
 import play.api.i18n.I18nSupport
-import play.api.mvc.MessagesControllerComponents
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Result}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
-class FeedbackSurveyController @Inject()(mcc: MessagesControllerComponents)
-    extends FrontendController(mcc) with I18nSupport {
+class FeedbackSurveyController @Inject()(
+  mcc: MessagesControllerComponents
+) extends FrontendController(mcc)
+  with I18nSupport {
 
-  def feedbackRedirect(origin: String) = Action { implicit request =>
+  def feedbackRedirect(origin: String): Action[AnyContent] = Action { _ =>
     ptaRedirect(origin)
   }
 
-  def feedbackHomePageRedirect = Action { implicit request =>
+  def feedbackHomePageRedirect: Action[AnyContent] = Action { _ =>
     Redirect(routes.OtherQuestionsController.onPageLoad(Origin.fromString("feedback")))
   }
 
-  def ptaRedirect(origin: String) = {
+  def ptaRedirect(origin: String): Result = {
 
     val ptaRedirects = Seq(
       "CARBEN",
@@ -49,7 +51,8 @@ class FeedbackSurveyController @Inject()(mcc: MessagesControllerComponents)
       "TCS",
       "TCSHOME",
       "TES",
-      "TYF")
+      "TYF"
+    )
 
     if (ptaRedirects.contains(origin))
       Redirect(routes.PTAQuestionsController.onPageLoad(Origin.fromString(origin)))

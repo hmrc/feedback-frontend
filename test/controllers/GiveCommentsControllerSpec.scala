@@ -70,7 +70,9 @@ class GiveCommentsControllerSpec
 
     "redirect to the next page when valid data is submitted" in {
       forAll(arbitrary[Origin]) { origin =>
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("value", "value"))
+        val postRequest = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(("value", "value"))
         val result = controller().onSubmit(origin)(postRequest)
 
         status(result) mustBe SEE_OTHER
@@ -84,7 +86,9 @@ class GiveCommentsControllerSpec
 
         val values = Map("value" -> answer)
 
-        val request = fakeRequest.withFormUrlEncodedBody(values.toList: _*)
+        val request = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(values.toList: _*)
         controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value))).futureValue
 
         verify(mockAuditService, times(1))
@@ -95,7 +99,9 @@ class GiveCommentsControllerSpec
     "return a Bad Request and errors when invalid data is submitted" in {
       forAll(arbitrary[Origin]) { origin =>
         val invalidValue = "*" * 1001
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("value", invalidValue))
+        val postRequest = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(("value", invalidValue))
         val boundForm = form.bind(Map("value" -> invalidValue))
 
         val result = controller().onSubmit(origin)(postRequest)
