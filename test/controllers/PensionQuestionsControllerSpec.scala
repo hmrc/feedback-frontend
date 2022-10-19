@@ -86,9 +86,11 @@ class PensionQuestionsControllerSpec
           "whyGiveScore"      -> answers.whyGiveScore,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
           "likelyToDo"        -> answers.likelyToDo.map(_.toString)
-        )
+        ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
-        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+        val request = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(values: _*)
         controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
         verify(mockAuditService, times(1))
@@ -98,7 +100,9 @@ class PensionQuestionsControllerSpec
 
     "return a Bad Request and errors when invalid data is submitted" in {
       forAll(arbitrary[Origin]) { origin =>
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
+        val postRequest = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(("ableToDo", "invalid value"))
         val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 
         val result = controller().onSubmit(origin)(postRequest)

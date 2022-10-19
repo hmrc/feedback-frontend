@@ -30,6 +30,7 @@ import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
+import play.libs.F.Tuple
 import services.AuditService
 import views.html.BtaQuestionsView
 
@@ -90,9 +91,11 @@ class BTAQuestionsControllerSpec
           "howEasyScore"      -> answers.howEasyScore.map(_.toString),
           "whyGiveScore"      -> answers.whyGiveScore,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
-        )
+        ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
-        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+        val request = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(values: _*)
         val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
         status(result) mustBe SEE_OTHER
 
@@ -103,7 +106,9 @@ class BTAQuestionsControllerSpec
 
     "return a Bad Request and errors when invalid data is submitted" in {
       forAll(arbitrary[Origin]) { origin =>
-        val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
+        val postRequest = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(("ableToDo", "invalid value"))
         val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 
         val result = controller().onSubmit(origin)(postRequest)

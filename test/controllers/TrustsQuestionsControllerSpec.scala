@@ -88,9 +88,11 @@ class TrustsQuestionsControllerSpec
           "howEasyScore"      -> answers.howEasyScore.map(_.toString),
           "whyGiveScore"      -> answers.whyGiveScore,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
-        )
+        ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
-        val request = fakeRequest.withFormUrlEncodedBody(values.mapValues(_.getOrElse("")).toList: _*)
+        val request = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(values: _*)
         val result = controller().onSubmit()(request.withSession(("feedbackId", feedbackId.value)))
         status(result) mustBe SEE_OTHER
 
@@ -100,7 +102,9 @@ class TrustsQuestionsControllerSpec
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      val postRequest = fakeRequest.withFormUrlEncodedBody(("ableToDo", "invalid value"))
+      val postRequest = fakeRequest
+        .withMethod("POST")
+        .withFormUrlEncodedBody(("ableToDo", "invalid value"))
       val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
 
       val result = controller().onSubmit()(postRequest)

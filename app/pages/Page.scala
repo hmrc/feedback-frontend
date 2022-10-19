@@ -16,8 +16,6 @@
 
 package pages
 
-import scala.language.implicitConversions
-
 trait Page
 
 case object GenericQuestionsPage extends Page

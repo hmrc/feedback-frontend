@@ -40,7 +40,7 @@
     title = s"${errorPrefix(form)} ${messages("otherQuestions.title")}",
     bodyClasses = None) {
 
-    @formHelper(action = action, 'autoComplete -> "off") {
+    @formHelper(action = action, Symbol("autoComplete") -> "off") {
 
         @errorSummary(form)
 
