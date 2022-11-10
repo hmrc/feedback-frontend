@@ -1,0 +1,52 @@
+@*
+* Copyright 2022 HM Revenue & Customs
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import config.FrontendAppConfig
+
+
+
+@import models.{YesNo, HowDoYouFeelQuestion, HowEasyQuestion}
+
+
+
+@import views.ViewUtils._
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+
+@this(
+mainTemplate: MainTemplate,
+formHelper: FormWithCSRF,
+h1: components.H1,
+p: components.P,
+inputRadio: components.InputRadio,
+inputRadioDynamic: components.InputRadioDynamic,
+inputTextArea: components.InputTextArea,
+govukInput: GovukInput,
+button: components.Button,
+errorSummary:  components.ErrorSummary
+)
+
+@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
+
+@privacyPolicyLink = {
+<a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("complaintFeedbackQuestions.introLinkText")</a>
+}
+
+@mainTemplate(
+title = s"${errorPrefix(form)} ${messages("complaintFeedbackQuestions.title")}",
+bodyClasses = None) {
+
+
+}

@@ -33,6 +33,9 @@ POST       /:origin/give-reason                         controllers.GiveReasonCo
 GET        /:origin/give-comments                       controllers.GiveCommentsController.onPageLoad(origin: models.Origin)
 POST       /:origin/give-comments                       controllers.GiveCommentsController.onSubmit(origin: models.Origin)
 
+GET        /:origin/complaint-handling-feedback         controllers.ComplaintFeedbackQuestionsController.onPageLoad(origin: models.Origin)
+POST       /:origin/complaint-handling-feedback         controllers.ComplaintFeedbackQuestionsController.onPageSubmit(origin: models.Origin)
+
 GET        /:origin/thank-you                           controllers.ThankYouController.onPageLoadWithOrigin(origin: models.Origin)
 GET        /thank-you                                   controllers.ThankYouController.onPageLoad()
 GET        /thank-you-pension                           controllers.ThankYouController.onPageLoadPension()

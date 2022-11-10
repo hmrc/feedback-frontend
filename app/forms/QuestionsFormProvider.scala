@@ -159,3 +159,21 @@ class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
       )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
     )
 }
+
+class ComplaintFeedbackQuestionsFormProvider @Inject() extends Mappings {
+
+  private val maxFieldSizeWhyGiveScore = 1000
+
+
+  //TODO: Errors are not required as the radio questions are optional...
+
+  def apply(): Form[ComplaintFeedbackQuestions] =
+    Form(
+      mapping(
+        "complaintHandledFairly"    -> optional(enumerable[YesNo](invalidKey = "complaintHandledFairly.error")),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
+        "whyGiveScore" -> optional(text("whyGiveScore.error.required")
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
+      )(ComplaintFeedbackQuestions.apply)(ComplaintFeedbackQuestions.unapply))
+}
