@@ -18,8 +18,9 @@ package controllers
 
 import config.FrontendAppConfig
 import forms.ComplaintFeedbackQuestionsFormProvider
-import models.{ComplaintFeedbackQuestions, Origin}
+import models.{ComplaintFeedbackQuestions, FeedbackId, Origin}
 import navigation.Navigator
+import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
 import play.api.mvc.MessagesControllerComponents
@@ -31,8 +32,8 @@ import javax.inject.Inject
 
 class ComplaintFeedbackQuestionsController @Inject()(
                                                       appConfig: FrontendAppConfig,
-                                                      formProvider: ComplaintFeedbackQuestionsFormProvider,
                                                       navigator: Navigator,
+                                                      formProvider: ComplaintFeedbackQuestionsFormProvider,
                                                       auditService: AuditService,
                                                       mcc: MessagesControllerComponents,
                                                       complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView
@@ -41,8 +42,22 @@ class ComplaintFeedbackQuestionsController @Inject()(
 
   val form: Form[ComplaintFeedbackQuestions] = formProvider()
 
-  def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.ComplaintFeedbackQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin) = Action { implicit request =>
-    Ok(ComplaintFeedbackQuestionsView(appConfig, form, submitCall(origin)))
+    Ok(complaintFeedbackQuestionsView(appConfig, form, submitCall(origin)))
+  }
+
+  def onSubmit(origin: Origin) = Action { implicit request =>
+    form
+      .bindFromRequest()
+      .fold(
+        formWithErrors => BadRequest(complaintFeedbackQuestionsView(appConfig, formWithErrors, submitCall(origin))),
+        value => {
+          auditService.complaintFeedbackAudit(origin, FeedbackId.fromSession, value)
+          //TODO: this needs to be the thankYou page???
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
+        }
+      )
+  }
 }
