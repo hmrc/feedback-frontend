@@ -15,37 +15,82 @@
  *@
 
 @import config.FrontendAppConfig
-
-
-
 @import models.{YesNo, HowDoYouFeelQuestion, HowEasyQuestion}
-
-
-
 @import views.ViewUtils._
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 
 @this(
-mainTemplate: MainTemplate,
-formHelper: FormWithCSRF,
-h1: components.H1,
-p: components.P,
-inputRadio: components.InputRadio,
-inputRadioDynamic: components.InputRadioDynamic,
-inputTextArea: components.InputTextArea,
-govukInput: GovukInput,
-button: components.Button,
-errorSummary:  components.ErrorSummary
+    mainTemplate: MainTemplate,
+    formHelper: FormWithCSRF,
+    h1: components.H1,
+    p: components.P,
+    inputRadio: components.InputRadio,
+    inputRadioDynamic: components.InputRadioDynamic,
+    inputTextArea: components.InputTextArea,
+    govukInput: GovukInput,
+    button: components.Button,
+    errorSummary:  components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
 @privacyPolicyLink = {
-<a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("complaintFeedbackQuestions.introLinkText")</a>
+  <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("complaintFeedbackQuestions.introLinkText")</a>
 }
 
 @mainTemplate(
-title = s"${errorPrefix(form)} ${messages("complaintFeedbackQuestions.title")}",
-bodyClasses = None) {
+    title = s"${errorPrefix(form)} ${messages("complaintFeedbackQuestions.title")}",
+    bodyClasses = None) {
 
+    @formHelper(action = action, Symbol("autoComplete") -> "off", Symbol("data-dynamic-form") -> "true") {
+
+        @errorSummary(form)
+
+        @h1("complaintFeedbackQuestions.heading")
+
+        @p(Html(messages("complaintFeedbackQuestions.intro1")))
+
+        @p(Html(messages("complaintFeedbackQuestions.intro2", privacyPolicyLink)))
+
+        @p(Html(messages("complaintFeedbackQuestions.intro3")))
+
+        @inputRadioDynamic(
+            form = form,
+            legend = messages("complaintFeedbackQuestions.complaintHandledFairly.heading"),
+            items = YesNo.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "complaintHandledFairly",
+            legendAsHeading = false
+            )
+
+        @inputRadio(
+            form = form,
+            legend = messages("complaintFeedbackQuestions.howEasyScore.heading"),
+            items = HowEasyQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "howEasyScore",
+            legendAsHeading = false
+        )
+
+        @inputTextArea(
+            form = form,
+            id = "whyGiveScore",
+            name = "whyGiveScore",
+            label = messages("complaintFeedbackQuestions.whyGiveScore.heading"),
+            labelClass = "govuk-label--m",
+            isPageHeading = false,
+            maxCharacters = Some(1000)
+        )
+
+        @inputRadio(
+            form = form,
+            legend = messages("complaintFeedbackQuestions.howDoYouFeelScore.heading"),
+            items = HowDoYouFeelQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "howDoYouFeelScore",
+            legendAsHeading = false
+        )
+
+        @button(messages("site.continue"))
+    }
 }
