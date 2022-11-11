@@ -288,6 +288,7 @@ complaintFeedbackQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor
 complaintFeedbackQuestions.complaintHandledFairly.heading = A wnaeth CThEF ddelio â’ch cwyn mewn ffordd deg?
 complaintFeedbackQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i chi ddeall beth oedd yn digwydd yn ystod y broses o ymdrin â’ch cwyn?
 complaintFeedbackQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+complaintFeedbackQuestions.whyGiveScore.hint.text = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I’w ddeall yn well, efallai y byddwn yn cysylltu’ch adborth â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 complaintFeedbackQuestions.howDoYouFeelScore.heading = Yn gyffredinol, pa mor fodlon ydych ar broses CThEF o ddelio â chŵynion?
 
 thankYou.pension.title = Diolch am eich adborth

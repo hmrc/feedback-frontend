@@ -287,6 +287,7 @@ complaintFeedbackQuestions.intro3 = The survey takes about 1 minute to complete.
 complaintFeedbackQuestions.complaintHandledFairly.heading = Did HMRC handle your complaint fairly?
 complaintFeedbackQuestions.howEasyScore.heading = How easy was it for you to understand what was happening during the handling of your complaint?
 complaintFeedbackQuestions.whyGiveScore.heading = Why did you give this score?
+complaintFeedbackQuestions.whyGiveScore.hint.text = Please comment on any part of the complaints process, from registering your complaint until it closed. Do not give any personal details like your contact information, National Insurance number, tax reference number or bank details
 complaintFeedbackQuestions.howDoYouFeelScore.heading = Overall, how satisfied were you with the HMRC complaints handling process?
 
 thankYou.pension.title = Thank you for your feedback
