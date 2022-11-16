@@ -227,7 +227,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def complaintFeedbackAudit(origin: Origin, feedbackId: FeedbackId, questions: ComplaintFeedbackQuestions)(
+  def complaintFeedbackAudit(origin: Origin, feedbackId: FeedbackId, questions: ComplaintFeedbackQuestions, cid: Cid)(
     implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (

@@ -18,7 +18,7 @@ package controllers
 
 import config.FrontendAppConfig
 import forms.ComplaintFeedbackQuestionsFormProvider
-import models.{ComplaintFeedbackQuestions, FeedbackId, Origin}
+import models.{Cid, ComplaintFeedbackQuestions, FeedbackId, Origin}
 import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
@@ -54,8 +54,7 @@ class ComplaintFeedbackQuestionsController @Inject()(
       .fold(
         formWithErrors => BadRequest(complaintFeedbackQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
-          auditService.complaintFeedbackAudit(origin, FeedbackId.fromSession, value)
-          //TODO: this needs to be the thankYou page(without origin)???
+          auditService.complaintFeedbackAudit(origin, FeedbackId.fromSession, value, Cid.fromUrl)
           Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
         }
       )
