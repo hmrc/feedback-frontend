@@ -97,8 +97,6 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
           val result = controller().onSubmit(origin)(request)
           status(result) mustBe SEE_OTHER
 
-          println(s"\n\n\n\n\n FULL REQUEST  ${request.headers.get("referer")} FULL REQUEST\n\n\n\n\n\n\n\n")
-
           verify(mockAuditService, times(1))
             .ccgAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers), eqTo(cid))(any())
       }

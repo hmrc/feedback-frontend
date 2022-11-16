@@ -164,9 +164,6 @@ class ComplaintFeedbackQuestionsFormProvider @Inject() extends Mappings {
 
   private val maxFieldSizeWhyGiveScore = 1000
 
-
-  //TODO: Errors are not required as the radio questions are optional...
-
   def apply(): Form[ComplaintFeedbackQuestions] =
     Form(
       mapping(
