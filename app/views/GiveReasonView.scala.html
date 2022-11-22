@@ -19,13 +19,14 @@
 @import models.GiveReason
 @import views.ViewUtils._
 @import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.hmrcfrontend.views.html.components.CharacterCount
 
 @this(
     mainTemplate: MainTemplate,
     formHelper: FormWithCSRF,
     h1: components.H1,
     inputRadioDynamic: components.InputRadioDynamic,
-    govukInput: GovukInput,
+    hmrcCharacterCount: HmrcCharacterCount,
     button: components.Button,
     errorSummary:  components.ErrorSummary
 )
@@ -47,14 +48,14 @@
             classes = "govuk-fieldset__legend--xl",
             name = "value",
             conditionalHtml = Some(
-                    govukInput(Input(
+                hmrcCharacterCount(CharacterCount(
                     id = "reason",
                     name = "reason",
+                    maxLength = Some(100),
                     value = form("reason").value,
                     label = Label(content = Text(messages("giveReason.other.reason.label"))),
-                    hint = Some(Hint(content = Text(messages("generic.max-characters", 100)))),
-                    errorMessage = form("reason").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*)))),
-                    classes = "govuk-!-width-one-third"))
+                    errorMessage = form("reason").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*))))
+                    ))
             )
         )
 
