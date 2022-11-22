@@ -29,7 +29,7 @@ The endpoints are:
 | Give Reason   | /feedback/SERVICE_NAME/give-reason   | http://localhost:9514/feedback/SERVICE_NAME/give-reason   |
 | Give Comments | /feedback/SERVICE_NAME/give-comments | http://localhost:9514/feedback/SERVICE_NAME/give-comments |
 | Beta          | /feedback/SERVICE_NAME/beta          | http://localhost:9514/feedback/SERVICE_NAME/beta          | 
-| Complaints    | /feedback/SERVICE_NAME/com           | http://localhost:9514/feedback/SERVICE_NAME/com           |
+| Complaints    | /feedback/com/SERVICE_NAME           | http://localhost:9514/feedback/SERVICE_NAME/com           |
 | Generic       | /feedback/SERVICE_NAME               | http://localhost:9514/feedback/SERVICE_NAME               |
 
 Replace `SERVICE_NAME` with the identifier for your service.
