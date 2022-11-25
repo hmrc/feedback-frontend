@@ -75,4 +75,11 @@ case class NmwCcgQuestions(
   supportFutureNmw: Option[SupportFutureQuestion]
 )
 
+case class ComplaintFeedbackQuestions(
+   complaintHandledFairly: Option[YesNo],
+   howEasyScore: Option[HowEasyQuestion],
+   whyGiveScore: Option[String],
+   howDoYouFeelScore: Option[HowDoYouFeelQuestion]
+)
+
 case class GiveReasonQuestions(value: Option[GiveReason], reason: Option[String])

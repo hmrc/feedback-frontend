@@ -3,7 +3,7 @@
 
 Services can integrate with Feedback frontend by navigating the URL with a unique name for your service for the survey you need.
 
-Currently there are 10 surveys, these are for:
+Currently there are 11 surveys, these are for:
 * Personal Tax Account (PTA)
 * Business Tax Account (BTA)
 * Trusts
@@ -13,6 +13,7 @@ Currently there are 10 surveys, these are for:
 * Give Reason
 * Give Comments
 * Beta
+* Complaints
 * and a generic survey. Each service will be responsible for choosing which survey applies to them.
 
 The endpoints are:
@@ -28,7 +29,8 @@ The endpoints are:
 | Give Reason   | /feedback/SERVICE_NAME/give-reason   | http://localhost:9514/feedback/SERVICE_NAME/give-reason   |
 | Give Comments | /feedback/SERVICE_NAME/give-comments | http://localhost:9514/feedback/SERVICE_NAME/give-comments |
 | Beta          | /feedback/SERVICE_NAME/beta          | http://localhost:9514/feedback/SERVICE_NAME/beta          | 
- | Generic       | /feedback/SERVICE_NAME               | http://localhost:9514/feedback/SERVICE_NAME               |
+| Complaints    | /feedback/com/SERVICE_NAME           | http://localhost:9514/feedback/SERVICE_NAME/com           |
+| Generic       | /feedback/SERVICE_NAME               | http://localhost:9514/feedback/SERVICE_NAME               |
 
 Replace `SERVICE_NAME` with the identifier for your service.
 

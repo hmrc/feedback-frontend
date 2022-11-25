@@ -132,6 +132,7 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
           "cid"               -> cid.value
         )
 
+
         verify(auditConnector, times(1))
           .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
     }
@@ -249,6 +250,31 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
         verify(auditConnector, times(1))
           .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
+      }
+    }
+  }
+  "AuditService.complaintFeedbackAudit" should {
+
+    "generate correct payload for complaintFeedback questions" in {
+
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[ComplaintFeedbackQuestions], arbitrary[Cid]) {
+        (origin, feedbackId, questions, cid) =>
+          reset(auditConnector)
+
+          auditService.complaintFeedbackAudit(origin, feedbackId, questions, cid)
+
+          val expected = Map(
+            "origin" -> origin.value,
+            "feedbackId" -> feedbackId.value,
+            "complaintHandledFairly" -> questions.complaintHandledFairly.map(_.value.toString).getOrElse("-"),
+            "howEasyScore" -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
+            "whyGiveScore" -> questions.whyGiveScore.getOrElse("-"),
+            "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
+            "cid" -> cid.value
+          )
+
+          verify(auditConnector, times(1))
+            .sendExplicitAudit(eqTo("feedback"), eqTo(expected))(any(), any())
       }
     }
   }

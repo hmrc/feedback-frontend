@@ -63,6 +63,8 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryNmwCcgQuesions: Arbitrary[NmwCcgQuestions] = Arbitrary(nmwCcgQuestionsGen)
 
+  implicit lazy val arbitraryComplaintFeedbackQuestions: Arbitrary[ComplaintFeedbackQuestions] = Arbitrary(complaintFeedbackQuestionsGen)
+
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
       value  <- option(arbitrary[GiveReason])
@@ -144,6 +146,16 @@ trait ModelGenerators {
         whyAnswer,
         supportFutureTax
       )
+
+  lazy val complaintFeedbackQuestionsGen: Gen[ComplaintFeedbackQuestions] =
+    for {
+      complaintHandledFairly <- option(yesNoGen)
+      howEasy          <- option(howEasyQuestionGen)
+      whyScore         <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howFeel          <- option(howDoYouFeelQuestionGen)
+    } yield {
+      ComplaintFeedbackQuestions(complaintHandledFairly, howEasy, whyScore, howFeel)
+    }
 
   lazy val nmwCcgQuestionsGen: Gen[NmwCcgQuestions] =
     for {
