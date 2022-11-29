@@ -55,7 +55,7 @@ class ComplaintFeedbackQuestionsController @Inject()(
         formWithErrors => BadRequest(complaintFeedbackQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.complaintFeedbackAudit(origin, FeedbackId.fromSession, value, Cid.fromUrl)
-          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
+          Redirect(navigator.nextPage(GenericQuestionsPage)(()))
         }
       )
   }
