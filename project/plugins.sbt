@@ -19,4 +19,4 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-digest" % "1.1.4")
 
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.6")
 
-addSbtPlugin("uk.gov.hmrc" % "sbt-accessibility-linter" % "0.28.0")
+addSbtPlugin("uk.gov.hmrc" % "sbt-accessibility-linter" % "0.32.0")
