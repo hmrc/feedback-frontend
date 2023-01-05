@@ -32,12 +32,12 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryOrigin: Arbitrary[Origin] =
     Arbitrary {
-      arbitrary[String].map(Origin.fromString)
+      alphaNumStr.suchThat(_.nonEmpty).map(Origin.fromString)
     }
 
   implicit def arbitraryFeedbackId: Arbitrary[FeedbackId] =
     Arbitrary {
-      asciiStr.map { s =>
+      alphaNumStr.suchThat(_.nonEmpty).map { s =>
         FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> s))
       }
     }
@@ -68,7 +68,7 @@ trait ModelGenerators {
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
       value  <- option(arbitrary[GiveReason])
-      reason <- option(arbitrary[String].suchThat(_.nonEmpty))
+      reason <- option(Gen.alphaNumStr.suchThat(_.length < 100).suchThat(_.nonEmpty).map(s => s.trim))
     } yield {
       GiveReasonQuestions(value, reason)
     }
@@ -78,7 +78,7 @@ trait ModelGenerators {
     for {
       ableToDo <- option(ableToDoGen)
       howEasy  <- option(howEasyQuestionGen)
-      whyScore <- option(arbitrary[String].suchThat(_.nonEmpty))
+      whyScore <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       howFeel  <- option(howDoYouFeelQuestionGen)
     } yield {
       OtherQuestions(ableToDo, howEasy, whyScore, howFeel)
@@ -86,10 +86,10 @@ trait ModelGenerators {
 
   lazy val ptaQuestionsGen: Gen[PTAQuestions] =
     for {
-      neededToDo <- option(arbitrary[String].suchThat(_.nonEmpty))
+      neededToDo <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       ableToDo   <- option(ableToDoGen)
       howEasy    <- option(howEasyQuestionGen)
-      whyScore   <- option(arbitrary[String].suchThat(_.nonEmpty))
+      whyScore   <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       howFeel    <- option(howDoYouFeelQuestionGen)
     } yield {
       PTAQuestions(neededToDo, ableToDo, howEasy, whyScore, howFeel)
@@ -98,10 +98,10 @@ trait ModelGenerators {
   lazy val btaQuestionsGen: Gen[BTAQuestions] =
     for {
       mainService      <- option(mainServiceQuestionGen)
-      mainServiceOther <- option(arbitrary[String].suchThat(_.nonEmpty))
+      mainServiceOther <- option(Gen.alphaNumStr.suchThat(_.length < 100).suchThat(_.nonEmpty).map(s => s.trim))
       ableToDo         <- option(ableToDoGen)
       howEasy          <- option(howEasyQuestionGen)
-      whyScore         <- option(arbitrary[String].suchThat(_.nonEmpty))
+      whyScore         <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       howFeel          <- option(howDoYouFeelQuestionGen)
     } yield {
       BTAQuestions(mainService, mainServiceOther, ableToDo, howEasy, whyScore, howFeel)
@@ -111,11 +111,11 @@ trait ModelGenerators {
     for {
       isAgent         <- option(yesNoGen)
       tryingToDo      <- option(tryingToDoQuestionGen)
-      tryingToDoOther <- option(arbitrary[String].suchThat(_.nonEmpty))
+      tryingToDoOther <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).suchThat(_.length < 100).map(s => s.trim))
       ableToDo        <- option(ableToDoGen)
-      whyNotAbleToDo  <- option(arbitrary[String].suchThat(_.nonEmpty))
+      whyNotAbleToDo  <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       howEasy         <- option(howEasyQuestionGen)
-      whyScore        <- option(arbitrary[String].suchThat(_.nonEmpty))
+      whyScore        <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       howFeel         <- option(howDoYouFeelQuestionGen)
     } yield {
       TrustsQuestions(isAgent, tryingToDo, tryingToDoOther, ableToDo, whyNotAbleToDo, howEasy, whyScore, howFeel)
@@ -125,7 +125,7 @@ trait ModelGenerators {
     for {
       ableToDo   <- option(ableToDoGen)
       howEasy    <- option(howEasyQuestionGen)
-      whyScore   <- option(arbitrary[String].suchThat(_.nonEmpty))
+      whyScore   <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       howFeel    <- option(howDoYouFeelQuestionGen)
       likelyToDo <- option(likelyToDoQuestionGen)
     } yield {
@@ -136,7 +136,7 @@ trait ModelGenerators {
     for {
       complianceCheckUnderstanding <- option(checkUnderstandingGen)
       treatedProfessionally        <- option(treatedProfessionallyGen)
-      whyAnswer                    <- option(arbitrary[String].suchThat(_.nonEmpty))
+      whyAnswer                    <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       supportFutureTax             <- option(supportFutureGen)
 
     } yield
@@ -151,7 +151,7 @@ trait ModelGenerators {
     for {
       complaintHandledFairly <- option(yesNoGen)
       howEasy          <- option(howEasyQuestionGen)
-      whyScore         <- option(arbitrary[String].suchThat(_.nonEmpty))
+      whyScore         <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       howFeel          <- option(howDoYouFeelQuestionGen)
     } yield {
       ComplaintFeedbackQuestions(complaintHandledFairly, howEasy, whyScore, howFeel)
@@ -161,7 +161,7 @@ trait ModelGenerators {
     for {
       treatedProfessionally <- option(treatedProfessionallyGen)
       checkUnderstanding    <- option(checkUnderstandingGen)
-      whyGiveAnswer         <- option(arbitrary[String].suchThat(_.nonEmpty))
+      whyGiveAnswer         <- option(Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim))
       supportFutureNmw      <- option(supportFutureGen)
 
     } yield

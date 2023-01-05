@@ -24,6 +24,7 @@ import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
+import org.scalacheck.Gen
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
@@ -81,7 +82,7 @@ class GiveCommentsControllerSpec
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[String]) { (origin, feedbackId, answer) =>
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], Gen.alphaNumStr.suchThat(_.nonEmpty).map(s => s.trim)) { (origin, feedbackId, answer) =>
         reset(mockAuditService)
 
         val values = Map("value" -> answer)
