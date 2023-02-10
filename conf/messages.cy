@@ -279,6 +279,18 @@ businessFuturePlans.WePlanToReduceOurOpeningHoursButContinueToTrade = Rydym yn b
 businessFuturePlans.WePlanToContinueWithTheSameOpeningHours = Rydym yn bwriadu parhau gyda’r un oriau agor
 businessFuturePlans.WePlanToIncreaseOurOpeningHoursOrOpenMoreEstablishments = Rydym yn bwriadu cynyddu ein horiau agor, neu agor rhagor o sefydliadau
 
+complaintFeedbackQuestions.title = Adborth - GOV.UK
+complaintFeedbackQuestions.heading = Adborth
+complaintFeedbackQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I’w ddeall yn well, efallai y byddwn yn cysylltu’ch adborth â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+complaintFeedbackQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+complaintFeedbackQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w gwblhau. Mae 4 cwestiwn ac maent i gyd yn ddewisol.
+complaintFeedbackQuestions.introLinkText = Hysbysiad Preifatrwydd CThEF (yn agor tab newydd)
+complaintFeedbackQuestions.complaintHandledFairly.heading = A wnaeth CThEF ddelio â’ch cwyn mewn ffordd deg?
+complaintFeedbackQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i chi ddeall beth oedd yn digwydd yn ystod y broses o ymdrin â’ch cwyn?
+complaintFeedbackQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+complaintFeedbackQuestions.whyGiveScore.hint.text = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I’w ddeall yn well, efallai y byddwn yn cysylltu’ch adborth â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+complaintFeedbackQuestions.howDoYouFeelScore.heading = Yn gyffredinol, pa mor fodlon ydych ar broses CThEF o ddelio â chŵynion?
+
 thankYou.pension.title = Diolch am eich adborth
 thankYou.pension.heading = Diolch am eich adborth
 thankYou.pension.intro = Byddwn yn defnyddio’ch adborth i wella ein gwasanaethau.

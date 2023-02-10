@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -87,6 +87,9 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
   def withCid(cid: Cid): MapCont =
     _ + ("cid" -> cid.value)
+
+  def withComplaintHandledFairly(complaintHandledFairly: Option[YesNo]): MapCont =
+    _ + ("complaintHandledFairly" -> complaintHandledFairly.map(_.value.toString).getOrElse("-"))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {
 
@@ -220,6 +223,22 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhyGiveAnswer(questions.whyGiveAnswer) andThen
         withSupportFuture(questions.supportFutureNmw)
     )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
+
+  def complaintFeedbackAudit(origin: Origin, feedbackId: FeedbackId, questions: ComplaintFeedbackQuestions, cid: Cid)(
+    implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+        withFeedbackId(feedbackId) andThen
+        withComplaintHandledFairly(questions.complaintHandledFairly) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore) andThen
+        withCid(cid)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }

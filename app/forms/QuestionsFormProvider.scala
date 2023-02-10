@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -158,4 +158,19 @@ class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
         "supportFutureNmw" -> optional(enumerable[SupportFutureQuestion](invalidKey = "supportFutureQuestion.error"))
       )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
     )
+}
+
+class ComplaintFeedbackQuestionsFormProvider @Inject() extends Mappings {
+
+  private val maxFieldSizeWhyGiveScore = 1000
+
+  def apply(): Form[ComplaintFeedbackQuestions] =
+    Form(
+      mapping(
+        "complaintHandledFairly"    -> optional(enumerable[YesNo](invalidKey = "complaintHandledFairly.error")),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
+        "whyGiveScore" -> optional(text("whyGiveScore.error.required")
+          .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
+      )(ComplaintFeedbackQuestions.apply)(ComplaintFeedbackQuestions.unapply))
 }

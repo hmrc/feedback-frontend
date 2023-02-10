@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,6 +62,8 @@ trait ModelGenerators {
   implicit lazy val arbitraryCcgQuesions: Arbitrary[CCGQuestions] = Arbitrary(ccgQuestionsGen)
 
   implicit lazy val arbitraryNmwCcgQuesions: Arbitrary[NmwCcgQuestions] = Arbitrary(nmwCcgQuestionsGen)
+
+  implicit lazy val arbitraryComplaintFeedbackQuestions: Arbitrary[ComplaintFeedbackQuestions] = Arbitrary(complaintFeedbackQuestionsGen)
 
   implicit lazy val arbitraryGiveReasonQuestions: Arbitrary[GiveReasonQuestions] = Arbitrary {
     for {
@@ -144,6 +146,16 @@ trait ModelGenerators {
         whyAnswer,
         supportFutureTax
       )
+
+  lazy val complaintFeedbackQuestionsGen: Gen[ComplaintFeedbackQuestions] =
+    for {
+      complaintHandledFairly <- option(yesNoGen)
+      howEasy          <- option(howEasyQuestionGen)
+      whyScore         <- option(arbitrary[String].suchThat(_.nonEmpty))
+      howFeel          <- option(howDoYouFeelQuestionGen)
+    } yield {
+      ComplaintFeedbackQuestions(complaintHandledFairly, howEasy, whyScore, howFeel)
+    }
 
   lazy val nmwCcgQuestionsGen: Gen[NmwCcgQuestions] =
     for {

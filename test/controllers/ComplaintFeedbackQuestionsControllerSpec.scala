@@ -17,50 +17,47 @@
 package controllers
 
 import base.SpecBase
-import forms.BTAQuestionsFormProvider
+import forms.ComplaintFeedbackQuestionsFormProvider
 import generators.ModelGenerators
-import models.{BTAQuestions, FeedbackId, Origin}
+import models.{Cid, ComplaintFeedbackQuestions, FeedbackId, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
-import org.scalatest.concurrent.ScalaFutures
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
-import play.libs.F.Tuple
 import services.AuditService
-import views.html.BtaQuestionsView
+import views.html.ComplaintFeedbackQuestionsView
 
-class BTAQuestionsControllerSpec
-    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
+class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
-  val formProvider = new BTAQuestionsFormProvider()
+  val formProvider = new ComplaintFeedbackQuestionsFormProvider()
   val form = formProvider()
   lazy val mockAuditService = mock[AuditService]
 
-  def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin) = routes.ComplaintFeedbackQuestionsController.onSubmit(origin)
 
-  lazy val btaQuestionsView = inject[BtaQuestionsView]
+  lazy val complaintFeedbackQuestionsView = inject[ComplaintFeedbackQuestionsView]
 
   def controller() =
-    new BTAQuestionsController(
+    new ComplaintFeedbackQuestionsController(
       frontendAppConfig,
       new FakeNavigator(onwardRoute),
       formProvider,
       mockAuditService,
       mcc,
-      btaQuestionsView
+      complaintFeedbackQuestionsView
     )
 
   def viewAsString(form: Form[_] = form, action: Call) =
-    btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
+    complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
-  "BTAQuestions Controller" must {
+  "ComplaintFeedbackQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
       forAll(arbitrary[Origin]) { origin =>
@@ -81,35 +78,37 @@ class BTAQuestionsControllerSpec
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[BTAQuestions]) { (origin, feedbackId, answers) =>
-        reset(mockAuditService)
+      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[ComplaintFeedbackQuestions], arbitrary[Cid]) {
+        (origin, feedbackId, answers, cid) =>
+          reset(mockAuditService)
 
-        val values = Map(
-          "mainService"       -> answers.mainService.map(_.toString),
-          "mainServiceOther"  -> answers.mainServiceOther.map(_.toString),
-          "ableToDo"          -> answers.ableToDo.map(_.toString),
-          "howEasyScore"      -> answers.howEasyScore.map(_.toString),
-          "whyGiveScore"      -> answers.whyGiveScore,
-          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
-        ).map(value => (value._1, value._2.getOrElse(""))).toSeq
+          val values = Map(
+            "complaintHandledFairly" -> answers.complaintHandledFairly.map(_.toString),
+            "howEasyScore" -> answers.howEasyScore.map(_.toString),
+            "whyGiveScore" -> answers.whyGiveScore,
+            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
+          ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
-        val request = fakeRequest
-          .withMethod("POST")
-          .withFormUrlEncodedBody(values: _*)
-        val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
-        status(result) mustBe SEE_OTHER
+          val request = fakeRequest
+            .withMethod("POST")
+            .withFormUrlEncodedBody(values: _*)
+            .withHeaders("referer" -> s"/feedback/com/com?cid=${cid.value}")
 
-        verify(mockAuditService, times(1))
-          .btaAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+          val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+          status(result) mustBe SEE_OTHER
+
+          verify(mockAuditService, times(1))
+            .complaintFeedbackAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers), eqTo(cid))(any())
       }
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
       forAll(arbitrary[Origin]) { origin =>
+        val invalidValue = "*" * 1001
         val postRequest = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(("ableToDo", "invalid value"))
-        val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
+          .withFormUrlEncodedBody(("whyGiveScore", invalidValue))
+        val boundForm = form.bind(Map("whyGiveScore" -> invalidValue))
 
         val result = controller().onSubmit(origin)(postRequest)
 
