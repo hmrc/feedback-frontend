@@ -24,6 +24,7 @@ import navigation.FakeNavigator
 import org.mockito.Matchers.{any, eq => eqTo}
 import org.mockito.Mockito.{reset, times, verify}
 import org.scalacheck.Arbitrary.arbitrary
+import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
@@ -58,7 +59,8 @@ class NmwCcgQuestionsControllerSpec
 
     "return OK and the correct view for a GET" in {
 
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val result = controller.onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -69,7 +71,8 @@ class NmwCcgQuestionsControllerSpec
 
   "redirect to the next page when valid data is submitted" in {
 
-    forAll(arbitrary[Origin]) { origin =>
+    forAll(Gen.alphaStr) { str =>
+      val origin = Origin.fromString(str)
       val result = controller.onSubmit(origin)(fakeRequest)
 
       status(result) mustBe SEE_OTHER
@@ -79,10 +82,10 @@ class NmwCcgQuestionsControllerSpec
   }
 
   "audit response on success" in {
-    forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[NmwCcgQuestions]) {
-      (origin, feedbackId, answers) =>
+    forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[NmwCcgQuestions]) {
+      (originStr, feedbackId, answers) =>
         reset(mockAuditService)
-
+        val origin = Origin.fromString(originStr)
         val values = Map(
           "treatedProfessionally" -> answers.treatedProfessionally.map(_.toString),
           "checkUnderstanding"    -> answers.checkUnderstanding.map(_.toString),
@@ -102,7 +105,8 @@ class NmwCcgQuestionsControllerSpec
   }
 
   "return a Bad Request and errors when invalid data is submitted" in {
-    forAll(arbitrary[Origin]) { origin =>
+    forAll(Gen.alphaStr) { str =>
+      val origin = Origin.fromString(str)
       val invalidValue = "*" * 1001
       val postRequest = fakeRequest
         .withMethod("POST")

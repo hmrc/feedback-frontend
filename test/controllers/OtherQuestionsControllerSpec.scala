@@ -24,6 +24,7 @@ import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
+import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
@@ -59,7 +60,8 @@ class OtherQuestionsControllerSpec
   "OtherQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -68,7 +70,8 @@ class OtherQuestionsControllerSpec
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -77,10 +80,10 @@ class OtherQuestionsControllerSpec
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions], arbitrary[Cid]) {
-        (origin, feedbackId, answers, cid) =>
+      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[OtherQuestions], arbitrary[Cid]) {
+        (originStr, feedbackId, answers, cid) =>
           reset(mockAuditService)
-
+          val origin = Origin.fromString(originStr)
           val values = Map(
             "ableToDo"          -> answers.ableToDo.map(_.toString),
             "howEasyScore"      -> answers.howEasyScore.map(_.toString),
@@ -102,7 +105,8 @@ class OtherQuestionsControllerSpec
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val postRequest = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("ableToDo", "invalid value"))
