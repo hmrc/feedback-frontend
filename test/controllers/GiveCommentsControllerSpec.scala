@@ -24,6 +24,7 @@ import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
+import org.scalacheck.Gen
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
@@ -60,7 +61,8 @@ class GiveCommentsControllerSpec
   "GiveComments Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -69,7 +71,8 @@ class GiveCommentsControllerSpec
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val postRequest = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("value", "value"))
@@ -81,9 +84,9 @@ class GiveCommentsControllerSpec
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[String]) { (origin, feedbackId, answer) =>
+      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[String]) { (originStr, feedbackId, answer) =>
         reset(mockAuditService)
-
+        val origin = Origin.fromString(originStr)
         val values = Map("value" -> answer)
 
         val request = fakeRequest
@@ -97,7 +100,8 @@ class GiveCommentsControllerSpec
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val invalidValue = "*" * 1001
         val postRequest = fakeRequest
           .withMethod("POST")

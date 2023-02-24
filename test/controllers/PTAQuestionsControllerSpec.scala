@@ -24,6 +24,7 @@ import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
+import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
@@ -59,7 +60,8 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
   "PTAQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -68,7 +70,8 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -77,9 +80,9 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[PTAQuestions]) { (origin, feedbackId, answers) =>
+      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[PTAQuestions]) { (originStr, feedbackId, answers) =>
         reset(mockAuditService)
-
+        val origin = Origin.fromString(originStr)
         val values = Map(
           "neededToDo"        -> answers.neededToDo,
           "ableToDo"          -> answers.ableToDo.map(_.toString),
@@ -99,7 +102,8 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val postRequest = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("ableToDo", "invalid value"))

@@ -32,6 +32,7 @@ import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import org.mockito.Matchers.{eq => eqTo, _}
+import org.scalacheck.Gen
 
 class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
@@ -59,7 +60,8 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
   "CCGQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -68,7 +70,8 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -77,10 +80,10 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "audit response on success" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[CCGQuestions], arbitrary[Cid]) {
-        (origin, feedbackId, answers, cid) =>
+      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[CCGQuestions], arbitrary[Cid]) {
+        (originStr, feedbackId, answers, cid) =>
           reset(mockAuditService)
-
+          val origin = Origin.fromString(originStr)
           val values = Map(
             "complianceCheckUnderstanding" -> answers.complianceCheckUnderstanding.map(_.toString),
             "treatedProfessionally"        -> answers.treatedProfessionally.map(_.toString),
@@ -103,7 +106,8 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(arbitrary[Origin]) { origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val invalidValue = "*" * 1001
         val postRequest = fakeRequest
           .withMethod("POST")

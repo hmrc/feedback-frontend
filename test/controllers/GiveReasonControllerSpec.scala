@@ -25,6 +25,7 @@ import navigation.FakeNavigator
 import org.mockito.Matchers.{any, eq => eqTo}
 import org.mockito.Mockito.{reset, times, verify}
 import org.scalacheck.Arbitrary.arbitrary
+import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
@@ -58,7 +59,8 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
 
     "return OK and the correct view for a GET" in {
 
-      forAll { origin: Origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -68,7 +70,8 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
 
     "redirect to the next page when valid data is submitted" in {
 
-      forAll { origin: Origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val postRequest = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("value", GiveReason.options(form).head.value.get))
@@ -82,7 +85,8 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
 
     "return a Bad Request and errors when invalid data is submitted" in {
 
-      forAll { origin: Origin =>
+      forAll (Gen.alphaStr) { str =>
+        val origin = Origin.fromString(str)
         val postRequest = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("value", "invalid value"))
@@ -96,10 +100,11 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
     }
 
     "audit response on success with reasons besides Other" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[GiveReasonQuestions]) {
-        (origin, feedbackId, answers) =>
+      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[GiveReasonQuestions]) {
+        (originStr, feedbackId, answers) =>
           reset(mockAuditService)
 
+          val origin = Origin.fromString(originStr)
           val values = Map(
             "value"  -> answers.value.map(_.toString),
             "reason" -> None
@@ -116,10 +121,11 @@ class GiveReasonControllerSpec extends SpecBase with ScalaCheckPropertyChecks wi
     }
 
     "audit response on success with the reason being Other" in {
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[GiveReasonQuestions]) {
-        (origin, feedbackId, answers) =>
+      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[GiveReasonQuestions]) {
+        (originStr, feedbackId, answers) =>
           reset(mockAuditService)
 
+          val origin = Origin.fromString(originStr)
           val values = Map(
             "value"  -> Some("other"),
             "reason" -> answers.reason
