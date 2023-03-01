@@ -24,11 +24,11 @@ import views.ViewUtils
 trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
   def optionsPage(
-    createView: Form[A] => HtmlFormat.Appendable,
-    fieldName: String,
-    options: Seq[RadioItem],
-    messageKeyPrefix: String,
-    legendClass: String = "govuk-fieldset__legend--m") =
+                   createView: Form[A] => HtmlFormat.Appendable,
+                   fieldName: String,
+                   options: Seq[RadioItem],
+                   messageKeyPrefix: String,
+                   legendClass: String = "govuk-fieldset__legend--m") =
     s"behave like a page with a $fieldName radio options question" when {
       "rendered" must {
         "contain a legend for the question" in {
