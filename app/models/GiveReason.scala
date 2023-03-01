@@ -54,7 +54,7 @@ object GiveReason {
       id = Some(value.toString),
       value = Some(value.toString),
       content = Text(messages(s"$baseMessageKey.$value")),
-      checked = form.hasErrors
+      checked = form(baseMessageKey).value.contains(value.toString)
     )
   }
 
