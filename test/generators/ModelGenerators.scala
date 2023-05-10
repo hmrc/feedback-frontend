@@ -51,6 +51,8 @@ trait ModelGenerators {
 
   implicit lazy val arbitraryOtherQuestions: Arbitrary[OtherQuestions] = Arbitrary(otherQuestionsGen)
 
+  implicit lazy val arbitraryNinoQuestions: Arbitrary[NinoQuestions] = Arbitrary(ninoQuestionsGen)
+
   implicit lazy val arbitraryPTAQuestions: Arbitrary[PTAQuestions] = Arbitrary(ptaQuestionsGen)
 
   implicit lazy val arbitraryBTAQuestions: Arbitrary[BTAQuestions] = Arbitrary(btaQuestionsGen)
@@ -82,6 +84,19 @@ trait ModelGenerators {
       howFeel  <- option(howDoYouFeelQuestionGen)
     } yield {
       OtherQuestions(ableToDo, howEasy, whyScore, howFeel)
+    }
+
+  lazy val ninoQuestionsGen: Gen[NinoQuestions] =
+    for {
+      ableToDo <- option(ableToDoGen)
+      howEasy <- option(howEasyQuestionGen)
+      whyScore <- option(Gen.alphaStr.suchThat(_.nonEmpty))
+      howFeel <- option(howDoYouFeelQuestionGen)
+      logInToSeeNino <- option(yesNoGen)
+      didWithNino <- option(didWithNinoQuestionGen)
+      whyGiveAnswer <- option(Gen.alphaStr.suchThat(_.nonEmpty))
+    } yield {
+      NinoQuestions(ableToDo, howEasy, whyScore, howFeel, logInToSeeNino, didWithNino, whyGiveAnswer)
     }
 
   lazy val ptaQuestionsGen: Gen[PTAQuestions] =
@@ -201,6 +216,9 @@ trait ModelGenerators {
 
   lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
     oneOf(LikelyToDoQuestion.values)
+
+  lazy val didWithNinoQuestionGen: Gen[DidWithNinoQuestion] =
+    oneOf(DidWithNinoQuestion.values)
 
   implicit lazy val arbitraryCheckUnderstandingQuestionSpec: Arbitrary[CheckUnderstandingQuestion] =
     Arbitrary(checkUnderstandingGen)

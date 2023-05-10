@@ -39,6 +39,28 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
       )(OtherQuestions.apply)(OtherQuestions.unapply))
 }
 
+class NinoQuestionsFormProvider @Inject() extends Mappings {
+
+  private val maxFieldSizeWhyGiveScore = 1000
+  private val maxFieldSizeWhyGiveAnswer = 1000
+
+  def apply(): Form[NinoQuestions] =
+    Form(
+      mapping(
+        "ableToDo"     -> optional(enumerable[AbleToDo](invalidKey = "ableToDo.error")),
+        "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
+        "whyGiveScore" ->
+          optional(text("whyGiveScore.error.required")
+            .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
+        "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error")),
+        "logInToSeeNino" -> optional(enumerable[YesNo](invalidKey = "logInToSeeNino.error")),
+        "didWithNino" -> optional(enumerable[DidWithNinoQuestion](invalidKey = "didWithNino.error")),
+        "whyGiveAnswer" ->
+          optional(text("whyGiveAnswer.error.required")
+            .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength")))
+      )(NinoQuestions.apply)(NinoQuestions.unapply))
+}
+
 class PTAQuestionsFormProvider @Inject() extends Mappings {
 
   private val maxFieldSizeAbleToDo = 200

@@ -18,6 +18,9 @@ POST       /:origin/business                            controllers.BTAQuestions
 GET        /trusts                                      controllers.TrustsQuestionsController.onPageLoad()
 POST       /trusts                                      controllers.TrustsQuestionsController.onSubmit()
 
+GET        /:origin/nino                                controllers.NinoQuestionsController.onPageLoad(origin: models.Origin)
+POST       /:origin/nino                                controllers.NinoQuestionsController.onSubmit(origin: models.Origin)
+
 GET        /:origin/nmw                                 controllers.NmwCcgQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/nmw                                 controllers.NmwCcgQuestionsController.onSubmit(origin: models.Origin)
 
