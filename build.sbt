@@ -1,7 +1,7 @@
 import play.sbt.routes.RoutesKeys
 import scoverage.ScoverageKeys
 import uk.gov.hmrc.DefaultBuildSettings
-import scala.sys.process._
+import scala.sys.process.*
 
 lazy val appName: String = "feedback-frontend"
 
@@ -9,9 +9,8 @@ val migrate: TaskKey[Unit] = taskKey[Unit]("Execute migrate script")
 
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtDistributablesPlugin)
-  .settings(DefaultBuildSettings.scalaSettings: _*)
-  .settings(DefaultBuildSettings.defaultSettings(): _*)
-  .settings(SbtDistributablesPlugin.publishingSettings: _*)
+  .settings(DefaultBuildSettings.scalaSettings *)
+  .settings(DefaultBuildSettings.defaultSettings() *)
   .settings(majorVersion := 0)
   .settings(migrate := "./migrate.sh".!)
   .settings(
