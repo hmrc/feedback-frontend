@@ -81,6 +81,7 @@ otherQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau
 otherQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 otherQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 4 o gwestiynau dewisol.
 otherQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
+otherQuestions.disclaimerText = Peidiwch â nodi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, eich Cyfeirnod Unigryw y Trethdalwr, eich cyfeiriad neu’ch rhif ffôn yn y blwch hwn. Sylwer – ni allwn ymateb i sylwadau’n unigol, ond mi ydym yn defnyddio’ch adborth i helpu i wella ein gwasanaethau.
 otherQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
 otherQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
 otherQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
