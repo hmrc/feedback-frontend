@@ -81,6 +81,7 @@ otherQuestions.intro1 = We use your feedback to improve our services. To better 
 otherQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
 otherQuestions.intro3 = This survey has 4 optional questions.
 otherQuestions.introLinkText = HMRC Privacy Notice (opens in new tab)
+otherQuestions.disclaimerText = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 otherQuestions.ableToDo.heading = Were you able to do what you needed to do today?
 otherQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
 otherQuestions.whyGiveScore.heading = Why did you give this score?
