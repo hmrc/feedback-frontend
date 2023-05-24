@@ -355,5 +355,5 @@ nmwCcgQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 4 o gwestiynau dewisol.
 nmwCcgQuestions.treatedProfessionally.heading=Pa mor gryf yr ydych yn cytuno neu’n anghytuno y gwnaeth CThEM eich trin yn broffesiynol yn ystod yr ymholiad ynghylch yr Isafswm Cyflog Cenedlaethol?
 nmwCcgQuestions.CheckUnderstanding.heading=Yn ystod yr ymholiad ynghylch yr Isafswm Cyflog Cenedlaethol, pa mor hawdd oedd hi i chi ddeall beth oedd yn digwydd?
 nmwCcgQuestions.whyGiveAnswer.heading =Pam gwnaethoch chi roi’r ateb hwn?
-nmwCcgQuestions.whyGiveAnswer.hint =Dylech ystyried pob rhan o’r ymholiad ynghylch yr Isafswm Cyflog Cenedlaethol. Peidiwch â rhoi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, cyfeirnod TWE neu fanylion banc.
+nmwCcgQuestions.whyGiveAnswer.hint =Peidiwch â nodi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, eich Cyfeirnod Unigryw y Trethdalwr, eich cyfeiriad neu’ch rhif ffôn yn y blwch hwn. Sylwer – ni allwn ymateb i sylwadau’n unigol, ond mi ydym yn defnyddio’ch adborth i helpu i wella ein gwasanaethau.
 nmwCcgQuestions.supportFutureNmw.heading =Yn seiliedig ar yr ymholiad hwn, pa mor hyderus ydych y bydd CThEM yn eich cynorthwyo wrth i chi fodloni’ch ymrwymiadau Isafswm Cyflog Cenedlaethol yn y dyfodol?

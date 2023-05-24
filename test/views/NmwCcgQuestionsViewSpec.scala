@@ -70,6 +70,12 @@ class NmwCcgQuestionsViewSpec
     assertContainsText(doc, expectedMessage)
   }
 
+  "contain diclaimer hint text" in {
+    val expectedMessage = messages("nmwCcgQuestions.whyGiveAnswer.hint")
+    val doc = asDocument(createView())
+    assertContainsText(doc, expectedMessage)
+  }
+
   "contain privacy anchor tag" in {
     val expectedLink = messages("nmwCcgQuestions.introLinkText")
     val doc = asDocument(createView())
