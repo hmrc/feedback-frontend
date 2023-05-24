@@ -91,7 +91,7 @@ trait Formatters {
             Right(item)
           }
           else {
-            val rawKey = key.split('[')(0)
+            val rawKey = key.split('[').head
             if (data.view.filterKeys(_.startsWith(rawKey)).size > 1) {
               Left(Seq(FormError(rawKey, invalidKey)))
             }
