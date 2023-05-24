@@ -32,7 +32,9 @@
 )(implicit messages: Messages)
 
 @govukCheckboxes(Checkboxes(
-    name = name,
+    //Square brackets have been added to name so play treats the form values as array members
+    name = name + "[]",
+    attributes = Map("id" -> name),
     fieldset = Some(Fieldset(
         legend = Some(Legend(
             content = Text(messages(legend)),

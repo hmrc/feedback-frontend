@@ -31,7 +31,7 @@ case class NinoQuestions(
   whyGiveScore: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion],
   logInToSeeNino: Option[YesNo],
-  didWithNino: Option[DidWithNinoQuestion],
+  didWithNino: Option[Seq[DidWithNinoQuestion]],
   whyGiveAnswer: Option[String]
 )
 

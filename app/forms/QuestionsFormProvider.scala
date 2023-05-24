@@ -54,7 +54,7 @@ class NinoQuestionsFormProvider @Inject() extends Mappings {
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error")),
         "logInToSeeNino" -> optional(enumerable[YesNo](invalidKey = "logInToSeeNino.error")),
-        "didWithNino" -> optional(enumerable[DidWithNinoQuestion](invalidKey = "didWithNino.error")),
+        "didWithNino" -> optional(seq(exclusiveSeqElem[DidWithNinoQuestion](invalidKey = "didWithNino.error", exclusiveOptionName = "noneOfAbove"))),
         "whyGiveAnswer" ->
           optional(text("whyGiveAnswer.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength")))

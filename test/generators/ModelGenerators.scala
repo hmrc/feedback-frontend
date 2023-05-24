@@ -217,8 +217,8 @@ trait ModelGenerators {
   lazy val likelyToDoQuestionGen: Gen[LikelyToDoQuestion] =
     oneOf(LikelyToDoQuestion.values)
 
-  lazy val didWithNinoQuestionGen: Gen[DidWithNinoQuestion] =
-    oneOf(DidWithNinoQuestion.values)
+  lazy val didWithNinoQuestionGen: Gen[Seq[DidWithNinoQuestion]] =
+    atLeastOne(DidWithNinoQuestion.values.dropRight(2)).map(s => s.toIndexedSeq)
 
   implicit lazy val arbitraryCheckUnderstandingQuestionSpec: Arbitrary[CheckUnderstandingQuestion] =
     Arbitrary(checkUnderstandingGen)

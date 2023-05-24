@@ -19,7 +19,7 @@ package controllers
 import base.SpecBase
 import forms.NinoQuestionsFormProvider
 import generators.ModelGenerators
-import models.{FeedbackId, Origin, NinoQuestions}
+import models.{FeedbackId, NinoQuestions, Origin}
 import navigation.FakeNavigator
 import org.mockito.Matchers.{eq => eqTo, _}
 import org.mockito.Mockito._
@@ -32,6 +32,8 @@ import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.NinoQuestionsView
+
+import scala.:+
 
 class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
@@ -83,14 +85,20 @@ class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks
       forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[NinoQuestions]) { (originStr, feedbackId, answers) =>
         reset(mockAuditService)
         val origin = Origin.fromString(originStr)
-        val values = Map(
+
+        // Add an indexed field for each didWithNino answer so that it is parsed as a sequence
+        val didWithNinoValues = answers.didWithNino.map(
+          _.zipWithIndex
+            .map(v => (s"didWithNino[${v._2}]", v._1.toString))
+        ).getOrElse(Seq())
+
+        val values = didWithNinoValues ++ Map(
           "ableToDo"          -> answers.ableToDo.map(_.toString),
           "howEasyScore"      -> answers.howEasyScore.map(_.toString),
           "whyGiveScore"      -> answers.whyGiveScore,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
           "logInToSeeNino"    -> answers.logInToSeeNino.map(_.toString),
-          "didWithNino"       -> answers.didWithNino.map(_.toString),
-          "whyGiveAnswer"     -> answers.whyGiveAnswer
+          "whyGiveAnswer"     -> answers.whyGiveAnswer,
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
         val request = fakeRequest

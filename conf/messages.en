@@ -62,7 +62,7 @@ complianceTreatedProfessionally.error = Select how strongly you agree or disagre
 supportFutureTax.error = Select how confident you are that HMRC will support you in meeting your future tax obligations during this compliance check
 giveReason.error = Select what you came here to do
 logInToSeeNino.error = Select if you came here to see your National Insurance number today
-didWithNino.error = Select what you did with your National Insurance number
+didWithNino.error = Select what you did with your National Insurance number, or select ‘None of the above‘
 whyNotAbleToDo.error.maxlength = If you were not able to do what you needed to do must be {0} characters or less
 
 whyGiveScore.error.maxlength = Why did you give this score must be {0} characters or less
