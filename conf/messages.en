@@ -219,7 +219,7 @@ checkUnderstandingQuestion.Difficult = Difficult
 checkUnderstandingQuestion.VeryDifficult = Very difficult
 
 ccgQuestions.whyGiveAnswer.heading = Why did you give this answer?
-ccgQuestions.whyGiveAnswer.hint = Please consider all parts of the compliance check. Do not give any personal information like your National Insurance number, tax reference number or bank details.
+ccgQuestions.whyGiveAnswer.hint = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 
 ccgQuestions.supportFutureTax.heading = How confident are you that your interactions with HMRC during this compliance check will support you in meeting your future tax obligations?
 supportFutureQuestion.VeryConfident = Very confident
