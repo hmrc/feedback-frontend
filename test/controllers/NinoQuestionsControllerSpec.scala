@@ -33,8 +33,6 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.NinoQuestionsView
 
-import scala.:+
-
 class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
