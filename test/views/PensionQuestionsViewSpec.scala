@@ -64,6 +64,12 @@ class PensionQuestionsViewSpec
       LikelyToDoQuestion.options(form),
       "pensionQuestions.likelyToDo")
 
+    "contain diclaimer hint text" in {
+      val expectedMessage = messages("pensionQuestions.whyGiveScore.hint")
+      val doc = asDocument(createView())
+      assertContainsText(doc, expectedMessage)
+    }
+
     "contain privacy anchor tag" in {
       val expectedLink = messages("pensionQuestions.introLinkText")
       val doc = asDocument(createView())
