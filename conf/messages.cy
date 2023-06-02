@@ -60,6 +60,8 @@ complianceCheckUnderstanding.error = Dewiswch pa mor hawdd oedd hi i chi ddeall 
 complianceTreatedProfessionally.error = Dewiswch pa mor gryf yr ydych yn cytuno neu’n anghytuno fod CThEM wedi eich trin yn broffesiynol yn ystod y gwiriad cydymffurfio
 supportFutureTax.error = Dewiswch pa mor hyderus yr ydych y bydd CThEM, yn ystod y gwiriad cydymffurfio hwn, yn eich cefnogi i fodloni’ch rhwymedigaethau treth yn y dyfodol
 giveReason.error = Dewiswch yr hyn y daethoch yma i’w wneud
+logInToSeeNino.error = Dewiswch a ddaethoch chi yma heddiw er mwyn gweld eich rhif Yswiriant Gwladol
+didWithNino.error = Dewiswch yr hyn a wnaethoch gyda’ch rhif Yswiriant Gwladol, neu dewiswch ‘Dim un o’r uchod’
 whyNotAbleToDo.error.maxlength = Mae’n rhaid i’ch sylw os nad oeddech yn gallu gwneud yr hyn yr oedd angen i chi ei wneud fod yn {0} o gymeriadau neu’n llai
 
 
@@ -138,6 +140,31 @@ thankYou.userResearch.intro1 = Helpwch i wella GOV.UK
 thankYou.userResearch.intro2 = Mae angen eich help ar GOV.UK i wella ac i sicrhau bod y wefan yn gweithio’n dda i’r bobl sydd ei hangen.
 thankYou.userResearch.urLinkText = GOV.UK
 thankYou.userResearch.UrLink = Helpwch i wella GOV.UK
+
+ninoQuestions.title = Rhoi adborth - GOV.UK
+ninoQuestions.heading = Rhoi adborth
+ninoQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
+ninoQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
+ninoQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 7 o gwestiynau dewisol.
+ninoQuestions.introLinkText = Hysbysiad Preifatrwydd CThEF (yn agor tab newydd)
+ninoQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
+ninoQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
+ninoQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+ninoQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
+ninoQuestions.logInToSeeNino = A wnaethoch chi fewngofnodi heddiw yn benodol er mwyn gweld eich rhif Yswiriant Gwladol?
+ninoQuestions.didWithNino = Beth wnaethoch chi gyda’ch rhif Yswiriant Gwladol heddiw?
+ninoQuestions.didWithNino.hint = Dewiswch bob un sy’n berthnasol
+ninoQuestions.whyGiveAnswer.heading = Pam gwnaethoch chi roi’r ateb hwn?
+
+
+didWithNinoQuestion.wroteOnPaper = Ysgrifennu’r rhif ar bapur
+didWithNinoQuestion.wroteOnDevice = Ysgrifennu’r rhif ar ddyfais (e.e. ffôn neu lechen)
+didWithNinoQuestion.screenshotPage = Tynnu sgrinlun o’r dudalen
+didWithNinoQuestion.printedIt = Argraffu’r rhif
+didWithNinoQuestion.downloadedIt = Lawrlwytho’r rhif
+didWithNinoQuestion.visualConfirmation = Cadarnhau’r rhif yn weledol
+didWithNinoQuestion.divider = neu
+didWithNinoQuestion.noneOfAbove = Dim un o’r uchod
 
 ptaQuestions.title = Rhoi adborth - GOV.UK
 ptaQuestions.heading = Rhoi adborth 
