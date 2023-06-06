@@ -71,7 +71,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
     _ + ("logInToSeeNino" -> logInToSeeNino.map(_.value.toString).getOrElse("-"))
 
   def withDidWithNino(didWithNino: Option[Seq[DidWithNinoQuestion]]): MapCont =
-    _ + ("didWithNino[]" -> didWithNino.map(_.map(_.toString).mkString(",")).getOrElse("-"))
+    _ + ("didWithNino" -> didWithNino.map(_.map(_.toString).mkString(",")).getOrElse("-"))
 
   def withGiveReason(giveReason: Option[GiveReason]): MapCont =
     _ + ("value" -> giveReason.map(_.toString).getOrElse("-"))
