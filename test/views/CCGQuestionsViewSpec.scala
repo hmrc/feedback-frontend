@@ -66,6 +66,12 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
       assertContainsText(doc, expectedMessage)
     }
 
+    "contain diclaimer hint text" in {
+      val expectedMessage = messages("ccgQuestions.whyGiveAnswer.hint")
+      val doc = asDocument(createView())
+      assertContainsText(doc, expectedMessage)
+    }
+
     "contain privacy anchor tag" in {
       val expectedLink = messages("ccgQuestions.introLinkText")
       val doc = asDocument(createView())

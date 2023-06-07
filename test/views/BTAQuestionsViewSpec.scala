@@ -71,6 +71,12 @@ class BTAQuestionsViewSpec
       assertContainsText(doc, expectedMessage)
     }
 
+    "contain diclaimer hint text" in {
+      val expectedMessage = messages("btaQuestions.whyGiveScore.hint")
+      val doc = asDocument(createView())
+      assertContainsText(doc, expectedMessage)
+    }
+
     "contain privacy anchor tag" in {
       val expectedLink = messages("btaQuestions.introLinkText")
       val doc = asDocument(createView())

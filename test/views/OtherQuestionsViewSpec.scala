@@ -64,6 +64,12 @@ class OtherQuestionsViewSpec
       assertContainsText(doc, expectedMessage)
     }
 
+    "contain diclaimer hint text" in {
+      val expectedMessage = messages("otherQuestions.whyGiveScore.hint")
+      val doc = asDocument(createView())
+      assertContainsText(doc, expectedMessage)
+    }
+
     "contain privacy anchor tag" in {
       val expectedLink = messages("otherQuestions.introLinkText")
       val doc = asDocument(createView())
