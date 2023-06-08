@@ -61,6 +61,8 @@ complianceCheckUnderstanding.error = Select how easy it was for you to understan
 complianceTreatedProfessionally.error = Select how strongly you agree or disagree that HMRC treated you professionally during the compliance check
 supportFutureTax.error = Select how confident you are that HMRC will support you in meeting your future tax obligations during this compliance check
 giveReason.error = Select what you came here to do
+logInToSeeNino.error = Select if you came here to see your National Insurance number today
+didWithNino.error = Select what you did with your National Insurance number, or select ‘None of the above’
 whyNotAbleToDo.error.maxlength = If you were not able to do what you needed to do must be {0} characters or less
 
 whyGiveScore.error.maxlength = Why did you give this score must be {0} characters or less
@@ -138,6 +140,30 @@ thankYou.userResearch.intro1 = Help improve GOV.UK
 thankYou.userResearch.intro2 = GOV.UK needs your help to improve and to make sure the website works well for the people who need it.
 thankYou.userResearch.urLinkText = GOV.UK
 thankYou.userResearch.UrLink = Help make GOV.UK better
+
+ninoQuestions.title = Give feedback - GOV.UK
+ninoQuestions.heading = Give feedback
+ninoQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
+ninoQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
+ninoQuestions.intro3 = This survey has 7 optional questions.
+ninoQuestions.introLinkText = HMRC Privacy Notice (opens in new tab)
+ninoQuestions.ableToDo.heading = Were you able to do what you needed to do today?
+ninoQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
+ninoQuestions.whyGiveScore.heading = Why did you give this score?
+ninoQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
+ninoQuestions.logInToSeeNino = Did you log in specifically to see your National Insurance number today?
+ninoQuestions.didWithNino = What did you do with your National Insurance number today?
+ninoQuestions.didWithNino.hint = Select all that apply
+ninoQuestions.whyGiveAnswer.heading = Why did you give this answer?
+
+didWithNinoQuestion.wroteOnPaper = Wrote it down on paper
+didWithNinoQuestion.wroteOnDevice = Wrote it down on a device (e.g. phone or tablet)
+didWithNinoQuestion.screenshotPage = Screenshot of page
+didWithNinoQuestion.printedIt = Printed it
+didWithNinoQuestion.downloadedIt = Downloaded it
+didWithNinoQuestion.visualConfirmation = Visual confirmation
+didWithNinoQuestion.divider = or
+didWithNinoQuestion.noneOfAbove = None of the above
 
 ptaQuestions.title = Give feedback - GOV.UK
 ptaQuestions.heading = Give feedback

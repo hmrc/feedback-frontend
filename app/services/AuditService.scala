@@ -66,6 +66,13 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
   def withLikelyToDo(likelyToDo: Option[LikelyToDoQuestion]): MapCont =
     _ + ("likelyToDo" -> likelyToDo.map(_.toString).getOrElse("-"))
+
+  def withLogInToSeeNino(logInToSeeNino: Option[YesNo]): MapCont =
+    _ + ("logInToSeeNino" -> logInToSeeNino.map(_.value.toString).getOrElse("-"))
+
+  def withDidWithNino(didWithNino: Option[Seq[DidWithNinoQuestion]]): MapCont =
+    _ + ("didWithNino" -> didWithNino.map(_.map(_.toString).mkString(",")).getOrElse("-"))
+
   def withGiveReason(giveReason: Option[GiveReason]): MapCont =
     _ + ("value" -> giveReason.map(_.toString).getOrElse("-"))
   def withOtherReason(otherReason: Option[String]): MapCont =
@@ -137,6 +144,24 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
     )(emptyMap)
+
+    auditConnector.sendExplicitAudit(auditType, auditMap)
+  }
+
+  def ninoAudit(origin: Origin, feedbackId: FeedbackId, questions: NinoQuestions)(
+    implicit hc: HeaderCarrier): Unit = {
+
+    val auditMap = (
+      withOrigin(origin) andThen
+        withFeedbackId(feedbackId) andThen
+        withAbleToDo(questions.ableToDo) andThen
+        withHowEasyScore(questions.howEasyScore) andThen
+        withWhyGiveScore(questions.whyGiveScore) andThen
+        withHowFeelScore(questions.howDoYouFeelScore) andThen
+        withLogInToSeeNino(questions.logInToSeeNino) andThen
+        withDidWithNino(questions.didWithNino) andThen
+        withWhyGiveAnswer(questions.whyGiveAnswer)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }

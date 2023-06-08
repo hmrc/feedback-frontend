@@ -1,0 +1,127 @@
+@*
+ * Copyright 2023 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import play.twirl.api._
+@import config.FrontendAppConfig
+@import models.{HowDoYouFeelQuestion, HowEasyQuestion, DidWithNinoQuestion}
+@import views.ViewUtils._
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+
+@this(
+mainTemplate: MainTemplate,
+formHelper: FormWithCSRF,
+h1: components.H1,
+p: components.P,
+inputRadio: components.InputRadio,
+inputTextArea: components.InputTextArea,
+inputCheckbox: components.InputCheckboxes,
+button: components.Button,
+errorSummary:  components.ErrorSummary
+)
+
+@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
+
+@privacyPolicyLink = {
+<a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("ninoQuestions.introLinkText")</a>
+}
+
+@mainTemplate(
+title = s"${errorPrefix(form)} ${messages("ninoQuestions.title")}",
+bodyClasses = None) {
+
+@formHelper(action = action, Symbol("autoComplete") -> "off") {
+
+@errorSummary(form)
+
+@h1("ninoQuestions.heading")
+
+@p(Html(messages("ninoQuestions.intro1")))
+
+@p(Html(messages("ninoQuestions.intro2", privacyPolicyLink)))
+
+@p(Html(messages("ninoQuestions.intro3")))
+
+@inputRadio(
+form = form,
+legend = messages("ninoQuestions.ableToDo.heading"),
+items = AbleToDo.options(form),
+classes = "govuk-fieldset__legend--m",
+name = "ableToDo",
+inline = true,
+legendAsHeading = false
+)
+
+@inputRadio(
+form = form,
+legend = messages("ninoQuestions.howEasyScore.heading"),
+items = HowEasyQuestion.options(form),
+classes = "govuk-fieldset__legend--m",
+name = "howEasyScore",
+legendAsHeading = false
+)
+
+@inputTextArea(
+form = form,
+id = "whyGiveScore",
+name = "whyGiveScore",
+label = messages("ninoQuestions.whyGiveScore.heading"),
+labelClass = "govuk-label--m",
+isPageHeading = false,
+maxCharacters = Some(1000)
+)
+
+@inputRadio(
+form = form,
+legend = messages("ninoQuestions.howDoYouFeelScore.heading"),
+items = HowDoYouFeelQuestion.options(form),
+classes = "govuk-fieldset__legend--m",
+name = "howDoYouFeelScore",
+legendAsHeading = false
+)
+
+@inputRadio(
+form = form,
+legend = messages("ninoQuestions.logInToSeeNino"),
+items = YesNo.options(form),
+classes = "govuk-fieldset__legend--m",
+name = "logInToSeeNino",
+inline = true,
+legendAsHeading = false
+)
+
+@inputCheckbox(
+form = form,
+legend = messages("ninoQuestions.didWithNino"),
+items = DidWithNinoQuestion.options(form),
+classes = "govuk-fieldset__legend--m",
+name = "didWithNino",
+legendAsHeading = false,
+hint = Some(HtmlContent(messages("ninoQuestions.didWithNino.hint")))
+)
+
+@inputTextArea(
+form = form,
+id = "whyGiveAnswer",
+name = "whyGiveAnswer",
+label = messages("ninoQuestions.whyGiveAnswer.heading"),
+labelClass = "govuk-label--m",
+isPageHeading = false,
+maxCharacters = Some(1000)
+)
+
+@button(messages("site.continue"))
+}
+}

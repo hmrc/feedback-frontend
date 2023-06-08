@@ -25,6 +25,16 @@ case class OtherQuestions(
   howDoYouFeelScore: Option[HowDoYouFeelQuestion]
 )
 
+case class NinoQuestions(
+  ableToDo: Option[AbleToDo],
+  howEasyScore: Option[HowEasyQuestion],
+  whyGiveScore: Option[String],
+  howDoYouFeelScore: Option[HowDoYouFeelQuestion],
+  logInToSeeNino: Option[YesNo],
+  didWithNino: Option[Seq[DidWithNinoQuestion]],
+  whyGiveAnswer: Option[String]
+)
+
 case class PTAQuestions(
   neededToDo: Option[String],
   ableToDo: Option[AbleToDo],

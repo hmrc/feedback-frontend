@@ -78,4 +78,30 @@ trait Formatters {
       override def unbind(key: String, value: A): Map[String, String] =
         baseFormatter.unbind(key, value.toString)
     }
+
+  private[mappings] def exclusiveSeqElemFormatter[A](requiredKey: String, invalidKey: String, exclusiveOptionName: String)(
+    implicit ev: Enumerable[A]): Formatter[A] =
+    new Formatter[A] {
+
+      private val baseFormatter = enumerableFormatter(requiredKey, invalidKey)
+
+      override def bind(key: String, data: Map[String, String]): Either[Seq[FormError], A] =
+        baseFormatter.bind(key, data).flatMap { item =>
+          if (!item.toString.equals(exclusiveOptionName)) {
+            Right(item)
+          }
+          else {
+            val rawKey = key.split('[').head
+            if (data.view.filterKeys(_.startsWith(rawKey)).size > 1) {
+              Left(Seq(FormError(rawKey, invalidKey)))
+            }
+            else {
+              Right(item)
+            }
+          }
+        }
+
+      override def unbind(key: String, value: A): Map[String, String] =
+        baseFormatter.unbind(key, value)
+    }
 }
