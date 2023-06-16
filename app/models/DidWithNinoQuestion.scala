@@ -32,12 +32,13 @@ object DidWithNinoQuestion {
   case object ScreenshotPage extends WithName("screenshotPage") with DidWithNinoQuestion
   case object PrintedIt extends WithName("printedIt") with DidWithNinoQuestion
   case object DownloadedIt extends WithName("downloadedIt") with DidWithNinoQuestion
+  case object SavedToWallet extends WithName("savedToWallet") with DidWithNinoQuestion
   case object VisualConfirmation extends WithName("visualConfirmation") with DidWithNinoQuestion
   case object Divider extends WithName("divider") with DidWithNinoQuestion
   case object NoneOfAbove extends WithName("noneOfAbove") with DidWithNinoQuestion
 
   val values: Seq[DidWithNinoQuestion] =
-    List(WroteOnPaper, WroteOnDevice, ScreenshotPage, PrintedIt, DownloadedIt, VisualConfirmation, Divider, NoneOfAbove)
+    List(WroteOnPaper, WroteOnDevice, ScreenshotPage, PrintedIt, DownloadedIt, SavedToWallet, VisualConfirmation, Divider, NoneOfAbove)
 
   def options(form: Form[_])(implicit messages: Messages): Seq[CheckboxItem] = values.map { value =>
     if (value.toString.equals("divider")) {

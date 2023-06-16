@@ -162,6 +162,7 @@ didWithNinoQuestion.wroteOnDevice = Ysgrifennu’r rhif ar ddyfais (e.e. ffôn n
 didWithNinoQuestion.screenshotPage = Tynnu sgrinlun o’r dudalen
 didWithNinoQuestion.printedIt = Argraffu’r rhif
 didWithNinoQuestion.downloadedIt = Lawrlwytho’r rhif
+didWithNinoQuestion.savedToWallet = Wedi’i gadw i waled ddigidol
 didWithNinoQuestion.visualConfirmation = Cadarnhau’r rhif yn weledol
 didWithNinoQuestion.divider = neu
 didWithNinoQuestion.noneOfAbove = Dim un o’r uchod
