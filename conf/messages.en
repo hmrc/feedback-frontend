@@ -161,6 +161,7 @@ didWithNinoQuestion.wroteOnDevice = Wrote it down on a device (e.g. phone or tab
 didWithNinoQuestion.screenshotPage = Screenshot of page
 didWithNinoQuestion.printedIt = Printed it
 didWithNinoQuestion.downloadedIt = Downloaded it
+didWithNinoQuestion.savedToWallet = Saved to a digital wallet
 didWithNinoQuestion.visualConfirmation = Visual confirmation
 didWithNinoQuestion.divider = or
 didWithNinoQuestion.noneOfAbove = None of the above
