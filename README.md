@@ -7,6 +7,7 @@ Currently there are 11 surveys, these are for:
 * Personal Tax Account (PTA)
 * Business Tax Account (BTA)
 * Trusts
+* Store my NINO (SmN)
 * National Minimum Wage (NMW)
 * Customer Compliance Group (CCG)
 * Pension
@@ -23,6 +24,7 @@ The endpoints are:
 | PTA           | /feedback/SERVICE_NAME/personal      | http://localhost:9514/feedback/SERVICE_NAME/personal      |
 | BTA           | /feedback/SERVICE_NAME/business      | http://localhost:9514/feedback/SERVICE_NAME/business      |
 | Trusts        | /feedback/trusts                     | http://localhost:9514/feedback/trusts                     |
+| SmN           | /feedback/SERVICE_NAME/nino          | http://localhost:9514/feedback/SERVICE_NAME/nino          |
 | NMW           | /feedback/SERVICE_NAME/nmw           | http://localhost:9514/feedback/SERVICE_NAME/nmw           |
 | CCG           | /feedback/SERVICE_NAME/ccg           | http://localhost:9514/feedback/SERVICE_NAME/ccg           |
 | Pension       | /feedback/SERVICE_NAME/pension       | http://localhost:9514/feedback/SERVICE_NAME/pension       |
