@@ -180,10 +180,10 @@ ptaQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 ptaQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
 btaQuestions.title = Rhoi adborth - GOV.UK
-btaQuestions.heading = Rhoi adborth
+btaQuestions.heading = Adborth
 btaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 btaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
-btaQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 5 o gwestiynau dewisol.
+btaQuestions.intro3 = Mae’r arolwg dewisol hwn yn cynnwys 5 o gwestiynau.
 btaQuestions.introLinkText = Hysbysiad Preifatrwydd CThEM (yn agor tab newydd)
 btaQuestions.mainService.heading = Beth oedd y prif wasanaeth y gwnaethoch ei ddefnyddio heddiw?
 btaQuestions.mainService.label.heading = Rhowch wybod i ni am y prif wasanaeth a ddefnyddioch heddiw
