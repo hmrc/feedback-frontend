@@ -7,11 +7,11 @@ object AppDependencies {
     play.sbt.PlayImport.ws,
     "uk.gov.hmrc" %% "play-frontend-hmrc"             % "6.7.0-play-28",
     "uk.gov.hmrc" %% "play-conditional-form-mapping"  % "1.12.0-play-28",
-    "uk.gov.hmrc" %% "bootstrap-frontend-play-28"     % "7.8.0"
+    "uk.gov.hmrc" %% "bootstrap-frontend-play-28"     % "7.16.0"
   )
 
   val test: Seq[ModuleID] = Seq(
-    "uk.gov.hmrc"            %% "bootstrap-test-play-28"    % "7.8.0",
+    "uk.gov.hmrc"            %% "bootstrap-test-play-28"    % "7.16.0",
     "org.scalatest"          %% "scalatest"                 % "3.2.9",
     "org.jsoup"              %  "jsoup"                     % "1.14.3",
     "com.typesafe.play"      %% "play-test"                 % PlayVersion.current,
