@@ -210,7 +210,7 @@ trustsQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
 trustsQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 
 pensionQuestions.title = Rhoi adborth - GOV.UK
-pensionQuestions.heading = Rhoi adborth
+pensionQuestions.heading = Adborth
 pensionQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 pensionQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 pensionQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w gwblhau. Mae 5 cwestiwn ac maent i gyd yn ddewisol.
