@@ -208,7 +208,7 @@ trustsQuestions.whyGiveScore.heading = Why did you give this score?
 trustsQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
 
 pensionQuestions.title = Give feedback - GOV.UK
-pensionQuestions.heading = Give feedback
+pensionQuestions.heading = Feedback
 pensionQuestions.intro1 = We use your feedback to improve our services. To better understand it, we may link your feedback to other information we hold about you, like gender and age.
 pensionQuestions.intro2 = See the {0} for details about how we collect, use, protect and secure your personal information.
 pensionQuestions.intro3 = The survey takes about 1 minute to complete. There are 5 questions and they are all optional.
