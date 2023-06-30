@@ -37,18 +37,18 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
   lazy val reportAProblemNonJSUrl = s"$contactHost/contact/problem_reports_nonjs?service=$contactFormServiceIdentifier"
   lazy val betaFeedbackUrl = s"$contactHost/contact/beta-feedback"
   lazy val betaFeedbackUnauthenticatedUrl = s"$contactHost/contact/beta-feedback-unauthenticated"
-  lazy val loginUrl = loadConfig("urls.login")
-  lazy val loginContinueUrl = loadConfig("urls.loginContinue")
+  lazy val loginUrl: String = loadConfig("urls.login")
+  lazy val loginContinueUrl: String = loadConfig("urls.loginContinue")
   lazy val privacyPolicyUrl =
     "https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you"
-  lazy val urLinkUrl = getOptional[String]("microservice.services.features.ur-link-url")
-  lazy val pensionSignInUrl = getOptional[String]("urls.pension.sign-in")
-  lazy val pensionRetirementUrl = getOptional[String]("urls.pension.retirement")
-  lazy val pensionSideBarOneUrl = getOptional[String]("urls.pension.sidebar.link-one")
-  lazy val pensionSideBarTwoUrl = getOptional[String]("urls.pension.sidebar.link-two")
-  lazy val pensionSideBarThreeUrl = getOptional[String]("urls.pension.sidebar.link-three")
-  lazy val pensionSideBarFourUrl = getOptional[String]("urls.pension.sidebar.link-four")
-  lazy val pensionSideBarFiveUrl = getOptional[String]("urls.pension.sidebar.link-five")
+  lazy val urLinkUrl: Option[String] = getOptional[String]("microservice.services.features.ur-link-url")
+  lazy val pensionSignInUrl: Option[String] = getOptional[String]("urls.pension.sign-in")
+  lazy val pensionRetirementUrl: Option[String] = getOptional[String]("urls.pension.retirement")
+  lazy val pensionSideBarOneUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-one")
+  lazy val pensionSideBarTwoUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-two")
+  lazy val pensionSideBarThreeUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-three")
+  lazy val pensionSideBarFourUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-four")
+  lazy val pensionSideBarFiveUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-five")
 
-  lazy val govUkUrl = loadConfig(s"urls.govUk")
+  lazy val govUkUrl: String = loadConfig(s"urls.govUk")
 }
