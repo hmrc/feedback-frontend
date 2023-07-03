@@ -3,7 +3,7 @@
 
 Services can integrate with Feedback frontend by navigating the URL with a unique name for your service for the survey you need.
 
-Currently there are 11 surveys, these are for:
+Currently, there are 11 surveys, these are for:
 * Personal Tax Account (PTA)
 * Business Tax Account (BTA)
 * Trusts
@@ -53,7 +53,7 @@ Log out user and redirect
 Redirect("http://localhost:9514/feedback/SERVICE_NAME").withNewSession
 ```
 
-If you need additional information audited you may pass through an optional `feedbackId` variable as a session value, you should ensure that this is unique as this will be audited alongside the user responses so they can be collated in Splunk.
+If you need additional information audited you may pass through an optional `feedbackId` variable as a session value, you should ensure that this is unique as this will be audited alongside the user responses, so they can be collated in Splunk.
 Example:
 ```
 val uuid = randomUUID().toString

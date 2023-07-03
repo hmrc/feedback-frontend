@@ -1,7 +1,6 @@
 import play.sbt.routes.RoutesKeys
 import scoverage.ScoverageKeys
 import uk.gov.hmrc.DefaultBuildSettings
-import scala.sys.process.*
 
 lazy val appName: String = "feedback-frontend"
 
@@ -12,10 +11,10 @@ lazy val root = (project in file("."))
   .settings(DefaultBuildSettings.scalaSettings *)
   .settings(DefaultBuildSettings.defaultSettings() *)
   .settings(majorVersion := 0)
-  .settings(migrate := "./migrate.sh".!)
+  .settings(migrate := "./migrate.sh")
   .settings(
     name := appName,
-    scalaVersion := "2.13.8",
+    scalaVersion := "2.13.10",
     RoutesKeys.routesImport ++= Seq("models._", "config.Binders._"),
     PlayKeys.playDefaultPort := 9514,
     ScoverageKeys.coverageExcludedFiles := "<empty>;Reverse.*;.*filters.*;.*handlers.*;.*components.*;.*repositories.*;" +
@@ -31,8 +30,8 @@ lazy val root = (project in file("."))
     ),
     retrieveManaged := true,
     scalafmtOnCompile := false,
-    update / evictionWarningOptions :=
-      EvictionWarningOptions.default.withWarnScalaVersionEviction(false),
+    Global / excludeLintKeys += update / evictionWarningOptions,
+    update / evictionWarningOptions := EvictionWarningOptions.default.withWarnScalaVersionEviction(false),
     Test / fork := true,
     resolvers ++= Seq(
       Resolver.jcenterRepo
