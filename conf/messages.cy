@@ -388,3 +388,5 @@ nmwCcgQuestions.CheckUnderstanding.heading=Yn ystod yr ymholiad ynghylch yr Isaf
 nmwCcgQuestions.whyGiveAnswer.heading =Pam gwnaethoch chi roi’r ateb hwn?
 nmwCcgQuestions.whyGiveAnswer.hint =Peidiwch â nodi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, eich Cyfeirnod Unigryw y Trethdalwr, eich cyfeiriad neu’ch rhif ffôn yn y blwch hwn. Sylwer – ni allwn ymateb i sylwadau’n unigol, ond mi ydym yn defnyddio’ch adborth i helpu i wella ein gwasanaethau.
 nmwCcgQuestions.supportFutureNmw.heading =Yn seiliedig ar yr ymholiad hwn, pa mor hyderus ydych y bydd CThEM yn eich cynorthwyo wrth i chi fodloni’ch ymrwymiadau Isafswm Cyflog Cenedlaethol yn y dyfodol?
+
+pleaseDoNotEnterPersonalInformation = Peidiwch â nodi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, eich Cyfeirnod Unigryw y Trethdalwr, eich cyfeiriad neu’ch rhif ffôn yn y blwch hwn. Sylwer – ni allwn ymateb i sylwadau’n unigol, ond mi ydym yn defnyddio’ch adborth i helpu i wella ein gwasanaethau.
