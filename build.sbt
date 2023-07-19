@@ -14,7 +14,7 @@ lazy val root = (project in file("."))
   .settings(migrate := "./migrate.sh")
   .settings(
     name := appName,
-    scalaVersion := "2.13.10",
+    scalaVersion := "2.13.8",
     RoutesKeys.routesImport ++= Seq("models._", "config.Binders._"),
     PlayKeys.playDefaultPort := 9514,
     ScoverageKeys.coverageExcludedFiles := "<empty>;Reverse.*;.*filters.*;.*handlers.*;.*components.*;.*repositories.*;" +
