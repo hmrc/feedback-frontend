@@ -173,7 +173,7 @@ ptaQuestions.intro2 = See the {0} for details about how we collect, use, protect
 ptaQuestions.intro3 = This survey has 5 optional questions.
 ptaQuestions.introLinkText = HMRC Privacy Notice (opens in new tab)
 ptaQuestions.neededToDo.heading = What was the main thing you needed to do today?
-ptaQuestions.neededToDo.heading.hintText = For example, change your address
+ptaQuestions.neededToDo.heading.hintText = For example, change your address. Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 ptaQuestions.ableToDo.heading = Were you able to do what you needed to do today?
 ptaQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
 ptaQuestions.whyGiveScore.heading = Why did you give this score?
@@ -249,7 +249,7 @@ checkUnderstandingQuestion.Difficult = Difficult
 checkUnderstandingQuestion.VeryDifficult = Very difficult
 
 ccgQuestions.whyGiveAnswer.heading = Why did you give this answer?
-ccgQuestions.whyGiveAnswer.hint = Please consider all parts of the compliance check. Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
+ccgQuestions.whyGiveAnswer.hint = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 
 ccgQuestions.supportFutureTax.heading = How confident are you that your interactions with HMRC during this compliance check will support you in meeting your future tax obligations?
 supportFutureQuestion.VeryConfident = Very confident
@@ -386,3 +386,5 @@ nmwCcgQuestions.CheckUnderstanding.heading = During the NMW enquiry, how easy wa
 nmwCcgQuestions.whyGiveAnswer.heading = Why did you give this answer?
 nmwCcgQuestions.whyGiveAnswer.hint = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 nmwCcgQuestions.supportFutureNmw.heading = How confident are you, based on this enquiry, that HMRC will support you in meeting your future National Minimum Wage obligations?
+
+pleaseDoNotEnterPersonalInformation = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
