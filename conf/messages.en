@@ -155,6 +155,7 @@ ninoQuestions.logInToSeeNino = Did you log in specifically to see your National 
 ninoQuestions.didWithNino = What did you do with your National Insurance number today?
 ninoQuestions.didWithNino.hint = Select all that apply
 ninoQuestions.whyGiveAnswer.heading = Why did you give this answer?
+ninoQuestions.doNotEnterPersonalInformation.hint = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 
 didWithNinoQuestion.wroteOnPaper = Wrote it down on paper
 didWithNinoQuestion.wroteOnDevice = Wrote it down on a device (e.g. phone or tablet)
@@ -386,3 +387,5 @@ nmwCcgQuestions.CheckUnderstanding.heading = During the NMW enquiry, how easy wa
 nmwCcgQuestions.whyGiveAnswer.heading = Why did you give this answer?
 nmwCcgQuestions.whyGiveAnswer.hint = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 nmwCcgQuestions.supportFutureNmw.heading = How confident are you, based on this enquiry, that HMRC will support you in meeting your future National Minimum Wage obligations?
+
+pleaseDoNotEnterPersonalInformation = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
