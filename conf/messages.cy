@@ -354,7 +354,7 @@ giveReason.other.reason.label = Rhowch wybod i ni yr hyn y daethoch chi yma i’
 
 giveComments.title = Beth ddaethoch chi yma i’w wneud? - Rhoi adborth - GOV.UK
 giveComments.heading = Beth ddaethoch chi yma i’w wneud?
-giveComments.intro1 = Peidiwch â chynnwys unrhyw wybodaeth bersonol nac ariannol. Er enghraifft, eich rhif Yswiriant Gwladol neu rif eich cerdyn credyd.
+giveComments.intro1 = Peidiwch â nodi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, eich Cyfeirnod Unigryw y Trethdalwr, eich cyfeiriad neu’ch rhif ffôn yn y blwch hwn. Sylwer – ni allwn ymateb i sylwadau’n unigol, ond mi ydym yn defnyddio’ch adborth i helpu i wella ein gwasanaethau.
 giveComments.error.length = Rhaid i’r hyn y daethoch chi yma i’w wneud fod yn 1,000 o gymeriadau neu’n llai
 
 page_not_found.title = Heb ddod o hyd i’r dudalen - Rhoi adborth - GOV.UK

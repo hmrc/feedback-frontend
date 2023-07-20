@@ -352,7 +352,7 @@ giveReason.other.reason.label = Tell us what you came to do
 
 giveComments.title = What did you come to do? - Give feedback - GOV.UK
 giveComments.heading = What did you come to do?
-giveComments.intro1 = Do not include any personal or financial information. For example, your National Insurance or credit card numbers.
+giveComments.intro1 = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 giveComments.error.length = What you came to do must be 1,000 characters or less
 
 page_not_found.title = Page not found - Give feedback - GOV.UK
