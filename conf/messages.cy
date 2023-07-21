@@ -344,7 +344,6 @@ giveReason.checkTaxCode = Gwirio fy nghod treth
 giveReason.checkTaxYear = Gwirio fy nhreth am y flwyddyn hon
 giveReason.checkTaxPaid = Gwirio’r dreth a dalais i
 giveReason.claimTaxBack = Hawlio treth yn ôl
-giveReason.claimTaxBack = Hawlio treth yn ôl
 giveReason.contactAboutP800 = Cysylltu â CThEM ynglŷn â fy P800
 giveReason.p800Wrong = Mae fy llythyr cyfrifiad P800 yn anghywir
 giveReason.payOwedTax = Talu’r dreth sydd arnaf
