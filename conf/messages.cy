@@ -155,7 +155,7 @@ ninoQuestions.logInToSeeNino = A wnaethoch chi fewngofnodi heddiw yn benodol er 
 ninoQuestions.didWithNino = Beth wnaethoch chi gyda’ch rhif Yswiriant Gwladol heddiw?
 ninoQuestions.didWithNino.hint = Dewiswch bob un sy’n berthnasol
 ninoQuestions.whyGiveAnswer.heading = Pam gwnaethoch chi roi’r ateb hwn?
-
+ninoQuestions.doNotEnterPersonalInformation.hint = Peidiwch â nodi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, eich Cyfeirnod Unigryw y Trethdalwr, eich cyfeiriad neu’ch rhif ffôn yn y blwch hwn. Sylwer – ni allwn ymateb i sylwadau’n unigol, ond mi ydym yn defnyddio’ch adborth i helpu i wella ein gwasanaethau.
 
 didWithNinoQuestion.wroteOnPaper = Ysgrifennu’r rhif ar bapur
 didWithNinoQuestion.wroteOnDevice = Ysgrifennu’r rhif ar ddyfais (e.e. ffôn neu lechen)
