@@ -350,6 +350,7 @@ giveReason.progressChasing = Progress chasing
 giveReason.other = Other, please specify
 giveReason.error.maxlength = What you came to do must be 100 characters or less
 giveReason.other.reason.label = Tell us what you came to do
+giveReason.other.reason.hint = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 
 giveComments.title = What did you come to do? - Give feedback - GOV.UK
 giveComments.heading = What did you come to do?

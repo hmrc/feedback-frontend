@@ -54,7 +54,8 @@
                     maxLength = Some(100),
                     value = form("reason").value,
                     label = Label(content = Text(messages("giveReason.other.reason.label"))),
-                    errorMessage = form("reason").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*))))
+                    errorMessage = form("reason").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*)))),
+                    hint = Some(Hint(content = Text(messages("giveReason.other.reason.hint"))))
                     ))
             )
         )

@@ -351,6 +351,7 @@ giveReason.progressChasing = Dilyn hynt rhywbeth
 giveReason.other = Arall, rhowch fanylion
 giveReason.error.maxlength = Mae’n rhaid i’ch ateb ar gyfer ‘Yr hyn y daethoch yma i’w wneud’ fod yn 100 o gymeriadau neu lai
 giveReason.other.reason.label = Rhowch wybod i ni yr hyn y daethoch chi yma i’w wneud
+giveReason.other.reason.hint = Peidiwch â nodi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, eich Cyfeirnod Unigryw y Trethdalwr, eich cyfeiriad neu’ch rhif ffôn yn y blwch hwn. Sylwer – ni allwn ymateb i sylwadau’n unigol, ond mi ydym yn defnyddio’ch adborth i helpu i wella ein gwasanaethau.
 
 giveComments.title = Beth ddaethoch chi yma i’w wneud? - Rhoi adborth - GOV.UK
 giveComments.heading = Beth ddaethoch chi yma i’w wneud?
