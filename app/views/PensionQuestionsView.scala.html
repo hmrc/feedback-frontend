@@ -16,18 +16,18 @@
 
 @import config.FrontendAppConfig
 @import models.{HowDoYouFeelQuestion, HowEasyQuestion}
-@import views.ViewUtils._
 @import uk.gov.hmrc.govukfrontend.views.html.components.FormWithCSRF
+@import views.ViewUtils._
 
 @this(
-    mainTemplate: MainTemplate,
-    formHelper: FormWithCSRF,
-    h1: components.H1,
-    p: components.P,
-    inputRadio: components.InputRadio,
-    inputTextArea: components.InputTextArea,
-    button: components.Button,
-    errorSummary:  components.ErrorSummary
+        mainTemplate: MainTemplate,
+        formHelper: FormWithCSRF,
+        h1: components.H1,
+        p: components.P,
+        inputRadio: components.InputRadio,
+        inputTextArea: components.InputTextArea,
+        button: components.Button,
+        errorSummary: components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
@@ -73,12 +73,12 @@
 
         @inputTextArea(
             form = form,
-            id = "whyGiveScore",
-            name = "whyGiveScore",
-            label = messages("pensionQuestions.whyGiveScore.heading"),
+            id = "whyGiveAnswer",
+            name = "whyGiveAnswer",
+            label = messages("pensionQuestions.whyGiveAnswer.heading"),
             labelClass = "govuk-label--m",
             isPageHeading = false,
-            hint = Some(Html(messages("pensionQuestions.whyGiveScore.hint"))),
+            hint = Some(Html(messages("pensionQuestions.whyGiveAnswer.hint"))),
             maxCharacters = Some(1000)
         )
 

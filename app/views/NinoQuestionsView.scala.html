@@ -14,116 +14,116 @@
  * limitations under the License.
  *@
 
-@import play.twirl.api._
 @import config.FrontendAppConfig
-@import models.{HowDoYouFeelQuestion, HowEasyQuestion, DidWithNinoQuestion}
-@import views.ViewUtils._
+@import models.{DidWithNinoQuestion, HowDoYouFeelQuestion, HowEasyQuestion}
+@import play.twirl.api._
 @import uk.gov.hmrc.govukfrontend.views.html.components._
+@import views.ViewUtils._
 
 @this(
-mainTemplate: MainTemplate,
-formHelper: FormWithCSRF,
-h1: components.H1,
-p: components.P,
-inputRadio: components.InputRadio,
-inputTextArea: components.InputTextArea,
-inputCheckbox: components.InputCheckboxes,
-button: components.Button,
-errorSummary:  components.ErrorSummary
+        mainTemplate: MainTemplate,
+        formHelper: FormWithCSRF,
+        h1: components.H1,
+        p: components.P,
+        inputRadio: components.InputRadio,
+        inputTextArea: components.InputTextArea,
+        inputCheckbox: components.InputCheckboxes,
+        button: components.Button,
+        errorSummary: components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
 @privacyPolicyLink = {
-<a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("ninoQuestions.introLinkText")</a>
+    <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("ninoQuestions.introLinkText")</a>
 }
 
 @mainTemplate(
-title = s"${errorPrefix(form)} ${messages("ninoQuestions.title")}",
-bodyClasses = None) {
+    title = s"${errorPrefix(form)} ${messages("ninoQuestions.title")}",
+    bodyClasses = None) {
 
-@formHelper(action = action, Symbol("autoComplete") -> "off") {
+    @formHelper(action = action, Symbol("autoComplete") -> "off") {
 
-@errorSummary(form)
+        @errorSummary(form)
 
-@h1("ninoQuestions.heading")
+        @h1("ninoQuestions.heading")
 
-@p(Html(messages("ninoQuestions.intro1")))
+        @p(Html(messages("ninoQuestions.intro1")))
 
-@p(Html(messages("ninoQuestions.intro2", privacyPolicyLink)))
+        @p(Html(messages("ninoQuestions.intro2", privacyPolicyLink)))
 
-@p(Html(messages("ninoQuestions.intro3")))
+        @p(Html(messages("ninoQuestions.intro3")))
 
-@inputRadio(
-form = form,
-legend = messages("ninoQuestions.ableToDo.heading"),
-items = AbleToDo.options(form),
-classes = "govuk-fieldset__legend--m",
-name = "ableToDo",
-inline = true,
-legendAsHeading = false
-)
+        @inputRadio(
+            form = form,
+            legend = messages("ninoQuestions.ableToDo.heading"),
+            items = AbleToDo.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "ableToDo",
+            inline = true,
+            legendAsHeading = false
+        )
 
-@inputRadio(
-form = form,
-legend = messages("ninoQuestions.howEasyScore.heading"),
-items = HowEasyQuestion.options(form),
-classes = "govuk-fieldset__legend--m",
-name = "howEasyScore",
-legendAsHeading = false
-)
+        @inputRadio(
+            form = form,
+            legend = messages("ninoQuestions.howEasyScore.heading"),
+            items = HowEasyQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "howEasyScore",
+            legendAsHeading = false
+        )
 
-@inputTextArea(
-form = form,
-id = "whyGiveScore",
-name = "whyGiveScore",
-label = messages("ninoQuestions.whyGiveScore.heading"),
-labelClass = "govuk-label--m",
-hint = Some(Html(messages("ninoQuestions.doNotEnterPersonalInformation.hint"))),
-isPageHeading = false,
-maxCharacters = Some(1000)
-)
+        @inputTextArea(
+            form = form,
+            id = "whyGiveScore",
+            name = "whyGiveScore",
+            label = messages("ninoQuestions.whyGiveScore.heading"),
+            labelClass = "govuk-label--m",
+            hint = Some(Html(messages("ninoQuestions.doNotEnterPersonalInformation.hint"))),
+            isPageHeading = false,
+            maxCharacters = Some(1000)
+        )
 
-@inputRadio(
-form = form,
-legend = messages("ninoQuestions.howDoYouFeelScore.heading"),
-items = HowDoYouFeelQuestion.options(form),
-classes = "govuk-fieldset__legend--m",
-name = "howDoYouFeelScore",
-legendAsHeading = false
-)
+        @inputRadio(
+            form = form,
+            legend = messages("ninoQuestions.howDoYouFeelScore.heading"),
+            items = HowDoYouFeelQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "howDoYouFeelScore",
+            legendAsHeading = false
+        )
 
-@inputRadio(
-form = form,
-legend = messages("ninoQuestions.logInToSeeNino"),
-items = YesNo.options(form),
-classes = "govuk-fieldset__legend--m",
-name = "logInToSeeNino",
-inline = true,
-legendAsHeading = false
-)
+        @inputRadio(
+            form = form,
+            legend = messages("ninoQuestions.logInToSeeNino"),
+            items = YesNo.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "logInToSeeNino",
+            inline = true,
+            legendAsHeading = false
+        )
 
-@inputCheckbox(
-form = form,
-legend = messages("ninoQuestions.didWithNino"),
-items = DidWithNinoQuestion.options(form),
-classes = "govuk-fieldset__legend--m",
-name = "didWithNino",
-legendAsHeading = false,
-hint = Some(HtmlContent(messages("ninoQuestions.didWithNino.hint")))
-)
+        @inputCheckbox(
+            form = form,
+            legend = messages("ninoQuestions.didWithNino"),
+            items = DidWithNinoQuestion.options(form),
+            classes = "govuk-fieldset__legend--m",
+            name = "didWithNino",
+            legendAsHeading = false,
+            hint = Some(HtmlContent(messages("ninoQuestions.didWithNino.hint")))
+        )
 
-@inputTextArea(
-form = form,
-id = "whyGiveAnswer",
-name = "whyGiveAnswer",
-label = messages("ninoQuestions.whyGiveAnswer.heading"),
-labelClass = "govuk-label--m",
-hint = Some(Html(messages("ninoQuestions.doNotEnterPersonalInformation.hint"))),
-isPageHeading = false,
-maxCharacters = Some(1000)
-)
+        @inputTextArea(
+            form = form,
+            id = "whyGiveAnswer",
+            name = "whyGiveAnswer",
+            label = messages("ninoQuestions.whyGiveAnswer.heading"),
+            labelClass = "govuk-label--m",
+            hint = Some(Html(messages("ninoQuestions.doNotEnterPersonalInformation.hint"))),
+            isPageHeading = false,
+            maxCharacters = Some(1000)
+        )
 
-@button(messages("site.continue"))
-}
+        @button(messages("site.continue"))
+    }
 }

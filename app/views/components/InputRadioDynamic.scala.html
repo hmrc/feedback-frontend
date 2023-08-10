@@ -14,13 +14,13 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.govukfrontend.views.viewmodels.content.Content
 @import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.govukfrontend.views.viewmodels.content.Content
 @import uk.gov.hmrc.govukfrontend.views.viewmodels.radios.RadioItem
 
-@this(govukRadios: GovukRadios,  govukInput: GovukInput)
+@this(govukRadios: GovukRadios, govukInput: GovukInput)
 
-@(      form: Form[_],
+@(form: Form[_],
         legend: String,
         name: String,
         items: Seq[RadioItem],
@@ -32,22 +32,24 @@
         conditionalHtml: Option[Html] = None
 )(implicit messages: Messages)
 
-@govukRadios(Radios(
-    classes = if(inline) "govuk-radios--inline" else "",
-    name = name,
-    fieldset = Some(Fieldset(
-        legend = Some(Legend(
-            content = Text(messages(legend)),
-            isPageHeading = legendAsHeading,
-            classes = classes
-        ))
-    )),
-    hint = hint.map { hint => Hint(
-        content = hint,
-        classes = hintClasses
-    )},
-    items = items.init ++ items.lastOption.map { input =>
-        input.copy(conditionalHtml = conditionalHtml)
-    },
-    errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*))))
-))
+    @govukRadios(Radios(
+        classes = if(inline) "govuk-radios--inline" else "",
+        name = name,
+        fieldset = Some(Fieldset(
+            legend = Some(Legend(
+                content = Text(messages(legend)),
+                isPageHeading = legendAsHeading,
+                classes = classes
+            ))
+        )),
+        hint = hint.map { hint =>
+            Hint(
+                content = hint,
+                classes = hintClasses
+            )
+        },
+        items = items.init ++ items.lastOption.map { input =>
+            input.copy(conditionalHtml = conditionalHtml)
+        },
+        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*))))
+    ))

@@ -17,78 +17,76 @@
 @import config.FrontendAppConfig
 
 @this(
-    mainTemplate: MainTemplate,
-    h1: components.H1,
-    h2: components.H2,
-    p: components.P,
-    link: components.Link
+        mainTemplate: MainTemplate,
+        h1: components.H1,
+        h2: components.H2,
+        p: components.P,
+        link: components.Link
 )
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
 @signInLink = {
-  @appConfig.pensionSignInUrl.map { pensionSignInUrl =>
+@appConfig.pensionSignInUrl.map { pensionSignInUrl =>
     <a href="@appConfig.pensionSignInUrl" class="govuk-link">@messages("thankYou.pension.signInLink")</a>
-  }
+}
 }
 
 
-
 @mainTemplate(
-  title = messages("thankYou.pension.title"),
-  bodyClasses = Some("full-width")
+    title = messages("thankYou.pension.title"),
+    bodyClasses = Some("full-width")
 ) {
 
-  <div class="grid-row">
+    <div class="grid-row">
 
-    <div class="column-two-thirds">
+        <div class="column-two-thirds">
 
-      @h1("thankYou.pension.heading")
+            @h1("thankYou.pension.heading")
 
-      @p(Html(messages("thankYou.pension.intro")))
+            @p(Html(messages("thankYou.pension.intro")))
 
-      @appConfig.pensionSignInUrl.map { pensionSignInUrl =>
-        @p(Html(messages("thankYou.pension.signIn", signInLink)))
-      }
+            @appConfig.pensionSignInUrl.map { pensionSignInUrl =>
+                @p(Html(messages("thankYou.pension.signIn", signInLink)))
+            }
 
+            @h2(messages("thankYou.pension.subHeading"))
 
-      @h2(messages("thankYou.pension.subHeading"))
+            @p(Html(messages("thankYou.pension.subContent")))
 
-      @p(Html(messages("thankYou.pension.subContent")))
+            @appConfig.pensionRetirementUrl.map { pensionRetirementUrl =>
+                @p(link(link = pensionRetirementUrl, messageKey = "thankYou.pension.retirementLink"))
+            }
 
-      @appConfig.pensionRetirementUrl.map { pensionRetirementUrl =>
-        @p(link(link = pensionRetirementUrl, messageKey = "thankYou.pension.retirementLink"))
-      }
+            @h2(messages("thankYou.pension.sideBar.header"))
 
-      @h2(messages("thankYou.pension.sideBar.header"))
+            <ul class="govuk-list" id="nav-bar">
+                @appConfig.pensionSideBarOneUrl.map { pensionSideBarOneUrl =>
+                    <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarOneUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkOne")</li>
+                }
+                @appConfig.pensionSideBarTwoUrl.map { pensionSideBarTwoUrl =>
+                    <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarTwoUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkTwo")</li>
+                }
+                @appConfig.pensionSideBarThreeUrl.map { pensionSideBarThreeUrl =>
+                    <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarThreeUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkThree")</li>
+                }
+                @appConfig.pensionSideBarFourUrl.map { pensionSideBarFourUrl =>
+                    <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarFourUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkFour")</li>
+                }
+                @appConfig.pensionSideBarFiveUrl.map { pensionSideBarFiveUrl =>
+                    <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarFiveUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkFive")</li>
+                }
+            </ul>
 
-      <ul class="govuk-list" id="nav-bar">
-          @appConfig.pensionSideBarOneUrl.map { pensionSideBarOneUrl =>
-            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarOneUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkOne")</li>
-          }
-          @appConfig.pensionSideBarTwoUrl.map { pensionSideBarTwoUrl =>
-            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarTwoUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkTwo")</li>
-          }
-          @appConfig.pensionSideBarThreeUrl.map { pensionSideBarThreeUrl =>
-            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarThreeUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkThree")</li>
-          }
-          @appConfig.pensionSideBarFourUrl.map { pensionSideBarFourUrl =>
-            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarFourUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkFour")</li>
-          }
-          @appConfig.pensionSideBarFiveUrl.map { pensionSideBarFiveUrl =>
-            <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarFiveUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkFive")</li>
-          }
-      </ul>
+            @appConfig.urLinkUrl.map { urLinkUrl =>
 
-      @appConfig.urLinkUrl.map { urLinkUrl =>
+                @h2("thankYou.userResearch.intro1")
 
-          @h2("thankYou.userResearch.intro1")
+                @p(Html(messages("thankYou.userResearch.intro2")))
 
-          @p(Html(messages("thankYou.userResearch.intro2")))
+                @p(link(link = urLinkUrl, messageKey = "thankYou.userResearch.UrLink"))
+            }
 
-          @p(link(link = urLinkUrl, messageKey = "thankYou.userResearch.UrLink"))
-      }
-
+        </div>
     </div>
-  </div>
 }

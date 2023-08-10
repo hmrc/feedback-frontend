@@ -20,4 +20,4 @@
 
 @(msg: String, href: Option[String] = None, classes: Option[String] = None, name: Option[String] = None)(implicit messages: Messages)
 
-@govukButton(Button(content = Text(messages(msg)), href = href, classes = classes.getOrElse(""), name = name))
+    @govukButton(Button(content = Text(messages(msg)), href = href, classes = classes.getOrElse(""), name = name))

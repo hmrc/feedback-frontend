@@ -15,22 +15,22 @@
  *@
 
 @import config.FrontendAppConfig
-@import models.{MainServiceQuestion, HowDoYouFeelQuestion, HowEasyQuestion}
-@import views.ViewUtils._
+@import models.{HowDoYouFeelQuestion, HowEasyQuestion}
 @import uk.gov.hmrc.govukfrontend.views.html.components._
+@import views.ViewUtils._
 
 
 @this(
-    mainTemplate: MainTemplate,
-    formHelper: FormWithCSRF,
-    h1: components.H1,
-    p: components.P,
-    inputRadio: components.InputRadio,
-    inputRadioDynamic: components.InputRadioDynamic,
-    inputTextArea: components.InputTextArea,
-    govukInput: GovukInput,
-    button: components.Button,
-    errorSummary:  components.ErrorSummary
+        mainTemplate: MainTemplate,
+        formHelper: FormWithCSRF,
+        h1: components.H1,
+        p: components.P,
+        inputRadio: components.InputRadio,
+        inputRadioDynamic: components.InputRadioDynamic,
+        inputTextArea: components.InputTextArea,
+        govukInput: GovukInput,
+        button: components.Button,
+        errorSummary: components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
@@ -72,13 +72,13 @@
             classes = "govuk-fieldset__legend--m",
             name = "tryingToDo",
             conditionalHtml = Some(
-                    govukInput(Input(
+                govukInput(Input(
                     id = "tryingToDoOther",
                     name = "tryingToDoOther",
                     value = form("tryingToDoOther").value,
                     label = Label(content = Text(messages("trustsQuestions.tryingToDo.heading"))),
                     hint = Some(Hint(content = Text(messages("generic.max-characters", 100)))),
-                    errorMessage = form("tryingToDoOther").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*)))),
+                    errorMessage = form("tryingToDoOther").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
                     classes = "govuk-!-width-one-third"))
             )
         )

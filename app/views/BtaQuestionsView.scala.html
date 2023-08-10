@@ -15,21 +15,21 @@
  *@
 
 @import config.FrontendAppConfig
-@import models.{MainServiceQuestion, HowDoYouFeelQuestion, HowEasyQuestion}
-@import views.ViewUtils._
+@import models.{HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion}
 @import uk.gov.hmrc.govukfrontend.views.html.components._
+@import views.ViewUtils._
 
 @this(
-    mainTemplate: MainTemplate,
-    formHelper: FormWithCSRF,
-    h1: components.H1,
-    p: components.P,
-    inputRadio: components.InputRadio,
-    inputRadioDynamic: components.InputRadioDynamic,
-    inputTextArea: components.InputTextArea,
-    govukInput: GovukInput,
-    button: components.Button,
-    errorSummary:  components.ErrorSummary
+        mainTemplate: MainTemplate,
+        formHelper: FormWithCSRF,
+        h1: components.H1,
+        p: components.P,
+        inputRadio: components.InputRadio,
+        inputRadioDynamic: components.InputRadioDynamic,
+        inputTextArea: components.InputTextArea,
+        govukInput: GovukInput,
+        button: components.Button,
+        errorSummary: components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
@@ -62,18 +62,18 @@
             name = "mainService",
             legendAsHeading = false,
             conditionalHtml = Some(
-                    govukInput(Input(
+                govukInput(Input(
                     id = "mainServiceOther",
                     name = "mainServiceOther",
                     value = form("mainServiceOther").value,
                     label = Label(content = Text(messages("btaQuestions.mainService.label.heading"))),
                     hint = Some(Hint(content = Text(messages("generic.max-characters", 100)))),
-                    errorMessage = form("mainServiceOther").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*)))),
+                    errorMessage = form("mainServiceOther").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
                     classes = "govuk-!-width-one-third"))
             )
         )
 
-         @inputRadio(
+        @inputRadio(
             form = form,
             legend = messages("btaQuestions.ableToDo.heading"),
             items = AbleToDo.options(form),
@@ -92,14 +92,14 @@
             legendAsHeading = false
         )
 
-         @inputTextArea(
+        @inputTextArea(
             form = form,
-            id = "whyGiveScore",
-            name = "whyGiveScore",
-            label = messages("btaQuestions.whyGiveScore.heading"),
+            id = "whyGiveAnswer",
+            name = "whyGiveAnswer",
+            label = messages("btaQuestions.whyGiveAnswer.heading"),
             labelClass = "govuk-label--m",
             isPageHeading = false,
-            hint = Some(Html(messages("btaQuestions.whyGiveScore.hint"))),
+            hint = Some(Html(messages("btaQuestions.whyGiveAnswer.hint"))),
             maxCharacters = Some(1000)
         )
 

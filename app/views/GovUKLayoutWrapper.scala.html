@@ -14,49 +14,49 @@
  * limitations under the License.
  *@
 
+@import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.hmrcfrontend.views.html.helpers._
 @import views.html.helper.CSPNonce
-@import uk.gov.hmrc.govukfrontend.views.html.components._
 
 @this(
-    govukLayout: GovukLayout,
-    hmrcStandardHeader: HmrcStandardHeader,
-    hmrcStandardFooter: HmrcStandardFooter,
-    hmrcLanguageSelectHelper: HmrcLanguageSelectHelper,
-    hmrcHead: HmrcHead,
-    scripts: HmrcScripts,
-    twoThirdsOneThirdMainContent: TwoThirdsOneThirdMainContent,
-    twoThirdsMainContent: TwoThirdsMainContent,
-    hmrcReportTechnicalIssueHelper: HmrcReportTechnicalIssueHelper,
-    govukBackLink: GovukBackLink,
+        govukLayout: GovukLayout,
+        hmrcStandardHeader: HmrcStandardHeader,
+        hmrcStandardFooter: HmrcStandardFooter,
+        hmrcLanguageSelectHelper: HmrcLanguageSelectHelper,
+        hmrcHead: HmrcHead,
+        scripts: HmrcScripts,
+        twoThirdsOneThirdMainContent: TwoThirdsOneThirdMainContent,
+        twoThirdsMainContent: TwoThirdsMainContent,
+        hmrcReportTechnicalIssueHelper: HmrcReportTechnicalIssueHelper,
+        govukBackLink: GovukBackLink,
 )
 
 @(
-    pageTitle: String,
-    sidebar: Option[Html] = None,
-    headScripts: Option[Html] = None,
-    showBackLink: Boolean = false
+        pageTitle: String,
+        sidebar: Option[Html] = None,
+        headScripts: Option[Html] = None,
+        showBackLink: Boolean = false
 )(content: Html)(implicit request: RequestHeader, messages: Messages)
 
 
 @headBlock = {
-    @headScripts
+@headScripts
     <meta name="format-detection" content="telephone=no" />
 }
 
 @contentBlock = {
-    @content
+@content
 
     <div class="govuk-!-display-none-print">
-        @hmrcReportTechnicalIssueHelper()
+    @hmrcReportTechnicalIssueHelper()
     </div>
 }
 
 @beforeContentBlock = {
-    @hmrcLanguageSelectHelper()
-    @if(showBackLink) {
-        @govukBackLink(BackLink(href = "#", content = Text(messages("site.back")), attributes = Map("id" -> "back-link")))
-    }
+@hmrcLanguageSelectHelper()
+@if(showBackLink) {
+    @govukBackLink(BackLink(href = "#", content = Text(messages("site.back")), attributes = Map("id" -> "back-link")))
+}
 }
 
 @govukLayout(
@@ -67,7 +67,7 @@
     beforeContentBlock = Some(beforeContentBlock),
     footerBlock = Some(hmrcStandardFooter()),
     mainContentLayout = Some(sidebar match {
-                                case Some(sidebarHtml) => twoThirdsOneThirdMainContent(sidebarHtml)
-                                case None => twoThirdsMainContent(_)
-                            })
+        case Some(sidebarHtml) => twoThirdsOneThirdMainContent(sidebarHtml)
+        case None => twoThirdsMainContent(_)
+    })
 )(contentBlock)

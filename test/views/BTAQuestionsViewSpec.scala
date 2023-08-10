@@ -57,7 +57,7 @@ class BTAQuestionsViewSpec
       HowEasyQuestion.options(form),
       "btaQuestions.howEasyScore")
 
-    behave like stringPage(createViewUsingForm, "whyGiveScore", "btaQuestions.whyGiveScore")
+    behave like stringPage(createViewUsingForm, "whyGiveAnswer", "btaQuestions.whyGiveAnswer")
 
     behave like optionsPage(
       createViewUsingForm,
@@ -72,7 +72,7 @@ class BTAQuestionsViewSpec
     }
 
     "contain diclaimer hint text" in {
-      val expectedMessage = messages("btaQuestions.whyGiveScore.hint")
+      val expectedMessage = messages("btaQuestions.whyGiveAnswer.hint")
       val doc = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }

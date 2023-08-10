@@ -16,31 +16,31 @@
 
 @import config.FrontendAppConfig
 @import models.ccg._
-@import views.ViewUtils._
 @import uk.gov.hmrc.govukfrontend.views.html.components.FormWithCSRF
+@import views.ViewUtils._
 
 @this(
-    mainTemplate: MainTemplate,
-    formHelper: FormWithCSRF,
-    h1: components.H1,
-    p: components.P,
-    inputRadio: components.InputRadio,
-    inputTextArea: components.InputTextArea,
-    button: components.Button,
-    errorSummary:  components.ErrorSummary
+        mainTemplate: MainTemplate,
+        formHelper: FormWithCSRF,
+        h1: components.H1,
+        p: components.P,
+        inputRadio: components.InputRadio,
+        inputTextArea: components.InputTextArea,
+        button: components.Button,
+        errorSummary: components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
 @privacyPolicyLink = {
-<a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("ccgQuestions.introLinkText")</a>
+    <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("ccgQuestions.introLinkText")</a>
 }
 
 @mainTemplate(
-title = s"${errorPrefix(form)} ${messages("ccgQuestions.title")}",
-bodyClasses = None) {
+    title = s"${errorPrefix(form)} ${messages("ccgQuestions.title")}",
+    bodyClasses = None) {
 
-@formHelper(action = action, Symbol("autoComplete") -> "off", Symbol("data-dynamic-form") -> "true") {
+    @formHelper(action = action, Symbol("autoComplete") -> "off", Symbol("data-dynamic-form") -> "true") {
 
         @errorSummary(form)
 
@@ -81,7 +81,7 @@ bodyClasses = None) {
             maxCharacters = Some(1000)
         )
 
-       @inputRadio(
+        @inputRadio(
             form = form,
             legend = messages("ccgQuestions.supportFutureTax.heading"),
             items = SupportFutureQuestion.options(form),
@@ -91,5 +91,5 @@ bodyClasses = None) {
         )
 
         @button(messages("site.continue"))
- }
+    }
 }
