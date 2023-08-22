@@ -14,34 +14,34 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.hmrcfrontend.views.viewmodels.charactercount.CharacterCount
 @import uk.gov.hmrc.govukfrontend.views.html.components._
+@import uk.gov.hmrc.hmrcfrontend.views.viewmodels.charactercount.CharacterCount
 
 @this(
-    govukTextArea: GovukTextarea,
-    hmrcCharacterCount: HmrcCharacterCount
+        govukTextArea: GovukTextarea,
+        hmrcCharacterCount: HmrcCharacterCount
 )
 
 @(
-    form: Form[_],
-    id: String = "",
-    name: String = "",
-    label: String = "",
-    labelClass : String = "",
-    isLabelHidden: Boolean = false,
-    isPageHeading: Boolean,
-    headingMessageArgs: Seq[String] = Seq(),
-    hint: Option[Html] = None,
-    classes: Option[String] = None,
-    stripWhitespace: Boolean = false,
-    maxCharacters: Option[Int] = None
+        form: Form[_],
+        id: String = "",
+        name: String = "",
+        label: String = "",
+        labelClass: String = "",
+        isLabelHidden: Boolean = false,
+        isPageHeading: Boolean,
+        headingMessageArgs: Seq[String] = Seq(),
+        hint: Option[Html] = None,
+        classes: Option[String] = None,
+        stripWhitespace: Boolean = false,
+        maxCharacters: Option[Int] = None
 )(implicit messages: Messages)
 
 @labelClasses = @{
     if(isPageHeading) "govuk-label--xl"
-    else if (hint.isDefined) "govuk-!-font-weight-bold"
-    else if (isLabelHidden) "govuk-visually-hidden"
-    else ""
+    else if(hint.isDefined) "govuk-!-font-weight-bold"
+    else if(isLabelHidden) "govuk-visually-hidden"
+        else ""
 }
 
 @if(maxCharacters.isDefined) {
@@ -50,7 +50,7 @@
         name = name,
         maxLength = maxCharacters,
         label = Label(
-            content = Text(messages(label, headingMessageArgs:_*)),
+            content = Text(messages(label, headingMessageArgs: _*)),
             isPageHeading = isPageHeading,
             classes = labelClass
         ),
@@ -58,7 +58,7 @@
             content = HtmlContent(hintHtml)
         )),
         value = form(name).value,
-        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*))))
+        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*))))
     ))
 } else {
     @govukTextArea(Textarea(
@@ -66,7 +66,7 @@
         name = name,
         classes = classes.fold("")(x => x),
         label = Label(
-            content = Text(messages(label, headingMessageArgs:_*)),
+            content = Text(messages(label, headingMessageArgs: _*)),
             isPageHeading = isPageHeading,
             classes = labelClasses
         ),
@@ -75,6 +75,6 @@
         )),
         value = form(name).value,
         autocomplete = form(name).value,
-        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*))))
+        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*))))
     ))
 }

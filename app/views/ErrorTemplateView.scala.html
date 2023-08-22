@@ -17,14 +17,14 @@
 @import config.FrontendAppConfig
 
 @this(
-    mainTemplate: MainTemplate,
-    h1: components.H1,
-    p: components.P
+        mainTemplate: MainTemplate,
+        h1: components.H1,
+        p: components.P
 )
 
 @(pageTitle: String, heading: String, message: String, appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
-  @mainTemplate(
+@mainTemplate(
     title = Messages(pageTitle),
     bodyClasses = None) {
 

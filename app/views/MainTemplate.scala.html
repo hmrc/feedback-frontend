@@ -17,11 +17,11 @@
 @this(govukLayoutWrapper: GovUKLayoutWrapper)
 
 @(title: String,
-  sidebarHtml: Option[Html] = None,
-  contentHeader: Option[Html] = None,
-  bodyClasses: Option[String] = None,
-  mainClass: Option[String] = None,
-  scriptElem: Option[Html] = None,
-  showBackLink: Boolean = false)(contentBlock: Html)(implicit request : Request[_], messages: Messages)
+        sidebarHtml: Option[Html] = None,
+        contentHeader: Option[Html] = None,
+        bodyClasses: Option[String] = None,
+        mainClass: Option[String] = None,
+        scriptElem: Option[Html] = None,
+        showBackLink: Boolean = false)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
 
-@govukLayoutWrapper(pageTitle = title, sidebar = sidebarHtml, showBackLink =  showBackLink)(contentBlock)
+    @govukLayoutWrapper(pageTitle = title, sidebar = sidebarHtml, showBackLink = showBackLink)(contentBlock)

@@ -16,18 +16,18 @@
 
 @import config.FrontendAppConfig
 @import models.{HowDoYouFeelQuestion, HowEasyQuestion}
-@import views.ViewUtils._
 @import uk.gov.hmrc.govukfrontend.views.html.components.FormWithCSRF
+@import views.ViewUtils._
 
 @this(
-    mainTemplate: MainTemplate,
-    formHelper: FormWithCSRF,
-    h1: components.H1,
-    p: components.P,
-    inputRadio: components.InputRadio,
-    inputTextArea: components.InputTextArea,
-    button: components.Button,
-    errorSummary:  components.ErrorSummary
+        mainTemplate: MainTemplate,
+        formHelper: FormWithCSRF,
+        h1: components.H1,
+        p: components.P,
+        inputRadio: components.InputRadio,
+        inputTextArea: components.InputTextArea,
+        button: components.Button,
+        errorSummary: components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)

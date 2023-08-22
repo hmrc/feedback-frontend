@@ -15,18 +15,18 @@
  *@
 
 @this(
- mainTemplate: MainTemplate,
- h1: components.H1,
- p: components.P
+        mainTemplate: MainTemplate,
+        h1: components.H1,
+        p: components.P
 )
 
 @()(implicit request: Request[_], messages: Messages)
 
 @mainTemplate(
-title = messages("sessionExpired.title"),
-bodyClasses = None) {
+    title = messages("sessionExpired.title"),
+    bodyClasses = None) {
 
-  @h1("sessionExpired.heading")
+    @h1("sessionExpired.heading")
 
-  @p(Html(messages("sessionExpired.guidance")))
+    @p(Html(messages("sessionExpired.guidance")))
 }

@@ -14,21 +14,21 @@
  * limitations under the License.
  *@
 
-@import play.twirl.api._
 @import config.FrontendAppConfig
 @import models.{HowDoYouFeelQuestion, HowEasyQuestion}
-@import views.ViewUtils._
+@import play.twirl.api._
 @import uk.gov.hmrc.govukfrontend.views.html.components._
+@import views.ViewUtils._
 
 @this(
-    mainTemplate: MainTemplate,
-    formHelper: FormWithCSRF,
-    h1: components.H1,
-    p: components.P,
-    inputRadio: components.InputRadio,
-    inputTextArea: components.InputTextArea,
-    button: components.Button,
-    errorSummary:  components.ErrorSummary
+        mainTemplate: MainTemplate,
+        formHelper: FormWithCSRF,
+        h1: components.H1,
+        p: components.P,
+        inputRadio: components.InputRadio,
+        inputTextArea: components.InputTextArea,
+        button: components.Button,
+        errorSummary: components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
@@ -61,7 +61,7 @@
             labelClass = "govuk-label--m",
             isPageHeading = false,
             hint = Some(Html(messages("ptaQuestions.neededToDo.heading.hintText"))),
-            maxCharacters = Some(200)
+            maxCharacters = Some(1000)
         )
 
         @inputRadio(

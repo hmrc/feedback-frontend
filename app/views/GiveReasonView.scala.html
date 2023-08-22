@@ -15,20 +15,19 @@
  *@
 
 @import config.FrontendAppConfig
-@import controllers.routes._
 @import models.GiveReason
-@import views.ViewUtils._
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.hmrcfrontend.views.html.components.CharacterCount
+@import views.ViewUtils._
 
 @this(
-    mainTemplate: MainTemplate,
-    formHelper: FormWithCSRF,
-    h1: components.H1,
-    inputRadioDynamic: components.InputRadioDynamic,
-    hmrcCharacterCount: HmrcCharacterCount,
-    button: components.Button,
-    errorSummary:  components.ErrorSummary
+        mainTemplate: MainTemplate,
+        formHelper: FormWithCSRF,
+        h1: components.H1,
+        inputRadioDynamic: components.InputRadioDynamic,
+        hmrcCharacterCount: HmrcCharacterCount,
+        button: components.Button,
+        errorSummary: components.ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
@@ -51,12 +50,12 @@
                 hmrcCharacterCount(CharacterCount(
                     id = "reason",
                     name = "reason",
-                    maxLength = Some(100),
+                    maxLength = Some(1000),
                     value = form("reason").value,
                     label = Label(content = Text(messages("giveReason.other.reason.label"))),
-                    errorMessage = form("reason").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args:_*)))),
+                    errorMessage = form("reason").error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*)))),
                     hint = Some(Hint(content = Text(messages("giveReason.other.reason.hint"))))
-                    ))
+                ))
             )
         )
 
