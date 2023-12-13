@@ -37,11 +37,6 @@ lazy val root = (project in file("."))
     resolvers ++= Seq(
       Resolver.jcenterRepo
     ),
-    // concatenate js
-    Concat.groups := Seq(
-      "javascripts/feedbackfrontend-app.js" ->
-        group(Seq("javascripts/feedbackfrontend.js"))
-    ),
     // prevent removal of unused code which generates warning errors due to use of third-party libs
     uglifyCompressOptions := Seq("unused=false", "dead_code=false"),
     pipelineStages := Seq(digest),
