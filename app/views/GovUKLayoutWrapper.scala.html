@@ -24,6 +24,7 @@
         hmrcStandardFooter: HmrcStandardFooter,
         hmrcLanguageSelectHelper: HmrcLanguageSelectHelper,
         hmrcHead: HmrcHead,
+        scripts: HmrcScripts,
         twoThirdsOneThirdMainContent: TwoThirdsOneThirdMainContent,
         twoThirdsMainContent: TwoThirdsMainContent,
         hmrcReportTechnicalIssueHelper: HmrcReportTechnicalIssueHelper,
@@ -33,6 +34,7 @@
 @(
         pageTitle: String,
         sidebar: Option[Html] = None,
+        headScripts: Option[Html] = None,
         showBackLink: Boolean = false
 )(content: Html)(implicit request: RequestHeader, messages: Messages)
 
