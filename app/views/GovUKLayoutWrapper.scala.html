@@ -40,7 +40,6 @@
 
 
 @headBlock = {
-@headScripts
     <meta name="format-detection" content="telephone=no" />
 }
 
@@ -61,9 +60,8 @@
 
 @govukLayout(
     pageTitle = Some(pageTitle),
-    headBlock = Some(hmrcHead(headBlock = Some(headBlock), nonce = CSPNonce.get)),
+    headBlock = Some(hmrcHead(headBlock = Some(headBlock))),
     headerBlock = Some(hmrcStandardHeader(displayHmrcBanner = true)),
-    scriptsBlock = Some(scripts(nonce = CSPNonce.get)),
     beforeContentBlock = Some(beforeContentBlock),
     footerBlock = Some(hmrcStandardFooter()),
     mainContentLayout = Some(sidebar match {
