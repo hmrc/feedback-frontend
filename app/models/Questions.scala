@@ -66,7 +66,7 @@ case class TrustsQuestions(
 case class PensionQuestions(
   ableToDo: Option[AbleToDo],
   howEasyScore: Option[HowEasyQuestion],
-  whyGiveScore: Option[String],
+  whyGiveAnswer: Option[String],
   howDoYouFeelScore: Option[HowDoYouFeelQuestion],
   likelyToDo: Option[LikelyToDoQuestion]
 )

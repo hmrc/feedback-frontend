@@ -190,7 +190,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withFeedbackId(feedbackId) andThen
         withAbleToDo(questions.ableToDo) andThen
         withHowEasyScore(questions.howEasyScore) andThen
-        withWhyGiveScore(questions.whyGiveScore) andThen
+        withWhyGiveAnswer(questions.whyGiveAnswer) andThen
         withHowFeelScore(questions.howDoYouFeelScore) andThen
         withLikelyToDo(questions.likelyToDo)
     )(emptyMap)
