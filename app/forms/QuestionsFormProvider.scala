@@ -17,10 +17,11 @@
 package forms
 
 import forms.mappings.Mappings
+
 import javax.inject.Inject
 import models._
 import models.ccg._
-import play.api.data.Form
+import play.api.data.{Form, Forms}
 import play.api.data.Forms._
 
 class OtherQuestionsFormProvider @Inject() extends Mappings {
@@ -129,16 +130,14 @@ class TrustsQuestionsFormProvider @Inject() extends Mappings {
 
 class PensionQuestionsFormProvider @Inject() extends Mappings {
 
-  private val maxFieldSizeWhyGiveScore = 1000
+  private val maxFieldSizeWhyGiveAnswer = 1000
 
   def apply(): Form[PensionQuestions] =
     Form(
       mapping(
-        "ableToDo"     -> optional(enumerable[AbleToDo](invalidKey = "ableToDo.error")),
-        "howEasyScore" -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
-        "whyGiveScore" ->
-          optional(text("whyGiveScore.error.required")
-            .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
+        "ableToDo"          -> optional(enumerable[AbleToDo](invalidKey = "ableToDo.error")),
+        "howEasyScore"      -> optional(enumerable[HowEasyQuestion](invalidKey = "howEasyScore.error")),
+        "whyGiveAnswer"     -> optional(Forms.text.verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error")),
         "likelyToDo"        -> optional(enumerable[LikelyToDoQuestion](invalidKey = "likelyToDo.error"))
       )(PensionQuestions.apply)(PensionQuestions.unapply))

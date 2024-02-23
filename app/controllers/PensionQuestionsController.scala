@@ -18,43 +18,44 @@ package controllers
 
 import config.FrontendAppConfig
 import forms.PensionQuestionsFormProvider
-import javax.inject.Inject
 import models.{FeedbackId, Origin, PensionQuestions}
 import navigation.Navigator
 import pages.PensionQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
-import play.api.mvc.MessagesControllerComponents
+import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-
 import views.html.PensionQuestionsView
 
-class PensionQuestionsController @Inject()(
+import javax.inject.Inject
+
+class PensionQuestionsController @Inject() (
   appConfig: FrontendAppConfig,
   navigator: Navigator,
   formProvider: PensionQuestionsFormProvider,
   auditService: AuditService,
   mcc: MessagesControllerComponents,
-  pensionQuestionsView: PensionQuestionsView)
-    extends FrontendController(mcc) with I18nSupport {
+  pensionQuestionsView: PensionQuestionsView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
-  val form: Form[PensionQuestions] = formProvider()
-  lazy val successPage = navigator.nextPage(PensionQuestionsPage)(())
-  def submitCall(origin: Origin) = routes.PensionQuestionsController.onSubmit(origin)
+  val form: Form[PensionQuestions]     = formProvider()
+  def submitCall(origin: Origin): Call = routes.PensionQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action { implicit request =>
+  def onPageLoad(origin: Origin): Action[AnyContent] = Action { implicit request =>
     Ok(pensionQuestionsView(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action { implicit request =>
+  def onSubmit(origin: Origin): Action[AnyContent] = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(
-        formWithErrors => BadRequest(pensionQuestionsView(appConfig, formWithErrors, submitCall(origin))),
+        formWithErrors =>
+          BadRequest(pensionQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.pensionAudit(origin, FeedbackId.fromSession, value)
-          Redirect(successPage)
+          Redirect(navigator.nextPage(PensionQuestionsPage)(()))
         }
       )
   }

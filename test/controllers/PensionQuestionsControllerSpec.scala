@@ -86,7 +86,7 @@ class PensionQuestionsControllerSpec
         val values = Map(
           "ableToDo"          -> answers.ableToDo.map(_.toString),
           "howEasyScore"      -> answers.howEasyScore.map(_.toString),
-          "whyGiveScore"      -> answers.whyGiveScore,
+          "whyGiveAnswer"     -> answers.whyGiveAnswer,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
           "likelyToDo"        -> answers.likelyToDo.map(_.toString)
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq

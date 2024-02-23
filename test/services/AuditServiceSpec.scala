@@ -222,7 +222,7 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
           "feedbackId"        -> feedbackId.value,
           "ableToDo"          -> questions.ableToDo.map(_.value.toString).getOrElse("-"),
           "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
+          "whyGiveAnswer"     -> questions.whyGiveAnswer.getOrElse("-"),
           "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
           "likelyToDo"        -> questions.likelyToDo.map(_.toString).getOrElse("-")
         )
