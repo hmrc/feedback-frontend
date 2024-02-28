@@ -18,20 +18,22 @@ package services
 
 import base.BaseSpec
 import models._
-import org.mockito.Matchers.{eq => eqTo, _}
+import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 
+import scala.concurrent.ExecutionContext
+
 class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
-  implicit val hc = HeaderCarrier()
-  implicit val ec = scala.concurrent.ExecutionContext.Implicits.global
+  implicit val hc: HeaderCarrier = HeaderCarrier()
+  implicit val ec: ExecutionContext = scala.concurrent.ExecutionContext.Implicits.global
 
-  val auditConnector = mock[AuditConnector]
-  val auditService = new AuditService(auditConnector)(ec)
+  val auditConnector: AuditConnector = mock[AuditConnector]
+  val auditService: AuditService = new AuditService(auditConnector)(ec)
 
   "AuditService.ptaAudit" should {
 

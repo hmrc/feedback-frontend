@@ -21,7 +21,7 @@ import forms.NmwCcgQuestionsFormProvider
 import generators.ModelGenerators
 import models.{FeedbackId, NmwCcgQuestions, Origin}
 import navigation.FakeNavigator
-import org.mockito.Matchers.{any, eq => eqTo}
+import org.mockito.ArgumentMatchers.{any, eq => eqTo}
 import org.mockito.Mockito.{reset, times, verify}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.Gen

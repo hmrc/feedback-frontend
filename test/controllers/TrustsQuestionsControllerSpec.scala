@@ -19,11 +19,10 @@ package controllers
 import base.SpecBase
 import forms.TrustsQuestionsFormProvider
 import generators.ModelGenerators
-import models.{AbleToDo, FeedbackId, HowDoYouFeelQuestion, HowEasyQuestion, Origin, TrustsQuestions, TryingToDoQuestion, YesNo}
+import models.{FeedbackId, Origin, TrustsQuestions}
 import navigation.FakeNavigator
-import org.mockito.Matchers.{eq => eqTo, _}
+import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
-import org.scalacheck.{Arbitrary, Gen}
 import org.scalacheck.Arbitrary._
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatestplus.mockito.MockitoSugar
