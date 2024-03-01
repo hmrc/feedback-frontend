@@ -17,6 +17,7 @@ object AppDependencies {
     "uk.gov.hmrc"         %% s"bootstrap-test-$playVersion" % bootStrapVersion,
     "org.scalatest"       %% "scalatest"                    % "3.2.16",
     "org.playframework"   %% "play-test"                    % PlayVersion.current,
+    "org.jsoup"            % "jsoup"                        % "1.17.2",
     "org.scalatestplus"   %% "scalatestplus-scalacheck"     % "3.1.0.0-RC2",
     "org.scalatestplus"   %% "scalatestplus-mockito"        % "1.0.0-M2",
     "com.vladsch.flexmark" % "flexmark-all"                 % "0.64.2" // Any version above this cause the accessibility tests to fail because it fetches com.ibm.icu::icu4j version 72.1
