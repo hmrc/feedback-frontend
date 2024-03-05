@@ -21,7 +21,7 @@ import play.api.mvc.PathBindable
 
 object Binders {
 
-  implicit def originBinder = new PathBindable[Origin] {
+  implicit def originBinder: PathBindable[Origin] = new PathBindable[Origin] {
     override def bind(key: String, value: String): Either[String, Origin] =
       Right(Origin.fromString(value))
 

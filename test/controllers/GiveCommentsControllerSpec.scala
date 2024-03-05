@@ -21,7 +21,7 @@ import forms.GiveCommentsFormProvider
 import generators.ModelGenerators
 import models.{FeedbackId, Origin}
 import navigation.FakeNavigator
-import org.mockito.Matchers.{eq => eqTo, _}
+import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
 import org.scalacheck.Arbitrary._
 import org.scalacheck.Gen
