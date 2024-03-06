@@ -50,7 +50,7 @@ class PensionQuestionsViewSpec
       HowEasyQuestion.options(form),
       "pensionQuestions.howEasyScore")
 
-    behave like stringPage(createViewUsingForm, "whyGiveAnswer", "pensionQuestions.whyGiveAnswer")
+    behave like stringPage(createViewUsingForm, "whyGiveScore", "pensionQuestions.whyGiveScore")
 
     behave like optionsPage(
       createViewUsingForm,
@@ -65,7 +65,7 @@ class PensionQuestionsViewSpec
       "pensionQuestions.likelyToDo")
 
     "contain diclaimer hint text" in {
-      val expectedMessage = messages("pensionQuestions.whyGiveAnswer.hint")
+      val expectedMessage = messages("pensionQuestions.whyGiveScore.hint")
       val doc = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }

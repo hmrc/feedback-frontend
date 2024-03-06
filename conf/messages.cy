@@ -217,8 +217,8 @@ pensionQuestions.intro3 = Mae’r arolwg yn cymryd tua 1 munud i’w gwblhau. Ma
 pensionQuestions.introLinkText = Hysbysiad Preifatrwydd CThEF (yn agor ffenestr neu dab newydd)
 pensionQuestions.ableToDo.heading = Oeddech chi’n gallu gwneud yr hyn yr oedd angen i chi ei wneud heddiw?
 pensionQuestions.howEasyScore.heading = Pa mor hawdd oedd hi i wneud yr hyn yr oedd angen i chi ei wneud heddiw?
-pensionQuestions.whyGiveAnswer.heading = Pam gwnaethoch chi roi’r ateb hwn?
-pensionQuestions.whyGiveAnswer.hint = Peidiwch â nodi gwybodaeth bersonol megis eich rhif Yswiriant Gwladol, eich Cyfeirnod Unigryw y Trethdalwr, eich cyfeiriad neu’ch rhif ffôn yn y blwch hwn. Sylwer – ni allwn ymateb i sylwadau’n unigol, ond mi ydym yn defnyddio’ch adborth i helpu i wella ein gwasanaethau.
+pensionQuestions.whyGiveScore.heading = Pam gwnaethoch roi’r sgôr hon?
+pensionQuestions.whyGiveScore.hint = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I’w ddeall yn well, efallai y byddwn yn cysylltu’ch adborth â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 pensionQuestions.howDoYouFeelScore.heading = At ei gilydd, beth oedd eich barn am y gwasanaeth a gawsoch heddiw?
 pensionQuestions.likelyToDo.heading = Beth ydych chi’n fwyaf tebygol o’i wneud ar ôl gwirio’ch Pensiwn y Wladwriaeth?
 
