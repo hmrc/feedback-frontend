@@ -34,7 +34,7 @@ import services.AuditService
 import views.html.PensionQuestionsView
 
 class PensionQuestionsControllerSpec
-    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+  extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -86,7 +86,7 @@ class PensionQuestionsControllerSpec
         val values = Map(
           "ableToDo"          -> answers.ableToDo.map(_.toString),
           "howEasyScore"      -> answers.howEasyScore.map(_.toString),
-          "whyGiveAnswer"     -> answers.whyGiveAnswer,
+          "whyGiveScore"      -> answers.whyGiveScore,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
           "likelyToDo"        -> answers.likelyToDo.map(_.toString)
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq

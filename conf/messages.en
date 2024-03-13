@@ -216,8 +216,8 @@ pensionQuestions.intro3 = The survey takes about 1 minute to complete. There are
 pensionQuestions.introLinkText = HMRC Privacy Notice (opens in a new window or tab)
 pensionQuestions.ableToDo.heading = Were you able to do what you needed to do today?
 pensionQuestions.howEasyScore.heading = How easy was it for you to do what you needed to do today?
-pensionQuestions.whyGiveAnswer.heading = Why did you give this answer?
-pensionQuestions.whyGiveAnswer.hint = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
+pensionQuestions.whyGiveScore.heading = Why did you give this score?
+pensionQuestions.whyGiveScore.hint = Please do not enter personal information such as your National Insurance number, Unique Tax Reference or address or telephone number in this box. Please note we are unable to reply to comments individually but we do use your feedback to help improve our services.
 pensionQuestions.howDoYouFeelScore.heading = Overall, how did you feel about the service you received today?
 
 pensionQuestions.likelyToDo.heading = What are you most likely to do after checking your State Pension?
