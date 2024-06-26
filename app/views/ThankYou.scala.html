@@ -19,16 +19,10 @@
 @this(
         mainTemplate: MainTemplate,
         h1: components.H1,
-        h2: components.H2,
-        p: components.P,
-        link: components.Link
+        p: components.P
 )
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
-
-@govUkLink = {
-@link(appConfig.govUkUrl, messageKey = "thankYou.userResearch.urLinkText")
-}
 
 @mainTemplate(title = messages("thankYou.title")) {
 
@@ -36,11 +30,4 @@
 
     @p(Html(messages("thankYou.intro")))
 
-    @appConfig.urLinkUrl.map { urLinkUrl =>
-        @h2("thankYou.userResearch.intro1")
-
-        @p(Html(messages("thankYou.userResearch.intro2", govUkLink)))
-
-        @p(link(link = urLinkUrl, messageKey = "thankYou.userResearch.UrLink"))
-    }
 }

@@ -27,9 +27,9 @@
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
 
 @signInLink = {
-@appConfig.pensionSignInUrl.map { pensionSignInUrl =>
-    <a href="@appConfig.pensionSignInUrl" class="govuk-link">@messages("thankYou.pension.signInLink")</a>
-}
+    @appConfig.pensionSignInUrl.map { pensionSignInUrl =>
+        <a href="@appConfig.pensionSignInUrl" class="govuk-link">@messages("thankYou.pension.signInLink")</a>
+    }
 }
 
 
@@ -77,16 +77,6 @@
                     <li class="govuk-!-margin-bottom-3">@link(link = pensionSideBarFiveUrl, attrTarget = true, messageKey = "thankYou.pension.sideBar.linkFive")</li>
                 }
             </ul>
-
-            @appConfig.urLinkUrl.map { urLinkUrl =>
-
-                @h2("thankYou.userResearch.intro1")
-
-                @p(Html(messages("thankYou.userResearch.intro2")))
-
-                @p(link(link = urLinkUrl, messageKey = "thankYou.userResearch.UrLink"))
-            }
-
         </div>
     </div>
 }
