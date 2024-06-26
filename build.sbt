@@ -7,7 +7,7 @@ lazy val appName: String = "feedback-frontend"
 val migrate: TaskKey[Unit] = taskKey[Unit]("Execute migrate script")
 
 lazy val root = (project in file("."))
-  .enablePlugins(PlayScala, SbtAutoBuildPlugin, SbtDistributablesPlugin)
+  .enablePlugins(PlayScala, SbtDistributablesPlugin)
   .disablePlugins(JUnitXmlReportPlugin)
   .settings(DefaultBuildSettings.scalaSettings *)
   .settings(DefaultBuildSettings.defaultSettings() *)
