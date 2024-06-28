@@ -29,5 +29,11 @@ class ThankYouViewSpec extends ViewBehaviours {
 
   "ThankYou view" must {
     behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl")
+
+    "contain pension intro paragraph" in {
+      val expectedMessage = messages("thankYou.intro")
+      val doc = asDocument(createView())
+      assertContainsText(doc, expectedMessage)
+    }
   }
 }

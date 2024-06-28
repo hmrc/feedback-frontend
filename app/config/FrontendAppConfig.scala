@@ -41,7 +41,6 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
   lazy val loginContinueUrl: String = loadConfig("urls.loginContinue")
   lazy val privacyPolicyUrl =
     "https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you"
-  lazy val urLinkUrl: Option[String] = getOptional[String]("microservice.services.features.ur-link-url")
   lazy val pensionSignInUrl: Option[String] = getOptional[String]("urls.pension.sign-in")
   lazy val pensionRetirementUrl: Option[String] = getOptional[String]("urls.pension.retirement")
   lazy val pensionSideBarOneUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-one")
