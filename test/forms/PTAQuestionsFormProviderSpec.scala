@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,7 @@ import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFi
 import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, PTAQuestions}
 import play.api.data.FormError
 
-class PTAQuestionsFormProviderSpec
-    extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
+class PTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
 
   def form = new PTAQuestionsFormProvider()()
 

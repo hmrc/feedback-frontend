@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,8 @@ object ViewUtils {
     case value if value.contains("mainService")       => s"#${MainServiceQuestion.options(form).head.id.getOrElse("")}"
     case value if value.contains("ableToDo")          => s"#${AbleToDo.options(form).head.id.getOrElse("")}"
     case value if value.contains("howEasyScore")      => s"#${HowEasyQuestion.options(form).head.id.getOrElse("")}"
-    case value if value.contains("howDoYouFeelScore") =>
-      s"#${HowDoYouFeelQuestion.options(form).head.id.getOrElse("")}"
-    case value if value.contains("likelyToDo")        =>
-      s"#${LikelyToDoQuestion.options(form).head.id.getOrElse("")}"
+    case value if value.contains("howDoYouFeelScore") => s"#${HowDoYouFeelQuestion.options(form).head.id.getOrElse("")}"
+    case value if value.contains("likelyToDo")        => s"#${LikelyToDoQuestion.options(form).head.id.getOrElse("")}"
     case value                                        => s"#$value"
   }
 }

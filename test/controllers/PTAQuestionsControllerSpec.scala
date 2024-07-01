@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,15 +35,15 @@ import views.html.PtaQuestionsView
 
 class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
-  def onwardRoute = Call("GET", "/foo")
+  def onwardRoute: Call = Call("GET", "/foo")
 
   val formProvider = new PTAQuestionsFormProvider()
-  val form = formProvider()
+  val form: Form[PTAQuestions] = formProvider()
 
-  lazy val mockAuditService = mock[AuditService]
-  lazy val ptaQuestionsView = inject[PtaQuestionsView]
+  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val ptaQuestionsView: PtaQuestionsView = inject[PtaQuestionsView]
 
-  def submitCall(origin: Origin) = routes.PTAQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin): Call = routes.PTAQuestionsController.onSubmit(origin)
 
   def controller() =
     new PTAQuestionsController(
@@ -54,7 +54,7 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
       mcc,
       ptaQuestionsView)
 
-  def viewAsString(form: Form[_] = form, action: Call) =
+  def viewAsString(form: Form[_] = form, action: Call): String =
     ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "PTAQuestions Controller" must {

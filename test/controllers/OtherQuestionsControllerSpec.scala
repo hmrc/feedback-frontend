@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,7 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.OtherQuestionsView
 
-class OtherQuestionsControllerSpec
-    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+class OtherQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -60,7 +59,7 @@ class OtherQuestionsControllerSpec
   "OtherQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll (Gen.alphaStr) { str =>
+      forAll(Gen.alphaStr) { str =>
         val origin = Origin.fromString(str)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
@@ -70,7 +69,7 @@ class OtherQuestionsControllerSpec
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
+      forAll(Gen.alphaStr) { str =>
         val origin = Origin.fromString(str)
         val result = controller().onSubmit(origin)(fakeRequest)
 
@@ -85,9 +84,9 @@ class OtherQuestionsControllerSpec
           reset(mockAuditService)
           val origin = Origin.fromString(originStr)
           val values = Map(
-            "ableToDo"          -> answers.ableToDo.map(_.toString),
-            "howEasyScore"      -> answers.howEasyScore.map(_.toString),
-            "whyGiveScore"      -> answers.whyGiveScore,
+            "ableToDo" -> answers.ableToDo.map(_.toString),
+            "howEasyScore" -> answers.howEasyScore.map(_.toString),
+            "whyGiveScore" -> answers.whyGiveScore,
             "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
           ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
@@ -105,7 +104,7 @@ class OtherQuestionsControllerSpec
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
+      forAll(Gen.alphaStr) { str =>
         val origin = Origin.fromString(str)
         val postRequest = fakeRequest
           .withMethod("POST")

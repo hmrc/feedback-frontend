@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,15 @@ object LikelyToDoQuestion {
 
   val baseMessageKey: String = "likelyToDoQuestion"
 
-  case object OtherPensions extends WithName("OtherPensions") with LikelyToDoQuestion
-  case object CheckFinances extends WithName("CheckFinances") with LikelyToDoQuestion
-  case object ClarifyInformation extends WithName("ClarifyInformation") with LikelyToDoQuestion
-  case object GetProfessionalAdvice extends WithName("GetProfessionalAdvice") with LikelyToDoQuestion
-  case object DoNothing extends WithName("DoNothing") with LikelyToDoQuestion
+  private case object OtherPensions extends WithName("OtherPensions") with LikelyToDoQuestion
+
+  private case object CheckFinances extends WithName("CheckFinances") with LikelyToDoQuestion
+
+  private case object ClarifyInformation extends WithName("ClarifyInformation") with LikelyToDoQuestion
+
+  private case object GetProfessionalAdvice extends WithName("GetProfessionalAdvice") with LikelyToDoQuestion
+
+  private case object DoNothing extends WithName("DoNothing") with LikelyToDoQuestion
 
   val values: Seq[LikelyToDoQuestion] =
     List(OtherPensions, CheckFinances, ClarifyInformation, GetProfessionalAdvice, DoNothing)

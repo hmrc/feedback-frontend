@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,18 +33,20 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.NmwCcgQuestionsView
 
-class NmwCcgQuestionsControllerSpec
-    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+class NmwCcgQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
-  def onwardRoute = Call("GET", "/foo")
+  def onwardRoute: Call = Call("GET", "/foo")
 
   val formProvider = new NmwCcgQuestionsFormProvider()
-  val form = formProvider()
-  lazy val nmwCcgQuestionsView = inject[NmwCcgQuestionsView]
-  def submitCall(origin: Origin) = routes.NmwCcgQuestionsController.onSubmit(origin)
-  def viewAsString(form: Form[_] = form, action: Call) =
+  val form: Form[NmwCcgQuestions] = formProvider()
+  lazy val nmwCcgQuestionsView: NmwCcgQuestionsView = inject[NmwCcgQuestionsView]
+
+  def submitCall(origin: Origin): Call = routes.NmwCcgQuestionsController.onSubmit(origin)
+
+  def viewAsString(form: Form[_] = form, action: Call): String =
     nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
-  lazy val mockAuditService = mock[AuditService]
+
+  lazy val mockAuditService: AuditService = mock[AuditService]
 
   val controller = new NmwCcgQuestionsController(
     frontendAppConfig,
@@ -58,8 +60,7 @@ class NmwCcgQuestionsControllerSpec
   "NmwCcgQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-
-      forAll (Gen.alphaStr) { str =>
+      forAll(Gen.alphaStr) { str =>
         val origin = Origin.fromString(str)
         val result = controller.onPageLoad(origin)(fakeRequest)
 
@@ -70,7 +71,6 @@ class NmwCcgQuestionsControllerSpec
   }
 
   "redirect to the next page when valid data is submitted" in {
-
     forAll(Gen.alphaStr) { str =>
       val origin = Origin.fromString(str)
       val result = controller.onSubmit(origin)(fakeRequest)
@@ -88,9 +88,9 @@ class NmwCcgQuestionsControllerSpec
         val origin = Origin.fromString(originStr)
         val values = Map(
           "treatedProfessionally" -> answers.treatedProfessionally.map(_.toString),
-          "checkUnderstanding"    -> answers.checkUnderstanding.map(_.toString),
-          "whyGiveAnswer"         -> answers.whyGiveAnswer,
-          "supportFutureNmw"      -> answers.supportFutureNmw.map(_.toString)
+          "checkUnderstanding" -> answers.checkUnderstanding.map(_.toString),
+          "whyGiveAnswer" -> answers.whyGiveAnswer,
+          "supportFutureNmw" -> answers.supportFutureNmw.map(_.toString)
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
         val request = fakeRequest

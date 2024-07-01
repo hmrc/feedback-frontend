@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,19 +29,19 @@ object HowEasyQuestion {
 
   val baseMessageKey: String = "howEasyQuestion"
 
-  case object VeryEasy extends WithName("VeryEasy") with HowEasyQuestion {
+  private case object VeryEasy extends WithName("VeryEasy") with HowEasyQuestion {
     val value = 5
   }
-  case object Easy extends WithName("Easy") with HowEasyQuestion {
+  private case object Easy extends WithName("Easy") with HowEasyQuestion {
     val value = 4
   }
-  case object Moderate extends WithName("Moderate") with HowEasyQuestion {
+  private case object Moderate extends WithName("Moderate") with HowEasyQuestion {
     val value = 3
   }
-  case object Difficult extends WithName("Difficult") with HowEasyQuestion {
+  private case object Difficult extends WithName("Difficult") with HowEasyQuestion {
     val value = 2
   }
-  case object VeryDifficult extends WithName("VeryDifficult") with HowEasyQuestion {
+  private case object VeryDifficult extends WithName("VeryDifficult") with HowEasyQuestion {
     val value = 1
   }
 

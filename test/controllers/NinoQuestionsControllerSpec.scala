@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,15 +35,15 @@ import views.html.NinoQuestionsView
 
 class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
-  def onwardRoute = Call("GET", "/foo")
+  def onwardRoute: Call = Call("GET", "/foo")
 
   val formProvider = new NinoQuestionsFormProvider()
   val form = formProvider()
 
-  lazy val mockAuditService = mock[AuditService]
-  lazy val ninoQuestionsView = inject[NinoQuestionsView]
+  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val ninoQuestionsView: NinoQuestionsView = inject[NinoQuestionsView]
 
-  def submitCall(origin: Origin) = routes.NinoQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin): Call = routes.NinoQuestionsController.onSubmit(origin)
 
   def controller() =
     new NinoQuestionsController(
@@ -54,7 +54,7 @@ class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks
       mcc,
       ninoQuestionsView)
 
-  def viewAsString(form: Form[_] = form, action: Call) =
+  def viewAsString(form: Form[_] = form, action: Call): String =
     ninoQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "NinoQuestions Controller" must {

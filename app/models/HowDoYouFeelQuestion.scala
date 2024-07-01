@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,19 +29,19 @@ object HowDoYouFeelQuestion {
 
   val baseMessageKey: String = "howDoYouFeelQuestion"
 
-  case object VerySatisfied extends WithName("VerySatisfied") with HowDoYouFeelQuestion {
+  private case object VerySatisfied extends WithName("VerySatisfied") with HowDoYouFeelQuestion {
     val value = 5
   }
-  case object Satisfied extends WithName("Satisfied") with HowDoYouFeelQuestion {
+  private case object Satisfied extends WithName("Satisfied") with HowDoYouFeelQuestion {
     val value = 4
   }
-  case object Moderate extends WithName("Moderate") with HowDoYouFeelQuestion {
+  private case object Moderate extends WithName("Moderate") with HowDoYouFeelQuestion {
     val value = 3
   }
-  case object Dissatisfied extends WithName("Dissatisfied") with HowDoYouFeelQuestion {
+  private case object Dissatisfied extends WithName("Dissatisfied") with HowDoYouFeelQuestion {
     val value = 2
   }
-  case object VeryDissatisfied extends WithName("VeryDissatisfied") with HowDoYouFeelQuestion {
+  private case object VeryDissatisfied extends WithName("VeryDissatisfied") with HowDoYouFeelQuestion {
     val value = 1
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 package views
 
 import handlers.ErrorHandler
+import play.twirl.api.{Html, HtmlFormat}
 import views.behaviours._
 import views.html.ErrorTemplateView
 
@@ -24,12 +25,12 @@ class ErrorTemplateViewSpec extends ViewBehaviours {
 
   val messageKeyPrefix = ""
 
-  val errorHandler = app.injector.instanceOf[ErrorHandler]
-  val action = errorHandler.standardErrorTemplate("title", "heading", "message")(fakeRequest)
+  val errorHandler: ErrorHandler = app.injector.instanceOf[ErrorHandler]
+  val action: Html = errorHandler.standardErrorTemplate("title", "heading", "message")(fakeRequest)
 
-  lazy val errorTemplateView = inject[ErrorTemplateView]
+  lazy val errorTemplateView: ErrorTemplateView = inject[ErrorTemplateView]
 
-  def createView = () => errorTemplateView("title", "heading", "message", frontendAppConfig)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => errorTemplateView("title", "heading", "message", frontendAppConfig)(fakeRequest, messages)
 
   "ErrorTemplate view" must {
     "render the correct title" in {

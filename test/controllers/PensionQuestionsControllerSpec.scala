@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,17 +33,16 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.PensionQuestionsView
 
-class PensionQuestionsControllerSpec
-  extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+class PensionQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
-  def onwardRoute = Call("GET", "/foo")
+  def onwardRoute: Call = Call("GET", "/foo")
 
   val formProvider = new PensionQuestionsFormProvider()
-  val form = formProvider()
-  lazy val mockAuditService = mock[AuditService]
-  lazy val pensionQuestionsView = inject[PensionQuestionsView]
+  val form: Form[PensionQuestions] = formProvider()
+  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val pensionQuestionsView: PensionQuestionsView = inject[PensionQuestionsView]
 
-  def submitCall(origin: Origin) = routes.PensionQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin): Call = routes.PensionQuestionsController.onSubmit(origin)
 
   def controller() =
     new PensionQuestionsController(
@@ -54,13 +53,13 @@ class PensionQuestionsControllerSpec
       mcc,
       pensionQuestionsView)
 
-  def viewAsString(form: Form[_] = form, action: Call) =
+  def viewAsString(form: Form[_] = form, action: Call): String =
     pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "PensionQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll (Gen.alphaStr) { str =>
+      forAll(Gen.alphaStr) { str =>
         val origin = Origin.fromString(str)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
@@ -70,7 +69,7 @@ class PensionQuestionsControllerSpec
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
+      forAll(Gen.alphaStr) { str =>
         val origin = Origin.fromString(str)
         val result = controller().onSubmit(origin)(fakeRequest)
 
@@ -84,11 +83,11 @@ class PensionQuestionsControllerSpec
         reset(mockAuditService)
         val origin = Origin.fromString(originStr)
         val values = Map(
-          "ableToDo"          -> answers.ableToDo.map(_.toString),
-          "howEasyScore"      -> answers.howEasyScore.map(_.toString),
-          "whyGiveScore"      -> answers.whyGiveScore,
+          "ableToDo" -> answers.ableToDo.map(_.toString),
+          "howEasyScore" -> answers.howEasyScore.map(_.toString),
+          "whyGiveScore" -> answers.whyGiveScore,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
-          "likelyToDo"        -> answers.likelyToDo.map(_.toString)
+          "likelyToDo" -> answers.likelyToDo.map(_.toString)
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
         val request = fakeRequest
@@ -102,7 +101,7 @@ class PensionQuestionsControllerSpec
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
+      forAll(Gen.alphaStr) { str =>
         val origin = Origin.fromString(str)
         val postRequest = fakeRequest
           .withMethod("POST")

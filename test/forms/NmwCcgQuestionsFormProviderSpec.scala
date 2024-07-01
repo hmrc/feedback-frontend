@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,8 +21,7 @@ import models.NmwCcgQuestions
 import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.FormError
 
-class NmwCcgQuestionsFormProviderSpec
-    extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
+class NmwCcgQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
 
   val form = new NmwCcgQuestionsFormProvider()()
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,32 +18,31 @@ package controllers
 
 import base.SpecBase
 import forms.CCGQuestionsFormProvider
-import views.html.CcgQuestionsView
 import generators.ModelGenerators
 import models.{CCGQuestions, Cid, FeedbackId, Origin}
 import navigation.FakeNavigator
-import org.mockito.ArgumentMatchers.any
+import org.mockito.ArgumentMatchers.{any, eq => eqTo}
 import org.mockito.Mockito.{reset, times, verify}
 import org.scalacheck.Arbitrary.arbitrary
+import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
-import org.mockito.ArgumentMatchers.{eq => eqTo, _}
-import org.scalacheck.Gen
+import views.html.CcgQuestionsView
 
 class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
   def onwardRoute = Call("GET", "/foo")
 
   val formProvider = new CCGQuestionsFormProvider()
-  val form = formProvider()
-  lazy val mockAuditService = mock[AuditService]
-  lazy val ccgQuestionsView = inject[CcgQuestionsView]
+  val form: Form[CCGQuestions] = formProvider()
+  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val ccgQuestionsView: CcgQuestionsView = inject[CcgQuestionsView]
 
-  def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin): Call = routes.CCGQuestionsController.onSubmit(origin)
 
   def controller() =
     new CCGQuestionsController(
@@ -54,7 +53,7 @@ class CCGQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
       mcc,
       ccgQuestionsView)
 
-  def viewAsString(form: Form[_] = form, action: Call) =
+  def viewAsString(form: Form[_] = form, action: Call): String =
     ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "CCGQuestions Controller" must {
