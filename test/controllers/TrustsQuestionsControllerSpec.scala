@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,14 +33,13 @@ import play.api.test.Helpers._
 import services.AuditService
 import views.html.TrustsQuestionsView
 
-class TrustsQuestionsControllerSpec
-    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
+class TrustsQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
 
-  def onwardRoute = Call("GET", "/foo")
+  def onwardRoute: Call = Call("GET", "/foo")
 
   val formProvider = new TrustsQuestionsFormProvider()
-  val form = formProvider()
-  lazy val mockAuditService = mock[AuditService]
+  val form: Form[TrustsQuestions] = formProvider()
+  lazy val mockAuditService: AuditService = mock[AuditService]
 
   lazy val submitCall: Call = routes.TrustsQuestionsController.onSubmit()
 
@@ -54,9 +53,9 @@ class TrustsQuestionsControllerSpec
       inject[TrustsQuestionsView]
     )
 
-  lazy val trustsQuestions = inject[TrustsQuestionsView]
+  lazy val trustsQuestions: TrustsQuestionsView = inject[TrustsQuestionsView]
 
-  def viewAsString(form: Form[_] = form) =
+  def viewAsString(form: Form[_] = form): String =
     trustsQuestions(frontendAppConfig, form, submitCall)(fakeRequest, messages).toString
 
   "TrustsQuestions Controller" must {

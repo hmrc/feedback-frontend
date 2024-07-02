@@ -11,8 +11,6 @@ Currently, there are 11 surveys, these are for:
 * National Minimum Wage (NMW)
 * Customer Compliance Group (CCG)
 * Pension
-* Give Reason
-* Give Comments
 * Beta
 * Complaints
 * and a generic survey. Each service will be responsible for choosing which survey applies to them.
@@ -28,8 +26,6 @@ The endpoints are:
 | NMW           | /feedback/SERVICE_NAME/nmw           | http://localhost:9514/feedback/SERVICE_NAME/nmw           |
 | CCG           | /feedback/SERVICE_NAME/ccg           | http://localhost:9514/feedback/SERVICE_NAME/ccg           |
 | Pension       | /feedback/SERVICE_NAME/pension       | http://localhost:9514/feedback/SERVICE_NAME/pension       |
-| Give Reason   | /feedback/SERVICE_NAME/give-reason   | http://localhost:9514/feedback/SERVICE_NAME/give-reason   |
-| Give Comments | /feedback/SERVICE_NAME/give-comments | http://localhost:9514/feedback/SERVICE_NAME/give-comments |
 | Beta          | /feedback/SERVICE_NAME/beta          | http://localhost:9514/feedback/SERVICE_NAME/beta          | 
 | Complaints    | /feedback/com/SERVICE_NAME           | http://localhost:9514/feedback/com/SERVICE_NAME           |
 | Generic       | /feedback/SERVICE_NAME               | http://localhost:9514/feedback/SERVICE_NAME               |

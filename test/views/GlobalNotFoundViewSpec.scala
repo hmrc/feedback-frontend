@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import handlers.ErrorHandler
 import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import models.{CCGQuestions, Origin}
 import play.api.data.Form
+import play.twirl.api.{Html, HtmlFormat}
 import views.behaviours._
 import views.html.GlobalNotFoundView
 
@@ -27,12 +28,12 @@ class GlobalNotFoundViewSpec extends ViewBehaviours {
 
   val messageKeyPrefix = "page_not_found"
 
-  val errorHandler = app.injector.instanceOf[ErrorHandler]
-  val action = errorHandler.notFoundTemplate(fakeRequest)
+  val errorHandler: ErrorHandler = app.injector.instanceOf[ErrorHandler]
+  val action: Html = errorHandler.notFoundTemplate(fakeRequest)
 
-  lazy val globalNotFoundView = inject[GlobalNotFoundView]
+  lazy val globalNotFoundView: GlobalNotFoundView = inject[GlobalNotFoundView]
 
-  def createView = () => globalNotFoundView(frontendAppConfig)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => globalNotFoundView(frontendAppConfig)(fakeRequest, messages)
 
   "GlobalNotFound view" must {
     behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "heading")

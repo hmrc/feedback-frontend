@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,14 +23,14 @@ import views.html.{ThankYou, ThankYouPensionView}
 
 class ThankYouControllerSpec extends SpecBase {
 
-  lazy val thankYouView = inject[ThankYou]
-  lazy val thankYouPensionView = inject[ThankYouPensionView]
+  lazy val thankYouView: ThankYou = inject[ThankYou]
+  lazy val thankYouPensionView: ThankYouPensionView = inject[ThankYouPensionView]
 
   def controller() =
     new ThankYouController(frontendAppConfig, mcc, thankYouView, thankYouPensionView)
 
-  def viewAsString() = thankYouView(frontendAppConfig)(fakeRequest, messages).toString
-  val origin = Origin.fromString("/foo")
+  def viewAsString(): String = thankYouView(frontendAppConfig)(fakeRequest, messages).toString
+  val origin: Origin = Origin.fromString("/foo")
 
   "ThankYou Controller" must {
 

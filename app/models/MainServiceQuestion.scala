@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,13 +28,19 @@ object MainServiceQuestion {
   val baseMessageKey: String = "mainServiceQuestion"
   val formFieldName: String = "mainService"
 
-  case object SelfAssesment extends WithName("SelfAssesment") with MainServiceQuestion
-  case object PAYE extends WithName("PAYE") with MainServiceQuestion
-  case object VAT extends WithName("VAT") with MainServiceQuestion
-  case object CorporationTax extends WithName("CorporationTax") with MainServiceQuestion
-  case object CIS extends WithName("CIS") with MainServiceQuestion
-  case object ECSales extends WithName("ECSales") with MainServiceQuestion
-  case object Other extends WithName("Other") with MainServiceQuestion
+  private case object SelfAssesment extends WithName("SelfAssesment") with MainServiceQuestion
+
+  private case object PAYE extends WithName("PAYE") with MainServiceQuestion
+
+  private case object VAT extends WithName("VAT") with MainServiceQuestion
+
+  private case object CorporationTax extends WithName("CorporationTax") with MainServiceQuestion
+
+  private case object CIS extends WithName("CIS") with MainServiceQuestion
+
+  private case object ECSales extends WithName("ECSales") with MainServiceQuestion
+
+  private case object Other extends WithName("Other") with MainServiceQuestion
 
   val values: Seq[MainServiceQuestion] =
     List(SelfAssesment, PAYE, VAT, CorporationTax, CIS, ECSales, Other)

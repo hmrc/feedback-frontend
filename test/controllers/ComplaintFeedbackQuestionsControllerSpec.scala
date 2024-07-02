@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,15 +35,15 @@ import views.html.ComplaintFeedbackQuestionsView
 
 class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
 
-  def onwardRoute = Call("GET", "/foo")
+  def onwardRoute: Call = Call("GET", "/foo")
 
   val formProvider = new ComplaintFeedbackQuestionsFormProvider()
-  val form = formProvider()
-  lazy val mockAuditService = mock[AuditService]
+  val form: Form[ComplaintFeedbackQuestions] = formProvider()
+  lazy val mockAuditService: AuditService = mock[AuditService]
 
-  def submitCall(origin: Origin) = routes.ComplaintFeedbackQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin): Call = routes.ComplaintFeedbackQuestionsController.onSubmit(origin)
 
-  lazy val complaintFeedbackQuestionsView = inject[ComplaintFeedbackQuestionsView]
+  lazy val complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView = inject[ComplaintFeedbackQuestionsView]
 
   def controller() =
     new ComplaintFeedbackQuestionsController(
@@ -55,7 +55,7 @@ class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with ScalaCheckP
       complaintFeedbackQuestionsView
     )
 
-  def viewAsString(form: Form[_] = form, action: Call) =
+  def viewAsString(form: Form[_] = form, action: Call): String =
     complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "ComplaintFeedbackQuestions Controller" must {

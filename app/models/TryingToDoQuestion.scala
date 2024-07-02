@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +27,17 @@ object TryingToDoQuestion {
 
   val baseMessageKey: String = "TryingToDoQuestion"
 
-  case object RegisterATrust extends WithName("RegisterATrust") with TryingToDoQuestion
-  case object ClaimATrust extends WithName("ClaimATrust") with TryingToDoQuestion
-  case object CloseATrust extends WithName("CloseATrust") with TryingToDoQuestion
-  case object MaintainATrust extends WithName("MaintainATrust") with TryingToDoQuestion
-  case object GetEvidenceOfRegistration extends WithName("GetEvidenceOfRegistration") with TryingToDoQuestion
-  case object Other extends WithName("Other") with TryingToDoQuestion
+  private case object RegisterATrust extends WithName("RegisterATrust") with TryingToDoQuestion
+
+  private case object ClaimATrust extends WithName("ClaimATrust") with TryingToDoQuestion
+
+  private case object CloseATrust extends WithName("CloseATrust") with TryingToDoQuestion
+
+  private case object MaintainATrust extends WithName("MaintainATrust") with TryingToDoQuestion
+
+  private case object GetEvidenceOfRegistration extends WithName("GetEvidenceOfRegistration") with TryingToDoQuestion
+
+  private case object Other extends WithName("Other") with TryingToDoQuestion
 
   val values: Seq[TryingToDoQuestion] =
     List(RegisterATrust, ClaimATrust, CloseATrust, MaintainATrust, GetEvidenceOfRegistration, Other)

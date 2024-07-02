@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,15 @@
 
 package views
 
+import play.twirl.api.HtmlFormat
 import views.behaviours.ViewBehaviours
 import views.html.SessionExpiredView
 
 class SessionExpiredViewSpec extends ViewBehaviours {
 
-  val sessionExpiredView = inject[SessionExpiredView]
+  val sessionExpiredView: SessionExpiredView = inject[SessionExpiredView]
 
-  def template = () => sessionExpiredView()(fakeRequest, messages)
+  def template: () => HtmlFormat.Appendable = () => sessionExpiredView()(fakeRequest, messages)
 
   "Session Expired view" must {
 

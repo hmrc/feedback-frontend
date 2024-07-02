@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import forms.CCGQuestionsFormProvider
 import models.{CCGQuestions, Origin}
 import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.Form
+import play.twirl.api.HtmlFormat
 import views.behaviours._
 import views.html.CcgQuestionsView
 
@@ -32,9 +33,9 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
 
   lazy val ccgQuestionsView = inject[CcgQuestionsView]
 
-  def createView = () => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm =
+  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
     (form: Form[_]) => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "CCGQuestions view" must {

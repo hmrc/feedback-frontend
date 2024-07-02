@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,29 +24,30 @@ import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
-import play.api.mvc.MessagesControllerComponents
+import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.CcgQuestionsView
 import models.{CCGQuestions, Cid, FeedbackId, Origin}
 
 class CCGQuestionsController @Inject()(
-  appConfig: FrontendAppConfig,
-  navigator: Navigator,
-  formProvider: CCGQuestionsFormProvider,
-  auditService: AuditService,
-  mcc: MessagesControllerComponents,
-  ccgQuestionsView: CcgQuestionsView)
-    extends FrontendController(mcc) with I18nSupport {
+                                        appConfig: FrontendAppConfig,
+                                        navigator: Navigator,
+                                        formProvider: CCGQuestionsFormProvider,
+                                        auditService: AuditService,
+                                        mcc: MessagesControllerComponents,
+                                        ccgQuestionsView: CcgQuestionsView
+                                      ) extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[CCGQuestions] = formProvider()
-  def submitCall(origin: Origin) = routes.CCGQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action { implicit request =>
+  def submitCall(origin: Origin): Call = routes.CCGQuestionsController.onSubmit(origin)
+
+  def onPageLoad(origin: Origin): Action[AnyContent] = Action { implicit request =>
     Ok(ccgQuestionsView(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action { implicit request =>
+  def onSubmit(origin: Origin): Action[AnyContent] = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(

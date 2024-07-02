@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,12 @@
 package forms
 
 import base.BaseSpec
+import org.scalatest.Assertion
 import play.api.data.{Form, FormError}
 
 trait FormSpec extends BaseSpec {
 
-  def checkForError(form: Form[_], data: Map[String, String], expectedErrors: Seq[FormError]) =
+  def checkForError(form: Form[_], data: Map[String, String], expectedErrors: Seq[FormError]): Assertion =
     form
       .bind(data)
       .fold(
@@ -31,11 +32,11 @@ trait FormSpec extends BaseSpec {
           formWithErrors.errors.size mustBe expectedErrors.size
         },
         form => {
-          fail("Expected a validation error when binding the form, but it was bound successfully.")
+          fail(s"Expected a validation error when binding form: $form, but it was bound successfully.")
         }
       )
 
-  def error(key: String, value: String, args: Any*) = Seq(FormError(key, value, args))
+  def error(key: String, value: String, args: Any*): Seq[FormError] = Seq(FormError(key, value, args))
 
   lazy val emptyForm = Map[String, String]()
 }

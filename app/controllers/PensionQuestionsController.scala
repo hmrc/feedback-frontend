@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,17 +30,17 @@ import views.html.PensionQuestionsView
 
 import javax.inject.Inject
 
-class PensionQuestionsController @Inject() (
-  appConfig: FrontendAppConfig,
-  navigator: Navigator,
-  formProvider: PensionQuestionsFormProvider,
-  auditService: AuditService,
-  mcc: MessagesControllerComponents,
-  pensionQuestionsView: PensionQuestionsView
-) extends FrontendController(mcc)
-    with I18nSupport {
+class PensionQuestionsController @Inject()(
+                                            appConfig: FrontendAppConfig,
+                                            navigator: Navigator,
+                                            formProvider: PensionQuestionsFormProvider,
+                                            auditService: AuditService,
+                                            mcc: MessagesControllerComponents,
+                                            pensionQuestionsView: PensionQuestionsView
+                                          ) extends FrontendController(mcc) with I18nSupport {
 
-  val form: Form[PensionQuestions]     = formProvider()
+  val form: Form[PensionQuestions] = formProvider()
+
   def submitCall(origin: Origin): Call = routes.PensionQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin): Action[AnyContent] = Action { implicit request =>
@@ -51,8 +51,7 @@ class PensionQuestionsController @Inject() (
     form
       .bindFromRequest()
       .fold(
-        formWithErrors =>
-          BadRequest(pensionQuestionsView(appConfig, formWithErrors, submitCall(origin))),
+        formWithErrors => BadRequest(pensionQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.pensionAudit(origin, FeedbackId.fromSession, value)
           Redirect(navigator.nextPage(PensionQuestionsPage)(()))

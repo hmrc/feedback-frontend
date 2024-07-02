@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,23 +19,24 @@ package views
 import forms.TrustsQuestionsFormProvider
 import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, TrustsQuestions, TryingToDoQuestion, YesNo}
 import play.api.data.Form
+import play.api.mvc.Call
+import play.twirl.api.HtmlFormat
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import views.html.TrustsQuestionsView
 
 class TrustsQuestionsViewSpec
-    extends YesNoViewBehaviours[TrustsQuestions] with StringViewBehaviours[TrustsQuestions]
-    with OptionsViewBehaviours[TrustsQuestions] {
+  extends YesNoViewBehaviours[TrustsQuestions] with StringViewBehaviours[TrustsQuestions] with OptionsViewBehaviours[TrustsQuestions] {
 
   val messageKeyPrefix = "trustsQuestions"
 
   val form = new TrustsQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad
+  val action: Call = controllers.routes.SessionExpiredController.onPageLoad
 
-  lazy val trustsQuestionsView = inject[TrustsQuestionsView]
+  lazy val trustsQuestionsView: TrustsQuestionsView = inject[TrustsQuestionsView]
 
-  def createView = () => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm =
+  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
     (form: Form[_]) => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "TrustsQuestions view" must {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,34 +34,6 @@ trait Formatters {
 
     override def unbind(key: String, value: String): Map[String, String] =
       Map(key -> value)
-  }
-
-  private[mappings] def intFormatter(
-    requiredKey: String,
-    wholeNumberKey: String,
-    nonNumericKey: String
-  ): Formatter[Int] = new Formatter[Int] {
-
-    val decimalRegexp = """^-?(\d*\.\d*)$"""
-
-    private val baseFormatter = stringFormatter(requiredKey)
-
-    override def bind(key: String, data: Map[String, String]): Either[Seq[FormError], Int] =
-      baseFormatter
-        .bind(key, data)
-        .map(_.replace(",", ""))
-        .flatMap {
-          case s if s.matches(decimalRegexp) =>
-            Left(Seq(FormError(key, wholeNumberKey)))
-          case s =>
-            nonFatalCatch
-              .either(s.toInt)
-              .left
-              .map(_ => Seq(FormError(key, nonNumericKey)))
-        }
-
-    override def unbind(key: String, value: Int): Map[String, String] =
-      baseFormatter.unbind(key, value.toString)
   }
 
   private[mappings] def enumerableFormatter[A](requiredKey: String, invalidKey: String)(

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,15 +27,23 @@ object GiveReason {
 
   val baseMessageKey: String = "giveReason"
 
-  case object CheckTaxCode extends WithName("checkTaxCode") with GiveReason
-  case object CheckTaxYear extends WithName("checkTaxYear") with GiveReason
-  case object CheckTaxPaid extends WithName("checkTaxPaid") with GiveReason
-  case object ClaimTaxBack extends WithName("claimTaxBack") with GiveReason
-  case object ContactAboutP800 extends WithName("contactAboutP800") with GiveReason
-  case object P800Wrong extends WithName("p800Wrong") with GiveReason
-  case object PayOwedTax extends WithName("payOwedTax") with GiveReason
-  case object ProgressChasing extends WithName("progressChasing") with GiveReason
-  case object Other extends WithName("other") with GiveReason
+  private case object CheckTaxCode extends WithName("checkTaxCode") with GiveReason
+
+  private case object CheckTaxYear extends WithName("checkTaxYear") with GiveReason
+
+  private case object CheckTaxPaid extends WithName("checkTaxPaid") with GiveReason
+
+  private case object ClaimTaxBack extends WithName("claimTaxBack") with GiveReason
+
+  private case object ContactAboutP800 extends WithName("contactAboutP800") with GiveReason
+
+  private case object P800Wrong extends WithName("p800Wrong") with GiveReason
+
+  private case object PayOwedTax extends WithName("payOwedTax") with GiveReason
+
+  private case object ProgressChasing extends WithName("progressChasing") with GiveReason
+
+  private case object Other extends WithName("other") with GiveReason
 
   val values: Seq[GiveReason] = Seq(
     CheckTaxCode,

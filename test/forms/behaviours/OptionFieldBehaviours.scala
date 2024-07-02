@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,23 +21,20 @@ import play.api.data.{Form, FormError}
 class OptionFieldBehaviours extends FieldBehaviours {
 
   def optionsField[A, T](
-    form: Form[A],
-    fieldName: String,
-    validValues: Seq[T],
-    invalidError: FormError,
-    fieldValue: A => Option[T]): Unit = {
+                          form: Form[A],
+                          fieldName: String,
+                          validValues: Seq[T],
+                          invalidError: FormError,
+                          fieldValue: A => Option[T]): Unit = {
 
     "bind all valid values" in {
-
       for (value <- validValues) {
-
         val result = form.bind(Map(fieldName -> value.toString))
         fieldValue(result.value.value) mustEqual Some(value)
       }
     }
 
     "not bind invalid values" in {
-
       val generator = stringsExceptSpecificValues(validValues.map(_.toString).toSet)
 
       forAll(generator -> "invalidValue") { value =>

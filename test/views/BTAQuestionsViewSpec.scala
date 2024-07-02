@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,8 @@ import play.api.data.Form
 import forms.BTAQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import models.{AbleToDo, BTAQuestions, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, Origin}
+import play.api.mvc.Call
+import play.twirl.api.HtmlFormat
 import views.html.BtaQuestionsView
 
 class BTAQuestionsViewSpec
@@ -29,13 +31,13 @@ class BTAQuestionsViewSpec
   val messageKeyPrefix = "btaQuestions"
 
   val form = new BTAQuestionsFormProvider()()
-  val action = controllers.routes.BTAQuestionsController.onPageLoad(Origin.fromString("origin"))
+  val action: Call = controllers.routes.BTAQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val btaQuestionsView = inject[BtaQuestionsView]
+  lazy val btaQuestionsView: BtaQuestionsView = inject[BtaQuestionsView]
 
-  def createView = () => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm =
+  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
     (form: Form[_]) => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "BTAQuestions view" must {

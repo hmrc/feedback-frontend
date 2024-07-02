@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,16 +33,22 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
   def withOrigin(origin: Origin): MapCont =
     _ + ("origin" -> origin.value)
+
   def withFeedbackId(feedbackId: FeedbackId): MapCont =
     _ + ("feedbackId" -> feedbackId.value)
+
   def withNeededToDo(neededToDo: Option[String]): MapCont =
     _ + ("neededToDo" -> neededToDo.getOrElse("-"))
+
   def withAbleToDo(ableToDo: Option[AbleToDo]): MapCont =
     _ + ("ableToDo" -> ableToDo.map(_.value.toString).getOrElse("-"))
+
   def withHowEasyScore(howEasy: Option[HowEasyQuestion]): MapCont =
     _ + ("howEasyScore" -> howEasy.map(_.value.toString).getOrElse("-"))
+
   def withWhyGiveScore(whyScore: Option[String]): MapCont =
     _ + ("whyGiveScore" -> whyScore.getOrElse("-"))
+
   def withHowFeelScore(howFeel: Option[HowDoYouFeelQuestion]): MapCont =
     _ + ("howDoYouFeelScore" -> howFeel.map(_.value.toString).getOrElse("-"))
 
@@ -75,8 +81,10 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
 
   def withGiveReason(giveReason: Option[GiveReason]): MapCont =
     _ + ("value" -> giveReason.map(_.toString).getOrElse("-"))
+
   def withOtherReason(otherReason: Option[String]): MapCont =
     _ + ("reason" -> otherReason.getOrElse("-"))
+
   def withGiveComments(answer: String): MapCont =
     _ + ("giveComments" -> answer)
 
@@ -108,7 +116,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
-    )(emptyMap)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -124,7 +132,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
-    )(emptyMap)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -143,7 +151,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
-    )(emptyMap)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -177,7 +185,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore) andThen
         withCid(cid)
-    )(emptyMap)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -193,7 +201,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore) andThen
         withLikelyToDo(questions.likelyToDo)
-    )(emptyMap)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -205,7 +213,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withFeedbackId(feedbackId) andThen
         withGiveReason(questions.value) andThen
         withOtherReason(questions.reason)
-    )(emptyMap)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -216,7 +224,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
         withGiveComments(answer)
-    )(emptyMap)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -232,7 +240,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhyGiveAnswer(questions.whyGiveAnswer) andThen
         withSupportFuture(questions.supportFutureTaxQuestion) andThen
         withCid(cid)
-    )(emptyMap)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -247,7 +255,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withCheckUnderstanding(questions.checkUnderstanding) andThen
         withWhyGiveAnswer(questions.whyGiveAnswer) andThen
         withSupportFuture(questions.supportFutureNmw)
-    )(emptyMap)
+      )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }

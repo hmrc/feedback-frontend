@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,23 +19,24 @@ package views
 import forms.PensionQuestionsFormProvider
 import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, LikelyToDoQuestion, Origin, PensionQuestions}
 import play.api.data.Form
+import play.api.mvc.Call
+import play.twirl.api.HtmlFormat
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import views.html.PensionQuestionsView
 
 class PensionQuestionsViewSpec
-    extends YesNoViewBehaviours[PensionQuestions] with StringViewBehaviours[PensionQuestions]
-    with OptionsViewBehaviours[PensionQuestions] {
+  extends YesNoViewBehaviours[PensionQuestions] with StringViewBehaviours[PensionQuestions] with OptionsViewBehaviours[PensionQuestions] {
 
   val messageKeyPrefix = "pensionQuestions"
 
   val form = new PensionQuestionsFormProvider()()
-  val action = controllers.routes.PensionQuestionsController.onPageLoad(Origin.fromString("origin"))
+  val action: Call = controllers.routes.PensionQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val pensionQuestionsView = inject[PensionQuestionsView]
+  lazy val pensionQuestionsView: PensionQuestionsView = inject[PensionQuestionsView]
 
-  def createView = () => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm =
+  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
     (form: Form[_]) => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "PensionQuestions view" must {

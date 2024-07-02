@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.TrustsQuestionsView
@@ -31,16 +31,17 @@ import views.html.TrustsQuestionsView
 import javax.inject.Inject
 
 class TrustsQuestionsController @Inject()(
-  appConfig: FrontendAppConfig,
-  navigator: Navigator,
-  formProvider: TrustsQuestionsFormProvider,
-  auditService: AuditService,
-  mcc: MessagesControllerComponents,
-  trustsQuestions: TrustsQuestionsView)
-    extends FrontendController(mcc) with I18nSupport {
+                                           appConfig: FrontendAppConfig,
+                                           navigator: Navigator,
+                                           formProvider: TrustsQuestionsFormProvider,
+                                           auditService: AuditService,
+                                           mcc: MessagesControllerComponents,
+                                           trustsQuestions: TrustsQuestionsView
+                                         ) extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[TrustsQuestions] = formProvider()
-  def submitCall() = routes.TrustsQuestionsController.onSubmit()
+
+  def submitCall(): Call = routes.TrustsQuestionsController.onSubmit()
 
   def onPageLoad(): Action[AnyContent] = Action { implicit request =>
     Ok(trustsQuestions(appConfig, form, submitCall()))

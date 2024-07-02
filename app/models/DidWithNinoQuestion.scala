@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,15 +27,23 @@ object DidWithNinoQuestion {
 
   val baseMessageKey: String = "didWithNinoQuestion"
 
-  case object WroteOnPaper extends WithName("wroteOnPaper") with DidWithNinoQuestion
-  case object WroteOnDevice extends WithName("wroteOnDevice") with DidWithNinoQuestion
-  case object ScreenshotPage extends WithName("screenshotPage") with DidWithNinoQuestion
-  case object PrintedIt extends WithName("printedIt") with DidWithNinoQuestion
-  case object DownloadedIt extends WithName("downloadedIt") with DidWithNinoQuestion
-  case object SavedToWallet extends WithName("savedToWallet") with DidWithNinoQuestion
-  case object VisualConfirmation extends WithName("visualConfirmation") with DidWithNinoQuestion
-  case object Divider extends WithName("divider") with DidWithNinoQuestion
-  case object NoneOfAbove extends WithName("noneOfAbove") with DidWithNinoQuestion
+  private case object WroteOnPaper extends WithName("wroteOnPaper") with DidWithNinoQuestion
+
+  private case object WroteOnDevice extends WithName("wroteOnDevice") with DidWithNinoQuestion
+
+  private case object ScreenshotPage extends WithName("screenshotPage") with DidWithNinoQuestion
+
+  private case object PrintedIt extends WithName("printedIt") with DidWithNinoQuestion
+
+  private case object DownloadedIt extends WithName("downloadedIt") with DidWithNinoQuestion
+
+  private case object SavedToWallet extends WithName("savedToWallet") with DidWithNinoQuestion
+
+  private case object VisualConfirmation extends WithName("visualConfirmation") with DidWithNinoQuestion
+
+  private case object Divider extends WithName("divider") with DidWithNinoQuestion
+
+  private case object NoneOfAbove extends WithName("noneOfAbove") with DidWithNinoQuestion
 
   val values: Seq[DidWithNinoQuestion] =
     List(WroteOnPaper, WroteOnDevice, ScreenshotPage, PrintedIt, DownloadedIt, SavedToWallet, VisualConfirmation, Divider, NoneOfAbove)

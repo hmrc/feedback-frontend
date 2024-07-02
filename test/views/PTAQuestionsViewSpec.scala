@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,22 +20,23 @@ import play.api.data.Form
 import forms.PTAQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, Origin, PTAQuestions}
+import play.api.mvc.Call
+import play.twirl.api.HtmlFormat
 import views.html.PtaQuestionsView
 
 class PTAQuestionsViewSpec
-    extends YesNoViewBehaviours[PTAQuestions] with StringViewBehaviours[PTAQuestions]
-    with OptionsViewBehaviours[PTAQuestions] {
+  extends YesNoViewBehaviours[PTAQuestions] with StringViewBehaviours[PTAQuestions] with OptionsViewBehaviours[PTAQuestions] {
 
   val messageKeyPrefix = "ptaQuestions"
 
   val form = new PTAQuestionsFormProvider()()
-  val action = controllers.routes.PTAQuestionsController.onPageLoad(Origin.fromString("origin"))
+  val action: Call = controllers.routes.PTAQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val ptaQuestionsView = inject[PtaQuestionsView]
+  lazy val ptaQuestionsView: PtaQuestionsView = inject[PtaQuestionsView]
 
-  def createView = () => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm =
+  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
     (form: Form[_]) => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "PTAQuestions view" must {

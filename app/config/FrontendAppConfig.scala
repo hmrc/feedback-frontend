@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,19 +26,6 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
   private def getOptional[A](key: String)(implicit loader: ConfigLoader[A]): Option[A] =
     runModeConfiguration.getOptional[A](key)
 
-  private def loadConfig(key: String) =
-    getOptional[String](key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
-
-  private lazy val contactHost = getOptional[String]("contact-frontend.host").getOrElse("")
-
-  private val contactFormServiceIdentifier = "feedbackfrontend"
-
-  lazy val reportAProblemPartialUrl = s"$contactHost/contact/problem_reports_ajax?service=$contactFormServiceIdentifier"
-  lazy val reportAProblemNonJSUrl = s"$contactHost/contact/problem_reports_nonjs?service=$contactFormServiceIdentifier"
-  lazy val betaFeedbackUrl = s"$contactHost/contact/beta-feedback"
-  lazy val betaFeedbackUnauthenticatedUrl = s"$contactHost/contact/beta-feedback-unauthenticated"
-  lazy val loginUrl: String = loadConfig("urls.login")
-  lazy val loginContinueUrl: String = loadConfig("urls.loginContinue")
   lazy val privacyPolicyUrl =
     "https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you"
   lazy val pensionSignInUrl: Option[String] = getOptional[String]("urls.pension.sign-in")
@@ -49,5 +36,4 @@ class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servi
   lazy val pensionSideBarFourUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-four")
   lazy val pensionSideBarFiveUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-five")
 
-  lazy val govUkUrl: String = loadConfig(s"urls.govUk")
 }

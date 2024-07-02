@@ -30,12 +30,6 @@ POST       /:origin/ccg                                 controllers.CCGQuestions
 GET        /:origin/pension                             controllers.PensionQuestionsController.onPageLoad(origin: models.Origin)
 POST       /:origin/pension                             controllers.PensionQuestionsController.onSubmit(origin: models.Origin)
 
-GET        /:origin/give-reason                         controllers.GiveReasonController.onPageLoad(origin: models.Origin)
-POST       /:origin/give-reason                         controllers.GiveReasonController.onSubmit(origin: models.Origin)
-
-GET        /:origin/give-comments                       controllers.GiveCommentsController.onPageLoad(origin: models.Origin)
-POST       /:origin/give-comments                       controllers.GiveCommentsController.onSubmit(origin: models.Origin)
-
 GET        /com/:origin                                 controllers.ComplaintFeedbackQuestionsController.onPageLoad(origin: models.Origin)
 POST       /com/:origin                                 controllers.ComplaintFeedbackQuestionsController.onSubmit(origin: models.Origin)
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,15 @@ object CheckUnderstandingQuestion extends Enumerable.Implicits {
 
   val baseMessageKey: String = "checkUnderstandingQuestion"
 
-  case object VeryEasy extends WithName("VeryEasy") with CheckUnderstandingQuestion
-  case object Easy extends WithName("Easy") with CheckUnderstandingQuestion
-  case object NeitherEasyOrDifficult extends WithName("NeitherEasyOrDifficult") with CheckUnderstandingQuestion
-  case object Difficult extends WithName("Difficult") with CheckUnderstandingQuestion
-  case object VeryDifficult extends WithName("VeryDifficult") with CheckUnderstandingQuestion
+  private case object VeryEasy extends WithName("VeryEasy") with CheckUnderstandingQuestion
+
+  private case object Easy extends WithName("Easy") with CheckUnderstandingQuestion
+
+  private case object NeitherEasyOrDifficult extends WithName("NeitherEasyOrDifficult") with CheckUnderstandingQuestion
+
+  private case object Difficult extends WithName("Difficult") with CheckUnderstandingQuestion
+
+  private case object VeryDifficult extends WithName("VeryDifficult") with CheckUnderstandingQuestion
 
   val values: Seq[CheckUnderstandingQuestion] =
     List(VeryEasy, Easy, NeitherEasyOrDifficult, Difficult, VeryDifficult)

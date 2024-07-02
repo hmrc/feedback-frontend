@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
         "contain an input for the value" in {
           val doc = asDocument(createView(form))
           for (option <- options) {
-            assertContainsRadioButton(doc, option.id.get, fieldName, option.value.get, false)
+            assertContainsRadioButton(doc, option.id.get, fieldName, option.value.get, isChecked = false)
           }
         }
 

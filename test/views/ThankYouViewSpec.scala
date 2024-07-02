@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package views
 
+import play.twirl.api.HtmlFormat
 import views.behaviours.ViewBehaviours
 import views.html.ThankYou
 
@@ -23,9 +24,9 @@ class ThankYouViewSpec extends ViewBehaviours {
 
   val messageKeyPrefix = "thankYou"
 
-  lazy val thankYou = inject[ThankYou]
+  lazy val thankYou: ThankYou = inject[ThankYou]
 
-  def createView = () => thankYou(frontendAppConfig)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => thankYou(frontendAppConfig)(fakeRequest, messages)
 
   "ThankYou view" must {
     behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl")

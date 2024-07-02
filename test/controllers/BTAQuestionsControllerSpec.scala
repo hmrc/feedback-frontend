@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,12 +31,11 @@ import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
-import play.libs.F.Tuple
 import services.AuditService
 import views.html.BtaQuestionsView
 
 class BTAQuestionsControllerSpec
-    extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
+  extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
 
   def onwardRoute = Call("GET", "/foo")
 
@@ -88,11 +87,11 @@ class BTAQuestionsControllerSpec
         reset(mockAuditService)
         val origin = Origin.fromString(originStr)
         val values = Map(
-          "mainService"       -> answers.mainService.map(_.toString),
-          "mainServiceOther"  -> answers.mainServiceOther.map(_.toString),
-          "ableToDo"          -> answers.ableToDo.map(_.toString),
-          "howEasyScore"      -> answers.howEasyScore.map(_.toString),
-          "whyGiveScore"      -> answers.whyGiveScore,
+          "mainService" -> answers.mainService.map(_.toString),
+          "mainServiceOther" -> answers.mainServiceOther,
+          "ableToDo" -> answers.ableToDo.map(_.toString),
+          "howEasyScore" -> answers.howEasyScore.map(_.toString),
+          "whyGiveScore" -> answers.whyGiveScore,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
@@ -108,7 +107,7 @@ class BTAQuestionsControllerSpec
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
+      forAll(Gen.alphaStr) { str =>
         val origin = Origin.fromString(str)
         val postRequest = fakeRequest
           .withMethod("POST")

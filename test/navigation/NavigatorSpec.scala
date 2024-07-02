@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,10 @@ import pages._
 class NavigatorSpec extends SpecBase with MockitoSugar {
 
   val navigator = new Navigator
-  val origin = Origin.fromString("/foo")
+  val origin: Origin = Origin.fromString("/foo")
 
   "Navigator" when {
     "GenericQuestionsPageWithOrigin" should {
-
       "return ThankYou page with origin" in {
 
         navigator.nextPage(GenericQuestionsPage)(origin) mustBe routes.ThankYouController.onPageLoadWithOrigin(origin)
@@ -37,7 +36,6 @@ class NavigatorSpec extends SpecBase with MockitoSugar {
     }
 
     "GenericQuestionsPage" should {
-
       "return ThankYou page without origin" in {
 
         navigator.nextPage(GenericQuestionsPage)(()) mustBe routes.ThankYouController.onPageLoad()
