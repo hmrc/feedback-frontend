@@ -88,9 +88,9 @@ class NmwCcgQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChec
         val origin = Origin.fromString(originStr)
         val values = Map(
           "treatedProfessionally" -> answers.treatedProfessionally.map(_.toString),
-          "checkUnderstanding" -> answers.checkUnderstanding.map(_.toString),
-          "whyGiveAnswer" -> answers.whyGiveAnswer,
-          "supportFutureNmw" -> answers.supportFutureNmw.map(_.toString)
+          "checkUnderstanding"    -> answers.checkUnderstanding.map(_.toString),
+          "whyGiveAnswer"         -> answers.whyGiveAnswer,
+          "supportFutureNmw"      -> answers.supportFutureNmw.map(_.toString)
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
         val request = fakeRequest

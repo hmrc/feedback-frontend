@@ -84,9 +84,9 @@ class OtherQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyCheck
           reset(mockAuditService)
           val origin = Origin.fromString(originStr)
           val values = Map(
-            "ableToDo" -> answers.ableToDo.map(_.toString),
-            "howEasyScore" -> answers.howEasyScore.map(_.toString),
-            "whyGiveScore" -> answers.whyGiveScore,
+            "ableToDo"          -> answers.ableToDo.map(_.toString),
+            "howEasyScore"      -> answers.howEasyScore.map(_.toString),
+            "whyGiveScore"      -> answers.whyGiveScore,
             "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
           ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
