@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ trait IntFieldBehaviours extends FieldBehaviours {
   def intField(form: Form[_], fieldName: String, nonNumericError: FormError, wholeNumberError: FormError): Unit = {
 
     "not bind non-numeric numbers" in {
-
       forAll(nonNumerics -> "nonNumeric") { nonNumeric =>
         val result = form.bind(Map(fieldName -> nonNumeric)).apply(fieldName)
         result.errors mustEqual Seq(nonNumericError)
@@ -31,7 +30,6 @@ trait IntFieldBehaviours extends FieldBehaviours {
     }
 
     "not bind decimals" in {
-
       forAll(decimals -> "decimal") { decimal =>
         val result = form.bind(Map(fieldName -> decimal)).apply(fieldName)
         result.errors mustEqual Seq(wholeNumberError)
@@ -39,7 +37,6 @@ trait IntFieldBehaviours extends FieldBehaviours {
     }
 
     "not bind integers larger than Int.MaxValue" in {
-
       forAll(intsLargerThanMaxValue -> "massiveInt") { num: BigInt =>
         val result = form.bind(Map(fieldName -> num.toString)).apply(fieldName)
         result.errors mustEqual Seq(nonNumericError)
@@ -47,7 +44,6 @@ trait IntFieldBehaviours extends FieldBehaviours {
     }
 
     "not bind integers smaller than Int.MinValue" in {
-
       forAll(intsSmallerThanMinValue -> "massivelySmallInt") { num: BigInt =>
         val result = form.bind(Map(fieldName -> num.toString)).apply(fieldName)
         result.errors mustEqual Seq(nonNumericError)

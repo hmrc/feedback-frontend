@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,13 +34,11 @@ trait FieldBehaviours extends FormSpec {
   def mandatoryField(form: Form[_], fieldName: String, requiredError: FormError): Unit = {
 
     "not bind when key is not present at all" in {
-
       val result = form.bind(emptyForm).apply(fieldName)
       result.errors mustEqual Seq(requiredError)
     }
 
     "not bind blank values" in {
-
       val result = form.bind(Map(fieldName -> "")).apply(fieldName)
       result.errors mustEqual Seq(requiredError)
     }

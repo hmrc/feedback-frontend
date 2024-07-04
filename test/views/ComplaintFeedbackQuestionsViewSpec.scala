@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ package views
 import forms.ComplaintFeedbackQuestionsFormProvider
 import models.{ComplaintFeedbackQuestions, HowDoYouFeelQuestion, HowEasyQuestion, Origin, YesNo}
 import play.api.data.Form
+import play.api.mvc.Call
+import play.twirl.api.HtmlFormat
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import views.html.ComplaintFeedbackQuestionsView
 
@@ -29,13 +31,13 @@ class ComplaintFeedbackQuestionsViewSpec
   val form = new ComplaintFeedbackQuestionsFormProvider()()
   val messageKeyPrefix = "complaintFeedbackQuestions"
 
-  val action = controllers.routes.ComplaintFeedbackQuestionsController.onPageLoad(Origin.fromString("origin"))
+  val action: Call = controllers.routes.ComplaintFeedbackQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val complaintFeedbackQuestionsView = inject[ComplaintFeedbackQuestionsView]
+  lazy val complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView = inject[ComplaintFeedbackQuestionsView]
 
-  def createView = () => complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm =
+  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
     (form: Form[_]) => complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
 

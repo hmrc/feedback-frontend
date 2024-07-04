@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
-import play.api.mvc.MessagesControllerComponents
+import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.ComplaintFeedbackQuestionsView
@@ -37,18 +37,18 @@ class ComplaintFeedbackQuestionsController @Inject()(
                                                       auditService: AuditService,
                                                       mcc: MessagesControllerComponents,
                                                       complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView
-                                           ) extends FrontendController(mcc) with I18nSupport {
+                                                    ) extends FrontendController(mcc) with I18nSupport {
 
 
   val form: Form[ComplaintFeedbackQuestions] = formProvider()
 
-  def submitCall(origin: Origin) = routes.ComplaintFeedbackQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin): Call = routes.ComplaintFeedbackQuestionsController.onSubmit(origin)
 
-  def onPageLoad(origin: Origin) = Action { implicit request =>
+  def onPageLoad(origin: Origin): Action[AnyContent] = Action { implicit request =>
     Ok(complaintFeedbackQuestionsView(appConfig, form, submitCall(origin)))
   }
 
-  def onSubmit(origin: Origin) = Action { implicit request =>
+  def onSubmit(origin: Origin): Action[AnyContent] = Action { implicit request =>
     form
       .bindFromRequest()
       .fold(

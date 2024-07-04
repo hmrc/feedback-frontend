@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,28 +17,28 @@
 package controllers
 
 import config.FrontendAppConfig
+
 import javax.inject.Inject
 import models.Origin
 import play.api.i18n.I18nSupport
-import play.api.mvc.MessagesControllerComponents
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
-
 import views.html.{ThankYou, ThankYouPensionView}
 
 class ThankYouController @Inject()(
-  appConfig: FrontendAppConfig,
-  mcc: MessagesControllerComponents,
-  thankYou: ThankYou,
-  thankYouPensionView: ThankYouPensionView)
-    extends FrontendController(mcc) with I18nSupport {
+                                    appConfig: FrontendAppConfig,
+                                    mcc: MessagesControllerComponents,
+                                    thankYou: ThankYou,
+                                    thankYouPensionView: ThankYouPensionView)
+  extends FrontendController(mcc) with I18nSupport {
 
-  def onPageLoadWithOrigin(origin: Origin) = onPageLoad()
+  def onPageLoadWithOrigin(origin: Origin): Action[AnyContent] = onPageLoad()
 
-  def onPageLoad = Action { implicit request =>
+  def onPageLoad: Action[AnyContent] = Action { implicit request =>
     Ok(thankYou(appConfig))
   }
 
-  def onPageLoadPension = Action { implicit request =>
+  def onPageLoadPension: Action[AnyContent] = Action { implicit request =>
     Ok(thankYouPensionView(appConfig))
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,22 +20,24 @@ import forms.NmwCcgQuestionsFormProvider
 import models.NmwCcgQuestions
 import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.Form
+import play.api.mvc.Call
+import play.twirl.api.HtmlFormat
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours}
 import views.html.NmwCcgQuestionsView
 
 class NmwCcgQuestionsViewSpec
-    extends StringViewBehaviours[NmwCcgQuestions] with OptionsViewBehaviours[NmwCcgQuestions] {
+  extends StringViewBehaviours[NmwCcgQuestions] with OptionsViewBehaviours[NmwCcgQuestions] {
 
   val messageKeyPrefix = "nmwCcgQuestions"
 
   val form = new NmwCcgQuestionsFormProvider()()
-  val action = controllers.routes.SessionExpiredController.onPageLoad
+  val action: Call = controllers.routes.SessionExpiredController.onPageLoad
 
-  lazy val nmwCcgQuestionsView = inject[NmwCcgQuestionsView]
+  lazy val nmwCcgQuestionsView: NmwCcgQuestionsView = inject[NmwCcgQuestionsView]
 
-  def createView = () => nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm =
+  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
     (form: Form[_]) => nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "NmwCcgQuestionsView" must {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,8 @@ import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Result}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
 class FeedbackSurveyController @Inject()(
-  mcc: MessagesControllerComponents
-) extends FrontendController(mcc)
-  with I18nSupport {
+                                          mcc: MessagesControllerComponents
+                                        ) extends FrontendController(mcc) with I18nSupport {
 
   def feedbackRedirect(origin: String): Action[AnyContent] = Action { _ =>
     ptaRedirect(origin)

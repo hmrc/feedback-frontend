@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,11 +21,12 @@ import play.api.data.{Form, FormError}
 trait CheckboxFieldBehaviours extends FieldBehaviours {
 
   def checkboxField[A, T](
-    form: Form[A],
-    fieldName: String,
-    validValues: Seq[T],
-    invalidError: String,
-    fieldValue: A => Option[Seq[T]]): Unit = {
+                           form: Form[A],
+                           fieldName: String,
+                           validValues: Seq[T],
+                           invalidError: String,
+                           fieldValue: A => Option[Seq[T]]): Unit = {
+
     for {
       (value, i) <- validValues.zipWithIndex
     } yield

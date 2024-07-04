@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
 import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.NinoQuestionsView
@@ -36,12 +36,12 @@ class NinoQuestionsController @Inject()(
                                          formProvider: NinoQuestionsFormProvider,
                                          auditService: AuditService,
                                          mcc: MessagesControllerComponents,
-                                         ninoQuestionsView: NinoQuestionsView)
-  extends FrontendController(mcc) with I18nSupport {
+                                         ninoQuestionsView: NinoQuestionsView
+                                       ) extends FrontendController(mcc) with I18nSupport {
 
   val form: Form[NinoQuestions] = formProvider()
 
-  def submitCall(origin: Origin) = routes.NinoQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin): Call = routes.NinoQuestionsController.onSubmit(origin)
 
   def onPageLoad(origin: Origin): Action[AnyContent] = Action { implicit request =>
     Ok(ninoQuestionsView(appConfig, form, submitCall(origin)))

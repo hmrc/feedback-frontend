@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,22 +20,23 @@ import play.api.data.Form
 import forms.OtherQuestionsFormProvider
 import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewBehaviours}
 import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, Origin, OtherQuestions}
+import play.api.mvc.Call
+import play.twirl.api.HtmlFormat
 import views.html.OtherQuestionsView
 
 class OtherQuestionsViewSpec
-    extends YesNoViewBehaviours[OtherQuestions] with StringViewBehaviours[OtherQuestions]
-    with OptionsViewBehaviours[OtherQuestions] {
+  extends YesNoViewBehaviours[OtherQuestions] with StringViewBehaviours[OtherQuestions] with OptionsViewBehaviours[OtherQuestions] {
 
   val messageKeyPrefix = "otherQuestions"
 
   val form = new OtherQuestionsFormProvider()()
-  val action = controllers.routes.OtherQuestionsController.onPageLoad(Origin.fromString("origin"))
+  val action: Call = controllers.routes.OtherQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val otherQuestionsView = inject[OtherQuestionsView]
+  lazy val otherQuestionsView: OtherQuestionsView = inject[OtherQuestionsView]
 
-  def createView = () => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm =
+  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
     (form: Form[_]) => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "OtherQuestions view" must {

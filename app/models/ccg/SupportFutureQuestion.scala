@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,11 +28,15 @@ object SupportFutureQuestion extends Enumerable.Implicits {
 
   val baseMessageKey: String = "supportFutureQuestion"
 
-  case object VeryConfident extends WithName("VeryConfident") with SupportFutureQuestion
-  case object FairlyConfident extends WithName("FairlyConfident") with SupportFutureQuestion
-  case object Neutral extends WithName("Neutral") with SupportFutureQuestion
-  case object NotVeryConfident extends WithName("NotVeryConfident") with SupportFutureQuestion
-  case object NotAtAllConfident extends WithName("NotAtAllConfident") with SupportFutureQuestion
+  private case object VeryConfident extends WithName("VeryConfident") with SupportFutureQuestion
+
+  private case object FairlyConfident extends WithName("FairlyConfident") with SupportFutureQuestion
+
+  private case object Neutral extends WithName("Neutral") with SupportFutureQuestion
+
+  private case object NotVeryConfident extends WithName("NotVeryConfident") with SupportFutureQuestion
+
+  private case object NotAtAllConfident extends WithName("NotAtAllConfident") with SupportFutureQuestion
 
   val values: Seq[SupportFutureQuestion] =
     List(VeryConfident, FairlyConfident, Neutral, NotVeryConfident, NotAtAllConfident)
