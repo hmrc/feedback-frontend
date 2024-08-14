@@ -16,17 +16,13 @@
 
 package views
 
-import handlers.ErrorHandler
-import play.twirl.api.{Html, HtmlFormat}
+import play.twirl.api.HtmlFormat
 import views.behaviours._
 import views.html.ErrorTemplateView
 
 class ErrorTemplateViewSpec extends ViewBehaviours {
 
   val messageKeyPrefix = ""
-
-  val errorHandler: ErrorHandler = app.injector.instanceOf[ErrorHandler]
-  val action: Html = errorHandler.standardErrorTemplate("title", "heading", "message")(fakeRequest)
 
   lazy val errorTemplateView: ErrorTemplateView = inject[ErrorTemplateView]
 

@@ -15,14 +15,16 @@
  *@
 
 @import config.FrontendAppConfig
+@import views.html.components.{H1, P}
+@import views.html.MainTemplate
 
 @this(
         mainTemplate: MainTemplate,
-        h1: components.H1,
-        p: components.P
+        h1: H1,
+        p: P
 )
 
-@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+@(appConfig: FrontendAppConfig)(implicit request: RequestHeader, messages: Messages)
 
 @mainTemplate(
     title = Messages("page_not_found.title"),

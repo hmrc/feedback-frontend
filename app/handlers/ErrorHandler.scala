@@ -18,12 +18,13 @@ package handlers
 
 import config.FrontendAppConfig
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.mvc.Request
+import play.api.mvc.RequestHeader
 import play.twirl.api.Html
 import uk.gov.hmrc.play.bootstrap.frontend.http.FrontendErrorHandler
 import views.html.{ErrorTemplateView, GlobalNotFoundView}
 
 import javax.inject.{Inject, Singleton}
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class ErrorHandler @Inject()(
@@ -31,11 +32,13 @@ class ErrorHandler @Inject()(
                               val messagesApi: MessagesApi,
                               errorTemplateView: ErrorTemplateView,
                               globalNotFoundView: GlobalNotFoundView
-                            ) extends FrontendErrorHandler with I18nSupport {
+                            )
+                            (implicit val ec: ExecutionContext) extends FrontendErrorHandler with I18nSupport {
 
-  override def standardErrorTemplate(pageTitle: String, heading: String, message: String)(implicit rh: Request[_]): Html =
-    errorTemplateView(pageTitle, heading, message, appConfig)
+  override def standardErrorTemplate(pageTitle: String, heading: String, message: String)(implicit request: RequestHeader): Future[Html] =
+    Future.successful(errorTemplateView(pageTitle, heading, message, appConfig))
 
-  override def notFoundTemplate(implicit request: Request[_]): Html =
-    globalNotFoundView(appConfig)
+  override def notFoundTemplate(implicit request: RequestHeader): Future[Html] =
+    Future.successful(globalNotFoundView(appConfig))
+
 }

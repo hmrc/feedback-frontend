@@ -14,6 +14,8 @@
  * limitations under the License.
  *@
 
+@import views.html.GovUKLayoutWrapper
+
 @this(govukLayoutWrapper: GovUKLayoutWrapper)
 
 @(title: String,
@@ -22,6 +24,6 @@
         bodyClasses: Option[String] = None,
         mainClass: Option[String] = None,
         scriptElem: Option[Html] = None,
-        showBackLink: Boolean = false)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
+        showBackLink: Boolean = false)(contentBlock: Html)(implicit request: RequestHeader, messages: Messages)
 
     @govukLayoutWrapper(pageTitle = title, sidebar = sidebarHtml, showBackLink = showBackLink)(contentBlock)
