@@ -16,20 +16,13 @@
 
 package views
 
-import handlers.ErrorHandler
-import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
-import models.{CCGQuestions, Origin}
-import play.api.data.Form
-import play.twirl.api.{Html, HtmlFormat}
+import play.twirl.api.HtmlFormat
 import views.behaviours._
 import views.html.GlobalNotFoundView
 
 class GlobalNotFoundViewSpec extends ViewBehaviours {
 
   val messageKeyPrefix = "page_not_found"
-
-  val errorHandler: ErrorHandler = app.injector.instanceOf[ErrorHandler]
-  val action: Html = errorHandler.notFoundTemplate(fakeRequest)
 
   lazy val globalNotFoundView: GlobalNotFoundView = inject[GlobalNotFoundView]
 

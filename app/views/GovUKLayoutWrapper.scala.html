@@ -16,7 +16,6 @@
 
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.hmrcfrontend.views.html.helpers._
-@import views.html.helper.CSPNonce
 
 @this(
         govukLayout: GovukLayout,
@@ -39,34 +38,34 @@
 )(content: Html)(implicit request: RequestHeader, messages: Messages)
 
 
-@headBlock = {
-    <meta name="format-detection" content="telephone=no" />
-}
+    @headBlock = {
+        <meta name="format-detection" content="telephone=no" />
+    }
 
-@contentBlock = {
-@content
+    @contentBlock = {
+    @content
 
-    <div class="govuk-!-display-none-print">
-    @hmrcReportTechnicalIssueHelper()
-    </div>
-}
+        <div class="govuk-!-display-none-print">
+        @hmrcReportTechnicalIssueHelper()
+        </div>
+    }
 
-@beforeContentBlock = {
-@hmrcLanguageSelectHelper()
-@if(showBackLink) {
-    @govukBackLink(BackLink(href = "#", content = Text(messages("site.back")), attributes = Map("id" -> "back-link")))
-}
-}
+    @beforeContentBlock = {
+    @hmrcLanguageSelectHelper()
+    @if(showBackLink) {
+        @govukBackLink(BackLink(href = "#", content = Text(messages("site.back")), attributes = Map("id" -> "back-link")))
+    }
+    }
 
-@govukLayout(
-    pageTitle = Some(pageTitle),
-    headBlock = Some(hmrcHead(headBlock = Some(headBlock))),
-    headerBlock = Some(hmrcStandardHeader(displayHmrcBanner = true)),
-    scriptsBlock = Some(scripts()),
-    beforeContentBlock = Some(beforeContentBlock),
-    footerBlock = Some(hmrcStandardFooter()),
-    mainContentLayout = Some(sidebar match {
-        case Some(sidebarHtml) => twoThirdsOneThirdMainContent(sidebarHtml)
-        case None => twoThirdsMainContent(_)
-    })
-)(contentBlock)
+    @govukLayout(
+        pageTitle = Some(pageTitle),
+        headBlock = Some(hmrcHead(headBlock = Some(headBlock))),
+        headerBlock = Some(hmrcStandardHeader(displayHmrcBanner = true)),
+        scriptsBlock = Some(scripts()),
+        beforeContentBlock = Some(beforeContentBlock),
+        footerBlock = Some(hmrcStandardFooter()),
+        mainContentLayout = Some(sidebar match {
+            case Some(sidebarHtml) => twoThirdsOneThirdMainContent(sidebarHtml)
+            case None => twoThirdsMainContent(_)
+        })
+    )(contentBlock)
