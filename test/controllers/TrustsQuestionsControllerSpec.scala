@@ -18,30 +18,36 @@ package controllers
 
 import base.SpecBase
 import forms.TrustsQuestionsFormProvider
-import generators.ModelGenerators
-import models.{FeedbackId, Origin, TrustsQuestions}
+import models._
 import navigation.FakeNavigator
 import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
-import org.scalacheck.Arbitrary._
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.TrustsQuestionsView
 
-class TrustsQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
+import scala.util.Random
 
-  def onwardRoute: Call = Call("GET", "/foo")
+class TrustsQuestionsControllerSpec
+    extends SpecBase
+    with MockitoSugar
+    with ScalaFutures {
 
-  val formProvider = new TrustsQuestionsFormProvider()
-  val form: Form[TrustsQuestions] = formProvider()
-  lazy val mockAuditService: AuditService = mock[AuditService]
+  val yesNoQuestionNumberOfOptions: Int = YesNo.values.length
+  val tryingToDoQuestionNumberOfOptions: Int = TryingToDoQuestion.values.length
+  val ableToDoQuestionNumberOfOptions: Int = AbleToDo.values.length
+  val howEasyQuestionNumberOfOptions: Int = HowEasyQuestion.values.length
+  val howDoYouFeelQuestionNumberOfOptions: Int = HowDoYouFeelQuestion.values.length
 
-  lazy val submitCall: Call = routes.TrustsQuestionsController.onSubmit()
+  lazy val mockAuditService: AuditService       = mock[AuditService]
+  lazy val submitCall: Call                     = routes.TrustsQuestionsController.onSubmit()
+  lazy val trustsQuestions: TrustsQuestionsView = inject[TrustsQuestionsView]
+  val formProvider                              = new TrustsQuestionsFormProvider()
+  val form: Form[TrustsQuestions]               = formProvider()
 
   def controller() =
     new TrustsQuestionsController(
@@ -53,7 +59,7 @@ class TrustsQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChec
       inject[TrustsQuestionsView]
     )
 
-  lazy val trustsQuestions: TrustsQuestionsView = inject[TrustsQuestionsView]
+  def onwardRoute: Call = Call("GET", "/foo")
 
   def viewAsString(form: Form[_] = form): String =
     trustsQuestions(frontendAppConfig, form, submitCall)(fakeRequest, messages).toString
@@ -75,37 +81,65 @@ class TrustsQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChec
     }
 
     "audit response on success" in {
-      forAll(arbitrary[FeedbackId], arbitrary[TrustsQuestions]) { (feedbackId, answers) =>
-        reset(mockAuditService)
+      reset(mockAuditService)
 
-        val values = Map(
-          "isAgent"           -> answers.isAgent.map(_.toString),
-          "tryingToDo"        -> answers.tryingToDo.map(_.toString),
-          "tryingToDoOther"   -> answers.tryingToDoOther,
-          "ableToDo"          -> answers.ableToDo.map(_.toString),
-          "whyNotAbleToDo"    -> answers.whyNotAbleToDo,
-          "howEasyScore"      -> answers.howEasyScore.map(_.toString),
-          "whyGiveScore"      -> answers.whyGiveScore,
-          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
-        ).map(value => (value._1, value._2.getOrElse(""))).toSeq
+      val areYouAnAgent         = Some(YesNo.values(Random.nextInt(yesNoQuestionNumberOfOptions)))
+      val whatWereYouTryingToDo = Some(TryingToDoQuestion.values(Random.nextInt(tryingToDoQuestionNumberOfOptions)))
 
-        val request = fakeRequest
-          .withMethod("POST")
-          .withFormUrlEncodedBody(values: _*)
+      val otherOption = TryingToDoQuestion.enumerable.withName("Other")
+      val whatOtherThingsWereYouTryingToDo =
+        if (whatWereYouTryingToDo == otherOption) {
+          Some("Various interesting stuff !")
+        } else {
+          None
+        }
 
-        val result = controller().onSubmit()(request.withSession(("feedbackId", feedbackId.value)))
-        status(result) mustBe SEE_OTHER
+      val wereYouAbleToDoWhatYouWant       = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+      val whyWereYouNotAbleToDoWhatYouWant = Some("Due to various obstacles and scary challenges !!")
+      val howEasyWasItToDoYourTask         = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+      val whyDidYouGiveThisScore           = Some("Because I felt like giving this score !")
+      val howDoYouFeelAboutTheService      = Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
 
-        verify(mockAuditService, times(1))
-          .trustsAudit(eqTo(Origin.fromString("trusts")), eqTo(feedbackId), eqTo(answers))(any())
-      }
+      val answers = TrustsQuestions(
+        areYouAnAgent,
+        whatWereYouTryingToDo,
+        whatOtherThingsWereYouTryingToDo,
+        wereYouAbleToDoWhatYouWant,
+        whyWereYouNotAbleToDoWhatYouWant,
+        howEasyWasItToDoYourTask,
+        whyDidYouGiveThisScore,
+        howDoYouFeelAboutTheService
+      )
+
+      val values = Map(
+        "isAgent"           -> answers.isAgent.map(_.toString),
+        "tryingToDo"        -> answers.tryingToDo.map(_.toString),
+        "tryingToDoOther"   -> answers.tryingToDoOther,
+        "ableToDo"          -> answers.ableToDo.map(_.toString),
+        "whyNotAbleToDo"    -> answers.whyNotAbleToDo,
+        "howEasyScore"      -> answers.howEasyScore.map(_.toString),
+        "whyGiveScore"      -> answers.whyGiveScore,
+        "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
+      ).map(value => (value._1, value._2.getOrElse(""))).toSeq
+
+      val request = fakeRequest
+        .withMethod("POST")
+        .withFormUrlEncodedBody(values: _*)
+
+      val feedbackId = FeedbackId.fromSession(request)
+
+      val result = controller().onSubmit()(request.withSession(("feedbackId", feedbackId.value)))
+      status(result) mustBe SEE_OTHER
+
+      verify(mockAuditService, times(1))
+        .trustsAudit(eqTo(Origin.fromString("trusts")), eqTo(feedbackId), eqTo(answers))(any())
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
       val postRequest = fakeRequest
         .withMethod("POST")
         .withFormUrlEncodedBody(("ableToDo", "invalid value"))
-      val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
+      val boundForm   = form.bind(Map("ableToDo" -> "invalid value"))
 
       val result = controller().onSubmit()(postRequest)
 
