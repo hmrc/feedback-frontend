@@ -18,34 +18,48 @@ package controllers
 
 import base.SpecBase
 import forms.BTAQuestionsFormProvider
-import generators.ModelGenerators
-import models.{BTAQuestions, FeedbackId, Origin}
+import models._
 import navigation.FakeNavigator
 import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
-import org.scalacheck.Arbitrary._
-import org.scalacheck.Gen
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.BtaQuestionsView
 
+import scala.util.Random
+
 class BTAQuestionsControllerSpec
-  extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar with ScalaFutures {
+    extends SpecBase
+    with MockitoSugar
+    with ScalaFutures {
 
-  def onwardRoute = Call("GET", "/foo")
+  val mainServiceQuestionNumberOfOptions: Int = MainServiceQuestion.values.length
+  val ableToDoQuestionNumberOfOptions: Int = AbleToDo.values.length
+  val howEasyQuestionNumberOfOptions: Int = HowEasyQuestion.values.length
+  val howDoYouFeelQuestionNumberOfOptions: Int = HowDoYouFeelQuestion.values.length
 
-  val formProvider = new BTAQuestionsFormProvider()
-  val form = formProvider()
-  lazy val mockAuditService = mock[AuditService]
+  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val btaQuestionsView: BtaQuestionsView = inject[BtaQuestionsView]
+  val serviceNames: List[String] = List(
+    "",
+    "Check-Your-State-Pension",
+    "P800",
+    "Tax-Allowance-Married-Couples",
+    "Pension-Annual-Allowance-Calculator",
+    "Tax-Credits-Renewals",
+    "Tax-Credits-Service",
+    "TaxCalc",
+    "Repayments",
+    "Child-Benefit-View"
+  )
+  val formProvider                        = new BTAQuestionsFormProvider()
+  val form: Form[BTAQuestions]            = formProvider()
 
-  def submitCall(origin: Origin) = routes.BTAQuestionsController.onSubmit(origin)
-
-  lazy val btaQuestionsView = inject[BtaQuestionsView]
+  def submitCall(origin: Origin): Call = routes.BTAQuestionsController.onSubmit(origin)
 
   def controller() =
     new BTAQuestionsController(
@@ -57,14 +71,16 @@ class BTAQuestionsControllerSpec
       btaQuestionsView
     )
 
-  def viewAsString(form: Form[_] = form, action: Call) =
+  def onwardRoute: Call          = Call("GET", "/foo")
+
+  def viewAsString(form: Form[_] = form, action: Call): String =
     btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "BTAQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -73,8 +89,8 @@ class BTAQuestionsControllerSpec
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -83,22 +99,50 @@ class BTAQuestionsControllerSpec
     }
 
     "audit response on success" in {
-      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[BTAQuestions]) { (originStr, feedbackId, answers) =>
+      for (serviceName <- serviceNames) {
         reset(mockAuditService)
-        val origin = Origin.fromString(originStr)
+        val origin = Origin.fromString(serviceName)
+
+        val whatWasTheMainServiceYouUsedToday         = Some(MainServiceQuestion.values(Random.nextInt(mainServiceQuestionNumberOfOptions)))
+
+        val otherOption = MainServiceQuestion.enumerable.withName("Other")
+        val whatOtherServiceYouUsedToday =
+          if (whatWasTheMainServiceYouUsedToday == otherOption) {
+            Some("Personal Tax Allowance")
+          } else {
+            None
+          }
+
+        val wereYouAbleToDoWhatYouWant       = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask         = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore           = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService      = Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+
+        val answers = BTAQuestions(
+          whatWasTheMainServiceYouUsedToday,
+          whatOtherServiceYouUsedToday,
+          wereYouAbleToDoWhatYouWant,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService
+        )
+
         val values = Map(
-          "mainService" -> answers.mainService.map(_.toString),
-          "mainServiceOther" -> answers.mainServiceOther,
-          "ableToDo" -> answers.ableToDo.map(_.toString),
-          "howEasyScore" -> answers.howEasyScore.map(_.toString),
-          "whyGiveScore" -> answers.whyGiveScore,
+          "mainService"       -> answers.mainService.map(_.toString),
+          "mainServiceOther"  -> answers.mainServiceOther,
+          "ableToDo"          -> answers.ableToDo.map(_.toString),
+          "howEasyScore"      -> answers.howEasyScore.map(_.toString),
+          "whyGiveScore"      -> answers.whyGiveScore,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
         val request = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(values: _*)
-        val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+
+        val feedbackId = FeedbackId.fromSession(request)
+
+        val result  = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
         status(result) mustBe SEE_OTHER
 
         verify(mockAuditService, times(1))
@@ -107,12 +151,12 @@ class BTAQuestionsControllerSpec
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin      = Origin.fromString(serviceName)
         val postRequest = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("ableToDo", "invalid value"))
-        val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
+        val boundForm   = form.bind(Map("ableToDo" -> "invalid value"))
 
         val result = controller().onSubmit(origin)(postRequest)
 
