@@ -17,36 +17,39 @@
 package models.ccg
 
 import base.BaseSpec
-import org.scalacheck.Arbitrary.arbitrary
+import base.CommonSpecValues.{invalidAnswers, supportFutureQuestionNumberOfOptions}
 import play.api.libs.json.{JsError, JsString, Json}
 
-class SupportFutureQuestionSpec extends BaseSpec {
+import scala.util.Random
 
-  val gen = arbitrary[SupportFutureQuestion]
+class SupportFutureQuestionSpec extends BaseSpec {
 
   "SupportFutureQuestion" must {
 
     "deserialise valid values" in {
 
-      forAll(gen) { value =>
-        JsString(value.toString).validate[SupportFutureQuestion].asOpt.value mustEqual value
+      for (_ <- 1 to 10) {
+        val answer = SupportFutureQuestion.values(Random.nextInt(supportFutureQuestionNumberOfOptions))
+        JsString(answer.toString).validate[SupportFutureQuestion].asOpt.value mustEqual answer
       }
+
     }
 
     "fail to deserialise invalid values" in {
 
-      val gen = arbitrary[String] suchThat (!SupportFutureQuestion.values.map(_.toString).contains(_))
-
-      forAll(gen) { invalidValue =>
-        JsString(invalidValue).validate[SupportFutureQuestion] mustEqual JsError("error.invalid")
+      for (answer <- invalidAnswers) {
+        JsString(answer).validate[SupportFutureQuestion] mustEqual JsError("error.invalid")
       }
+
     }
 
     "serialise" in {
 
-      forAll(gen) { value =>
-        Json.toJson(value) mustEqual JsString(value.toString)
+      for (_ <- 1 to 10) {
+        val answer = SupportFutureQuestion.values(Random.nextInt(supportFutureQuestionNumberOfOptions))
+        Json.toJson(answer) mustEqual JsString(answer.toString)
       }
+
     }
   }
 

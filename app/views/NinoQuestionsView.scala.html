@@ -19,17 +19,19 @@
 @import play.twirl.api._
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import views.ViewUtils._
+@import views.html.MainTemplate
+@import views.html.components.{Button, ErrorSummary, H1, InputCheckboxes, InputRadio, InputTextArea, P}
 
 @this(
         mainTemplate: MainTemplate,
         formHelper: FormWithCSRF,
-        h1: components.H1,
-        p: components.P,
-        inputRadio: components.InputRadio,
-        inputTextArea: components.InputTextArea,
-        inputCheckbox: components.InputCheckboxes,
-        button: components.Button,
-        errorSummary: components.ErrorSummary
+        h1: H1,
+        p: P,
+        inputRadio: InputRadio,
+        inputTextArea: InputTextArea,
+        inputCheckbox: InputCheckboxes,
+        button: Button,
+        errorSummary: ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)

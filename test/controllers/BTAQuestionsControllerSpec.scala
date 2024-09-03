@@ -17,6 +17,7 @@
 package controllers
 
 import base.SpecBase
+import base.CommonSpecValues._
 import forms.BTAQuestionsFormProvider
 import models._
 import navigation.FakeNavigator
@@ -37,25 +38,9 @@ class BTAQuestionsControllerSpec
     with MockitoSugar
     with ScalaFutures {
 
-  val mainServiceQuestionNumberOfOptions: Int = MainServiceQuestion.values.length
-  val ableToDoQuestionNumberOfOptions: Int = AbleToDo.values.length
-  val howEasyQuestionNumberOfOptions: Int = HowEasyQuestion.values.length
-  val howDoYouFeelQuestionNumberOfOptions: Int = HowDoYouFeelQuestion.values.length
-
   lazy val mockAuditService: AuditService = mock[AuditService]
   lazy val btaQuestionsView: BtaQuestionsView = inject[BtaQuestionsView]
-  val serviceNames: List[String] = List(
-    "",
-    "Check-Your-State-Pension",
-    "P800",
-    "Tax-Allowance-Married-Couples",
-    "Pension-Annual-Allowance-Calculator",
-    "Tax-Credits-Renewals",
-    "Tax-Credits-Service",
-    "TaxCalc",
-    "Repayments",
-    "Child-Benefit-View"
-  )
+
   val formProvider                        = new BTAQuestionsFormProvider()
   val form: Form[BTAQuestions]            = formProvider()
 

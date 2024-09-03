@@ -17,37 +17,29 @@
 package controllers
 
 import base.SpecBase
+import base.CommonSpecValues._
 import forms.NmwCcgQuestionsFormProvider
-import generators.ModelGenerators
+import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import models.{FeedbackId, NmwCcgQuestions, Origin}
 import navigation.FakeNavigator
 import org.mockito.ArgumentMatchers.{any, eq => eqTo}
 import org.mockito.Mockito.{reset, times, verify}
-import org.scalacheck.Arbitrary.arbitrary
-import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.NmwCcgQuestionsView
 
-class NmwCcgQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+import scala.util.Random
 
-  def onwardRoute: Call = Call("GET", "/foo")
+class NmwCcgQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
-  val formProvider = new NmwCcgQuestionsFormProvider()
-  val form: Form[NmwCcgQuestions] = formProvider()
   lazy val nmwCcgQuestionsView: NmwCcgQuestionsView = inject[NmwCcgQuestionsView]
-
-  def submitCall(origin: Origin): Call = routes.NmwCcgQuestionsController.onSubmit(origin)
-
-  def viewAsString(form: Form[_] = form, action: Call): String =
-    nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
-
   lazy val mockAuditService: AuditService = mock[AuditService]
 
+  val formProvider                                  = new NmwCcgQuestionsFormProvider()
+  val form: Form[NmwCcgQuestions]                   = formProvider()
   val controller = new NmwCcgQuestionsController(
     frontendAppConfig,
     mcc,
@@ -57,11 +49,18 @@ class NmwCcgQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChec
     new FakeNavigator(onwardRoute)
   )
 
+  def onwardRoute: Call = Call("GET", "/foo")
+
+  def submitCall(origin: Origin): Call = routes.NmwCcgQuestionsController.onSubmit(origin)
+
+  def viewAsString(form: Form[_] = form, action: Call): String =
+    nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
+
   "NmwCcgQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller.onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -71,8 +70,8 @@ class NmwCcgQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChec
   }
 
   "redirect to the next page when valid data is submitted" in {
-    forAll(Gen.alphaStr) { str =>
-      val origin = Origin.fromString(str)
+    for (serviceName <- serviceNames) {
+      val origin = Origin.fromString(serviceName)
       val result = controller.onSubmit(origin)(fakeRequest)
 
       status(result) mustBe SEE_OTHER
@@ -82,39 +81,57 @@ class NmwCcgQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChec
   }
 
   "audit response on success" in {
-    forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[NmwCcgQuestions]) {
-      (originStr, feedbackId, answers) =>
-        reset(mockAuditService)
-        val origin = Origin.fromString(originStr)
-        val values = Map(
-          "treatedProfessionally" -> answers.treatedProfessionally.map(_.toString),
-          "checkUnderstanding"    -> answers.checkUnderstanding.map(_.toString),
-          "whyGiveAnswer"         -> answers.whyGiveAnswer,
-          "supportFutureNmw"      -> answers.supportFutureNmw.map(_.toString)
-        ).map(value => (value._1, value._2.getOrElse(""))).toSeq
+    for (serviceName <- serviceNames) {
+      reset(mockAuditService)
+      val origin = Origin.fromString(serviceName)
 
-        val request = fakeRequest
-          .withMethod("POST")
-          .withFormUrlEncodedBody(values: _*)
-        val result = controller.onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
-        status(result) mustBe SEE_OTHER
+      val haveYouBeenTreatedProfessionally                  =
+        Some(TreatedProfessionallyQuestion.values(Random.nextInt(treatedProfessionallyQuestionNumberOfOptions)))
+      val howEasyWasItToUnderstandWhatWasHappening          =
+        Some(CheckUnderstandingQuestion.values(Random.nextInt(checkUnderstandingQuestionNumberOfOptions)))
+      val whyDidYouGiveThisAnswer                           = Some("Because I felt like giving this answer !")
+      val willYourHMRCInteractionsHelpYouMeetTaxObligations =
+        Some(SupportFutureQuestion.values(Random.nextInt(supportFutureQuestionNumberOfOptions)))
 
-        verify(mockAuditService, times(1))
-          .nmwCcgAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
+      val answers = NmwCcgQuestions(
+        haveYouBeenTreatedProfessionally,
+        howEasyWasItToUnderstandWhatWasHappening,
+        whyDidYouGiveThisAnswer,
+        willYourHMRCInteractionsHelpYouMeetTaxObligations
+      )
+
+      val values = Map(
+        "treatedProfessionally" -> answers.treatedProfessionally.map(_.toString),
+        "checkUnderstanding"    -> answers.checkUnderstanding.map(_.toString),
+        "whyGiveAnswer"         -> answers.whyGiveAnswer,
+        "supportFutureNmw"      -> answers.supportFutureNmw.map(_.toString)
+      ).map(value => (value._1, value._2.getOrElse(""))).toSeq
+
+      val request = fakeRequest
+        .withMethod("POST")
+        .withFormUrlEncodedBody(values: _*)
+
+      val feedbackId = FeedbackId.fromSession(request)
+
+      val result = controller.onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+      status(result) mustBe SEE_OTHER
+
+      verify(mockAuditService, times(1))
+        .nmwCcgAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers))(any())
     }
   }
 
   "return a Bad Request and errors when invalid data is submitted" in {
-    forAll(Gen.alphaStr) { str =>
-      val origin = Origin.fromString(str)
+    for (serviceName <- serviceNames) {
+      val origin       = Origin.fromString(serviceName)
       val invalidValue = "*" * 1001
-      val postRequest = fakeRequest
+      val postRequest  = fakeRequest
         .withMethod("POST")
         .withFormUrlEncodedBody(("whyGiveAnswer", invalidValue))
-      val boundForm = form.bind(Map("whyGiveAnswer" -> invalidValue))
+      val boundForm    = form.bind(Map("whyGiveAnswer" -> invalidValue))
       val viewAsString =
         nmwCcgQuestionsView(frontendAppConfig, boundForm, submitCall(origin))(fakeRequest, messages).toString
-      val result = controller.onSubmit(origin)(postRequest)
+      val result       = controller.onSubmit(origin)(postRequest)
 
       status(result) mustBe BAD_REQUEST
       contentAsString(result) mustBe viewAsString

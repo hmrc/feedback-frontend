@@ -17,30 +17,28 @@
 package controllers
 
 import base.SpecBase
+import base.CommonSpecValues._
 import forms.PensionQuestionsFormProvider
-import generators.ModelGenerators
-import models.{FeedbackId, Origin, PensionQuestions}
+import models._
 import navigation.FakeNavigator
 import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
-import org.scalacheck.Arbitrary._
-import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.PensionQuestionsView
 
-class PensionQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+import scala.util.Random
 
-  def onwardRoute: Call = Call("GET", "/foo")
+class PensionQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
-  val formProvider = new PensionQuestionsFormProvider()
-  val form: Form[PensionQuestions] = formProvider()
-  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val mockAuditService: AuditService             = mock[AuditService]
   lazy val pensionQuestionsView: PensionQuestionsView = inject[PensionQuestionsView]
+
+  val formProvider                                    = new PensionQuestionsFormProvider()
+  val form: Form[PensionQuestions]                    = formProvider()
 
   def submitCall(origin: Origin): Call = routes.PensionQuestionsController.onSubmit(origin)
 
@@ -51,7 +49,10 @@ class PensionQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChe
       formProvider,
       mockAuditService,
       mcc,
-      pensionQuestionsView)
+      pensionQuestionsView
+    )
+
+  def onwardRoute: Call = Call("GET", "/foo")
 
   def viewAsString(form: Form[_] = form, action: Call): String =
     pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
@@ -59,8 +60,8 @@ class PensionQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChe
   "PensionQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll(Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -69,8 +70,8 @@ class PensionQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChe
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll(Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -79,9 +80,26 @@ class PensionQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChe
     }
 
     "audit response on success" in {
-      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[PensionQuestions]) { (originStr, feedbackId, answers) =>
+      for (serviceName <- serviceNames) {
         reset(mockAuditService)
-        val origin = Origin.fromString(originStr)
+        val origin = Origin.fromString(serviceName)
+
+        val wereYouAbleToDoWhatYouWant                 = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask                   = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore                     = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService                =
+          Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+        val whatWillYouDoAfterCheckingYourStatePension =
+          Some(LikelyToDoQuestion.values(Random.nextInt(likelyToDoQuestionNumberOfOptions)))
+
+        val answers = PensionQuestions(
+          wereYouAbleToDoWhatYouWant,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService,
+          whatWillYouDoAfterCheckingYourStatePension
+        )
+
         val values = Map(
           "ableToDo"          -> answers.ableToDo.map(_.toString),
           "howEasyScore"      -> answers.howEasyScore.map(_.toString),
@@ -93,6 +111,9 @@ class PensionQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChe
         val request = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(values: _*)
+
+        val feedbackId = FeedbackId.fromSession(request)
+
         controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
         verify(mockAuditService, times(1))
@@ -101,12 +122,12 @@ class PensionQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChe
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll(Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin      = Origin.fromString(serviceName)
         val postRequest = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("ableToDo", "invalid value"))
-        val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
+        val boundForm   = form.bind(Map("ableToDo" -> "invalid value"))
 
         val result = controller().onSubmit(origin)(postRequest)
 

@@ -17,6 +17,7 @@
 package models
 
 import base.BaseSpec
+import play.api.mvc.AnyContentAsEmpty
 import play.api.test.FakeRequest
 
 class CidSpec extends BaseSpec {
@@ -26,22 +27,22 @@ class CidSpec extends BaseSpec {
       "return the contents of the referral header following '?cid=' if the url argument exists" in {
         val cid = "123456789"
 
-        implicit val request = FakeRequest().withHeaders("referer" -> s"/feedback/EXAMPLE?cid=$cid")
+        implicit val request: FakeRequest[AnyContentAsEmpty.type] = FakeRequest().withHeaders("referer" -> s"/feedback/EXAMPLE?cid=$cid")
 
         Cid.fromUrl.value mustEqual cid
       }
       "return '-' if the referral header doesn't contain '?cid='" in {
-        implicit val request = FakeRequest().withHeaders("referer" -> s"/feedback/EXAMPLE")
+        implicit val request: FakeRequest[AnyContentAsEmpty.type] = FakeRequest().withHeaders("referer" -> s"/feedback/EXAMPLE")
 
         Cid.fromUrl.value mustEqual "-"
       }
       "return '-' if the referral header contains '?cid=' but no value" in {
-        implicit val request = FakeRequest().withHeaders("referer" -> s"/feedback/EXAMPLE?cid=")
+        implicit val request: FakeRequest[AnyContentAsEmpty.type] = FakeRequest().withHeaders("referer" -> s"/feedback/EXAMPLE?cid=")
 
         Cid.fromUrl.value mustEqual "-"
       }
       "return '-' if there is no referral header" in {
-        implicit val request = FakeRequest()
+        implicit val request: FakeRequest[AnyContentAsEmpty.type] = FakeRequest()
 
         Cid.fromUrl.value mustEqual "-"
       }

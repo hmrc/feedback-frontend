@@ -19,15 +19,17 @@
 @import uk.gov.hmrc.govukfrontend.views.html.components._
 @import uk.gov.hmrc.hmrcfrontend.views.html.components.CharacterCount
 @import views.ViewUtils._
+@import views.html.MainTemplate
+@import views.html.components.{Button, ErrorSummary, H1, InputRadioDynamic}
 
 @this(
         mainTemplate: MainTemplate,
         formHelper: FormWithCSRF,
-        h1: components.H1,
-        inputRadioDynamic: components.InputRadioDynamic,
+        h1: H1,
+        inputRadioDynamic: InputRadioDynamic,
         hmrcCharacterCount: HmrcCharacterCount,
-        button: components.Button,
-        errorSummary: components.ErrorSummary
+        button: Button,
+        errorSummary: ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)

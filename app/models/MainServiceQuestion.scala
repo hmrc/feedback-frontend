@@ -26,7 +26,7 @@ sealed trait MainServiceQuestion
 object MainServiceQuestion {
 
   val baseMessageKey: String = "mainServiceQuestion"
-  val formFieldName: String = "mainService"
+  private val formFieldName: String = "mainService"
 
   private case object SelfAssesment extends WithName("SelfAssesment") with MainServiceQuestion
 

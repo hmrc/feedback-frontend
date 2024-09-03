@@ -17,33 +17,30 @@
 package controllers
 
 import base.SpecBase
+import base.CommonSpecValues._
 import forms.ComplaintFeedbackQuestionsFormProvider
-import generators.ModelGenerators
-import models.{Cid, ComplaintFeedbackQuestions, FeedbackId, Origin}
+import models._
 import navigation.FakeNavigator
 import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
-import org.scalacheck.Arbitrary._
-import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.ComplaintFeedbackQuestionsView
 
-class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+import scala.util.Random
 
-  def onwardRoute: Call = Call("GET", "/foo")
+class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
-  val formProvider = new ComplaintFeedbackQuestionsFormProvider()
+  lazy val mockAuditService: AuditService    = mock[AuditService]
+  lazy val complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView = inject[ComplaintFeedbackQuestionsView]
+
+  val formProvider                           = new ComplaintFeedbackQuestionsFormProvider()
   val form: Form[ComplaintFeedbackQuestions] = formProvider()
-  lazy val mockAuditService: AuditService = mock[AuditService]
 
   def submitCall(origin: Origin): Call = routes.ComplaintFeedbackQuestionsController.onSubmit(origin)
-
-  lazy val complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView = inject[ComplaintFeedbackQuestionsView]
 
   def controller() =
     new ComplaintFeedbackQuestionsController(
@@ -55,14 +52,16 @@ class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with ScalaCheckP
       complaintFeedbackQuestionsView
     )
 
+  def onwardRoute: Call                        = Call("GET", "/foo")
+
   def viewAsString(form: Form[_] = form, action: Call): String =
     complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "ComplaintFeedbackQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll (Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -71,8 +70,8 @@ class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with ScalaCheckP
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -81,38 +80,52 @@ class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with ScalaCheckP
     }
 
     "audit response on success" in {
-      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[ComplaintFeedbackQuestions], arbitrary[Cid]) {
-        (originStr, feedbackId, answers, cid) =>
-          reset(mockAuditService)
-          val origin = Origin.fromString(originStr)
-          val values = Map(
-            "complaintHandledFairly" -> answers.complaintHandledFairly.map(_.toString),
-            "howEasyScore" -> answers.howEasyScore.map(_.toString),
-            "whyGiveScore" -> answers.whyGiveScore,
-            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString)
-          ).map(value => (value._1, value._2.getOrElse(""))).toSeq
+      for (serviceName <- serviceNames; cid <- clientIDs) {
+        reset(mockAuditService)
+        val origin = Origin.fromString(serviceName)
 
-          val request = fakeRequest
-            .withMethod("POST")
-            .withFormUrlEncodedBody(values: _*)
-            .withHeaders("referer" -> s"/feedback/com/com?cid=${cid.value}")
+        val didHmrcHandleYourComplaintFairly = Some(YesNo.values(Random.nextInt(yesNoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask         = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore           = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService      =
+          Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
 
-          val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
-          status(result) mustBe SEE_OTHER
+        val answers = ComplaintFeedbackQuestions(
+          didHmrcHandleYourComplaintFairly,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService
+        )
 
-          verify(mockAuditService, times(1))
-            .complaintFeedbackAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers), eqTo(cid))(any())
+        val values = Map(
+          "complaintHandledFairly" -> answers.complaintHandledFairly.map(_.toString),
+          "howEasyScore"           -> answers.howEasyScore.map(_.toString),
+          "whyGiveScore"           -> answers.whyGiveScore,
+          "howDoYouFeelScore"      -> answers.howDoYouFeelScore.map(_.toString)
+        ).map(value => (value._1, value._2.getOrElse(""))).toSeq
+
+        val request    = fakeRequest
+          .withMethod("POST")
+          .withFormUrlEncodedBody(values: _*)
+          .withHeaders("referer" -> s"/feedback/com/com?cid=$cid")
+
+        val feedbackId = FeedbackId.fromSession(request)
+        val result     = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+        status(result) mustBe SEE_OTHER
+
+        verify(mockAuditService, times(1))
+          .complaintFeedbackAudit(eqTo(origin), eqTo(feedbackId), eqTo(answers), eqTo(Cid.fromUrl(request)))(any())
       }
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin       = Origin.fromString(serviceName)
         val invalidValue = "*" * 1001
-        val postRequest = fakeRequest
+        val postRequest  = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("whyGiveScore", invalidValue))
-        val boundForm = form.bind(Map("whyGiveScore" -> invalidValue))
+        val boundForm    = form.bind(Map("whyGiveScore" -> invalidValue))
 
         val result = controller().onSubmit(origin)(postRequest)
 

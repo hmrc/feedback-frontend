@@ -20,6 +20,7 @@ import forms.CCGQuestionsFormProvider
 import models.{CCGQuestions, Origin}
 import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.Form
+import play.api.mvc.Call
 import play.twirl.api.HtmlFormat
 import views.behaviours._
 import views.html.CcgQuestionsView
@@ -29,9 +30,9 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
   val messageKeyPrefix = "ccgQuestions"
 
   val form = new CCGQuestionsFormProvider()()
-  val action = controllers.routes.CCGQuestionsController.onPageLoad(Origin.fromString("origin"))
+  val action: Call = controllers.routes.CCGQuestionsController.onPageLoad(Origin.fromString("origin"))
 
-  lazy val ccgQuestionsView = inject[CcgQuestionsView]
+  lazy val ccgQuestionsView: CcgQuestionsView = inject[CcgQuestionsView]
 
   def createView: () => HtmlFormat.Appendable = () => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 

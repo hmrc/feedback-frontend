@@ -41,6 +41,6 @@ object NextPage {
 }
 
 @Singleton
-class Navigator @Inject()() {
+class Navigator @Inject() {
   def nextPage[A, B](page: A)(b: B)(implicit np: NextPage[A, B]): Call = np.nextPage(page)(b)
 }

@@ -21,26 +21,28 @@ import play.api.data.validation.{Invalid, Valid}
 
 class ConstraintsSpec extends BaseSpec with Constraints {
 
+  val MAXIMUM_NUMBER_OF_CHARACTERS = 10
+
   "maxLength" must {
 
     "return Valid for a string shorter than the allowed length" in {
-      val result = maxLength(10, "error.length")("a" * 9)
+      val result = maxLength(MAXIMUM_NUMBER_OF_CHARACTERS, "error.length")("a" * (MAXIMUM_NUMBER_OF_CHARACTERS - 1))
       result mustEqual Valid
     }
 
     "return Valid for an empty string" in {
-      val result = maxLength(10, "error.length")("")
+      val result = maxLength(MAXIMUM_NUMBER_OF_CHARACTERS, "error.length")("")
       result mustEqual Valid
     }
 
     "return Valid for a string equal to the allowed length" in {
-      val result = maxLength(10, "error.length")("a" * 10)
+      val result = maxLength(MAXIMUM_NUMBER_OF_CHARACTERS, "error.length")("a" * MAXIMUM_NUMBER_OF_CHARACTERS)
       result mustEqual Valid
     }
 
     "return Invalid for a string longer than the allowed length" in {
-      val result = maxLength(10, "error.length")("a" * 11)
-      result mustEqual Invalid("error.length", 10)
+      val result = maxLength(MAXIMUM_NUMBER_OF_CHARACTERS, "error.length")("a" * (MAXIMUM_NUMBER_OF_CHARACTERS + 1))
+      result mustEqual Invalid("error.length", MAXIMUM_NUMBER_OF_CHARACTERS)
     }
   }
 }

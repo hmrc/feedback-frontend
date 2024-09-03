@@ -34,7 +34,7 @@ class FeedbackSurveyController @Inject()(
     Redirect(routes.OtherQuestionsController.onPageLoad(Origin.fromString("feedback")))
   }
 
-  def ptaRedirect(origin: String): Result = {
+  private def ptaRedirect(origin: String): Result = {
 
     val ptaRedirects = Seq(
       "CARBEN",
@@ -53,10 +53,11 @@ class FeedbackSurveyController @Inject()(
       "TYF"
     )
 
-    if (ptaRedirects.contains(origin))
+    if (ptaRedirects.contains(origin)) {
       Redirect(routes.PTAQuestionsController.onPageLoad(Origin.fromString(origin)))
-    else
+    } else {
       Redirect(routes.OtherQuestionsController.onPageLoad(Origin.fromString(origin)))
+    }
 
   }
 }
