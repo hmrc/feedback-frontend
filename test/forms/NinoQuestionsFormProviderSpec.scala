@@ -16,12 +16,12 @@
 
 package forms
 
-import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours, CheckboxFieldBehaviours}
+import forms.behaviours.{OptionFieldBehaviours, StringFieldBehaviours, CheckboxFieldBehaviours}
 import models.{AbleToDo, DidWithNinoQuestion, HowDoYouFeelQuestion, HowEasyQuestion, NinoQuestions, YesNo}
 import play.api.data.FormError
 
 class NinoQuestionsFormProviderSpec
-  extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours with CheckboxFieldBehaviours {
+  extends OptionFieldBehaviours with StringFieldBehaviours with CheckboxFieldBehaviours {
 
   def form = new NinoQuestionsFormProvider()()
 

@@ -90,8 +90,7 @@ class NinoQuestionsControllerSpec extends SpecBase with MockitoSugar {
         val howDoYouFeelAboutTheService  =
           Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
         val didYouLogInJustToSeeYourNino = Some(YesNo.values(Random.nextInt(yesNoQuestionNumberOfOptions)))
-        val whatDidYouDoWithYourNino     =
-          Some(DidWithNinoQuestion.values.take(Random.between(1, didWithNinoQuestionNumberOfOptions + 1)))
+        val whatDidYouDoWithYourNino     = Some(DidWithNinoQuestion.values.take(3))
         val whyDidYouGiveThisAnswer      = Some("Because I felt like giving this answer !")
 
         val answers = NinoQuestions(
@@ -105,18 +104,12 @@ class NinoQuestionsControllerSpec extends SpecBase with MockitoSugar {
         )
 
         // Add an indexed field for each didWithNino answer so that it is parsed as a sequence
-//        val didWithNinoValues = answers.didWithNino.map(
-//          a => a.zipWithIndex.map(
-//            v => (s"didWithNino[${v._2}]", v._1.toString)
-//          )
-//        ).getOrElse(Seq())
+        val didWithNinoValues = answers.didWithNino.map(
+          a => a.zipWithIndex.map(
+            v => (s"didWithNino[${v._2}]", v._1.toString)
+          )
+        ).getOrElse(Seq())
 
-        val didWithNinoValues = Map(
-          "didWithNino" -> answers.didWithNino.map(
-            a => a.mkString(","))
-        ).map(value => (value._1, value._2.getOrElse(""))).toSeq
-
-        // values needs to be a Seq[(String, String)]
         val values = Map(
           "ableToDo"          -> answers.ableToDo.map(s => s.toString),
           "howEasyScore"      -> answers.howEasyScore.map(s => s.toString),

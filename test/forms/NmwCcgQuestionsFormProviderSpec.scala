@@ -16,12 +16,12 @@
 
 package forms
 
-import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
+import forms.behaviours.{OptionFieldBehaviours, StringFieldBehaviours}
 import models.NmwCcgQuestions
 import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import play.api.data.FormError
 
-class NmwCcgQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
+class NmwCcgQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFieldBehaviours {
 
   val form = new NmwCcgQuestionsFormProvider()()
 

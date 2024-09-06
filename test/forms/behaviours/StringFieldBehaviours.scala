@@ -16,24 +16,34 @@
 
 package forms.behaviours
 
+import base.BaseSpec
 import play.api.data.{Form, FormError}
 
-trait StringFieldBehaviours extends FieldBehaviours {
+import scala.util.Random
+
+trait StringFieldBehaviours extends BaseSpec {
 
   def fieldWithMaxLength(form: Form[_], fieldName: String, maxLength: Int, lengthError: FormError): Unit = {
     s"not bind strings longer than $maxLength characters" in {
-      forAll(stringsLongerThan(maxLength) -> "longString") { string =>
-        val result = form.bind(Map(fieldName -> string)).apply(fieldName)
-        result.errors mustEqual Seq(lengthError)
+
+      for (_ <- 1 to 10) {
+        val numberOfCharacters = Random.between(maxLength + 2, maxLength + 11)
+        val veryLongString = Random.alphanumeric.take(numberOfCharacters).mkString
+        val field = form.bind(Map(fieldName -> veryLongString)).apply(fieldName)
+        field.errors mustEqual Seq(lengthError)
       }
+
     }
 
     "trim spaces before validation" in {
-      forAll(stringsOfLength(maxLength) -> "maxString") { string =>
-        val stringWithSpaces = s"     $string     "
-        val result = form.bind(Map(fieldName -> stringWithSpaces)).apply(fieldName)
-        result.hasErrors mustBe false
+
+      for (_ <- 1 to 10) {
+        val maximumLengthString = Random.alphanumeric.take(maxLength).mkString
+        val maximumLengthStringWithSpaces = s"     $maximumLengthString     "
+        val field = form.bind(Map(fieldName -> maximumLengthStringWithSpaces)).apply(fieldName)
+        field.hasErrors mustBe false
       }
+
     }
   }
 }

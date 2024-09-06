@@ -61,6 +61,19 @@ object CommonSpecValues {
     "備えあれば憂いなし"
   )
 
+  val invalidFormFieldValues: List[String] = List(
+    "مصائب قوم عند قوم فوائد",
+    "±!@£$%^&*()_+",
+    "-={}[]|;:'.,?><`~",
+    "تجري الرياح بما لا تشتهي السّفن",
+    "備えあれば憂いなし",
+    "男に二言はない",
+    "الحاجة أمّ الاختراع",
+    "火のないところに煙は立たない",
+    "出る杭は打たれる",
+    "لا تؤجّل عمل اليوم إلى الغد"
+  )
+
   val mainServiceQuestionNumberOfOptions: Int           = MainServiceQuestion.values.length
   val ableToDoQuestionNumberOfOptions: Int              = AbleToDo.values.length
   val howEasyQuestionNumberOfOptions: Int               = HowEasyQuestion.values.length

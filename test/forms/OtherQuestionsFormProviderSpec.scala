@@ -16,11 +16,11 @@
 
 package forms
 
-import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
+import forms.behaviours.{OptionFieldBehaviours, StringFieldBehaviours}
 import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, OtherQuestions}
 import play.api.data.FormError
 
-class OtherQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
+class OtherQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFieldBehaviours {
 
   def form = new OtherQuestionsFormProvider()()
 
