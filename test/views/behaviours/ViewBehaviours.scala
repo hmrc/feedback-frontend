@@ -20,8 +20,6 @@ import play.api.i18n.Lang
 import play.twirl.api.HtmlFormat
 import views.ViewSpecBase
 
-import scala.util.Try
-
 trait ViewBehaviours extends ViewSpecBase {
 
   implicit val lang: Lang = Lang("en")
@@ -30,7 +28,7 @@ trait ViewBehaviours extends ViewSpecBase {
     view: () => HtmlFormat.Appendable,
     messageKeyPrefix: String,
     pageHeadingClass: String,
-    expectedGuidanceKeys: String*) =
+    expectedGuidanceKeys: String*): Unit =
     "behave like a normal page" when {
       "rendered" must {
 

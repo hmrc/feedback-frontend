@@ -15,13 +15,15 @@
  *@
 
 @import config.FrontendAppConfig
+@import views.html.MainTemplate
+@import views.html.components.{H1, H2, Link, P}
 
 @this(
         mainTemplate: MainTemplate,
-        h1: components.H1,
-        h2: components.H2,
-        p: components.P,
-        link: components.Link
+        h1: H1,
+        h2: H2,
+        p: P,
+        link: Link
 )
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)

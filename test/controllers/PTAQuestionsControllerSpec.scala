@@ -17,31 +17,28 @@
 package controllers
 
 import base.SpecBase
+import base.CommonSpecValues._
 import forms.PTAQuestionsFormProvider
-import generators.ModelGenerators
-import models.{FeedbackId, Origin, PTAQuestions}
+import models._
 import navigation.FakeNavigator
 import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
-import org.scalacheck.Arbitrary._
-import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.PtaQuestionsView
 
-class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+import scala.util.Random
 
-  def onwardRoute: Call = Call("GET", "/foo")
+class PTAQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
-  val formProvider = new PTAQuestionsFormProvider()
-  val form: Form[PTAQuestions] = formProvider()
-
-  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val mockAuditService: AuditService     = mock[AuditService]
   lazy val ptaQuestionsView: PtaQuestionsView = inject[PtaQuestionsView]
+
+  val formProvider             = new PTAQuestionsFormProvider()
+  val form: Form[PTAQuestions] = formProvider()
 
   def submitCall(origin: Origin): Call = routes.PTAQuestionsController.onSubmit(origin)
 
@@ -52,7 +49,10 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
       formProvider,
       mockAuditService,
       mcc,
-      ptaQuestionsView)
+      ptaQuestionsView
+    )
+
+  def onwardRoute: Call = Call("GET", "/foo")
 
   def viewAsString(form: Form[_] = form, action: Call): String =
     ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
@@ -60,8 +60,8 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
   "PTAQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll (Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -70,8 +70,8 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -80,9 +80,25 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "audit response on success" in {
-      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[PTAQuestions]) { (originStr, feedbackId, answers) =>
+      for (serviceName <- serviceNames) {
         reset(mockAuditService)
-        val origin = Origin.fromString(originStr)
+        val origin = Origin.fromString(serviceName)
+
+        val whatWasTheMainThingYouNeededToDoToday = Some("Sort out my life !")
+        val wereYouAbleToDoWhatYouWant            = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask              = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore                = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService           =
+          Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+
+        val answers = PTAQuestions(
+          whatWasTheMainThingYouNeededToDoToday,
+          wereYouAbleToDoWhatYouWant,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService
+        )
+
         val values = Map(
           "neededToDo"        -> answers.neededToDo,
           "ableToDo"          -> answers.ableToDo.map(_.toString),
@@ -94,6 +110,9 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
         val request = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(values: _*)
+
+        val feedbackId = FeedbackId.fromSession(request)
+
         controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
         verify(mockAuditService, times(1))
@@ -102,12 +121,12 @@ class PTAQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks 
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin      = Origin.fromString(serviceName)
         val postRequest = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("ableToDo", "invalid value"))
-        val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
+        val boundForm   = form.bind(Map("ableToDo" -> "invalid value"))
 
         val result = controller().onSubmit(origin)(postRequest)
 

@@ -16,13 +16,10 @@
 
 package base
 
-import generators.{Generators, ModelGenerators}
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.{BeforeAndAfter, EitherValues, OptionValues}
 import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
 trait BaseSpec
-    extends AnyWordSpec with OptionValues with Matchers with ScalaCheckPropertyChecks with ModelGenerators
-    with EitherValues with MockitoSugar with BeforeAndAfter with Generators
+    extends AnyWordSpec with OptionValues with Matchers with EitherValues with MockitoSugar with BeforeAndAfter

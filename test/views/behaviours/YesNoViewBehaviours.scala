@@ -21,7 +21,7 @@ import play.twirl.api.HtmlFormat
 
 trait YesNoViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
-  def yesNoPage(createView: (Form[A]) => HtmlFormat.Appendable, fieldName: String, messageKeyPrefix: String) = {
+  def yesNoPage(createView: Form[A] => HtmlFormat.Appendable, fieldName: String, messageKeyPrefix: String): Unit = {
 
     s".$messageKeyPrefix" must {
       "behave like a page with a Yes/No question" when {
@@ -80,7 +80,7 @@ trait YesNoViewBehaviours[A] extends QuestionViewBehaviours[A] {
       }
     }
 
-    def answeredYesNoPage(answer: Boolean) = {
+    def answeredYesNoPage(answer: Boolean): Unit = {
 
       val boundForm = form.bind(Map(fieldName -> answer.toString))
 

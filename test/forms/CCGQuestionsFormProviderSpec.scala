@@ -21,7 +21,7 @@ import models.CCGQuestions
 import models.ccg._
 import play.api.data.FormError
 
-class CCGQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
+class CCGQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFieldBehaviours {
 
   def form = new CCGQuestionsFormProvider()()
 

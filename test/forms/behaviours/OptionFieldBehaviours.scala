@@ -16,16 +16,19 @@
 
 package forms.behaviours
 
+import base.BaseSpec
+import base.CommonSpecValues.invalidFormFieldValues
 import play.api.data.{Form, FormError}
 
-class OptionFieldBehaviours extends FieldBehaviours {
+class OptionFieldBehaviours extends BaseSpec {
 
   def optionsField[A, T](
-                          form: Form[A],
-                          fieldName: String,
-                          validValues: Seq[T],
-                          invalidError: FormError,
-                          fieldValue: A => Option[T]): Unit = {
+    form: Form[A],
+    fieldName: String,
+    validValues: Seq[T],
+    invalidError: FormError,
+    fieldValue: A => Option[T]
+  ): Unit = {
 
     "bind all valid values" in {
       for (value <- validValues) {
@@ -35,12 +38,12 @@ class OptionFieldBehaviours extends FieldBehaviours {
     }
 
     "not bind invalid values" in {
-      val generator = stringsExceptSpecificValues(validValues.map(_.toString).toSet)
 
-      forAll(generator -> "invalidValue") { value =>
-        val result = form.bind(Map(fieldName -> value)).apply(fieldName)
-        result.errors mustEqual Seq(invalidError)
+      for (invalidValue <- invalidFormFieldValues) {
+        val field = form.bind(Map(fieldName -> invalidValue)).apply(fieldName)
+        field.errors mustEqual Seq(invalidError)
       }
+
     }
   }
 }

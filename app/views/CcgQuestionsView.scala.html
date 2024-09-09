@@ -18,78 +18,80 @@
 @import models.ccg._
 @import uk.gov.hmrc.govukfrontend.views.html.components.FormWithCSRF
 @import views.ViewUtils._
+@import views.html.MainTemplate
+@import views.html.components.{Button, ErrorSummary, H1, InputRadio, InputTextArea, P}
 
 @this(
         mainTemplate: MainTemplate,
         formHelper: FormWithCSRF,
-        h1: components.H1,
-        p: components.P,
-        inputRadio: components.InputRadio,
-        inputTextArea: components.InputTextArea,
-        button: components.Button,
-        errorSummary: components.ErrorSummary
+        h1: H1,
+        p: P,
+        inputRadio: InputRadio,
+        inputTextArea: InputTextArea,
+        button: Button,
+        errorSummary: ErrorSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
 
-@privacyPolicyLink = {
-    <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("ccgQuestions.introLinkText")</a>
-}
-
-@mainTemplate(
-    title = s"${errorPrefix(form)} ${messages("ccgQuestions.title")}",
-    bodyClasses = None) {
-
-    @formHelper(action = action, Symbol("autoComplete") -> "off", Symbol("data-dynamic-form") -> "true") {
-
-        @errorSummary(form)
-
-        @h1("ccgQuestions.heading")
-
-        @p(Html(messages("ccgQuestions.intro1")))
-
-        @p(Html(messages("ccgQuestions.intro2", privacyPolicyLink)))
-
-        @p(Html(messages("ccgQuestions.intro3")))
-
-        @inputRadio(
-            form = form,
-            legend = messages("ccgQuestions.treatedProfessionally.heading"),
-            items = TreatedProfessionallyQuestion.options(form),
-            classes = "govuk-fieldset__legend--m",
-            name = "treatedProfessionally",
-            legendAsHeading = false
-        )
-
-        @inputRadio(
-            form = form,
-            legend = messages("ccgQuestions.complianceCheckUnderstanding.heading"),
-            items = CheckUnderstandingQuestion.options(form),
-            classes = "govuk-fieldset__legend--m",
-            name = "complianceCheckUnderstanding",
-            legendAsHeading = false
-        )
-
-        @inputTextArea(
-            form = form,
-            id = "whyGiveAnswer",
-            name = "whyGiveAnswer",
-            label = messages("ccgQuestions.whyGiveAnswer.heading"),
-            labelClass = "govuk-label--m",
-            isPageHeading = false,
-            hint = Some(Html(messages("ccgQuestions.whyGiveAnswer.hint"))),
-            maxCharacters = Some(1000)
-        )
-
-        @inputRadio(
-            form = form,
-            legend = messages("ccgQuestions.supportFutureTax.heading"),
-            items = SupportFutureQuestion.options(form),
-            classes = "govuk-fieldset__legend--m",
-            name = "supportFutureTax",
-            legendAsHeading = false
-        )
-
-        @button(messages("site.continue"))
+    @privacyPolicyLink = {
+        <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("ccgQuestions.introLinkText")</a>
     }
-}
+
+    @mainTemplate(
+        title = s"${errorPrefix(form)} ${messages("ccgQuestions.title")}",
+        bodyClasses = None) {
+
+        @formHelper(action = action, Symbol("autoComplete") -> "off", Symbol("data-dynamic-form") -> "true") {
+
+            @errorSummary(form)
+
+            @h1("ccgQuestions.heading")
+
+            @p(Html(messages("ccgQuestions.intro1")))
+
+            @p(Html(messages("ccgQuestions.intro2", privacyPolicyLink)))
+
+            @p(Html(messages("ccgQuestions.intro3")))
+
+            @inputRadio(
+                form = form,
+                legend = messages("ccgQuestions.treatedProfessionally.heading"),
+                items = TreatedProfessionallyQuestion.options(form),
+                classes = "govuk-fieldset__legend--m",
+                name = "treatedProfessionally",
+                legendAsHeading = false
+            )
+
+            @inputRadio(
+                form = form,
+                legend = messages("ccgQuestions.complianceCheckUnderstanding.heading"),
+                items = CheckUnderstandingQuestion.options(form),
+                classes = "govuk-fieldset__legend--m",
+                name = "complianceCheckUnderstanding",
+                legendAsHeading = false
+            )
+
+            @inputTextArea(
+                form = form,
+                id = "whyGiveAnswer",
+                name = "whyGiveAnswer",
+                label = messages("ccgQuestions.whyGiveAnswer.heading"),
+                labelClass = "govuk-label--m",
+                isPageHeading = false,
+                hint = Some(Html(messages("ccgQuestions.whyGiveAnswer.hint"))),
+                maxCharacters = Some(1000)
+            )
+
+            @inputRadio(
+                form = form,
+                legend = messages("ccgQuestions.supportFutureTax.heading"),
+                items = SupportFutureQuestion.options(form),
+                classes = "govuk-fieldset__legend--m",
+                name = "supportFutureTax",
+                legendAsHeading = false
+            )
+
+            @button(messages("site.continue"))
+        }
+    }

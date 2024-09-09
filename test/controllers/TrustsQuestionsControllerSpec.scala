@@ -16,6 +16,7 @@
 
 package controllers
 
+import base.CommonSpecValues._
 import base.SpecBase
 import forms.TrustsQuestionsFormProvider
 import models._
@@ -36,12 +37,6 @@ class TrustsQuestionsControllerSpec
     extends SpecBase
     with MockitoSugar
     with ScalaFutures {
-
-  val yesNoQuestionNumberOfOptions: Int = YesNo.values.length
-  val tryingToDoQuestionNumberOfOptions: Int = TryingToDoQuestion.values.length
-  val ableToDoQuestionNumberOfOptions: Int = AbleToDo.values.length
-  val howEasyQuestionNumberOfOptions: Int = HowEasyQuestion.values.length
-  val howDoYouFeelQuestionNumberOfOptions: Int = HowDoYouFeelQuestion.values.length
 
   lazy val mockAuditService: AuditService       = mock[AuditService]
   lazy val submitCall: Call                     = routes.TrustsQuestionsController.onSubmit()

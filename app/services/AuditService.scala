@@ -29,81 +29,81 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
   private val auditType = "feedback"
   private val emptyMap: Map[String, String] = Map.empty
 
-  type MapCont = Map[String, String] => Map[String, String]
+  private type MapCont = Map[String, String] => Map[String, String]
 
-  def withOrigin(origin: Origin): MapCont =
+  private def withOrigin(origin: Origin): MapCont =
     _ + ("origin" -> origin.value)
 
-  def withFeedbackId(feedbackId: FeedbackId): MapCont =
+  private def withFeedbackId(feedbackId: FeedbackId): MapCont =
     _ + ("feedbackId" -> feedbackId.value)
 
-  def withNeededToDo(neededToDo: Option[String]): MapCont =
+  private def withNeededToDo(neededToDo: Option[String]): MapCont =
     _ + ("neededToDo" -> neededToDo.getOrElse("-"))
 
-  def withAbleToDo(ableToDo: Option[AbleToDo]): MapCont =
+  private def withAbleToDo(ableToDo: Option[AbleToDo]): MapCont =
     _ + ("ableToDo" -> ableToDo.map(_.value.toString).getOrElse("-"))
 
-  def withHowEasyScore(howEasy: Option[HowEasyQuestion]): MapCont =
+  private def withHowEasyScore(howEasy: Option[HowEasyQuestion]): MapCont =
     _ + ("howEasyScore" -> howEasy.map(_.value.toString).getOrElse("-"))
 
-  def withWhyGiveScore(whyScore: Option[String]): MapCont =
+  private def withWhyGiveScore(whyScore: Option[String]): MapCont =
     _ + ("whyGiveScore" -> whyScore.getOrElse("-"))
 
-  def withHowFeelScore(howFeel: Option[HowDoYouFeelQuestion]): MapCont =
+  private def withHowFeelScore(howFeel: Option[HowDoYouFeelQuestion]): MapCont =
     _ + ("howDoYouFeelScore" -> howFeel.map(_.value.toString).getOrElse("-"))
 
-  def withMainService(mainService: Option[MainServiceQuestion]): MapCont =
+  private def withMainService(mainService: Option[MainServiceQuestion]): MapCont =
     _ + ("mainService" -> mainService.map(_.toString).getOrElse("-"))
 
-  def withMainServiceOther(mainServiceOther: Option[String]): MapCont =
+  private def withMainServiceOther(mainServiceOther: Option[String]): MapCont =
     _ + ("mainServiceOther" -> mainServiceOther.getOrElse("-"))
 
-  def withIsAgent(isAgent: Option[YesNo]): MapCont =
+  private def withIsAgent(isAgent: Option[YesNo]): MapCont =
     _ + ("isAgent" -> isAgent.map(_.value.toString).getOrElse("-"))
 
-  def withTryingToDo(tryingToDo: Option[TryingToDoQuestion]): MapCont =
+  private def withTryingToDo(tryingToDo: Option[TryingToDoQuestion]): MapCont =
     _ + ("tryingToDo" -> tryingToDo.map(_.toString).getOrElse("-"))
 
-  def withTryingToDoOther(tryingToDoOther: Option[String]): MapCont =
+  private def withTryingToDoOther(tryingToDoOther: Option[String]): MapCont =
     _ + ("tryingToDoOther" -> tryingToDoOther.getOrElse("-"))
 
-  def withWhyNotAbleToDo(whyNotAbleToDO: Option[String]): MapCont =
+  private def withWhyNotAbleToDo(whyNotAbleToDO: Option[String]): MapCont =
     _ + ("whyNotAbleToDo" -> whyNotAbleToDO.getOrElse("-"))
 
-  def withLikelyToDo(likelyToDo: Option[LikelyToDoQuestion]): MapCont =
+  private def withLikelyToDo(likelyToDo: Option[LikelyToDoQuestion]): MapCont =
     _ + ("likelyToDo" -> likelyToDo.map(_.toString).getOrElse("-"))
 
-  def withLogInToSeeNino(logInToSeeNino: Option[YesNo]): MapCont =
+  private def withLogInToSeeNino(logInToSeeNino: Option[YesNo]): MapCont =
     _ + ("logInToSeeNino" -> logInToSeeNino.map(_.value.toString).getOrElse("-"))
 
-  def withDidWithNino(didWithNino: Option[Seq[DidWithNinoQuestion]]): MapCont =
+  private def withDidWithNino(didWithNino: Option[Seq[DidWithNinoQuestion]]): MapCont =
     _ + ("didWithNino" -> didWithNino.map(_.map(_.toString).mkString(",")).getOrElse("-"))
 
-  def withGiveReason(giveReason: Option[GiveReason]): MapCont =
+  private def withGiveReason(giveReason: Option[GiveReason]): MapCont =
     _ + ("value" -> giveReason.map(_.toString).getOrElse("-"))
 
-  def withOtherReason(otherReason: Option[String]): MapCont =
+  private def withOtherReason(otherReason: Option[String]): MapCont =
     _ + ("reason" -> otherReason.getOrElse("-"))
 
-  def withGiveComments(answer: String): MapCont =
+  private def withGiveComments(answer: String): MapCont =
     _ + ("giveComments" -> answer)
 
-  def withCheckUnderstanding(checkUnderstanding: Option[CheckUnderstandingQuestion]): MapCont =
+  private def withCheckUnderstanding(checkUnderstanding: Option[CheckUnderstandingQuestion]): MapCont =
     _ + ("checkUnderstanding" -> checkUnderstanding.map(_.toString).getOrElse("-"))
 
-  def withTreatedProfessionally(treatedProfessionally: Option[TreatedProfessionallyQuestion]): MapCont =
+  private def withTreatedProfessionally(treatedProfessionally: Option[TreatedProfessionallyQuestion]): MapCont =
     _ + ("treatedProfessionally" -> treatedProfessionally.map(_.toString).getOrElse("-"))
 
-  def withWhyGiveAnswer(whyGiveAnswer: Option[String]): MapCont =
+  private def withWhyGiveAnswer(whyGiveAnswer: Option[String]): MapCont =
     _ + ("whyGiveAnswer" -> whyGiveAnswer.getOrElse("-"))
 
-  def withSupportFuture(supportFuture: Option[SupportFutureQuestion]): MapCont =
+  private def withSupportFuture(supportFuture: Option[SupportFutureQuestion]): MapCont =
     _ + ("supportFuture" -> supportFuture.map(_.toString).getOrElse("-"))
 
-  def withCid(cid: Cid): MapCont =
+  private def withCid(cid: Cid): MapCont =
     _ + ("cid" -> cid.value)
 
-  def withComplaintHandledFairly(complaintHandledFairly: Option[YesNo]): MapCont =
+  private def withComplaintHandledFairly(complaintHandledFairly: Option[YesNo]): MapCont =
     _ + ("complaintHandledFairly" -> complaintHandledFairly.map(_.value.toString).getOrElse("-"))
 
   def ptaAudit(origin: Origin, feedbackId: FeedbackId, questions: PTAQuestions)(implicit hc: HeaderCarrier): Unit = {

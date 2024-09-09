@@ -28,7 +28,7 @@ trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
                    fieldName: String,
                    options: Seq[RadioItem],
                    messageKeyPrefix: String,
-                   legendClass: String = "govuk-fieldset__legend--m") =
+                   legendClass: String = "govuk-fieldset__legend--m"): Unit =
     s"behave like a page with a $fieldName radio options question" when {
       "rendered" must {
         "contain a legend for the question" in {

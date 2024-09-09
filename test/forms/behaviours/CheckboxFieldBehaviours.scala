@@ -16,9 +16,10 @@
 
 package forms.behaviours
 
+import base.BaseSpec
 import play.api.data.{Form, FormError}
 
-trait CheckboxFieldBehaviours extends FieldBehaviours {
+trait CheckboxFieldBehaviours extends BaseSpec {
 
   def checkboxField[A, T](
                            form: Form[A],

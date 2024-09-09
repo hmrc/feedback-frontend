@@ -23,14 +23,14 @@ trait QuestionViewBehaviours[A] extends ViewBehaviours {
 
   val errorKey = "value"
   val errorMessage = "error.number"
-  val error = FormError(errorKey, errorMessage)
+  val error: FormError = FormError(errorKey, errorMessage)
 
   val form: Form[A]
 
   def pageWithTextFields(
-    createView: (Form[A]) => HtmlFormat.Appendable,
+    createView: Form[A] => HtmlFormat.Appendable,
     messageKeyPrefix: String,
-    fields: String*) =
+    fields: String*): Unit =
 
     "behave like a question page" when {
       "rendered" must {

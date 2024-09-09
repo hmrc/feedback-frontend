@@ -17,15 +17,18 @@
 package services
 
 import base.BaseSpec
+import base.CommonSpecValues._
 import models._
+import models.ccg.{CheckUnderstandingQuestion, SupportFutureQuestion, TreatedProfessionallyQuestion}
 import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
-import org.scalacheck.Arbitrary._
 import org.scalatestplus.play.guice.GuiceOneAppPerSuite
+import play.api.test.FakeRequest
 import uk.gov.hmrc.http.HeaderCarrier
 import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 
 import scala.concurrent.ExecutionContext
+import scala.util.Random
 
 class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
@@ -39,19 +42,37 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
     "generate correct payload for pta questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[PTAQuestions]) { (origin, feedbackId, questions) =>
+      for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs) {
         reset(auditConnector)
 
-        auditService.ptaAudit(origin, feedbackId, questions)
+        val originService = Origin.fromString(serviceName)
+        val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+
+        val whatWasTheMainThingYouNeededToDoToday = Some("Sort out my life !")
+        val wereYouAbleToDoWhatYouWant            = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask              = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore                = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService           =
+          Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+
+        val answers = PTAQuestions(
+          whatWasTheMainThingYouNeededToDoToday,
+          wereYouAbleToDoWhatYouWant,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService
+        )
+
+        auditService.ptaAudit(originService, feedbackId, answers)
 
         val expected = Map(
-          "origin"            -> origin.value,
+          "origin"            -> originService.value,
           "feedbackId"        -> feedbackId.value,
-          "neededToDo"        -> questions.neededToDo.getOrElse("-"),
-          "ableToDo"          -> questions.ableToDo.map(_.value.toString).getOrElse("-"),
-          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
+          "neededToDo"        -> answers.neededToDo.getOrElse("-"),
+          "ableToDo"          -> answers.ableToDo.map(_.value.toString).getOrElse("-"),
+          "howEasyScore"      -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
+          "whyGiveScore"      -> answers.whyGiveScore.getOrElse("-"),
+          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
         )
 
         verify(auditConnector, times(1))
@@ -64,20 +85,47 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
     "generate correct payload for bta questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[BTAQuestions]) { (origin, feedbackId, questions) =>
+      for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs) {
         reset(auditConnector)
 
-        auditService.btaAudit(origin, feedbackId, questions)
+        val originService = Origin.fromString(serviceName)
+        val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+
+        val whatWasTheMainServiceYouUsedToday         = Some(MainServiceQuestion.values(Random.nextInt(mainServiceQuestionNumberOfOptions)))
+
+        val otherOption = MainServiceQuestion.enumerable.withName("Other")
+        val whatOtherServiceYouUsedToday =
+          if (whatWasTheMainServiceYouUsedToday == otherOption) {
+            Some("Personal Tax Allowance")
+          } else {
+            None
+          }
+
+        val wereYouAbleToDoWhatYouWant       = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask         = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore           = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService      = Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+
+        val answers = BTAQuestions(
+          whatWasTheMainServiceYouUsedToday,
+          whatOtherServiceYouUsedToday,
+          wereYouAbleToDoWhatYouWant,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService
+        )
+
+        auditService.btaAudit(originService, feedbackId, answers)
 
         val expected = Map(
-          "origin"            -> origin.value,
+          "origin"            -> originService.value,
           "feedbackId"        -> feedbackId.value,
-          "mainService"       -> questions.mainService.map(_.toString).getOrElse("-"),
-          "mainServiceOther"  -> questions.mainServiceOther.getOrElse("-"),
-          "ableToDo"          -> questions.ableToDo.map(_.value.toString).getOrElse("-"),
-          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
+          "mainService"       -> answers.mainService.map(_.toString).getOrElse("-"),
+          "mainServiceOther"  -> answers.mainServiceOther.getOrElse("-"),
+          "ableToDo"          -> answers.ableToDo.map(_.value.toString).getOrElse("-"),
+          "howEasyScore"      -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
+          "whyGiveScore"      -> answers.whyGiveScore.getOrElse("-"),
+          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
         )
 
         verify(auditConnector, times(1))
@@ -92,22 +140,53 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
       val origin: Origin = Origin.fromString("trusts")
 
-      forAll(arbitrary[FeedbackId], arbitrary[TrustsQuestions]) { (feedbackId, questions) =>
+      for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs) {
         reset(auditConnector)
 
-        auditService.trustsAudit(origin, feedbackId, questions)
+        val originService = Origin.fromString(serviceName)
+        val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+
+        val areYouAnAgent         = Some(YesNo.values(Random.nextInt(yesNoQuestionNumberOfOptions)))
+        val whatWereYouTryingToDo = Some(TryingToDoQuestion.values(Random.nextInt(tryingToDoQuestionNumberOfOptions)))
+
+        val otherOption = TryingToDoQuestion.enumerable.withName("Other")
+        val whatOtherThingsWereYouTryingToDo =
+          if (whatWereYouTryingToDo == otherOption) {
+            Some("Various interesting stuff !")
+          } else {
+            None
+          }
+
+        val wereYouAbleToDoWhatYouWant       = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val whyWereYouNotAbleToDoWhatYouWant = Some("Due to various obstacles and scary challenges !!")
+        val howEasyWasItToDoYourTask         = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore           = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService      = Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+
+        val answers = TrustsQuestions(
+          areYouAnAgent,
+          whatWereYouTryingToDo,
+          whatOtherThingsWereYouTryingToDo,
+          wereYouAbleToDoWhatYouWant,
+          whyWereYouNotAbleToDoWhatYouWant,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService
+        )
+
+        auditService.trustsAudit(originService, feedbackId, answers)
 
         val expected = Map(
-          "origin"            -> origin.value,
+          "origin"            -> originService.value,
           "feedbackId"        -> feedbackId.value,
-          "isAgent"           -> questions.isAgent.map(_.value.toString).getOrElse("-"),
-          "tryingToDo"        -> questions.tryingToDo.map(_.toString).getOrElse("-"),
-          "tryingToDoOther"   -> questions.tryingToDoOther.getOrElse("-"),
-          "ableToDo"          -> questions.ableToDo.map(_.value.toString).getOrElse("-"),
-          "whyNotAbleToDo"    -> questions.whyNotAbleToDo.getOrElse("-"),
-          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
+          "isAgent"           -> answers.isAgent.map(_.value.toString).getOrElse("-"),
+          "tryingToDo"        -> answers.tryingToDo.map(_.toString).getOrElse("-"),
+          "tryingToDoOther"   -> answers.tryingToDoOther.getOrElse("-"),
+          "ableToDo"          -> answers.ableToDo.map(_.value.toString).getOrElse("-"),
+          "whyNotAbleToDo"    -> answers.whyNotAbleToDo.getOrElse("-"),
+          "howEasyScore"      -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
+          "whyGiveScore"      -> answers.whyGiveScore.getOrElse("-"),
+          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-")
         )
 
         verify(auditConnector, times(1))
@@ -118,20 +197,37 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
   "generate correct payload for other questions" in {
 
-    forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[OtherQuestions], arbitrary[Cid]) {
-      (origin, feedbackId, questions, cid) =>
+    for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs; stringClientId <- clientIDs) {
         reset(auditConnector)
 
-        auditService.otherAudit(origin, feedbackId, questions, cid)
+        val originService = Origin.fromString(serviceName)
+        val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+
+        val wereYouAbleToDoWhatYouWant  = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask    = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore      = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService =
+          Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+
+        val answers = OtherQuestions(
+          wereYouAbleToDoWhatYouWant,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService
+        )
+
+        val clientId = Cid.fromUrl(FakeRequest("GET", "").withHeaders("referer" -> s"/feedback/EXAMPLE?cid=$stringClientId"))
+
+        auditService.otherAudit(originService, feedbackId, answers, clientId)
 
         val expected = Map(
-          "origin"            -> origin.value,
+          "origin"            -> originService.value,
           "feedbackId"        -> feedbackId.value,
-          "ableToDo"          -> questions.ableToDo.map(_.value.toString).getOrElse("-"),
-          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
-          "cid"               -> cid.value
+          "ableToDo"          -> answers.ableToDo.map(_.value.toString).getOrElse("-"),
+          "howEasyScore"      -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
+          "whyGiveScore"      -> answers.whyGiveScore.getOrElse("-"),
+          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
+          "cid"               -> clientId.value
         )
 
 
@@ -142,17 +238,33 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
   "generate correct payload for give reasons" in {
 
-    forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[GiveReasonQuestions]) {
-      (origin, feedbackId, questions) =>
+    for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs) {
         reset(auditConnector)
 
-        auditService.giveReasonAudit(origin, feedbackId, questions)
+        val originService = Origin.fromString(serviceName)
+        val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+
+        val whatDidYouComeToDo = Some(GiveReason.values(Random.nextInt(giveReasonNumberOfOptions)))
+        val otherOption = GiveReason.enumerable.withName("Other")
+        val whatAreTheOtherReasons =
+          if (whatDidYouComeToDo == otherOption) {
+            Some("Various interesting reasons !")
+          } else {
+            None
+          }
+
+        val answers = GiveReasonQuestions(
+          whatDidYouComeToDo,
+          whatAreTheOtherReasons
+        )
+
+        auditService.giveReasonAudit(originService, feedbackId, answers)
 
         val expected = Map(
-          "origin"     -> origin.value,
+          "origin"     -> originService.value,
           "feedbackId" -> feedbackId.value,
-          "value"      -> questions.value.fold("-")(_.toString),
-          "reason"     -> questions.reason.getOrElse("-")
+          "value"      -> answers.value.fold("-")(_.toString),
+          "reason"     -> answers.reason.getOrElse("-")
         )
 
         verify(auditConnector, times(1))
@@ -164,20 +276,39 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
     "generate correct payload for ccg questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[CCGQuestions], arbitrary[Cid]) {
-        (origin, feedbackId, questions, cid) =>
+      for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs; stringClientId <- clientIDs) {
           reset(auditConnector)
 
-          auditService.ccgAudit(origin, feedbackId, questions, cid)
+          val originService = Origin.fromString(serviceName)
+          val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+
+          val haveYouBeenTreatedProfessionally                  =
+            Some(TreatedProfessionallyQuestion.values(Random.nextInt(treatedProfessionallyQuestionNumberOfOptions)))
+          val howEasyWasItToUnderstandWhatWasHappening          =
+            Some(CheckUnderstandingQuestion.values(Random.nextInt(checkUnderstandingQuestionNumberOfOptions)))
+          val whyDidYouGiveThisScore                            = Some("Because I felt like giving this score !")
+          val willYourHMRCInteractionsHelpYouMeetTaxObligations =
+            Some(SupportFutureQuestion.values(Random.nextInt(supportFutureQuestionNumberOfOptions)))
+
+          val answers = CCGQuestions(
+            howEasyWasItToUnderstandWhatWasHappening,
+            haveYouBeenTreatedProfessionally,
+            whyDidYouGiveThisScore,
+            willYourHMRCInteractionsHelpYouMeetTaxObligations
+          )
+
+          val clientId = Cid.fromUrl(FakeRequest("GET", "").withHeaders("referer" -> s"/feedback/EXAMPLE?cid=$stringClientId"))
+
+          auditService.ccgAudit(originService, feedbackId, answers, clientId)
 
           val expected = Map(
-            "origin"                -> origin.value,
+            "origin"                -> originService.value,
             "feedbackId"            -> feedbackId.value,
-            "checkUnderstanding"    -> questions.complianceCheckUnderstanding.map(_.toString).getOrElse("-"),
-            "treatedProfessionally" -> questions.treatedProfessionally.map(_.toString).getOrElse("-"),
-            "whyGiveAnswer"         -> questions.whyGiveAnswer.getOrElse("-"),
-            "supportFuture"         -> questions.supportFutureTaxQuestion.map(_.toString).getOrElse("-"),
-            "cid"                   -> cid.value
+            "checkUnderstanding"    -> answers.complianceCheckUnderstanding.map(_.toString).getOrElse("-"),
+            "treatedProfessionally" -> answers.treatedProfessionally.map(_.toString).getOrElse("-"),
+            "whyGiveAnswer"         -> answers.whyGiveAnswer.getOrElse("-"),
+            "supportFuture"         -> answers.supportFutureTaxQuestion.map(_.toString).getOrElse("-"),
+            "cid"                   -> clientId.value
           )
 
           verify(auditConnector, times(1))
@@ -190,18 +321,36 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
     "generate correct payload for nmw questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[NmwCcgQuestions]) { (origin, feedbackId, questions) =>
+      for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs) {
         reset(auditConnector)
 
-        auditService.nmwCcgAudit(origin, feedbackId, questions)
+        val originService = Origin.fromString(serviceName)
+        val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+
+        val haveYouBeenTreatedProfessionally                  =
+          Some(TreatedProfessionallyQuestion.values(Random.nextInt(treatedProfessionallyQuestionNumberOfOptions)))
+        val howEasyWasItToUnderstandWhatWasHappening          =
+          Some(CheckUnderstandingQuestion.values(Random.nextInt(checkUnderstandingQuestionNumberOfOptions)))
+        val whyDidYouGiveThisAnswer                           = Some("Because I felt like giving this answer !")
+        val willYourHMRCInteractionsHelpYouMeetTaxObligations =
+          Some(SupportFutureQuestion.values(Random.nextInt(supportFutureQuestionNumberOfOptions)))
+
+        val answers = NmwCcgQuestions(
+          haveYouBeenTreatedProfessionally,
+          howEasyWasItToUnderstandWhatWasHappening,
+          whyDidYouGiveThisAnswer,
+          willYourHMRCInteractionsHelpYouMeetTaxObligations
+        )
+
+        auditService.nmwCcgAudit(originService, feedbackId, answers)
 
         val expected = Map(
-          "origin"                -> origin.value,
+          "origin"                -> originService.value,
           "feedbackId"            -> feedbackId.value,
-          "treatedProfessionally" -> questions.treatedProfessionally.map(_.toString).getOrElse("-"),
-          "checkUnderstanding"    -> questions.checkUnderstanding.map(_.toString).getOrElse("-"),
-          "whyGiveAnswer"         -> questions.whyGiveAnswer.getOrElse("-"),
-          "supportFuture"         -> questions.supportFutureNmw.map(_.toString).getOrElse("-")
+          "treatedProfessionally" -> answers.treatedProfessionally.map(_.toString).getOrElse("-"),
+          "checkUnderstanding"    -> answers.checkUnderstanding.map(_.toString).getOrElse("-"),
+          "whyGiveAnswer"         -> answers.whyGiveAnswer.getOrElse("-"),
+          "supportFuture"         -> answers.supportFutureNmw.map(_.toString).getOrElse("-")
         )
 
         verify(auditConnector, times(1))
@@ -214,19 +363,38 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
     "generate correct payload for pension questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[PensionQuestions]) { (origin, feedbackId, questions) =>
+      for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs) {
         reset(auditConnector)
 
-        auditService.pensionAudit(origin, feedbackId, questions)
+        val originService = Origin.fromString(serviceName)
+        val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+
+        val wereYouAbleToDoWhatYouWant                 = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask                   = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore                     = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService                =
+          Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+        val whatWillYouDoAfterCheckingYourStatePension =
+          Some(LikelyToDoQuestion.values(Random.nextInt(likelyToDoQuestionNumberOfOptions)))
+
+        val answers = PensionQuestions(
+          wereYouAbleToDoWhatYouWant,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService,
+          whatWillYouDoAfterCheckingYourStatePension
+        )
+
+        auditService.pensionAudit(originService, feedbackId, answers)
 
         val expected = Map(
-          "origin"            -> origin.value,
+          "origin"            -> originService.value,
           "feedbackId"        -> feedbackId.value,
-          "ableToDo"          -> questions.ableToDo.map(_.value.toString).getOrElse("-"),
-          "howEasyScore"      -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-          "whyGiveScore"      -> questions.whyGiveScore.getOrElse("-"),
-          "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
-          "likelyToDo"        -> questions.likelyToDo.map(_.toString).getOrElse("-")
+          "ableToDo"          -> answers.ableToDo.map(_.value.toString).getOrElse("-"),
+          "howEasyScore"      -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
+          "whyGiveScore"      -> answers.whyGiveScore.getOrElse("-"),
+          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
+          "likelyToDo"        -> answers.likelyToDo.map(_.toString).getOrElse("-")
         )
 
         verify(auditConnector, times(1))
@@ -239,13 +407,17 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
     "generate correct payload for give comments questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[String]) { (origin, feedbackId, comments) =>
+      for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs) {
         reset(auditConnector)
 
-        auditService.giveCommentsAudit(origin, feedbackId, comments)
+        val originService = Origin.fromString(serviceName)
+        val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+        val comments = "I have so much to say so here goes: blah blah blah blah !!"
+
+        auditService.giveCommentsAudit(originService, feedbackId, comments)
 
         val expected = Map(
-          "origin"       -> origin.value,
+          "origin"       -> originService.value,
           "feedbackId"   -> feedbackId.value,
           "giveComments" -> comments
         )
@@ -259,20 +431,37 @@ class AuditServiceSpec extends BaseSpec with GuiceOneAppPerSuite {
 
     "generate correct payload for complaintFeedback questions" in {
 
-      forAll(arbitrary[Origin], arbitrary[FeedbackId], arbitrary[ComplaintFeedbackQuestions], arbitrary[Cid]) {
-        (origin, feedbackId, questions, cid) =>
+      for (serviceName <- serviceNames; stringFeedbackId <- feedbackIDs; stringClientId <- clientIDs) {
           reset(auditConnector)
 
-          auditService.complaintFeedbackAudit(origin, feedbackId, questions, cid)
+          val originService = Origin.fromString(serviceName)
+          val feedbackId = FeedbackId.fromSession(FakeRequest("GET", "").withSession("feedbackId" -> stringFeedbackId))
+
+          val didHmrcHandleYourComplaintFairly = Some(YesNo.values(Random.nextInt(yesNoQuestionNumberOfOptions)))
+          val howEasyWasItToDoYourTask         = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+          val whyDidYouGiveThisScore           = Some("Because I felt like giving this score !")
+          val howDoYouFeelAboutTheService      =
+            Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+
+          val answers = ComplaintFeedbackQuestions(
+            didHmrcHandleYourComplaintFairly,
+            howEasyWasItToDoYourTask,
+            whyDidYouGiveThisScore,
+            howDoYouFeelAboutTheService
+          )
+
+          val clientId = Cid.fromUrl(FakeRequest("GET", "").withHeaders("referer" -> s"/feedback/EXAMPLE?cid=$stringClientId"))
+
+          auditService.complaintFeedbackAudit(originService, feedbackId, answers, clientId)
 
           val expected = Map(
-            "origin" -> origin.value,
+            "origin" -> originService.value,
             "feedbackId" -> feedbackId.value,
-            "complaintHandledFairly" -> questions.complaintHandledFairly.map(_.value.toString).getOrElse("-"),
-            "howEasyScore" -> questions.howEasyScore.map(_.value.toString).getOrElse("-"),
-            "whyGiveScore" -> questions.whyGiveScore.getOrElse("-"),
-            "howDoYouFeelScore" -> questions.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
-            "cid" -> cid.value
+            "complaintHandledFairly" -> answers.complaintHandledFairly.map(_.value.toString).getOrElse("-"),
+            "howEasyScore" -> answers.howEasyScore.map(_.value.toString).getOrElse("-"),
+            "whyGiveScore" -> answers.whyGiveScore.getOrElse("-"),
+            "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.value.toString).getOrElse("-"),
+            "cid" -> clientId.value
           )
 
           verify(auditConnector, times(1))

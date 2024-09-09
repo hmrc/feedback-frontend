@@ -27,7 +27,7 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
     createView: Form[A] => HtmlFormat.Appendable,
     fieldName: String,
     messageKeyPrefix: String,
-    expectedHintKey: Option[String] = None) =
+    expectedHintKey: Option[String] = None): Unit =
     s"behave like a page with a string value field of '$fieldName'" when {
       "rendered" must {
 

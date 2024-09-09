@@ -17,7 +17,7 @@
 package views
 
 import forms.TrustsQuestionsFormProvider
-import models.{AbleToDo, HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion, TrustsQuestions, TryingToDoQuestion, YesNo}
+import models._
 import play.api.data.Form
 import play.api.mvc.Call
 import play.twirl.api.HtmlFormat

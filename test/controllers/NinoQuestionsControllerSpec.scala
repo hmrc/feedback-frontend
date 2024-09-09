@@ -17,31 +17,28 @@
 package controllers
 
 import base.SpecBase
+import base.CommonSpecValues._
 import forms.NinoQuestionsFormProvider
-import generators.ModelGenerators
-import models.{FeedbackId, NinoQuestions, Origin}
+import models._
 import navigation.FakeNavigator
 import org.mockito.ArgumentMatchers.{eq => eqTo, _}
 import org.mockito.Mockito._
-import org.scalacheck.Arbitrary._
-import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 import play.api.data.Form
 import play.api.mvc.Call
 import play.api.test.Helpers._
 import services.AuditService
 import views.html.NinoQuestionsView
 
-class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks with ModelGenerators with MockitoSugar {
+import scala.util.Random
 
-  def onwardRoute: Call = Call("GET", "/foo")
+class NinoQuestionsControllerSpec extends SpecBase with MockitoSugar {
+
+  lazy val mockAuditService: AuditService       = mock[AuditService]
+  lazy val ninoQuestionsView: NinoQuestionsView = inject[NinoQuestionsView]
 
   val formProvider = new NinoQuestionsFormProvider()
-  val form = formProvider()
-
-  lazy val mockAuditService: AuditService = mock[AuditService]
-  lazy val ninoQuestionsView: NinoQuestionsView = inject[NinoQuestionsView]
+  val form: Form[NinoQuestions] = formProvider()
 
   def submitCall(origin: Origin): Call = routes.NinoQuestionsController.onSubmit(origin)
 
@@ -52,7 +49,10 @@ class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks
       formProvider,
       mockAuditService,
       mcc,
-      ninoQuestionsView)
+      ninoQuestionsView
+    )
+
+  def onwardRoute: Call = Call("GET", "/foo")
 
   def viewAsString(form: Form[_] = form, action: Call): String =
     ninoQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
@@ -60,8 +60,8 @@ class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks
   "NinoQuestions Controller" must {
 
     "return OK and the correct view for a GET" in {
-      forAll (Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onPageLoad(origin)(fakeRequest)
 
         status(result) mustBe OK
@@ -70,8 +70,8 @@ class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks
     }
 
     "redirect to the next page when valid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin = Origin.fromString(serviceName)
         val result = controller().onSubmit(origin)(fakeRequest)
 
         status(result) mustBe SEE_OTHER
@@ -80,28 +80,52 @@ class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks
     }
 
     "audit response on success" in {
-      forAll(Gen.alphaStr, arbitrary[FeedbackId], arbitrary[NinoQuestions]) { (originStr, feedbackId, answers) =>
+      for (serviceName <- serviceNames) {
         reset(mockAuditService)
-        val origin = Origin.fromString(originStr)
+        val origin = Origin.fromString(serviceName)
+
+        val wereYouAbleToDoWhatYouWant   = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask     = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore       = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService  =
+          Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+        val didYouLogInJustToSeeYourNino = Some(YesNo.values(Random.nextInt(yesNoQuestionNumberOfOptions)))
+        val whatDidYouDoWithYourNino     = Some(DidWithNinoQuestion.values.take(3))
+        val whyDidYouGiveThisAnswer      = Some("Because I felt like giving this answer !")
+
+        val answers = NinoQuestions(
+          wereYouAbleToDoWhatYouWant,
+          howEasyWasItToDoYourTask,
+          whyDidYouGiveThisScore,
+          howDoYouFeelAboutTheService,
+          didYouLogInJustToSeeYourNino,
+          whatDidYouDoWithYourNino,
+          whyDidYouGiveThisAnswer
+        )
 
         // Add an indexed field for each didWithNino answer so that it is parsed as a sequence
         val didWithNinoValues = answers.didWithNino.map(
-          _.zipWithIndex
-            .map(v => (s"didWithNino[${v._2}]", v._1.toString))
+          a => a.zipWithIndex.map(
+            v => (s"didWithNino[${v._2}]", v._1.toString)
+          )
         ).getOrElse(Seq())
 
-        val values = didWithNinoValues ++ Map(
-          "ableToDo"          -> answers.ableToDo.map(_.toString),
-          "howEasyScore"      -> answers.howEasyScore.map(_.toString),
+        val values = Map(
+          "ableToDo"          -> answers.ableToDo.map(s => s.toString),
+          "howEasyScore"      -> answers.howEasyScore.map(s => s.toString),
           "whyGiveScore"      -> answers.whyGiveScore,
-          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(_.toString),
-          "logInToSeeNino"    -> answers.logInToSeeNino.map(_.toString),
-          "whyGiveAnswer"     -> answers.whyGiveAnswer,
+          "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(s => s.toString),
+          "logInToSeeNino"    -> answers.logInToSeeNino.map(s => s.toString),
+        ).map(value => (value._1, value._2.getOrElse(""))).toSeq ++ didWithNinoValues ++ Map(
+          "whyGiveAnswer"     -> answers.whyGiveAnswer
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
         val request = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(values: _*)
+
+        val feedbackId = FeedbackId.fromSession(request)
+
         controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
 
         verify(mockAuditService, times(1))
@@ -110,12 +134,12 @@ class NinoQuestionsControllerSpec extends SpecBase with ScalaCheckPropertyChecks
     }
 
     "return a Bad Request and errors when invalid data is submitted" in {
-      forAll (Gen.alphaStr) { str =>
-        val origin = Origin.fromString(str)
+      for (serviceName <- serviceNames) {
+        val origin      = Origin.fromString(serviceName)
         val postRequest = fakeRequest
           .withMethod("POST")
           .withFormUrlEncodedBody(("ableToDo", "invalid value"))
-        val boundForm = form.bind(Map("ableToDo" -> "invalid value"))
+        val boundForm   = form.bind(Map("ableToDo" -> "invalid value"))
 
         val result = controller().onSubmit(origin)(postRequest)
 

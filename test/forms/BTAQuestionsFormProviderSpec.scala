@@ -16,11 +16,11 @@
 
 package forms
 
-import forms.behaviours.{BooleanFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
+import forms.behaviours.{OptionFieldBehaviours, StringFieldBehaviours}
 import models._
 import play.api.data.FormError
 
-class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFieldBehaviours with StringFieldBehaviours {
+class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFieldBehaviours {
 
   def form = new BTAQuestionsFormProvider()()
 
@@ -34,7 +34,7 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFie
       fieldName,
       MainServiceQuestion.values,
       FormError(fieldName, invalidError),
-      _.mainService
+      questions => questions.mainService
     )
   }
 
@@ -62,7 +62,7 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFie
       fieldName,
       AbleToDo.values,
       FormError(fieldName, invalidError),
-      _.ableToDo
+      questions => questions.ableToDo
     )
   }
 
@@ -76,7 +76,7 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFie
       fieldName,
       HowEasyQuestion.values,
       FormError(fieldName, invalidError),
-      _.howEasyScore
+      questions => questions.howEasyScore
     )
   }
 
@@ -104,7 +104,7 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with BooleanFie
       fieldName,
       HowDoYouFeelQuestion.values,
       FormError(fieldName, invalidError),
-      _.howDoYouFeelScore
+      questions => questions.howDoYouFeelScore
     )
   }
 }
