@@ -37,7 +37,7 @@ class OtherQuestionsFormProvider @Inject() extends Mappings {
           optional(text("whyGiveScore.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
-      )(OtherQuestions.apply)(OtherQuestions.unapply))
+      )(OtherQuestions.apply)(oq => Some(Tuple.fromProductTyped(oq))))
 }
 
 class NinoQuestionsFormProvider @Inject() extends Mappings {
@@ -59,7 +59,7 @@ class NinoQuestionsFormProvider @Inject() extends Mappings {
         "whyGiveAnswer" ->
           optional(text("whyGiveAnswer.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength")))
-      )(NinoQuestions.apply)(NinoQuestions.unapply))
+      )(NinoQuestions.apply)(nq => Some(Tuple.fromProductTyped(nq))))
 }
 
 class PTAQuestionsFormProvider @Inject() extends Mappings {
@@ -79,7 +79,7 @@ class PTAQuestionsFormProvider @Inject() extends Mappings {
           optional(text("whyGiveScore.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
-      )(PTAQuestions.apply)(PTAQuestions.unapply))
+      )(PTAQuestions.apply)(ptaq => Some(Tuple.fromProductTyped(ptaq))))
 }
 
 class BTAQuestionsFormProvider @Inject() extends Mappings {
@@ -100,7 +100,7 @@ class BTAQuestionsFormProvider @Inject() extends Mappings {
           optional(text("whyGiveScore.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
-      )(BTAQuestions.apply)(BTAQuestions.unapply))
+      )(BTAQuestions.apply)(btaq => Some(Tuple.fromProductTyped(btaq))))
 }
 
 class TrustsQuestionsFormProvider @Inject() extends Mappings {
@@ -125,7 +125,7 @@ class TrustsQuestionsFormProvider @Inject() extends Mappings {
           optional(text("whyGiveScore.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
-      )(TrustsQuestions.apply)(TrustsQuestions.unapply))
+      )(TrustsQuestions.apply)(tq => Some(Tuple.fromProductTyped(tq))))
 }
 
 class PensionQuestionsFormProvider @Inject() extends Mappings {
@@ -140,7 +140,7 @@ class PensionQuestionsFormProvider @Inject() extends Mappings {
         "whyGiveScore"      -> optional(Forms.text.verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error")),
         "likelyToDo"        -> optional(enumerable[LikelyToDoQuestion](invalidKey = "likelyToDo.error"))
-      )(PensionQuestions.apply)(PensionQuestions.unapply))
+      )(PensionQuestions.apply)(pq => Some(Tuple.fromProductTyped(pq))))
 }
 
 class CCGQuestionsFormProvider @Inject() extends Mappings {
@@ -158,7 +158,7 @@ class CCGQuestionsFormProvider @Inject() extends Mappings {
           optional(text("whyGiveAnswer.error.required")
             .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
         "supportFutureTax" -> optional(enumerable[SupportFutureQuestion](invalidKey = "supportFutureTax.error"))
-      )(CCGQuestions.apply)(CCGQuestions.unapply))
+      )(CCGQuestions.apply)(ccgq => Some(Tuple.fromProductTyped(ccgq))))
 }
 
 class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
@@ -177,7 +177,7 @@ class NmwCcgQuestionsFormProvider @Inject() extends Mappings {
             text("whyGiveAnswer.error.required")
               .verifying(maxLength(maxFieldSizeWhyGiveAnswer, "whyGiveAnswer.error.maxlength"))),
         "supportFutureNmw" -> optional(enumerable[SupportFutureQuestion](invalidKey = "supportFutureQuestion.error"))
-      )(NmwCcgQuestions.apply)(NmwCcgQuestions.unapply)
+      )(NmwCcgQuestions.apply)(ncq => Some(Tuple.fromProductTyped(ncq)))
     )
 }
 
@@ -193,5 +193,5 @@ class ComplaintFeedbackQuestionsFormProvider @Inject() extends Mappings {
         "whyGiveScore" -> optional(text("whyGiveScore.error.required")
           .verifying(maxLength(maxFieldSizeWhyGiveScore, "whyGiveScore.error.maxlength"))),
         "howDoYouFeelScore" -> optional(enumerable[HowDoYouFeelQuestion](invalidKey = "howDoYouFeelScore.error"))
-      )(ComplaintFeedbackQuestions.apply)(ComplaintFeedbackQuestions.unapply))
+      )(ComplaintFeedbackQuestions.apply)(cfq => Some(Tuple.fromProductTyped(cfq))))
 }
