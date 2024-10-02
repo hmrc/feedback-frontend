@@ -9,13 +9,13 @@ val migrate: TaskKey[Unit] = taskKey[Unit]("Execute migrate script")
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala, SbtDistributablesPlugin)
   .disablePlugins(JUnitXmlReportPlugin)
-  .settings(DefaultBuildSettings.scalaSettings *)
+  .settings(DefaultBuildSettings.scalaSettings)
   .settings(DefaultBuildSettings.defaultSettings() *)
   .settings(majorVersion := 0)
   .settings(migrate := "./migrate.sh")
   .settings(
     name := appName,
-    scalaVersion := "2.13.14",
+    scalaVersion := "3.3.3",
     RoutesKeys.routesImport ++= Seq("models._", "config.Binders._"),
     PlayKeys.playDefaultPort := 9514,
     ScoverageKeys.coverageExcludedFiles := "<empty>;Reverse.*;.*filters.*;.*handlers.*;.*components.*;.*repositories.*;" +
@@ -27,6 +27,7 @@ lazy val root = (project in file("."))
     libraryDependencies ++= AppDependencies(),
     libraryDependencySchemes += "org.scala-lang.modules" %% "scala-xml" % VersionScheme.Always,
     TwirlKeys.templateImports ++= Seq(
+      "uk.gov.hmrc.govukfrontend.views.html.components._",
       "uk.gov.hmrc.hmrcfrontend.views.html.components._",
       "uk.gov.hmrc.hmrcfrontend.views.html.helpers._"
     ),

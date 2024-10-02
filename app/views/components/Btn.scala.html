@@ -14,10 +14,12 @@
  * limitations under the License.
  *@
 
-@import uk.gov.hmrc.govukfrontend.views.html.components._
-
 @this(govukButton: GovukButton)
 
-@(msg: String, href: Option[String] = None, classes: Option[String] = None, name: Option[String] = None)(implicit messages: Messages)
+@(
+    msg: String,
+    href: Option[String] = None,
+    classes: Option[String] = None,
+    name: Option[String] = None)(implicit messages: Messages)
 
     @govukButton(Button(content = Text(messages(msg)), href = href, classes = classes.getOrElse(""), name = name))
