@@ -16,10 +16,9 @@
 
 @import config.FrontendAppConfig
 @import models.{HowDoYouFeelQuestion, HowEasyQuestion}
-@import uk.gov.hmrc.govukfrontend.views.html.components._
 @import views.ViewUtils._
 @import views.html.MainTemplate
-@import views.html.components.{Button, ErrorSummary, H1, InputRadio, InputRadioDynamic, InputTextArea, P}
+@import views.html.components.{Btn, ErrSummary, H1, InputRadio, InputRadioDynamic, InputTextArea, P}
 
 @this(
         mainTemplate: MainTemplate,
@@ -30,8 +29,8 @@
         inputRadioDynamic: InputRadioDynamic,
         inputTextArea: InputTextArea,
         govukInput: GovukInput,
-        button: Button,
-        errorSummary: ErrorSummary
+        button: Btn,
+        errorSummary: ErrSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)

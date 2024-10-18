@@ -16,11 +16,10 @@
 
 @import config.FrontendAppConfig
 @import models.GiveReason
-@import uk.gov.hmrc.govukfrontend.views.html.components._
-@import uk.gov.hmrc.hmrcfrontend.views.html.components.CharacterCount
 @import views.ViewUtils._
 @import views.html.MainTemplate
-@import views.html.components.{Button, ErrorSummary, H1, InputRadioDynamic}
+@import views.html.components.{Btn, ErrSummary, H1, InputRadioDynamic}
+@import uk.gov.hmrc.hmrcfrontend.views.html.components.{CharacterCount => HMRCCharacterCount}
 
 @this(
         mainTemplate: MainTemplate,
@@ -28,8 +27,8 @@
         h1: H1,
         inputRadioDynamic: InputRadioDynamic,
         hmrcCharacterCount: HmrcCharacterCount,
-        button: Button,
-        errorSummary: ErrorSummary
+        button: Btn,
+        errorSummary: ErrSummary
 )
 
 @(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
@@ -49,7 +48,7 @@
             classes = "govuk-fieldset__legend--xl",
             name = "value",
             conditionalHtml = Some(
-                hmrcCharacterCount(CharacterCount(
+                hmrcCharacterCount(HMRCCharacterCount(
                     id = "reason",
                     name = "reason",
                     maxLength = Some(1000),
