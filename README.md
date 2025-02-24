@@ -44,9 +44,9 @@ You will need to update your service manager config for your service and replace
 
 When redirecting the user to the feedback service you should ensure that the user has been logged out as the feedback service does not do this.
 
-Log out user and redirect
+Log out user and redirect (amend URLs per env via config values)
 ```
-Redirect("http://localhost:9514/feedback/SERVICE_NAME").withNewSession
+Redirect("http://localhost:9553/bas-gateway/sign-out-without-state?continue=http://localhost:9514/feedback/SERVICE_NAME").withNewSession
 ```
 
 If you need additional information audited you may pass through an optional `feedbackId` variable as a session value, you should ensure that this is unique as this will be audited alongside the user responses, so they can be collated in Splunk.
@@ -58,7 +58,7 @@ val auditData = Map("feedbackId" -> uuid, "customMetric" -> "value")
 
 auditConnector.sendExplicitAudit("service-name", auditData)
 
-Redirect("http://localhost:9514/feedback/SERVICE_NAME").withSession(("feedbackId", uuid))
+Redirect("http://localhost:9553/bas-gateway/sign-out-without-state?continue=http://localhost:9514/feedback/SERVICE_NAME").withSession(("feedbackId", uuid))
 ```
 ### License
 
