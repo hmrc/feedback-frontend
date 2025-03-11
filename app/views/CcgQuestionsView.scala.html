@@ -31,7 +31,7 @@
         errorSummary: ErrSummary
 )
 
-@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
+@(appConfig: FrontendAppConfig, form: Form[?], action: Call)(implicit request: Request[?], messages: Messages)
 
     @privacyPolicyLink = {
         <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("ccgQuestions.introLinkText")</a>

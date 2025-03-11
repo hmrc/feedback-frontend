@@ -37,8 +37,8 @@ class BTAQuestionsViewSpec
 
   def createView: () => HtmlFormat.Appendable = () => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
-    (form: Form[_]) => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
+    (form: Form[?]) => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "BTAQuestions view" must {
     behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")

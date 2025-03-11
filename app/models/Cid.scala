@@ -21,7 +21,7 @@ import play.api.mvc.Request
 sealed abstract case class Cid(value: String)
 
 object Cid {
-  def fromUrl(implicit request: Request[_]): Cid = {
+  def fromUrl(implicit request: Request[?]): Cid = {
     val cidData = request.headers.get("referer") match {
       case Some(value) if value.contains("?cid=") && value.length > value.indexOf("=") + 1 =>
         value.replaceAll(".+=", "")

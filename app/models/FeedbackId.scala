@@ -21,6 +21,6 @@ import play.api.mvc.Request
 sealed abstract case class FeedbackId(value: String)
 
 object FeedbackId {
-  def fromSession(implicit request: Request[_]): FeedbackId =
+  def fromSession(implicit request: Request[?]): FeedbackId =
     new FeedbackId(request.session.get("feedbackId").getOrElse("-")) {}
 }

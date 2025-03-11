@@ -22,7 +22,7 @@
 )
 
 @(
-        form: Form[_],
+        form: Form[?],
         id: String = "",
         name: String = "",
         label: String = "",
@@ -49,7 +49,7 @@
         name = name,
         maxLength = maxCharacters,
         label = Label(
-            content = Text(messages(label, headingMessageArgs: _*)),
+            content = Text(messages(label, headingMessageArgs *)),
             isPageHeading = isPageHeading,
             classes = labelClass
         ),
@@ -57,7 +57,7 @@
             content = HtmlContent(hintHtml)
         )),
         value = form(name).value,
-        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*))))
+        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args *))))
     ))
 } else {
     @govukTextArea(Textarea(
@@ -65,7 +65,7 @@
         name = name,
         classes = classes.fold("")(x => x),
         label = Label(
-            content = Text(messages(label, headingMessageArgs: _*)),
+            content = Text(messages(label, headingMessageArgs *)),
             isPageHeading = isPageHeading,
             classes = labelClasses
         ),
@@ -74,6 +74,6 @@
         )),
         value = form(name).value,
         autocomplete = form(name).value,
-        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*))))
+        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args *))))
     ))
 }

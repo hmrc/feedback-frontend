@@ -54,7 +54,7 @@ class PTAQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
   def onwardRoute: Call = Call("GET", "/foo")
 
-  def viewAsString(form: Form[_] = form, action: Call): String =
+  def viewAsString(form: Form[?] = form, action: Call): String =
     ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "PTAQuestions Controller" must {
@@ -109,7 +109,7 @@ class PTAQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values: _*)
+          .withFormUrlEncodedBody(values *)
 
         val feedbackId = FeedbackId.fromSession(request)
 

@@ -30,7 +30,7 @@
         errorSummary: ErrSummary
 )
 
-@(appConfig: FrontendAppConfig, form: Form[_], action: Call)(implicit request: Request[_], messages: Messages)
+@(appConfig: FrontendAppConfig, form: Form[?], action: Call)(implicit request: Request[?], messages: Messages)
 
 @mainTemplate(
     title = s"${errorPrefix(form)} ${messages("giveComments.title")}",

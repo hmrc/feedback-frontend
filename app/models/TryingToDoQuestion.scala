@@ -42,7 +42,7 @@ object TryingToDoQuestion {
   val values: Seq[TryingToDoQuestion] =
     List(RegisterATrust, ClaimATrust, CloseATrust, MaintainATrust, GetEvidenceOfRegistration, Other)
 
-  def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
+  def options(form: Form[?])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
     RadioItem(
       id = Some(s"$baseMessageKey-${value.toString}"),
       value = Some(value.toString),
@@ -52,5 +52,5 @@ object TryingToDoQuestion {
   }
 
   implicit val enumerable: Enumerable[TryingToDoQuestion] =
-    Enumerable(values.map(v => v.toString -> v): _*)
+    Enumerable(values.map(v => v.toString -> v) *)
 }

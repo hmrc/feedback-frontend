@@ -22,10 +22,10 @@ import play.api.i18n.Messages
 
 object ViewUtils {
 
-  def errorPrefix(form: Form[_])(implicit messages: Messages): String =
+  def errorPrefix(form: Form[?])(implicit messages: Messages): String =
     if (form.hasErrors || form.hasGlobalErrors) messages("error.browser.title.prefix") else ""
 
-  def errorLinkId(key: String, form: Form[_])(implicit messages: Messages): String = key match {
+  def errorLinkId(key: String, form: Form[?])(implicit messages: Messages): String = key match {
     case value if value.contains("mainService")       => s"#${MainServiceQuestion.options(form).head.id.getOrElse("")}"
     case value if value.contains("ableToDo")          => s"#${AbleToDo.options(form).head.id.getOrElse("")}"
     case value if value.contains("howEasyScore")      => s"#${HowEasyQuestion.options(form).head.id.getOrElse("")}"

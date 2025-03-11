@@ -55,7 +55,7 @@ class CCGQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
   def onwardRoute: Call = Call("GET", "/foo")
 
-  def viewAsString(form: Form[_] = form, action: Call): String =
+  def viewAsString(form: Form[?] = form, action: Call): String =
     ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "CCGQuestions Controller" must {
@@ -109,7 +109,7 @@ class CCGQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values: _*)
+          .withFormUrlEncodedBody(values *)
           .withSession(("feedbackId", feedbackId))
           .withHeaders("referer" -> s"/feedback/ccg/cgg?cid=$cid")
 

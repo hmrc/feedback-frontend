@@ -37,8 +37,8 @@ class NmwCcgQuestionsViewSpec
 
   def createView: () => HtmlFormat.Appendable = () => nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
-    (form: Form[_]) => nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
+    (form: Form[?]) => nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "NmwCcgQuestionsView" must {
 

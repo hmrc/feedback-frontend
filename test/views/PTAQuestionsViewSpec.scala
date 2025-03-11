@@ -36,8 +36,8 @@ class PTAQuestionsViewSpec
 
   def createView: () => HtmlFormat.Appendable = () => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
-    (form: Form[_]) => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
+    (form: Form[?]) => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "PTAQuestions view" must {
     behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")

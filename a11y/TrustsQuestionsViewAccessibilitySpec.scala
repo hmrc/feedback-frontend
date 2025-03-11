@@ -17,7 +17,7 @@ class TrustsQuestionsViewAccessibilitySpec
     with AccessibilityMatchers {
 
   val appConfig: FrontendAppConfig = app.injector.instanceOf[FrontendAppConfig]
-  val form: Form[_] = new TrustsQuestionsFormProvider().apply()
+  val form: Form[?] = new TrustsQuestionsFormProvider().apply()
 
   val method = "POST"
   val url = "https://www.tax.service.gov.uk/hmrc-frontend/trusts"

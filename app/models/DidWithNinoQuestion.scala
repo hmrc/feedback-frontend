@@ -48,7 +48,7 @@ object DidWithNinoQuestion {
   val values: Seq[DidWithNinoQuestion] =
     List(WroteOnPaper, WroteOnDevice, ScreenshotPage, PrintedIt, DownloadedIt, SavedToWallet, VisualConfirmation, Divider, NoneOfAbove)
 
-  def options(form: Form[_])(implicit messages: Messages): Seq[CheckboxItem] = values.map { value =>
+  def options(form: Form[?])(implicit messages: Messages): Seq[CheckboxItem] = values.map { value =>
     if (value.toString.equals("divider")) {
       CheckboxItem(
         divider = Some(messages(s"$baseMessageKey.$value"))
@@ -72,5 +72,5 @@ object DidWithNinoQuestion {
   }
 
   implicit val enumerable: Enumerable[DidWithNinoQuestion] =
-    Enumerable(values.map(v => v.toString -> v): _*)
+    Enumerable(values.map(v => v.toString -> v) *)
 }

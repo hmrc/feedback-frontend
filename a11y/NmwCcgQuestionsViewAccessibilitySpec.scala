@@ -17,7 +17,7 @@ class NmwCcgQuestionsViewAccessibilitySpec
     with AccessibilityMatchers {
 
   val appConfig: FrontendAppConfig = app.injector.instanceOf[FrontendAppConfig]
-  val form: Form[_] = new NmwCcgQuestionsFormProvider().apply()
+  val form: Form[?] = new NmwCcgQuestionsFormProvider().apply()
 
   val method = "POST"
   val url = "https://www.tax.service.gov.uk/hmrc-frontend/:origin/nmw"

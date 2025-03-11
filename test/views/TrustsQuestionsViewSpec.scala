@@ -36,8 +36,8 @@ class TrustsQuestionsViewSpec
 
   def createView: () => HtmlFormat.Appendable = () => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
-    (form: Form[_]) => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
+    (form: Form[?]) => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "TrustsQuestions view" must {
     behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")

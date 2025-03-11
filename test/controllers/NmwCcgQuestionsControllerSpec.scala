@@ -53,7 +53,7 @@ class NmwCcgQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
   def submitCall(origin: Origin): Call = routes.NmwCcgQuestionsController.onSubmit(origin)
 
-  def viewAsString(form: Form[_] = form, action: Call): String =
+  def viewAsString(form: Form[?] = form, action: Call): String =
     nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "NmwCcgQuestions Controller" must {
@@ -109,7 +109,7 @@ class NmwCcgQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
       val request = fakeRequest
         .withMethod("POST")
-        .withFormUrlEncodedBody(values: _*)
+        .withFormUrlEncodedBody(values *)
 
       val feedbackId = FeedbackId.fromSession(request)
 

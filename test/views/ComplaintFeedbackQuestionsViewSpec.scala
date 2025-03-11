@@ -37,8 +37,8 @@ class ComplaintFeedbackQuestionsViewSpec
 
   def createView: () => HtmlFormat.Appendable = () => complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
-    (form: Form[_]) => complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
+    (form: Form[?]) => complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
 
   "ComplaintFeedbackQuestions view" must {

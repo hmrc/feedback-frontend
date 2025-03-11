@@ -23,7 +23,7 @@ import scala.util.Random
 
 trait StringFieldBehaviours extends BaseSpec {
 
-  def fieldWithMaxLength(form: Form[_], fieldName: String, maxLength: Int, lengthError: FormError): Unit = {
+  def fieldWithMaxLength(form: Form[?], fieldName: String, maxLength: Int, lengthError: FormError): Unit = {
     s"not bind strings longer than $maxLength characters" in {
 
       for (_ <- 1 to 10) {
