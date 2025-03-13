@@ -17,7 +17,7 @@ class PtaQuestionsViewAccessibilitySpec
     with AccessibilityMatchers {
 
   val appConfig: FrontendAppConfig = app.injector.instanceOf[FrontendAppConfig]
-  val form: Form[_] = new PTAQuestionsFormProvider().apply()
+  val form: Form[?] = new PTAQuestionsFormProvider().apply()
 
   val method = "POST"
   val url = "https://www.tax.service.gov.uk/hmrc-frontend/:origin/personal"

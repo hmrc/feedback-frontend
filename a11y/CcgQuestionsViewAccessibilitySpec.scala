@@ -17,7 +17,7 @@ class CcgQuestionsViewAccessibilitySpec
     with AccessibilityMatchers {
 
   val appConfig: FrontendAppConfig = app.injector.instanceOf[FrontendAppConfig]
-  val form: Form[_] = new CCGQuestionsFormProvider().apply()
+  val form: Form[?] = new CCGQuestionsFormProvider().apply()
 
   val method = "POST"
   val url = "https://www.tax.service.gov.uk/hmrc-frontend/:origin/ccg"

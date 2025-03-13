@@ -56,7 +56,7 @@ class TrustsQuestionsControllerSpec
 
   def onwardRoute: Call = Call("GET", "/foo")
 
-  def viewAsString(form: Form[_] = form): String =
+  def viewAsString(form: Form[?] = form): String =
     trustsQuestions(frontendAppConfig, form, submitCall)(fakeRequest, messages).toString
 
   "TrustsQuestions Controller" must {
@@ -119,7 +119,7 @@ class TrustsQuestionsControllerSpec
 
       val request = fakeRequest
         .withMethod("POST")
-        .withFormUrlEncodedBody(values: _*)
+        .withFormUrlEncodedBody(values *)
 
       val feedbackId = FeedbackId.fromSession(request)
 

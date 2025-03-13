@@ -36,8 +36,8 @@ class PensionQuestionsViewSpec
 
   def createView: () => HtmlFormat.Appendable = () => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
-    (form: Form[_]) => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
+    (form: Form[?]) => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "PensionQuestions view" must {
 

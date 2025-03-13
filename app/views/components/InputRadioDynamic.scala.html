@@ -19,7 +19,7 @@
 
 @this(govukRadios: GovukRadios, govukInput: GovukInput)
 
-@(form: Form[_],
+@(form: Form[?],
         legend: String,
         name: String,
         items: Seq[RadioItem],
@@ -50,5 +50,5 @@
         items = items.init ++ items.lastOption.map { input =>
             input.copy(conditionalHtml = conditionalHtml)
         },
-        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args: _*))))
+        errorMessage = form(name).error.map(err => ErrorMessage(content = Text(messages(err.message, err.args *))))
     ))

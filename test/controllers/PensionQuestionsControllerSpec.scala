@@ -54,7 +54,7 @@ class PensionQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
   def onwardRoute: Call = Call("GET", "/foo")
 
-  def viewAsString(form: Form[_] = form, action: Call): String =
+  def viewAsString(form: Form[?] = form, action: Call): String =
     pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "PensionQuestions Controller" must {
@@ -110,7 +110,7 @@ class PensionQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values: _*)
+          .withFormUrlEncodedBody(values *)
 
         val feedbackId = FeedbackId.fromSession(request)
 

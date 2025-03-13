@@ -54,7 +54,7 @@ class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with MockitoSuga
 
   def onwardRoute: Call                        = Call("GET", "/foo")
 
-  def viewAsString(form: Form[_] = form, action: Call): String =
+  def viewAsString(form: Form[?] = form, action: Call): String =
     complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "ComplaintFeedbackQuestions Controller" must {
@@ -106,7 +106,7 @@ class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with MockitoSuga
 
         val request    = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values: _*)
+          .withFormUrlEncodedBody(values *)
           .withHeaders("referer" -> s"/feedback/com/com?cid=$cid")
 
         val feedbackId = FeedbackId.fromSession(request)

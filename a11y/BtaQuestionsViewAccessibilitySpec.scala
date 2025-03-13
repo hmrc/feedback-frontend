@@ -17,7 +17,7 @@ class BtaQuestionsViewAccessibilitySpec
     with AccessibilityMatchers {
 
   val appConfig: FrontendAppConfig = app.injector.instanceOf[FrontendAppConfig]
-  val form: Form[_] = new BTAQuestionsFormProvider().apply()
+  val form: Form[?] = new BTAQuestionsFormProvider().apply()
 
   val method = "POST"
   val url = "https://www.tax.service.gov.uk/hmrc-frontend/:origin/business"

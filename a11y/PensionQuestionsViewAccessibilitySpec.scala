@@ -17,7 +17,7 @@ class PensionQuestionsViewAccessibilitySpec
     with AccessibilityMatchers {
 
   val appConfig: FrontendAppConfig = app.injector.instanceOf[FrontendAppConfig]
-  val form: Form[_] = new PensionQuestionsFormProvider().apply()
+  val form: Form[?] = new PensionQuestionsFormProvider().apply()
 
   val method = "POST"
   val url = "https://www.tax.service.gov.uk/hmrc-frontend/:origin/pension"

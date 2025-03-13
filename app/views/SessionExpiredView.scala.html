@@ -23,7 +23,7 @@
         p: P
 )
 
-@()(implicit request: Request[_], messages: Messages)
+@()(implicit request: Request[?], messages: Messages)
 
 @mainTemplate(
     title = messages("sessionExpired.title"),

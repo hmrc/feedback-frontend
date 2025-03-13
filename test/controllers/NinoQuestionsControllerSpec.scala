@@ -54,7 +54,7 @@ class NinoQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
   def onwardRoute: Call = Call("GET", "/foo")
 
-  def viewAsString(form: Form[_] = form, action: Call): String =
+  def viewAsString(form: Form[?] = form, action: Call): String =
     ninoQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
 
   "NinoQuestions Controller" must {
@@ -122,7 +122,7 @@ class NinoQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values: _*)
+          .withFormUrlEncodedBody(values *)
 
         val feedbackId = FeedbackId.fromSession(request)
 

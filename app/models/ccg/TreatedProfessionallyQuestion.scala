@@ -41,7 +41,7 @@ object TreatedProfessionallyQuestion extends Enumerable.Implicits {
   val values: Seq[TreatedProfessionallyQuestion] =
     List(StronglyAgree, Agree, NeitherAgreeNorDisagree, Disagree, StronglyDisagree)
 
-  def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
+  def options(form: Form[?])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
     RadioItem(
       id = Some(s"$baseMessageKey-${value.toString}"),
       value = Some(value.toString),
@@ -51,5 +51,5 @@ object TreatedProfessionallyQuestion extends Enumerable.Implicits {
   }
 
   implicit val enumerable: Enumerable[TreatedProfessionallyQuestion] =
-    Enumerable(values.map(v => v.toString -> v): _*)
+    Enumerable(values.map(v => v.toString -> v) *)
 }

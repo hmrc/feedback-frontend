@@ -26,7 +26,7 @@
         link: Link
 )
 
-@(appConfig: FrontendAppConfig)(implicit request: Request[_], messages: Messages)
+@(appConfig: FrontendAppConfig)(implicit request: Request[?], messages: Messages)
 
 @signInLink = {
     @appConfig.pensionSignInUrl.map { pensionSignInUrl =>

@@ -31,7 +31,7 @@ object YesNo {
 
   val values: Seq[YesNo] = List(Yes, No)
 
-  def options(form: Form[_])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
+  def options(form: Form[?])(implicit messages: Messages): Seq[RadioItem] = values.map { value =>
     RadioItem(
       id = Some(s"$baseMessageKey-${value.toString}"),
       value = Some(value.toString),
@@ -41,7 +41,7 @@ object YesNo {
   }
 
   implicit val enumerable: Enumerable[YesNo] =
-    Enumerable(values.map(v => v.toString -> v): _*)
+    Enumerable(values.map(v => v.toString -> v) *)
 
   case object Yes extends WithName("Yes") with YesNo {
     val value = 1

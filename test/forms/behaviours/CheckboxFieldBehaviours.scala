@@ -49,7 +49,7 @@ trait CheckboxFieldBehaviours extends BaseSpec {
     }
   }
 
-  def mandatoryCheckboxField(form: Form[_], fieldName: String, requiredKey: String): Unit = {
+  def mandatoryCheckboxField(form: Form[?], fieldName: String, requiredKey: String): Unit = {
 
     "fail to bind when no answers are selected" in {
       val data = Map.empty[String, String]

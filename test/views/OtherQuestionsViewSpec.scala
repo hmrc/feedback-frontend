@@ -36,8 +36,8 @@ class OtherQuestionsViewSpec
 
   def createView: () => HtmlFormat.Appendable = () => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
-    (form: Form[_]) => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
+    (form: Form[?]) => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "OtherQuestions view" must {
 

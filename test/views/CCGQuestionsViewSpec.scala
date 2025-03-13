@@ -36,8 +36,8 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
 
   def createView: () => HtmlFormat.Appendable = () => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
-  def createViewUsingForm: Form[_] => HtmlFormat.Appendable =
-    (form: Form[_]) => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
+    (form: Form[?]) => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   "CCGQuestions view" must {
     behave like normalPage(createView, messageKeyPrefix, "govuk-heading-xl", "intro1", "intro3")
