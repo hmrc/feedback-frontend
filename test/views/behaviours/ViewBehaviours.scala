@@ -47,7 +47,7 @@ trait ViewBehaviours extends ViewSpecBase {
           for (key <- expectedGuidanceKeys) assertContainsText(doc, messages(s"$messageKeyPrefix.$key"))
         }
 
-        "display language toggles" in {
+        "display language toggle" in {
           val doc = asDocument(view())
           assertContainsText(doc, "Cymraeg")
         }
