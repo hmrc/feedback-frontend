@@ -1,6 +1,5 @@
 import play.sbt.routes.RoutesKeys
 import scoverage.ScoverageKeys
-import uk.gov.hmrc.DefaultBuildSettings
 
 lazy val appName: String = "feedback-frontend"
 
@@ -9,8 +8,6 @@ val migrate: TaskKey[Unit] = taskKey[Unit]("Execute migrate script")
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala, SbtDistributablesPlugin)
   .disablePlugins(JUnitXmlReportPlugin)
-  .settings(DefaultBuildSettings.scalaSettings)
-  .settings(DefaultBuildSettings.defaultSettings() *)
   .settings(majorVersion := 0)
   .settings(migrate := "./migrate.sh")
   .settings(
@@ -35,9 +32,6 @@ lazy val root = (project in file("."))
     Global / excludeLintKeys += update / evictionWarningOptions,
     update / evictionWarningOptions := EvictionWarningOptions.default.withWarnScalaVersionEviction(false),
     Test / fork := true,
-    resolvers ++= Seq(
-      Resolver.jcenterRepo
-    ),
     scalacOptions := Seq(
       "-Wconf:src=routes/.*:s",
       "-Wconf:cat=unused-imports&src=html/.*:s",
