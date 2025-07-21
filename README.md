@@ -3,9 +3,7 @@
 
 ## Overview
 
-The feedback service gives users the opportunity to provide feedback on their overall experience of a digital service.
-
-The survey will be presented only if a user 'signs out' of the service they are using. For users who've used multiple services during the same session, the feedback will be counted against where they signed out from.
+Provides hosted Customer SATisfaction (CSAT) forms - which allow digital HMRC services to implement the [HMRC feedback pattern](https://design.tax.service.gov.uk/hmrc-design-patterns/feedback/).
 
 ## Integration
 
