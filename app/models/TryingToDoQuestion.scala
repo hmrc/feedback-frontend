@@ -52,5 +52,5 @@ object TryingToDoQuestion {
   }
 
   implicit val enumerable: Enumerable[TryingToDoQuestion] =
-    Enumerable(values.map(v => v.toString -> v) *)
+    Enumerable(values.map(v => v.toString -> v)*)
 }

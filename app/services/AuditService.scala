@@ -24,9 +24,9 @@ import uk.gov.hmrc.play.audit.http.connector.AuditConnector
 import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 
-class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: ExecutionContext) {
+class AuditService @Inject() (auditConnector: AuditConnector)(implicit ex: ExecutionContext) {
 
-  private val auditType = "feedback"
+  private val auditType                     = "feedback"
   private val emptyMap: Map[String, String] = Map.empty
 
   private type MapCont = Map[String, String] => Map[String, String]
@@ -116,7 +116,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -132,13 +132,14 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def trustsAudit(origin: Origin, feedbackId: FeedbackId, questions: TrustsQuestions)(
-    implicit hc: HeaderCarrier): Unit = {
+  def trustsAudit(origin: Origin, feedbackId: FeedbackId, questions: TrustsQuestions)(implicit
+    hc: HeaderCarrier
+  ): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -151,13 +152,12 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withHowEasyScore(questions.howEasyScore) andThen
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def ninoAudit(origin: Origin, feedbackId: FeedbackId, questions: NinoQuestions)(
-    implicit hc: HeaderCarrier): Unit = {
+  def ninoAudit(origin: Origin, feedbackId: FeedbackId, questions: NinoQuestions)(implicit hc: HeaderCarrier): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -169,13 +169,14 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withLogInToSeeNino(questions.logInToSeeNino) andThen
         withDidWithNino(questions.didWithNino) andThen
         withWhyGiveAnswer(questions.whyGiveAnswer)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def otherAudit(origin: Origin, feedbackId: FeedbackId, questions: OtherQuestions, cid: Cid)(
-    implicit hc: HeaderCarrier): Unit = {
+  def otherAudit(origin: Origin, feedbackId: FeedbackId, questions: OtherQuestions, cid: Cid)(implicit
+    hc: HeaderCarrier
+  ): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -185,13 +186,14 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore) andThen
         withCid(cid)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def pensionAudit(origin: Origin, feedbackId: FeedbackId, questions: PensionQuestions)(
-    implicit hc: HeaderCarrier): Unit = {
+  def pensionAudit(origin: Origin, feedbackId: FeedbackId, questions: PensionQuestions)(implicit
+    hc: HeaderCarrier
+  ): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -201,19 +203,20 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore) andThen
         withLikelyToDo(questions.likelyToDo)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def giveReasonAudit(origin: Origin, feedbackId: FeedbackId, questions: GiveReasonQuestions)(
-    implicit hc: HeaderCarrier): Unit = {
+  def giveReasonAudit(origin: Origin, feedbackId: FeedbackId, questions: GiveReasonQuestions)(implicit
+    hc: HeaderCarrier
+  ): Unit = {
     val auditMap = (
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
         withGiveReason(questions.value) andThen
         withOtherReason(questions.reason)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
@@ -224,13 +227,14 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
       withOrigin(origin) andThen
         withFeedbackId(feedbackId) andThen
         withGiveComments(answer)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def ccgAudit(origin: Origin, feedbackId: FeedbackId, questions: CCGQuestions, cid: Cid)(
-    implicit hc: HeaderCarrier): Unit = {
+  def ccgAudit(origin: Origin, feedbackId: FeedbackId, questions: CCGQuestions, cid: Cid)(implicit
+    hc: HeaderCarrier
+  ): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -240,13 +244,14 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhyGiveAnswer(questions.whyGiveAnswer) andThen
         withSupportFuture(questions.supportFutureTaxQuestion) andThen
         withCid(cid)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
-  def nmwCcgAudit(origin: Origin, feedbackId: FeedbackId, questions: NmwCcgQuestions)(
-    implicit hc: HeaderCarrier): Unit = {
+  def nmwCcgAudit(origin: Origin, feedbackId: FeedbackId, questions: NmwCcgQuestions)(implicit
+    hc: HeaderCarrier
+  ): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -255,13 +260,14 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withCheckUnderstanding(questions.checkUnderstanding) andThen
         withWhyGiveAnswer(questions.whyGiveAnswer) andThen
         withSupportFuture(questions.supportFutureNmw)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }
 
   def complaintFeedbackAudit(origin: Origin, feedbackId: FeedbackId, questions: ComplaintFeedbackQuestions, cid: Cid)(
-    implicit hc: HeaderCarrier): Unit = {
+    implicit hc: HeaderCarrier
+  ): Unit = {
 
     val auditMap = (
       withOrigin(origin) andThen
@@ -271,7 +277,7 @@ class AuditService @Inject()(auditConnector: AuditConnector)(implicit ex: Execut
         withWhyGiveScore(questions.whyGiveScore) andThen
         withHowFeelScore(questions.howDoYouFeelScore) andThen
         withCid(cid)
-      )(emptyMap)
+    )(emptyMap)
 
     auditConnector.sendExplicitAudit(auditType, auditMap)
   }

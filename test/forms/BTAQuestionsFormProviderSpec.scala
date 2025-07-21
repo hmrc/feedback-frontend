@@ -26,7 +26,7 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".mainService" must {
 
-    val fieldName = "mainService"
+    val fieldName    = "mainService"
     val invalidError = "mainService.error"
 
     behave like optionsField[BTAQuestions, MainServiceQuestion](
@@ -40,9 +40,9 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".mainServiceOther" must {
 
-    val fieldName = "mainServiceOther"
+    val fieldName    = "mainServiceOther"
     val invalidError = "otherService.max-characters"
-    val maxLength = 100
+    val maxLength    = 100
 
     behave like fieldWithMaxLength(
       form,
@@ -54,7 +54,7 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".ableToDo" must {
 
-    val fieldName = "ableToDo"
+    val fieldName    = "ableToDo"
     val invalidError = "ableToDo.error"
 
     behave like optionsField[BTAQuestions, AbleToDo](
@@ -68,7 +68,7 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".howEasyScore" must {
 
-    val fieldName = "howEasyScore"
+    val fieldName    = "howEasyScore"
     val invalidError = "howEasyScore.error"
 
     behave like optionsField[BTAQuestions, HowEasyQuestion](
@@ -82,9 +82,9 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".whyGiveScore" must {
 
-    val fieldName = "whyGiveScore"
+    val fieldName    = "whyGiveScore"
     val invalidError = "whyGiveScore.error.maxlength"
-    val maxLength = 1000
+    val maxLength    = 1000
 
     behave like fieldWithMaxLength(
       form,
@@ -96,7 +96,7 @@ class BTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".howDoYouFeelScore" must {
 
-    val fieldName = "howDoYouFeelScore"
+    val fieldName    = "howDoYouFeelScore"
     val invalidError = "howDoYouFeelScore.error"
 
     behave like optionsField[BTAQuestions, HowDoYouFeelQuestion](

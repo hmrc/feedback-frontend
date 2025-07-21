@@ -30,14 +30,15 @@ import views.html.NmwCcgQuestionsView
 
 import javax.inject.Inject
 
-class NmwCcgQuestionsController @Inject()(
-                                           appConfig: FrontendAppConfig,
-                                           mcc: MessagesControllerComponents,
-                                           nmwCcgQuestionsView: NmwCcgQuestionsView,
-                                           formProvider: NmwCcgQuestionsFormProvider,
-                                           auditService: AuditService,
-                                           navigator: Navigator,
-                                         ) extends FrontendController(mcc) with I18nSupport {
+class NmwCcgQuestionsController @Inject() (
+  appConfig: FrontendAppConfig,
+  mcc: MessagesControllerComponents,
+  nmwCcgQuestionsView: NmwCcgQuestionsView,
+  formProvider: NmwCcgQuestionsFormProvider,
+  auditService: AuditService,
+  navigator: Navigator
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   val form: Form[NmwCcgQuestions] = formProvider()
 

@@ -16,18 +16,20 @@
 
 package forms
 
-import forms.behaviours.{OptionFieldBehaviours, StringFieldBehaviours, CheckboxFieldBehaviours}
+import forms.behaviours.{CheckboxFieldBehaviours, OptionFieldBehaviours, StringFieldBehaviours}
 import models.{AbleToDo, DidWithNinoQuestion, HowDoYouFeelQuestion, HowEasyQuestion, NinoQuestions, YesNo}
 import play.api.data.FormError
 
 class NinoQuestionsFormProviderSpec
-  extends OptionFieldBehaviours with StringFieldBehaviours with CheckboxFieldBehaviours {
+    extends OptionFieldBehaviours
+    with StringFieldBehaviours
+    with CheckboxFieldBehaviours {
 
   def form = new NinoQuestionsFormProvider()()
 
   ".ableToDo" must {
 
-    val fieldName = "ableToDo"
+    val fieldName    = "ableToDo"
     val invalidError = "ableToDo.error"
 
     behave like optionsField[NinoQuestions, AbleToDo](
@@ -41,7 +43,7 @@ class NinoQuestionsFormProviderSpec
 
   ".howEasyScore" must {
 
-    val fieldName = "howEasyScore"
+    val fieldName    = "howEasyScore"
     val invalidError = "howEasyScore.error"
 
     behave like optionsField[NinoQuestions, HowEasyQuestion](
@@ -55,9 +57,9 @@ class NinoQuestionsFormProviderSpec
 
   ".whyGiveScore" must {
 
-    val fieldName = "whyGiveScore"
+    val fieldName    = "whyGiveScore"
     val invalidError = "whyGiveScore.error.maxlength"
-    val maxLength = 1000
+    val maxLength    = 1000
 
     behave like fieldWithMaxLength(
       form,
@@ -69,7 +71,7 @@ class NinoQuestionsFormProviderSpec
 
   ".howDoYouFeelScore" must {
 
-    val fieldName = "howDoYouFeelScore"
+    val fieldName    = "howDoYouFeelScore"
     val invalidError = "howDoYouFeelScore.error"
 
     behave like optionsField[NinoQuestions, HowDoYouFeelQuestion](
@@ -83,7 +85,7 @@ class NinoQuestionsFormProviderSpec
 
   ".logInToSeeNino" must {
 
-    val fieldName = "logInToSeeNino"
+    val fieldName    = "logInToSeeNino"
     val invalidError = "logInToSeeNino.error"
 
     behave like optionsField[NinoQuestions, YesNo](
@@ -97,7 +99,7 @@ class NinoQuestionsFormProviderSpec
 
   ".didWithNino" must {
 
-    val fieldName = "didWithNino"
+    val fieldName    = "didWithNino"
     val invalidError = "didWithNino.error"
 
     behave like checkboxField[NinoQuestions, DidWithNinoQuestion](
@@ -111,9 +113,9 @@ class NinoQuestionsFormProviderSpec
 
   ".whyGiveAnswer" must {
 
-    val fieldName = "whyGiveAnswer"
+    val fieldName    = "whyGiveAnswer"
     val invalidError = "whyGiveAnswer.error.maxlength"
-    val maxLength = 1000
+    val maxLength    = 1000
 
     behave like fieldWithMaxLength(
       form,

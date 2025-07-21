@@ -23,14 +23,14 @@ import views.html.{ThankYou, ThankYouPensionView}
 
 class ThankYouControllerSpec extends SpecBase {
 
-  lazy val thankYouView: ThankYou = inject[ThankYou]
+  lazy val thankYouView: ThankYou                   = inject[ThankYou]
   lazy val thankYouPensionView: ThankYouPensionView = inject[ThankYouPensionView]
 
   def controller() =
     new ThankYouController(frontendAppConfig, mcc, thankYouView, thankYouPensionView)
 
   def viewAsString(): String = thankYouView(frontendAppConfig)(fakeRequest, messages).toString
-  val origin: Origin = Origin.fromString("/foo")
+  val origin: Origin         = Origin.fromString("/foo")
 
   "ThankYou Controller" must {
 
@@ -50,7 +50,7 @@ class ThankYouControllerSpec extends SpecBase {
 
     "return OK and the correct view for a GET pension page" in {
       def viewAsString() = thankYouPensionView(frontendAppConfig)(fakeRequest, messages).toString
-      val result = controller().onPageLoadPension()(fakeRequest)
+      val result         = controller().onPageLoadPension()(fakeRequest)
 
       status(result) mustBe OK
       contentAsString(result) mustBe viewAsString()

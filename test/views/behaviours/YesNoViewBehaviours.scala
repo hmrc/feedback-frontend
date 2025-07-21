@@ -27,7 +27,7 @@ trait YesNoViewBehaviours[A] extends QuestionViewBehaviours[A] {
       "behave like a page with a Yes/No question" when {
         "rendered" must {
           "contain a legend for the question" in {
-            val doc = asDocument(createView(form))
+            val doc     = asDocument(createView(form))
             val legends = doc.select(s"#$fieldName legend")
             legends.size mustBe 1
             legends.first.text mustBe messages(s"$messageKeyPrefix.heading")

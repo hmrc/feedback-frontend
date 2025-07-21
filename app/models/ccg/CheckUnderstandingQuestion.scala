@@ -51,5 +51,5 @@ object CheckUnderstandingQuestion extends Enumerable.Implicits {
   }
 
   implicit val enumerable: Enumerable[CheckUnderstandingQuestion] =
-    Enumerable(values.map(v => v.toString -> v) *)
+    Enumerable(values.map(v => v.toString -> v)*)
 }

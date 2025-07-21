@@ -30,15 +30,15 @@ import views.html.ComplaintFeedbackQuestionsView
 
 import javax.inject.Inject
 
-class ComplaintFeedbackQuestionsController @Inject()(
-                                                      appConfig: FrontendAppConfig,
-                                                      navigator: Navigator,
-                                                      formProvider: ComplaintFeedbackQuestionsFormProvider,
-                                                      auditService: AuditService,
-                                                      mcc: MessagesControllerComponents,
-                                                      complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView
-                                                    ) extends FrontendController(mcc) with I18nSupport {
-
+class ComplaintFeedbackQuestionsController @Inject() (
+  appConfig: FrontendAppConfig,
+  navigator: Navigator,
+  formProvider: ComplaintFeedbackQuestionsFormProvider,
+  auditService: AuditService,
+  mcc: MessagesControllerComponents,
+  complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   val form: Form[ComplaintFeedbackQuestions] = formProvider()
 

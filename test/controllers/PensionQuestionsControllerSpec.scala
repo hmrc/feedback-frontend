@@ -37,8 +37,8 @@ class PensionQuestionsControllerSpec extends SpecBase with MockitoSugar {
   lazy val mockAuditService: AuditService             = mock[AuditService]
   lazy val pensionQuestionsView: PensionQuestionsView = inject[PensionQuestionsView]
 
-  val formProvider                                    = new PensionQuestionsFormProvider()
-  val form: Form[PensionQuestions]                    = formProvider()
+  val formProvider                 = new PensionQuestionsFormProvider()
+  val form: Form[PensionQuestions] = formProvider()
 
   def submitCall(origin: Origin): Call = routes.PensionQuestionsController.onSubmit(origin)
 
@@ -110,7 +110,7 @@ class PensionQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values *)
+          .withFormUrlEncodedBody(values*)
 
         val feedbackId = FeedbackId.fromSession(request)
 

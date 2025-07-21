@@ -36,11 +36,11 @@ import scala.util.Random
 class NmwCcgQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
   lazy val nmwCcgQuestionsView: NmwCcgQuestionsView = inject[NmwCcgQuestionsView]
-  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val mockAuditService: AuditService           = mock[AuditService]
 
-  val formProvider                                  = new NmwCcgQuestionsFormProvider()
-  val form: Form[NmwCcgQuestions]                   = formProvider()
-  val controller = new NmwCcgQuestionsController(
+  val formProvider                = new NmwCcgQuestionsFormProvider()
+  val form: Form[NmwCcgQuestions] = formProvider()
+  val controller                  = new NmwCcgQuestionsController(
     frontendAppConfig,
     mcc,
     nmwCcgQuestionsView,
@@ -109,7 +109,7 @@ class NmwCcgQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
       val request = fakeRequest
         .withMethod("POST")
-        .withFormUrlEncodedBody(values *)
+        .withFormUrlEncodedBody(values*)
 
       val feedbackId = FeedbackId.fromSession(request)
 

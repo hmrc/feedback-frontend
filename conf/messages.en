@@ -22,10 +22,6 @@ error.required = Please enter a value
 error.summary.title = There is a problem
 error.invalid = Please give a valid value
 
-index.title = feedback-frontend
-index.heading = feedback-frontend
-index.guidance = Welcome to your new frontend. Please see the README file for a guide to getting started.
-
 sessionExpired.title = For your security, this service has been reset
 sessionExpired.heading = For your security, this service has been reset
 sessionExpired.guidance = The details you have given have been deleted because you did not continue the service for 15 minutes.

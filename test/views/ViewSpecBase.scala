@@ -36,7 +36,7 @@ trait ViewSpecBase extends SpecBase {
 
     if (elements.isEmpty) throw new IllegalArgumentException(s"CSS Selector $cssSelector wasn't rendered.")
 
-    //<p> HTML elements are rendered out with a carriage return on some pages, so discount for comparison
+    // <p> HTML elements are rendered out with a carriage return on some pages, so discount for comparison
     assert(elements.first().html().replace("\n", "") == expectedValue)
   }
 
@@ -45,14 +45,14 @@ trait ViewSpecBase extends SpecBase {
 
     if (elements.isEmpty) throw new IllegalArgumentException(s"CSS Selector $cssSelector wasn't rendered.")
 
-    //<p> HTML elements are rendered out with a carriage return on some pages, so discount for comparison
+    // <p> HTML elements are rendered out with a carriage return on some pages, so discount for comparison
     assert(elements.first().html().replace("\n", "").contains(expectedValue))
   }
 
   def assertPageTitleEqualsMessage(doc: Document, expectedMessageKey: String, args: Any*): Assertion = {
     val headers = doc.getElementsByTag("h1")
     headers.size mustBe 1
-    headers.first.text.replaceAll("\u00a0", " ") mustBe messages(expectedMessageKey, args *).replaceAll("&nbsp;", " ")
+    headers.first.text.replaceAll("\u00a0", " ") mustBe messages(expectedMessageKey, args*).replaceAll("&nbsp;", " ")
   }
 
   def assertContainsText(doc: Document, text: String): Assertion =
@@ -60,7 +60,7 @@ trait ViewSpecBase extends SpecBase {
 
   def assertContainsLink(doc: Document, text: String, href: String): Assertion = {
     val anchors = doc.getElementsByTag("a").asScala
-    val exists = anchors.exists(a => a.text() == text && a.attr("href") == href)
+    val exists  = anchors.exists(a => a.text() == text && a.attr("href") == href)
     assert(exists, s"\n\nanchor with text $text and href $href was not rendered on the page.\n")
   }
 
@@ -80,14 +80,15 @@ trait ViewSpecBase extends SpecBase {
     assert(doc.select(cssSelector).isEmpty, "\n\nElement " + cssSelector + " was rendered on the page.\n")
 
   def assertContainsLabel(
-                           doc: Document,
-                           forElement: String,
-                           expectedText: String,
-                           expectedHintText: Option[String] = None,
-                           expectedHintClass: Option[String] = None): Any = {
+    doc: Document,
+    forElement: String,
+    expectedText: String,
+    expectedHintText: Option[String] = None,
+    expectedHintClass: Option[String] = None
+  ): Any = {
 
     val labels = doc.getElementsByAttributeValue("for", forElement)
-    val label = labels.first
+    val label  = labels.first
 
     assert(labels.size == 1, s"\n\nLabel for $forElement was not rendered on the page.")
     assert(label.text().contains(expectedText), s"\n\nLabel for $forElement was not $expectedText")
@@ -103,7 +104,13 @@ trait ViewSpecBase extends SpecBase {
   def assertElementHasClass(doc: Document, id: String, expectedClass: String): Assertion =
     assert(doc.getElementById(id).hasClass(expectedClass), s"\n\nElement $id does not have class $expectedClass")
 
-  def assertContainsRadioButton(doc: Document, id: String, name: String, value: String, isChecked: Boolean): Assertion = {
+  def assertContainsRadioButton(
+    doc: Document,
+    id: String,
+    name: String,
+    value: String,
+    isChecked: Boolean
+  ): Assertion = {
     assertRenderedById(doc, id)
     val radio = doc.getElementById(id)
 

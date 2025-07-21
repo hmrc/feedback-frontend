@@ -30,14 +30,15 @@ import services.AuditService
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.OtherQuestionsView
 
-class OtherQuestionsController @Inject()(
-                                          appConfig: FrontendAppConfig,
-                                          navigator: Navigator,
-                                          formProvider: OtherQuestionsFormProvider,
-                                          auditService: AuditService,
-                                          mcc: MessagesControllerComponents,
-                                          otherQuestionsView: OtherQuestionsView
-                                        ) extends FrontendController(mcc) with I18nSupport {
+class OtherQuestionsController @Inject() (
+  appConfig: FrontendAppConfig,
+  navigator: Navigator,
+  formProvider: OtherQuestionsFormProvider,
+  auditService: AuditService,
+  mcc: MessagesControllerComponents,
+  otherQuestionsView: OtherQuestionsView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   val form: Form[OtherQuestions] = formProvider()
 

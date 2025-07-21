@@ -38,7 +38,7 @@ object Enumerable {
               JsSuccess(s)
             }
             .getOrElse(JsError("error.invalid"))
-        case _ =>
+        case _             =>
           JsError("error.invalid")
       }
 

@@ -26,7 +26,8 @@ class ErrorTemplateViewSpec extends ViewBehaviours {
 
   lazy val errorTemplateView: ErrorTemplateView = inject[ErrorTemplateView]
 
-  def createView: () => HtmlFormat.Appendable = () => errorTemplateView("title", "heading", "message", frontendAppConfig)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () =>
+    errorTemplateView("title", "heading", "message", frontendAppConfig)(fakeRequest, messages)
 
   "ErrorTemplate view" must {
     "render the correct title" in {

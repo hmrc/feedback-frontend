@@ -58,6 +58,6 @@ object HowEasyQuestion {
   }
 
   implicit val enumerable: Enumerable[HowEasyQuestion] =
-    Enumerable(values.map(v => v.toString -> v) *)
+    Enumerable(values.map(v => v.toString -> v)*)
 
 }

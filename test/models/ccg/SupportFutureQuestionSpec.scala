@@ -37,9 +37,8 @@ class SupportFutureQuestionSpec extends BaseSpec {
 
     "fail to deserialise invalid values" in {
 
-      for (answer <- invalidAnswers) {
+      for (answer <- invalidAnswers)
         JsString(answer).validate[SupportFutureQuestion] mustEqual JsError("error.invalid")
-      }
 
     }
 

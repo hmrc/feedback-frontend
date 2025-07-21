@@ -109,7 +109,7 @@ class PTAQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values *)
+          .withFormUrlEncodedBody(values*)
 
         val feedbackId = FeedbackId.fromSession(request)
 

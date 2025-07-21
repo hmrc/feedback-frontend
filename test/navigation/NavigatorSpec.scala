@@ -24,7 +24,7 @@ import pages._
 
 class NavigatorSpec extends SpecBase with MockitoSugar {
 
-  val navigator = new Navigator
+  val navigator      = new Navigator
   val origin: Origin = Origin.fromString("/foo")
 
   "Navigator" when {

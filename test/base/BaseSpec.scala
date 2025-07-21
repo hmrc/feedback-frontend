@@ -22,4 +22,9 @@ import org.scalatest.{BeforeAndAfter, EitherValues, OptionValues}
 import org.scalatestplus.mockito.MockitoSugar
 
 trait BaseSpec
-    extends AnyWordSpec with OptionValues with Matchers with EitherValues with MockitoSugar with BeforeAndAfter
+    extends AnyWordSpec
+    with OptionValues
+    with Matchers
+    with EitherValues
+    with MockitoSugar
+    with BeforeAndAfter

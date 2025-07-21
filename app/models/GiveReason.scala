@@ -67,5 +67,5 @@ object GiveReason {
   }
 
   implicit val enumerable: Enumerable[GiveReason] =
-    Enumerable(values.map(v => v.toString -> v) *)
+    Enumerable(values.map(v => v.toString -> v)*)
 }

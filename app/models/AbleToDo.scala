@@ -41,7 +41,7 @@ object AbleToDo {
   }
 
   implicit val enumerable: Enumerable[AbleToDo] =
-    Enumerable(values.map(v => v.toString -> v) *)
+    Enumerable(values.map(v => v.toString -> v)*)
 
   case object Yes extends WithName("Yes") with AbleToDo {
     val value = 1

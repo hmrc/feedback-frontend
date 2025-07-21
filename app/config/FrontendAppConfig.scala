@@ -21,19 +21,19 @@ import play.api.{ConfigLoader, Configuration}
 import uk.gov.hmrc.play.bootstrap.config.ServicesConfig
 
 @Singleton
-class FrontendAppConfig @Inject()(val runModeConfiguration: Configuration, servicesConfig: ServicesConfig) {
+class FrontendAppConfig @Inject() (val runModeConfiguration: Configuration, servicesConfig: ServicesConfig) {
 
   private def getOptional[A](key: String)(implicit loader: ConfigLoader[A]): Option[A] =
     runModeConfiguration.getOptional[A](key)
 
-  lazy val privacyPolicyUrl =
+  lazy val privacyPolicyUrl                       =
     "https://www.gov.uk/government/publications/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you/data-protection-act-dpa-information-hm-revenue-and-customs-hold-about-you"
-  lazy val pensionSignInUrl: Option[String] = getOptional[String]("urls.pension.sign-in")
-  lazy val pensionRetirementUrl: Option[String] = getOptional[String]("urls.pension.retirement")
-  lazy val pensionSideBarOneUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-one")
-  lazy val pensionSideBarTwoUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-two")
+  lazy val pensionSignInUrl: Option[String]       = getOptional[String]("urls.pension.sign-in")
+  lazy val pensionRetirementUrl: Option[String]   = getOptional[String]("urls.pension.retirement")
+  lazy val pensionSideBarOneUrl: Option[String]   = getOptional[String]("urls.pension.sidebar.link-one")
+  lazy val pensionSideBarTwoUrl: Option[String]   = getOptional[String]("urls.pension.sidebar.link-two")
   lazy val pensionSideBarThreeUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-three")
-  lazy val pensionSideBarFourUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-four")
-  lazy val pensionSideBarFiveUrl: Option[String] = getOptional[String]("urls.pension.sidebar.link-five")
+  lazy val pensionSideBarFourUrl: Option[String]  = getOptional[String]("urls.pension.sidebar.link-four")
+  lazy val pensionSideBarFiveUrl: Option[String]  = getOptional[String]("urls.pension.sidebar.link-five")
 
 }

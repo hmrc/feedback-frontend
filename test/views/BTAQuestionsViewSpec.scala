@@ -25,17 +25,19 @@ import play.twirl.api.HtmlFormat
 import views.html.BtaQuestionsView
 
 class BTAQuestionsViewSpec
-    extends YesNoViewBehaviours[BTAQuestions] with StringViewBehaviours[BTAQuestions]
+    extends YesNoViewBehaviours[BTAQuestions]
+    with StringViewBehaviours[BTAQuestions]
     with OptionsViewBehaviours[BTAQuestions] {
 
   val messageKeyPrefix = "btaQuestions"
 
-  val form = new BTAQuestionsFormProvider()()
+  val form         = new BTAQuestionsFormProvider()()
   val action: Call = controllers.routes.BTAQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val btaQuestionsView: BtaQuestionsView = inject[BtaQuestionsView]
 
-  def createView: () => HtmlFormat.Appendable = () => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () =>
+    btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
     (form: Form[?]) => btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
@@ -47,7 +49,8 @@ class BTAQuestionsViewSpec
       createViewUsingForm,
       "mainService",
       MainServiceQuestion.options(form),
-      "btaQuestions.mainService")
+      "btaQuestions.mainService"
+    )
 
     behave like stringPage(createViewUsingForm, "mainServiceOther", "btaQuestions.mainService.label")
 
@@ -57,7 +60,8 @@ class BTAQuestionsViewSpec
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options(form),
-      "btaQuestions.howEasyScore")
+      "btaQuestions.howEasyScore"
+    )
 
     behave like stringPage(createViewUsingForm, "whyGiveAnswer", "btaQuestions.whyGiveAnswer")
 
@@ -65,23 +69,24 @@ class BTAQuestionsViewSpec
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options(form),
-      "btaQuestions.howDoYouFeelScore")
+      "btaQuestions.howDoYouFeelScore"
+    )
 
     "contain second introductory paragraph" in {
       val expectedMessage = messages("btaQuestions.intro2", messages("btaQuestions.introLinkText"))
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain diclaimer hint text" in {
       val expectedMessage = messages("btaQuestions.whyGiveAnswer.hint")
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("btaQuestions.introLinkText")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
     }
   }

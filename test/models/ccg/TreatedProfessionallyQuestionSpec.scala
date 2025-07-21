@@ -37,9 +37,8 @@ class TreatedProfessionallyQuestionSpec extends BaseSpec {
 
     "fail to deserialise invalid values" in {
 
-      for (answer <- invalidAnswers) {
+      for (answer <- invalidAnswers)
         JsString(answer).validate[TreatedProfessionallyQuestion] mustEqual JsError("error.invalid")
-      }
 
     }
 

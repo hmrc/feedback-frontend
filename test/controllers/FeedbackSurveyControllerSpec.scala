@@ -23,7 +23,7 @@ import play.api.test.Helpers._
 
 class FeedbackSurveyControllerSpec extends SpecBase with MockitoSugar with BeforeAndAfterEach {
 
-  val ptaOrigin = "PERTAX"
+  val ptaOrigin    = "PERTAX"
   val nonPtaOrigin = "ATS"
 
   class TestFeedbackSurveyController extends FeedbackSurveyController(mcc)

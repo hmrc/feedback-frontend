@@ -36,8 +36,9 @@ trait Formatters {
       Map(key -> value)
   }
 
-  private[mappings] def enumerableFormatter[A](requiredKey: String, invalidKey: String)(
-    implicit ev: Enumerable[A]): Formatter[A] =
+  private[mappings] def enumerableFormatter[A](requiredKey: String, invalidKey: String)(implicit
+    ev: Enumerable[A]
+  ): Formatter[A] =
     new Formatter[A] {
 
       private val baseFormatter = stringFormatter(requiredKey)
@@ -51,8 +52,11 @@ trait Formatters {
         baseFormatter.unbind(key, value.toString)
     }
 
-  private[mappings] def exclusiveSeqElemFormatter[A](requiredKey: String, invalidKey: String, exclusiveOptionName: String)(
-    implicit ev: Enumerable[A]): Formatter[A] =
+  private[mappings] def exclusiveSeqElemFormatter[A](
+    requiredKey: String,
+    invalidKey: String,
+    exclusiveOptionName: String
+  )(implicit ev: Enumerable[A]): Formatter[A] =
     new Formatter[A] {
 
       private val baseFormatter = enumerableFormatter(requiredKey, invalidKey)
@@ -61,13 +65,11 @@ trait Formatters {
         baseFormatter.bind(key, data).flatMap { item =>
           if (!item.toString.equals(exclusiveOptionName)) {
             Right(item)
-          }
-          else {
+          } else {
             val rawKey = key.split('[').head
             if (data.view.filterKeys(_.startsWith(rawKey)).size > 1) {
               Left(Seq(FormError(rawKey, invalidKey)))
-            }
-            else {
+            } else {
               Right(item)
             }
           }

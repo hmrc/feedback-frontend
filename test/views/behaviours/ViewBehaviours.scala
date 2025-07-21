@@ -28,7 +28,8 @@ trait ViewBehaviours extends ViewSpecBase {
     view: () => HtmlFormat.Appendable,
     messageKeyPrefix: String,
     pageHeadingClass: String,
-    expectedGuidanceKeys: String*): Unit =
+    expectedGuidanceKeys: String*
+  ): Unit =
     "behave like a normal page" when {
       "rendered" must {
 

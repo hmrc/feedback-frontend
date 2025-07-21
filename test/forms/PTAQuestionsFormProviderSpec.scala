@@ -26,9 +26,9 @@ class PTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".neededToDo" must {
 
-    val fieldName = "neededToDo"
+    val fieldName    = "neededToDo"
     val invalidError = "neededToDo.error.maxlength"
-    val maxLength = 200
+    val maxLength    = 200
 
     behave like fieldWithMaxLength(
       form,
@@ -40,7 +40,7 @@ class PTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".ableToDo" must {
 
-    val fieldName = "ableToDo"
+    val fieldName    = "ableToDo"
     val invalidError = "ableToDo.error"
 
     behave like optionsField[PTAQuestions, AbleToDo](
@@ -54,7 +54,7 @@ class PTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".howEasyScore" must {
 
-    val fieldName = "howEasyScore"
+    val fieldName    = "howEasyScore"
     val invalidError = "howEasyScore.error"
 
     behave like optionsField[PTAQuestions, HowEasyQuestion](
@@ -68,9 +68,9 @@ class PTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".whyGiveScore" must {
 
-    val fieldName = "whyGiveScore"
+    val fieldName    = "whyGiveScore"
     val invalidError = "whyGiveScore.error.maxlength"
-    val maxLength = 1000
+    val maxLength    = 1000
 
     behave like fieldWithMaxLength(
       form,
@@ -82,7 +82,7 @@ class PTAQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".howDoYouFeelScore" must {
 
-    val fieldName = "howDoYouFeelScore"
+    val fieldName    = "howDoYouFeelScore"
     val invalidError = "howDoYouFeelScore.error"
 
     behave like optionsField[PTAQuestions, HowDoYouFeelQuestion](

@@ -30,14 +30,15 @@ import views.html.TrustsQuestionsView
 
 import javax.inject.Inject
 
-class TrustsQuestionsController @Inject()(
-                                           appConfig: FrontendAppConfig,
-                                           navigator: Navigator,
-                                           formProvider: TrustsQuestionsFormProvider,
-                                           auditService: AuditService,
-                                           mcc: MessagesControllerComponents,
-                                           trustsQuestions: TrustsQuestionsView
-                                         ) extends FrontendController(mcc) with I18nSupport {
+class TrustsQuestionsController @Inject() (
+  appConfig: FrontendAppConfig,
+  navigator: Navigator,
+  formProvider: TrustsQuestionsFormProvider,
+  auditService: AuditService,
+  mcc: MessagesControllerComponents,
+  trustsQuestions: TrustsQuestionsView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   val form: Form[TrustsQuestions] = formProvider()
 

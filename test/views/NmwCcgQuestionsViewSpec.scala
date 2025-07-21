@@ -26,16 +26,18 @@ import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours}
 import views.html.NmwCcgQuestionsView
 
 class NmwCcgQuestionsViewSpec
-  extends StringViewBehaviours[NmwCcgQuestions] with OptionsViewBehaviours[NmwCcgQuestions] {
+    extends StringViewBehaviours[NmwCcgQuestions]
+    with OptionsViewBehaviours[NmwCcgQuestions] {
 
   val messageKeyPrefix = "nmwCcgQuestions"
 
-  val form = new NmwCcgQuestionsFormProvider()()
+  val form         = new NmwCcgQuestionsFormProvider()()
   val action: Call = controllers.routes.SessionExpiredController.onPageLoad
 
   lazy val nmwCcgQuestionsView: NmwCcgQuestionsView = inject[NmwCcgQuestionsView]
 
-  def createView: () => HtmlFormat.Appendable = () => nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () =>
+    nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
     (form: Form[?]) => nmwCcgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
@@ -48,13 +50,15 @@ class NmwCcgQuestionsViewSpec
       createViewUsingForm,
       "treatedProfessionally",
       TreatedProfessionallyQuestion.options(form),
-      "nmwCcgQuestions.treatedProfessionally")
+      "nmwCcgQuestions.treatedProfessionally"
+    )
 
     behave like optionsPage(
       createViewUsingForm,
       "checkUnderstanding",
       CheckUnderstandingQuestion.options(form),
-      "nmwCcgQuestions.CheckUnderstanding")
+      "nmwCcgQuestions.CheckUnderstanding"
+    )
 
     behave like stringPage(createViewUsingForm, "whyGiveAnswer", "nmwCcgQuestions.whyGiveAnswer")
 
@@ -62,25 +66,26 @@ class NmwCcgQuestionsViewSpec
       createViewUsingForm,
       "supportFutureNmw",
       SupportFutureQuestion.options(form),
-      "nmwCcgQuestions.supportFutureNmw")
+      "nmwCcgQuestions.supportFutureNmw"
+    )
 
   }
 
   "contain second introductory paragraph" in {
     val expectedMessage = messages("nmwCcgQuestions.intro2", messages("nmwCcgQuestions.introLinkText"))
-    val doc = asDocument(createView())
+    val doc             = asDocument(createView())
     assertContainsText(doc, expectedMessage)
   }
 
   "contain diclaimer hint text" in {
     val expectedMessage = messages("nmwCcgQuestions.whyGiveAnswer.hint")
-    val doc = asDocument(createView())
+    val doc             = asDocument(createView())
     assertContainsText(doc, expectedMessage)
   }
 
   "contain privacy anchor tag" in {
     val expectedLink = messages("nmwCcgQuestions.introLinkText")
-    val doc = asDocument(createView())
+    val doc          = asDocument(createView())
     assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
   }
 }

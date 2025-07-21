@@ -25,16 +25,19 @@ import play.twirl.api.HtmlFormat
 import views.html.OtherQuestionsView
 
 class OtherQuestionsViewSpec
-  extends YesNoViewBehaviours[OtherQuestions] with StringViewBehaviours[OtherQuestions] with OptionsViewBehaviours[OtherQuestions] {
+    extends YesNoViewBehaviours[OtherQuestions]
+    with StringViewBehaviours[OtherQuestions]
+    with OptionsViewBehaviours[OtherQuestions] {
 
   val messageKeyPrefix = "otherQuestions"
 
-  val form = new OtherQuestionsFormProvider()()
+  val form         = new OtherQuestionsFormProvider()()
   val action: Call = controllers.routes.OtherQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val otherQuestionsView: OtherQuestionsView = inject[OtherQuestionsView]
 
-  def createView: () => HtmlFormat.Appendable = () => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () =>
+    otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
     (form: Form[?]) => otherQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
@@ -49,7 +52,8 @@ class OtherQuestionsViewSpec
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options(form),
-      "otherQuestions.howEasyScore")
+      "otherQuestions.howEasyScore"
+    )
 
     behave like stringPage(createViewUsingForm, "whyGiveScore", "otherQuestions.whyGiveScore")
 
@@ -57,23 +61,24 @@ class OtherQuestionsViewSpec
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options(form),
-      "otherQuestions.howDoYouFeelScore")
+      "otherQuestions.howDoYouFeelScore"
+    )
 
     "contain second introductory paragraph" in {
       val expectedMessage = messages("otherQuestions.intro2", messages("otherQuestions.introLinkText"))
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain diclaimer hint text" in {
       val expectedMessage = messages("otherQuestions.whyGiveScore.hint")
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("otherQuestions.introLinkText")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
     }
   }

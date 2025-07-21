@@ -1,6 +1,14 @@
 
 # feedback-frontend
 
+## Overview
+
+The feedback service gives users the opportunity to provide feedback on their overall experience of a digital service.
+
+The survey will be presented only if a user 'signs out' of the service they are using. For users who've used multiple services during the same session, the feedback will be counted against where they signed out from.
+
+## Integration
+
 Services can integrate with Feedback frontend by navigating the URL with a unique name for your service for the survey you need.
 
 Currently, there are 11 surveys, these are for:
@@ -32,15 +40,19 @@ The endpoints are:
 
 Replace `SERVICE_NAME` with the identifier for your service.
 
-#### Service manager
+## Running locally
 
+Application will run on port: 9514
+
+To run via terminal: `sbt run`
 To run via service manager: `sm --start FEEDBACK_FRONTEND`
 
-You will need to ensure that you do not have `FEEDBACK_SURVEY_FRONTEND` running as they use the same port number.
+## Testing
 
-You will need to update your service manager config for your service and replace `FEEDBACK_SURVEY_FRONTEND` with `FEEDBACK_FRONTEND`
+To run unit tests: `sbt test`
+To run accessibility tests: `A11y/test`
 
-#### Usage
+## Usage
 
 When redirecting the user to the feedback service you should ensure that the user has been logged out as the feedback service does not do this.
 
@@ -60,7 +72,7 @@ auditConnector.sendExplicitAudit("service-name", auditData)
 
 Redirect("http://localhost:9553/bas-gateway/sign-out-without-state?continue=http://localhost:9514/feedback/SERVICE_NAME").withSession(("feedbackId", uuid))
 ```
-### License
+## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
 

@@ -22,9 +22,10 @@ import play.api.i18n.I18nSupport
 import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Result}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
-class FeedbackSurveyController @Inject()(
-                                          mcc: MessagesControllerComponents
-                                        ) extends FrontendController(mcc) with I18nSupport {
+class FeedbackSurveyController @Inject() (
+  mcc: MessagesControllerComponents
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   def feedbackRedirect(origin: String): Action[AnyContent] = Action { _ =>
     ptaRedirect(origin)

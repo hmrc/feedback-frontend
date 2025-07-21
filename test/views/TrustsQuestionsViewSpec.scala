@@ -25,16 +25,19 @@ import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewB
 import views.html.TrustsQuestionsView
 
 class TrustsQuestionsViewSpec
-  extends YesNoViewBehaviours[TrustsQuestions] with StringViewBehaviours[TrustsQuestions] with OptionsViewBehaviours[TrustsQuestions] {
+    extends YesNoViewBehaviours[TrustsQuestions]
+    with StringViewBehaviours[TrustsQuestions]
+    with OptionsViewBehaviours[TrustsQuestions] {
 
   val messageKeyPrefix = "trustsQuestions"
 
-  val form = new TrustsQuestionsFormProvider()()
+  val form         = new TrustsQuestionsFormProvider()()
   val action: Call = controllers.routes.SessionExpiredController.onPageLoad
 
   lazy val trustsQuestionsView: TrustsQuestionsView = inject[TrustsQuestionsView]
 
-  def createView: () => HtmlFormat.Appendable = () => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () =>
+    trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
     (form: Form[?]) => trustsQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
@@ -48,7 +51,8 @@ class TrustsQuestionsViewSpec
       createViewUsingForm,
       "tryingToDo",
       TryingToDoQuestion.options(form),
-      "trustsQuestions.tryingToDo")
+      "trustsQuestions.tryingToDo"
+    )
 
     behave like stringPage(createViewUsingForm, "tryingToDoOther", "trustsQuestions.tryingToDo")
 
@@ -60,7 +64,8 @@ class TrustsQuestionsViewSpec
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options(form),
-      "trustsQuestions.howEasyScore")
+      "trustsQuestions.howEasyScore"
+    )
 
     behave like stringPage(createViewUsingForm, "whyGiveScore", "trustsQuestions.whyGiveScore")
 
@@ -68,17 +73,18 @@ class TrustsQuestionsViewSpec
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options(form),
-      "trustsQuestions.howDoYouFeelScore")
+      "trustsQuestions.howDoYouFeelScore"
+    )
 
     "contain second introductory paragraph" in {
       val expectedMessage = messages("trustsQuestions.intro2", messages("trustsQuestions.introLinkText"))
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("trustsQuestions.introLinkText")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
     }
   }

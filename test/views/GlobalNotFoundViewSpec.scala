@@ -34,8 +34,9 @@ class GlobalNotFoundViewSpec extends ViewBehaviours {
     "contain relevant information paragraph" in {
       val expectedMessage = messages(
         "page.not.found.error.check.web.address.correct",
-        messages("page.not.found.error.check.web.address.full"))
-      val doc = asDocument(createView())
+        messages("page.not.found.error.check.web.address.full")
+      )
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
   }

@@ -37,7 +37,7 @@ class NinoQuestionsControllerSpec extends SpecBase with MockitoSugar {
   lazy val mockAuditService: AuditService       = mock[AuditService]
   lazy val ninoQuestionsView: NinoQuestionsView = inject[NinoQuestionsView]
 
-  val formProvider = new NinoQuestionsFormProvider()
+  val formProvider              = new NinoQuestionsFormProvider()
   val form: Form[NinoQuestions] = formProvider()
 
   def submitCall(origin: Origin): Call = routes.NinoQuestionsController.onSubmit(origin)
@@ -104,25 +104,23 @@ class NinoQuestionsControllerSpec extends SpecBase with MockitoSugar {
         )
 
         // Add an indexed field for each didWithNino answer so that it is parsed as a sequence
-        val didWithNinoValues = answers.didWithNino.map(
-          a => a.zipWithIndex.map(
-            v => (s"didWithNino[${v._2}]", v._1.toString)
-          )
-        ).getOrElse(Seq())
+        val didWithNinoValues = answers.didWithNino
+          .map(a => a.zipWithIndex.map(v => (s"didWithNino[${v._2}]", v._1.toString)))
+          .getOrElse(Seq())
 
         val values = Map(
           "ableToDo"          -> answers.ableToDo.map(s => s.toString),
           "howEasyScore"      -> answers.howEasyScore.map(s => s.toString),
           "whyGiveScore"      -> answers.whyGiveScore,
           "howDoYouFeelScore" -> answers.howDoYouFeelScore.map(s => s.toString),
-          "logInToSeeNino"    -> answers.logInToSeeNino.map(s => s.toString),
+          "logInToSeeNino"    -> answers.logInToSeeNino.map(s => s.toString)
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq ++ didWithNinoValues ++ Map(
-          "whyGiveAnswer"     -> answers.whyGiveAnswer
+          "whyGiveAnswer" -> answers.whyGiveAnswer
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values *)
+          .withFormUrlEncodedBody(values*)
 
         val feedbackId = FeedbackId.fromSession(request)
 

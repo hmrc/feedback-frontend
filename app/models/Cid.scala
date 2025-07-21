@@ -25,7 +25,7 @@ object Cid {
     val cidData = request.headers.get("referer") match {
       case Some(value) if value.contains("?cid=") && value.length > value.indexOf("=") + 1 =>
         value.replaceAll(".+=", "")
-      case _ => "-"
+      case _                                                                               => "-"
     }
 
     new Cid(cidData) {}

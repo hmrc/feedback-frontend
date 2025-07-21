@@ -22,10 +22,6 @@ error.required = Please enter a value
 error.summary.title = Mae problem wedi codi
 error.invalid = Please give a valid value
 
-index.title = feedback-frontend
-index.heading = feedback-frontend
-index.guidance = Welcome to your new frontend. Please see the README file for a guide to getting started.
-
 sessionExpired.title = Er eich diogelwch, mae’r gwasanaeth hwn wedi’i ailosod
 sessionExpired.heading = Er eich diogelwch, mae’r gwasanaeth hwn wedi’i ailosod
 sessionExpired.guidance = Mae’r manylion a roddwyd gennych wedi’u dileu gan nad ydych wedi mynd yn eich blaen â’r gwasanaeth ers 15 munud.
@@ -163,7 +159,7 @@ didWithNinoQuestion.divider = neu
 didWithNinoQuestion.noneOfAbove = Dim un o’r uchod
 
 ptaQuestions.title = Rhoi adborth - GOV.UK
-ptaQuestions.heading = Rhoi adborth 
+ptaQuestions.heading = Rhoi adborth
 ptaQuestions.intro1 = Rydym yn defnyddio’ch adborth i wella ein gwasanaethau. I ddeall eich adborth yn well, efallai y byddwn yn ei gysylltu â gwybodaeth arall sydd gennym amdanoch, megis rhywedd ac oedran.
 ptaQuestions.intro2 = Gweler {0} i gael gwybod sut yr ydym yn casglu, defnyddio a diogelu’ch gwybodaeth bersonol.
 ptaQuestions.intro3 = Mae’r arolwg hwn yn cynnwys 5 o gwestiynau dewisol.
