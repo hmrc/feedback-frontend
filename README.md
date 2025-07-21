@@ -43,11 +43,13 @@ Replace `SERVICE_NAME` with the identifier for your service.
 Application will run on port: 9514
 
 To run via terminal: `sbt run`
+
 To run via service manager: `sm --start FEEDBACK_FRONTEND`
 
 ## Testing
 
 To run unit tests: `sbt test`
+
 To run accessibility tests: `A11y/test`
 
 ## Usage
@@ -56,8 +58,12 @@ When redirecting the user to the feedback service you should ensure that the use
 
 Log out user and redirect (amend URLs per env via config values)
 ```
-Redirect("http://localhost:9553/bas-gateway/sign-out-without-state?continue=http://localhost:9514/feedback/SERVICE_NAME").withNewSession
+Redirect("http://localhost:9553/bas-gateway/sign-out-without-state?continue=http://localhost:9514/feedback/SERVICE_NAME")
 ```
+
+Please check all your services are signing out your users via the correct mechanism to support the transition to One Login.
+For sign-out, all services need to be redirecting the user to /bas-gateway/sign-out-without-state
+For all Q&A, please go to #team-gateway.
 
 If you need additional information audited you may pass through an optional `feedbackId` variable as a session value, you should ensure that this is unique as this will be audited alongside the user responses, so they can be collated in Splunk.
 Example:
