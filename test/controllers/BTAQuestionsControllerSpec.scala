@@ -33,16 +33,13 @@ import views.html.BtaQuestionsView
 
 import scala.util.Random
 
-class BTAQuestionsControllerSpec
-    extends SpecBase
-    with MockitoSugar
-    with ScalaFutures {
+class BTAQuestionsControllerSpec extends SpecBase with MockitoSugar with ScalaFutures {
 
-  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val mockAuditService: AuditService     = mock[AuditService]
   lazy val btaQuestionsView: BtaQuestionsView = inject[BtaQuestionsView]
 
-  val formProvider                        = new BTAQuestionsFormProvider()
-  val form: Form[BTAQuestions]            = formProvider()
+  val formProvider             = new BTAQuestionsFormProvider()
+  val form: Form[BTAQuestions] = formProvider()
 
   def submitCall(origin: Origin): Call = routes.BTAQuestionsController.onSubmit(origin)
 
@@ -56,7 +53,7 @@ class BTAQuestionsControllerSpec
       btaQuestionsView
     )
 
-  def onwardRoute: Call          = Call("GET", "/foo")
+  def onwardRoute: Call = Call("GET", "/foo")
 
   def viewAsString(form: Form[?] = form, action: Call): String =
     btaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
@@ -88,9 +85,10 @@ class BTAQuestionsControllerSpec
         reset(mockAuditService)
         val origin = Origin.fromString(serviceName)
 
-        val whatWasTheMainServiceYouUsedToday         = Some(MainServiceQuestion.values(Random.nextInt(mainServiceQuestionNumberOfOptions)))
+        val whatWasTheMainServiceYouUsedToday =
+          Some(MainServiceQuestion.values(Random.nextInt(mainServiceQuestionNumberOfOptions)))
 
-        val otherOption = MainServiceQuestion.enumerable.withName("Other")
+        val otherOption                  = MainServiceQuestion.enumerable.withName("Other")
         val whatOtherServiceYouUsedToday =
           if (whatWasTheMainServiceYouUsedToday == otherOption) {
             Some("Personal Tax Allowance")
@@ -98,10 +96,11 @@ class BTAQuestionsControllerSpec
             None
           }
 
-        val wereYouAbleToDoWhatYouWant       = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
-        val howEasyWasItToDoYourTask         = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
-        val whyDidYouGiveThisScore           = Some("Because I felt like giving this score !")
-        val howDoYouFeelAboutTheService      = Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+        val wereYouAbleToDoWhatYouWant  = Some(AbleToDo.values(Random.nextInt(ableToDoQuestionNumberOfOptions)))
+        val howEasyWasItToDoYourTask    = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
+        val whyDidYouGiveThisScore      = Some("Because I felt like giving this score !")
+        val howDoYouFeelAboutTheService =
+          Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
 
         val answers = BTAQuestions(
           whatWasTheMainServiceYouUsedToday,
@@ -123,11 +122,11 @@ class BTAQuestionsControllerSpec
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values *)
+          .withFormUrlEncodedBody(values*)
 
         val feedbackId = FeedbackId.fromSession(request)
 
-        val result  = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
+        val result = controller().onSubmit(origin)(request.withSession(("feedbackId", feedbackId.value)))
         status(result) mustBe SEE_OTHER
 
         verify(mockAuditService, times(1))

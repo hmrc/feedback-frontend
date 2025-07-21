@@ -22,27 +22,27 @@ import play.api.data.{Form, FormError}
 trait CheckboxFieldBehaviours extends BaseSpec {
 
   def checkboxField[A, T](
-                           form: Form[A],
-                           fieldName: String,
-                           validValues: Seq[T],
-                           invalidError: String,
-                           fieldValue: A => Option[Seq[T]]): Unit = {
+    form: Form[A],
+    fieldName: String,
+    validValues: Seq[T],
+    invalidError: String,
+    fieldValue: A => Option[Seq[T]]
+  ): Unit = {
 
     for {
       (value, i) <- validValues.zipWithIndex
-    } yield
-      s"binds `$value` successfully" in {
-        val data = Map(
-          s"$fieldName[$i]" -> value.toString
-        )
+    } yield s"binds `$value` successfully" in {
+      val data = Map(
+        s"$fieldName[$i]" -> value.toString
+      )
 
-        val result = form.bind(data)
-        fieldValue(result.value.value) mustEqual Some(Seq(value))
-      }
+      val result = form.bind(data)
+      fieldValue(result.value.value) mustEqual Some(Seq(value))
+    }
 
     "fail to bind when the answer is invalid" in {
       val indexedFieldName = s"$fieldName[0]"
-      val data = Map(
+      val data             = Map(
         indexedFieldName -> "invalid value"
       )
       form.bind(data).errors must contain(FormError(indexedFieldName, invalidError))

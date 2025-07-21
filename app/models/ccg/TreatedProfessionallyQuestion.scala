@@ -32,7 +32,9 @@ object TreatedProfessionallyQuestion extends Enumerable.Implicits {
 
   private case object Agree extends WithName("Agree") with TreatedProfessionallyQuestion
 
-  private case object NeitherAgreeNorDisagree extends WithName("NeitherAgreeNorDisagree") with TreatedProfessionallyQuestion
+  private case object NeitherAgreeNorDisagree
+      extends WithName("NeitherAgreeNorDisagree")
+      with TreatedProfessionallyQuestion
 
   private case object Disagree extends WithName("Disagree") with TreatedProfessionallyQuestion
 
@@ -51,5 +53,5 @@ object TreatedProfessionallyQuestion extends Enumerable.Implicits {
   }
 
   implicit val enumerable: Enumerable[TreatedProfessionallyQuestion] =
-    Enumerable(values.map(v => v.toString -> v) *)
+    Enumerable(values.map(v => v.toString -> v)*)
 }

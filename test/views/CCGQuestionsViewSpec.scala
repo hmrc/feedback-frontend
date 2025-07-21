@@ -29,12 +29,13 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
 
   val messageKeyPrefix = "ccgQuestions"
 
-  val form = new CCGQuestionsFormProvider()()
+  val form         = new CCGQuestionsFormProvider()()
   val action: Call = controllers.routes.CCGQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val ccgQuestionsView: CcgQuestionsView = inject[CcgQuestionsView]
 
-  def createView: () => HtmlFormat.Appendable = () => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () =>
+    ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
     (form: Form[?]) => ccgQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
@@ -46,13 +47,15 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
       createViewUsingForm,
       "treatedProfessionally",
       TreatedProfessionallyQuestion.options(form),
-      "ccgQuestions.treatedProfessionally")
+      "ccgQuestions.treatedProfessionally"
+    )
 
     behave like optionsPage(
       createViewUsingForm,
       "complianceCheckUnderstanding",
       CheckUnderstandingQuestion.options(form),
-      "ccgQuestions.complianceCheckUnderstanding")
+      "ccgQuestions.complianceCheckUnderstanding"
+    )
 
     behave like stringPage(createViewUsingForm, "whyGiveAnswer", "ccgQuestions.whyGiveAnswer")
 
@@ -60,23 +63,24 @@ class CCGQuestionsViewSpec extends StringViewBehaviours[CCGQuestions] with Optio
       createViewUsingForm,
       "supportFutureTax",
       SupportFutureQuestion.options(form),
-      "ccgQuestions.supportFutureTax")
+      "ccgQuestions.supportFutureTax"
+    )
 
     "contain second introductory paragraph" in {
       val expectedMessage = messages("ccgQuestions.intro2", messages("ccgQuestions.introLinkText"))
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain diclaimer hint text" in {
       val expectedMessage = messages("ccgQuestions.whyGiveAnswer.hint")
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("ccgQuestions.introLinkText")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
     }
   }

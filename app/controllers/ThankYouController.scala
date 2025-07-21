@@ -25,12 +25,13 @@ import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.{ThankYou, ThankYouPensionView}
 
-class ThankYouController @Inject()(
-                                    appConfig: FrontendAppConfig,
-                                    mcc: MessagesControllerComponents,
-                                    thankYou: ThankYou,
-                                    thankYouPensionView: ThankYouPensionView)
-  extends FrontendController(mcc) with I18nSupport {
+class ThankYouController @Inject() (
+  appConfig: FrontendAppConfig,
+  mcc: MessagesControllerComponents,
+  thankYou: ThankYou,
+  thankYouPensionView: ThankYouPensionView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   def onPageLoadWithOrigin(origin: Origin): Action[AnyContent] = onPageLoad()
 

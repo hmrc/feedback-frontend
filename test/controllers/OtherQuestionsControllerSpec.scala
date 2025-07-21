@@ -34,10 +34,10 @@ import scala.util.Random
 
 class OtherQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
-  lazy val mockAuditService: AuditService = mock[AuditService]
+  lazy val mockAuditService: AuditService         = mock[AuditService]
   lazy val otherQuestionsView: OtherQuestionsView = inject[OtherQuestionsView]
 
-  val formProvider            = new OtherQuestionsFormProvider()
+  val formProvider               = new OtherQuestionsFormProvider()
   val form: Form[OtherQuestions] = formProvider()
 
   def submitCall(origin: Origin): Call = routes.OtherQuestionsController.onSubmit(origin)
@@ -106,7 +106,7 @@ class OtherQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values *)
+          .withFormUrlEncodedBody(values*)
           .withSession(("feedbackId", feedbackId))
           .withHeaders("referer" -> s"/feedback/EXAMPLE?cid=$cid")
 

@@ -23,10 +23,11 @@ import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 
 import views.html.SessionExpiredView
 
-class SessionExpiredController @Inject()(
-                                          mcc: MessagesControllerComponents,
-                                          sessionExpiredView: SessionExpiredView
-                                        ) extends FrontendController(mcc) with I18nSupport {
+class SessionExpiredController @Inject() (
+  mcc: MessagesControllerComponents,
+  sessionExpiredView: SessionExpiredView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   def onPageLoad: Action[AnyContent] = Action { implicit request =>
     Ok(sessionExpiredView())

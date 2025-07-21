@@ -33,7 +33,7 @@ class ThankYouViewSpec extends ViewBehaviours {
 
     "contain pension intro paragraph" in {
       val expectedMessage = messages("thankYou.intro")
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
   }

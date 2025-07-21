@@ -24,10 +24,11 @@ trait IntViewBehaviours[A] extends QuestionViewBehaviours[A] {
   val number = 123
 
   def intPage(
-               createView: Form[A] => HtmlFormat.Appendable,
-               fillForm: (Form[A], Int) => Form[A],
-               fieldName: String,
-               messageKeyPrefix: String): Unit =
+    createView: Form[A] => HtmlFormat.Appendable,
+    fillForm: (Form[A], Int) => Form[A],
+    fieldName: String,
+    messageKeyPrefix: String
+  ): Unit =
     "behave like a page with an integer value field" when {
       "rendered" must {
 
@@ -62,7 +63,7 @@ trait IntViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
         "show an error in the value field's label" in {
 
-          val doc = asDocument(createView(form.withError(error)))
+          val doc       = asDocument(createView(form.withError(error)))
           val errorSpan = doc.getElementsByClass("error-message").first
           errorSpan.text mustBe messages(errorMessage)
         }
@@ -70,7 +71,11 @@ trait IntViewBehaviours[A] extends QuestionViewBehaviours[A] {
         "show an error prefix in the browser title" in {
 
           val doc = asDocument(createView(form.withError(error)))
-          assertEqualsValue(doc, "title", s"""${messages("error.browser.title.prefix")} ${messages(s"$messageKeyPrefix.title")}""")
+          assertEqualsValue(
+            doc,
+            "title",
+            s"""${messages("error.browser.title.prefix")} ${messages(s"$messageKeyPrefix.title")}"""
+          )
         }
       }
     }

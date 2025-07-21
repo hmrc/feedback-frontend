@@ -26,7 +26,7 @@ class OtherQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFi
 
   ".ableToDo" must {
 
-    val fieldName = "ableToDo"
+    val fieldName    = "ableToDo"
     val invalidError = "ableToDo.error"
 
     behave like optionsField[OtherQuestions, AbleToDo](
@@ -40,7 +40,7 @@ class OtherQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFi
 
   ".howEasyScore" must {
 
-    val fieldName = "howEasyScore"
+    val fieldName    = "howEasyScore"
     val invalidError = "howEasyScore.error"
 
     behave like optionsField[OtherQuestions, HowEasyQuestion](
@@ -54,9 +54,9 @@ class OtherQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFi
 
   ".whyGiveScore" must {
 
-    val fieldName = "whyGiveScore"
+    val fieldName    = "whyGiveScore"
     val invalidError = "whyGiveScore.error.maxlength"
-    val maxLength = 1000
+    val maxLength    = 1000
 
     behave like fieldWithMaxLength(
       form,
@@ -68,7 +68,7 @@ class OtherQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFi
 
   ".howDoYouFeelScore" must {
 
-    val fieldName = "howDoYouFeelScore"
+    val fieldName    = "howDoYouFeelScore"
     val invalidError = "howDoYouFeelScore.error"
 
     behave like optionsField[OtherQuestions, HowDoYouFeelQuestion](

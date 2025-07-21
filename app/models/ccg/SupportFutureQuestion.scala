@@ -51,5 +51,5 @@ object SupportFutureQuestion extends Enumerable.Implicits {
   }
 
   implicit val enumerable: Enumerable[SupportFutureQuestion] =
-    Enumerable(values.map(v => v.toString -> v) *)
+    Enumerable(values.map(v => v.toString -> v)*)
 }

@@ -30,14 +30,15 @@ import views.html.PensionQuestionsView
 
 import javax.inject.Inject
 
-class PensionQuestionsController @Inject()(
-                                            appConfig: FrontendAppConfig,
-                                            navigator: Navigator,
-                                            formProvider: PensionQuestionsFormProvider,
-                                            auditService: AuditService,
-                                            mcc: MessagesControllerComponents,
-                                            pensionQuestionsView: PensionQuestionsView
-                                          ) extends FrontendController(mcc) with I18nSupport {
+class PensionQuestionsController @Inject() (
+  appConfig: FrontendAppConfig,
+  navigator: Navigator,
+  formProvider: PensionQuestionsFormProvider,
+  auditService: AuditService,
+  mcc: MessagesControllerComponents,
+  pensionQuestionsView: PensionQuestionsView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   val form: Form[PensionQuestions] = formProvider()
 

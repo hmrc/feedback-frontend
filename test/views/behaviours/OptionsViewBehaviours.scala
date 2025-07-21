@@ -24,24 +24,24 @@ import views.ViewUtils
 trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
   def optionsPage(
-                   createView: Form[A] => HtmlFormat.Appendable,
-                   fieldName: String,
-                   options: Seq[RadioItem],
-                   messageKeyPrefix: String,
-                   legendClass: String = "govuk-fieldset__legend--m"): Unit =
+    createView: Form[A] => HtmlFormat.Appendable,
+    fieldName: String,
+    options: Seq[RadioItem],
+    messageKeyPrefix: String,
+    legendClass: String = "govuk-fieldset__legend--m"
+  ): Unit =
     s"behave like a page with a $fieldName radio options question" when {
       "rendered" must {
         "contain a legend for the question" in {
-          val doc = asDocument(createView(form))
+          val doc     = asDocument(createView(form))
           val legends = doc.getElementsByClass(legendClass)
           legends.eachText() must contain(messages(s"$messageKeyPrefix.heading"))
         }
 
         "contain an input for the value" in {
           val doc = asDocument(createView(form))
-          for (option <- options) {
+          for (option <- options)
             assertContainsRadioButton(doc, option.id.get, fieldName, option.value.get, isChecked = false)
-          }
         }
 
         "not render an error summary" in {
@@ -52,7 +52,7 @@ trait OptionsViewBehaviours[A] extends QuestionViewBehaviours[A] {
 
       "rendered with an error" must {
         "show an error summary with error links" in {
-          val doc = asDocument(createView(form.withError(FormError(fieldName, "error.invalid"))))
+          val doc          = asDocument(createView(form.withError(FormError(fieldName, "error.invalid"))))
           assertRenderedByCssSelector(doc, ".govuk-error-summary__title")
           val errorLinksUl = doc.getElementsByClass("govuk-list govuk-error-summary__list").first()
           val errorLinkUrl = errorLinksUl.children().first().child(0).attr("href")

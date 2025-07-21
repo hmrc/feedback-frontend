@@ -28,8 +28,8 @@ trait StringFieldBehaviours extends BaseSpec {
 
       for (_ <- 1 to 10) {
         val numberOfCharacters = Random.between(maxLength + 2, maxLength + 11)
-        val veryLongString = Random.alphanumeric.take(numberOfCharacters).mkString
-        val field = form.bind(Map(fieldName -> veryLongString)).apply(fieldName)
+        val veryLongString     = Random.alphanumeric.take(numberOfCharacters).mkString
+        val field              = form.bind(Map(fieldName -> veryLongString)).apply(fieldName)
         field.errors mustEqual Seq(lengthError)
       }
 
@@ -38,9 +38,9 @@ trait StringFieldBehaviours extends BaseSpec {
     "trim spaces before validation" in {
 
       for (_ <- 1 to 10) {
-        val maximumLengthString = Random.alphanumeric.take(maxLength).mkString
+        val maximumLengthString           = Random.alphanumeric.take(maxLength).mkString
         val maximumLengthStringWithSpaces = s"     $maximumLengthString     "
-        val field = form.bind(Map(fieldName -> maximumLengthStringWithSpaces)).apply(fieldName)
+        val field                         = form.bind(Map(fieldName -> maximumLengthStringWithSpaces)).apply(fieldName)
         field.hasErrors mustBe false
       }
 

@@ -23,7 +23,7 @@ trait Constraints {
     Constraint {
       case str if str.length <= maximum =>
         Valid
-      case _ =>
+      case _                            =>
         Invalid(errorKey, maximum)
     }
 }

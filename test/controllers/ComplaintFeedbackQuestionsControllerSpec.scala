@@ -34,7 +34,7 @@ import scala.util.Random
 
 class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
-  lazy val mockAuditService: AuditService    = mock[AuditService]
+  lazy val mockAuditService: AuditService                                 = mock[AuditService]
   lazy val complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView = inject[ComplaintFeedbackQuestionsView]
 
   val formProvider                           = new ComplaintFeedbackQuestionsFormProvider()
@@ -52,7 +52,7 @@ class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with MockitoSuga
       complaintFeedbackQuestionsView
     )
 
-  def onwardRoute: Call                        = Call("GET", "/foo")
+  def onwardRoute: Call = Call("GET", "/foo")
 
   def viewAsString(form: Form[?] = form, action: Call): String =
     complaintFeedbackQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages).toString
@@ -104,9 +104,9 @@ class ComplaintFeedbackQuestionsControllerSpec extends SpecBase with MockitoSuga
           "howDoYouFeelScore"      -> answers.howDoYouFeelScore.map(_.toString)
         ).map(value => (value._1, value._2.getOrElse(""))).toSeq
 
-        val request    = fakeRequest
+        val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values *)
+          .withFormUrlEncodedBody(values*)
           .withHeaders("referer" -> s"/feedback/com/com?cid=$cid")
 
         val feedbackId = FeedbackId.fromSession(request)

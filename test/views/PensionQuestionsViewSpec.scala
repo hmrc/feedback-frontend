@@ -25,16 +25,19 @@ import views.behaviours.{OptionsViewBehaviours, StringViewBehaviours, YesNoViewB
 import views.html.PensionQuestionsView
 
 class PensionQuestionsViewSpec
-  extends YesNoViewBehaviours[PensionQuestions] with StringViewBehaviours[PensionQuestions] with OptionsViewBehaviours[PensionQuestions] {
+    extends YesNoViewBehaviours[PensionQuestions]
+    with StringViewBehaviours[PensionQuestions]
+    with OptionsViewBehaviours[PensionQuestions] {
 
   val messageKeyPrefix = "pensionQuestions"
 
-  val form = new PensionQuestionsFormProvider()()
+  val form         = new PensionQuestionsFormProvider()()
   val action: Call = controllers.routes.PensionQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val pensionQuestionsView: PensionQuestionsView = inject[PensionQuestionsView]
 
-  def createView: () => HtmlFormat.Appendable = () => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () =>
+    pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
     (form: Form[?]) => pensionQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
@@ -49,7 +52,8 @@ class PensionQuestionsViewSpec
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options(form),
-      "pensionQuestions.howEasyScore")
+      "pensionQuestions.howEasyScore"
+    )
 
     behave like stringPage(createViewUsingForm, "whyGiveScore", "pensionQuestions.whyGiveScore")
 
@@ -57,23 +61,25 @@ class PensionQuestionsViewSpec
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options(form),
-      "pensionQuestions.howDoYouFeelScore")
+      "pensionQuestions.howDoYouFeelScore"
+    )
 
     behave like optionsPage(
       createViewUsingForm,
       "likelyToDo",
       LikelyToDoQuestion.options(form),
-      "pensionQuestions.likelyToDo")
+      "pensionQuestions.likelyToDo"
+    )
 
     "contain diclaimer hint text" in {
       val expectedMessage = messages("pensionQuestions.whyGiveScore.hint")
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("pensionQuestions.introLinkText")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
     }
   }

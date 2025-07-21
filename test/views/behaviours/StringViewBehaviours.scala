@@ -27,19 +27,21 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
     createView: Form[A] => HtmlFormat.Appendable,
     fieldName: String,
     messageKeyPrefix: String,
-    expectedHintKey: Option[String] = None): Unit =
+    expectedHintKey: Option[String] = None
+  ): Unit =
     s"behave like a page with a string value field of '$fieldName'" when {
       "rendered" must {
 
         "contain a label for the value" in {
-          val doc = asDocument(createView(form))
+          val doc              = asDocument(createView(form))
           val expectedHintText = expectedHintKey map (k => messages(k))
           assertContainsLabel(
             doc,
             fieldName,
             messages(s"$messageKeyPrefix.heading"),
             expectedHintText,
-            Some("govuk-hint"))
+            Some("govuk-hint")
+          )
         }
 
         "contain an input for the value" in {
@@ -51,7 +53,7 @@ trait StringViewBehaviours[A] extends QuestionViewBehaviours[A] {
       "rendered with a valid form" must {
         "include the form's value in the value input" in {
           val boundForm = form.bind(Map(fieldName -> answer))
-          val doc = asDocument(createView(boundForm))
+          val doc       = asDocument(createView(boundForm))
 
           doc.getElementById(fieldName).`val`() mustBe answer
         }

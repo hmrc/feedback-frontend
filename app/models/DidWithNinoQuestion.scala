@@ -46,22 +46,30 @@ object DidWithNinoQuestion {
   private case object NoneOfAbove extends WithName("noneOfAbove") with DidWithNinoQuestion
 
   val values: Seq[DidWithNinoQuestion] =
-    List(WroteOnPaper, WroteOnDevice, ScreenshotPage, PrintedIt, DownloadedIt, SavedToWallet, VisualConfirmation, Divider, NoneOfAbove)
+    List(
+      WroteOnPaper,
+      WroteOnDevice,
+      ScreenshotPage,
+      PrintedIt,
+      DownloadedIt,
+      SavedToWallet,
+      VisualConfirmation,
+      Divider,
+      NoneOfAbove
+    )
 
   def options(form: Form[?])(implicit messages: Messages): Seq[CheckboxItem] = values.map { value =>
     if (value.toString.equals("divider")) {
       CheckboxItem(
         divider = Some(messages(s"$baseMessageKey.$value"))
       )
-    }
-    else if (value.toString.equals("noneOfAbove")) {
+    } else if (value.toString.equals("noneOfAbove")) {
       CheckboxItem(
         content = Text(messages(s"$baseMessageKey.$value")),
         value = value.toString,
         behaviour = Some(ExclusiveCheckbox)
       )
-    }
-    else {
+    } else {
       CheckboxItem(
         id = Some(s"$baseMessageKey-${value.toString}"),
         value = value.toString,
@@ -72,5 +80,5 @@ object DidWithNinoQuestion {
   }
 
   implicit val enumerable: Enumerable[DidWithNinoQuestion] =
-    Enumerable(values.map(v => v.toString -> v) *)
+    Enumerable(values.map(v => v.toString -> v)*)
 }

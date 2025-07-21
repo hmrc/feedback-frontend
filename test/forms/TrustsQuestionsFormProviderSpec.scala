@@ -26,7 +26,7 @@ class TrustsQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".isAgent" must {
 
-    val fieldName = "isAgent"
+    val fieldName    = "isAgent"
     val invalidError = "isAgent.error"
 
     behave like optionsField[TrustsQuestions, YesNo](
@@ -40,7 +40,7 @@ class TrustsQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".tryingToDo" must {
 
-    val fieldName = "tryingToDo"
+    val fieldName    = "tryingToDo"
     val invalidError = "tryingToDo.error"
 
     behave like optionsField[TrustsQuestions, TryingToDoQuestion](
@@ -54,9 +54,9 @@ class TrustsQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".tryingToDoOther" must {
 
-    val fieldName = "tryingToDoOther"
+    val fieldName    = "tryingToDoOther"
     val invalidError = "generic.max-characters"
-    val maxLength = 100
+    val maxLength    = 100
 
     behave like fieldWithMaxLength(
       form,
@@ -68,7 +68,7 @@ class TrustsQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".ableToDo" must {
 
-    val fieldName = "ableToDo"
+    val fieldName    = "ableToDo"
     val invalidError = "ableToDo.error"
 
     behave like optionsField[TrustsQuestions, AbleToDo](
@@ -82,9 +82,9 @@ class TrustsQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".whyNotAbleToDo" must {
 
-    val fieldName = "whyNotAbleToDo"
+    val fieldName    = "whyNotAbleToDo"
     val invalidError = "whyNotAbleToDo.error.maxlength"
-    val maxLength = 1000
+    val maxLength    = 1000
 
     behave like fieldWithMaxLength(
       form,
@@ -96,7 +96,7 @@ class TrustsQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".howEasyScore" must {
 
-    val fieldName = "howEasyScore"
+    val fieldName    = "howEasyScore"
     val invalidError = "howEasyScore.error"
 
     behave like optionsField[TrustsQuestions, HowEasyQuestion](
@@ -110,9 +110,9 @@ class TrustsQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".whyGiveScore" must {
 
-    val fieldName = "whyGiveScore"
+    val fieldName    = "whyGiveScore"
     val invalidError = "whyGiveScore.error.maxlength"
-    val maxLength = 1000
+    val maxLength    = 1000
 
     behave like fieldWithMaxLength(
       form,
@@ -124,7 +124,7 @@ class TrustsQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".howDoYouFeelScore" must {
 
-    val fieldName = "howDoYouFeelScore"
+    val fieldName    = "howDoYouFeelScore"
     val invalidError = "howDoYouFeelScore.error"
 
     behave like optionsField[TrustsQuestions, HowDoYouFeelQuestion](

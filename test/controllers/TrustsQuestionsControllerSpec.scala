@@ -33,10 +33,7 @@ import views.html.TrustsQuestionsView
 
 import scala.util.Random
 
-class TrustsQuestionsControllerSpec
-    extends SpecBase
-    with MockitoSugar
-    with ScalaFutures {
+class TrustsQuestionsControllerSpec extends SpecBase with MockitoSugar with ScalaFutures {
 
   lazy val mockAuditService: AuditService       = mock[AuditService]
   lazy val submitCall: Call                     = routes.TrustsQuestionsController.onSubmit()
@@ -81,7 +78,7 @@ class TrustsQuestionsControllerSpec
       val areYouAnAgent         = Some(YesNo.values(Random.nextInt(yesNoQuestionNumberOfOptions)))
       val whatWereYouTryingToDo = Some(TryingToDoQuestion.values(Random.nextInt(tryingToDoQuestionNumberOfOptions)))
 
-      val otherOption = TryingToDoQuestion.enumerable.withName("Other")
+      val otherOption                      = TryingToDoQuestion.enumerable.withName("Other")
       val whatOtherThingsWereYouTryingToDo =
         if (whatWereYouTryingToDo == otherOption) {
           Some("Various interesting stuff !")
@@ -93,7 +90,8 @@ class TrustsQuestionsControllerSpec
       val whyWereYouNotAbleToDoWhatYouWant = Some("Due to various obstacles and scary challenges !!")
       val howEasyWasItToDoYourTask         = Some(HowEasyQuestion.values(Random.nextInt(howEasyQuestionNumberOfOptions)))
       val whyDidYouGiveThisScore           = Some("Because I felt like giving this score !")
-      val howDoYouFeelAboutTheService      = Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
+      val howDoYouFeelAboutTheService      =
+        Some(HowDoYouFeelQuestion.values(Random.nextInt(howDoYouFeelQuestionNumberOfOptions)))
 
       val answers = TrustsQuestions(
         areYouAnAgent,
@@ -119,7 +117,7 @@ class TrustsQuestionsControllerSpec
 
       val request = fakeRequest
         .withMethod("POST")
-        .withFormUrlEncodedBody(values *)
+        .withFormUrlEncodedBody(values*)
 
       val feedbackId = FeedbackId.fromSession(request)
 

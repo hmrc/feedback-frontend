@@ -30,14 +30,15 @@ import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
 import views.html.CcgQuestionsView
 import models.{CCGQuestions, Cid, FeedbackId, Origin}
 
-class CCGQuestionsController @Inject()(
-                                        appConfig: FrontendAppConfig,
-                                        navigator: Navigator,
-                                        formProvider: CCGQuestionsFormProvider,
-                                        auditService: AuditService,
-                                        mcc: MessagesControllerComponents,
-                                        ccgQuestionsView: CcgQuestionsView
-                                      ) extends FrontendController(mcc) with I18nSupport {
+class CCGQuestionsController @Inject() (
+  appConfig: FrontendAppConfig,
+  navigator: Navigator,
+  formProvider: CCGQuestionsFormProvider,
+  auditService: AuditService,
+  mcc: MessagesControllerComponents,
+  ccgQuestionsView: CcgQuestionsView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   val form: Form[CCGQuestions] = formProvider()
 

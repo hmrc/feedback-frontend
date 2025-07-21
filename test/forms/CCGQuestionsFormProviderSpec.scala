@@ -27,7 +27,7 @@ class CCGQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".complianceCheckUnderstanding" must {
 
-    val fieldName = "complianceCheckUnderstanding"
+    val fieldName    = "complianceCheckUnderstanding"
     val invalidError = "complianceCheckUnderstanding.error"
 
     behave like optionsField[CCGQuestions, CheckUnderstandingQuestion](
@@ -41,7 +41,7 @@ class CCGQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".treatedProfessionally" must {
 
-    val fieldName = "treatedProfessionally"
+    val fieldName    = "treatedProfessionally"
     val invalidError = "complianceTreatedProfessionally.error"
 
     behave like optionsField[CCGQuestions, TreatedProfessionallyQuestion](
@@ -55,9 +55,9 @@ class CCGQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".whyGiveAnswer" must {
 
-    val fieldName = "whyGiveAnswer"
+    val fieldName    = "whyGiveAnswer"
     val invalidError = "whyGiveAnswer.error.maxlength"
-    val maxLength = 1000
+    val maxLength    = 1000
 
     behave like fieldWithMaxLength(
       form,
@@ -70,7 +70,7 @@ class CCGQuestionsFormProviderSpec extends OptionFieldBehaviours with StringFiel
 
   ".supportFutureTax" must {
 
-    val fieldName = "supportFutureTax"
+    val fieldName    = "supportFutureTax"
     val invalidError = "supportFutureTax.error"
 
     behave like optionsField[CCGQuestions, SupportFutureQuestion](

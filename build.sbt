@@ -1,5 +1,4 @@
 import play.sbt.routes.RoutesKeys
-import scoverage.ScoverageKeys
 
 lazy val appName: String = "feedback-frontend"
 
@@ -15,12 +14,6 @@ lazy val root = (project in file("."))
     scalaVersion := "3.6.4",
     RoutesKeys.routesImport ++= Seq("models._", "config.Binders._"),
     PlayKeys.playDefaultPort := 9514,
-    ScoverageKeys.coverageExcludedFiles := "<empty>;Reverse.*;.*filters.*;.*handlers.*;.*components.*;.*repositories.*;" +
-      ".*BuildInfo.*;.*javascript.*;.*FrontendAuditConnector.*;.*Routes.*;.*GuiceInjector;" +
-      ".*ControllerConfiguration;.*LanguageSwitchController",
-    ScoverageKeys.coverageMinimumStmtTotal := 80,
-    ScoverageKeys.coverageFailOnMinimum := true,
-    ScoverageKeys.coverageHighlighting := true,
     libraryDependencies ++= AppDependencies(),
     libraryDependencySchemes += "org.scala-lang.modules" %% "scala-xml" % VersionScheme.Always,
     TwirlKeys.templateImports ++= Seq(

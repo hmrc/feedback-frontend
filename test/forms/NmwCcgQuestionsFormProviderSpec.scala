@@ -27,7 +27,7 @@ class NmwCcgQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".treatedProfessionally" must {
 
-    val fieldName = "treatedProfessionally"
+    val fieldName    = "treatedProfessionally"
     val invalidError = "treatedProfessionally.error"
 
     behave like optionsField[NmwCcgQuestions, TreatedProfessionallyQuestion](
@@ -41,7 +41,7 @@ class NmwCcgQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".checkUnderstanding" must {
 
-    val fieldName = "checkUnderstanding"
+    val fieldName    = "checkUnderstanding"
     val invalidError = "checkUnderstandingQuestion.error"
 
     behave like optionsField[NmwCcgQuestions, CheckUnderstandingQuestion](
@@ -55,9 +55,9 @@ class NmwCcgQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".whyGiveAnswer" must {
 
-    val fieldName = "whyGiveAnswer"
+    val fieldName    = "whyGiveAnswer"
     val invalidError = "whyGiveAnswer.error.maxlength"
-    val maxLength = 1000
+    val maxLength    = 1000
 
     behave like fieldWithMaxLength(
       form,
@@ -69,7 +69,7 @@ class NmwCcgQuestionsFormProviderSpec extends OptionFieldBehaviours with StringF
 
   ".supportFutureNmw" must {
 
-    val fieldName = "supportFutureNmw"
+    val fieldName    = "supportFutureNmw"
     val invalidError = "supportFutureQuestion.error"
 
     behave like optionsField[NmwCcgQuestions, SupportFutureQuestion](

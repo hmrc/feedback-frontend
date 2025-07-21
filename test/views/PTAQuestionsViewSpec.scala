@@ -25,16 +25,19 @@ import play.twirl.api.HtmlFormat
 import views.html.PtaQuestionsView
 
 class PTAQuestionsViewSpec
-  extends YesNoViewBehaviours[PTAQuestions] with StringViewBehaviours[PTAQuestions] with OptionsViewBehaviours[PTAQuestions] {
+    extends YesNoViewBehaviours[PTAQuestions]
+    with StringViewBehaviours[PTAQuestions]
+    with OptionsViewBehaviours[PTAQuestions] {
 
   val messageKeyPrefix = "ptaQuestions"
 
-  val form = new PTAQuestionsFormProvider()()
+  val form         = new PTAQuestionsFormProvider()()
   val action: Call = controllers.routes.PTAQuestionsController.onPageLoad(Origin.fromString("origin"))
 
   lazy val ptaQuestionsView: PtaQuestionsView = inject[PtaQuestionsView]
 
-  def createView: () => HtmlFormat.Appendable = () => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
+  def createView: () => HtmlFormat.Appendable = () =>
+    ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
 
   def createViewUsingForm: Form[?] => HtmlFormat.Appendable =
     (form: Form[?]) => ptaQuestionsView(frontendAppConfig, form, action)(fakeRequest, messages)
@@ -46,7 +49,8 @@ class PTAQuestionsViewSpec
       createViewUsingForm,
       "neededToDo",
       "ptaQuestions.neededToDo",
-      Some("ptaQuestions.neededToDo.heading.hintText"))
+      Some("ptaQuestions.neededToDo.heading.hintText")
+    )
 
     behave like optionsPage(createViewUsingForm, "ableToDo", AbleToDo.options(form), "ptaQuestions.ableToDo")
 
@@ -54,7 +58,8 @@ class PTAQuestionsViewSpec
       createViewUsingForm,
       "howEasyScore",
       HowEasyQuestion.options(form),
-      "ptaQuestions.howEasyScore")
+      "ptaQuestions.howEasyScore"
+    )
 
     behave like stringPage(createViewUsingForm, "whyGiveScore", "ptaQuestions.whyGiveScore")
 
@@ -62,17 +67,18 @@ class PTAQuestionsViewSpec
       createViewUsingForm,
       "howDoYouFeelScore",
       HowDoYouFeelQuestion.options(form),
-      "ptaQuestions.howDoYouFeelScore")
+      "ptaQuestions.howDoYouFeelScore"
+    )
 
     "contain second introductory paragraph" in {
       val expectedMessage = messages("ptaQuestions.intro2", messages("ptaQuestions.introLinkText"))
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain privacy anchor tag" in {
       val expectedLink = messages("ptaQuestions.introLinkText")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.privacyPolicyUrl)
     }
   }

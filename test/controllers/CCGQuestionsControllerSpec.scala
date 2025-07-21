@@ -35,11 +35,11 @@ import scala.util.Random
 
 class CCGQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
-  lazy val mockAuditService: AuditService               = mock[AuditService]
-  lazy val ccgQuestionsView: CcgQuestionsView           = inject[CcgQuestionsView]
+  lazy val mockAuditService: AuditService     = mock[AuditService]
+  lazy val ccgQuestionsView: CcgQuestionsView = inject[CcgQuestionsView]
 
-  val formProvider                                      = new CCGQuestionsFormProvider()
-  val form: Form[CCGQuestions]                          = formProvider()
+  val formProvider             = new CCGQuestionsFormProvider()
+  val form: Form[CCGQuestions] = formProvider()
 
   def submitCall(origin: Origin): Call = routes.CCGQuestionsController.onSubmit(origin)
 
@@ -109,11 +109,11 @@ class CCGQuestionsControllerSpec extends SpecBase with MockitoSugar {
 
         val request = fakeRequest
           .withMethod("POST")
-          .withFormUrlEncodedBody(values *)
+          .withFormUrlEncodedBody(values*)
           .withSession(("feedbackId", feedbackId))
           .withHeaders("referer" -> s"/feedback/ccg/cgg?cid=$cid")
 
-        val result  = controller().onSubmit(origin)(request)
+        val result = controller().onSubmit(origin)(request)
         status(result) mustBe SEE_OTHER
 
         verify(mockAuditService, times(1))

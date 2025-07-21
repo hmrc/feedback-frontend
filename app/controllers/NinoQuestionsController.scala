@@ -30,14 +30,15 @@ import views.html.NinoQuestionsView
 
 import javax.inject.Inject
 
-class NinoQuestionsController @Inject()(
-                                         appConfig: FrontendAppConfig,
-                                         navigator: Navigator,
-                                         formProvider: NinoQuestionsFormProvider,
-                                         auditService: AuditService,
-                                         mcc: MessagesControllerComponents,
-                                         ninoQuestionsView: NinoQuestionsView
-                                       ) extends FrontendController(mcc) with I18nSupport {
+class NinoQuestionsController @Inject() (
+  appConfig: FrontendAppConfig,
+  navigator: Navigator,
+  formProvider: NinoQuestionsFormProvider,
+  auditService: AuditService,
+  mcc: MessagesControllerComponents,
+  ninoQuestionsView: NinoQuestionsView
+) extends FrontendController(mcc)
+    with I18nSupport {
 
   val form: Form[NinoQuestions] = formProvider()
 

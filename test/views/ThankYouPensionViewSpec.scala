@@ -33,61 +33,61 @@ class ThankYouPensionViewSpec extends ViewBehaviours {
 
     "contain pension intro paragraph" in {
       val expectedMessage = messages("thankYou.pension.intro")
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain pension subHeading" in {
       val expectedMessage = messages("thankYou.pension.subHeading")
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain pension subContent" in {
       val expectedMessage = messages("thankYou.pension.subContent")
-      val doc = asDocument(createView())
+      val doc             = asDocument(createView())
       assertContainsText(doc, expectedMessage)
     }
 
     "contain sign in link" in {
       val expectedLink = messages("thankYou.pension.signInLink")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.pensionSignInUrl.getOrElse(""))
     }
 
     "contain retirement link" in {
       val expectedLink = messages("thankYou.pension.retirementLink")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.pensionRetirementUrl.getOrElse(""))
     }
 
     "contain pension wise link in sidebar" in {
       val expectedLink = messages("thankYou.pension.sideBar.linkOne")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.pensionSideBarOneUrl.getOrElse(""))
     }
 
     "contain planning your retirement link in sidebar" in {
       val expectedLink = messages("thankYou.pension.sideBar.linkTwo")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.pensionSideBarTwoUrl.getOrElse(""))
     }
 
     "contain defer link in sidebar" in {
       val expectedLink = messages("thankYou.pension.sideBar.linkThree")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.pensionSideBarThreeUrl.getOrElse(""))
     }
 
     "contain contact link in sidebar" in {
       val expectedLink = messages("thankYou.pension.sideBar.linkFour")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.pensionSideBarFourUrl.getOrElse(""))
     }
 
     "contain more link in sidebar" in {
       val expectedLink = messages("thankYou.pension.sideBar.linkFive")
-      val doc = asDocument(createView())
+      val doc          = asDocument(createView())
       assertContainsLink(doc, expectedLink, frontendAppConfig.pensionSideBarFiveUrl.getOrElse(""))
     }
   }

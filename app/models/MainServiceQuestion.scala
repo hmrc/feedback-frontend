@@ -25,7 +25,7 @@ sealed trait MainServiceQuestion
 
 object MainServiceQuestion {
 
-  val baseMessageKey: String = "mainServiceQuestion"
+  val baseMessageKey: String        = "mainServiceQuestion"
   private val formFieldName: String = "mainService"
 
   private case object SelfAssesment extends WithName("SelfAssesment") with MainServiceQuestion
@@ -55,5 +55,5 @@ object MainServiceQuestion {
   }
 
   implicit val enumerable: Enumerable[MainServiceQuestion] =
-    Enumerable(values.map(v => v.toString -> v) *)
+    Enumerable(values.map(v => v.toString -> v)*)
 }

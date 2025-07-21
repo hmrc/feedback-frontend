@@ -25,11 +25,15 @@ trait Mappings extends Formatters with Constraints {
   protected def text(errorKey: String = "error.required"): FieldMapping[String] =
     of(stringFormatter(errorKey))
 
-  protected def enumerable[A](requiredKey: String = "error.required", invalidKey: String = "error.invalid")(
-    implicit ev: Enumerable[A]): FieldMapping[A] =
+  protected def enumerable[A](requiredKey: String = "error.required", invalidKey: String = "error.invalid")(implicit
+    ev: Enumerable[A]
+  ): FieldMapping[A] =
     of(enumerableFormatter[A](requiredKey, invalidKey))
 
-  protected def exclusiveSeqElem[A](requiredKey: String = "error.required", invalidKey: String = "error.invalid", exclusiveOptionName: String)(
-    implicit ev: Enumerable[A]): FieldMapping[A] =
+  protected def exclusiveSeqElem[A](
+    requiredKey: String = "error.required",
+    invalidKey: String = "error.invalid",
+    exclusiveOptionName: String
+  )(implicit ev: Enumerable[A]): FieldMapping[A] =
     of(exclusiveSeqElemFormatter[A](requiredKey, invalidKey, exclusiveOptionName))
 }

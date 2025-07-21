@@ -31,9 +31,7 @@ trait FormSpec extends BaseSpec {
             formWithErrors.errors must contain(FormError(error.key, error.message, error.args))
           formWithErrors.errors.size mustBe expectedErrors.size
         },
-        form => {
-          fail(s"Expected a validation error when binding form: $form, but it was bound successfully.")
-        }
+        form => fail(s"Expected a validation error when binding form: $form, but it was bound successfully.")
       )
 
   def error(key: String, value: String, args: Any*): Seq[FormError] = Seq(FormError(key, value, args))
