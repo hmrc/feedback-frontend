@@ -1,4 +1,4 @@
 # Add all the application routes to the app.routes file
-->         /feedback                  app.Routes
 ->         /feedback-survey           app.Routes
+->         /feedback                  app.Routes
 ->         /                          health.Routes
