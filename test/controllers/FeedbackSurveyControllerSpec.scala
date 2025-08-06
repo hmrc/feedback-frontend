@@ -35,19 +35,19 @@ class FeedbackSurveyControllerSpec extends SpecBase with MockitoSugar with Befor
     "redirect to pta feedback page for pta origin" in {
       val result = testFeedbackSurveyController.feedbackRedirect(ptaOrigin)(fakeRequest)
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback-survey/PERTAX/personal")
+      redirectLocation(result).get must include("/feedback/PERTAX/personal")
     }
 
     "redirect to general feedback page for non-pta origin" in {
       val result = testFeedbackSurveyController.feedbackRedirect(nonPtaOrigin)(fakeRequest)
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback-survey/ATS/beta")
+      redirectLocation(result).get must include("/feedback/ATS/beta")
     }
 
     "redirect to general feedback page for empty origin" in {
       val result = testFeedbackSurveyController.feedbackHomePageRedirect(fakeRequest)
       status(result) mustBe SEE_OTHER
-      redirectLocation(result).get must include("/feedback-survey/feedback/beta")
+      redirectLocation(result).get must include("/feedback/feedback/beta")
     }
   }
 }
