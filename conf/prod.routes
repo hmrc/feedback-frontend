@@ -1,4 +1,9 @@
 # Add all the application routes to the app.routes file
+
+# this is the old url path for surveys that should no longer be used, kept because it still gets some traffic
 ->         /feedback-survey           app.Routes
+
+# this route needs to come after /feedback-survey, otherwise reverse routing will send traffic to the old url path
 ->         /feedback                  app.Routes
+
 ->         /                          health.Routes
