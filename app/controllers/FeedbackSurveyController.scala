@@ -19,46 +19,43 @@ package controllers
 import com.google.inject.Inject
 import models.Origin
 import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, AnyContent, MessagesControllerComponents, Result}
+import play.api.mvc.{Action, AnyContent, MessagesControllerComponents}
+import uk.gov.hmrc.hmrcfrontend.config.ServiceNavigationConfig
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import util.ServiceNavigationParamBinder.bindServiceNavigationParam
 
 class FeedbackSurveyController @Inject() (
   mcc: MessagesControllerComponents
-) extends FrontendController(mcc)
+)(using ServiceNavigationConfig)
+    extends FrontendController(mcc)
     with I18nSupport {
 
-  def feedbackRedirect(origin: String): Action[AnyContent] = Action { _ =>
-    ptaRedirect(origin)
-  }
+  private val ptaRedirects = Seq(
+    "CARBEN",
+    "FANDF",
+    "MEDBEN",
+    "NISP",
+    "P800",
+    "PERTAX",
+    "REPAYMENTS",
+    "PLA",
+    "TAI",
+    "TCR",
+    "TCS",
+    "TCSHOME",
+    "TES",
+    "TYF"
+  )
 
-  def feedbackHomePageRedirect: Action[AnyContent] = Action { _ =>
-    Redirect(routes.OtherQuestionsController.onPageLoad(Origin.fromString("feedback")))
-  }
-
-  private def ptaRedirect(origin: String): Result = {
-
-    val ptaRedirects = Seq(
-      "CARBEN",
-      "FANDF",
-      "MEDBEN",
-      "NISP",
-      "P800",
-      "PERTAX",
-      "REPAYMENTS",
-      "PLA",
-      "TAI",
-      "TCR",
-      "TCS",
-      "TCSHOME",
-      "TES",
-      "TYF"
-    )
-
+  def feedbackRedirect(origin: String): Action[AnyContent] = Action { implicit request =>
     if (ptaRedirects.contains(origin)) {
-      Redirect(routes.PTAQuestionsController.onPageLoad(Origin.fromString(origin)))
+      Redirect(routes.PTAQuestionsController.onPageLoad(Origin.fromString(origin)).bindServiceNavigationParam)
     } else {
-      Redirect(routes.OtherQuestionsController.onPageLoad(Origin.fromString(origin)))
+      Redirect(routes.OtherQuestionsController.onPageLoad(Origin.fromString(origin)).bindServiceNavigationParam)
     }
+  }
 
+  def feedbackHomePageRedirect: Action[AnyContent] = Action { implicit request =>
+    Redirect(routes.OtherQuestionsController.onPageLoad(Origin.fromString("feedback")).bindServiceNavigationParam)
   }
 }
