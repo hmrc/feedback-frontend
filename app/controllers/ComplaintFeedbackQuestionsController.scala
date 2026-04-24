@@ -23,9 +23,11 @@ import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents, Request}
 import services.AuditService
+import uk.gov.hmrc.hmrcfrontend.config.ServiceNavigationConfig
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import util.ServiceNavigationParamBinder.bindServiceNavigationParam
 import views.html.ComplaintFeedbackQuestionsView
 
 import javax.inject.Inject
@@ -37,12 +39,14 @@ class ComplaintFeedbackQuestionsController @Inject() (
   auditService: AuditService,
   mcc: MessagesControllerComponents,
   complaintFeedbackQuestionsView: ComplaintFeedbackQuestionsView
-) extends FrontendController(mcc)
+)(using ServiceNavigationConfig)
+    extends FrontendController(mcc)
     with I18nSupport {
 
   val form: Form[ComplaintFeedbackQuestions] = formProvider()
 
-  def submitCall(origin: Origin): Call = routes.ComplaintFeedbackQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin)(implicit request: Request[AnyContent]): Call =
+    routes.ComplaintFeedbackQuestionsController.onSubmit(origin).bindServiceNavigationParam
 
   def onPageLoad(origin: Origin): Action[AnyContent] = Action { implicit request =>
     Ok(complaintFeedbackQuestionsView(appConfig, form, submitCall(origin)))
@@ -55,7 +59,7 @@ class ComplaintFeedbackQuestionsController @Inject() (
         formWithErrors => BadRequest(complaintFeedbackQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.complaintFeedbackAudit(origin, FeedbackId.fromSession, value, Cid.fromUrl)
-          Redirect(navigator.nextPage(GenericQuestionsPage)(()))
+          Redirect(navigator.nextPage(GenericQuestionsPage)(()).bindServiceNavigationParam)
         }
       )
   }

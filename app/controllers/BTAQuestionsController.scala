@@ -25,9 +25,11 @@ import navigation.Navigator
 import pages.GenericQuestionsPage
 import play.api.data.Form
 import play.api.i18n.I18nSupport
-import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents}
+import play.api.mvc.{Action, AnyContent, Call, MessagesControllerComponents, Request}
 import services.AuditService
+import uk.gov.hmrc.hmrcfrontend.config.ServiceNavigationConfig
 import uk.gov.hmrc.play.bootstrap.frontend.controller.FrontendController
+import util.ServiceNavigationParamBinder.bindServiceNavigationParam
 import views.html.BtaQuestionsView
 
 class BTAQuestionsController @Inject() (
@@ -37,12 +39,14 @@ class BTAQuestionsController @Inject() (
   auditService: AuditService,
   mcc: MessagesControllerComponents,
   btaQuestionsView: BtaQuestionsView
-) extends FrontendController(mcc)
+)(using ServiceNavigationConfig)
+    extends FrontendController(mcc)
     with I18nSupport {
 
   val form: Form[BTAQuestions] = formProvider()
 
-  def submitCall(origin: Origin): Call = routes.BTAQuestionsController.onSubmit(origin)
+  def submitCall(origin: Origin)(implicit request: Request[AnyContent]): Call =
+    routes.BTAQuestionsController.onSubmit(origin).bindServiceNavigationParam
 
   def onPageLoad(origin: Origin): Action[AnyContent] = Action { implicit request =>
     Ok(btaQuestionsView(appConfig, form, submitCall(origin)))
@@ -55,7 +59,7 @@ class BTAQuestionsController @Inject() (
         formWithErrors => BadRequest(btaQuestionsView(appConfig, formWithErrors, submitCall(origin))),
         value => {
           auditService.btaAudit(origin, FeedbackId.fromSession, value)
-          Redirect(navigator.nextPage(GenericQuestionsPage)(origin))
+          Redirect(navigator.nextPage(GenericQuestionsPage)(origin).bindServiceNavigationParam)
         }
       )
   }

@@ -16,21 +16,19 @@
 
 @import config.FrontendAppConfig
 @import views.html.components.{H1, P}
-@import views.html.MainTemplate
+@import views.html.Layout
 
 @this(
-        mainTemplate: MainTemplate,
+        layout: Layout,
         h1: H1,
         p: P
 )
 
 @(pageTitle: String, heading: String, message: String, appConfig: FrontendAppConfig)(implicit request: RequestHeader, messages: Messages)
 
-@mainTemplate(
-    title = Messages(pageTitle),
-    bodyClasses = None) {
+@layout(messages(pageTitle)) {
 
-    @h1(Messages(heading))
+    @h1(messages(heading))
 
     @p(Html(messages(message)))
 }

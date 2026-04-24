@@ -15,18 +15,18 @@
  *@
 
 @import config.FrontendAppConfig
-@import views.html.MainTemplate
+@import views.html.Layout
 @import views.html.components.{H1, P}
 
 @this(
-        mainTemplate: MainTemplate,
+        layout: Layout,
         h1: H1,
         p: P
 )
 
 @(appConfig: FrontendAppConfig)(implicit request: Request[?], messages: Messages)
 
-@mainTemplate(title = messages("thankYou.title")) {
+@layout(messages("thankYou.title")) {
 
     @h1("thankYou.heading")
 

@@ -1,5 +1,5 @@
-@*
- * Copyright 2024 HM Revenue & Customs
+/*
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,25 +12,21 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
 
-@import config.FrontendAppConfig
-@import views.html.components.{H1, P}
-@import views.html.Layout
+package util
 
-@this(
-        layout: Layout,
-        h1: H1,
-        p: P
-)
+import play.api.mvc.{Call, RequestHeader}
+import uk.gov.hmrc.hmrcfrontend.config.ServiceNavigationConfig
 
-@(appConfig: FrontendAppConfig)(implicit request: RequestHeader, messages: Messages)
-
-@layout(messages("page_not_found.title")) {
-
-    @h1(messages("page_not_found.heading"))
-
-    @p(Html(messages("page.not.found.error.check.web.address.correct")))
-
-    @p(Html(messages("page.not.found.error.check.web.address.full")))
+object ServiceNavigationParamBinder {
+  extension (call: Call)
+    def bindServiceNavigationParam(implicit
+      request: RequestHeader,
+      serviceNavigationConfig: ServiceNavigationConfig
+    ): Call =
+      Call(
+        method = call.method,
+        url = serviceNavigationConfig.propagateViaQueryParam(call.url)
+      )
 }

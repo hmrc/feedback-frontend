@@ -14,20 +14,18 @@
  * limitations under the License.
  *@
 
-@import views.html.MainTemplate
+@import views.html.Layout
 @import views.html.components.{H1, P}
 
 @this(
-        mainTemplate: MainTemplate,
+        layout: Layout,
         h1: H1,
         p: P
 )
 
 @()(implicit request: Request[?], messages: Messages)
 
-@mainTemplate(
-    title = messages("sessionExpired.title"),
-    bodyClasses = None) {
+@layout(messages("sessionExpired.title")) {
 
     @h1("sessionExpired.heading")
 

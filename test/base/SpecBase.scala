@@ -18,24 +18,21 @@ package base
 
 import config.FrontendAppConfig
 import org.scalatestplus.play.PlaySpec
-import org.scalatestplus.play.guice._
+import org.scalatestplus.play.guice.*
 import play.api.i18n.{Messages, MessagesApi}
 import play.api.mvc.{AnyContentAsEmpty, MessagesControllerComponents}
 import play.api.test.{FakeRequest, Injecting}
+import uk.gov.hmrc.hmrcfrontend.config.ServiceNavigationConfig
 
 import scala.concurrent.ExecutionContext
 
 trait SpecBase extends PlaySpec with GuiceOneAppPerSuite with Injecting {
+  val frontendAppConfig: FrontendAppConfig             = inject[FrontendAppConfig]
+  val messagesApi: MessagesApi                         = inject[MessagesApi]
+  val fakeRequest: FakeRequest[AnyContentAsEmpty.type] = FakeRequest("", "")
+  val mcc: MessagesControllerComponents                = inject[MessagesControllerComponents]
 
-  def frontendAppConfig: FrontendAppConfig = inject[FrontendAppConfig]
-
-  def messagesApi: MessagesApi = inject[MessagesApi]
-
-  def fakeRequest: FakeRequest[AnyContentAsEmpty.type] = FakeRequest("", "")
-
-  implicit def messages: Messages = messagesApi.preferred(fakeRequest)
-
-  def mcc: MessagesControllerComponents = inject[MessagesControllerComponents]
-
-  implicit lazy val ec: ExecutionContext = inject[ExecutionContext]
+  given messages: Messages      = messagesApi.preferred(fakeRequest)
+  given ec: ExecutionContext    = inject[ExecutionContext]
+  given ServiceNavigationConfig = inject[ServiceNavigationConfig]
 }
