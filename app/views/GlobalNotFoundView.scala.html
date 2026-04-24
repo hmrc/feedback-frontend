@@ -16,21 +16,19 @@
 
 @import config.FrontendAppConfig
 @import views.html.components.{H1, P}
-@import views.html.MainTemplate
+@import views.html.Layout
 
 @this(
-        mainTemplate: MainTemplate,
+        layout: Layout,
         h1: H1,
         p: P
 )
 
 @(appConfig: FrontendAppConfig)(implicit request: RequestHeader, messages: Messages)
 
-@mainTemplate(
-    title = Messages("page_not_found.title"),
-    bodyClasses = None) {
+@layout(messages("page_not_found.title")) {
 
-    @h1(Messages("page_not_found.heading"))
+    @h1(messages("page_not_found.heading"))
 
     @p(Html(messages("page.not.found.error.check.web.address.correct")))
 

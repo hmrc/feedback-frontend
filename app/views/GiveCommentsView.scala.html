@@ -16,11 +16,11 @@
 
 @import config.FrontendAppConfig
 @import views.ViewUtils._
-@import views.html.MainTemplate
+@import views.html.Layout
 @import views.html.components.{Btn, ErrSummary, H1, InputRadio, InputTextArea, P}
 
 @this(
-        mainTemplate: MainTemplate,
+        layout: Layout,
         formHelper: FormWithCSRF,
         h1: H1,
         p: P,
@@ -32,10 +32,7 @@
 
 @(appConfig: FrontendAppConfig, form: Form[?], action: Call)(implicit request: Request[?], messages: Messages)
 
-@mainTemplate(
-    title = s"${errorPrefix(form)} ${messages("giveComments.title")}",
-    bodyClasses = None,
-    showBackLink = true) {
+@layout(pageTitle = s"${errorPrefix(form)} ${messages("giveComments.title")}", showBackLink = true) {
 
     @formHelper(action = action, Symbol("autoComplete") -> "off") {
 

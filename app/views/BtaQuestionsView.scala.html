@@ -17,11 +17,11 @@
 @import config.FrontendAppConfig
 @import models.{HowDoYouFeelQuestion, HowEasyQuestion, MainServiceQuestion}
 @import views.ViewUtils._
-@import views.html.MainTemplate
+@import views.html.Layout
 @import views.html.components.{Btn, ErrSummary, H1, InputRadio, InputRadioDynamic, InputTextArea, P}
 
 @this(
-        mainTemplate: MainTemplate,
+        layout: Layout,
         formHelper: FormWithCSRF,
         h1: H1,
         p: P,
@@ -39,9 +39,7 @@
     <a href="@appConfig.privacyPolicyUrl" target="_blank" rel="noopener noreferrer" class="govuk-link">@messages("btaQuestions.introLinkText")</a>
 }
 
-@mainTemplate(
-    title = s"${errorPrefix(form)} ${messages("btaQuestions.title")}",
-    bodyClasses = None) {
+@layout(s"${errorPrefix(form)} ${messages("btaQuestions.title")}") {
 
     @formHelper(action = action, Symbol("autoComplete") -> "off", Symbol("data-dynamic-form") -> "true") {
 

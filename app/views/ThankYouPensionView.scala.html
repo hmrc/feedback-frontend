@@ -15,11 +15,11 @@
  *@
 
 @import config.FrontendAppConfig
-@import views.html.MainTemplate
+@import views.html.Layout
 @import views.html.components.{H1, H2, Link, P}
 
 @this(
-        mainTemplate: MainTemplate,
+        layout: Layout,
         h1: H1,
         h2: H2,
         p: P,
@@ -35,10 +35,7 @@
 }
 
 
-@mainTemplate(
-    title = messages("thankYou.pension.title"),
-    bodyClasses = Some("full-width")
-) {
+@layout(messages("thankYou.pension.title")) {
 
     <div class="grid-row">
 

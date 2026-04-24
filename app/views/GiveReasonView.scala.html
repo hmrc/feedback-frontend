@@ -17,12 +17,11 @@
 @import config.FrontendAppConfig
 @import models.GiveReason
 @import views.ViewUtils._
-@import views.html.MainTemplate
 @import views.html.components.{Btn, ErrSummary, H1, InputRadioDynamic}
 @import uk.gov.hmrc.hmrcfrontend.views.html.components.{CharacterCount => HMRCCharacterCount}
 
 @this(
-        mainTemplate: MainTemplate,
+        layout: Layout,
         formHelper: FormWithCSRF,
         h1: H1,
         inputRadioDynamic: InputRadioDynamic,
@@ -33,9 +32,7 @@
 
 @(appConfig: FrontendAppConfig, form: Form[?], action: Call)(implicit request: Request[?], messages: Messages)
 
-@mainTemplate(
-    title = s"${errorPrefix(form)} ${messages("giveReason.title")}",
-    bodyClasses = None) {
+@layout(s"${errorPrefix(form)} ${messages("giveReason.title")}") {
 
     @formHelper(action = action, Symbol("autoComplete") -> "off", Symbol("data-dynamic-form") -> "true") {
 
