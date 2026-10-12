@@ -1,4 +1,5 @@
 import play.sbt.routes.RoutesKeys
+import scoverage.ScoverageKeys
 
 lazy val appName: String = "feedback-frontend"
 
@@ -30,5 +31,10 @@ lazy val root = (project in file("."))
       "-Wconf:cat=unused-imports&src=html/.*:s",
       "-Xfatal-warnings",
       "-deprecation"
-    )
+    ),
+    ScoverageKeys.coverageExcludedFiles := "<empty>;Reverse.*;.*handlers.*;.*components.*;" +
+      ".*Routes.*;.*viewmodels.govuk.*;",
+    ScoverageKeys.coverageMinimumStmtTotal := 89,
+    ScoverageKeys.coverageFailOnMinimum := true,
+    ScoverageKeys.coverageHighlighting := true
   )
