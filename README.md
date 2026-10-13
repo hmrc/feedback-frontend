@@ -50,6 +50,8 @@ To run via service manager: `sm --start FEEDBACK_FRONTEND`
 
 To run unit tests: `sbt test`
 
+To run unit tests with coverage: `sbt clean coverage test coverageReport`
+
 ## Usage
 
 When redirecting the user to the feedback service you should ensure that the user has been logged out as the feedback service does not do this.
